@@ -1,0 +1,96 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { PROGRAMS, resolveProgramClasses, unitPlural } from '../../data/programs';
+import { derivedThumb, lenLabel } from '../../lib/video';
+import { splitTitle } from '../../lib/title';
+
+export async function getStaticPaths() {
+  const videos = await getCollection('videos');
+  return PROGRAMS.map((program) => {
+    const { match, ...meta } = program; // drop the predicate — props must serialize
+    const classes = resolveProgramClasses(program, videos).map((c) => c.data);
+    return { params: { slug: program.slug }, props: { meta, classes } };
+  });
+}
+
+const { meta, classes } = Astro.props;
+const first = classes[0];
+const totalMin = classes.reduce((sum, c) => sum + c.length_minutes, 0);
+const hours = Math.round((totalMin / 60) * 10) / 10;
+---
+
+<BaseLayout
+  title={`${meta.title} — Yin Yoga Program`}
+  description={`${meta.outcome} ${meta.blurb}`}
+  ogType="article"
+  image={first ? derivedThumb(first, 'maxresdefault') : undefined}
+>
+  <div class="wrap">
+    <header class="hero prog-hero">
+      <p class="eyebrow">Program · {unitPlural(meta, classes.length)}</p>
+      <h1>{meta.title}</h1>
+      <p class="alt">{meta.tagline}</p>
+      <p class="prog-outcome">{meta.outcome}</p>
+      <p class="prog-blurb">{meta.blurb}</p>
+
+      <div class="prog-meta">
+        <span class="pill strong">{unitPlural(meta, classes.length)}</span>
+        <span class="pill">All levels</span>
+        <span class="pill">~{hours} hrs total</span>
+        <span class="pill">Free to follow</span>
+      </div>
+
+      {
+        first && (
+          <a class={`btn btn-primary start-btn accent-${meta.accent}`} href={`/videos/${first.slug}`}>
+            Start {meta.unit} 1 → {splitTitle(first.title).headline}
+          </a>
+        )
+      }
+    </header>
+
+    <section>
+      <h2>The plan</h2>
+      <ol class={`syllabus accent-${meta.accent}`}>
+        {
+          classes.map((c, i) => (
+            <li class="syll-item">
+              <a class="syll-link" href={`/videos/${c.slug}`}>
+                <span class="syll-num">
+                  <small>{meta.unit}</small>
+                  {i + 1}
+                </span>
+                <span class="syll-thumb">
+                  <img src={derivedThumb(c)} alt={c.title} loading="lazy" width="320" height="180" />
+                  <span class="syll-len">{lenLabel(c)}</span>
+                </span>
+                <span class="syll-body">
+                  <span class="syll-title">{splitTitle(c.title).headline}</span>
+                  <span class="syll-tags">
+                    {c.membership && <span class="tag tag-members">Members</span>}
+                    {c.intent_tags.slice(0, 3).map((t) => (
+                      <span class="tag tag-intent">{t.charAt(0).toUpperCase() + t.slice(1)}</span>
+                    ))}
+                  </span>
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="prog-closer">
+      <p class="lead">
+        That's the path. Come back to it daily, or whenever the week allows — Yin rewards returning,
+        not rushing. When you finish, start again; it meets you differently each time.
+      </p>
+      <a class="btn btn-secondary" href="/programs">← All programs</a>
+    </section>
+
+    <footer>
+      <p class="src">Every class links out to the full practice on YouTube.</p>
+    </footer>
+  </div>
+</BaseLayout>

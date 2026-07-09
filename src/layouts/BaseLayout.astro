@@ -1,0 +1,124 @@
+---
+import '../styles/global.css';
+
+/**
+ * The site-wide document shell. Owns the <head>: fonts, SEO title/description,
+ * Open Graph + Twitter tags, canonical URL, and an optional JSON-LD block.
+ * Every page renders inside this so SEO is consistent and defined in one place.
+ */
+interface Props {
+  title: string;
+  description: string;
+  /** Open Graph overrides; fall back to title/description when omitted. */
+  ogTitle?: string;
+  ogDescription?: string;
+  ogType?: string;
+  /** Absolute or root-relative image URL for OG/Twitter cards. */
+  image?: string;
+  /** A pre-serialised JSON-LD object rendered as <script type="application/ld+json">. */
+  jsonLd?: unknown;
+  /** When true, emit <meta name="robots" content="noindex"> (thin/skeleton pages). */
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  ogTitle = title,
+  ogDescription = description,
+  ogType = 'website',
+  image,
+  jsonLd,
+  noindex = false,
+} = Astro.props;
+
+// Canonical + absolute OG image, resolved against `site` in astro.config.mjs.
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = image ? new URL(image, Astro.site).href : undefined;
+
+// Simple top nav, shared across every page. `aria-current` marks the section
+// the current path falls under so the active link is highlighted.
+const path = Astro.url.pathname;
+const nav = [
+  { href: '/', label: 'Library', match: (p: string) => p === '/' || p.startsWith('/videos') },
+  { href: '/poses', label: 'Poses', match: (p: string) => p.startsWith('/poses') },
+  { href: '/programs', label: 'Programs', match: (p: string) => p.startsWith('/programs') },
+  { href: '/calendar', label: 'Calendar', match: (p: string) => p.startsWith('/calendar') },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href="/brand/submark-rosewood.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,360;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    {
+      jsonLd && (
+        <script
+          type="application/ld+json"
+          is:inline
+          set:html={JSON.stringify(jsonLd)}
+        />
+      )
+    }
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="bar">
+        <a class="brand" href="/" aria-label="Yin Yoga with Katie — home">
+          <img src="/brand/wordmark-rosewood.png" alt="Yin Yoga with Katie" class="brand-logo" width="176" height="30" />
+        </a>
+        <nav class="nav" aria-label="Primary">
+          {
+            nav.map((item) => (
+              <a href={item.href} aria-current={item.match(path) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+    </header>
+    <slot />
+    <footer class="site-footer">
+      <img src="/brand/primary-rosewood.png" alt="Yin Yoga with Katie" class="site-footer-logo" width="150" height="123" loading="lazy" />
+      <p class="site-footer-tag">a calmer, more flexible you — one long, slow practice at a time</p>
+      <nav class="site-footer-nav" aria-label="Footer">
+        <a href="/">Library</a>
+        <a href="/poses">Poses</a>
+        <a href="/programs">Programs</a>
+        <a href="/calendar">Calendar</a>
+      </nav>
+      <p class="site-footer-copy">© Yin Yoga with Katie</p>
+    </footer>
+  </body>
+</html>

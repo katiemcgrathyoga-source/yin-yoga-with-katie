@@ -1,0 +1,183 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CalendarNav from '../../components/CalendarNav.astro';
+import { derivedThumb, lenLabel, byRecencyThenWatch } from '../../lib/video';
+import { splitTitle } from '../../lib/title';
+
+const videos = (await getCollection('videos')).sort((a, b) => byRecencyThenWatch(a.data, b.data));
+const capitalise = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+---
+
+<BaseLayout
+  title="Build Your Own — Calendar — Yin Yoga with Katie"
+  description="Build your own Yin Yoga plan — add classes, put them in order, and follow your sequence day by day. Saved on your device."
+>
+  <div class="wrap">
+    <header class="hero">
+      <p class="eyebrow">Practice · Your plan</p>
+      <h1>Build Your Own</h1>
+      <p class="alt">choose your classes, set the order, follow your own rhythm</p>
+    </header>
+
+    <CalendarNav active="build" />
+
+    <!-- Your plan -->
+    <section class="plan" aria-label="Your plan">
+      <div class="plan-head">
+        <h2>Your plan <span class="plan-count" id="plan-count"></span></h2>
+        <button type="button" class="chip chip-clear" id="plan-clear" hidden>Clear all</button>
+      </div>
+      <p class="plan-empty" id="plan-empty">
+        Nothing added yet — add classes below to build your own sequence. It's saved on this device,
+        so it'll be here when you come back.
+      </p>
+      <ol class="plan-list" id="plan-list"></ol>
+      <a class="btn btn-primary" id="plan-start" href="#" hidden>Start with #1 →</a>
+    </section>
+
+    <!-- Catalogue -->
+    <section class="catalogue" aria-label="All classes">
+      <h2>Add classes</h2>
+      <input type="search" class="cat-search" id="cat-search" placeholder="Search classes — title or intent…" aria-label="Search classes" />
+      <p class="cat-none" id="cat-none" hidden>No classes match that search.</p>
+      <ul class="cat-list" id="cat-list">
+        {
+          videos.map((v) => {
+            const d = v.data;
+            const head = splitTitle(d.title).headline;
+            const len = lenLabel(d);
+            return (
+              <li class="cat-row" data-title={d.title.toLowerCase()} data-intents={d.intent_tags.join(' ')}>
+                <img class="cat-thumb" src={derivedThumb(d, 'mqdefault')} alt="" loading="lazy" width="80" height="45" />
+                <div class="cat-info">
+                  <a class="cat-title" href={`/videos/${d.slug}`}>{head}</a>
+                  <span class="cat-meta">{len}{d.intent_tags.length ? ` · ${d.intent_tags.map(capitalise).join(', ')}` : ''}</span>
+                </div>
+                <button
+                  type="button"
+                  class="cat-add"
+                  data-slug={d.slug}
+                  data-title={head}
+                  data-thumb={derivedThumb(d, 'mqdefault')}
+                  data-len={len}
+                  data-href={`/videos/${d.slug}`}
+                >
+                  Add
+                </button>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </section>
+  </div>
+</BaseLayout>
+
+<script>
+  const KEY = 'kyk-plan-v1';
+  const listEl = document.getElementById('plan-list') as HTMLOListElement;
+  const emptyEl = document.getElementById('plan-empty');
+  const countEl = document.getElementById('plan-count');
+  const clearEl = document.getElementById('plan-clear');
+  const startEl = document.getElementById('plan-start') as HTMLAnchorElement | null;
+  const searchEl = document.getElementById('cat-search') as HTMLInputElement | null;
+  const catNone = document.getElementById('cat-none');
+  const rows = Array.from(document.querySelectorAll<HTMLElement>('.cat-row'));
+
+  // Lookup table: slug → {title, thumb, len, href}, built from the Add buttons.
+  const CATALOG = new Map<string, { title: string; thumb: string; len: string; href: string }>();
+  for (const btn of document.querySelectorAll<HTMLElement>('.cat-add')) {
+    CATALOG.set(btn.dataset.slug!, {
+      title: btn.dataset.title!, thumb: btn.dataset.thumb!, len: btn.dataset.len!, href: btn.dataset.href!,
+    });
+  }
+
+  const load = (): string[] => {
+    try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; }
+  };
+  const save = (arr: string[]) => localStorage.setItem(KEY, JSON.stringify(arr));
+
+  function render() {
+    const plan = load().filter((s) => CATALOG.has(s));
+    listEl.innerHTML = '';
+    plan.forEach((slug, i) => {
+      const c = CATALOG.get(slug)!;
+      const li = document.createElement('li');
+      li.className = 'plan-item';
+      li.dataset.slug = slug;
+      li.innerHTML = `
+        <span class="plan-num">${i + 1}</span>
+        <img class="plan-thumb" src="${c.thumb}" alt="" loading="lazy" width="80" height="45" />
+        <a class="plan-title" href="${c.href}">${c.title}</a>
+        <span class="plan-len">${c.len}</span>
+        <span class="plan-controls">
+          <button type="button" data-act="up" aria-label="Move up" ${i === 0 ? 'disabled' : ''}>↑</button>
+          <button type="button" data-act="down" aria-label="Move down" ${i === plan.length - 1 ? 'disabled' : ''}>↓</button>
+          <button type="button" data-act="remove" aria-label="Remove">✕</button>
+        </span>`;
+      listEl.appendChild(li);
+    });
+
+    const has = plan.length > 0;
+    if (emptyEl) emptyEl.hidden = has;
+    if (clearEl) clearEl.hidden = !has;
+    if (countEl) countEl.textContent = has ? `· ${plan.length} ${plan.length === 1 ? 'class' : 'classes'}` : '';
+    if (startEl) {
+      startEl.hidden = !has;
+      if (has) startEl.href = CATALOG.get(plan[0])!.href;
+    }
+    // Reflect "added" state on catalogue buttons.
+    const inPlan = new Set(plan);
+    for (const btn of document.querySelectorAll<HTMLButtonElement>('.cat-add')) {
+      const added = inPlan.has(btn.dataset.slug!);
+      btn.textContent = added ? 'Added ✓' : 'Add';
+      btn.classList.toggle('is-added', added);
+    }
+  }
+
+  function mutate(fn: (plan: string[]) => string[]) {
+    save(fn(load().filter((s) => CATALOG.has(s))));
+    render();
+  }
+
+  // Add from catalogue
+  document.getElementById('cat-list')?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest('.cat-add') as HTMLElement | null;
+    if (!btn) return;
+    const slug = btn.dataset.slug!;
+    mutate((plan) => (plan.includes(slug) ? plan.filter((s) => s !== slug) : [...plan, slug]));
+  });
+
+  // Reorder / remove within the plan
+  listEl.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest('button[data-act]') as HTMLElement | null;
+    if (!btn) return;
+    const slug = (btn.closest('.plan-item') as HTMLElement).dataset.slug!;
+    const act = btn.dataset.act;
+    mutate((plan) => {
+      const i = plan.indexOf(slug);
+      if (i < 0) return plan;
+      if (act === 'remove') plan.splice(i, 1);
+      else if (act === 'up' && i > 0) [plan[i - 1], plan[i]] = [plan[i], plan[i - 1]];
+      else if (act === 'down' && i < plan.length - 1) [plan[i + 1], plan[i]] = [plan[i], plan[i + 1]];
+      return plan;
+    });
+  });
+
+  clearEl?.addEventListener('click', () => mutate(() => []));
+
+  // Search filter
+  searchEl?.addEventListener('input', () => {
+    const q = searchEl.value.trim().toLowerCase();
+    let visible = 0;
+    for (const row of rows) {
+      const hit = !q || row.dataset.title!.includes(q) || row.dataset.intents!.includes(q);
+      row.hidden = !hit;
+      if (hit) visible++;
+    }
+    if (catNone) catNone.hidden = visible > 0;
+  });
+
+  render();
+</script>

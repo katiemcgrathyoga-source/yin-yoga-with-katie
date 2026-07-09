@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { PROGRAMS, resolveProgramClasses, unitPlural } from '../data/programs';
+import { derivedThumb } from '../lib/video';
+
+// Each program's class list is resolved live from the library.
+const videos = await getCollection('videos');
+const programs = PROGRAMS.map((def) => {
+  const classes = resolveProgramClasses(def, videos);
+  return { def, count: classes.length, lead: classes[0]?.data };
+});
+---
+
+<BaseLayout
+  title="Programs — Yin Yoga with Katie"
+  description="Free, guided Yin Yoga programs — follow a plan instead of choosing a class each day. Wind down for sleep, get flexible, free your hips, or calm a busy mind."
+>
+  <div class="wrap">
+    <header class="hero">
+      <p class="eyebrow">Guided · Free to follow</p>
+      <h1>Programs</h1>
+      <p class="alt">don't decide what to practise — follow a path, one class at a time</p>
+    </header>
+
+    <p class="intro">
+      Each program is a hand-picked run of classes with a single aim. Start at the beginning and
+      follow along, or dip into whichever one your body is asking for. No sign-up — just press play.
+    </p>
+
+    <div class="programs">
+      {
+        programs.map(({ def, count, lead }) => (
+          <a class={`program-card accent-${def.accent}`} href={`/programs/${def.slug}`}>
+            <div class="pc-thumb">
+              {lead && <img src={derivedThumb(lead)} alt={def.title} loading="lazy" width="480" height="270" />}
+              <span class="pc-count">{unitPlural(def, count)}</span>
+              {def.membersProgram && <span class="pc-members">Members only</span>}
+            </div>
+            <div class="pc-body">
+              <h2 class="pc-title">{def.title}</h2>
+              <p class="pc-tag">{def.tagline}</p>
+              <p class="pc-outcome">{def.outcome}</p>
+              <span class="pc-go">View the plan →</span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+
+    <footer>
+      <p class="src">Programs draw from the same class library — they just give it an order.</p>
+    </footer>
+  </div>
+</BaseLayout>

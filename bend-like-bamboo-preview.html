@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bend Like Bamboo: 90-Min Full-Body Yin Yoga for Flexibility</title>
+<meta name="description" content="A 90-minute full-body Yin class to stretch shoulders, back, hips and legs. Held long and slow, with a gentle and a deeper option in every pose. All levels.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,360;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F1ECEF; --paper-2:#FAF7F9; --ink:#2B2430; --ink-soft:#6A5F6E;
+    --plum:#7C5D88; --plum-deep:#5E4568; --gold:#C1912F; --gold-deep:#A2782341;
+    --gold-solid:#B9882B; --line:#E2DAE1;
+    --display:'Fraunces',Georgia,serif; --body:'Hanken Grotesk',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
+    line-height:1.65;font-size:17px;}
+  .wrap{max-width:680px;margin:0 auto;padding:0 22px;}
+  a{color:var(--plum-deep);text-decoration:none;}
+  a:hover{color:var(--plum);}
+
+  /* site header */
+  .topbar{border-bottom:1px solid var(--line);background:var(--paper-2);}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;}
+  .brand{font-family:var(--display);font-size:19px;font-weight:500;color:var(--ink);}
+  .nav{display:flex;gap:20px;font-size:14px;}
+  .nav a{color:var(--ink-soft);}
+  .nav a:hover{color:var(--plum);}
+  @media(max-width:560px){.nav{display:none;}}
+
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--plum);margin:0 0 12px;}
+
+  /* hero */
+  header.hero{padding:34px 0 8px;}
+  .thumb{position:relative;display:block;border-radius:16px;overflow:hidden;
+    box-shadow:0 12px 40px -18px rgba(43,36,48,.5);line-height:0;}
+  .thumb img{width:100%;height:auto;display:block;}
+  .play{position:absolute;inset:0;display:grid;place-items:center;}
+  .play span{width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.92);
+    display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.25);transition:transform .2s;}
+  .play span::after{content:"";border-left:22px solid var(--plum-deep);
+    border-top:13px solid transparent;border-bottom:13px solid transparent;margin-left:5px;}
+  .thumb:hover .play span{transform:scale(1.08);}
+
+  h1{font-family:var(--display);font-weight:360;font-size:clamp(38px,9vw,58px);
+    line-height:1.02;letter-spacing:-0.01em;margin:26px 0 0;}
+  .subtitle{font-family:var(--display);font-style:italic;color:var(--ink-soft);
+    font-size:clamp(17px,4.5vw,21px);margin:12px 0 0;}
+
+  .meta{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0;align-items:center;}
+  .pill{font-size:13.5px;padding:5px 13px;border:1px solid var(--line);border-radius:100px;
+    background:var(--paper-2);color:var(--ink-soft);}
+  .pill.strong{background:var(--plum);color:#fff;border-color:var(--plum);}
+
+  .watch{display:inline-flex;align-items:center;gap:9px;margin-top:24px;
+    background:var(--gold-solid);color:#fff;font-weight:600;font-size:15.5px;
+    padding:13px 22px;border-radius:11px;}
+  .watch:hover{background:#a5771f;color:#fff;}
+  .watch::before{content:"▶";font-size:12px;}
+
+  section{padding:38px 0;border-top:1px solid var(--line);}
+  h2{font-family:var(--display);font-weight:500;font-size:26px;letter-spacing:-0.01em;margin:0 0 18px;}
+  p{margin:0 0 16px;}
+  p:last-child{margin-bottom:0;}
+
+  /* principles */
+  .principle{padding:0 0 16px 0;}
+  .principle:last-child{padding-bottom:0;}
+  .principle b{font-family:var(--display);font-weight:600;color:var(--plum-deep);}
+
+  /* chapters */
+  .chapters{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--paper-2);}
+  .chap{display:flex;gap:14px;align-items:baseline;padding:14px 18px;border-top:1px solid var(--line);}
+  .chap:first-child{border-top:none;}
+  .chap .t{flex:0 0 62px;font-variant-numeric:tabular-nums;font-size:13.5px;font-weight:600;
+    color:var(--gold-deep);color:var(--gold-solid);}
+  .chap .t a{color:var(--gold-solid);}
+  .chap .body{flex:1;}
+  .chap .body .cat{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);}
+  .chap .body .nm{font-size:16px;}
+  .chap .body .nm a{border-bottom:1px solid rgba(124,93,136,.35);}
+  .chaps-note{font-size:13px;color:var(--ink-soft);margin-top:12px;}
+
+  /* cta */
+  .cta{background:var(--ink);color:var(--paper);border-radius:18px;padding:38px 28px;
+    text-align:center;margin:44px 0;}
+  .cta .eyebrow{color:var(--gold);}
+  .cta h2{color:#fff;margin-bottom:12px;}
+  .cta p{color:#CFC6D0;max-width:46ch;margin:0 auto 22px;font-size:15.5px;}
+  .cta .btn{display:inline-block;background:var(--gold-solid);color:#fff;font-weight:600;
+    padding:13px 26px;border-radius:11px;font-size:15.5px;}
+  .cta .btn:hover{background:#a5771f;color:#fff;}
+
+  .reminder{background:var(--paper-2);border:1px solid var(--line);border-left:3px solid var(--plum);
+    border-radius:0 12px 12px 0;padding:20px 22px;font-size:15.5px;color:var(--ink-soft);}
+
+  footer{text-align:center;color:var(--ink-soft);font-size:13px;padding:30px 0 60px;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand">Yin Yoga with Katie</div>
+    <nav class="nav">
+      <a href="#">Library</a><a href="#">Programs</a><a href="#">Calendar</a><a href="#">About</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow">Yin Yoga · Flexibility · Full-Body</p>
+    <a class="thumb" href="https://www.youtube.com/watch?v=Fg6_jBIkXsU" target="_blank" rel="noopener">
+      <img src="./bend-like-bamboo-thumb.jpg" alt="Bend Like Bamboo — Full Flexibility Routine Yin Yoga, 90 minutes">
+      <span class="play"><span></span></span>
+    </a>
+
+    <h1>Bend Like Bamboo</h1>
+    <p class="subtitle">The Ultimate Yin Yoga Flexibility Class</p>
+
+    <div class="meta">
+      <span class="pill strong">90 min</span>
+      <span class="pill">All levels</span>
+      <span class="pill">Flexibility</span>
+      <span class="pill">Full-body</span>
+      <span class="pill">Strap needed</span>
+      <span class="pill">Mar 2024</span>
+    </div>
+
+    <a class="watch" href="https://www.youtube.com/watch?v=Fg6_jBIkXsU" target="_blank" rel="noopener">Watch the full class on YouTube</a>
+  </header>
+
+  <section>
+    <h2>What this practice is</h2>
+    <p>If you want to get flexible, this class is for you. Over about ninety minutes you'll gently stretch your shoulders, back, hips and legs — and by the end you'll be feeling lighter, looser and more flexible. It's all held the Yin way: long, slow, and unhurried, letting your breath and gravity do the work rather than forcing anything.</p>
+    <p>It's the most-practised class on the channel, and the reason people keep it running on the TV is simple — once you settle in, it carries you. And the more you come back to it, the more flexibility you'll gain.</p>
+  </section>
+
+  <section>
+    <h2>Who it's for</h2>
+    <p>Everybody, really. Whether you're brand new to Yin or well into your practice, every single pose has an option to stay gentle at the surface and an option to go that little bit deeper. So you get to choose where you're at today. If you sit a lot, feel stiff, or just want a long calming reset, come as you are.</p>
+  </section>
+
+  <section>
+    <h2>What you'll need</h2>
+    <p>Some sort of strap — a yoga strap, a belt, anything strap-like is fine. If you have blocks, keep them nearby; if you don't, don't worry too much about that, you'll be absolutely fine without them. And a warm, quiet space where you can be still for a while.</p>
+  </section>
+
+  <section>
+    <h2>How Yin works — three things to remember</h2>
+    <div class="principle"><b>Find your edge.</b> Come to the point where you can feel a real stretch — a slight challenge — but never pain, and never forcing. That edge is different in every body, and different every day.</div>
+    <div class="principle"><b>Be still.</b> Once you've found your edge, settle and commit to stillness. If your mind drifts away and starts to think, that's completely normal — just gently bring your focus back to your body, back to your breath.</div>
+    <div class="principle"><b>Give it time.</b> The holds here are long — around five minutes each. The length is where the change happens. If you need to come out of a pose sooner, please do; you can always work up to those five-minute holds.</div>
+  </section>
+
+  <section>
+    <h2>What you'll practise</h2>
+    <div class="chapters">
+      <div class="chap"><div class="t"><a href="https://www.youtube.com/watch?v=Fg6_jBIkXsU&t=0s" target="_blank" rel="noopener">0:00</a></div><div class="body"><div class="nm">Intro to the class</div></div></div>
+      <div class="chap"><div class="t"><a href="https://www.youtube.com/watch?v=Fg6_jBIkXsU&t=100s" target="_blank" rel="noopener">1:40</a></div><div class="body"><div class="cat">Shoulders</div><div class="nm"><a href="#">Bow Tie</a> · 5 min each side</div></div></div>
+      <div class="chap"><div class="t"><a href="https://www.youtube.com/watch?v=Fg6_jBIkXsU&t=840s" target="_blank" rel="noopener">14:00</a></div><div class="body"><div class="cat">Shoulders</div><div class="nm"><a href="#">Melting Heart (Anahatasana)</a> · 5 min</div></div></div>
+      <div class="chap"><div class="t"><a href="https://www.youtube.com/watch?v=Fg6_jBIkXsU&t=1340s" target="_blank" rel="noopener">22:20</a></div><div class="body"><div class="cat">Hips</div><div class="nm"><a href="#">Butterfly</a> · 5 min</div></div></div>
+      <div class="chap"><div class="t"><a href="https://www.youtube.com/watch?v=Fg6_jBIkXsU&t=1710s" target="_blank" rel="noopener">28:30</a></div><div class="body"><div class="cat">Hips</div><div class="nm"><a href="#">Dragon</a> · 5 min each side</div></div></div>
+      <div class="chap"><div class="t"><a href="https://www.youtube.com/watch?v=Fg6_jBIkXsU&t=2520s" target="_blank" rel="noopener">42:00</a></div><div class="body"><div class="cat">Back</div><div class="nm"><a href="#">Cow-Face / Shoelace</a> · 5 min each side</div></div></div>
+      <div class="chap"><div class="t"><a href="https://www.youtube.com/watch?v=Fg6_jBIkXsU&t=3400s" target="_blank" rel="noopener">56:40</a></div><div class="body"><div class="cat">Legs</div><div class="nm"><a href="#">Saddle</a> · 5 min</div></div></div>
+      <div class="chap"><div class="t"><a href="https://www.youtube.com/watch?v=Fg6_jBIkXsU&t=3760s" target="_blank" rel="noopener">1:02:40</a></div><div class="body"><div class="cat">Legs</div><div class="nm"><a href="#">Dangling</a> · 5 min</div></div></div>
+      <div class="chap"><div class="t"><a href="https://www.youtube.com/watch?v=Fg6_jBIkXsU&t=4104s" target="_blank" rel="noopener">1:08:24</a></div><div class="body"><div class="cat">Legs</div><div class="nm">Hamstring Stretch with strap · 5 min</div></div></div>
+      <div class="chap"><div class="t"><a href="https://www.youtube.com/watch?v=Fg6_jBIkXsU&t=4560s" target="_blank" rel="noopener">1:16:00</a></div><div class="body"><div class="cat">Back</div><div class="nm"><a href="#">Reclined Twist</a> · 5 min each side</div></div></div>
+      <div class="chap"><div class="t"><a href="https://www.youtube.com/watch?v=Fg6_jBIkXsU&t=5270s" target="_blank" rel="noopener">1:27:50</a></div><div class="body"><div class="nm">Corpse Pose (Savasana) · 5 min</div></div></div>
+    </div>
+    <p class="chaps-note">Tap a time to jump to that moment on YouTube · tap a pose to open its page.</p>
+  </section>
+
+  <div class="cta">
+    <p class="eyebrow">Inside the membership</p>
+    <h2>Don't decide — just press play</h2>
+    <p>Love this practice? Inside the membership it lives as part of a guided Full-Body program, so instead of choosing a class each day, you follow the plan. Become someone who moves through their week feeling looser and lighter.</p>
+    <a class="btn" href="#">See the programs</a>
+  </div>
+
+  <section>
+    <div class="reminder">
+      A gentle reminder: Yin asks you to respect your limits, not override them. Come out of any pose that feels like pain rather than sensation, ease off if your hands tingle or a knee complains, and take your time coming out of the long holds — the body feels tender for a moment, and that passes. This practice is about taking good care of your body, never pushing it.
+    </div>
+  </section>
+
+  <footer>
+    Yin Yoga with Katie · a calmer, more flexible you — one long, slow practice at a time.
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CalendarNav from '../../components/CalendarNav.astro';
+import { byRecencyThenWatch } from '../../lib/video';
+import { splitTitle } from '../../lib/title';
+import { themeByJsDay } from '../../data/weekThemes';
+
+// The current month (baked at build; a rebuild rolls it forward). Each date takes
+// its weekday theme and the next-best unused class for that theme, so the month
+// fills with variety. "Today" is highlighted client-side.
+const videos = await getCollection('videos');
+const ranked = [...videos].sort((a, b) => byRecencyThenWatch(a.data, b.data));
+
+const now = new Date();
+const year = now.getFullYear();
+const month = now.getMonth(); // 0-based
+const monthName = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(now);
+const daysInMonth = new Date(year, month + 1, 0).getDate();
+const leadingBlanks = (new Date(year, month, 1).getDay() + 6) % 7; // Monday-first offset
+
+// Pre-filter a ranked pool per weekday theme.
+const pools = new Map<number, typeof ranked>();
+for (let js = 0; js < 7; js++) pools.set(js, ranked.filter((v) => themeByJsDay(js).match(v.data)));
+
+const used = new Set<string>();
+const days = Array.from({ length: daysInMonth }, (_, i) => {
+  const date = i + 1;
+  const jsDay = new Date(year, month, date).getDay();
+  const theme = themeByJsDay(jsDay);
+  const pool = pools.get(jsDay)!;
+  const pick =
+    pool.find((v) => !used.has(v.data.slug)) ?? ranked.find((v) => !used.has(v.data.slug));
+  if (pick) used.add(pick.data.slug);
+  return { date, jsDay, theme, v: pick?.data };
+});
+
+const DOW = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+---
+
+<BaseLayout
+  title="This Month — Calendar — Yin Yoga with Katie"
+  description="A full month of Yin Yoga, themed day by day. A practice for every date — follow the calendar or jump to any class."
+>
+  <div class="wrap wrap-wide">
+    <header class="hero">
+      <p class="eyebrow">Practice · Rhythm</p>
+      <h1>A Month of Yin</h1>
+      <p class="alt">a practice for every day — the whole month at a glance</p>
+    </header>
+
+    <CalendarNav active="month" />
+
+    <p class="intro">
+      Each date carries the day's theme and a class to match. Follow it start to finish, or dip in
+      wherever you are in the month.
+    </p>
+
+    <h2 class="month-head">{monthName}</h2>
+    <div class="month-scroll">
+      <div class="month-grid" data-year={year} data-month={month}>
+        {DOW.map((d) => <div class="dow">{d}</div>)}
+        {Array.from({ length: leadingBlanks }, () => <div class="mcell empty" />)}
+        {
+          days.map((d) => (
+            <div class="mcell" data-date={d.date} data-href={d.v ? `/videos/${d.v.slug}` : ''}>
+              <span class="mdate">
+                {d.date}
+                <span class="mtoday-pill" hidden>Today</span>
+              </span>
+              <span class="mtheme">{d.theme.theme}</span>
+              {d.v ? (
+                <a class="mclass" href={`/videos/${d.v.slug}`}>{splitTitle(d.v.title).headline}</a>
+              ) : (
+                <span class="mclass mempty">—</span>
+              )}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <footer>
+      <p class="src">The month refreshes each time the site rebuilds. Prefer a day-by-day view? See <a href="/calendar">This Week</a>.</p>
+    </footer>
+  </div>
+</BaseLayout>
+
+<script>
+  // Highlight today's cell if the built month is the month being viewed.
+  const grid = document.querySelector<HTMLElement>('.month-grid');
+  if (grid) {
+    const now = new Date();
+    if (Number(grid.dataset.year) === now.getFullYear() && Number(grid.dataset.month) === now.getMonth()) {
+      const cell = grid.querySelector<HTMLElement>(`.mcell[data-date="${now.getDate()}"]`);
+      if (cell) {
+        cell.classList.add('is-today');
+        cell.querySelector<HTMLElement>('.mtoday-pill')?.removeAttribute('hidden');
+      }
+    }
+  }
+</script>

@@ -1,0 +1,178 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Poses are now a reference layer beneath the video library. This is their
+// browsable index (the homepage is the video library). Alphabetised; new pose
+// files appear automatically.
+const poses = (await getCollection('poses')).sort((a, b) =>
+  a.data.name_en.localeCompare(b.data.name_en),
+);
+
+const titleCase = (s: string) => s.replace(/\b\w/g, (c) => c.toUpperCase());
+const uniq = (arr: string[]) => [...new Set(arr)].sort((a, b) => a.localeCompare(b));
+
+const areas = uniq(poses.flatMap((p) => p.data.target_areas));
+const meridians = uniq(poses.flatMap((p) => p.data.meridians));
+const levelOrder = ['beginner', 'intermediate', 'advanced'];
+const levels = uniq(poses.map((p) => p.data.accessibility)).sort(
+  (a, b) => levelOrder.indexOf(a) - levelOrder.indexOf(b),
+);
+---
+
+<BaseLayout
+  title="Yin Yoga Pose Reference — Yin Yoga with Katie"
+  description="A reference library of yin yoga poses — cues, benefits, hold times and cautions. Browse by target area, meridian and level, or open a class to practise them in sequence."
+>
+  <div class="wrap">
+    <header class="hero">
+      <p class="eyebrow">Yin Yoga · Reference</p>
+      <h1>Poses</h1>
+      <p class="alt">the shapes behind the classes — cues, benefits and cautions for each</p>
+    </header>
+
+    <section>
+      <div class="filters" id="filters">
+        <div class="facet">
+          <span class="facet-label">Target areas</span>
+          <div class="chips">
+            {areas.map((a) => (
+              <button type="button" class="chip" data-facet="area" data-value={a} aria-pressed="false">{a}</button>
+            ))}
+          </div>
+        </div>
+
+        {meridians.length > 0 && (
+          <div class="facet">
+            <span class="facet-label">Meridians</span>
+            <div class="chips">
+              {meridians.map((m) => (
+                <button type="button" class="chip" data-facet="meridian" data-value={m} aria-pressed="false">{m}</button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div class="facet">
+          <span class="facet-label">Level</span>
+          <div class="chips">
+            {levels.map((l) => (
+              <button type="button" class="chip" data-facet="level" data-value={l} aria-pressed="false">{titleCase(l)}</button>
+            ))}
+          </div>
+        </div>
+
+        <div class="filter-meta">
+          <button type="button" class="chip chip-clear" id="clear-filters" hidden>Clear filters</button>
+          <span class="count" id="result-count" aria-live="polite"></span>
+        </div>
+      </div>
+
+      <div class="tiles" id="tiles">
+        {poses.map((p) => (
+          <a
+            class="tile"
+            href={`/poses/${p.data.slug}`}
+            data-tile
+            data-areas={p.data.target_areas.join('|')}
+            data-meridians={p.data.meridians.join('|')}
+            data-level={p.data.accessibility}
+          >
+            <div class="tile-thumb">
+              {p.data.images.length > 0 ? (
+                <img class="tile-img pose" src={p.data.images[0]} alt={p.data.name_en} loading="lazy" />
+              ) : (
+                <div class="tile-img pose tile-noimg">{p.data.name_en}</div>
+              )}
+            </div>
+            <div class="tile-body">
+              <h3 class="tile-name">{p.data.name_en}</h3>
+              <div class="tile-tags">
+                {p.data.target_areas.map((a) => <span class="tag">{a}</span>)}
+                <span class="tag tag-level">{titleCase(p.data.accessibility)}</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <p class="empty" id="empty" hidden>No poses match those filters yet.</p>
+    </section>
+
+    <footer>
+      <p class="src">Poses are the building blocks classes are built from.</p>
+    </footer>
+  </div>
+</BaseLayout>
+
+<script>
+  // Client-side faceted filtering — OR within a facet, AND across.
+  const tiles = Array.from(document.querySelectorAll<HTMLElement>('[data-tile]'));
+  const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.chip[data-facet]'));
+  const clearBtn = document.getElementById('clear-filters') as HTMLButtonElement | null;
+  const countEl = document.getElementById('result-count');
+  const emptyEl = document.getElementById('empty');
+
+  const active: Record<string, Set<string>> = {
+    area: new Set(),
+    meridian: new Set(),
+    level: new Set(),
+  };
+
+  const split = (v: string | undefined) => (v ? v.split('|').filter(Boolean) : []);
+
+  function apply() {
+    let visible = 0;
+    for (const tile of tiles) {
+      const areas = split(tile.dataset.areas);
+      const meridians = split(tile.dataset.meridians);
+      const level = tile.dataset.level ?? '';
+
+      const okArea = active.area.size === 0 || areas.some((a) => active.area.has(a));
+      const okMer = active.meridian.size === 0 || meridians.some((m) => active.meridian.has(m));
+      const okLvl = active.level.size === 0 || active.level.has(level);
+
+      const show = okArea && okMer && okLvl;
+      tile.hidden = !show;
+      if (show) visible++;
+    }
+
+    const anyActive = active.area.size + active.meridian.size + active.level.size > 0;
+    if (clearBtn) clearBtn.hidden = !anyActive;
+    if (emptyEl) emptyEl.hidden = visible > 0;
+    if (countEl) {
+      countEl.textContent = anyActive
+        ? `${visible} of ${tiles.length} ${tiles.length === 1 ? 'pose' : 'poses'}`
+        : '';
+    }
+  }
+
+  for (const chip of chips) {
+    chip.addEventListener('click', () => {
+      const facet = chip.dataset.facet!;
+      const value = chip.dataset.value!;
+      const set = active[facet];
+      if (set.has(value)) {
+        set.delete(value);
+        chip.setAttribute('aria-pressed', 'false');
+        chip.classList.remove('active');
+      } else {
+        set.add(value);
+        chip.setAttribute('aria-pressed', 'true');
+        chip.classList.add('active');
+      }
+      apply();
+    });
+  }
+
+  clearBtn?.addEventListener('click', () => {
+    for (const key of Object.keys(active)) active[key].clear();
+    for (const chip of chips) {
+      chip.setAttribute('aria-pressed', 'false');
+      chip.classList.remove('active');
+    }
+    apply();
+  });
+
+  apply();
+</script>

@@ -1,0 +1,210 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { splitTitle } from '../../lib/title';
+import { lenLabel } from '../../lib/video';
+import { SITE } from '../../data/site';
+
+/**
+ * One reusable template for every video class. `getStaticPaths` emits a static
+ * page per file in src/content/videos/, keyed by slug. Everything on the page —
+ * thumbnail, pills, chapter links, SEO — is derived from the record, so adding a
+ * Markdown file is all it takes to publish a new class.
+ */
+export async function getStaticPaths() {
+  const videos = await getCollection('videos');
+  return videos.map((video) => ({
+    params: { slug: video.data.slug },
+    props: { video },
+  }));
+}
+
+const { video } = Astro.props;
+const d = video.data;
+const { Content } = await render(video);
+
+// --- Thumbnail: auto-derived from youtube_id unless a thumbnail is set --------
+const isCustomThumb = Boolean(d.thumbnail && d.thumbnail.trim());
+const thumb = isCustomThumb
+  ? d.thumbnail!
+  : `https://img.youtube.com/vi/${d.youtube_id}/maxresdefault.jpg`;
+const thumbFallback = `https://img.youtube.com/vi/${d.youtube_id}/hqdefault.jpg`;
+
+// --- Player links: out to YouTube, never embedded -----------------------------
+const watchUrl = `https://www.youtube.com/watch?v=${d.youtube_id}`;
+const chapterUrl = (seconds: number) => `${watchUrl}&t=${seconds}s`;
+
+// --- Title → headline + subtitle (split on the first `:` or `|`) ---------------
+const { headline, subtitle } = splitTitle(d.title);
+
+// --- Meta pills, all derived from the fields ----------------------------------
+// Displayed length prefers the marketed `display_length`, else a rounded minutes
+// value; the true `length_minutes` still drives filtering + the JSON-LD duration.
+const lengthLabel = lenLabel(d);
+const levelLabel =
+  d.level === 'all-levels' ? 'All levels' : d.level.charAt(0).toUpperCase() + d.level.slice(1);
+const capitalise = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const needsStrap = d.props.some((p) => /strap/i.test(p) && /required/i.test(p));
+const publishedLabel = d.published
+  ? new Intl.DateTimeFormat('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' }).format(d.published)
+  : null;
+
+// --- Chapters: split "Category · Name (duration)" into its parts ----------------
+function parseChapter(title: string) {
+  let cat: string | null = null;
+  let rest = title;
+  const dot = title.indexOf(' · ');
+  if (dot !== -1) {
+    cat = title.slice(0, dot).trim();
+    rest = title.slice(dot + 3).trim();
+  }
+  let note: string | null = null;
+  const paren = rest.match(/^(.*?)\s*\(([^)]*)\)\s*$/);
+  if (paren) {
+    rest = paren[1].trim();
+    note = paren[2].trim();
+  }
+  return { cat, name: rest, note };
+}
+
+// --- schema.org VideoObject, built from the fields ----------------------------
+const hours = Math.floor(d.length_minutes / 60);
+const mins = d.length_minutes % 60;
+const isoDuration = `PT${hours ? `${hours}H` : ''}${mins ? `${mins}M` : ''}` || 'PT0M';
+const absThumb = new URL(thumb, Astro.site).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  name: d.title,
+  description: d.seo_description,
+  thumbnailUrl: [absThumb],
+  ...(d.published ? { uploadDate: d.published.toISOString().slice(0, 10) } : {}),
+  duration: isoDuration,
+  contentUrl: watchUrl,
+  embedUrl: `https://www.youtube.com/embed/${d.youtube_id}`,
+  publisher: { '@type': 'Organization', name: 'Yin Yoga with Katie' },
+  hasPart: d.chapters.map((c) => ({
+    '@type': 'Clip',
+    name: parseChapter(c.title).name,
+    startOffset: c.seconds,
+    url: chapterUrl(c.seconds),
+  })),
+};
+
+const eyebrow = ['Yin Yoga', ...d.intent_tags.map(capitalise)].join(' · ');
+---
+
+<BaseLayout
+  title={d.seo_title}
+  description={d.seo_description}
+  ogTitle={d.title}
+  ogDescription={d.summary}
+  ogType="video.other"
+  image={thumb}
+  jsonLd={jsonLd}
+  noindex={!d.enriched}
+>
+  <div class="wrap">
+    <header class="vhero">
+      <p class="eyebrow">{eyebrow}</p>
+
+      <a class="thumb" href={watchUrl} target="_blank" rel="noopener">
+        <img
+          src={thumb}
+          alt={`${headline} — Yin Yoga class, ${d.length_minutes} minutes`}
+          width="1280"
+          height="720"
+          {...(isCustomThumb
+            ? {}
+            : { onerror: `this.onerror=null;this.src='${thumbFallback}'` })}
+        />
+        <span class="play"><span></span></span>
+      </a>
+
+      <h1>{headline}</h1>
+      {subtitle && <p class="subtitle">{subtitle}</p>}
+
+      <div class="meta">
+        <span class="pill strong">{lengthLabel}</span>
+        <span class="pill">{levelLabel}</span>
+        {d.intent_tags.map((t) => <span class="pill">{capitalise(t)}</span>)}
+        {needsStrap && <span class="pill">Strap needed</span>}
+        {d.membership && <span class="pill members">Members only</span>}
+        {publishedLabel && <span class="pill">{publishedLabel}</span>}
+      </div>
+
+      {
+        d.membership ? (
+          <a class="watch watch-members" href={SITE.membershipUrl} target="_blank" rel="noopener">
+            Watch inside the membership
+          </a>
+        ) : (
+          <a class="watch" href={watchUrl} target="_blank" rel="noopener">
+            Watch the full class on YouTube
+          </a>
+        )
+      }
+    </header>
+
+    {/* Blog body — the rendered Markdown */}
+    <div class="prose">
+      <Content />
+    </div>
+
+    {/* Chapters — clickable index; each time deep-links into YouTube, each pose to its page */}
+    <section class="chapters-section">
+      <h2>What you'll practise</h2>
+      <div class="chapters">
+        {
+          d.chapters.map((c) => {
+            const { cat, name, note } = parseChapter(c.title);
+            return (
+              <div class="chap">
+                <div class="t">
+                  <a href={chapterUrl(c.seconds)} target="_blank" rel="noopener">
+                    {c.time}
+                  </a>
+                </div>
+                <div class="cbody">
+                  {cat && <div class="cat">{cat}</div>}
+                  <div class="nm">
+                    {c.pose ? <a href={`/poses/${c.pose}`}>{name}</a> : name}
+                    {note && <span> · {note}</span>}
+                  </div>
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+      <p class="chaps-note">
+        Tap a time to jump to that moment on YouTube · tap a pose to open its page.
+      </p>
+    </section>
+
+    {/* Outcome-led membership CTA */}
+    <div class="membership">
+      <p class="eyebrow">Inside the membership</p>
+      <h2>Don't decide — just press play</h2>
+      <p>{d.membership_cta}</p>
+      <a class="btn-cta" href="/programs">See the programs</a>
+    </div>
+
+    {/* Gentle-reminder block */}
+    <section class="reminder-section">
+      <div class="reminder">
+        <b>A gentle reminder:</b> Yin asks you to respect your limits, not override them. Come
+        out of any pose that feels like pain rather than sensation, ease off if your hands tingle
+        or a knee complains, and take your time coming out of the long holds — the body feels
+        tender for a moment, and that passes. This practice is about taking good care of your
+        body, never pushing it.
+      </div>
+    </section>
+
+    <footer>
+      <p class="src">
+        Yin Yoga with Katie · a calmer, more flexible you — one long, slow practice at a time.
+      </p>
+    </footer>
+  </div>
+</BaseLayout>

@@ -1,0 +1,109 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CalendarNav from '../components/CalendarNav.astro';
+import { derivedThumb, lenLabel, byRecencyThenWatch } from '../lib/video';
+import { splitTitle } from '../lib/title';
+import type { VideoData } from '../lib/video';
+import { WEEK_THEMES } from '../data/weekThemes';
+
+// A themed week. Each day pulls one real class matching its theme, ranked by
+// recency-then-watch and de-duped across the week. Evergreen — the rhythm is the
+// same each week; "today" is highlighted client-side.
+const videos = await getCollection('videos');
+const ranked = [...videos].sort((a, b) => byRecencyThenWatch(a.data, b.data));
+
+// Allocate by priority (specific → broad), then restore Mon→Sun display order.
+const used = new Set<string>();
+const chosen = new Map<string, VideoData | undefined>();
+for (const w of [...WEEK_THEMES].sort((a, b) => a.priority - b.priority)) {
+  const pick =
+    ranked.find((v) => !used.has(v.data.slug) && w.match(v.data)) ??
+    ranked.find((v) => !used.has(v.data.slug));
+  if (pick) used.add(pick.data.slug);
+  chosen.set(w.day, pick?.data);
+}
+const plan = WEEK_THEMES.map((w) => ({ ...w, v: chosen.get(w.day) }));
+---
+
+<BaseLayout
+  title="A Week of Yin — Calendar — Yin Yoga with Katie"
+  description="A gentle weekly rhythm of Yin Yoga — a themed practice for every day, from Monday's ease-in to Sunday's wind-down. Come back daily, or pick the day that fits how you feel."
+>
+  <div class="wrap">
+    <header class="hero">
+      <p class="eyebrow">Practice · Rhythm</p>
+      <h1>A Week of Yin</h1>
+      <p class="alt">one practice for each day — a rhythm you can keep</p>
+    </header>
+
+    <CalendarNav active="week" />
+
+    <p class="intro">
+      You don't have to decide what to practise. Here's a week, themed day by day — come back daily
+      to build the habit, or just pick the day that matches how you feel right now.
+    </p>
+
+    <!-- Filled client-side with today's practice; hidden until then. -->
+    <a class="today-banner" id="today-banner" href="#" hidden>
+      <span class="tb-label"><span class="tb-dot"></span> Today · <b id="tb-day"></b></span>
+      <span class="tb-theme" id="tb-theme"></span>
+      <span class="tb-go">Practise now →</span>
+    </a>
+
+    <div class="week">
+      {
+        plan.map((d) => (
+          <div class="day-card" data-jsday={d.jsDay} data-href={d.v ? `/videos/${d.v.slug}` : ''}>
+            <div class="day-head">
+              <span class="day-name">{d.day}</span>
+              <span class="today-pill" hidden>Today</span>
+              <span class="day-theme">{d.theme}</span>
+              <span class="day-note">{d.note}</span>
+            </div>
+            {d.v ? (
+              <a class="day-class" href={`/videos/${d.v.slug}`}>
+                <span class="day-thumb">
+                  <img src={derivedThumb(d.v)} alt={d.v.title} loading="lazy" width="480" height="270" />
+                  <span class="day-len">{lenLabel(d.v)}</span>
+                </span>
+                <span class="day-title">{splitTitle(d.v.title).headline}</span>
+              </a>
+            ) : (
+              <p class="day-empty">A class lands here soon.</p>
+            )}
+          </div>
+        ))
+      }
+    </div>
+
+    <footer>
+      <p class="src">The rhythm repeats each week. Miss a day? Just pick it up tomorrow.</p>
+    </footer>
+  </div>
+</BaseLayout>
+
+<script>
+  // Highlight today's card and surface it in the banner. Progressive enhancement:
+  // with JS off, the full week still renders and every day is reachable.
+  const today = new Date().getDay(); // 0=Sun … 6=Sat
+  const card = document.querySelector<HTMLElement>(`.day-card[data-jsday="${today}"]`);
+  if (card) {
+    card.classList.add('is-today');
+    card.querySelector<HTMLElement>('.today-pill')?.removeAttribute('hidden');
+    card.scrollIntoView?.({ block: 'nearest' });
+
+    const href = card.dataset.href;
+    const dayName = card.querySelector('.day-name')?.textContent ?? '';
+    const theme = card.querySelector('.day-theme')?.textContent ?? '';
+    const banner = document.getElementById('today-banner') as HTMLAnchorElement | null;
+    if (banner && href) {
+      banner.href = href;
+      const dayEl = document.getElementById('tb-day');
+      const themeEl = document.getElementById('tb-theme');
+      if (dayEl) dayEl.textContent = dayName;
+      if (themeEl) themeEl.textContent = theme;
+      banner.removeAttribute('hidden');
+    }
+  }
+</script>

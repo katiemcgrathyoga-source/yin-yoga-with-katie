@@ -1,0 +1,11 @@
+# Normalise line endings: LF in the repo, checked out native on each OS.
+* text=auto
+
+# Binary assets — never touch line endings.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.zip binary
