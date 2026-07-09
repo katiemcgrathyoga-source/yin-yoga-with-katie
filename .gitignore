@@ -19,11 +19,19 @@ pnpm-debug.log*
 .vscode/
 # reference material — kept locally, never built or deployed (large / copyrighted)
 docs/
+# brand strategy / presentation decks — reference, not site source
+/*.pdf
 
 # analytics exports — local inputs to scripts/generate-video-skeletons.mjs.
 # Contain subscriber counts & estimated revenue, so never committed. The
 # generated src/content/videos/*.md are committed, so the site builds without these.
 data/
+
+# raw brand/design source kept locally, not deployed. The site uses copies:
+# logos in public/brand/, the self-hosted script font in public/fonts/. Noto
+# Serif TC + Cabin load from Google Fonts (the full CJK .ttf files are ~76MB).
+/*.ttf
+/Yin Yoga with Katie Design System/
 
 # misc
 desktop.ini
