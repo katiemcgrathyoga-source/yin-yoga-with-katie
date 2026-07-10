@@ -6,5 +6,5 @@ export const SITE = {
 
   // "Buy me a coffee" / tip link, shown in the footer. Paste your full URL here
   // (e.g. 'https://www.buymeacoffee.com/yourname' or a Ko-fi link). Leave '' to hide it.
-  coffeeUrl: '',
+  coffeeUrl: 'https://www.buymeacoffee.com/katiemcgrath',
 };
