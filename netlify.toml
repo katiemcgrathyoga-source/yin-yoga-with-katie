@@ -5,3 +5,9 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+# Serverless OG-image function (satori + resvg). Fonts are embedded in the code
+# (netlify/functions/lib/fonts.mjs), so nothing extra needs shipping.
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
