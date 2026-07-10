@@ -1,47 +1,46 @@
 ---
 name_en: "Butterfly"
-name_sanskrit: "Baddha Konasana (yin variation)"
 slug: "butterfly"
-also_known_as: ["Bound Angle (yin variation)", "Cobbler's Pose (yin)", "Seated Butterfly"]
-target_areas: ["hips", "groin", "lower back", "hamstrings"]
-meridians: ["kidney", "urinary bladder", "liver"]
+also_known_as: []
+target_areas: ["inner thighs", "hips", "lower back", "spine"]
+meridians: ["liver", "spleen", "kidney", "urinary bladder"]
 accessibility: "beginner"
 hold_time: "3–5 minutes"
-props: ["bolster", "folded blanket", "cushion"]
+props: ["bolster", "cushion"]
 benefits:
-  - "A gentle, accessible hip opener that releases the inner thighs and groin without forcing the knees wide."
-  - "Folding forward gives a long, calming stretch to the lower back and, with the legs further from the body, the hamstrings."
-  - "Stimulates the Kidney, Urinary Bladder and Liver meridian lines that run through the legs and back."
-  - "A grounding, inward-turning shape — an easy one to begin or end a practice with, and to soften into for a while."
+  - "Opens the inner thighs, groin and hips while the fold lengthens the whole back line — a lovely two-for-one shape."
+  - "Stimulates the liver, spleen and kidney lines through the inner legs, and the urinary bladder line up the back."
+  - "One of the most settling, grounding poses in Yin. Many people find it quietens the mind almost at once."
+  - "Kind to the knees, because the feet sit further from the pelvis than in a tight cross-legged shape."
 cues:
-  - "Sit up tall, then bring the soles of the feet together and let the knees fall open to the sides."
-  - "Slide the feet away from you — a foot or so from the pelvis. The further away the feet, the more this becomes a forward fold; the closer in, the more it works the hips."
-  - "Let the knees be heavy. There's no need to press them down; gravity does the work over time."
-  - "On an exhale, begin to round forward from the lower back, letting the head and spine drape toward the feet. Let it be a soft, comfortable curl rather than a reach."
-  - "Rest your hands on your feet, the floor, or a bolster set in front of you. Let the head hang."
-  - "Soften completely and stay. Let the muscles release and let the shape do the work over the minutes."
+  - "Sit up on the edge of a folded blanket and bring the soles of your feet together."
+  - "Let the feet slide a comfortable distance away from your pelvis — a diamond shape rather than heels pulled in tight. The further out the feet, the more the fold reaches your back; the closer in, the more it reaches the inner thighs."
+  - "Let the knees fall open toward the floor. Never press them down — let gravity do that slowly over the minutes."
+  - "On an out-breath, fold forward over your feet with a gently rounding spine. Let your hands rest on the floor or your feet, and let your head hang."
+  - "Find your edge — about 80% of your capacity, a real stretch but never forcing. If your head is a long way down, rest your forehead on a bolster stacked between your feet."
+  - "Settle in, be still, and let the shape do the work."
 transitions_in:
-  - "From a simple seated position — draw the soles of the feet together"
-  - "From Dragonfly (wide-legged fold) — bend the knees and bring the feet together"
+  - "From a simple seated position, draw the soles of the feet together and let the knees open."
+  - "Coming from Caterpillar, bend the knees and bring the soles together."
 transitions_out:
-  - "Place your hands behind you and lean back to lift out of the fold, then use your hands to bring the knees together."
-  - "Extend the legs and gently bounce or shake them out."
+  - "Come out slowly. Use your hands to support your knees back together, then roll up through a rounded spine."
+  - "Lean back on your hands and extend the legs to unwind the hips."
 counterposes:
-  - "Windshield Wipers or a gentle seated twist to release the lower back"
-  - "Lie on the back and hug the knees in for a moment"
+  - "Extend the legs and give them a gentle shake, or sit up in Butterfly for a moment."
+  - "Lie on your back and hug the knees, then let them sway side to side."
+  - "Rest in Corpse pose to absorb the opening."
 cautions:
-  - "Let the knees be. Never press them toward the floor — allow gravity and time to open the hips. If the inner knees feel any strain, slide the feet further forward or support each thigh on a rolled blanket."
-  - "Sit up on a folded blanket or cushion if the lower back rounds sharply or the pelvis tips backward; lifting the hips lets the fold come from the right place."
-  - "For any current lower-back or sacroiliac sensitivity, keep the fold shallow and support the chest on a bolster rather than folding deeply."
-  - "Come out slowly. After a long hold the hips and back feel tender for a moment — that passes; move gently into your counterpose."
-related_poses: ["dragonfly", "sleeping-swan", "shoelace", "saddle", "frog"]
-youtube_video_id: ""   # TODO: add when the Butterfly clip is filmed
-images: []             # TODO: add Butterfly photos when available
-seo_title: "Butterfly Pose in Yin Yoga (Baddha Konasana): Benefits & How-To"
-seo_description: "Butterfly — the yin form of Bound Angle Pose — is a gentle, grounding hip and lower-back opener. Learn the cues, benefits, hold time, props and key cautions."
+  - "Let the spine round gently, but with disc issues or sciatica, sit up higher on a cushion and keep the fold shallow and the back longer."
+  - "If you feel any pinching in the hips or groin, take the feet further from the pelvis so the angle eases."
+  - "Never force the knees toward the floor — let them open in their own time. Support them on cushions if they hover high."
+  - "In late pregnancy this open-legged fold is usually comfortable, but keep the belly free and fold only to an easy, spacious place."
+related_poses: ["half-butterfly", "caterpillar", "dragonfly", "frog"]
+youtube_video_id: ""
+images:
+  - "/poses/butterfly.jpg"
+seo_title: "Butterfly Pose in Yin Yoga: Benefits & How-To"
+seo_description: "Butterfly is a grounding Yin Yoga forward fold with soles together that opens the inner thighs and hips while lengthening the back line and calming the mind."
 ---
 
-<!-- Pose content is fully contained in the frontmatter fields above so the
-template renders it. Source-grounded in Bernie Clark, The Complete Guide to
-Yin Yoga (Butterfly). Copy is original; verify the flagged contraindications
-before publishing as advice. -->
+<!-- Original copy in Katie's voice, grounded in Bernie Clark, The Complete Guide to
+Yin Yoga, and Paul Grilley. Contraindications to be verified before publishing as advice. -->

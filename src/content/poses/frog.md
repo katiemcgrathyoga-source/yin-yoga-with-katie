@@ -1,6 +1,5 @@
 ---
 name_en: "Frog"
-name_sanskrit: "Mandukasana"
 slug: "frog"
 also_known_as: ["Tadpole (gentle version)", "Half Frog", "Full Frog"]
 target_areas: ["hips", "inner thighs", "groin", "lower back"]
@@ -35,10 +34,9 @@ cautions:
 related_poses: ["sleeping-swan", "dragonfly", "butterfly", "childs-pose"]
 youtube_video_id: ""
 images:
-  - "/poses/frog-1.webp"
-  - "/poses/frog-2.webp"
+  - "/poses/frog.jpg"
 seo_title: "Frog Pose in Yin Yoga: Benefits, How-To & Cautions"
-seo_description: "Frog Pose (Mandukasana) is a deep yin groin and inner-thigh opener. Learn the Tadpole and Full Frog variations, cues, hold time, props and cautions."
+seo_description: "Frog Pose is a deep yin groin and inner-thigh opener. Learn the Tadpole and Full Frog variations, cues, hold time, props and cautions."
 ---
 
 <!-- Source-grounded in Bernie Clark, The Complete Guide to Yin Yoga (Frog).

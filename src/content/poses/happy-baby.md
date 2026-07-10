@@ -1,44 +1,42 @@
 ---
 name_en: "Happy Baby"
-name_sanskrit: "Ananda Balasana"
 slug: "happy-baby"
-also_known_as: ["Stirrup Pose", "Dead Bug"]
-target_areas: ["hips", "inner thighs", "groin", "lower back"]
-meridians: ["urinary bladder", "kidney", "liver"]
+also_known_as: ["Stirrup Pose"]
+target_areas: ["inner groin", "inner thighs", "hips", "lower back"]
+meridians: ["liver", "kidney", "urinary bladder"]
 accessibility: "beginner"
-hold_time: "2–5 minutes (about 2 min if actively pulling with the arms; up to 5 if you relax and let the legs settle)"
+hold_time: "2–4 minutes"
 props: ["strap"]
 benefits:
-  - "A deep hip opener you can ease into with arm strength, rather than waiting on gravity."
-  - "Releases and decompresses the sacroiliac (SI) joints."
-  - "Gently compresses and massages the abdominal organs."
-  - "Stimulates the Urinary Bladder and Kidney lines along the spine, and the Liver line through the inner groins."
+  - "A gentle, playful opener for the inner groin and inner thighs that you can ease into with the arms."
+  - "Releases the lower back and decompresses the base of the spine as the tailbone settles toward the floor."
+  - "Stretches the liver line through the inner groin and the urinary bladder line along the back body."
+  - "Quietly grounding — being on your back with the legs supported is wonderfully soothing to the nervous system."
 cues:
-  - "Lie on your back and hug both knees toward your chest."
-  - "Take hold of the soles of the feet, the ankles, or the backs of the legs — whatever you can reach comfortably."
-  - "Stack the feet above the knees so the shins are roughly vertical, and draw the knees down toward the floor alongside your chest."
-  - "Relax your head and shoulders heavily into the floor."
-  - "Pull actively with the arms for a minute or two, then release the effort and let the weight of the legs do the work."
-  - "Stay up to 5 minutes when relaxed. To protect the lower back, keep the hips grounded rather than rolling them up off the floor. A strap around the feet helps if they're hard to reach."
+  - "Lie on your back and draw both knees in toward your armpits."
+  - "Take hold of the outer edges of the feet, the ankles, or the backs of the thighs — whatever you can reach without straining."
+  - "Stack the ankles above the knees so the shins are roughly upright, soles facing the ceiling."
+  - "Let the knees draw down alongside the ribs, and keep your head and shoulders resting heavily on the floor."
+  - "Find your edge — about 80% of your capacity, a real stretch but never forcing — then be still and let the shape do the work."
+  - "Loop a strap around each foot if the feet are hard to reach, so you can relax the arms."
 transitions_in:
-  - "From lying on your back, hug the knees into the chest"
+  - "From lying on your back, hug both knees into the chest, then open them toward the armpits."
 transitions_out:
-  - "Release the feet, place them on the floor with the knees bent, and pause for a moment."
+  - "Come out slowly — release the feet, place them on the floor with knees bent, and rest for a moment."
 counterposes:
-  - "Windshield Wipers — knees bent, feet wide, drop the knees side to side — to bring the hips back to neutral"
-  - "A mild spinal lift, coming up only halfway"
+  - "Windshield wipers — knees bent, feet wide, dropping the knees gently side to side — to neutralise the hips."
+  - "Rest on your back with the legs long, or a short knees-to-chest hug."
 cautions:
-  - "Keep the hips on the floor if you have a lower-back condition that doesn't tolerate spinal flexion — letting the hips roll up turns this into a small inversion and rounds the spine."
-  - "During menstruation you may prefer to keep the hips grounded as well."
-  - "Go shallow with SI-joint issues — don't pull into the deepest range."
-related_poses: ["sleeping-swan", "frog", "dragonfly", "childs-pose"]
+  - "Keep the head and shoulders down throughout — this is a passive opener, not a place to curl up off the floor."
+  - "If your lower back lifts off the mat, hold behind the thighs instead of the feet so the spine can stay grounded."
+  - "Ease off during menstruation or if a lower-back condition dislikes this position, keeping the range shallow."
+related_poses: ["butterfly", "frog", "dragonfly", "sleeping-swan", "reclined-twist"]
 youtube_video_id: ""
 images:
-  - "/poses/happy-baby-1.webp"
-  - "/poses/happy-baby-2.webp"
-seo_title: "Happy Baby Pose in Yin Yoga: Benefits, How-To & Cautions"
-seo_description: "Happy Baby (Ananda Balasana) is a calming yin hip opener that decompresses the SI joints. Cues, hold time, props and lower-back cautions."
+  - "/poses/happy-baby.jpg"
+seo_title: "Happy Baby in Yin Yoga: Benefits & How-To"
+seo_description: "Happy Baby is a gentle yin opener for the inner groin and lower back. Cues, hold times and cautions to keep the head and shoulders grounded."
 ---
 
-<!-- Source-grounded in Bernie Clark, The Complete Guide to Yin Yoga (Happy Baby).
-Copy is original. Verify the flagged contraindications before publishing as advice. -->
+<!-- Original copy in Katie's voice, grounded in Bernie Clark, The Complete Guide to
+Yin Yoga, and Paul Grilley. Contraindications to be verified before publishing as advice. -->
