@@ -81,11 +81,16 @@ const presentStyles = STYLE_OPTS.filter((o) => videos.some((v) => styleTags(v).i
 
 const presentBuckets = BUCKETS.filter((b) => videos.some((v) => bucketOf(v.data.length_minutes) === b.key));
 
+// Branded OG card for link previews of the homepage.
+const ogImage = new URL('/og/card.png', Astro.site);
+ogImage.searchParams.set('t', 'Free Yin Yoga Classes');
+ogImage.searchParams.set('s', 'Full-length practices to follow along');
 ---
 
 <BaseLayout
   title="Yin Yoga with Katie — the video library"
   description="A growing library of full-length Yin Yoga classes you can follow on YouTube. Filter by intent, length and body area to find the right practice for today."
+  image={ogImage.href}
 >
   <div class="wrap">
     <header class="hero">

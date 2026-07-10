@@ -61,6 +61,11 @@ const jsonLd = {
 const hasVideo = Boolean(d.youtube_video_id && d.youtube_video_id.trim());
 const eyebrow = `Yin Yoga · ${titleCase(d.accessibility)}`;
 
+// Branded OG card for link previews (matches the routine cards + completion badge).
+const ogImage = new URL('/og/card.png', Astro.site);
+ogImage.searchParams.set('t', d.name_en);
+ogImage.searchParams.set('s', 'A Yin Yoga pose');
+
 // FAQPage schema — rendered alongside the HowTo when the pose has FAQs.
 const faqLd = d.faq.length
   ? {
@@ -84,7 +89,7 @@ const holdSeconds = d.hold_seconds ?? 180;
   ogTitle={d.name_en}
   ogDescription={d.seo_description}
   ogType="article"
-  image={d.images[0]}
+  image={ogImage.href}
   jsonLd={faqLd ? [jsonLd, faqLd] : jsonLd}
 >
   <div class="wrap">
