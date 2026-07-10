@@ -1,0 +1,153 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RoutinePlayer from '../../components/RoutinePlayer.astro';
+import Cta from '../../components/Cta.astro';
+
+export async function getStaticPaths() {
+  const routines = await getCollection('routines');
+  const poses = await getCollection('poses');
+  return routines.map((routine) => ({
+    params: { slug: routine.data.slug },
+    props: { routine, poses, routines },
+  }));
+}
+
+const { routine, poses, routines } = Astro.props;
+const d = routine.data;
+
+const titleCase = (s: string) => s.replace(/\b\w/g, (c) => c.toUpperCase());
+const humanise = (slug: string) => titleCase(slug.replace(/-/g, ' '));
+const bySlug = new Map(poses.map((p) => [p.data.slug, p.data]));
+
+// Expand each step into the flat list of holds the player runs (two-sided poses
+// become Side 1 / Side 2), resolving pose slug → name, photo and cue.
+type Hold = { name: string; slug: string; img: string; seconds: number; note: string; sideLabel?: string };
+const holds: Hold[] = d.steps.flatMap((s) => {
+  const p = bySlug.get(s.pose);
+  const base = {
+    name: p?.name_en ?? humanise(s.pose),
+    slug: s.pose,
+    img: p?.images?.[0] ?? '',
+    seconds: s.seconds,
+    note: s.note ?? p?.cues?.[0] ?? '',
+  };
+  return s.sides === 2
+    ? [{ ...base, sideLabel: 'Side 1' }, { ...base, sideLabel: 'Side 2' }]
+    : [base];
+});
+
+const totalSeconds = holds.reduce((n, h) => n + h.seconds, 0);
+const totalMin = Math.round(totalSeconds / 60);
+const poseCount = d.steps.length;
+
+// Social/OG image = the routine's hero pose (falls back to the first hold's photo).
+const heroImg = (d.hero_pose && bySlug.get(d.hero_pose)?.images?.[0]) || holds[0]?.img;
+
+// Other routines to suggest at the foot of the page.
+const others = routines.filter((r) => r.data.slug !== d.slug).slice(0, 3);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: d.title,
+  description: d.seo_description,
+  totalTime: `PT${totalMin}M`,
+  step: holds.map((h, i) => ({
+    '@type': 'HowToStep',
+    position: i + 1,
+    name: `${h.name}${h.sideLabel ? ' · ' + h.sideLabel : ''}`,
+    text: h.note || `Hold ${h.name} for ${Math.round(h.seconds / 60) || 1} minute(s).`,
+    ...(h.img ? { image: new URL(h.img, Astro.site).href } : {}),
+  })),
+};
+---
+
+<BaseLayout
+  title={d.seo_title}
+  description={d.seo_description}
+  ogTitle={d.title}
+  ogDescription={d.seo_description}
+  ogType="article"
+  image={heroImg}
+  jsonLd={jsonLd}
+>
+  <div class="wrap">
+    <header class="hero">
+      <p class="eyebrow">Yin Routine · {titleCase(d.level.replace('-', ' '))}</p>
+      <h1>{d.title}</h1>
+      {d.tagline && <p class="routine-tagline">{d.tagline}</p>}
+      <p class="routine-facts">
+        <span>{totalMin} min</span> · <span>{poseCount} poses</span>
+        {d.props.length > 0 ? <> · <span>{d.props.join(', ')}</span></> : <> · <span>no props</span></>}
+      </p>
+    </header>
+
+    <section class="routine-intro">
+      <p>{d.intro}</p>
+    </section>
+
+    {/* The follow-along practice player. */}
+    <section class="player-section" aria-label="Practice player">
+      <RoutinePlayer title={d.title} holds={holds} />
+      <p class="player-help">
+        Press play and follow along — each hold is timed, with a gentle chime and a
+        moment to ease out before the next pose. Use <strong>Skip</strong> or
+        <strong>Prev</strong> to move at your own pace.
+      </p>
+    </section>
+
+    <section class="routine-list">
+      <h2>What's in this routine</h2>
+      <ol class="seq">
+        {
+          d.steps.map((s) => {
+            const p = bySlug.get(s.pose);
+            const name = p?.name_en ?? humanise(s.pose);
+            const mins = s.seconds >= 60 ? `${Math.round(s.seconds / 60)} min` : `${s.seconds}s`;
+            return (
+              <li>
+                <div class="seq-main">
+                  {p ? <a href={`/poses/${s.pose}`}>{name}</a> : <span>{name}</span>}
+                  {s.note && <span class="seq-note">{s.note}</span>}
+                </div>
+                <span class="seq-hold">
+                  {mins}
+                  {s.sides === 2 ? ' each side' : ''}
+                </span>
+              </li>
+            );
+          })
+        }
+      </ol>
+    </section>
+
+    <Cta
+      eyebrow="Go deeper"
+      heading="Want it guided, start to finish?"
+      body="This routine is yours to practise any time. For a voice-guided version and a plan that tells you exactly what to do each day, join the membership — or follow a free program."
+    />
+
+    {
+      others.length > 0 && (
+        <section class="related">
+          <h2>More routines</h2>
+          {others.map((r) => (
+            <a href={`/routines/${r.data.slug}`}>
+              {r.data.title}
+              <span>{r.data.minutes} min · {r.data.summary}</span>
+            </a>
+          ))}
+        </section>
+      )
+    }
+
+    <footer>
+      <p class="src">
+        Sequences and cues are original, grounded in Bernie Clark,
+        <em>The Complete Guide to Yin Yoga</em>. Move gently and check the
+        cautions on each pose page before practising.
+      </p>
+    </footer>
+  </div>
+</BaseLayout>

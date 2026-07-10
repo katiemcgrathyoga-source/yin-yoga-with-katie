@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const routines = (await getCollection('routines')).sort((a, b) => a.data.minutes - b.data.minutes);
+const poses = await getCollection('poses');
+const bySlug = new Map(poses.map((p) => [p.data.slug, p.data]));
+
+const titleCase = (s: string) => s.replace(/\b\w/g, (c) => c.toUpperCase());
+
+// Card thumbnail = the routine's hero pose (falls back to its first pose).
+const thumbFor = (r: (typeof routines)[number]) => {
+  const slug = r.data.hero_pose ?? r.data.steps[0]?.pose ?? '';
+  return bySlug.get(slug)?.images?.[0] ?? '';
+};
+---
+
+<BaseLayout
+  title="Yin Yoga Routines — Follow-Along Practices with a Timer"
+  description="Curated Yin Yoga routines you can practise along to, each with a built-in hold timer that guides you pose by pose — for sleep, hips, shoulders and a full-body reset. Free."
+>
+  <div class="wrap">
+    <header class="hero">
+      <p class="eyebrow">Yin Yoga · Practise Along</p>
+      <h1>Routines</h1>
+      <p class="alt">short guided sequences with a built-in timer — press play and follow along, pose by pose</p>
+    </header>
+
+    <section>
+      <div class="tiles">
+        {
+          routines.map((r) => {
+            const thumb = thumbFor(r);
+            return (
+              <a class="tile" href={`/routines/${r.data.slug}`}>
+                <div class="tile-thumb">
+                  {thumb ? (
+                    <img class="tile-img pose" src={thumb} alt={r.data.title} loading="lazy" />
+                  ) : (
+                    <div class="tile-img pose tile-noimg">{r.data.title}</div>
+                  )}
+                  <span class="tile-len">{r.data.minutes} min</span>
+                </div>
+                <div class="tile-body">
+                  <h3 class="tile-name">{r.data.title}</h3>
+                  {r.data.tagline && <p class="tile-sub">{r.data.tagline}</p>}
+                  <div class="tile-tags">
+                    <span class="tag">{r.data.steps.length} poses</span>
+                    <span class="tag tag-level">{titleCase(r.data.level.replace('-', ' '))}</span>
+                  </div>
+                </div>
+              </a>
+            );
+          })
+        }
+      </div>
+    </section>
+
+    <footer>
+      <p class="src">Every routine is free to practise. Want a voice-guided version and a plan? <a href="/programs">Follow a program</a> or join the membership.</p>
+    </footer>
+  </div>
+</BaseLayout>

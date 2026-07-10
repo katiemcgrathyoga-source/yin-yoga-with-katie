@@ -231,6 +231,75 @@ h1 {
 .pt-reset:hover { border-color: var(--plum); color: var(--plum); }
 .pt-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
+/* routines index — sub-line under a tile name */
+.tile-sub { margin: -6px 0 12px; font-size: 14px; color: var(--ink-soft); line-height: 1.35; }
+
+/* routine detail page */
+.routine-tagline { font-family: var(--display); font-size: clamp(18px,4vw,22px); color: var(--plum); margin: 6px 0 10px; }
+.routine-facts { color: var(--ink-soft); font-size: 15px; margin: 0; }
+.routine-facts span { color: var(--ink); font-weight: 600; }
+.routine-intro { max-width: 62ch; margin: 26px auto 0; }
+.routine-intro p { margin: 0; font-size: 17px; line-height: 1.7; }
+
+.player-section { margin: 30px 0 0; }
+.player-help { max-width: 52ch; margin: 16px auto 0; text-align: center; font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+
+/* the practice player */
+.rp {
+  border: 1px solid var(--line); border-radius: 20px; background: var(--paper-2);
+  padding: 22px; display: flex; flex-direction: column; align-items: center; gap: 18px;
+}
+.rp-stage { position: relative; width: 100%; max-width: 480px; text-align: center; }
+.rp-photo {
+  width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;
+  border-radius: 14px; border: 1px solid var(--line); background: var(--paper);
+  transition: opacity .3s ease;
+}
+.rp.is-transition .rp-photo, .rp.is-done .rp-photo { opacity: .35; }
+.rp-overlay { margin-top: 14px; }
+.rp-count { margin: 0; font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
+.rp-name { margin: 4px 0 2px; font-family: var(--display); font-weight: 500; font-size: 24px; color: var(--plum-deep); line-height: 1.15; }
+.rp-note { margin: 0 auto; max-width: 42ch; font-size: 15px; color: var(--ink-soft); line-height: 1.5; min-height: 1.5em; }
+.rp.is-transition .rp-name { color: var(--gold-solid); }
+
+.rp-ring-wrap { position: relative; width: 150px; height: 150px; margin: 8px auto 0; }
+.rp-ring { width: 100%; height: 100%; transform: rotate(-90deg); }
+.rp-track { fill: none; stroke: var(--line); stroke-width: 6; }
+.rp-prog { fill: none; stroke: var(--plum); stroke-width: 6; stroke-linecap: round; transition: stroke-dashoffset .3s linear, stroke .4s ease; }
+.rp.is-transition .rp-prog { stroke: var(--gold-solid); }
+.rp.is-done .rp-prog { stroke: var(--plum); }
+.rp-clock {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-family: var(--display); font-size: 34px; color: var(--plum-deep); font-variant-numeric: tabular-nums;
+}
+
+.rp-controls { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.rp-toggle { min-width: 150px; cursor: pointer; }
+.rp-prev, .rp-next {
+  font: inherit; font-size: 14px; padding: 10px 16px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--line); background: none; color: var(--ink-soft);
+}
+.rp-prev:hover, .rp-next:hover { border-color: var(--plum); color: var(--plum); }
+
+.rp-dots { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; max-width: 320px; }
+.rp-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line); transition: background .3s, transform .3s; }
+.rp-dot.is-done { background: var(--plum); }
+.rp-dot.is-current { background: var(--gold-solid); transform: scale(1.5); }
+.rp-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* sequence list on the routine page */
+.routine-list { margin-top: 40px; }
+.seq { list-style: none; margin: 0; padding: 0; counter-reset: seq; }
+.seq li {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+  padding: 14px 0; border-bottom: 1px solid var(--line); counter-increment: seq;
+}
+.seq-main { display: flex; flex-direction: column; gap: 3px; }
+.seq-main::before { content: counter(seq); font-family: var(--display); color: var(--gold-solid); font-size: 13px; }
+.seq-main a { font-size: 17px; }
+.seq-note { font-size: 13.5px; color: var(--ink-soft); line-height: 1.45; }
+.seq-hold { flex: none; font-size: 14px; color: var(--ink-soft); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
 /* still-photo reference (pose pages, under the hero) */
 .photo-block { margin: 0; }
 

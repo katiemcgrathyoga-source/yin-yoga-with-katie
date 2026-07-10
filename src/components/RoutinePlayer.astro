@@ -1,0 +1,263 @@
+---
+/**
+ * RoutinePlayer — a follow-along practice player for a curated routine.
+ *
+ * The routine page resolves each step (pose slug → name/photo/cue) and expands
+ * two-sided poses into separate holds, then passes the flat `holds` list here.
+ * The <routine-player> custom element plays through them: hold → gentle chime →
+ * a short "ease out" transition with a Next preview and auto-continue → next hold
+ * → … → a completion screen. It reuses the same ring, chime and wake lock as the
+ * single-pose timer, so the whole practice runs hands-free.
+ */
+interface Hold {
+  name: string;
+  slug: string;
+  img: string;
+  seconds: number;
+  note?: string;
+  sideLabel?: string;
+}
+interface Props {
+  title: string;
+  holds: Hold[];
+}
+const { title, holds } = Astro.props;
+---
+
+<routine-player data-title={title}>
+  <script type="application/json" class="rp-data" is:inline set:html={JSON.stringify(holds)} />
+</routine-player>
+
+<script>
+  interface Hold { name: string; slug: string; img: string; seconds: number; note?: string; sideLabel?: string; }
+
+  const TRANSITION = 15; // seconds of "ease out" breather between holds
+  const RING_C = 326.726; // circumference of an r=52 circle
+
+  class RoutinePlayer extends HTMLElement {
+    holds: Hold[] = [];
+    idx = 0;
+    phase: 'ready' | 'holding' | 'transition' | 'done' = 'ready';
+    paused = false;
+    remaining = 0; // seconds left in the current countdown
+    endAt = 0;
+    raf: number | undefined;
+    audio: AudioContext | null = null;
+    wakeLock: any = null;
+
+    connectedCallback() {
+      try { this.holds = JSON.parse(this.querySelector('.rp-data')?.textContent || '[]'); } catch { this.holds = []; }
+      if (!this.holds.length) return;
+
+      this.innerHTML = `
+        <div class="rp">
+          <div class="rp-stage">
+            <img class="rp-photo" alt="" />
+            <div class="rp-overlay">
+              <p class="rp-count"></p>
+              <h3 class="rp-name"></h3>
+              <p class="rp-note"></p>
+            </div>
+            <div class="rp-ring-wrap">
+              <svg class="rp-ring" viewBox="0 0 120 120" aria-hidden="true">
+                <circle class="rp-track" cx="60" cy="60" r="52"></circle>
+                <circle class="rp-prog" cx="60" cy="60" r="52" stroke-dasharray="${RING_C}" stroke-dashoffset="0"></circle>
+              </svg>
+              <span class="rp-clock">0:00</span>
+            </div>
+          </div>
+          <div class="rp-controls">
+            <button type="button" class="rp-prev" aria-label="Previous pose">‹ Prev</button>
+            <button type="button" class="rp-toggle btn-cta">Begin practice</button>
+            <button type="button" class="rp-next" aria-label="Next pose">Skip ›</button>
+          </div>
+          <div class="rp-dots" aria-hidden="true"></div>
+          <p class="rp-live" aria-live="polite"></p>
+        </div>`;
+
+      this.photo = this.querySelector('.rp-photo') as HTMLImageElement;
+      this.count = this.querySelector('.rp-count') as HTMLElement;
+      this.nameEl = this.querySelector('.rp-name') as HTMLElement;
+      this.note = this.querySelector('.rp-note') as HTMLElement;
+      this.clock = this.querySelector('.rp-clock') as HTMLElement;
+      this.prog = this.querySelector('.rp-prog') as SVGCircleElement;
+      this.toggle = this.querySelector('.rp-toggle') as HTMLButtonElement;
+      this.live = this.querySelector('.rp-live') as HTMLElement;
+
+      this.toggle.addEventListener('click', () => this.onToggle());
+      this.querySelector('.rp-next')!.addEventListener('click', () => this.skip());
+      this.querySelector('.rp-prev')!.addEventListener('click', () => this.prev());
+
+      const dots = this.querySelector('.rp-dots')!;
+      dots.innerHTML = this.holds.map(() => `<span class="rp-dot"></span>`).join('');
+      this.dots = [...this.querySelectorAll<HTMLElement>('.rp-dot')];
+
+      this.showHold(0, false);
+    }
+
+    disconnectedCallback() { this.stopTick(); this.releaseWake(); }
+
+    photo!: HTMLImageElement; count!: HTMLElement; nameEl!: HTMLElement; note!: HTMLElement;
+    clock!: HTMLElement; prog!: SVGCircleElement; toggle!: HTMLButtonElement; live!: HTMLElement;
+    dots: HTMLElement[] = [];
+
+    fmt(s: number) { s = Math.max(0, Math.round(s)); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; }
+
+    // Paint the pose/photo/cue for a hold without starting the clock.
+    showHold(i: number, running: boolean) {
+      const h = this.holds[i];
+      this.photo.src = h.img;
+      this.photo.alt = `${h.name} yin yoga pose`;
+      this.count.textContent = `Pose ${i + 1} of ${this.holds.length}${h.sideLabel ? ' · ' + h.sideLabel : ''}`;
+      this.nameEl.textContent = h.name;
+      this.note.textContent = h.note || '';
+      this.remaining = h.seconds;
+      this.renderClock(h.seconds, h.seconds);
+      this.dots.forEach((d, k) => d.classList.toggle('is-done', k < i));
+      this.dots.forEach((d, k) => d.classList.toggle('is-current', k === i));
+      this.classList.remove('is-transition', 'is-done');
+      if (!running) this.toggle.textContent = i === 0 ? 'Begin practice' : 'Resume';
+    }
+
+    renderClock(remaining: number, total: number) {
+      this.clock.textContent = this.fmt(remaining);
+      const frac = total > 0 ? remaining / total : 0;
+      this.prog.style.strokeDashoffset = String(RING_C * (1 - frac));
+    }
+
+    onToggle() {
+      if (this.phase === 'holding' || this.phase === 'transition') { this.paused ? this.resume() : this.pause(); }
+      else if (this.phase === 'done') { this.restart(); }
+      else { this.startHold(); } // ready
+    }
+
+    startHold() {
+      this.ensureAudio();
+      this.requestWake();
+      this.phase = 'holding';
+      this.paused = false;
+      const total = this.holds[this.idx].seconds;
+      this.showHold(this.idx, true);
+      this.toggle.textContent = 'Pause';
+      this.live.textContent = `${this.holds[this.idx].name}, ${this.fmt(total)}.`;
+      this.runCountdown(this.remaining, total, () => this.onHoldDone());
+    }
+
+    onHoldDone() {
+      this.chime();
+      if (this.idx >= this.holds.length - 1) { this.finish(); return; }
+      this.startTransition();
+    }
+
+    startTransition() {
+      this.phase = 'transition';
+      this.paused = false;
+      this.classList.add('is-transition');
+      const next = this.holds[this.idx + 1];
+      const cur = this.holds[this.idx];
+      const switching = next.name === cur.name; // side 1 → side 2 of the same pose
+      this.count.textContent = 'Ease out slowly';
+      this.nameEl.textContent = switching ? 'Switch sides' : 'Next';
+      this.note.textContent = switching
+        ? `${next.name}${next.sideLabel ? ' · ' + next.sideLabel : ''}`
+        : `${next.name}${next.sideLabel ? ' · ' + next.sideLabel : ''}`;
+      this.toggle.textContent = 'Pause';
+      this.remaining = TRANSITION;
+      this.live.textContent = switching ? 'Switch sides.' : `Next, ${next.name}.`;
+      this.runCountdown(TRANSITION, TRANSITION, () => this.advance());
+    }
+
+    advance() { this.idx += 1; this.startHold(); }
+
+    skip() {
+      this.stopTick();
+      if (this.phase === 'transition') { this.advance(); return; }
+      // holding or ready → jump straight to the next hold (or finish)
+      if (this.idx >= this.holds.length - 1) { this.finish(); return; }
+      this.advance();
+    }
+
+    prev() {
+      this.stopTick();
+      const target = this.phase === 'transition' ? this.idx : Math.max(0, this.idx - 1);
+      this.idx = target;
+      if (this.phase === 'ready' || this.phase === 'done') { this.phase = 'ready'; this.showHold(this.idx, false); }
+      else { this.startHold(); }
+    }
+
+    pause() {
+      this.stopTick();
+      this.paused = true;
+      this.toggle.textContent = 'Resume';
+      this.live.textContent = 'Paused.';
+    }
+
+    resume() {
+      this.paused = false;
+      this.toggle.textContent = 'Pause';
+      const total = this.phase === 'transition' ? TRANSITION : this.holds[this.idx].seconds;
+      this.runCountdown(this.remaining, total, () =>
+        this.phase === 'transition' ? this.advance() : this.onHoldDone(),
+      );
+    }
+
+    finish() {
+      this.stopTick();
+      this.releaseWake();
+      this.phase = 'done';
+      this.classList.remove('is-transition');
+      this.classList.add('is-done');
+      this.count.textContent = 'Practice complete';
+      this.nameEl.textContent = 'Rest as long as you like';
+      this.note.textContent = 'When you’re ready, roll to one side and come up slowly.';
+      this.clock.textContent = '✓';
+      this.prog.style.strokeDashoffset = '0';
+      this.dots.forEach((d) => { d.classList.add('is-done'); d.classList.remove('is-current'); });
+      this.toggle.textContent = 'Practise again';
+      this.live.textContent = 'Practice complete. Rest as long as you like.';
+    }
+
+    restart() { this.idx = 0; this.phase = 'ready'; this.showHold(0, false); this.startHold(); }
+
+    // --- generic drift-free countdown -----------------------------------------
+    runCountdown(from: number, total: number, onDone: () => void) {
+      this.stopTick();
+      this.endAt = performance.now() + from * 1000;
+      const step = () => {
+        this.remaining = (this.endAt - performance.now()) / 1000;
+        if (this.remaining <= 0) { this.remaining = 0; this.renderClock(0, total); this.stopTick(); onDone(); return; }
+        this.renderClock(this.remaining, total);
+        this.raf = window.setTimeout(step, 200);
+      };
+      step();
+    }
+    stopTick() { if (this.raf) { clearTimeout(this.raf); this.raf = undefined; } }
+
+    // --- gentle two-note bell (shared behaviour with the pose timer) -----------
+    ensureAudio() {
+      try {
+        if (!this.audio) this.audio = new (window.AudioContext || (window as any).webkitAudioContext)();
+        if (this.audio.state === 'suspended') this.audio.resume();
+      } catch {}
+    }
+    chime() {
+      const ctx = this.audio; if (!ctx) return;
+      const now = ctx.currentTime;
+      ([[880, 0], [587.33, 0.5]] as [number, number][]).forEach(([freq, at]) => {
+        const o = ctx.createOscillator(), g = ctx.createGain();
+        o.type = 'sine'; o.frequency.value = freq;
+        g.gain.setValueAtTime(0.0001, now + at);
+        g.gain.exponentialRampToValueAtTime(0.22, now + at + 0.04);
+        g.gain.exponentialRampToValueAtTime(0.0001, now + at + 1.6);
+        o.connect(g).connect(ctx.destination);
+        o.start(now + at); o.stop(now + at + 1.7);
+      });
+    }
+    async requestWake() {
+      try { if ('wakeLock' in navigator) this.wakeLock = await (navigator as any).wakeLock.request('screen'); } catch {}
+    }
+    releaseWake() { try { this.wakeLock?.release?.(); } catch {} this.wakeLock = null; }
+  }
+
+  if (!customElements.get('routine-player')) customElements.define('routine-player', RoutinePlayer);
+</script>

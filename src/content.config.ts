@@ -112,4 +112,42 @@ const videos = defineCollection({
   }),
 });
 
-export const collections = { poses, videos };
+/**
+ * The `routines` collection — curated pose sequences the practice player runs.
+ *
+ * Each routine is one Markdown file in `src/content/routines/`. It references
+ * poses by `slug` (the same identity used everywhere), and each step carries a
+ * hold length and whether it's done on one side or both. The routine page
+ * resolves each slug to the pose's name, photo and cue, then hands the expanded
+ * sequence to the `<routine-player>` component (which reuses the pose timer).
+ */
+const routines = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/routines' }),
+  schema: z.object({
+    title: z.string().min(1),
+    slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'slug must be lowercase kebab-case'),
+    tagline: z.string().optional(),
+    intent: z.string(), // grouping label, e.g. "sleep" | "hips" | "shoulders" | "full-body"
+    hero_pose: z.string().optional(), // slug of the pose to use as the card/OG image (defaults to the first step)
+    level: z.enum(['all-levels', 'beginner', 'intermediate', 'advanced']),
+    minutes: z.number().int().positive(), // marketed length (matches the sum of holds)
+    intro: z.string().min(1), // a short paragraph in Katie's voice
+    props: z.array(z.string()).default([]),
+    steps: z
+      .array(
+        z.object({
+          pose: z.string(), // slug → poses collection
+          seconds: z.number().int().positive(), // hold length for this step
+          sides: z.union([z.literal(1), z.literal(2)]).default(1), // 2 → player runs it left then right
+          note: z.string().optional(), // short cue shown while holding
+        }),
+      )
+      .min(1),
+    membership_cta: z.string().min(1),
+    summary: z.string().min(1),
+    seo_title: z.string().min(1),
+    seo_description: z.string().min(1),
+  }),
+});
+
+export const collections = { poses, videos, routines };
