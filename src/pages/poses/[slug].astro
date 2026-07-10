@@ -23,26 +23,22 @@ const d = pose.data;
 // when the related pose already exists in the collection.
 const bySlug = new Map(poses.map((p) => [p.data.slug, p.data]));
 
-// Reverse of the video→pose link: every class whose `poses_featured` includes
-// this pose, newest first. This is the pose's connection back into the library.
+// Reverse of the video→pose link: classes that feature this pose. Show only the
+// best 2–3 — enriched (real, indexable) pages first, then most-practised — so we
+// recommend quality over quantity. (A future pass will rank by pose "essence".)
 const featuredIn = (await getCollection('videos'))
   .filter((v) => v.data.poses_featured.includes(d.slug))
-  .sort((a, b) => (b.data.published?.getTime() ?? 0) - (a.data.published?.getTime() ?? 0));
+  .sort(
+    (a, b) =>
+      Number(b.data.enriched) - Number(a.data.enriched) ||
+      (b.data.watch_hours ?? 0) - (a.data.watch_hours ?? 0),
+  )
+  .slice(0, 3);
 
 const titleCase = (s: string) =>
   s.replace(/\b\w/g, (c) => c.toUpperCase());
 const humanise = (slug: string) =>
   titleCase(slug.replace(/-/g, ' '));
-
-// --- Hold-time marker (the signature element) -------------------------------
-// Split "1–5 minutes per side (Full Swan 1–3 min, ...)" into a big number, a
-// unit, and a caption — entirely from the data, so it works for any pose.
-const holdMatch = d.hold_time.match(/^\s*([\d.–—\-\s]+?)\s*(minutes?|mins?|seconds?|secs?)\b\s*(.*)$/i);
-const orbBig = holdMatch ? holdMatch[1].trim() : d.hold_time;
-const orbUnit = holdMatch ? holdMatch[2].toLowerCase().replace(/s$/, '') + 's' : '';
-const orbCaption = holdMatch
-  ? holdMatch[3].replace(/\(/g, '· ').replace(/\)/g, '').trim()
-  : '';
 
 // --- schema.org HowTo, built from cues, hold_time and props ------------------
 // totalTime = the largest minute figure found in hold_time, as ISO-8601 (PT#M).
@@ -51,7 +47,7 @@ const totalMinutes = minuteFigures.length ? Math.max(...minuteFigures) : undefin
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
-  name: `${d.name_en} (${d.also_known_as[0] ?? d.name_en})`,
+  name: d.name_en,
   description: d.seo_description,
   ...(totalMinutes ? { totalTime: `PT${totalMinutes}M` } : {}),
   ...(d.props.length
@@ -77,39 +73,24 @@ const eyebrow = `Yin Yoga · ${titleCase(d.accessibility)}`;
     <header class="hero">
       <p class="eyebrow">{eyebrow}</p>
       <h1>{d.name_en}</h1>
-      <p class="alt">{d.name_sanskrit}</p>
-      {
-        d.also_known_as.length > 0 && (
-          <p class="aka">Also known as {d.also_known_as.join(' · ')}</p>
-        )
-      }
 
-      <div class="breath" aria-label="Recommended hold time">
-        <div class="orb">
-          <span class="t">{orbBig}{orbUnit && <small>{orbUnit}</small>}</span>
-        </div>
-        {orbCaption && <span class="cap">{orbCaption}</span>}
+      <div class="hold" aria-label="Recommended hold time">
+        <span class="hold-eyebrow">Hold</span>
+        <p class="hold-time">{d.hold_time}</p>
       </div>
-
     </header>
 
-    {/* Still photo reference — always shown, prominent, directly under the hero. */}
+    {/* Single reference photo, directly under the hero. */}
     {
       d.images.length > 0 && (
-        <div class="photo-block">
-          <div class="gallery">
-            {d.images.map((src, i) => (
-              <figure>
-                <img
-                  src={src}
-                  alt={`${d.name_en} — figure ${i + 1}`}
-                  loading="lazy"
-                  onerror="this.closest('figure').remove()"
-                />
-              </figure>
-            ))}
-          </div>
-        </div>
+        <figure class="pose-photo">
+          <img
+            src={d.images[0]}
+            alt={`${d.name_en} yin yoga pose`}
+            loading="lazy"
+            onerror="this.closest('.pose-photo').remove()"
+          />
+        </figure>
       )
     }
 

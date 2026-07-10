@@ -18,10 +18,10 @@ const poses = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/poses' }),
   schema: z.object({
     // Names & identity
-    name_en: z.string().min(1),
-    name_sanskrit: z.string().min(1),
+    name_en: z.string().min(1), // the yin-yoga name (the only name shown on the page)
+    name_sanskrit: z.string().optional(), // no longer displayed — yin names only
     slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'slug must be lowercase kebab-case'),
-    also_known_as: z.array(z.string()),
+    also_known_as: z.array(z.string()).default([]), // no longer displayed
 
     // Anatomy & energetics
     target_areas: z.array(z.string()).min(1),
