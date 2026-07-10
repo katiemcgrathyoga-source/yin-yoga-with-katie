@@ -1,56 +1,70 @@
 ---
 /**
- * RoutinePlayer — a follow-along practice player for a curated routine.
+ * RoutinePlayer — a focused, follow-along practice player.
  *
- * The routine page resolves each step (pose slug → name/photo/cue) and expands
- * two-sided poses into separate holds, then passes the flat `holds` list here.
- * The <routine-player> custom element plays through them: hold → gentle chime →
- * a short "ease out" transition with a Next preview and auto-continue → next hold
- * → … → a completion screen. It reuses the same ring, chime and wake lock as the
- * single-pose timer, so the whole practice runs hands-free.
+ * On "Begin", it expands to a distraction-free full-screen mode: a 15-second
+ * lead-in to get into the first pose, then each hold timed with a gentle chime
+ * and a calm "ease out → next pose" hand-off. You can nudge any hold ±30s on the
+ * fly, and at the end it generates a branded, shareable completion badge.
+ *
+ * The custom element is framework-free and exposes setSequence()/beginPractice()
+ * so the custom routine builder can drive it with a sequence built in the browser.
  */
-interface Hold {
-  name: string;
-  slug: string;
-  img: string;
-  seconds: number;
-  note?: string;
-  sideLabel?: string;
-}
-interface Props {
-  title: string;
-  holds: Hold[];
-}
-const { title, holds } = Astro.props;
+interface Hold { name: string; slug: string; img: string; seconds: number; note?: string; sideLabel?: string; }
+interface Props { title: string; holds: Hold[]; shareUrl?: string; }
+const { title, holds, shareUrl } = Astro.props;
 ---
 
-<routine-player data-title={title}>
+<routine-player data-title={title} data-share-url={shareUrl ?? ''}>
   <script type="application/json" class="rp-data" is:inline set:html={JSON.stringify(holds)} />
 </routine-player>
 
 <script>
   interface Hold { name: string; slug: string; img: string; seconds: number; note?: string; sideLabel?: string; }
 
-  const TRANSITION = 15; // seconds of "ease out" breather between holds
+  const PREP = 15;        // lead-in seconds to get into the first pose
+  const TRANSITION = 15;  // ease-out seconds between poses
   const RING_C = 326.726; // circumference of an r=52 circle
+  const SITE = 'yinyogawithkatie.com';
+
+  const loadImg = (src: string) =>
+    new Promise<HTMLImageElement>((res, rej) => {
+      const i = new Image();
+      i.onload = () => res(i);
+      i.onerror = rej;
+      i.src = src;
+    });
 
   class RoutinePlayer extends HTMLElement {
     holds: Hold[] = [];
     idx = 0;
-    phase: 'ready' | 'holding' | 'transition' | 'done' = 'ready';
+    phase: 'ready' | 'prep' | 'holding' | 'transition' | 'done' = 'ready';
     paused = false;
-    remaining = 0; // seconds left in the current countdown
+    remaining = 0;
     endAt = 0;
     raf: number | undefined;
     audio: AudioContext | null = null;
     wakeLock: any = null;
+    onEsc = (e: KeyboardEvent) => { if (e.key === 'Escape') this.exitFocus(); };
 
     connectedCallback() {
       try { this.holds = JSON.parse(this.querySelector('.rp-data')?.textContent || '[]'); } catch { this.holds = []; }
       if (!this.holds.length) return;
+      this.build();
+    }
+    disconnectedCallback() { this.stopTick(); this.releaseWake(); this.unlockScroll(); }
 
+    photo!: HTMLImageElement; count!: HTMLElement; nameEl!: HTMLElement; note!: HTMLElement;
+    clock!: HTMLElement; prog!: SVGCircleElement; toggle!: HTMLButtonElement; nextup!: HTMLElement;
+    live!: HTMLElement; badge!: HTMLCanvasElement; dots: HTMLElement[] = [];
+
+    build() {
       this.innerHTML = `
         <div class="rp">
+          <div class="rp-bar">
+            <span class="rp-routine">${this.dataset.title || 'Your practice'}</span>
+            <button type="button" class="rp-exit" aria-label="End practice">✕&nbsp;End</button>
+          </div>
           <div class="rp-stage">
             <img class="rp-photo" alt="" />
             <div class="rp-overlay">
@@ -65,6 +79,12 @@ const { title, holds } = Astro.props;
               </svg>
               <span class="rp-clock">0:00</span>
             </div>
+            <p class="rp-nextup"></p>
+          </div>
+          <div class="rp-adjust">
+            <button type="button" class="rp-minus" aria-label="Take 30 seconds off this hold">−30s</button>
+            <span class="rp-adjust-label">adjust hold</span>
+            <button type="button" class="rp-plus" aria-label="Add 30 seconds to this hold">+30s</button>
           </div>
           <div class="rp-controls">
             <button type="button" class="rp-prev" aria-label="Previous pose">‹ Prev</button>
@@ -72,75 +92,117 @@ const { title, holds } = Astro.props;
             <button type="button" class="rp-next" aria-label="Next pose">Skip ›</button>
           </div>
           <div class="rp-dots" aria-hidden="true"></div>
+          <div class="rp-done">
+            <canvas class="rp-badge" width="1080" height="1080"></canvas>
+            <div class="rp-done-actions">
+              <button type="button" class="rp-share btn-cta">Share your practice</button>
+              <button type="button" class="rp-download">Download badge</button>
+              <button type="button" class="rp-again">Practise again</button>
+            </div>
+          </div>
           <p class="rp-live" aria-live="polite"></p>
         </div>`;
 
-      this.photo = this.querySelector('.rp-photo') as HTMLImageElement;
-      this.count = this.querySelector('.rp-count') as HTMLElement;
-      this.nameEl = this.querySelector('.rp-name') as HTMLElement;
-      this.note = this.querySelector('.rp-note') as HTMLElement;
-      this.clock = this.querySelector('.rp-clock') as HTMLElement;
-      this.prog = this.querySelector('.rp-prog') as SVGCircleElement;
-      this.toggle = this.querySelector('.rp-toggle') as HTMLButtonElement;
-      this.live = this.querySelector('.rp-live') as HTMLElement;
+      const $ = (s: string) => this.querySelector(s) as any;
+      this.photo = $('.rp-photo'); this.count = $('.rp-count'); this.nameEl = $('.rp-name');
+      this.note = $('.rp-note'); this.clock = $('.rp-clock'); this.prog = $('.rp-prog');
+      this.toggle = $('.rp-toggle'); this.nextup = $('.rp-nextup'); this.live = $('.rp-live');
+      this.badge = $('.rp-badge');
 
       this.toggle.addEventListener('click', () => this.onToggle());
-      this.querySelector('.rp-next')!.addEventListener('click', () => this.skip());
-      this.querySelector('.rp-prev')!.addEventListener('click', () => this.prev());
+      $('.rp-next').addEventListener('click', () => this.skip());
+      $('.rp-prev').addEventListener('click', () => this.prev());
+      $('.rp-exit').addEventListener('click', () => this.exitFocus());
+      $('.rp-minus').addEventListener('click', () => this.adjust(-30));
+      $('.rp-plus').addEventListener('click', () => this.adjust(30));
+      $('.rp-share').addEventListener('click', () => this.shareBadge());
+      $('.rp-download').addEventListener('click', () => this.downloadBadge());
+      $('.rp-again').addEventListener('click', () => this.restart());
 
-      const dots = this.querySelector('.rp-dots')!;
-      dots.innerHTML = this.holds.map(() => `<span class="rp-dot"></span>`).join('');
+      const dotWrap = $('.rp-dots');
+      dotWrap.innerHTML = this.holds.map(() => `<span class="rp-dot"></span>`).join('');
       this.dots = [...this.querySelectorAll<HTMLElement>('.rp-dot')];
 
+      this.idx = 0; this.phase = 'ready';
       this.showHold(0, false);
     }
 
-    disconnectedCallback() { this.stopTick(); this.releaseWake(); }
-
-    photo!: HTMLImageElement; count!: HTMLElement; nameEl!: HTMLElement; note!: HTMLElement;
-    clock!: HTMLElement; prog!: SVGCircleElement; toggle!: HTMLButtonElement; live!: HTMLElement;
-    dots: HTMLElement[] = [];
+    /** Public: load a new sequence (used by the custom builder). */
+    setSequence(title: string, holds: Hold[], shareUrl = '') {
+      this.stopTick();
+      this.dataset.title = title;
+      this.dataset.shareUrl = shareUrl;
+      this.holds = holds;
+      this.build();
+    }
 
     fmt(s: number) { s = Math.max(0, Math.round(s)); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; }
 
-    // Paint the pose/photo/cue for a hold without starting the clock.
+    setPhaseClass() {
+      this.classList.toggle('is-prep', this.phase === 'prep');
+      this.classList.toggle('is-holding', this.phase === 'holding');
+      this.classList.toggle('is-transition', this.phase === 'transition');
+      this.classList.toggle('is-done', this.phase === 'done');
+    }
+
     showHold(i: number, running: boolean) {
       const h = this.holds[i];
-      this.photo.src = h.img;
-      this.photo.alt = `${h.name} yin yoga pose`;
+      this.photo.src = h.img; this.photo.alt = `${h.name} yin yoga pose`;
       this.count.textContent = `Pose ${i + 1} of ${this.holds.length}${h.sideLabel ? ' · ' + h.sideLabel : ''}`;
       this.nameEl.textContent = h.name;
       this.note.textContent = h.note || '';
       this.remaining = h.seconds;
       this.renderClock(h.seconds, h.seconds);
-      this.dots.forEach((d, k) => d.classList.toggle('is-done', k < i));
-      this.dots.forEach((d, k) => d.classList.toggle('is-current', k === i));
-      this.classList.remove('is-transition', 'is-done');
+      this.dots.forEach((d, k) => { d.classList.toggle('is-done', k < i); d.classList.toggle('is-current', k === i); });
+      this.updateNextUp(i);
       if (!running) this.toggle.textContent = i === 0 ? 'Begin practice' : 'Resume';
+    }
+
+    updateNextUp(i: number) {
+      const n = this.holds[i + 1];
+      this.nextup.textContent = n ? `Next up · ${n.name}${n.sideLabel ? ' · ' + n.sideLabel : ''}` : 'Last pose';
     }
 
     renderClock(remaining: number, total: number) {
       this.clock.textContent = this.fmt(remaining);
-      const frac = total > 0 ? remaining / total : 0;
+      const frac = total > 0 ? Math.max(0, Math.min(1, remaining / total)) : 0;
       this.prog.style.strokeDashoffset = String(RING_C * (1 - frac));
     }
 
     onToggle() {
-      if (this.phase === 'holding' || this.phase === 'transition') { this.paused ? this.resume() : this.pause(); }
-      else if (this.phase === 'done') { this.restart(); }
-      else { this.startHold(); } // ready
+      if (this.phase === 'ready') this.beginPractice();
+      else if (this.phase === 'done') this.restart();
+      else this.paused ? this.resume() : this.pause();
     }
 
-    startHold() {
+    /** Public: enter focus mode and start the lead-in. */
+    beginPractice() {
+      this.enterFocus();
       this.ensureAudio();
       this.requestWake();
-      this.phase = 'holding';
-      this.paused = false;
-      const total = this.holds[this.idx].seconds;
-      this.showHold(this.idx, true);
+      this.idx = 0;
+      this.startPrep();
+    }
+
+    startPrep() {
+      this.phase = 'prep'; this.paused = false; this.setPhaseClass();
+      const h = this.holds[this.idx];
+      this.photo.src = h.img; this.photo.alt = '';
+      this.count.textContent = 'Get ready';
+      this.nameEl.textContent = h.name;
+      this.note.textContent = 'Settle into the pose — the timer starts in a moment.';
+      this.updateNextUp(this.idx);
       this.toggle.textContent = 'Pause';
-      this.live.textContent = `${this.holds[this.idx].name}, ${this.fmt(total)}.`;
-      this.runCountdown(this.remaining, total, () => this.onHoldDone());
+      this.live.textContent = `Get into ${h.name}. Starting soon.`;
+      this.runCountdown(PREP, PREP, () => this.startHold(this.idx));
+    }
+
+    startHold(i: number) {
+      this.idx = i; this.phase = 'holding'; this.paused = false; this.setPhaseClass();
+      this.showHold(i, true);
+      this.toggle.textContent = 'Pause';
+      this.live.textContent = `${this.holds[i].name}, ${this.fmt(this.holds[i].seconds)}.`;
+      this.runCountdown(this.holds[i].seconds, this.holds[i].seconds, () => this.onHoldDone());
     }
 
     onHoldDone() {
@@ -150,78 +212,105 @@ const { title, holds } = Astro.props;
     }
 
     startTransition() {
-      this.phase = 'transition';
-      this.paused = false;
-      this.classList.add('is-transition');
-      const next = this.holds[this.idx + 1];
+      this.phase = 'transition'; this.paused = false; this.setPhaseClass();
       const cur = this.holds[this.idx];
-      const switching = next.name === cur.name; // side 1 → side 2 of the same pose
+      const next = this.holds[this.idx + 1];
+      const switching = next.name === cur.name;
       this.count.textContent = 'Ease out slowly';
-      this.nameEl.textContent = switching ? 'Switch sides' : 'Next';
-      this.note.textContent = switching
-        ? `${next.name}${next.sideLabel ? ' · ' + next.sideLabel : ''}`
-        : `${next.name}${next.sideLabel ? ' · ' + next.sideLabel : ''}`;
+      this.nameEl.textContent = switching ? 'Switch sides' : 'Next pose';
+      this.note.textContent = `${next.name}${next.sideLabel ? ' · ' + next.sideLabel : ''}`;
+      this.updateNextUp(this.idx);
       this.toggle.textContent = 'Pause';
-      this.remaining = TRANSITION;
       this.live.textContent = switching ? 'Switch sides.' : `Next, ${next.name}.`;
       this.runCountdown(TRANSITION, TRANSITION, () => this.advance());
     }
 
-    advance() { this.idx += 1; this.startHold(); }
+    advance() { this.startHold(this.idx + 1); }
 
     skip() {
+      if (this.phase === 'ready' || this.phase === 'done') return;
       this.stopTick();
-      if (this.phase === 'transition') { this.advance(); return; }
-      // holding or ready → jump straight to the next hold (or finish)
+      if (this.phase === 'prep') { this.startHold(this.idx); return; }
       if (this.idx >= this.holds.length - 1) { this.finish(); return; }
       this.advance();
     }
 
     prev() {
+      if (this.phase === 'ready' || this.phase === 'done') return;
       this.stopTick();
-      const target = this.phase === 'transition' ? this.idx : Math.max(0, this.idx - 1);
-      this.idx = target;
-      if (this.phase === 'ready' || this.phase === 'done') { this.phase = 'ready'; this.showHold(this.idx, false); }
-      else { this.startHold(); }
+      if (this.phase !== 'transition') this.idx = Math.max(0, this.idx - 1);
+      this.startHold(this.idx);
     }
 
     pause() {
-      this.stopTick();
-      this.paused = true;
+      this.stopTick(); this.paused = true;
       this.toggle.textContent = 'Resume';
       this.live.textContent = 'Paused.';
     }
-
     resume() {
-      this.paused = false;
-      this.toggle.textContent = 'Pause';
-      const total = this.phase === 'transition' ? TRANSITION : this.holds[this.idx].seconds;
-      this.runCountdown(this.remaining, total, () =>
-        this.phase === 'transition' ? this.advance() : this.onHoldDone(),
-      );
+      this.paused = false; this.toggle.textContent = 'Pause';
+      const total =
+        this.phase === 'prep' ? PREP : this.phase === 'transition' ? TRANSITION : this.holds[this.idx].seconds;
+      const done =
+        this.phase === 'prep' ? () => this.startHold(this.idx)
+        : this.phase === 'transition' ? () => this.advance()
+        : () => this.onHoldDone();
+      this.runCountdown(this.remaining, total, done);
     }
 
-    finish() {
-      this.stopTick();
-      this.releaseWake();
-      this.phase = 'done';
-      this.classList.remove('is-transition');
-      this.classList.add('is-done');
+    /** Nudge the relevant hold ±30s. Applies live when holding. */
+    adjust(delta: number) {
+      if (this.phase === 'done' || this.phase === 'ready') return;
+      const target = this.phase === 'transition' ? this.idx + 1 : this.idx;
+      const h = this.holds[target];
+      if (!h) return;
+      h.seconds = Math.max(5, h.seconds + delta);
+      if (this.phase === 'holding' && !this.paused) {
+        this.remaining = Math.max(1, this.remaining + delta);
+        this.runCountdown(this.remaining, h.seconds, () => this.onHoldDone());
+      } else if (this.phase === 'holding') {
+        this.remaining = Math.max(1, this.remaining + delta);
+        this.renderClock(this.remaining, h.seconds);
+      }
+      this.live.textContent = `Hold set to ${this.fmt(h.seconds)}.`;
+    }
+
+    async finish() {
+      this.stopTick(); this.releaseWake();
+      this.phase = 'done'; this.setPhaseClass();
       this.count.textContent = 'Practice complete';
-      this.nameEl.textContent = 'Rest as long as you like';
-      this.note.textContent = 'When you’re ready, roll to one side and come up slowly.';
+      this.nameEl.textContent = 'Beautifully done';
+      this.note.textContent = 'Rest as long as you like, then roll to one side and come up slowly.';
       this.clock.textContent = '✓';
       this.prog.style.strokeDashoffset = '0';
       this.dots.forEach((d) => { d.classList.add('is-done'); d.classList.remove('is-current'); });
-      this.toggle.textContent = 'Practise again';
       this.live.textContent = 'Practice complete. Rest as long as you like.';
+      await this.drawBadge();
     }
 
-    restart() { this.idx = 0; this.phase = 'ready'; this.showHold(0, false); this.startHold(); }
+    restart() { this.idx = 0; this.enterFocus(); this.ensureAudio(); this.requestWake(); this.startPrep(); }
 
-    // --- generic drift-free countdown -----------------------------------------
+    // --- focus mode -----------------------------------------------------------
+    enterFocus() {
+      this.classList.add('is-focus');
+      this.lockScroll();
+      document.addEventListener('keydown', this.onEsc);
+    }
+    exitFocus() {
+      this.stopTick(); this.releaseWake();
+      this.classList.remove('is-focus');
+      this.unlockScroll();
+      document.removeEventListener('keydown', this.onEsc);
+      this.phase = 'ready'; this.setPhaseClass();
+      this.idx = 0; this.showHold(0, false);
+    }
+    lockScroll() { document.documentElement.style.overflow = 'hidden'; }
+    unlockScroll() { document.documentElement.style.overflow = ''; }
+
+    // --- countdown ------------------------------------------------------------
     runCountdown(from: number, total: number, onDone: () => void) {
       this.stopTick();
+      this.remaining = from;
       this.endAt = performance.now() + from * 1000;
       const step = () => {
         this.remaining = (this.endAt - performance.now()) / 1000;
@@ -233,7 +322,7 @@ const { title, holds } = Astro.props;
     }
     stopTick() { if (this.raf) { clearTimeout(this.raf); this.raf = undefined; } }
 
-    // --- gentle two-note bell (shared behaviour with the pose timer) -----------
+    // --- gentle bell + wake lock ---------------------------------------------
     ensureAudio() {
       try {
         if (!this.audio) this.audio = new (window.AudioContext || (window as any).webkitAudioContext)();
@@ -253,10 +342,86 @@ const { title, holds } = Astro.props;
         o.start(now + at); o.stop(now + at + 1.7);
       });
     }
-    async requestWake() {
-      try { if ('wakeLock' in navigator) this.wakeLock = await (navigator as any).wakeLock.request('screen'); } catch {}
-    }
+    async requestWake() { try { if ('wakeLock' in navigator) this.wakeLock = await (navigator as any).wakeLock.request('screen'); } catch {} }
     releaseWake() { try { this.wakeLock?.release?.(); } catch {} this.wakeLock = null; }
+
+    // --- shareable completion badge ------------------------------------------
+    async drawBadge() {
+      const c = this.badge, ctx = c.getContext('2d');
+      if (!ctx) return;
+      const W = 1080, H = 1080;
+      try { await (document as any).fonts?.ready; } catch {}
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = '#F9F1EA'; ctx.fillRect(0, 0, W, H);
+      ctx.strokeStyle = '#89494B'; ctx.lineWidth = 5; ctx.strokeRect(46, 46, W - 92, H - 92);
+      ctx.textAlign = 'center';
+
+      try {
+        const img = await loadImg('/brand/submark-deep-sage.png');
+        const iw = 190, ih = img.height * (iw / img.width);
+        ctx.drawImage(img, (W - iw) / 2, 150, iw, ih);
+      } catch {}
+
+      ctx.fillStyle = '#6E756F';
+      ctx.font = "600 30px Cabin, system-ui, sans-serif";
+      (ctx as any).letterSpacing = '6px';
+      ctx.fillText('I  COMPLETED', W / 2, 470);
+      (ctx as any).letterSpacing = '0px';
+
+      ctx.fillStyle = '#48544C';
+      ctx.font = '600 74px "Noto Serif TC", Georgia, serif';
+      const wrapY = this.wrapText(ctx, this.dataset.title || 'my Yin practice', W / 2, 560, W - 240, 86);
+
+      ctx.strokeStyle = '#89494B'; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.moveTo(W / 2 - 60, wrapY + 40); ctx.lineTo(W / 2 + 60, wrapY + 40); ctx.stroke();
+
+      ctx.fillStyle = '#48544C';
+      ctx.font = 'italic 42px "Noto Serif TC", Georgia, serif';
+      ctx.fillText('Yin Yoga with Katie', W / 2, wrapY + 130);
+      ctx.fillStyle = '#6E756F';
+      ctx.font = '500 30px Cabin, system-ui, sans-serif';
+      ctx.fillText(SITE, W / 2, wrapY + 180);
+    }
+
+    wrapText(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, maxW: number, lh: number) {
+      const words = text.split(' ');
+      const lines: string[] = [];
+      let line = '';
+      for (const w of words) {
+        const test = line ? line + ' ' + w : w;
+        if (ctx.measureText(test).width > maxW && line) { lines.push(line); line = w; } else line = test;
+      }
+      if (line) lines.push(line);
+      lines.forEach((l, i) => ctx.fillText(l, x, y + i * lh));
+      return y + (lines.length - 1) * lh;
+    }
+
+    badgeText() {
+      return `I completed the ${this.dataset.title} routine on ${SITE} 🧘`;
+    }
+    async shareBadge() {
+      const url = this.dataset.shareUrl || `https://${SITE}`;
+      const text = this.badgeText();
+      const blob: Blob | null = await new Promise((r) => this.badge.toBlob(r, 'image/png'));
+      if (blob && (navigator as any).canShare) {
+        const file = new File([blob], 'yin-practice.png', { type: 'image/png' });
+        if ((navigator as any).canShare({ files: [file] })) {
+          try { await (navigator as any).share({ files: [file], text, url }); return; } catch {}
+        }
+      }
+      if (navigator.share) { try { await navigator.share({ title: 'Yin Yoga with Katie', text, url }); return; } catch {} }
+      this.downloadBadge();
+    }
+    downloadBadge() {
+      this.badge.toBlob((blob) => {
+        if (!blob) return;
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'yin-practice.png';
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+      }, 'image/png');
+    }
   }
 
   if (!customElements.get('routine-player')) customElements.define('routine-player', RoutinePlayer);

@@ -1,0 +1,241 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RoutinePlayer from '../../components/RoutinePlayer.astro';
+
+// All poses, as compact data the builder reads client-side.
+const poses = (await getCollection('poses'))
+  .map((p) => ({
+    slug: p.data.slug,
+    name: p.data.name_en,
+    img: p.data.images[0] ?? '',
+    secs: p.data.hold_seconds ?? 120,
+    note: p.data.cues?.[0] ?? '',
+    areas: p.data.target_areas,
+  }))
+  .sort((a, b) => a.name.localeCompare(b.name));
+---
+
+<BaseLayout
+  title="Build Your Own Yin Yoga Routine — Custom Sequence Player"
+  description="Build your own custom Yin Yoga routine: pick your poses, set each hold length, then press play and follow along with a guided timer. Save it or share it with a link."
+>
+  <div class="wrap">
+    <header class="hero">
+      <p class="eyebrow">Yin Yoga · Practise Along</p>
+      <h1>Build your own routine</h1>
+      <p class="alt">choose your poses, set each hold, then press play — your sequence, guided by the timer</p>
+    </header>
+
+    <p class="page-intro">
+      Make a Yin practice that fits exactly what your body needs today. Add poses from the
+      list, set how long to hold each one, and press <strong>Start practice</strong> — the
+      player guides you through pose by pose, just like the ready-made routines. Save it for
+      next time, or copy a link to share your sequence with a friend.
+    </p>
+
+    <div class="builder">
+      <section class="pb-picker">
+        <h2>Add poses</h2>
+        <input class="pb-search" type="search" placeholder="Search poses…" aria-label="Search poses" />
+        <div class="pb-poses">
+          {
+            poses.map((p) => (
+              <button type="button" class="pb-add" data-slug={p.slug} data-name={p.name.toLowerCase()} data-areas={p.areas.join(' ').toLowerCase()}>
+                {p.img && <img src={p.img} alt="" loading="lazy" />}
+                <span>{p.name}</span>
+                <span class="pb-plus" aria-hidden="true">+</span>
+              </button>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="pb-seq">
+        <h2>Your sequence</h2>
+        <input class="pb-title" type="text" value="My Yin Routine" aria-label="Routine name" maxlength="60" />
+        <p class="pb-total" aria-live="polite"></p>
+        <ol class="pb-list"></ol>
+        <p class="pb-empty">No poses yet — add some from the list to build your sequence.</p>
+        <div class="pb-actions">
+          <button type="button" class="pb-start btn-cta" disabled>Start practice</button>
+          <button type="button" class="pb-share" disabled>Copy shareable link</button>
+          <button type="button" class="pb-clear" disabled>Clear</button>
+        </div>
+        <p class="pb-msg" aria-live="polite"></p>
+      </section>
+    </div>
+
+    <RoutinePlayer title="My Yin Routine" holds={[]} />
+
+    <p class="builder-back"><a href="/routines">← Back to ready-made routines</a></p>
+  </div>
+
+  <script type="application/json" id="pb-data" is:inline set:html={JSON.stringify(poses)} />
+
+  <script>
+    interface Pose { slug: string; name: string; img: string; secs: number; note: string; areas: string[]; }
+    interface Step { slug: string; secs: number; sides: 1 | 2 }
+
+    const data: Pose[] = JSON.parse(document.getElementById('pb-data')!.textContent || '[]');
+    const bySlug = new Map(data.map((p) => [p.slug, p]));
+    const STORE = 'yin-custom-routine';
+
+    const $ = (s: string) => document.querySelector(s) as HTMLElement;
+    const listEl = $('.pb-list') as HTMLOListElement;
+    const emptyEl = $('.pb-empty');
+    const totalEl = $('.pb-total');
+    const titleEl = $('.pb-title') as HTMLInputElement;
+    const startBtn = $('.pb-start') as HTMLButtonElement;
+    const shareBtn = $('.pb-share') as HTMLButtonElement;
+    const clearBtn = $('.pb-clear') as HTMLButtonElement;
+    const msgEl = $('.pb-msg');
+    const searchEl = $('.pb-search') as HTMLInputElement;
+
+    let steps: Step[] = [];
+
+    const fmt = (s: number) => {
+      const m = Math.round(s / 60);
+      return m >= 1 ? `${m} min` : `${s}s`;
+    };
+
+    function totalSeconds() {
+      return steps.reduce((n, s) => n + s.secs * s.sides, 0);
+    }
+
+    function render() {
+      listEl.innerHTML = steps
+        .map((s, i) => {
+          const p = bySlug.get(s.slug)!;
+          return `
+          <li class="pb-row" data-i="${i}">
+            <div class="pb-row-main">
+              ${p.img ? `<img src="${p.img}" alt="" />` : ''}
+              <span class="pb-row-name">${p.name}</span>
+            </div>
+            <div class="pb-row-ctl">
+              <button type="button" class="pb-sec-minus" aria-label="Less time">−</button>
+              <span class="pb-sec">${fmt(s.secs)}</span>
+              <button type="button" class="pb-sec-plus" aria-label="More time">+</button>
+              <button type="button" class="pb-sides ${s.sides === 2 ? 'on' : ''}" aria-label="Both sides">${s.sides === 2 ? 'both sides' : 'one side'}</button>
+              <button type="button" class="pb-up" aria-label="Move up">↑</button>
+              <button type="button" class="pb-down" aria-label="Move down">↓</button>
+              <button type="button" class="pb-del" aria-label="Remove">✕</button>
+            </div>
+          </li>`;
+        })
+        .join('');
+
+      const has = steps.length > 0;
+      emptyEl.hidden = has;
+      totalEl.textContent = has ? `${steps.length} pose${steps.length > 1 ? 's' : ''} · about ${Math.round(totalSeconds() / 60)} min` : '';
+      startBtn.disabled = !has;
+      shareBtn.disabled = !has;
+      clearBtn.disabled = !has;
+      save();
+    }
+
+    function add(slug: string) {
+      const p = bySlug.get(slug);
+      if (!p) return;
+      steps.push({ slug, secs: p.secs, sides: 1 });
+      render();
+      msg(`Added ${p.name}.`);
+    }
+
+    // list interactions (event-delegated)
+    listEl.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('button');
+      const row = (e.target as HTMLElement).closest('.pb-row') as HTMLElement;
+      if (!btn || !row) return;
+      const i = Number(row.dataset.i);
+      if (btn.classList.contains('pb-del')) steps.splice(i, 1);
+      else if (btn.classList.contains('pb-up') && i > 0) [steps[i - 1], steps[i]] = [steps[i], steps[i - 1]];
+      else if (btn.classList.contains('pb-down') && i < steps.length - 1) [steps[i + 1], steps[i]] = [steps[i], steps[i + 1]];
+      else if (btn.classList.contains('pb-sides')) steps[i].sides = steps[i].sides === 2 ? 1 : 2;
+      else if (btn.classList.contains('pb-sec-plus')) steps[i].secs += 30;
+      else if (btn.classList.contains('pb-sec-minus')) steps[i].secs = Math.max(30, steps[i].secs - 30);
+      render();
+    });
+
+    document.querySelectorAll<HTMLButtonElement>('.pb-add').forEach((b) =>
+      b.addEventListener('click', () => add(b.dataset.slug!)),
+    );
+
+    searchEl.addEventListener('input', () => {
+      const q = searchEl.value.trim().toLowerCase();
+      document.querySelectorAll<HTMLElement>('.pb-add').forEach((b) => {
+        const hit = !q || b.dataset.name!.includes(q) || b.dataset.areas!.includes(q);
+        b.hidden = !hit;
+      });
+    });
+
+    // build the flat holds list the player runs
+    function buildHolds() {
+      return steps.flatMap((s) => {
+        const p = bySlug.get(s.slug)!;
+        const base = { name: p.name, slug: s.slug, img: p.img, seconds: s.secs, note: p.note };
+        return s.sides === 2
+          ? [{ ...base, sideLabel: 'Side 1' }, { ...base, sideLabel: 'Side 2' }]
+          : [base];
+      });
+    }
+
+    function encodeHash() {
+      const t = encodeURIComponent(titleEl.value.trim() || 'My Yin Routine');
+      const s = steps.map((x) => `${x.slug}:${x.secs}:${x.sides}`).join(',');
+      return `#t=${t}&s=${s}`;
+    }
+    function shareUrl() {
+      return location.origin + location.pathname + encodeHash();
+    }
+
+    startBtn.addEventListener('click', async () => {
+      if (!steps.length) return;
+      await customElements.whenDefined('routine-player');
+      const player = document.querySelector('routine-player') as any;
+      player.setSequence(titleEl.value.trim() || 'My Yin Routine', buildHolds(), shareUrl());
+      player.beginPractice();
+    });
+
+    shareBtn.addEventListener('click', async () => {
+      const url = shareUrl();
+      try { await navigator.clipboard.writeText(url); msg('Link copied — share it with anyone.'); }
+      catch { history.replaceState(null, '', encodeHash()); msg('Link is in your address bar — copy it to share.'); }
+    });
+
+    clearBtn.addEventListener('click', () => { steps = []; render(); msg('Cleared.'); });
+    titleEl.addEventListener('input', save);
+
+    function save() {
+      try { localStorage.setItem(STORE, JSON.stringify({ t: titleEl.value, steps })); } catch {}
+    }
+    function msg(m: string) { msgEl.textContent = m; }
+
+    // hydrate from a shared #hash, else from localStorage
+    function fromHash() {
+      const h = location.hash;
+      if (!/[#&]s=/.test(h)) return false;
+      const t = decodeURIComponent((h.match(/[#&]t=([^&]*)/) || [])[1] || 'My Yin Routine');
+      const s = (h.match(/[#&]s=([^&]*)/) || [])[1] || '';
+      const parsed = s.split(',').map((x) => x.split(':')).filter((a) => bySlug.has(a[0]))
+        .map((a) => ({ slug: a[0], secs: Math.max(30, parseInt(a[1], 10) || 120), sides: (a[2] === '2' ? 2 : 1) as 1 | 2 }));
+      if (!parsed.length) return false;
+      titleEl.value = t; steps = parsed; render();
+      return true;
+    }
+    function fromStore() {
+      try {
+        const raw = localStorage.getItem(STORE);
+        if (!raw) return;
+        const o = JSON.parse(raw);
+        if (o.t) titleEl.value = o.t;
+        if (Array.isArray(o.steps)) steps = o.steps.filter((s: Step) => bySlug.has(s.slug));
+        render();
+      } catch {}
+    }
+
+    if (!fromHash()) fromStore();
+    render();
+  </script>
+</BaseLayout>

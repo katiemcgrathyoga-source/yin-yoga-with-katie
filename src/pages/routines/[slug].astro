@@ -101,7 +101,7 @@ const faqLd = d.faq.length
 
     {/* The follow-along practice player. */}
     <section class="player-section" aria-label="Practice player">
-      <RoutinePlayer title={d.title} holds={holds} />
+      <RoutinePlayer title={d.title} holds={holds} shareUrl={new URL(`/routines/${d.slug}`, Astro.site).href} />
       <p class="player-help">
         Press play and follow along — each hold is timed, with a gentle chime and a
         moment to ease out before the next pose. Use <strong>Skip</strong> or
