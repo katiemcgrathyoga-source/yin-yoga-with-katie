@@ -32,6 +32,15 @@ cautions:
   - "Ease off if the shoulder pinches — lower the elbows or simply hug yourself instead of the full wrap."
   - "If wrapping the arms is too much for the shoulders or wrists, cross the arms and hold opposite shoulders in a gentle hug."
   - "Remember to change the crossing of the arms (and legs) on the second side so both shoulders share the work."
+faq:
+  - q: "How long do you hold Eagle in Yin Yoga?"
+    a: "Most people hold Eagle for 1–3 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Eagle suitable for beginners?"
+    a: "Yes. Eagle is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+  - q: "What does Eagle stretch?"
+    a: "Eagle mainly works the upper back, shoulders and hips. Spreads and opens the upper back between the shoulder blades, a wonderful release for anyone who works at a desk."
+  - q: "Do you need props for Eagle?"
+    a: "You don't have to, but a cushion or blanket can make Eagle more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["cow-face", "easy-pose", "thread-the-needle", "broken-wing", "shoelace"]
 youtube_video_id: ""
 images:

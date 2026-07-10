@@ -32,6 +32,15 @@ cautions:
   - "This is strong on the ankles and knees — skip it, or pad generously, if you have any ankle or knee issues."
   - "Ease off the lean at once if you feel any sharp sensation in the knees; the knees should stay comfortable throughout."
   - "A rolled blanket under the ankles or a bolster to sit against lets you dial the intensity right down."
+faq:
+  - q: "How long do you hold Ankle Stretch in Yin Yoga?"
+    a: "Most people hold Ankle Stretch for 1–3 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Ankle Stretch suitable for beginners?"
+    a: "Ankle Stretch suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
+  - q: "What does Ankle Stretch stretch?"
+    a: "Ankle Stretch mainly works the ankles, shins, feet and knees. Stretches the fronts of the ankles and the tops of the feet, an area that stays short in most of us."
+  - q: "Do you need props for Ankle Stretch?"
+    a: "You don't have to, but a blanket or bolster can make Ankle Stretch more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["toe-squat", "saddle", "childs-pose", "squat"]
 youtube_video_id: ""
 images:

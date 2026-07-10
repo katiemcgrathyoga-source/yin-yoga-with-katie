@@ -36,6 +36,15 @@ cautions:
   - "If the hips don't open easily, slip a folded blanket under the seat of the bent-knee side so the pelvis stays level and weight doesn't dump into the front knee."
   - "Keep the backbend gentle. If the lower back complains, lower the chest slightly or come forward into a fold instead."
   - "Come out slowly. After a long hold the joints feel tender for a moment — that passes; move gently into your counterpose."
+faq:
+  - q: "How long do you hold Swan in Yin Yoga?"
+    a: "Most people hold Swan for 1–5 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Swan suitable for beginners?"
+    a: "Swan suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
+  - q: "What does Swan stretch?"
+    a: "Swan mainly works the hips, hip flexors, quadriceps, lower back and chest. Draws the front hip into strong external rotation, opening deep through the outer hip and glute."
+  - q: "Do you need props for Swan?"
+    a: "You don't have to, but a folded blanket or bolster can make Swan more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["sleeping-swan", "reclined-swan", "dragon", "shoelace", "childs-pose"]
 youtube_video_id: ""
 images:

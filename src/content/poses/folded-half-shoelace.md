@@ -35,6 +35,15 @@ cautions:
   - "The hamstring of the straight leg should feel a broad stretch, not sharp — bend that knee as needed."
   - "Let the spine round gently, but with disc trouble or sciatica, stay taller and sit up on a cushion rather than folding deep."
   - "A folded blanket under the hips helps keep you level and takes strain off the lower back and knees."
+faq:
+  - q: "How long do you hold Folded Half Shoelace in Yin Yoga?"
+    a: "Most people hold Folded Half Shoelace for 3–5 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Folded Half Shoelace suitable for beginners?"
+    a: "Yes. Folded Half Shoelace is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+  - q: "What does Folded Half Shoelace stretch?"
+    a: "Folded Half Shoelace mainly works the outer hips, glutes, hamstrings and lower back. Blends two stretches in one — the outer hip and glute of the folded top leg, and the hamstring and back line of the extended lower leg."
+  - q: "Do you need props for Folded Half Shoelace?"
+    a: "You don't have to, but a cushion, bolster or blanket can make Folded Half Shoelace more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["shoelace", "half-butterfly", "deer", "swan", "caterpillar"]
 youtube_video_id: ""
 images:

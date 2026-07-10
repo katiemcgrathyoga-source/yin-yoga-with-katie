@@ -36,6 +36,15 @@ cautions:
   - "Support the back knee with a folded blanket; the upright weight loads it more directly here."
   - "Keep the tailbone heavy so the hip stretch doesn't turn into a pinch in the lower back. Ease the lift a little if the back complains."
   - "Come out slowly. Move gently into your counterpose and let the hips resettle before standing."
+faq:
+  - q: "How long do you hold High Dragon in Yin Yoga?"
+    a: "Most people hold High Dragon for 2–5 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is High Dragon suitable for beginners?"
+    a: "High Dragon suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
+  - q: "What does High Dragon stretch?"
+    a: "High Dragon mainly works the hips, hip flexors, groin and quadriceps. Lifting the torso tall lets your body weight sink straight down into the front of the back hip — a strong, direct hip-flexor opener."
+  - q: "Do you need props for High Dragon?"
+    a: "You don't have to, but a folded blanket or block can make High Dragon more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["dragon", "low-dragon", "twisted-dragon", "saddle", "camel"]
 youtube_video_id: ""
 images:

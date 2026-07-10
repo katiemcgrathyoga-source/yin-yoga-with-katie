@@ -32,6 +32,15 @@ cautions:
   - "Go gently with any shoulder injury — this is a real load on the shoulder joint, so keep within a comfortable range."
   - "If you feel any tingling or numbness down the arms, ease the arms lower or come out; the crossed position can compress the nerves."
   - "Support the forehead or turn the head only as far as the neck is happy to go."
+faq:
+  - q: "How long do you hold Bow Tie in Yin Yoga?"
+    a: "Most people hold Bow Tie for 3–5 minutes per arrangement. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Bow Tie suitable for beginners?"
+    a: "Bow Tie suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
+  - q: "What does Bow Tie stretch?"
+    a: "Bow Tie mainly works the shoulders, upper back and chest. Lets the weight of your own body open the shoulders and the space between the shoulder blades — no effort required."
+  - q: "Do you need props for Bow Tie?"
+    a: "You don't have to, but a cushion or blanket can make Bow Tie more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["broken-wing", "thread-the-needle", "melting-heart", "supported-fish", "cow-face"]
 youtube_video_id: ""
 images:

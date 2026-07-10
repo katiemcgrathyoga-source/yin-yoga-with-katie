@@ -39,6 +39,9 @@ const poses = defineCollection({
     counterposes: z.array(z.string()),
     cautions: z.array(z.string()),
 
+    // Frequently-asked questions — rendered on the page and as FAQPage schema.
+    faq: z.array(z.object({ q: z.string().min(1), a: z.string().min(1) })).default([]),
+
     // Relationships (slugs of other poses)
     related_poses: z.array(z.string()),
 
@@ -143,6 +146,7 @@ const routines = defineCollection({
         }),
       )
       .min(1),
+    faq: z.array(z.object({ q: z.string().min(1), a: z.string().min(1) })).default([]),
     membership_cta: z.string().min(1),
     summary: z.string().min(1),
     seo_title: z.string().min(1),

@@ -35,6 +35,15 @@ cautions:
   - "Sit up on a folded blanket if the lower back rounds uncomfortably or one hip won't reach the floor."
   - "If you fold forward, let the spine round softly — but with disc trouble or sciatica, stay upright and simply enjoy the rotation."
   - "Keep sensation in the hips, not the knee joints. Ease back if a knee objects."
+faq:
+  - q: "How long do you hold Deer in Yin Yoga?"
+    a: "Most people hold Deer for 2–4 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Deer suitable for beginners?"
+    a: "Yes. Deer is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+  - q: "What does Deer stretch?"
+    a: "Deer mainly works the hips, outer hips, inner thighs and lower back. Opens both sides of the hip at once — one thigh in external rotation, the other in internal rotation — in a shape that is remarkably kind to the knees."
+  - q: "Do you need props for Deer?"
+    a: "You don't have to, but a cushion or blanket can make Deer more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["shoelace", "folded-half-shoelace", "swan", "sleeping-swan", "easy-pose"]
 youtube_video_id: ""
 images:

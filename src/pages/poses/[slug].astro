@@ -61,6 +61,19 @@ const jsonLd = {
 const hasVideo = Boolean(d.youtube_video_id && d.youtube_video_id.trim());
 const eyebrow = `Yin Yoga · ${titleCase(d.accessibility)}`;
 
+// FAQPage schema — rendered alongside the HowTo when the pose has FAQs.
+const faqLd = d.faq.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: d.faq.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    }
+  : null;
+
 // Default target for the on-page hold timer (all poses carry hold_seconds; 180s is a safe fallback).
 const holdSeconds = d.hold_seconds ?? 180;
 ---
@@ -72,7 +85,7 @@ const holdSeconds = d.hold_seconds ?? 180;
   ogDescription={d.seo_description}
   ogType="article"
   image={d.images[0]}
-  jsonLd={jsonLd}
+  jsonLd={faqLd ? [jsonLd, faqLd] : jsonLd}
 >
   <div class="wrap">
     <header class="hero">
@@ -225,6 +238,20 @@ const holdSeconds = d.hold_seconds ?? 180;
         }
       </dl>
     </section>
+
+    {
+      d.faq.length > 0 && (
+        <section class="faq-section">
+          <h2>Common questions</h2>
+          {d.faq.map((f) => (
+            <details class="faq">
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </section>
+      )
+    }
 
     <Cta
       eyebrow="Practise with me"

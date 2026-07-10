@@ -35,6 +35,15 @@ cautions:
   - "Bend the knees generously throughout. This keeps the stretch safe for the lower back and lets it reach the spine rather than straining the hamstrings."
   - "With disc trouble or sciatica, keep the knees deeply bent and the fold shallow, or choose a supported seated fold instead."
   - "If you have high or low blood pressure, or feel any head pressure, keep the head supported on a bolster and come up especially slowly."
+faq:
+  - q: "How long do you hold Dangling in Yin Yoga?"
+    a: "Most people hold Dangling for 1–3 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Dangling suitable for beginners?"
+    a: "Yes. Dangling is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+  - q: "What does Dangling stretch?"
+    a: "Dangling mainly works the spine, hamstrings and lower back. Uses gravity to decompress the whole back line and spine — the weight of your upper body does the work while you simply hang."
+  - q: "Do you need props for Dangling?"
+    a: "You don't have to, but a bolster can make Dangling more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["squat", "caterpillar", "dragonfly", "childs-pose"]
 youtube_video_id: ""
 images:

@@ -32,6 +32,15 @@ cautions:
   - "If the knees complain or the heels lift, sit on a block or a rolled mat so the joints are supported."
   - "Deep knee bending can aggravate knee issues — reduce the depth or choose a hip opener with the knees more open, like Butterfly."
   - "Come up slowly to avoid feeling light-headed after a long hold low to the ground."
+faq:
+  - q: "How long do you hold Squat in Yin Yoga?"
+    a: "Most people hold Squat for 1–3 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Squat suitable for beginners?"
+    a: "Squat suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
+  - q: "What does Squat stretch?"
+    a: "Squat mainly works the hips, groin, ankles and lower back. Opens the hips and inner groin deeply as the hips sink low between the thighs."
+  - q: "Do you need props for Squat?"
+    a: "You don't have to, but a block, rolled mat, blanket or bolster can make Squat more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["dangling", "butterfly", "frog", "toe-squat", "dragon"]
 youtube_video_id: ""
 images:

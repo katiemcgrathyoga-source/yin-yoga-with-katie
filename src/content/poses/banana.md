@@ -32,6 +32,15 @@ cautions:
   - "Keep both hips grounded — if the top hip lifts, you're turning it into a twist; ease off if you have disc trouble."
   - "If the shoulders complain reaching overhead, rest the arms lower or bend the elbows."
   - "Back out of the ankle cross if you feel anything sharp in the outer knee or hip."
+faq:
+  - q: "How long do you hold Banana in Yin Yoga?"
+    a: "Most people hold Banana for 3–5 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Banana suitable for beginners?"
+    a: "Yes. Banana is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+  - q: "What does Banana stretch?"
+    a: "Banana mainly works the side body, obliques, outer hips and ribs. A long, luxurious stretch down the whole side of the body, from the fingertips to the ankle."
+  - q: "Do you need props for Banana?"
+    a: "You don't have to, but a cushion can make Banana more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["reclined-twist", "cat-pulling-its-tail", "dragonfly", "corpse", "happy-baby"]
 youtube_video_id: ""
 images:

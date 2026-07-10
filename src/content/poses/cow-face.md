@@ -32,6 +32,15 @@ cautions:
   - "Ease off if the shoulder pinches — take the hands wider on a strap and never force the arm bind."
   - "Stacking the knees can be strong on the knees and hips; if there is any knee strain, keep the shins simply crossed instead."
   - "Recent shoulder injuries need care — work only the lower arm, or skip the bind altogether."
+faq:
+  - q: "How long do you hold Cow-Face in Yin Yoga?"
+    a: "Most people hold Cow-Face for 2–4 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Cow-Face suitable for beginners?"
+    a: "Cow-Face suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
+  - q: "What does Cow-Face stretch?"
+    a: "Cow-Face mainly works the shoulders, outer hips, chest and upper back. Opens the shoulders deeply through the arm bind, reaching parts of the shoulder we seldom stretch."
+  - q: "Do you need props for Cow-Face?"
+    a: "You don't have to, but a strap, cushion or blanket can make Cow-Face more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["eagle", "easy-pose", "broken-wing", "thread-the-needle", "shoelace"]
 youtube_video_id: ""
 images:

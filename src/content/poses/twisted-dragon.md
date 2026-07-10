@@ -36,6 +36,15 @@ cautions:
   - "Support the back knee with a folded blanket; the twist can shift weight onto it unevenly."
   - "Lead the twist from the ribs and upper back, not the neck. Turn the head only as far as feels easy, and back off any lower-back pinch."
   - "Come out slowly and unwind gently — the spine and hips both need a moment to resettle before you move on."
+faq:
+  - q: "How long do you hold Twisted Dragon in Yin Yoga?"
+    a: "Most people hold Twisted Dragon for 2–5 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Twisted Dragon suitable for beginners?"
+    a: "Twisted Dragon suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
+  - q: "What does Twisted Dragon stretch?"
+    a: "Twisted Dragon mainly works the hips, hip flexors, groin, outer hip and IT band. Adds an outer-hip and IT-band element to Dragon as the front knee is pressed open and the torso rotates."
+  - q: "Do you need props for Twisted Dragon?"
+    a: "You don't have to, but a folded blanket or block can make Twisted Dragon more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["dragon", "low-dragon", "high-dragon", "cat-pulling-its-tail", "reclined-twist"]
 youtube_video_id: ""
 images:

@@ -35,6 +35,15 @@ cautions:
   - "Keep the sensation in the outer hip, not the knee joint. Sharp or twisting knee sensation is your cue to back off."
   - "If stacking is too much for the hips, keep the bottom leg straight out in front (Folded Half Shoelace) for a gentler version."
   - "Let the spine round softly, but with disc trouble or sciatica, stay more upright and sit up on a cushion rather than folding deep."
+faq:
+  - q: "How long do you hold Shoelace in Yin Yoga?"
+    a: "Most people hold Shoelace for 3–5 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Shoelace suitable for beginners?"
+    a: "Shoelace suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
+  - q: "What does Shoelace stretch?"
+    a: "Shoelace mainly works the outer hips, glutes and lower back. A deep opener for the outer hips and glutes — that broad, satisfying stretch across the outside of the top thigh."
+  - q: "Do you need props for Shoelace?"
+    a: "You don't have to, but a cushion, bolster or blanket can make Shoelace more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["folded-half-shoelace", "deer", "swan", "sleeping-swan", "cow-face"]
 youtube_video_id: ""
 images:

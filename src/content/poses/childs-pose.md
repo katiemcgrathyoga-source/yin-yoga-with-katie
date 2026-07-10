@@ -32,6 +32,15 @@ cautions:
   - "If your knees complain, widen them, add padding behind them, or place a rolled blanket in the crease of the knees to ease the bend."
   - "Coming forward over the belly may be uncomfortable in later pregnancy — take the knees wide, or choose a different resting pose."
   - "If pressure builds in your head or you feel dizzy, turn your head to the side or rest your forehead higher on a block."
+faq:
+  - q: "How long do you hold Child's Pose in Yin Yoga?"
+    a: "Most people hold Child's Pose for 2–5 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Child's Pose suitable for beginners?"
+    a: "Yes. Child's Pose is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+  - q: "What does Child's Pose stretch?"
+    a: "Child's Pose mainly works the lower back, hips, spine and knees. Gently lengthens the lower back and lets the whole spine settle after backbends or a busy day."
+  - q: "Do you need props for Child's Pose?"
+    a: "You don't have to, but a bolster, blanket or cushion can make Child's Pose more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["corpse", "caterpillar", "saddle", "dragonfly"]
 youtube_video_id: ""
 images:

@@ -16,6 +16,13 @@ steps:
   - { pose: "dragon",         seconds: 90,  sides: 2, note: "An easy lunge to wake the hips and the front of the thighs. Keep it gentle." }
   - { pose: "squat",          seconds: 90,  sides: 1, note: "Sink low, let the hips and lower back open, and feel your feet." }
   - { pose: "reclined-twist", seconds: 75,  sides: 2, note: "A slow twist to finish — unwind the spine and you're ready." }
+faq:
+  - q: "Is Yin Yoga good in the morning?"
+    a: "It's a gentle, kind way to wake up. Because the body is cool first thing, we keep the holds shorter and never push — this is about easing into the day, not chasing a deep stretch."
+  - q: "Do I need props, and is it beginner-friendly?"
+    a: "No props needed, and it's suitable for all levels. Work softly, stay well within your edge, and let the practice wake you up gradually."
+  - q: "How long is the routine?"
+    a: "About 15 minutes — short enough to do before the day gets going, long enough to feel more awake and open."
 membership_cta: "Like starting the day this way? The membership has short morning practices inside a guided plan, so you roll out of bed and press play."
 summary: "A gentle 15-minute morning Yin routine to wake the body — soft backbends, an easy twist and gentle hip openers, with a built-in hold timer."
 seo_title: "15-Minute Morning Yin Yoga Routine — Gentle Wake-Up"

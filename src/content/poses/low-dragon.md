@@ -36,6 +36,15 @@ cautions:
   - "Support the back knee with a folded blanket; the lower the hips sink, the more weight the back knee carries."
   - "The groin stretch here can build quickly. Come down onto a bolster or block rather than the floor if it feels too strong, and back off at the first sharp sensation in the inner thigh."
   - "Come out slowly. The hip flexors can feel vulnerable straight after — move gently into your counterpose before standing."
+faq:
+  - q: "How long do you hold Low Dragon in Yin Yoga?"
+    a: "Most people hold Low Dragon for 2–5 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Low Dragon suitable for beginners?"
+    a: "Low Dragon suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
+  - q: "What does Low Dragon stretch?"
+    a: "Low Dragon mainly works the hips, hip flexors, groin and inner thighs. Deepens the groin and hip-flexor opening of Dragon by bringing the upper body closer to the floor."
+  - q: "Do you need props for Low Dragon?"
+    a: "You don't have to, but a bolster, block or folded blanket can make Low Dragon more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["dragon", "high-dragon", "twisted-dragon", "frog", "dragonfly"]
 youtube_video_id: ""
 images:

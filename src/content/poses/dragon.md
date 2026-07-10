@@ -36,6 +36,15 @@ cautions:
   - "Support the back knee with a folded blanket or the edge of your mat; bare kneecaps on a hard floor complain quickly."
   - "If the front-of-hip stretch on the back leg feels too intense, ease the back knee forward a little or reduce how far the hips sink."
   - "Come out slowly. Move gently into your counterpose and let the hips resettle before standing."
+faq:
+  - q: "How long do you hold Dragon in Yin Yoga?"
+    a: "Most people hold Dragon for 2–5 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Dragon suitable for beginners?"
+    a: "Dragon suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
+  - q: "What does Dragon stretch?"
+    a: "Dragon mainly works the hips, hip flexors, groin and quadriceps. A strong, grounding lunge that opens deep through the hip flexors and the front of the back thigh."
+  - q: "Do you need props for Dragon?"
+    a: "You don't have to, but a folded blanket or bolster can make Dragon more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["low-dragon", "high-dragon", "twisted-dragon", "swan", "saddle"]
 youtube_video_id: ""
 images:

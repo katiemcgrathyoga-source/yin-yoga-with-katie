@@ -33,6 +33,15 @@ cautions:
   - "Ease off if you have disc trouble — keep the twist gentle and let a cushion under the knee take the strain rather than deepening the rotation."
   - "Go easy on the knee of the extended leg; hold the ankle or use a strap rather than cranking the foot toward the hip."
   - "Stop pulling on the foot if you feel anything sharp in the knee or lower back."
+faq:
+  - q: "How long do you hold Cat Pulling Its Tail in Yin Yoga?"
+    a: "Most people hold Cat Pulling Its Tail for 2–5 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Cat Pulling Its Tail suitable for beginners?"
+    a: "Cat Pulling Its Tail suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
+  - q: "What does Cat Pulling Its Tail stretch?"
+    a: "Cat Pulling Its Tail mainly works the spine, lower back, hips, quadriceps and hip flexors. Takes the wind-down of a reclined twist and adds a lovely stretch through the front of the thigh and hip flexor."
+  - q: "Do you need props for Cat Pulling Its Tail?"
+    a: "You don't have to, but a strap or cushion can make Cat Pulling Its Tail more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["reclined-twist", "banana", "twisted-dragon", "reclined-swan", "saddle"]
 youtube_video_id: ""
 images:

@@ -31,6 +31,15 @@ cautions:
   - "This is intense on the toes and feet — keep the hold short and come out at the first sign of cramp."
   - "A rolled blanket tucked under the ankles eases the pressure and lets you stay a little longer in comfort."
   - "If you have injured toes or acute foot problems, skip this one or lighten the load by keeping weight in your hands."
+faq:
+  - q: "How long do you hold Toe Squat in Yin Yoga?"
+    a: "Most people hold Toe Squat for 30 seconds–2 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Toe Squat suitable for beginners?"
+    a: "Toe Squat suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
+  - q: "What does Toe Squat stretch?"
+    a: "Toe Squat mainly works the feet, toes and ankles. Gives a strong, direct stretch to the soles of the feet and the undersides of the toes — areas that rarely get any attention."
+  - q: "Do you need props for Toe Squat?"
+    a: "You don't have to, but a blanket or block can make Toe Squat more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["ankle-stretch", "childs-pose", "squat", "saddle"]
 youtube_video_id: ""
 images:

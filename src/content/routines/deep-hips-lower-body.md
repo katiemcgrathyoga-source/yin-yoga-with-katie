@@ -17,6 +17,13 @@ steps:
   - { pose: "shoelace",        seconds: 120, sides: 2, note: "Stack the knees and fold — a strong outer-hip and glute opener." }
   - { pose: "reclined-twist",  seconds: 90,  sides: 2, note: "Neutralise the hips and spine with a slow twist." }
   - { pose: "corpse",          seconds: 180, sides: 1, note: "Rest completely and let the hips integrate the work." }
+faq:
+  - q: "Will this routine help open tight hips?"
+    a: "Yes — it works the hips from several angles (inner thighs, outer hips, hip flexors and hamstrings) with long, patient holds, which is exactly how Yin encourages the hips to release over time."
+  - q: "Is it suitable for beginners?"
+    a: "It's pitched at a gentle intermediate level because the hip holds are deep, but it's very doable as a beginner if you ease in, take the gentler option in each pose and never force. Back off the moment anything feels sharp, especially in the knees."
+  - q: "How often should I practise to loosen tight hips?"
+    a: "Two or three times a week is a realistic, effective rhythm. Hips are stubborn and respond to consistency and time far more than to forcing."
 membership_cta: "Hips are the heart of Yin. Inside the membership there's a whole guided hip series — press play and follow the plan rather than piecing it together yourself."
 summary: "A 30-minute deep-hips Yin routine — inner thighs, outer hips, hip flexors and hamstrings, opened slowly with a built-in hold timer."
 seo_title: "30-Minute Deep Hips Yin Yoga Routine — Practise Along"

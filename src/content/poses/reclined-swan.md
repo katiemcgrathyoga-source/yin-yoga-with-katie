@@ -36,6 +36,15 @@ cautions:
   - "If your head and shoulders lift off the floor when you draw the leg in, use a strap around the thigh or press the lifted foot into a wall so the neck and back can stay soft."
   - "For lower-back or sacroiliac sensitivity, keep the draw-in gentle and shallow — the stretch belongs in the hip, not the back."
   - "Come out slowly and hug the knees in before moving on."
+faq:
+  - q: "How long do you hold Reclined Swan in Yin Yoga?"
+    a: "Most people hold Reclined Swan for 2–5 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Reclined Swan suitable for beginners?"
+    a: "Yes. Reclined Swan is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+  - q: "What does Reclined Swan stretch?"
+    a: "Reclined Swan mainly works the hips, glutes, outer hip and lower back. An accessible hip opener that draws the front hip into external rotation while you lie safely on your back."
+  - q: "Do you need props for Reclined Swan?"
+    a: "You don't have to, but a folded blanket or strap can make Reclined Swan more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["sleeping-swan", "swan", "reclined-twist", "happy-baby", "thread-the-needle"]
 youtube_video_id: ""
 images:

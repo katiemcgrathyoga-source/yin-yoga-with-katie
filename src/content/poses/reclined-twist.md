@@ -33,6 +33,15 @@ cautions:
   - "Ease off if you have disc trouble or any history of disc injury — keep the twist gentle and let a cushion under the knees carry the weight rather than deepening the rotation."
   - "Twisting should never create sharp or shooting sensations; if it does, back out and take less."
   - "In later pregnancy, favour an open twist (knees only lightly to the side) rather than a deep closed one."
+faq:
+  - q: "How long do you hold Reclined Twist in Yin Yoga?"
+    a: "Most people hold Reclined Twist for 2–5 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Reclined Twist suitable for beginners?"
+    a: "Yes. Reclined Twist is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+  - q: "What does Reclined Twist stretch?"
+    a: "Reclined Twist mainly works the spine, lower back and hips. Unwinds the whole length of the spine after a day of sitting or standing tall."
+  - q: "Do you need props for Reclined Twist?"
+    a: "You don't have to, but a cushion or bolster can make Reclined Twist more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["cat-pulling-its-tail", "banana", "happy-baby", "corpse", "reclined-swan"]
 youtube_video_id: ""
 images:

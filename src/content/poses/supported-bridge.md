@@ -32,6 +32,15 @@ cautions:
   - "As a mild inversion, come out slowly and pause before sitting up if you tend to feel lightheaded."
   - "Approach cautiously with a lower-back or neck injury, and start with the lowest prop height."
   - "If pregnant, avoid lying flat on the back for long holds; check with your care provider before choosing this shape."
+faq:
+  - q: "How long do you hold Supported Bridge in Yin Yoga?"
+    a: "Most people hold Supported Bridge for 3–5 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Supported Bridge suitable for beginners?"
+    a: "Yes. Supported Bridge is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+  - q: "What does Supported Bridge stretch?"
+    a: "Supported Bridge mainly works the lower back, sacrum, chest and spine. A passive, propped backbend that opens the front of the hips and gently arches the lower back — the prop holds you so you can let go."
+  - q: "Do you need props for Supported Bridge?"
+    a: "You don't have to, but a block or bolster can make Supported Bridge more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["supported-fish", "sphinx", "seal", "camel", "corpse"]
 youtube_video_id: ""
 images:

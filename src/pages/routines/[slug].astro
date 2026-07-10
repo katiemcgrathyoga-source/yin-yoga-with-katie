@@ -61,6 +61,18 @@ const jsonLd = {
     ...(h.img ? { image: new URL(h.img, Astro.site).href } : {}),
   })),
 };
+
+const faqLd = d.faq.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: d.faq.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    }
+  : null;
 ---
 
 <BaseLayout
@@ -70,7 +82,7 @@ const jsonLd = {
   ogDescription={d.seo_description}
   ogType="article"
   image={heroImg}
-  jsonLd={jsonLd}
+  jsonLd={faqLd ? [jsonLd, faqLd] : jsonLd}
 >
   <div class="wrap">
     <header class="hero">
@@ -121,6 +133,20 @@ const jsonLd = {
         }
       </ol>
     </section>
+
+    {
+      d.faq.length > 0 && (
+        <section class="faq-section">
+          <h2>Common questions</h2>
+          {d.faq.map((f) => (
+            <details class="faq">
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </section>
+      )
+    }
 
     <Cta
       eyebrow="Go deeper"

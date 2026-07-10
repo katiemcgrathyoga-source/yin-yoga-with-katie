@@ -35,6 +35,15 @@ cautions:
   - "The hamstring should feel a broad stretch, not a sharp or nervy pull. Ease off if it turns pinchy."
   - "If the bent knee feels any strain, support it from below with a cushion or take the foot a little further from the groin."
   - "Bend the straight leg's knee freely — tight hamstrings are common and welcome, and a soft knee sends the stretch into the spine."
+faq:
+  - q: "How long do you hold Half Butterfly in Yin Yoga?"
+    a: "Most people hold Half Butterfly for 3–5 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Half Butterfly suitable for beginners?"
+    a: "Yes. Half Butterfly is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+  - q: "What does Half Butterfly stretch?"
+    a: "Half Butterfly mainly works the hamstrings, spine, lower back and inner thighs. Stretches one hamstring and the whole back line at a time, so you can meet each side of your body just where it is that day."
+  - q: "Do you need props for Half Butterfly?"
+    a: "You don't have to, but a bolster or cushion can make Half Butterfly more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["caterpillar", "butterfly", "dragonfly", "shoelace"]
 youtube_video_id: ""
 images:

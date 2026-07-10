@@ -32,6 +32,15 @@ cautions:
   - "Protect the neck: let the head drop back only if it feels easy, otherwise keep the chin gently towards the chest."
   - "Approach cautiously with lower-back, neck or knee injuries, and with high or low blood pressure. Come out at once if you feel dizzy or lightheaded."
   - "Pad tender knees, and skip the pose if kneeling with the tops of the feet down is painful."
+faq:
+  - q: "How long do you hold Camel in Yin Yoga?"
+    a: "Most people hold Camel for 30 seconds–2 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Camel suitable for beginners?"
+    a: "Camel suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
+  - q: "What does Camel stretch?"
+    a: "Camel mainly works the chest, shoulders, front of thighs, spine and throat. A generous front-body opener that stretches the chest, shoulders, belly, throat and the front of the thighs all at once."
+  - q: "Do you need props for Camel?"
+    a: "You don't have to, but a blanket or bolster can make Camel more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["saddle", "supported-fish", "supported-bridge", "sphinx", "melting-heart"]
 youtube_video_id: ""
 images:

@@ -32,6 +32,15 @@ cautions:
   - "Protect the lower back — fold from the hips and round only gently, and sit up on a cushion so the pelvis can tip forward."
   - "Guard the inner knees and hamstrings by keeping a soft micro-bend in the knees and pointing the toes up toward the ceiling."
   - "If the hamstrings feel sharp or you have a hamstring injury, bend the knees more and rest the folded body on a bolster."
+faq:
+  - q: "How long do you hold Dragonfly in Yin Yoga?"
+    a: "Most people hold Dragonfly for 3–5 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Dragonfly suitable for beginners?"
+    a: "Dragonfly suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
+  - q: "What does Dragonfly stretch?"
+    a: "Dragonfly mainly works the hamstrings, inner thighs, lower back and hips. Opens the inner thighs and adductors as the legs spread wide."
+  - q: "Do you need props for Dragonfly?"
+    a: "You don't have to, but a cushion, bolster, block or blanket can make Dragonfly more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["butterfly", "caterpillar", "half-butterfly", "frog", "squat"]
 youtube_video_id: ""
 images:

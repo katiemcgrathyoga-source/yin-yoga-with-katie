@@ -33,6 +33,15 @@ cautions:
   - "If you feel any pinching in the neck, lift the head onto a cushion so the neck can lengthen."
   - "Ease off the twist if you have disc trouble, keeping the rotation gentle and shallow."
   - "Go carefully with shoulder injuries; keep within a comfortable, pain-free range."
+faq:
+  - q: "How long do you hold Thread the Needle in Yin Yoga?"
+    a: "Most people hold Thread the Needle for 2–4 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Thread the Needle suitable for beginners?"
+    a: "Yes. Thread the Needle is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+  - q: "What does Thread the Needle stretch?"
+    a: "Thread the Needle mainly works the upper back, shoulders, neck and spine. Opens the upper back and the space between the shoulder blades, where desk tension loves to gather."
+  - q: "Do you need props for Thread the Needle?"
+    a: "You don't have to, but a cushion or blanket can make Thread the Needle more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["melting-heart", "childs-pose", "bow-tie", "broken-wing", "cow-face"]
 youtube_video_id: ""
 images:

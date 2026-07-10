@@ -35,6 +35,15 @@ cautions:
   - "If you feel any pinching in the hips or groin, take the feet further from the pelvis so the angle eases."
   - "Never force the knees toward the floor — let them open in their own time. Support them on cushions if they hover high."
   - "In late pregnancy this open-legged fold is usually comfortable, but keep the belly free and fold only to an easy, spacious place."
+faq:
+  - q: "How long do you hold Butterfly in Yin Yoga?"
+    a: "Most people hold Butterfly for 3–5 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Butterfly suitable for beginners?"
+    a: "Yes. Butterfly is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+  - q: "What does Butterfly stretch?"
+    a: "Butterfly mainly works the inner thighs, hips, lower back and spine. Opens the inner thighs, groin and hips while the fold lengthens the whole back line — a lovely two-for-one shape."
+  - q: "Do you need props for Butterfly?"
+    a: "You don't have to, but a bolster or cushion can make Butterfly more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["half-butterfly", "caterpillar", "dragonfly", "frog"]
 youtube_video_id: ""
 images:

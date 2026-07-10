@@ -16,6 +16,13 @@ steps:
   - { pose: "cat-pulling-its-tail", seconds: 120, sides: 2, note: "A reclined twist that wrings slowly through the middle." }
   - { pose: "reclined-twist",       seconds: 135, sides: 2, note: "Knees to one side — breathe into the belly and let it all move." }
   - { pose: "corpse",               seconds: 240, sides: 1, note: "Rest a hand on the belly and feel it soften with the breath." }
+faq:
+  - q: "Can yoga help with digestion?"
+    a: "Gentle twists and forward folds massage and compress the belly, which many people find helps things feel like they're moving. It's a soothing, low-effort way to support your digestion — not a medical treatment."
+  - q: "When should I practise this routine?"
+    a: "On a fairly empty stomach — an hour or two after eating is ideal, rather than straight after a big meal. Keep the twists slow and gentle."
+  - q: "How often can I do it?"
+    a: "As often as you like — it's gentle enough for daily practice, and a calming one to return to whenever you feel sluggish or heavy."
 membership_cta: "Love a practice that leaves you feeling lighter? The membership's longer digestion and meridian classes live inside a guided plan — press play and follow along."
 summary: "A 25-minute Yin routine for digestion — forward folds and slow twists that massage the belly and work the digestive meridian lines, with a built-in timer."
 seo_title: "25-Minute Yin Yoga for Digestion — Twists & Folds, Follow Along"

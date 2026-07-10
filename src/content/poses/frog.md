@@ -32,6 +32,15 @@ cautions:
   - "Knees take some load: pad them with a blanket, and if there's knee discomfort, narrow the feet or skip the pose."
   - "Rest your forehead rather than your chin if the neck is stiff."
   - "If your hands tingle when the arms reach forward, widen or narrow the hands, or extend one arm at a time."
+faq:
+  - q: "How long do you hold Frog in Yin Yoga?"
+    a: "Most people hold Frog for 3–5 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Frog suitable for beginners?"
+    a: "Yes. Frog is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+  - q: "What does Frog stretch?"
+    a: "Frog mainly works the hips, inner thighs, groin and lower back. A deep groin opener that targets the adductors (inner thighs)."
+  - q: "Do you need props for Frog?"
+    a: "You don't have to, but a bolster or blanket can make Frog more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["sleeping-swan", "dragonfly", "butterfly", "childs-pose"]
 youtube_video_id: ""
 images:

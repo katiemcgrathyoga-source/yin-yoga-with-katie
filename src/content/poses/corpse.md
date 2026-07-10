@@ -31,6 +31,15 @@ cautions:
   - "Lying flat may be uncomfortable later in pregnancy — rest on your side with a bolster between the knees instead."
   - "If lying flat bothers your lower back, support the knees with a bolster or bend the knees with feet on the floor."
   - "It is easy to drift toward sleep; that is fine, though a gentle return to the breath keeps you present."
+faq:
+  - q: "How long do you hold Corpse in Yin Yoga?"
+    a: "Most people hold Corpse for 5–10 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Corpse suitable for beginners?"
+    a: "Yes. Corpse is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+  - q: "What does Corpse stretch?"
+    a: "Corpse mainly works the whole body, nervous system and spine. Invites total rest, letting the body settle completely after your practice."
+  - q: "Do you need props for Corpse?"
+    a: "You don't have to, but a bolster, blanket or eye pillow can make Corpse more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["childs-pose", "supported-bridge", "reclined-twist", "happy-baby"]
 youtube_video_id: ""
 images:

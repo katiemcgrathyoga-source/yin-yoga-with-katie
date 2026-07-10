@@ -32,6 +32,15 @@ cautions:
   - "Let the hips stay high over the knees; dropping them backwards turns this into a lower-back bend, which is not the intention here."
   - "Pad under sensitive knees with a folded blanket."
   - "Approach cautiously with an existing shoulder or neck injury, and rest the forehead down rather than craning the chin forward."
+faq:
+  - q: "How long do you hold Melting Heart in Yin Yoga?"
+    a: "Most people hold Melting Heart for 3–5 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Melting Heart suitable for beginners?"
+    a: "Yes. Melting Heart is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+  - q: "What does Melting Heart stretch?"
+    a: "Melting Heart mainly works the upper back, shoulders, chest and spine. Opens the chest, shoulders and the whole upper back — the front-body space that closes down over a day of desks, phones and driving."
+  - q: "Do you need props for Melting Heart?"
+    a: "You don't have to, but a bolster or blanket can make Melting Heart more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["sphinx", "seal", "childs-pose", "cat-pulling-its-tail", "saddle"]
 youtube_video_id: ""
 images:

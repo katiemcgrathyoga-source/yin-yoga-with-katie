@@ -31,6 +31,15 @@ cautions:
   - "This is strong for the shoulder joint — come out slowly and stop straight away if there's any nerve tingling, numbness or shooting sensation down the arm."
   - "Ease off with any shoulder injury or history of dislocation, and never push into pinching or pain at the front of the shoulder."
   - "Build up the hold time gradually rather than diving straight to four minutes on your first visit."
+faq:
+  - q: "How long do you hold Broken Wing in Yin Yoga?"
+    a: "Most people hold Broken Wing for 2–4 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Broken Wing suitable for beginners?"
+    a: "Broken Wing suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
+  - q: "What does Broken Wing stretch?"
+    a: "Broken Wing mainly works the chest, shoulders, pectorals and upper back. A strong opener for the front of the shoulder and the chest, reaching the pectoral muscles that rounded shoulders keep tight."
+  - q: "Do you need props for Broken Wing?"
+    a: "You don't have to, but a cushion or blanket can make Broken Wing more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["bow-tie", "thread-the-needle", "melting-heart", "sphinx", "supported-fish"]
 youtube_video_id: ""
 images:

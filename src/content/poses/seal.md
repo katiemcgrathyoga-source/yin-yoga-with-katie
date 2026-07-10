@@ -33,6 +33,15 @@ cautions:
   - "If the lower back feels compressed or pinched, come down to Sphinx, which offers the same benefits more gently."
   - "Approach cautiously with any lower-back or sacroiliac injury, or with spondylolisthesis; when in doubt, choose Sphinx."
   - "If pregnant, avoid pressing the belly into the floor. Skip it with a headache."
+faq:
+  - q: "How long do you hold Seal in Yin Yoga?"
+    a: "Most people hold Seal for 3–5 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Seal suitable for beginners?"
+    a: "Seal suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
+  - q: "What does Seal stretch?"
+    a: "Seal mainly works the lower back, sacrum and spine. A deeper backbend than Sphinx that draws a strong, tonifying compression into the sacral-lumbar arch."
+  - q: "Do you need props for Seal?"
+    a: "You don't have to, but a bolster or blanket can make Seal more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["sphinx", "melting-heart", "saddle", "childs-pose", "supported-bridge"]
 youtube_video_id: ""
 images:

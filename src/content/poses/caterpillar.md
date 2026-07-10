@@ -35,6 +35,15 @@ cautions:
   - "The sensation in the backs of the legs should feel like a broad stretch, never sharp or nervy. If it turns pinching or electric, ease back."
   - "Bend your knees as much as you need — tight hamstrings are welcome here, and softening the knees lets the stretch reach your spine instead."
   - "If you are pregnant, take the legs a little wider and fold only to a comfortable, open place with no compression through the belly."
+faq:
+  - q: "How long do you hold Caterpillar in Yin Yoga?"
+    a: "Most people hold Caterpillar for 3–5 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Caterpillar suitable for beginners?"
+    a: "Yes. Caterpillar is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+  - q: "What does Caterpillar stretch?"
+    a: "Caterpillar mainly works the spine, hamstrings and lower back. Gives the whole back line — from your heels, up the calves and hamstrings, all the way to the crown of your head — one long, quiet stretch."
+  - q: "Do you need props for Caterpillar?"
+    a: "You don't have to, but a bolster or cushion can make Caterpillar more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["half-butterfly", "butterfly", "dangling", "childs-pose"]
 youtube_video_id: ""
 images:

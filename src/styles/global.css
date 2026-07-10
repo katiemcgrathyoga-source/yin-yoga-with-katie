@@ -300,6 +300,26 @@ h1 {
 .seq-note { font-size: 13.5px; color: var(--ink-soft); line-height: 1.45; }
 .seq-hold { flex: none; font-size: 14px; color: var(--ink-soft); white-space: nowrap; font-variant-numeric: tabular-nums; }
 
+/* short intro paragraph under an index-page hero */
+.page-intro { max-width: 64ch; margin: 22px auto 0; text-align: center; color: var(--ink-soft); font-size: 16.5px; line-height: 1.7; }
+.page-intro a { color: var(--plum-deep); }
+
+/* FAQ accordion (pose + routine pages) */
+.faq-section { margin-top: 44px; }
+.faq-section > h2 { margin-bottom: 6px; }
+.faq { border-bottom: 1px solid var(--line); }
+.faq summary {
+  cursor: pointer; list-style: none; padding: 16px 34px 16px 0; position: relative;
+  font-family: var(--display); font-size: 18px; color: var(--plum-deep); line-height: 1.35;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+"; position: absolute; right: 4px; top: 15px; font-size: 22px; color: var(--gold-solid); line-height: 1;
+}
+.faq[open] summary::after { content: "\2013"; }
+.faq summary:hover { color: var(--plum); }
+.faq > p { margin: 0 0 18px; max-width: 64ch; font-size: 16px; line-height: 1.65; color: var(--ink-soft); }
+
 /* still-photo reference (pose pages, under the hero) */
 .photo-block { margin: 0; }
 

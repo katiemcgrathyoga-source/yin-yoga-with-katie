@@ -32,6 +32,15 @@ cautions:
   - "Mind the neck: if the head hanging back feels strong, support it with a folded blanket so the throat stays comfortable."
   - "Approach cautiously with any neck or lower-back injury, and start with a lower prop height."
   - "Come out slowly and pause, as reclined openers can leave you a little lightheaded when you rise."
+faq:
+  - q: "How long do you hold Supported Fish in Yin Yoga?"
+    a: "Most people hold Supported Fish for 3–5 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Supported Fish suitable for beginners?"
+    a: "Yes. Supported Fish is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+  - q: "What does Supported Fish stretch?"
+    a: "Supported Fish mainly works the chest, shoulders, upper back, throat and lungs. A soft, passive heart and lung opener — the prop does the work while you simply rest and receive the shape."
+  - q: "Do you need props for Supported Fish?"
+    a: "You don't have to, but a bolster, block or blanket can make Supported Fish more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["supported-bridge", "camel", "melting-heart", "reclined-twist", "corpse"]
 youtube_video_id: ""
 images:

@@ -31,6 +31,15 @@ cautions:
   - "Approach cautiously with a sensitive lower back or tight sacrum: rest lower on the ribs with the elbows slid forward, or simply lie on the belly."
   - "If pregnant, avoid pressing the belly into the floor — support the pelvis and forearms with bolsters."
   - "Skip it if you have a headache."
+faq:
+  - q: "How long do you hold Sphinx in Yin Yoga?"
+    a: "Most people hold Sphinx for 3–5 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Sphinx suitable for beginners?"
+    a: "Yes. Sphinx is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+  - q: "What does Sphinx stretch?"
+    a: "Sphinx mainly works the lower back, sacrum and spine. A gentle backbend that restores the natural curve of the lower back — the very curve that long hours of sitting tend to flatten."
+  - q: "Do you need props for Sphinx?"
+    a: "You don't have to, but a bolster or blanket can make Sphinx more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["seal", "melting-heart", "saddle", "childs-pose", "supported-bridge"]
 youtube_video_id: ""
 images:

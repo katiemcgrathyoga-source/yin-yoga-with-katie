@@ -32,6 +32,15 @@ cautions:
   - "Protect the lower back: as you lean back the lumbar spine compresses, so use a bolster or blocks to shorten the range, and ease off at any sharp lower-back sensation."
   - "Approach cautiously — or skip entirely — with any knee, ankle or lower-back injury, or with tight quadriceps that pull hard on the knees."
   - "Never rush in or out. Come out slowly; sudden movement here is where knees and backs are strained."
+faq:
+  - q: "How long do you hold Saddle in Yin Yoga?"
+    a: "Most people hold Saddle for 1–5 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
+  - q: "Is Saddle suitable for beginners?"
+    a: "Saddle is one of the deeper Yin poses, so build up to it patiently. Ease in slowly, use props to meet you where you are, and back off the moment anything feels sharp. When in doubt, choose a gentler variation."
+  - q: "What does Saddle stretch?"
+    a: "Saddle mainly works the front of thighs, hip flexors, lower back, sacrum, spine and knees. A strong opener for the front of the thighs and the hip flexors — the muscles that shorten with sitting, cycling and running."
+  - q: "Do you need props for Saddle?"
+    a: "You don't have to, but a bolster, block or blanket can make Saddle more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
 related_poses: ["sphinx", "seal", "camel", "dragon", "caterpillar", "supported-bridge"]
 youtube_video_id: ""
 images:

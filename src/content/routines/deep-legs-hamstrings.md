@@ -17,6 +17,13 @@ steps:
   - { pose: "dragonfly",      seconds: 210, sides: 1, note: "Open the legs wide and fold from the hips — inner thighs and hamstrings." }
   - { pose: "squat",          seconds: 120, sides: 1, note: "Sink low to open the hips, ankles and lower back." }
   - { pose: "corpse",         seconds: 150, sides: 1, note: "Let the legs go completely heavy and rest." }
+faq:
+  - q: "Will this routine improve my hamstring flexibility?"
+    a: "Over time, yes. Long, patient holds are how Yin encourages the hamstrings, inner thighs and calves to release. Keep a soft bend in the knees so the stretch stays in the muscle, not the joint."
+  - q: "Is it suitable for beginners?"
+    a: "It's a gentle intermediate practice because the leg holds are deep, but beginners can absolutely follow along by micro-bending the knees and easing off well before anything feels sharp."
+  - q: "How often should I practise for more flexibility?"
+    a: "Two or three times a week is a sustainable rhythm that builds flexibility steadily. Consistency matters far more than forcing any single stretch."
 membership_cta: "Working toward the splits or just looser legs? The membership has full leg- and hip-focused classes inside a guided plan that builds over time."
 summary: "A 20-minute Yin routine for tight legs, hamstrings, calves and feet — deep forward folds and foot stretches held slowly, with a built-in hold timer."
 seo_title: "20-Minute Yin Yoga for Hamstrings & Legs — Flexibility Routine"

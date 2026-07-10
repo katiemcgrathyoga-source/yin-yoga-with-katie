@@ -16,6 +16,13 @@ steps:
   - { pose: "reclined-swan",  seconds: 105, sides: 2, note: "Figure-four on your back to release the glutes that tug on the back." }
   - { pose: "reclined-twist", seconds: 105, sides: 2, note: "Let the knees drop to one side and breathe into the low back." }
   - { pose: "corpse",         seconds: 210, sides: 1, note: "Rest with the legs long or knees bent — whatever the back prefers." }
+faq:
+  - q: "Is Yin Yoga good for lower-back pain?"
+    a: "Gentle Yin can help ease the everyday tightness and tension many of us carry in the lower back. Keep everything soft and well within comfort. If your pain is sharp, ongoing, or travels down a leg, please see a health professional before practising."
+  - q: "How often can I do it?"
+    a: "A gentle back practice most days is fine and often more helpful than an occasional long one. Listen to your back and skip anything that doesn't feel right."
+  - q: "Do I need props or experience?"
+    a: "No props and no experience required — it's an all-levels routine. Bend your knees generously in the forward folds and let the floor support you."
 membership_cta: "If back tension is a regular visitor, the membership has longer back-focused classes and a guided plan so you always know what to practise."
 summary: "A gentle 20-minute Yin routine to release lower-back tension — length, decompression and hip release, held slowly with a built-in hold timer. All levels."
 seo_title: "20-Minute Yin Yoga for Lower-Back Pain Relief — Follow Along"

@@ -13,6 +13,13 @@ steps:
   - { pose: "bow-tie",           seconds: 150, sides: 1, note: "Let the weight of the body open the shoulders. Ease off if you feel tingling in the arms." }
   - { pose: "eagle",             seconds: 75,  sides: 2, note: "Wrap the arms and lift the elbows to spread the upper back." }
   - { pose: "reclined-twist",    seconds: 90,  sides: 2, note: "A gentle twist to release the whole spine and neck. Soften and be still." }
+faq:
+  - q: "Can this routine help with neck and shoulder tension from desk work?"
+    a: "That's exactly what it's for. The shapes open the chest and upper back and let the shoulders and neck release after hours at a screen. For persistent or severe pain, it's always worth seeing a health professional too."
+  - q: "How long is it, and do I need props?"
+    a: "About 15 minutes, with no props required — just a mat. It's short enough to slot into a work break."
+  - q: "How often can I do it?"
+    a: "Daily is completely fine. A few minutes of shoulder release most days tends to help far more than one long session a week."
 membership_cta: "If desk tension is your thing, the membership has longer shoulder-focused classes and a guided plan so you never have to think about what to practise."
 summary: "A 15-minute Yin routine for the shoulders, neck and upper back — open the chest and unstick tight shoulders after a day at the desk."
 seo_title: "15-Minute Yin Yoga for Shoulders & Neck — Desk Relief Routine"
