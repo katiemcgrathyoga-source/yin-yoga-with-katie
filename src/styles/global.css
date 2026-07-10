@@ -323,12 +323,20 @@ routine-player.is-done .rp-photo, routine-player.is-done .rp-ring-wrap { display
 routine-player.is-done .rp-done { display: flex; }
 .rp-badge { width: 300px; max-width: 82vw; height: auto; border-radius: 14px; border: 1px solid var(--line); box-shadow: 0 8px 30px rgba(46,52,47,.12); }
 .rp-share-label { margin: 0; font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
-.rp-socials { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 420px; }
+.rp-socials { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 .rp-soc {
-  font: inherit; font-size: 13.5px; font-weight: 600; padding: 8px 15px; border-radius: 999px; cursor: pointer;
+  width: 46px; height: 46px; padding: 0; border-radius: 50%; cursor: pointer;
+  display: inline-grid; place-items: center;
   border: 1px solid var(--line); background: var(--paper-2); color: var(--plum-deep);
+  transition: background .18s ease, color .18s ease, border-color .18s ease;
 }
-.rp-soc:hover { border-color: var(--plum); color: var(--plum); }
+.rp-soc svg { width: 20px; height: 20px; fill: currentColor; }
+.rp-soc:hover { color: #fff; border-color: transparent; }
+.rp-soc[data-net="facebook"]:hover { background: #1877F2; }
+.rp-soc[data-net="x"]:hover { background: #000; }
+.rp-soc[data-net="pinterest"]:hover { background: #BD081C; }
+.rp-soc[data-net="whatsapp"]:hover { background: #25D366; }
+.rp-soc[data-net="email"]:hover { background: var(--plum); }
 .rp-soc-native { background: var(--plum); color: #fff; border-color: var(--plum); }
 .rp-soc-native:hover { background: var(--plum-deep); color: #fff; }
 .rp-done-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
