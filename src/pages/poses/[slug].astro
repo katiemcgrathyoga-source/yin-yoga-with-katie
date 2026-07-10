@@ -3,7 +3,6 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Cta from '../../components/Cta.astro';
 import PoseTimer from '../../components/PoseTimer.astro';
-import { videoHeadline } from '../../lib/video';
 
 /**
  * One reusable template for every pose. `getStaticPaths` reads the whole
@@ -25,17 +24,11 @@ const d = pose.data;
 // when the related pose already exists in the collection.
 const bySlug = new Map(poses.map((p) => [p.data.slug, p.data]));
 
-// Reverse of the video→pose link: classes that feature this pose. Show only the
-// best 2–3 — enriched (real, indexable) pages first, then most-practised — so we
-// recommend quality over quantity. (A future pass will rank by pose "essence".)
-const featuredIn = (await getCollection('videos'))
-  .filter((v) => v.data.poses_featured.includes(d.slug))
-  .sort(
-    (a, b) =>
-      Number(b.data.enriched) - Number(a.data.enriched) ||
-      (b.data.watch_hours ?? 0) - (a.data.watch_hours ?? 0),
-  )
-  .slice(0, 3);
+// Reverse of the routine→pose link: follow-along routines that feature this pose,
+// shortest first. Only shown when at least one routine includes the pose.
+const featuredRoutines = (await getCollection('routines'))
+  .filter((r) => r.data.steps.some((s) => s.pose === d.slug))
+  .sort((a, b) => a.data.minutes - b.data.minutes);
 
 const titleCase = (s: string) =>
   s.replace(/\b\w/g, (c) => c.toUpperCase());
@@ -142,13 +135,13 @@ const holdSeconds = d.hold_seconds ?? 180;
     }
 
     {
-      featuredIn.length > 0 && (
+      featuredRoutines.length > 0 && (
         <section class="featured-in">
-          <h2>Classes featuring this pose</h2>
-          {featuredIn.map((v) => (
-            <a href={`/videos/${v.data.slug}`}>
-              {videoHeadline(v.data)}
-              <span>{v.data.display_length?.trim() || `${v.data.length_minutes} min`} · {v.data.summary}</span>
+          <h2>Routines featuring this pose</h2>
+          {featuredRoutines.map((r) => (
+            <a href={`/routines/${r.data.slug}`}>
+              {r.data.title}
+              <span>{r.data.minutes} min · {r.data.summary}</span>
             </a>
           ))}
         </section>
