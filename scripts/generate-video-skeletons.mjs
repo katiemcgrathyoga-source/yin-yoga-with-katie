@@ -12,6 +12,9 @@ import crypto from 'node:crypto';
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname).replace(/^\/([A-Za-z]:)/, '$1'), '..');
 // Pass --membership to flag every video in the CSV as members-only (existing
 // records get patched; new ones are created with `membership: true`).
+// Hard cutoff: never generate a page for anything published before this date
+// (older channel era, off-brand). Undated videos are kept (date unknowable).
+const CUTOFF = new Date('2022-05-16');
 const ARGS = process.argv.slice(2);
 const MEMBERSHIP = ARGS.includes('--membership');
 const CSV_ARG = ARGS.find((a) => !a.startsWith('--'));
@@ -210,6 +213,7 @@ const report = {
   uniqueVideos: byId.size,
   excludedShorts: 0,
   excludedRunner: 0,
+  excludedPreCutoff: 0,
   skippedExisting: [],
   written: 0,
   membershipFlagged: 0,
@@ -222,6 +226,8 @@ const intentCounts = Object.fromEntries(INTENT_RULES.map(([t]) => [t, 0]));
 for (const v of byId.values()) {
   if (v.duration < 120) { report.excludedShorts++; continue; }        // Shorts / clips
   if (RUNNER.test(v.title)) { report.excludedRunner++; continue; }    // runner content
+  const pubDate = isoDate(v.publish);
+  if (pubDate && new Date(pubDate) < CUTOFF) { report.excludedPreCutoff++; continue; } // hard cutoff
 
   const existing = existingYoutubeIds.get(v.id);
   if (existing) {
@@ -304,6 +310,7 @@ L(`Unique videos:       ${report.uniqueVideos}`);
 L('');
 L(`Excluded — Shorts (<120s): ${report.excludedShorts}`);
 L(`Excluded — runner content: ${report.excludedRunner}`);
+L(`Excluded — before ${CUTOFF.toISOString().slice(0, 10)}: ${report.excludedPreCutoff}`);
 L(`Skipped — already in collection: ${report.skippedExisting.length}`);
 for (const s of report.skippedExisting) L(`    · ${s.slug}  (enriched: ${s.enriched}${s.refreshed ? ', watch_hours refreshed' : ''})  ${s.id}`);
 L('');

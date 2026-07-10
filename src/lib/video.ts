@@ -1,6 +1,15 @@
 import type { CollectionEntry } from 'astro:content';
+import { splitTitle } from './title';
 
 export type VideoData = CollectionEntry<'videos'>['data'];
+
+/** Short display headline — the curated `display_title`, else derived from the full title. */
+export const videoHeadline = (d: VideoData) =>
+  d.display_title?.trim() ? d.display_title : splitTitle(d.title).headline;
+
+/** Supporting subtitle — the curated `subtitle`, else the tail of the full title. */
+export const videoSubtitle = (d: VideoData) =>
+  d.subtitle?.trim() ? d.subtitle : splitTitle(d.title).subtitle;
 
 /** Derived YouTube thumbnail — honours a custom `thumbnail`, else builds one from the id. */
 export const derivedThumb = (

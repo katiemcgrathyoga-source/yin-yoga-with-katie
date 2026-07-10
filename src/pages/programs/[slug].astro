@@ -2,8 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { PROGRAMS, resolveProgramClasses, unitPlural } from '../../data/programs';
-import { derivedThumb, lenLabel } from '../../lib/video';
-import { splitTitle } from '../../lib/title';
+import { derivedThumb, lenLabel, videoHeadline } from '../../lib/video';
 
 export async function getStaticPaths() {
   const videos = await getCollection('videos');
@@ -44,7 +43,7 @@ const hours = Math.round((totalMin / 60) * 10) / 10;
       {
         first && (
           <a class={`btn btn-primary start-btn accent-${meta.accent}`} href={`/videos/${first.slug}`}>
-            Start {meta.unit} 1 → {splitTitle(first.title).headline}
+            Start {meta.unit} 1 → {videoHeadline(first)}
           </a>
         )
       }
@@ -66,7 +65,7 @@ const hours = Math.round((totalMin / 60) * 10) / 10;
                   <span class="syll-len">{lenLabel(c)}</span>
                 </span>
                 <span class="syll-body">
-                  <span class="syll-title">{splitTitle(c.title).headline}</span>
+                  <span class="syll-title">{videoHeadline(c)}</span>
                   <span class="syll-tags">
                     {c.membership && <span class="tag tag-members">Members</span>}
                     {c.intent_tags.slice(0, 3).map((t) => (

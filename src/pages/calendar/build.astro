@@ -2,8 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CalendarNav from '../../components/CalendarNav.astro';
-import { derivedThumb, lenLabel, byRecencyThenWatch } from '../../lib/video';
-import { splitTitle } from '../../lib/title';
+import { derivedThumb, lenLabel, byRecencyThenWatch, videoHeadline } from '../../lib/video';
 
 const videos = (await getCollection('videos')).sort((a, b) => byRecencyThenWatch(a.data, b.data));
 const capitalise = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
@@ -45,7 +44,7 @@ const capitalise = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
         {
           videos.map((v) => {
             const d = v.data;
-            const head = splitTitle(d.title).headline;
+            const head = videoHeadline(d);
             const len = lenLabel(d);
             return (
               <li class="cat-row" data-title={d.title.toLowerCase()} data-intents={d.intent_tags.join(' ')}>

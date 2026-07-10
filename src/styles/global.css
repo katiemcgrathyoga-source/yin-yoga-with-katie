@@ -61,6 +61,11 @@ body {
   margin: 0; background: var(--paper); color: var(--ink);
   font-family: var(--body); font-weight: 400; line-height: 1.65;
   font-size: 17px; letter-spacing: 0.005em;
+  /* Noto Serif TC (a CJK face) otherwise renders Latin apostrophes/quotes full-width;
+     request proportional forms so display headings read cleanly in English. */
+  font-variant-east-asian: proportional-width;
+  font-feature-settings: "pwid" 1;
+  text-rendering: optimizeLegibility;
 }
 .wrap { max-width: 680px; margin: 0 auto; padding: 0 22px; }
 a { color: var(--plum-deep); text-decoration: none; border-bottom: 1px solid rgba(72,84,76,.35); }

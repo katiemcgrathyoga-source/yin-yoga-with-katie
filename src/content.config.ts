@@ -67,7 +67,9 @@ const videos = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/videos' }),
   schema: z.object({
     // Core video data
-    title: z.string().min(1),
+    title: z.string().min(1), // full title — kept for SEO/OG + matching the YouTube upload
+    display_title: z.string().optional(), // short, absorbable headline for the page/tile
+    subtitle: z.string().optional(), // optional supporting line under the headline
     slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'slug must be lowercase kebab-case'),
     youtube_id: z.string().min(1),
     length_minutes: z.number().int().positive(), // true runtime; filtering always uses this

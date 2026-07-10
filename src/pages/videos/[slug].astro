@@ -1,8 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { splitTitle } from '../../lib/title';
-import { lenLabel } from '../../lib/video';
+import { lenLabel, videoHeadline, videoSubtitle } from '../../lib/video';
 import { SITE } from '../../data/site';
 
 /**
@@ -34,8 +33,9 @@ const thumbFallback = `https://img.youtube.com/vi/${d.youtube_id}/hqdefault.jpg`
 const watchUrl = `https://www.youtube.com/watch?v=${d.youtube_id}`;
 const chapterUrl = (seconds: number) => `${watchUrl}&t=${seconds}s`;
 
-// --- Title → headline + subtitle (split on the first `:` or `|`) ---------------
-const { headline, subtitle } = splitTitle(d.title);
+// --- Headline + subtitle: curated fields if set, else derived from the title ---
+const headline = videoHeadline(d);
+const subtitle = videoSubtitle(d);
 
 // --- Meta pills, all derived from the fields ----------------------------------
 // Displayed length prefers the marketed `display_length`, else a rounded minutes

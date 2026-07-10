@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { splitTitle } from '../../lib/title';
+import { videoHeadline } from '../../lib/video';
 
 /**
  * One reusable template for every pose. `getStaticPaths` reads the whole
@@ -137,7 +137,7 @@ const eyebrow = `Yin Yoga · ${titleCase(d.accessibility)}`;
           <h2>Classes featuring this pose</h2>
           {featuredIn.map((v) => (
             <a href={`/videos/${v.data.slug}`}>
-              {splitTitle(v.data.title).headline}
+              {videoHeadline(v.data)}
               <span>{v.data.display_length?.trim() || `${v.data.length_minutes} min`} · {v.data.summary}</span>
             </a>
           ))}
