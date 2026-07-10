@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { SITE } from '../data/site';
 
 /**
  * The site-wide document shell. Owns the <head>: fonts, SEO title/description,
@@ -120,6 +121,13 @@ const nav = [
         <a href="/programs">Programs</a>
         <a href="/calendar">Calendar</a>
       </nav>
+      {
+        SITE.coffeeUrl && (
+          <a class="footer-coffee" href={SITE.coffeeUrl} target="_blank" rel="noopener">
+            ☕ Buy me a coffee
+          </a>
+        )
+      }
       <p class="site-footer-copy">© Yin Yoga with Katie</p>
     </footer>
   </body>

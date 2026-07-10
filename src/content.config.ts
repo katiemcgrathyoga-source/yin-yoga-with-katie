@@ -109,6 +109,10 @@ const videos = defineCollection({
     seo_description: z.string().min(1),
     thumbnail: z.string().optional(),
 
+    // Frequently-asked questions — rendered on the page and as FAQPage schema.
+    // Optional; the template falls back to a derived FAQ for enriched classes.
+    faq: z.array(z.object({ q: z.string().min(1), a: z.string().min(1) })).default([]),
+
     // Outcome-led membership CTA + a short summary for cards/meta.
     membership_cta: z.string().min(1),
     summary: z.string().min(1),

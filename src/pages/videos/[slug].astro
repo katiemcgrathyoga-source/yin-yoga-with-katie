@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { lenLabel, videoHeadline, videoSubtitle } from '../../lib/video';
+import { lenLabel, videoHeadline, videoSubtitle, videoFaq } from '../../lib/video';
 import { SITE } from '../../data/site';
 
 /**
@@ -91,6 +91,29 @@ const jsonLd = {
   })),
 };
 
+// FAQ (enriched classes only — skeletons stay noindex and thin) + breadcrumb.
+const faq = d.enriched ? videoFaq(d) : [];
+const faqLd = faq.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faq.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    }
+  : null;
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Library', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: videoHeadline(d), item: new URL(`/videos/${d.slug}`, Astro.site).href },
+  ],
+};
+const schema = [jsonLd, breadcrumbLd, ...(faqLd ? [faqLd] : [])];
+
 const eyebrow = ['Yin Yoga', ...d.intent_tags.map(capitalise)].join(' · ');
 ---
 
@@ -101,7 +124,7 @@ const eyebrow = ['Yin Yoga', ...d.intent_tags.map(capitalise)].join(' · ');
   ogDescription={d.summary}
   ogType="video.other"
   image={thumb}
-  jsonLd={jsonLd}
+  jsonLd={schema}
   noindex={!d.enriched}
 >
   <div class="wrap">
@@ -192,6 +215,20 @@ const eyebrow = ['Yin Yoga', ...d.intent_tags.map(capitalise)].join(' · ');
         <a class="cta-secondary" href="/programs">Or follow a free program →</a>
       </div>
     </div>
+
+    {
+      faq.length > 0 && (
+        <section class="faq-section">
+          <h2>Common questions</h2>
+          {faq.map((f) => (
+            <details class="faq">
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </section>
+      )
+    }
 
     {/* Gentle-reminder block */}
     <section class="reminder-section">
