@@ -8,7 +8,6 @@ display_length: "90 min"
 watch_hours: 5
 published: "2025-07-04"
 enriched: false
-membership: true
 level: "all-levels"
 intent_tags: ["nervous-system", "flexibility", "full-body"]
 body_areas: ["full body"]

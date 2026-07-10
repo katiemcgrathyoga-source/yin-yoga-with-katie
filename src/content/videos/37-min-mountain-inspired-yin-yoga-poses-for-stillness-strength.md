@@ -8,7 +8,6 @@ display_length: "37 min"
 watch_hours: 1
 published: "2025-05-08"
 enriched: false
-membership: true
 level: "all-levels"
 intent_tags: []
 body_areas: []

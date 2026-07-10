@@ -7,7 +7,6 @@ length_minutes: 105
 watch_hours: 14
 published: "2025-10-03"
 enriched: false
-membership: true
 level: "all-levels"
 intent_tags: ["nervous-system"]
 body_areas: []

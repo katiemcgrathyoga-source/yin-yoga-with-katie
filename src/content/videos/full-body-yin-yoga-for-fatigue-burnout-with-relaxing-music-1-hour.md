@@ -7,7 +7,6 @@ length_minutes: 66
 watch_hours: 1
 published: "2026-04-10"
 enriched: false
-membership: true
 level: "all-levels"
 intent_tags: ["nervous-system", "full-body"]
 body_areas: ["full body"]

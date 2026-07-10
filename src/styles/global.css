@@ -309,6 +309,9 @@ ul.plain li::before {
 .membership p { color: #E7DFD5; max-width: 46ch; margin: 0 auto 22px; font-size: 15.5px; }
 .membership .btn-cta { display: inline-block; background: var(--gold-solid); color: #fff; font-weight: 600; padding: 13px 26px; border-radius: 11px; font-size: 15.5px; border: none; }
 .membership .btn-cta:hover { background: #6E3A3C; color: #fff; }
+.cta-actions { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.cta-secondary { color: #E7DFD5; font-size: 14px; border: none; text-decoration: underline; text-underline-offset: 3px; }
+.cta-secondary:hover { color: #fff; }
 
 /* ---- Gentle-reminder block ---- */
 .reminder {

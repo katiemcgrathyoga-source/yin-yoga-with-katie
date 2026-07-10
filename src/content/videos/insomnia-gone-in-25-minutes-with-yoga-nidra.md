@@ -7,7 +7,6 @@ length_minutes: 26
 watch_hours: 3
 published: "2025-03-31"
 enriched: false
-membership: true
 level: "all-levels"
 intent_tags: ["sleep"]
 body_areas: []

@@ -7,7 +7,6 @@ length_minutes: 21
 watch_hours: 1
 published: "2026-01-20"
 enriched: false
-membership: true
 level: "all-levels"
 intent_tags: []
 body_areas: ["shoulders"]

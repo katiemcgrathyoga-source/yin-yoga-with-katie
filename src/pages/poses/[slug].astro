@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Cta from '../../components/Cta.astro';
 import { videoHeadline } from '../../lib/video';
 
 /**
@@ -215,18 +216,11 @@ const eyebrow = `Yin Yoga · ${titleCase(d.accessibility)}`;
       </dl>
     </section>
 
-    <!-- Email capture — non-functional placeholder for Phase 1.
-         The email provider wires in here in a later phase. -->
-    <div class="cta">
-      <p class="eyebrow">Free download</p>
-      <h2>Bedtime Yin, in your inbox</h2>
-      <p>A printable wind-down sequence to settle the nervous system before sleep. One email, then the PDF is yours.</p>
-      <form class="form" onsubmit="return false;" aria-label="Email capture (placeholder)">
-        <input type="email" placeholder="you@email.com" aria-label="Email address" required />
-        <button type="submit">Send it to me</button>
-      </form>
-      <p class="note">Placeholder — email provider wires in here in a later phase.</p>
-    </div>
+    <Cta
+      eyebrow="Practise with me"
+      heading="Ready to move?"
+      body="Find this shape inside a full class — every one free to follow on YouTube. For a guided path, join the membership, or start with a free program."
+    />
 
     {
       d.related_poses.length > 0 && (

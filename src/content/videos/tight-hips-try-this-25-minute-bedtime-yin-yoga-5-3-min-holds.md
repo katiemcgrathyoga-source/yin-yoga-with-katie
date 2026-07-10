@@ -8,7 +8,6 @@ display_length: "3 min"
 watch_hours: 4
 published: "2026-02-06"
 enriched: false
-membership: true
 level: "all-levels"
 intent_tags: ["sleep", "hips-lower-back"]
 body_areas: ["hips"]

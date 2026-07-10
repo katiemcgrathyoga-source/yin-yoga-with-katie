@@ -8,7 +8,6 @@ display_length: "50 min"
 watch_hours: 1
 published: "2025-01-17"
 enriched: false
-membership: true
 level: "all-levels"
 intent_tags: ["nervous-system"]
 body_areas: []

@@ -8,7 +8,6 @@ display_length: "90 min"
 watch_hours: 3
 published: "2025-12-04"
 enriched: false
-membership: true
 level: "all-levels"
 intent_tags: ["flexibility", "full-body"]
 body_areas: ["full body"]

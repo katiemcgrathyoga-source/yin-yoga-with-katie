@@ -1,0 +1,29 @@
+---
+import { SITE } from '../data/site';
+
+/**
+ * The site-wide two-tier call to action. Primary = the paid YouTube membership
+ * (the revenue driver); secondary = the free on-site Programs (low-friction,
+ * keeps people practising). Calm, no hype — in Katie's voice.
+ */
+interface Props {
+  eyebrow?: string;
+  heading?: string;
+  body?: string;
+}
+const {
+  eyebrow = 'Practise with me',
+  heading = 'Keep the practice going',
+  body = 'Every class here is free to follow on YouTube. When you’d like a guided path that takes the deciding out of it, join the membership — or start with a free program right here.',
+} = Astro.props;
+---
+
+<div class="membership cta-block">
+  <p class="eyebrow">{eyebrow}</p>
+  <h2>{heading}</h2>
+  <p>{body}</p>
+  <div class="cta-actions">
+    <a class="btn-cta" href={SITE.membershipUrl} target="_blank" rel="noopener">Join the membership</a>
+    <a class="cta-secondary" href="/programs">Or follow a free program →</a>
+  </div>
+</div>

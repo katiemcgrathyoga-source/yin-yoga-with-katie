@@ -7,7 +7,6 @@ length_minutes: 32
 watch_hours: 2
 published: "2025-10-31"
 enriched: false
-membership: true
 level: "all-levels"
 intent_tags: []
 body_areas: ["legs"]

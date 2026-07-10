@@ -187,7 +187,10 @@ const eyebrow = ['Yin Yoga', ...d.intent_tags.map(capitalise)].join(' · ');
       <p class="eyebrow">Inside the membership</p>
       <h2>Don't decide — just press play</h2>
       <p>{d.membership_cta}</p>
-      <a class="btn-cta" href="/programs">See the programs</a>
+      <div class="cta-actions">
+        <a class="btn-cta" href={SITE.membershipUrl} target="_blank" rel="noopener">Join the membership</a>
+        <a class="cta-secondary" href="/programs">Or follow a free program →</a>
+      </div>
     </div>
 
     {/* Gentle-reminder block */}

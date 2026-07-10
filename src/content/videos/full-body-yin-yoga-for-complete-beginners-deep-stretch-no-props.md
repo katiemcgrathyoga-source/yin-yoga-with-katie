@@ -7,7 +7,6 @@ length_minutes: 34
 watch_hours: 3
 published: "2026-06-18"
 enriched: false
-membership: true
 level: "all-levels"
 intent_tags: ["flexibility", "full-body", "beginner"]
 body_areas: ["full body"]

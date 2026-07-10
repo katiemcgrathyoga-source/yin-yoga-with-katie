@@ -8,7 +8,6 @@ display_length: "20 min"
 watch_hours: 1
 published: "2025-08-06"
 enriched: false
-membership: true
 level: "all-levels"
 intent_tags: ["nervous-system", "hips-lower-back", "flexibility"]
 body_areas: ["hips"]

@@ -8,7 +8,6 @@ display_length: "60 min"
 watch_hours: 0
 published: "2026-03-21"
 enriched: false
-membership: true
 level: "all-levels"
 intent_tags: ["beginner"]
 body_areas: []

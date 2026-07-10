@@ -7,7 +7,6 @@ length_minutes: 69
 watch_hours: 6
 published: "2025-08-21"
 enriched: false
-membership: true
 level: "all-levels"
 intent_tags: []
 body_areas: []

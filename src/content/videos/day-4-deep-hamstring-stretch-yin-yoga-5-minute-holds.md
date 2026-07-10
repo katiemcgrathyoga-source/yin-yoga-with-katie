@@ -7,7 +7,6 @@ length_minutes: 17
 watch_hours: 1
 published: "2026-01-22"
 enriched: false
-membership: true
 level: "all-levels"
 intent_tags: []
 body_areas: ["hamstrings"]

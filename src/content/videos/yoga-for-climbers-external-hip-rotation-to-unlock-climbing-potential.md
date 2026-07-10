@@ -7,7 +7,6 @@ length_minutes: 52
 watch_hours: 1
 published: "2026-06-23"
 enriched: false
-membership: true
 level: "all-levels"
 intent_tags: ["hips-lower-back"]
 body_areas: ["hips"]
