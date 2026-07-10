@@ -6,6 +6,7 @@ target_areas: ["spine", "lower back", "hips"]
 meridians: ["gall bladder", "urinary bladder", "liver"]
 accessibility: "beginner"
 hold_time: "2–5 minutes per side"
+hold_seconds: 120
 props: ["cushion", "bolster"]
 benefits:
   - "Unwinds the whole length of the spine after a day of sitting or standing tall."

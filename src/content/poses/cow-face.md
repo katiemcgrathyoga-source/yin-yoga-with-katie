@@ -6,6 +6,7 @@ target_areas: ["shoulders", "outer hips", "chest", "upper back"]
 meridians: ["heart", "lung", "small intestine", "large intestine", "gall bladder"]
 accessibility: "intermediate"
 hold_time: "2–4 minutes per side"
+hold_seconds: 120
 props: ["strap", "cushion", "blanket"]
 benefits:
   - "Opens the shoulders deeply through the arm bind, reaching parts of the shoulder we seldom stretch."

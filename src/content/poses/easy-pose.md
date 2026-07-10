@@ -6,6 +6,7 @@ target_areas: ["hips", "spine", "knees"]
 meridians: ["liver", "gall bladder", "kidney"]
 accessibility: "beginner"
 hold_time: "as long as comfortable"
+hold_seconds: 120
 props: ["cushion", "block", "blanket", "bolster"]
 benefits:
   - "A simple, comfortable seat for breathing and meditation, and a grounding way to begin or close a practice."

@@ -6,6 +6,7 @@ target_areas: ["hips", "hip flexors", "quadriceps", "lower back"]
 meridians: ["liver", "gall bladder", "kidney", "stomach", "spleen"]
 accessibility: "intermediate"
 hold_time: "1–5 minutes per side"
+hold_seconds: 60
 props: ["bolster", "folded blanket"]
 benefits:
   - "A deep hip opener that lets gravity, rather than muscular effort, draw the front hip into strong external rotation."

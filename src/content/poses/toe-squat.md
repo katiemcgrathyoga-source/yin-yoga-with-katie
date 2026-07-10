@@ -6,6 +6,7 @@ target_areas: ["feet", "toes", "ankles"]
 meridians: ["kidney", "urinary bladder", "spleen", "liver", "stomach"]
 accessibility: "intermediate"
 hold_time: "30 seconds–2 minutes"
+hold_seconds: 30
 props: ["blanket", "block"]
 benefits:
   - "Gives a strong, direct stretch to the soles of the feet and the undersides of the toes — areas that rarely get any attention."

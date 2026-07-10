@@ -6,6 +6,7 @@ target_areas: ["lower back", "sacrum", "chest", "spine"]
 meridians: ["kidney", "urinary bladder", "stomach", "spleen"]
 accessibility: "beginner"
 hold_time: "3–5 minutes"
+hold_seconds: 180
 props: ["block", "bolster"]
 benefits:
   - "A passive, propped backbend that opens the front of the hips and gently arches the lower back — the prop holds you so you can let go."

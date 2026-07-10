@@ -6,6 +6,7 @@ target_areas: ["inner thighs", "hips", "lower back", "spine"]
 meridians: ["liver", "spleen", "kidney", "urinary bladder"]
 accessibility: "beginner"
 hold_time: "3–5 minutes"
+hold_seconds: 180
 props: ["bolster", "cushion"]
 benefits:
   - "Opens the inner thighs, groin and hips while the fold lengthens the whole back line — a lovely two-for-one shape."

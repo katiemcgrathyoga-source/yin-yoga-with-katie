@@ -6,6 +6,7 @@ target_areas: ["hips", "hip flexors", "groin", "outer hip", "IT band"]
 meridians: ["stomach", "spleen", "liver", "gall bladder"]
 accessibility: "intermediate"
 hold_time: "2–5 minutes per side"
+hold_seconds: 120
 props: ["folded blanket", "block"]
 benefits:
   - "Adds an outer-hip and IT-band element to Dragon as the front knee is pressed open and the torso rotates."

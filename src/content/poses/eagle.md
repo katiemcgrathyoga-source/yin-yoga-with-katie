@@ -6,6 +6,7 @@ target_areas: ["upper back", "shoulders", "hips"]
 meridians: ["heart", "lung", "small intestine", "large intestine"]
 accessibility: "beginner"
 hold_time: "1–3 minutes per side"
+hold_seconds: 60
 props: ["cushion", "blanket"]
 benefits:
   - "Spreads and opens the upper back between the shoulder blades, a wonderful release for anyone who works at a desk."

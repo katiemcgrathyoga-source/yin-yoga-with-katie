@@ -6,6 +6,7 @@ target_areas: ["spine", "hamstrings", "lower back"]
 meridians: ["urinary bladder", "kidney"]
 accessibility: "beginner"
 hold_time: "3–5 minutes"
+hold_seconds: 180
 props: ["bolster", "cushion"]
 benefits:
   - "Gives the whole back line — from your heels, up the calves and hamstrings, all the way to the crown of your head — one long, quiet stretch."

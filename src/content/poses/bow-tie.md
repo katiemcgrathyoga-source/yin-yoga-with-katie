@@ -6,6 +6,7 @@ target_areas: ["shoulders", "upper back", "chest"]
 meridians: ["heart", "lung", "small intestine", "large intestine"]
 accessibility: "intermediate"
 hold_time: "3–5 minutes per arrangement"
+hold_seconds: 180
 props: ["cushion", "blanket"]
 benefits:
   - "Lets the weight of your own body open the shoulders and the space between the shoulder blades — no effort required."

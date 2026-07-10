@@ -6,6 +6,7 @@ target_areas: ["hips", "inner thighs", "groin", "lower back"]
 meridians: ["spleen", "liver", "kidney"]
 accessibility: "beginner"
 hold_time: "3–5 minutes"
+hold_seconds: 180
 props: ["bolster", "blanket"]
 benefits:
   - "A deep groin opener that targets the adductors (inner thighs)."

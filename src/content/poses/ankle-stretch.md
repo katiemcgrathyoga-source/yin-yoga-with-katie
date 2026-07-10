@@ -6,6 +6,7 @@ target_areas: ["ankles", "shins", "feet", "knees"]
 meridians: ["kidney", "urinary bladder", "spleen", "liver", "stomach"]
 accessibility: "intermediate"
 hold_time: "1–3 minutes"
+hold_seconds: 60
 props: ["blanket", "bolster"]
 benefits:
   - "Stretches the fronts of the ankles and the tops of the feet, an area that stays short in most of us."

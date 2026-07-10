@@ -6,6 +6,7 @@ target_areas: ["hips", "hip flexors", "groin", "quadriceps"]
 meridians: ["stomach", "spleen", "liver", "gall bladder"]
 accessibility: "intermediate"
 hold_time: "2–5 minutes per side"
+hold_seconds: 120
 props: ["folded blanket", "block"]
 benefits:
   - "Lifting the torso tall lets your body weight sink straight down into the front of the back hip — a strong, direct hip-flexor opener."

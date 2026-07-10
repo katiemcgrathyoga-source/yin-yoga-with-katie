@@ -6,6 +6,7 @@ target_areas: ["upper back", "shoulders", "neck", "spine"]
 meridians: ["heart", "lung", "small intestine", "large intestine"]
 accessibility: "beginner"
 hold_time: "2–4 minutes per side"
+hold_seconds: 120
 props: ["cushion", "blanket"]
 benefits:
   - "Opens the upper back and the space between the shoulder blades, where desk tension loves to gather."

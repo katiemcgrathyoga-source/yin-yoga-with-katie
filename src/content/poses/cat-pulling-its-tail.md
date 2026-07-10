@@ -6,6 +6,7 @@ target_areas: ["spine", "lower back", "hips", "quadriceps", "hip flexors"]
 meridians: ["gall bladder", "urinary bladder", "liver", "stomach", "spleen"]
 accessibility: "intermediate"
 hold_time: "2–5 minutes per side"
+hold_seconds: 120
 props: ["strap", "cushion"]
 benefits:
   - "Takes the wind-down of a reclined twist and adds a lovely stretch through the front of the thigh and hip flexor."

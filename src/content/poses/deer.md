@@ -6,6 +6,7 @@ target_areas: ["hips", "outer hips", "inner thighs", "lower back"]
 meridians: ["liver", "gall bladder", "kidney", "spleen"]
 accessibility: "beginner"
 hold_time: "2–4 minutes per side"
+hold_seconds: 120
 props: ["cushion", "blanket"]
 benefits:
   - "Opens both sides of the hip at once — one thigh in external rotation, the other in internal rotation — in a shape that is remarkably kind to the knees."

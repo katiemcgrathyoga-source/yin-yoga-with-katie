@@ -6,6 +6,7 @@ target_areas: ["side body", "obliques", "outer hips", "ribs"]
 meridians: ["gall bladder", "urinary bladder"]
 accessibility: "beginner"
 hold_time: "3–5 minutes per side"
+hold_seconds: 180
 props: ["cushion"]
 benefits:
   - "A long, luxurious stretch down the whole side of the body, from the fingertips to the ankle."

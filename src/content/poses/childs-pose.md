@@ -6,6 +6,7 @@ target_areas: ["lower back", "hips", "spine", "knees"]
 meridians: ["kidney", "urinary bladder", "spleen", "stomach"]
 accessibility: "beginner"
 hold_time: "2–5 minutes"
+hold_seconds: 120
 props: ["bolster", "blanket", "cushion"]
 benefits:
   - "Gently lengthens the lower back and lets the whole spine settle after backbends or a busy day."

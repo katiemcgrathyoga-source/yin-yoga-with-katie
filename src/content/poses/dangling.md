@@ -6,6 +6,7 @@ target_areas: ["spine", "hamstrings", "lower back"]
 meridians: ["urinary bladder", "kidney"]
 accessibility: "beginner"
 hold_time: "1–3 minutes"
+hold_seconds: 60
 props: ["bolster"]
 benefits:
   - "Uses gravity to decompress the whole back line and spine — the weight of your upper body does the work while you simply hang."

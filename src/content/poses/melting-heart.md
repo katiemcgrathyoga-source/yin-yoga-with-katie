@@ -6,6 +6,7 @@ target_areas: ["upper back", "shoulders", "chest", "spine"]
 meridians: ["heart", "lung", "kidney", "urinary bladder"]
 accessibility: "beginner"
 hold_time: "3–5 minutes"
+hold_seconds: 180
 props: ["bolster", "blanket"]
 benefits:
   - "Opens the chest, shoulders and the whole upper back — the front-body space that closes down over a day of desks, phones and driving."

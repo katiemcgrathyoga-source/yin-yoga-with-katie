@@ -6,6 +6,7 @@ target_areas: ["outer hips", "glutes", "hamstrings", "lower back"]
 meridians: ["gall bladder", "urinary bladder", "kidney", "liver"]
 accessibility: "beginner"
 hold_time: "3–5 minutes per side"
+hold_seconds: 180
 props: ["cushion", "bolster", "blanket"]
 benefits:
   - "Blends two stretches in one — the outer hip and glute of the folded top leg, and the hamstring and back line of the extended lower leg."

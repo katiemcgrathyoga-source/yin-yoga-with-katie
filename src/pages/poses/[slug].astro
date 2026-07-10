@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Cta from '../../components/Cta.astro';
+import PoseTimer from '../../components/PoseTimer.astro';
 import { videoHeadline } from '../../lib/video';
 
 /**
@@ -59,6 +60,9 @@ const jsonLd = {
 
 const hasVideo = Boolean(d.youtube_video_id && d.youtube_video_id.trim());
 const eyebrow = `Yin Yoga · ${titleCase(d.accessibility)}`;
+
+// Default target for the on-page hold timer (all poses carry hold_seconds; 180s is a safe fallback).
+const holdSeconds = d.hold_seconds ?? 180;
 ---
 
 <BaseLayout
@@ -94,6 +98,12 @@ const eyebrow = `Yin Yoga · ${titleCase(d.accessibility)}`;
         </figure>
       )
     }
+
+    {/* Hold timer — set your length and let the shape do the work. */}
+    <section class="timer-section">
+      <h2>Time your hold</h2>
+      <PoseTimer seconds={holdSeconds} holdLabel={d.hold_time} />
+    </section>
 
     {/* Follow-along video — separate section, only when a video id is set. */}
     {

@@ -1,0 +1,204 @@
+---
+/**
+ * PoseTimer — a calm, self-contained hold timer.
+ *
+ * Renders a <pose-timer> custom element and (once per page) the script that
+ * defines it. The element is deliberately framework-free and reads its own
+ * attributes, so the future routine player can create `<pose-timer seconds="…">`
+ * nodes on the fly and get the exact same behaviour.
+ *
+ * Props:
+ *   seconds   – default target hold, in seconds (from a pose's hold_seconds)
+ *   holdLabel – the human range shown as the suggestion, e.g. "3–5 minutes per side"
+ */
+interface Props {
+  seconds: number;
+  holdLabel?: string;
+}
+const { seconds, holdLabel } = Astro.props;
+---
+
+<pose-timer data-seconds={seconds} data-hold-label={holdLabel ?? ''}></pose-timer>
+
+<script>
+  class PoseTimer extends HTMLElement {
+    target = 180;
+    remaining = 180;
+    running = false;
+    endAt = 0;
+    tick: number | undefined;
+    audio: AudioContext | null = null;
+    wakeLock: any = null;
+
+    connectedCallback() {
+      this.target = Math.max(5, parseInt(this.dataset.seconds || '180', 10) || 180);
+      this.remaining = this.target;
+      const label = this.dataset.holdLabel || '';
+
+      const C = 326.726; // circumference of an r=52 circle
+      this.innerHTML = `
+        <div class="pt">
+          <div class="pt-ring-wrap">
+            <svg class="pt-ring" viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="pt-track" cx="60" cy="60" r="52"></circle>
+              <circle class="pt-prog" cx="60" cy="60" r="52"
+                stroke-dasharray="${C}" stroke-dashoffset="0"></circle>
+            </svg>
+            <button class="pt-time" type="button" aria-label="Start or pause the hold timer">
+              <span class="pt-clock">0:00</span>
+              <span class="pt-hint">tap to start</span>
+            </button>
+          </div>
+          ${label ? `<p class="pt-suggest">Suggested hold · ${label}</p>` : ''}
+          <div class="pt-presets" role="group" aria-label="Set hold length">
+            <button type="button" data-sec="60">1 min</button>
+            <button type="button" data-sec="120">2 min</button>
+            <button type="button" data-sec="180">3 min</button>
+            <button type="button" data-sec="300">5 min</button>
+            <button type="button" data-add="30">+30s</button>
+          </div>
+          <div class="pt-controls">
+            <button type="button" class="pt-toggle btn-cta">Start</button>
+            <button type="button" class="pt-reset">Reset</button>
+          </div>
+          <p class="pt-live" aria-live="polite"></p>
+        </div>`;
+
+      this.clock = this.querySelector('.pt-clock') as HTMLElement;
+      this.prog = this.querySelector('.pt-prog') as SVGCircleElement;
+      this.toggleBtn = this.querySelector('.pt-toggle') as HTMLButtonElement;
+      this.live = this.querySelector('.pt-live') as HTMLElement;
+      this.C = C;
+
+      this.querySelector('.pt-time')!.addEventListener('click', () => this.toggle());
+      this.toggleBtn.addEventListener('click', () => this.toggle());
+      this.querySelector('.pt-reset')!.addEventListener('click', () => this.reset());
+      this.querySelectorAll<HTMLButtonElement>('.pt-presets button').forEach((b) =>
+        b.addEventListener('click', () => {
+          if (b.dataset.add) {
+            this.remaining += parseInt(b.dataset.add, 10);
+            if (this.running) this.endAt = performance.now() + this.remaining * 1000;
+            else this.target = this.remaining;
+          } else {
+            this.stop();
+            this.target = this.remaining = parseInt(b.dataset.sec!, 10);
+          }
+          this.render();
+        }),
+      );
+
+      this.render();
+    }
+
+    disconnectedCallback() { this.stop(); this.releaseWake(); }
+
+    clock!: HTMLElement; prog!: SVGCircleElement; toggleBtn!: HTMLButtonElement;
+    live!: HTMLElement; C!: number;
+
+    fmt(s: number) {
+      s = Math.max(0, Math.round(s));
+      return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+    }
+
+    render() {
+      this.clock.textContent = this.fmt(this.remaining);
+      const frac = this.target > 0 ? this.remaining / this.target : 0;
+      this.prog.style.strokeDashoffset = String(this.C * (1 - frac));
+      this.toggleBtn.textContent = this.running ? 'Pause' : this.remaining === 0 ? 'Start' : 'Start';
+      const hint = this.querySelector('.pt-hint') as HTMLElement;
+      if (hint) hint.textContent = this.running ? 'holding…' : 'tap to start';
+      this.classList.toggle('is-running', this.running);
+    }
+
+    toggle() { this.running ? this.pause() : this.start(); }
+
+    start() {
+      if (this.remaining <= 0) this.remaining = this.target;
+      this.ensureAudio();
+      this.requestWake();
+      this.running = true;
+      this.endAt = performance.now() + this.remaining * 1000;
+      this.tick = window.setInterval(() => this.step(), 200);
+      this.toggleBtn.textContent = 'Pause';
+      this.live.textContent = `Timer started, ${this.fmt(this.remaining)} remaining.`;
+      this.render();
+    }
+
+    step() {
+      this.remaining = (this.endAt - performance.now()) / 1000;
+      if (this.remaining <= 0) {
+        this.remaining = 0;
+        this.render();
+        this.complete();
+        return;
+      }
+      this.render();
+    }
+
+    pause() {
+      this.stop();
+      this.live.textContent = `Paused, ${this.fmt(this.remaining)} remaining.`;
+      this.render();
+    }
+
+    stop() {
+      this.running = false;
+      if (this.tick) { clearInterval(this.tick); this.tick = undefined; }
+      this.releaseWake();
+    }
+
+    reset() {
+      this.stop();
+      this.remaining = this.target;
+      this.live.textContent = 'Timer reset.';
+      this.render();
+    }
+
+    complete() {
+      this.stop();
+      this.chime();
+      this.live.textContent = 'Hold complete. Come out slowly.';
+      const hint = this.querySelector('.pt-hint') as HTMLElement;
+      if (hint) hint.textContent = 'complete';
+      this.classList.add('is-done');
+      setTimeout(() => this.classList.remove('is-done'), 2400);
+    }
+
+    // --- gentle two-note bell, no breath pacing --------------------------------
+    ensureAudio() {
+      try {
+        if (!this.audio) this.audio = new (window.AudioContext || (window as any).webkitAudioContext)();
+        if (this.audio.state === 'suspended') this.audio.resume();
+      } catch { /* audio unavailable — the timer still works silently */ }
+    }
+    chime() {
+      const ctx = this.audio;
+      if (!ctx) return;
+      const now = ctx.currentTime;
+      [ [880, 0], [587.33, 0.5] ].forEach(([freq, at]) => {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = 'sine';
+        o.frequency.value = freq;
+        g.gain.setValueAtTime(0.0001, now + at);
+        g.gain.exponentialRampToValueAtTime(0.22, now + at + 0.04);
+        g.gain.exponentialRampToValueAtTime(0.0001, now + at + 1.6);
+        o.connect(g).connect(ctx.destination);
+        o.start(now + at);
+        o.stop(now + at + 1.7);
+      });
+    }
+
+    // --- best-effort screen wake lock during a hold ----------------------------
+    async requestWake() {
+      try { if ('wakeLock' in navigator) this.wakeLock = await (navigator as any).wakeLock.request('screen'); }
+      catch { /* not supported / denied — fine */ }
+    }
+    releaseWake() {
+      try { this.wakeLock?.release?.(); } catch {}
+      this.wakeLock = null;
+    }
+  }
+
+  if (!customElements.get('pose-timer')) customElements.define('pose-timer', PoseTimer);
+</script>

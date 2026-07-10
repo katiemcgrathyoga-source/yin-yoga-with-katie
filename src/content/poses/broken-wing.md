@@ -6,6 +6,7 @@ target_areas: ["chest", "shoulders", "pectorals", "upper back"]
 meridians: ["lung", "heart", "large intestine", "small intestine"]
 accessibility: "intermediate"
 hold_time: "2–4 minutes per side"
+hold_seconds: 120
 props: ["cushion", "blanket"]
 benefits:
   - "A strong opener for the front of the shoulder and the chest, reaching the pectoral muscles that rounded shoulders keep tight."

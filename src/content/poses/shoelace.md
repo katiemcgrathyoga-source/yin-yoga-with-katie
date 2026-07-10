@@ -6,6 +6,7 @@ target_areas: ["outer hips", "glutes", "lower back"]
 meridians: ["gall bladder", "urinary bladder", "kidney", "liver"]
 accessibility: "intermediate"
 hold_time: "3–5 minutes per side"
+hold_seconds: 180
 props: ["cushion", "bolster", "blanket"]
 benefits:
   - "A deep opener for the outer hips and glutes — that broad, satisfying stretch across the outside of the top thigh."

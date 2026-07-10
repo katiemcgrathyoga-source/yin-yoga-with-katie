@@ -6,6 +6,7 @@ target_areas: ["chest", "shoulders", "front of thighs", "spine", "throat"]
 meridians: ["stomach", "spleen", "kidney", "urinary bladder"]
 accessibility: "intermediate"
 hold_time: "30 seconds–2 minutes"
+hold_seconds: 30
 props: ["blanket", "bolster"]
 benefits:
   - "A generous front-body opener that stretches the chest, shoulders, belly, throat and the front of the thighs all at once."

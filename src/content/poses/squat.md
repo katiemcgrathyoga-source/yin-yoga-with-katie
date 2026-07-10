@@ -6,6 +6,7 @@ target_areas: ["hips", "groin", "ankles", "lower back"]
 meridians: ["kidney", "urinary bladder", "spleen", "liver", "stomach"]
 accessibility: "intermediate"
 hold_time: "1–3 minutes"
+hold_seconds: 60
 props: ["block", "rolled mat", "blanket", "bolster"]
 benefits:
   - "Opens the hips and inner groin deeply as the hips sink low between the thighs."

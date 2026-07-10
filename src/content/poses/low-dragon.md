@@ -6,6 +6,7 @@ target_areas: ["hips", "hip flexors", "groin", "inner thighs"]
 meridians: ["stomach", "spleen", "liver", "gall bladder"]
 accessibility: "intermediate"
 hold_time: "2–5 minutes per side"
+hold_seconds: 120
 props: ["bolster", "block", "folded blanket"]
 benefits:
   - "Deepens the groin and hip-flexor opening of Dragon by bringing the upper body closer to the floor."

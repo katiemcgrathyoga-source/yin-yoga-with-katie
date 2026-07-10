@@ -6,6 +6,7 @@ target_areas: ["lower back", "sacrum", "spine"]
 meridians: ["kidney", "urinary bladder", "stomach", "spleen"]
 accessibility: "beginner"
 hold_time: "3–5 minutes"
+hold_seconds: 180
 props: ["bolster", "blanket"]
 benefits:
   - "A gentle backbend that restores the natural curve of the lower back — the very curve that long hours of sitting tend to flatten."

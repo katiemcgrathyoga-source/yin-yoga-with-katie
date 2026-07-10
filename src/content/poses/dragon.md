@@ -6,6 +6,7 @@ target_areas: ["hips", "hip flexors", "groin", "quadriceps"]
 meridians: ["stomach", "spleen", "liver", "gall bladder"]
 accessibility: "intermediate"
 hold_time: "2–5 minutes per side"
+hold_seconds: 120
 props: ["folded blanket", "bolster"]
 benefits:
   - "A strong, grounding lunge that opens deep through the hip flexors and the front of the back thigh."

@@ -6,6 +6,7 @@ target_areas: ["hips", "glutes", "outer hip", "lower back"]
 meridians: ["gall bladder", "liver", "kidney", "stomach", "spleen"]
 accessibility: "beginner"
 hold_time: "2–5 minutes per side"
+hold_seconds: 120
 props: ["folded blanket", "strap"]
 benefits:
   - "An accessible hip opener that draws the front hip into external rotation while you lie safely on your back."

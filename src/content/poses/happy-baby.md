@@ -6,6 +6,7 @@ target_areas: ["inner groin", "inner thighs", "hips", "lower back"]
 meridians: ["liver", "kidney", "urinary bladder"]
 accessibility: "beginner"
 hold_time: "2–4 minutes"
+hold_seconds: 120
 props: ["strap"]
 benefits:
   - "A gentle, playful opener for the inner groin and inner thighs that you can ease into with the arms."

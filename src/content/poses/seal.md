@@ -6,6 +6,7 @@ target_areas: ["lower back", "sacrum", "spine"]
 meridians: ["kidney", "urinary bladder", "stomach", "spleen"]
 accessibility: "intermediate"
 hold_time: "3–5 minutes"
+hold_seconds: 180
 props: ["bolster", "blanket"]
 benefits:
   - "A deeper backbend than Sphinx that draws a strong, tonifying compression into the sacral-lumbar arch."

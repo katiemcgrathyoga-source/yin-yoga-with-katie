@@ -6,6 +6,7 @@ target_areas: ["hamstrings", "inner thighs", "lower back", "hips"]
 meridians: ["urinary bladder", "kidney", "liver", "spleen"]
 accessibility: "intermediate"
 hold_time: "3–5 minutes"
+hold_seconds: 180
 props: ["cushion", "bolster", "block", "blanket"]
 benefits:
   - "Opens the inner thighs and adductors as the legs spread wide."

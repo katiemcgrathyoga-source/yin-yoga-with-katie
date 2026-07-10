@@ -6,6 +6,7 @@ target_areas: ["hips", "hip flexors", "quadriceps", "lower back", "chest"]
 meridians: ["liver", "gall bladder", "kidney", "stomach", "spleen"]
 accessibility: "intermediate"
 hold_time: "1–5 minutes per side"
+hold_seconds: 60
 props: ["folded blanket", "bolster"]
 benefits:
   - "Draws the front hip into strong external rotation, opening deep through the outer hip and glute."

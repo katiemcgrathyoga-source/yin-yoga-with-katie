@@ -6,6 +6,7 @@ target_areas: ["whole body", "nervous system", "spine"]
 meridians: ["urinary bladder"]
 accessibility: "beginner"
 hold_time: "5–10 minutes"
+hold_seconds: 300
 props: ["bolster", "blanket", "eye pillow"]
 benefits:
   - "Invites total rest, letting the body settle completely after your practice."

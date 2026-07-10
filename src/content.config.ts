@@ -27,7 +27,8 @@ const poses = defineCollection({
     target_areas: z.array(z.string()).min(1),
     meridians: z.array(z.string()),
     accessibility: z.enum(['beginner', 'intermediate', 'advanced']),
-    hold_time: z.string().min(1),
+    hold_time: z.string().min(1), // human-readable range, e.g. "3–5 minutes per side"
+    hold_seconds: z.number().int().positive().optional(), // default timer target (seconds); powers the on-page hold timer + future routine player
     props: z.array(z.string()),
 
     // Teaching content

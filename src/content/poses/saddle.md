@@ -6,6 +6,7 @@ target_areas: ["front of thighs", "hip flexors", "lower back", "sacrum", "spine"
 meridians: ["stomach", "spleen", "kidney", "urinary bladder"]
 accessibility: "advanced"
 hold_time: "1–5 minutes"
+hold_seconds: 60
 props: ["bolster", "block", "blanket"]
 benefits:
   - "A strong opener for the front of the thighs and the hip flexors — the muscles that shorten with sitting, cycling and running."

@@ -6,6 +6,7 @@ target_areas: ["hamstrings", "spine", "lower back", "inner thighs"]
 meridians: ["urinary bladder", "kidney", "liver", "spleen"]
 accessibility: "beginner"
 hold_time: "3–5 minutes per side"
+hold_seconds: 180
 props: ["bolster", "cushion"]
 benefits:
   - "Stretches one hamstring and the whole back line at a time, so you can meet each side of your body just where it is that day."

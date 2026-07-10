@@ -6,6 +6,7 @@ target_areas: ["chest", "shoulders", "upper back", "throat", "lungs"]
 meridians: ["heart", "lung", "kidney", "urinary bladder", "stomach", "spleen"]
 accessibility: "beginner"
 hold_time: "3–5 minutes"
+hold_seconds: 180
 props: ["bolster", "block", "blanket"]
 benefits:
   - "A soft, passive heart and lung opener — the prop does the work while you simply rest and receive the shape."
