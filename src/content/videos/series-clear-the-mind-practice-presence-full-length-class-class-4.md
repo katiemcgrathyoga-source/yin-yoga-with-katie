@@ -6,7 +6,6 @@ youtube_id: "9atNBSMzahI"
 length_minutes: 70
 watch_hours: 0
 enriched: false
-membership: true
 level: "all-levels"
 intent_tags: []
 body_areas: []

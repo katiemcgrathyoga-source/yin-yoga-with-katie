@@ -4,9 +4,10 @@ title: "Yin Yoga Class & Philosophy Workshop | Yoga Philosophy Series: Yama 2 Sa
 slug: "yin-yoga-class-philosophy-workshop-yoga-philosophy-series-yama-2-satya"
 youtube_id: "LdWhcjRcM14"
 length_minutes: 69
-watch_hours: 8
+watch_hours: 1
 published: "2023-12-23"
 enriched: false
+membership: true
 level: "all-levels"
 intent_tags: []
 body_areas: []

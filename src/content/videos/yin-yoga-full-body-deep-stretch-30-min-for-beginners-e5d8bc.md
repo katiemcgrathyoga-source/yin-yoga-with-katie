@@ -7,7 +7,6 @@ length_minutes: 31
 display_length: "30 min"
 watch_hours: 2
 enriched: false
-membership: true
 level: "all-levels"
 intent_tags: ["flexibility", "full-body", "beginner"]
 body_areas: ["full body"]

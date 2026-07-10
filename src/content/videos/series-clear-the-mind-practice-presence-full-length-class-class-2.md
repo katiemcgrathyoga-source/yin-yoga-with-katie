@@ -6,7 +6,6 @@ youtube_id: "TuAQTa1K03M"
 length_minutes: 74
 watch_hours: 0
 enriched: false
-membership: true
 level: "all-levels"
 intent_tags: []
 body_areas: []

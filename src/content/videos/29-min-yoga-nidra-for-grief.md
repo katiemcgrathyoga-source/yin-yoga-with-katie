@@ -5,7 +5,7 @@ slug: "29-min-yoga-nidra-for-grief"
 youtube_id: "F76BlP-LOjM"
 length_minutes: 29
 display_length: "29 min"
-watch_hours: 3
+watch_hours: 0
 enriched: false
 membership: true
 level: "all-levels"

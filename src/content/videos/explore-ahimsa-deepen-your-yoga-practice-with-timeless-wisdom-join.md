@@ -4,7 +4,7 @@ title: "Explore Ahimsa: Deepen Your Yoga Practice with Timeless Wisdom | Join Ou
 slug: "explore-ahimsa-deepen-your-yoga-practice-with-timeless-wisdom-join"
 youtube_id: "kMFikgzF6as"
 length_minutes: 14
-watch_hours: 2
+watch_hours: 0
 enriched: false
 membership: true
 level: "all-levels"

@@ -4,7 +4,7 @@ title: "Yoga Nidra to Embrace Impermanence"
 slug: "yoga-nidra-to-embrace-impermanence"
 youtube_id: "kif2n8YPwkc"
 length_minutes: 32
-watch_hours: 3
+watch_hours: 0
 enriched: false
 membership: true
 level: "all-levels"

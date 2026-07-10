@@ -5,9 +5,10 @@ slug: "80-min-yin-yoga-class-on-ahimsa-non-harming-yoga-philosophy-series"
 youtube_id: "tij7X2e6SKY"
 length_minutes: 85
 display_length: "80 min"
-watch_hours: 12
+watch_hours: 1
 published: "2023-12-17"
 enriched: false
+membership: true
 level: "all-levels"
 intent_tags: []
 body_areas: []

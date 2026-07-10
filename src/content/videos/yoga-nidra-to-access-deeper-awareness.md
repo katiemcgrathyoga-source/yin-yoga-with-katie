@@ -4,7 +4,7 @@ title: "Yoga Nidra to Access Deeper Awareness"
 slug: "yoga-nidra-to-access-deeper-awareness"
 youtube_id: "NLfcvu-aBFs"
 length_minutes: 25
-watch_hours: 3
+watch_hours: 0
 enriched: false
 membership: true
 level: "all-levels"

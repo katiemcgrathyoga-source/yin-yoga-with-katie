@@ -4,9 +4,10 @@ title: "Deep Parasympathetic Reset: Yin Yoga & Yoga Nidra (All Levels)"
 slug: "deep-parasympathetic-reset-yin-yoga-yoga-nidra-all-levels"
 youtube_id: "GE6nXwYBGjg"
 length_minutes: 62
-watch_hours: 13
+watch_hours: 0
 published: "2026-06-12"
 enriched: false
+membership: true
 level: "all-levels"
 intent_tags: []
 body_areas: []

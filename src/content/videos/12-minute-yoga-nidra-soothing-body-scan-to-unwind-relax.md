@@ -4,7 +4,7 @@ title: "12-Minute Yoga Nidra: Soothing Body Scan to Unwind & Relax"
 slug: "12-minute-yoga-nidra-soothing-body-scan-to-unwind-relax"
 youtube_id: "QpifgQN8Iw8"
 length_minutes: 13
-watch_hours: 2
+watch_hours: 0
 enriched: false
 membership: true
 level: "all-levels"
