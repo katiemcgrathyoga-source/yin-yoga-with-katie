@@ -7,9 +7,6 @@ import { derivedThumb, lenLabel, byRecencyThenWatch, videoHeadline } from '../li
 // tier by watch-hours. New video files appear here automatically.
 const videos = (await getCollection('videos')).sort((a, b) => byRecencyThenWatch(a.data, b.data));
 
-const capitalise = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
-const uniq = (arr: string[]) => [...new Set(arr)].sort((a, b) => a.localeCompare(b));
-
 // --- Length buckets — fixed taxonomy; the top bucket catches 90+ so nothing
 //     ever falls through. Only buckets with at least one class are shown. ------
 const BUCKETS = [
@@ -23,8 +20,30 @@ const bucketOf = (m: number) => BUCKETS.find((b) => b.test(m))!.key;
 // --- Filter facets, built from the classes actually present -------------------
 type V = (typeof videos)[number];
 
-// Intent — drop "hips-lower-back" (now covered by the Hips / Lower back areas).
-const intents = uniq(videos.flatMap((v) => v.data.intent_tags)).filter((i) => i !== 'hips-lower-back');
+// Intent — a FIXED, curated taxonomy so the filter row stays clean no matter what
+// intent_tags future enrichments add. Raw tags map into these buckets; any tag not
+// listed here (e.g. "beginner", "back", "hips-lower-back") is simply not surfaced as
+// an Intent chip — it's still stored on the video and used elsewhere. To add/rename a
+// filter, edit THIS list only.
+const INTENT_BUCKETS = [
+  { key: 'sleep', label: 'Sleep', tags: ['sleep'] },
+  { key: 'calm', label: 'Stress & calm', tags: ['nervous-system', 'stress'] },
+  { key: 'digestion', label: 'Digestion', tags: ['digestion'] },
+  { key: 'energy', label: 'Energy', tags: ['energy'] },
+  { key: 'flexibility', label: 'Flexibility', tags: ['flexibility'] },
+  { key: 'full-body', label: 'Full body', tags: ['full-body'] },
+];
+const intentKeys = (v: V) =>
+  INTENT_BUCKETS.filter((b) => b.tags.some((t) => v.data.intent_tags.includes(t))).map((b) => b.key);
+const presentIntents = INTENT_BUCKETS.filter((b) => videos.some((v) => intentKeys(v).includes(b.key)));
+// Small tile badges show only the genuinely *distinguishing* intents — not the
+// near-universal calm / flexibility / full-body — so tiles stay uncluttered and a
+// badge actually means something. Capped at two.
+const BADGE_INTENTS = new Set(['sleep', 'digestion', 'energy']);
+const intentBadges = (v: V) => {
+  const keys = intentKeys(v).filter((k) => BADGE_INTENTS.has(k)).slice(0, 2);
+  return keys.map((k) => INTENT_BUCKETS.find((b) => b.key === k)!.label);
+};
 
 // Body area → a few curated buckets; each raw area maps into one.
 const AREA_BUCKETS = [
@@ -88,8 +107,8 @@ const presentBuckets = BUCKETS.filter((b) => videos.some((v) => bucketOf(v.data.
         <div class="facet">
           <span class="facet-label">Intent</span>
           <div class="chips">
-            {intents.map((t) => (
-              <button type="button" class="chip" data-facet="intent" data-value={t} aria-pressed="false">{capitalise(t)}</button>
+            {presentIntents.map((b) => (
+              <button type="button" class="chip" data-facet="intent" data-value={b.key} aria-pressed="false">{b.label}</button>
             ))}
           </div>
         </div>
@@ -137,7 +156,7 @@ const presentBuckets = BUCKETS.filter((b) => videos.some((v) => bucketOf(v.data.
             class="tile"
             href={`/videos/${v.data.slug}`}
             data-tile
-            data-intent={v.data.intent_tags.join('|')}
+            data-intent={intentKeys(v).join('|')}
             data-area={areaBuckets(v).join('|')}
             data-style={styleTags(v).join('|')}
             data-length={bucketOf(v.data.length_minutes)}
@@ -150,7 +169,7 @@ const presentBuckets = BUCKETS.filter((b) => videos.some((v) => bucketOf(v.data.
             <div class="tile-body">
               <h3 class="tile-name">{videoHeadline(v.data)}</h3>
               <div class="tile-tags">
-                {v.data.intent_tags.map((t) => <span class="tag tag-intent">{capitalise(t)}</span>)}
+                {intentBadges(v).map((label) => <span class="tag tag-intent">{label}</span>)}
               </div>
             </div>
           </a>
