@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Cta from '../../components/Cta.astro';
 import PoseTimer from '../../components/PoseTimer.astro';
+import { videoHeadline } from '../../lib/video';
 
 /**
  * One reusable template for every pose. `getStaticPaths` reads the whole
@@ -29,6 +30,17 @@ const bySlug = new Map(poses.map((p) => [p.data.slug, p.data]));
 const featuredRoutines = (await getCollection('routines'))
   .filter((r) => r.data.steps.some((s) => s.pose === d.slug))
   .sort((a, b) => a.data.minutes - b.data.minutes);
+
+// Full YouTube classes that feature this pose — best 3 (enriched first, then most
+// watched). Shown at the very bottom as an "also in these classes" cross-link.
+const featuredClasses = (await getCollection('videos'))
+  .filter((v) => v.data.poses_featured.includes(d.slug))
+  .sort(
+    (a, b) =>
+      Number(b.data.enriched) - Number(a.data.enriched) ||
+      (b.data.watch_hours ?? 0) - (a.data.watch_hours ?? 0),
+  )
+  .slice(0, 3);
 
 const titleCase = (s: string) =>
   s.replace(/\b\w/g, (c) => c.toUpperCase());
@@ -270,6 +282,20 @@ const holdSeconds = d.hold_seconds ?? 180;
               </a>
             );
           })}
+        </section>
+      )
+    }
+
+    {
+      featuredClasses.length > 0 && (
+        <section class="featured-in">
+          <h2>Classes featuring this pose</h2>
+          {featuredClasses.map((v) => (
+            <a href={`/videos/${v.data.slug}`}>
+              {videoHeadline(v.data)}
+              <span>{v.data.display_length?.trim() || `${v.data.length_minutes} min`} · {v.data.summary}</span>
+            </a>
+          ))}
         </section>
       )
     }

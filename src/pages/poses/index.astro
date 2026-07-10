@@ -12,7 +12,32 @@ const poses = (await getCollection('poses')).sort((a, b) =>
 const titleCase = (s: string) => s.replace(/\b\w/g, (c) => c.toUpperCase());
 const uniq = (arr: string[]) => [...new Set(arr)].sort((a, b) => a.localeCompare(b));
 
-const areas = uniq(poses.flatMap((p) => p.data.target_areas));
+// Target areas — a FIXED, curated set of ≤10 main body areas so the filter stays
+// tidy. Each pose's many raw target_areas map into these buckets; unlisted raw
+// values aren't surfaced as filters. Edit THIS list to change the filter.
+const AREA_BUCKETS = [
+  { key: 'hips', label: 'Hips', match: (a: string) => /hips|outer hip|glute|it band/.test(a) },
+  { key: 'hip-flexors', label: 'Hip flexors', match: (a: string) => /hip flexor|front of thigh|quad/.test(a) },
+  { key: 'groin', label: 'Groin & inner thigh', match: (a: string) => /groin|inner thigh/.test(a) },
+  { key: 'hamstrings', label: 'Hamstrings', match: (a: string) => /hamstring/.test(a) },
+  { key: 'lower-back', label: 'Lower back', match: (a: string) => /lower back|low back|sacrum/.test(a) },
+  { key: 'spine', label: 'Spine', match: (a: string) => /\bspine\b|side body|oblique|rib/.test(a) },
+  { key: 'shoulders', label: 'Shoulders', match: (a: string) => /shoulder|upper back/.test(a) },
+  { key: 'chest', label: 'Chest', match: (a: string) => /chest|pectoral|lung/.test(a) },
+  { key: 'neck', label: 'Neck', match: (a: string) => /neck|throat/.test(a) },
+  { key: 'legs-feet', label: 'Legs & feet', match: (a: string) => /knee|ankle|feet|foot|shin|toe|\bcalf\b|\blegs?\b/.test(a) },
+];
+const areaKeys = (p: (typeof poses)[number]) => {
+  const set = new Set<string>();
+  for (const raw of p.data.target_areas) {
+    const a = raw.toLowerCase();
+    for (const b of AREA_BUCKETS) if (b.match(a)) set.add(b.key);
+  }
+  return [...set];
+};
+const areaLabel = (key: string) => AREA_BUCKETS.find((b) => b.key === key)!.label;
+const presentAreas = AREA_BUCKETS.filter((b) => poses.some((p) => areaKeys(p).includes(b.key)));
+
 const meridians = uniq(poses.flatMap((p) => p.data.meridians));
 const levelOrder = ['beginner', 'intermediate', 'advanced'];
 const levels = uniq(poses.map((p) => p.data.accessibility)).sort(
@@ -44,8 +69,8 @@ const levels = uniq(poses.map((p) => p.data.accessibility)).sort(
         <div class="facet">
           <span class="facet-label">Target areas</span>
           <div class="chips">
-            {areas.map((a) => (
-              <button type="button" class="chip" data-facet="area" data-value={a} aria-pressed="false">{a}</button>
+            {presentAreas.map((b) => (
+              <button type="button" class="chip" data-facet="area" data-value={b.key} aria-pressed="false">{b.label}</button>
             ))}
           </div>
         </div>
@@ -82,7 +107,7 @@ const levels = uniq(poses.map((p) => p.data.accessibility)).sort(
             class="tile"
             href={`/poses/${p.data.slug}`}
             data-tile
-            data-areas={p.data.target_areas.join('|')}
+            data-areas={areaKeys(p).join('|')}
             data-meridians={p.data.meridians.join('|')}
             data-level={p.data.accessibility}
           >
@@ -96,7 +121,7 @@ const levels = uniq(poses.map((p) => p.data.accessibility)).sort(
             <div class="tile-body">
               <h3 class="tile-name">{p.data.name_en}</h3>
               <div class="tile-tags">
-                {p.data.target_areas.map((a) => <span class="tag">{a}</span>)}
+                {areaKeys(p).slice(0, 3).map((k) => <span class="tag">{areaLabel(k)}</span>)}
                 <span class="tag tag-level">{titleCase(p.data.accessibility)}</span>
               </div>
             </div>
