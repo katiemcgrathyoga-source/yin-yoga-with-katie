@@ -44,6 +44,16 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
         target="ml_frame"
         aria-label="Get your free class"
       >
+        <label class="sr-only" for="lm-name">First name</label>
+        <input
+          id="lm-name"
+          type="text"
+          name="fields[name]"
+          placeholder="First name"
+          autocomplete="given-name"
+          required
+          aria-required="true"
+        />
         <label class="sr-only" for="lm-email">Email address</label>
         <input
           id="lm-email"

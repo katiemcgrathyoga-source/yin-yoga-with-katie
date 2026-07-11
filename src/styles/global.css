@@ -582,6 +582,9 @@ ul.plain li::before {
 .cta-actions { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .cta-secondary { color: #E7DFD5; font-size: 14px; border: none; text-decoration: underline; text-underline-offset: 3px; }
 .cta-secondary:hover { color: #fff; }
+.cta-tertiary { margin: 16px 0 0; text-align: center; font-size: 13.5px; color: rgba(255,255,255,.62); }
+.cta-tertiary a { color: #E7DFD5; border: none; text-decoration: underline; text-underline-offset: 3px; }
+.cta-tertiary a:hover { color: #fff; }
 
 /* ---- Gentle-reminder block ---- */
 .reminder {
