@@ -4,66 +4,150 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import CalendarNav from '../../components/CalendarNav.astro';
 import { derivedThumb, lenLabel, byRecencyThenWatch, videoHeadline } from '../../lib/video';
 
-const videos = (await getCollection('videos')).sort((a, b) => byRecencyThenWatch(a.data, b.data));
+const videos = (await getCollection('videos'))
+  .filter((v) => v.data.length_minutes >= 10)
+  .sort((a, b) => byRecencyThenWatch(a.data, b.data));
 const capitalise = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+// --- Filter facets (mirrors the library) -------------------------------------
+type V = (typeof videos)[number];
+const BUCKETS = [
+  { key: 'under-20', label: 'Under 20 min', test: (m: number) => m < 20 },
+  { key: '20-40', label: '20–40 min', test: (m: number) => m >= 20 && m < 40 },
+  { key: '40-60', label: '40–60 min', test: (m: number) => m >= 40 && m < 60 },
+  { key: '60-90', label: '60–90 min', test: (m: number) => m >= 60 },
+];
+const bucketOf = (m: number) => BUCKETS.find((b) => b.test(m))!.key;
+const INTENT_BUCKETS = [
+  { key: 'sleep', label: 'Sleep', tags: ['sleep'] },
+  { key: 'calm', label: 'Stress & calm', tags: ['nervous-system', 'stress'] },
+  { key: 'digestion', label: 'Digestion', tags: ['digestion'] },
+  { key: 'energy', label: 'Energy', tags: ['energy'] },
+  { key: 'flexibility', label: 'Flexibility', tags: ['flexibility'] },
+  { key: 'full-body', label: 'Full body', tags: ['full-body'] },
+];
+const intentKeys = (v: V) =>
+  INTENT_BUCKETS.filter((b) => b.tags.some((t) => v.data.intent_tags.includes(t))).map((b) => b.key);
+const styleTags = (v: V) => {
+  const s: string[] = [];
+  if (/nidra|nsdr/i.test(v.data.title)) s.push('yoga-nidra');
+  if (/silent|minimal cues|no.?talking/i.test(v.data.title)) s.push('silent');
+  if (v.data.props.length === 0 || /no.?props|without props|prop.?free/i.test(v.data.title)) s.push('no-props');
+  if (v.data.membership) s.push('members');
+  return s;
+};
+const STYLE_OPTS = [
+  { key: 'silent', label: 'Silent' },
+  { key: 'no-props', label: 'No props' },
+  { key: 'yoga-nidra', label: 'Yoga Nidra' },
+  { key: 'members', label: 'Members only' },
+];
+const presentIntents = INTENT_BUCKETS.filter((b) => videos.some((v) => intentKeys(v).includes(b.key)));
+const presentBuckets = BUCKETS.filter((b) => videos.some((v) => bucketOf(v.data.length_minutes) === b.key));
+const presentStyles = STYLE_OPTS.filter((o) => videos.some((v) => styleTags(v).includes(o.key)));
 ---
 
 <BaseLayout
-  title="Build Your Own — Calendar — Yin Yoga with Katie"
-  description="Build your own Yin Yoga plan — add classes, put them in order, and follow your sequence day by day. Saved on your device."
+  title="Build Your Own Yin Calendar — Yin Yoga with Katie"
+  description="Build your own weekly Yin Yoga calendar: filter the library, drop classes onto the days you'll practise, then add it to your phone's calendar with reminders. Free, saved on your device."
 >
   <div class="wrap">
     <header class="hero">
-      <p class="eyebrow">Practice · Your plan</p>
-      <h1>Build Your Own</h1>
-      <p class="alt">choose your classes, set the order, follow your own rhythm</p>
+      <p class="eyebrow">Practice · Your calendar</p>
+      <h1>Build your own calendar</h1>
+      <p class="alt">choose your classes, place them on your week, get reminders on your own calendar</p>
     </header>
 
     <CalendarNav active="build" />
 
-    <!-- Your plan -->
-    <section class="plan" aria-label="Your plan">
-      <div class="plan-head">
-        <h2>Your plan <span class="plan-count" id="plan-count"></span></h2>
-        <button type="button" class="chip chip-clear" id="plan-clear" hidden>Clear all</button>
+    <p class="page-intro">
+      Filter the library for what you need, then add classes to the days you'll practise. When
+      you're happy, tap <strong>Add to my calendar</strong> — you'll get a file that drops the
+      whole week into Google, Apple or Outlook Calendar as gentle weekly reminders, each with the
+      class link ready to press play. It's saved on this device, so it's here when you come back.
+    </p>
+
+    {/* The week */}
+    <section class="cal-week" aria-label="Your week">
+      <div class="cw-head">
+        <h2>Your week <span class="cw-count" id="cw-count"></span></h2>
+        <div class="cw-actions">
+          <button type="button" class="btn-cta" id="cw-export" disabled>Add to my calendar</button>
+          <button type="button" class="cw-clear" id="cw-clear" hidden>Clear</button>
+        </div>
       </div>
-      <p class="plan-empty" id="plan-empty">
-        Nothing added yet — add classes below to build your own sequence. It's saved on this device,
-        so it'll be here when you come back.
-      </p>
-      <ol class="plan-list" id="plan-list"></ol>
-      <a class="btn btn-primary" id="plan-start" href="#" hidden>Start with #1 →</a>
+      <div class="cw-opts">
+        <label>Practise at <input type="time" id="cw-time" value="18:00" /></label>
+        <label>Remind me
+          <select id="cw-remind">
+            <option value="0">at the time</option>
+            <option value="15">15 min before</option>
+            <option value="60" selected>1 hour before</option>
+            <option value="180">3 hours before</option>
+          </select>
+        </label>
+      </div>
+      <div class="cw-grid" id="cw-grid"></div>
+      <p class="cw-msg" id="cw-msg" aria-live="polite"></p>
     </section>
 
-    <!-- Catalogue -->
-    <section class="catalogue" aria-label="All classes">
+    {/* Catalogue with filters */}
+    <section class="catalogue" aria-label="Add classes">
       <h2>Add classes</h2>
-      <input type="search" class="cat-search" id="cat-search" placeholder="Search classes — title or intent…" aria-label="Search classes" />
-      <p class="cat-none" id="cat-none" hidden>No classes match that search.</p>
+
+      <div class="filters" id="cat-filters">
+        <div class="facet"><span class="facet-label">Add to</span>
+          <div class="chips" id="day-picker">
+            {['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map((d, i) => (
+              <button type="button" class:list={['chip', 'day-chip', { active: i === 0 }]} data-day={i}>{d}</button>
+            ))}
+          </div>
+        </div>
+        {presentIntents.length > 0 && (
+          <div class="facet"><span class="facet-label">Intent</span>
+            <div class="chips">{presentIntents.map((b) => (
+              <button type="button" class="chip" data-facet="intent" data-value={b.key} aria-pressed="false">{b.label}</button>
+            ))}</div>
+          </div>
+        )}
+        <div class="facet"><span class="facet-label">Length</span>
+          <div class="chips">{presentBuckets.map((b) => (
+            <button type="button" class="chip" data-facet="length" data-value={b.key} aria-pressed="false">{b.label}</button>
+          ))}</div>
+        </div>
+        {presentStyles.length > 0 && (
+          <div class="facet"><span class="facet-label">Style</span>
+            <div class="chips">{presentStyles.map((o) => (
+              <button type="button" class="chip" data-facet="style" data-value={o.key} aria-pressed="false">{o.label}</button>
+            ))}</div>
+          </div>
+        )}
+        <input type="search" class="cat-search" id="cat-search" placeholder="Search classes…" aria-label="Search classes" />
+        <div class="filter-meta">
+          <button type="button" class="chip chip-clear" id="cat-clear" hidden>Clear filters</button>
+          <button type="button" class="chip cat-addall" id="cat-addall">Add all to <b id="addall-day">Mon</b></button>
+          <span class="count" id="cat-count" aria-live="polite"></span>
+        </div>
+      </div>
+
+      <p class="cat-none" id="cat-none" hidden>No classes match those filters.</p>
       <ul class="cat-list" id="cat-list">
         {
           videos.map((v) => {
             const d = v.data;
-            const head = videoHeadline(d);
-            const len = lenLabel(d);
             return (
-              <li class="cat-row" data-title={d.title.toLowerCase()} data-intents={d.intent_tags.join(' ')}>
+              <li class="cat-row" data-slug={d.slug}
+                data-title={d.title.toLowerCase()}
+                data-intent={intentKeys(v).join('|')}
+                data-length={bucketOf(d.length_minutes)}
+                data-style={styleTags(v).join('|')}
+                data-head={videoHeadline(d)} data-len={lenLabel(d)} data-href={`/videos/${d.slug}`}>
                 <img class="cat-thumb" src={derivedThumb(d, 'mqdefault')} alt="" loading="lazy" width="80" height="45" />
                 <div class="cat-info">
-                  <a class="cat-title" href={`/videos/${d.slug}`}>{head}</a>
-                  <span class="cat-meta">{len}{d.intent_tags.length ? ` · ${d.intent_tags.map(capitalise).join(', ')}` : ''}</span>
+                  <a class="cat-title" href={`/videos/${d.slug}`}>{videoHeadline(d)}</a>
+                  <span class="cat-meta">{lenLabel(d)}{d.intent_tags.length ? ` · ${d.intent_tags.slice(0,2).map(capitalise).join(', ')}` : ''}</span>
                 </div>
-                <button
-                  type="button"
-                  class="cat-add"
-                  data-slug={d.slug}
-                  data-title={head}
-                  data-thumb={derivedThumb(d, 'mqdefault')}
-                  data-len={len}
-                  data-href={`/videos/${d.slug}`}
-                >
-                  Add
-                </button>
+                <button type="button" class="cat-add" data-slug={d.slug}>Add</button>
               </li>
             );
           })
@@ -74,109 +158,216 @@ const capitalise = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 </BaseLayout>
 
 <script>
-  const KEY = 'kyk-plan-v1';
-  const listEl = document.getElementById('plan-list') as HTMLOListElement;
-  const emptyEl = document.getElementById('plan-empty');
-  const countEl = document.getElementById('plan-count');
-  const clearEl = document.getElementById('plan-clear');
-  const startEl = document.getElementById('plan-start') as HTMLAnchorElement | null;
-  const searchEl = document.getElementById('cat-search') as HTMLInputElement | null;
-  const catNone = document.getElementById('cat-none');
-  const rows = Array.from(document.querySelectorAll<HTMLElement>('.cat-row'));
+  const KEY = 'kyk-week-v2';
+  const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const DOW = ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
 
-  // Lookup table: slug → {title, thumb, len, href}, built from the Add buttons.
-  const CATALOG = new Map<string, { title: string; thumb: string; len: string; href: string }>();
-  for (const btn of document.querySelectorAll<HTMLElement>('.cat-add')) {
-    CATALOG.set(btn.dataset.slug!, {
-      title: btn.dataset.title!, thumb: btn.dataset.thumb!, len: btn.dataset.len!, href: btn.dataset.href!,
+  type Item = { slug: string; day: number };
+  type Meta = { head: string; len: string; href: string; thumb: string };
+
+  const CAT = new Map<string, Meta>();
+  document.querySelectorAll<HTMLElement>('.cat-row').forEach((r) => {
+    CAT.set(r.dataset.slug!, {
+      head: r.dataset.head!, len: r.dataset.len!, href: r.dataset.href!,
+      thumb: r.querySelector('img')!.getAttribute('src')!,
     });
-  }
+  });
 
-  const load = (): string[] => {
-    try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; }
-  };
-  const save = (arr: string[]) => localStorage.setItem(KEY, JSON.stringify(arr));
+  const $ = (id: string) => document.getElementById(id)!;
+  const grid = $('cw-grid'), msg = $('cw-msg'), countEl = $('cw-count');
+  const exportBtn = $('cw-export') as HTMLButtonElement, clearBtn = $('cw-clear') as HTMLButtonElement;
+  let activeDay = 0;
+
+  const load = (): Item[] => { try { return (JSON.parse(localStorage.getItem(KEY) || '[]') as Item[]).filter((i) => CAT.has(i.slug)); } catch { return []; } };
+  const save = (items: Item[]) => localStorage.setItem(KEY, JSON.stringify(items));
 
   function render() {
-    const plan = load().filter((s) => CATALOG.has(s));
-    listEl.innerHTML = '';
-    plan.forEach((slug, i) => {
-      const c = CATALOG.get(slug)!;
-      const li = document.createElement('li');
-      li.className = 'plan-item';
-      li.dataset.slug = slug;
-      li.innerHTML = `
-        <span class="plan-num">${i + 1}</span>
-        <img class="plan-thumb" src="${c.thumb}" alt="" loading="lazy" width="80" height="45" />
-        <a class="plan-title" href="${c.href}">${c.title}</a>
-        <span class="plan-len">${c.len}</span>
-        <span class="plan-controls">
-          <button type="button" data-act="up" aria-label="Move up" ${i === 0 ? 'disabled' : ''}>↑</button>
-          <button type="button" data-act="down" aria-label="Move down" ${i === plan.length - 1 ? 'disabled' : ''}>↓</button>
-          <button type="button" data-act="remove" aria-label="Remove">✕</button>
-        </span>`;
-      listEl.appendChild(li);
+    const items = load();
+    grid.innerHTML = DAYS.map((name, day) => {
+      const dayItems = items.filter((i) => i.day === day);
+      const rows = dayItems.map((i) => {
+        const m = CAT.get(i.slug)!;
+        return `<li class="cw-item" data-slug="${i.slug}">
+            <img src="${m.thumb}" alt="" width="64" height="36" loading="lazy" />
+            <a href="${m.href}">${m.head}</a>
+            <span class="cw-len">${m.len}</span>
+            <span class="cw-item-ctl">
+              <select class="cw-move" aria-label="Move to another day">${DAYS.map((d, di) => `<option value="${di}" ${di === day ? 'selected' : ''}>${d}</option>`).join('')}</select>
+              <button type="button" class="cw-del" aria-label="Remove">✕</button>
+            </span>
+          </li>`;
+      }).join('');
+      return `<div class="cw-day ${dayItems.length ? '' : 'is-empty'}">
+          <div class="cw-day-name">${name}</div>
+          <ul class="cw-day-list">${rows || '<li class="cw-none">—</li>'}</ul>
+        </div>`;
+    }).join('');
+
+    const n = items.length;
+    countEl.textContent = n ? `· ${n} ${n === 1 ? 'class' : 'classes'}` : '';
+    exportBtn.disabled = n === 0;
+    clearBtn.hidden = n === 0;
+    const inWeek = new Set(items.map((i) => i.slug));
+    document.querySelectorAll<HTMLButtonElement>('.cat-add').forEach((b) => {
+      const added = inWeek.has(b.dataset.slug!);
+      b.textContent = added ? 'Added ✓' : 'Add';
+      b.classList.toggle('is-added', added);
     });
-
-    const has = plan.length > 0;
-    if (emptyEl) emptyEl.hidden = has;
-    if (clearEl) clearEl.hidden = !has;
-    if (countEl) countEl.textContent = has ? `· ${plan.length} ${plan.length === 1 ? 'class' : 'classes'}` : '';
-    if (startEl) {
-      startEl.hidden = !has;
-      if (has) startEl.href = CATALOG.get(plan[0])!.href;
-    }
-    // Reflect "added" state on catalogue buttons.
-    const inPlan = new Set(plan);
-    for (const btn of document.querySelectorAll<HTMLButtonElement>('.cat-add')) {
-      const added = inPlan.has(btn.dataset.slug!);
-      btn.textContent = added ? 'Added ✓' : 'Add';
-      btn.classList.toggle('is-added', added);
-    }
   }
 
-  function mutate(fn: (plan: string[]) => string[]) {
-    save(fn(load().filter((s) => CATALOG.has(s))));
-    render();
+  function add(slug: string, day = activeDay) {
+    const items = load();
+    if (items.some((i) => i.slug === slug && i.day === day)) return;
+    items.push({ slug, day });
+    save(items); render();
   }
+  function removeAll(slug: string) { save(load().filter((i) => i.slug !== slug)); render(); }
 
-  // Add from catalogue
-  document.getElementById('cat-list')?.addEventListener('click', (e) => {
+  // catalogue add
+  $('cat-list').addEventListener('click', (e) => {
     const btn = (e.target as HTMLElement).closest('.cat-add') as HTMLElement | null;
     if (!btn) return;
     const slug = btn.dataset.slug!;
-    mutate((plan) => (plan.includes(slug) ? plan.filter((s) => s !== slug) : [...plan, slug]));
+    if (load().some((i) => i.slug === slug)) removeAll(slug); else add(slug);
   });
 
-  // Reorder / remove within the plan
-  listEl.addEventListener('click', (e) => {
-    const btn = (e.target as HTMLElement).closest('button[data-act]') as HTMLElement | null;
-    if (!btn) return;
-    const slug = (btn.closest('.plan-item') as HTMLElement).dataset.slug!;
-    const act = btn.dataset.act;
-    mutate((plan) => {
-      const i = plan.indexOf(slug);
-      if (i < 0) return plan;
-      if (act === 'remove') plan.splice(i, 1);
-      else if (act === 'up' && i > 0) [plan[i - 1], plan[i]] = [plan[i], plan[i - 1]];
-      else if (act === 'down' && i < plan.length - 1) [plan[i + 1], plan[i]] = [plan[i], plan[i + 1]];
-      return plan;
-    });
+  // week interactions (move / delete)
+  grid.addEventListener('click', (e) => {
+    const del = (e.target as HTMLElement).closest('.cw-del');
+    if (!del) return;
+    const li = del.closest('.cw-item') as HTMLElement;
+    const slug = li.dataset.slug!;
+    // remove just this instance (this slug on this day)
+    const dayIdx = DAYS.indexOf((li.closest('.cw-day') as HTMLElement).querySelector('.cw-day-name')!.textContent!.trim());
+    save(load().filter((i) => !(i.slug === slug && i.day === dayIdx))); render();
+  });
+  grid.addEventListener('change', (e) => {
+    const sel = (e.target as HTMLElement).closest('.cw-move') as HTMLSelectElement | null;
+    if (!sel) return;
+    const li = sel.closest('.cw-item') as HTMLElement;
+    const slug = li.dataset.slug!;
+    const fromDay = DAYS.indexOf((li.closest('.cw-day') as HTMLElement).querySelector('.cw-day-name')!.textContent!.trim());
+    const toDay = Number(sel.value);
+    const items = load();
+    const it = items.find((i) => i.slug === slug && i.day === fromDay);
+    if (it) it.day = toDay;
+    save(items); render();
   });
 
-  clearEl?.addEventListener('click', () => mutate(() => []));
+  clearBtn.addEventListener('click', () => { save([]); render(); toast('Cleared.'); });
 
-  // Search filter
-  searchEl?.addEventListener('input', () => {
+  // day picker (active day for adds)
+  $('day-picker').addEventListener('click', (e) => {
+    const chip = (e.target as HTMLElement).closest('.day-chip') as HTMLElement | null;
+    if (!chip) return;
+    activeDay = Number(chip.dataset.day);
+    document.querySelectorAll('.day-chip').forEach((c) => c.classList.toggle('active', c === chip));
+    $('addall-day').textContent = DAYS[activeDay];
+  });
+
+  // filters (OR within facet, AND across) + search
+  const rows = Array.from(document.querySelectorAll<HTMLElement>('.cat-row'));
+  const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.chip[data-facet]'));
+  const active: Record<string, Set<string>> = { intent: new Set(), length: new Set(), style: new Set() };
+  const searchEl = $('cat-search') as HTMLInputElement;
+  const split = (v?: string) => (v ? v.split('|').filter(Boolean) : []);
+
+  function applyFilters() {
     const q = searchEl.value.trim().toLowerCase();
     let visible = 0;
     for (const row of rows) {
-      const hit = !q || row.dataset.title!.includes(q) || row.dataset.intents!.includes(q);
-      row.hidden = !hit;
-      if (hit) visible++;
+      const okI = active.intent.size === 0 || split(row.dataset.intent).some((x) => active.intent.has(x));
+      const okL = active.length.size === 0 || active.length.has(row.dataset.length || '');
+      const okS = active.style.size === 0 || split(row.dataset.style).some((x) => active.style.has(x));
+      const okQ = !q || row.dataset.title!.includes(q);
+      const show = okI && okL && okS && okQ;
+      row.hidden = !show; if (show) visible++;
     }
-    if (catNone) catNone.hidden = visible > 0;
+    const anyF = active.intent.size + active.length.size + active.style.size > 0 || q;
+    ($('cat-clear') as HTMLButtonElement).hidden = !anyF;
+    $('cat-none').hidden = visible > 0;
+    $('cat-count').textContent = anyF ? `${visible} of ${rows.length}` : '';
+  }
+  chips.forEach((chip) => chip.addEventListener('click', () => {
+    const f = chip.dataset.facet!, v = chip.dataset.value!, set = active[f];
+    if (set.has(v)) { set.delete(v); chip.setAttribute('aria-pressed', 'false'); chip.classList.remove('active'); }
+    else { set.add(v); chip.setAttribute('aria-pressed', 'true'); chip.classList.add('active'); }
+    applyFilters();
+  }));
+  searchEl.addEventListener('input', applyFilters);
+  $('cat-clear').addEventListener('click', () => {
+    for (const k of Object.keys(active)) active[k].clear();
+    chips.forEach((c) => { c.setAttribute('aria-pressed', 'false'); c.classList.remove('active'); });
+    searchEl.value = ''; applyFilters();
   });
 
+  // add all visible (filtered) to the active day
+  $('cat-addall').addEventListener('click', () => {
+    const visible = rows.filter((r) => !r.hidden);
+    let added = 0;
+    const items = load();
+    for (const r of visible) {
+      const slug = r.dataset.slug!;
+      if (!items.some((i) => i.slug === slug && i.day === activeDay)) { items.push({ slug, day: activeDay }); added++; }
+    }
+    save(items); render();
+    toast(`Added ${added} ${added === 1 ? 'class' : 'classes'} to ${DAYS[activeDay]}.`);
+  });
+
+  // --- .ics export ------------------------------------------------------------
+  function pad(n: number) { return String(n).padStart(2, '0'); }
+  function fmt(d: Date) { return `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`; }
+  function nextDate(dayMon0: number, hh: number, mm: number) {
+    const now = new Date();
+    const targetJs = (dayMon0 + 1) % 7; // Mon(0)->1 … Sun(6)->0
+    const d = new Date(now); d.setHours(hh, mm, 0, 0);
+    let add = (targetJs - d.getDay() + 7) % 7;
+    if (add === 0 && d <= now) add = 7;
+    d.setDate(d.getDate() + add);
+    return d;
+  }
+  function buildICS() {
+    const items = load();
+    const [hh, mm] = ($('cw-time') as HTMLInputElement).value.split(':').map(Number);
+    const remind = Number(($('cw-remind') as HTMLSelectElement).value);
+    const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Yin Yoga with Katie//Calendar//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH'];
+    items.forEach((it, idx) => {
+      const m = CAT.get(it.slug); if (!m) return;
+      const start = nextDate(it.day, hh || 18, mm || 0);
+      const end = new Date(start.getTime() + 45 * 60000);
+      const url = location.origin + m.href;
+      lines.push(
+        'BEGIN:VEVENT',
+        `UID:yyk-${it.slug}-${it.day}-${idx}@yinyogawithkatie.com`,
+        `DTSTAMP:${fmt(new Date())}`,
+        `DTSTART:${fmt(start)}`,
+        `DTEND:${fmt(end)}`,
+        `RRULE:FREQ=WEEKLY;BYDAY=${DOW[it.day]}`,
+        `SUMMARY:Yin — ${m.head.replace(/[,;\\]/g, ' ')}`,
+        `DESCRIPTION:Time for your Yin practice with Katie.\\nPress play: ${url}`,
+        `URL:${url}`,
+      );
+      if (remind > 0) lines.push('BEGIN:VALARM', `TRIGGER:-PT${remind}M`, 'ACTION:DISPLAY', 'DESCRIPTION:Time for Yin', 'END:VALARM');
+      else lines.push('BEGIN:VALARM', 'TRIGGER:PT0M', 'ACTION:DISPLAY', 'DESCRIPTION:Time for Yin', 'END:VALARM');
+      lines.push('END:VEVENT');
+    });
+    lines.push('END:VCALENDAR');
+    return lines.join('\r\n');
+  }
+  exportBtn.addEventListener('click', () => {
+    if (!load().length) return;
+    const blob = new Blob([buildICS()], { type: 'text/calendar;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'yin-yoga-with-katie.ics';
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    toast('Calendar downloaded — open it to add the week to Google, Apple or Outlook.');
+  });
+
+  let toastT: number | undefined;
+  function toast(t: string) { msg.textContent = t; clearTimeout(toastT); toastT = window.setTimeout(() => (msg.textContent = ''), 5000); }
+
   render();
+  applyFilters();
 </script>
