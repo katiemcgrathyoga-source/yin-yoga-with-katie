@@ -2,107 +2,152 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CalendarNav from '../components/CalendarNav.astro';
-import { derivedThumb, lenLabel, byRecencyThenWatch, videoHeadline } from '../lib/video';
-import type { VideoData } from '../lib/video';
-import { WEEK_THEMES } from '../data/weekThemes';
+import { derivedThumb, lenLabel, videoHeadline } from '../lib/video';
+import { MONTHLY_PLAN, MONTHLY_INTRO } from '../data/monthlyPlan';
+import { SITE } from '../data/site';
 
-// A themed week. Each day pulls one real class matching its theme, ranked by
-// recency-then-watch and de-duped across the week. Evergreen — the rhythm is the
-// same each week; "today" is highlighted client-side.
 const videos = await getCollection('videos');
-const ranked = [...videos].sort((a, b) => byRecencyThenWatch(a.data, b.data));
+const bySlug = new Map(videos.map((v) => [v.data.slug, v.data]));
+const weekly = MONTHLY_PLAN.map((s) => bySlug.get(s));
 
-// Allocate by priority (specific → broad), then restore Mon→Sun display order.
-const used = new Set<string>();
-const chosen = new Map<string, VideoData | undefined>();
-for (const w of [...WEEK_THEMES].sort((a, b) => a.priority - b.priority)) {
-  const pick =
-    ranked.find((v) => !used.has(v.data.slug) && w.match(v.data)) ??
-    ranked.find((v) => !used.has(v.data.slug));
-  if (pick) used.add(pick.data.slug);
-  chosen.set(w.day, pick?.data);
-}
-const plan = WEEK_THEMES.map((w) => ({ ...w, v: chosen.get(w.day) }));
+// Current month, baked at build (a rebuild rolls it forward).
+const now = new Date();
+const year = now.getFullYear();
+const month = now.getMonth();
+const monthName = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(now);
+const daysInMonth = new Date(year, month + 1, 0).getDate();
+const lead = (new Date(year, month, 1).getDay() + 6) % 7; // Monday-first offset
+
+const cells: (number | null)[] = [];
+for (let i = 0; i < lead; i++) cells.push(null);
+for (let d = 1; d <= daysInMonth; d++) cells.push(d);
+while (cells.length % 7) cells.push(null);
+const weeks: (number | null)[][] = [];
+for (let i = 0; i < cells.length; i += 7) weeks.push(cells.slice(i, i + 7));
+
+const mon = (d: number) =>
+  new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(year, month, d));
+const rangeLabel = (week: (number | null)[]) => {
+  const days = week.filter((d): d is number => d !== null);
+  return days.length ? `${mon(days[0])} – ${mon(days[days.length - 1])}` : '';
+};
+
+const signup = SITE.calendarSignupAction;
+
+const ogImage = new URL('/og/card.png', Astro.site);
+ogImage.searchParams.set('t', 'My Monthly Yin Calendar');
+ogImage.searchParams.set('s', 'One class a week — a rhythm you can keep');
 ---
 
 <BaseLayout
-  title="A Week of Yin — Calendar — Yin Yoga with Katie"
-  description="A gentle weekly rhythm of Yin Yoga — a themed practice for every day, from Monday's ease-in to Sunday's wind-down. Come back daily, or pick the day that fits how you feel."
+  title="This Month's Yin Yoga Calendar — Yin Yoga with Katie"
+  description="Your Yin Yoga rhythm for the month — one class to practise each week, any day that suits you. Sign up to get a gentle email each week telling you which class to do."
+  image={ogImage.href}
 >
   <div class="wrap">
     <header class="hero">
-      <p class="eyebrow">Practice · Rhythm</p>
-      <h1>A Week of Yin</h1>
-      <p class="alt">one practice for each day — a rhythm you can keep</p>
+      <p class="eyebrow">Practice · This Month</p>
+      <h1>This Month</h1>
+      <p class="alt">one class a week — a gentle rhythm you can keep</p>
     </header>
 
-    <CalendarNav active="week" />
+    <CalendarNav active="month" />
 
-    <p class="intro">
-      You don't have to decide what to practise. Here's a week, themed day by day — come back daily
-      to build the habit, or just pick the day that matches how you feel right now.
-    </p>
+    <p class="page-intro">{MONTHLY_INTRO}</p>
 
-    <!-- Filled client-side with today's practice; hidden until then. -->
-    <a class="today-banner" id="today-banner" href="#" hidden>
-      <span class="tb-label"><span class="tb-dot"></span> Today · <b id="tb-day"></b></span>
-      <span class="tb-theme" id="tb-theme"></span>
-      <span class="tb-go">Practise now →</span>
-    </a>
+    <section class="cal-signup-wrap" aria-label="Weekly reminders">
+      <div class="cal-signup-card">
+        <h2>Never miss a week</h2>
+        <p>Drop your email and I'll send a gentle nudge each week telling you which class to do.</p>
+        {
+          signup ? (
+            <>
+              <form class="cal-signup" id="cal-signup" action={signup} method="post" target="cal_frame">
+                <input type="text" name="fields[name]" placeholder="First name" autocomplete="given-name" required aria-label="First name" />
+                <input type="email" name="fields[email]" placeholder="you@email.com" autocomplete="email" required aria-label="Email" />
+                <input type="hidden" name="ml-submit" value="1" />
+                <input type="hidden" name="anticsrf" value="true" />
+                <button type="submit" class="btn-cta">Notify me each week →</button>
+              </form>
+              <p class="cal-fine">No spam, ever. Unsubscribe any time.</p>
+              <div class="cal-success" id="cal-success" hidden role="status">
+                <p><strong>You're in 🌙</strong> I'll email you each week with this week's class.</p>
+              </div>
+              <iframe name="cal_frame" class="lm-frame" title="Sign-up" tabindex="-1" aria-hidden="true"></iframe>
+            </>
+          ) : (
+            <p class="cal-soon">Weekly email reminders are coming soon — check back shortly.</p>
+          )
+        }
+      </div>
+    </section>
 
-    <div class="week">
+    <h2 class="cal-month-title">{monthName}</h2>
+
+    <div class="month-weeks">
       {
-        plan.map((d) => (
-          <div class="day-card" data-jsday={d.jsDay} data-href={d.v ? `/videos/${d.v.slug}` : ''}>
-            <div class="day-head">
-              <span class="day-name">{d.day}</span>
-              <span class="today-pill" hidden>Today</span>
-              <span class="day-theme">{d.theme}</span>
-              <span class="day-note">{d.note}</span>
+        weeks.map((week, i) => {
+          const v = weekly[Math.min(i, weekly.length - 1)];
+          return (
+            <div class="mw" data-week={i}>
+              <div class="mw-dates">
+                <div class="mw-range">Week {i + 1} · {rangeLabel(week)}</div>
+                <div class="mw-days" aria-hidden="true">
+                  {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((dl) => <span class="mw-dl">{dl}</span>)}
+                  {week.map((d) => (
+                    <span class="mw-day" data-date={d ?? ''}>{d ?? ''}</span>
+                  ))}
+                </div>
+              </div>
+              <div class="mw-video">
+                {v ? (
+                  <a class="mw-class" href={`/videos/${v.slug}`}>
+                    <span class="mw-thumb">
+                      <img src={derivedThumb(v)} alt={v.title} loading="lazy" width="480" height="270" />
+                      <span class="day-len">{lenLabel(v)}</span>
+                    </span>
+                    <span class="mw-info">
+                      <span class="mw-eyebrow">This week's class</span>
+                      <span class="mw-title">{videoHeadline(v)}</span>
+                    </span>
+                  </a>
+                ) : (
+                  <p class="mw-rest">A week to rest, or repeat a favourite.</p>
+                )}
+              </div>
             </div>
-            {d.v ? (
-              <a class="day-class" href={`/videos/${d.v.slug}`}>
-                <span class="day-thumb">
-                  <img src={derivedThumb(d.v)} alt={d.v.title} loading="lazy" width="480" height="270" />
-                  <span class="day-len">{lenLabel(d.v)}</span>
-                </span>
-                <span class="day-title">{videoHeadline(d.v)}</span>
-              </a>
-            ) : (
-              <p class="day-empty">A class lands here soon.</p>
-            )}
-          </div>
-        ))
+          );
+        })
       }
     </div>
 
     <footer>
-      <p class="src">The rhythm repeats each week. Miss a day? Just pick it up tomorrow.</p>
+      <p class="src">
+        Practise each week's class on whatever day suits you. Prefer your own plan?
+        <a href="/calendar/build">Build your own calendar →</a>
+      </p>
     </footer>
   </div>
 </BaseLayout>
 
 <script>
-  // Highlight today's card and surface it in the banner. Progressive enhancement:
-  // with JS off, the full week still renders and every day is reachable.
-  const today = new Date().getDay(); // 0=Sun … 6=Sat
-  const card = document.querySelector<HTMLElement>(`.day-card[data-jsday="${today}"]`);
-  if (card) {
-    card.classList.add('is-today');
-    card.querySelector<HTMLElement>('.today-pill')?.removeAttribute('hidden');
-    card.scrollIntoView?.({ block: 'nearest' });
-
-    const href = card.dataset.href;
-    const dayName = card.querySelector('.day-name')?.textContent ?? '';
-    const theme = card.querySelector('.day-theme')?.textContent ?? '';
-    const banner = document.getElementById('today-banner') as HTMLAnchorElement | null;
-    if (banner && href) {
-      banner.href = href;
-      const dayEl = document.getElementById('tb-day');
-      const themeEl = document.getElementById('tb-theme');
-      if (dayEl) dayEl.textContent = dayName;
-      if (themeEl) themeEl.textContent = theme;
-      banner.removeAttribute('hidden');
-    }
+  // Highlight today and the current week (accurate regardless of last build date).
+  const now = new Date();
+  const cell = [...document.querySelectorAll<HTMLElement>('.mw-day')].find((c) => c.dataset.date === String(now.getDate()));
+  if (cell) {
+    cell.classList.add('is-today');
+    cell.closest('.mw')?.classList.add('is-this-week');
+    cell.closest('.mw')?.scrollIntoView?.({ block: 'nearest' });
   }
+
+  // Lead-magnet-style success toggle for the weekly signup.
+  const form = document.getElementById('cal-signup') as HTMLFormElement | null;
+  const success = document.getElementById('cal-success');
+  form?.addEventListener('submit', () => {
+    setTimeout(() => {
+      form.hidden = true;
+      document.querySelector('.cal-fine')?.setAttribute('hidden', '');
+      success?.removeAttribute('hidden');
+    }, 350);
+  });
 </script>

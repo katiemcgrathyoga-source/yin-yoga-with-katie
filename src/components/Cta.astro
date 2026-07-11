@@ -13,8 +13,8 @@ interface Props {
 }
 const {
   eyebrow = 'Practise with me',
-  heading = 'Keep the practice going',
-  body = 'Every class here is free to follow on YouTube. When you’d like a guided path that takes the deciding out of it, join the membership — or start with a free program right here.',
+  heading = 'A gentle place to start',
+  body = 'New here? Take a free members-only class — my gift — then follow my monthly calendar so you always know what to practise next.',
 } = Astro.props;
 ---
 
@@ -23,8 +23,8 @@ const {
   <h2>{heading}</h2>
   <p>{body}</p>
   <div class="cta-actions">
-    <a class="btn-cta" href={SITE.membershipUrl} target="_blank" rel="noopener">Join the membership</a>
-    <a class="cta-secondary" href="/programs">Or follow a free program →</a>
+    <a class="btn-cta" href="/free-class">Get a free class</a>
+    <a class="cta-secondary" href="/calendar">Follow my monthly calendar →</a>
   </div>
-  <p class="cta-tertiary">New to Yin? <a href="/free-class">Get a free class emailed to you →</a></p>
+  <p class="cta-tertiary">Ready for more? <a href={SITE.membershipUrl} target="_blank" rel="noopener">Join the membership →</a></p>
 </div>

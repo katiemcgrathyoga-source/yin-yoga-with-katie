@@ -1,11 +1,10 @@
 ---
 interface Props {
-  active: 'week' | 'month' | 'build';
+  active: 'month' | 'build';
 }
 const { active } = Astro.props;
 const tabs = [
-  { key: 'week', label: 'This Week', href: '/calendar' },
-  { key: 'month', label: 'This Month', href: '/calendar/month' },
+  { key: 'month', label: 'This Month', href: '/calendar' },
   { key: 'build', label: 'Build Your Own', href: '/calendar/build' },
 ];
 ---

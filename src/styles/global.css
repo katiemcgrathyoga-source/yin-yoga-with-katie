@@ -433,11 +433,11 @@ routine-player.is-done .rp-done { display: flex; }
   background: var(--plum); color: #fff; font-size: 12px; display: grid; place-items: center;
 }
 .lm-form { display: flex; flex-direction: column; gap: 12px; }
-.lm-form input[type="email"] {
+.lm-form input[type="email"], .lm-form input[type="text"] {
   font: inherit; font-size: 16px; padding: 14px 16px; border-radius: 12px;
   border: 1px solid var(--line); background: var(--paper-2); color: var(--ink); width: 100%;
 }
-.lm-form input[type="email"]:focus { border-color: var(--plum); outline: none; }
+.lm-form input[type="email"]:focus, .lm-form input[type="text"]:focus { border-color: var(--plum); outline: none; }
 .lm-form .btn-cta {
   cursor: pointer; padding: 14px 20px; font-size: 16px; font-weight: 600; font-family: inherit;
   background: var(--plum); color: #fff; border: none; border-radius: 12px; width: 100%;
@@ -841,6 +841,44 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .cal-tab:hover { border-color: var(--plum); color: var(--ink); }
 .cal-tab.active { background: var(--plum); color: #fff; border-color: var(--plum); }
 
+/* ---- This Month: weekly-reminder signup ---- */
+.cal-signup-wrap { margin: 26px 0 0; }
+.cal-signup-card { border: 1px solid var(--line); border-radius: 16px; background: var(--paper-2); padding: 24px 22px; text-align: center; }
+.cal-signup-card h2 { margin: 0 0 6px; font-size: 24px; }
+.cal-signup-card > p { margin: 0 auto 16px; max-width: 46ch; color: var(--ink-soft); font-size: 15.5px; line-height: 1.5; }
+.cal-signup { display: flex; flex-direction: column; gap: 10px; max-width: 400px; margin: 0 auto; }
+.cal-signup input[type="text"], .cal-signup input[type="email"] {
+  font: inherit; font-size: 16px; padding: 13px 15px; border-radius: 11px;
+  border: 1px solid var(--line); background: var(--paper); color: var(--ink); width: 100%;
+}
+.cal-signup input:focus { border-color: var(--plum); outline: none; }
+.cal-signup .btn-cta { cursor: pointer; padding: 13px 18px; font-size: 15.5px; font-weight: 600; font-family: inherit; background: var(--plum); color: #fff; border: none; border-radius: 11px; }
+.cal-signup .btn-cta:hover { background: var(--plum-deep); }
+.cal-fine { font-size: 12.5px; color: var(--ink-soft); margin: 12px 0 0; }
+.cal-success p { margin: 0; font-size: 16px; color: var(--plum-deep); }
+.cal-soon { color: var(--ink-soft); font-style: italic; margin: 4px 0 0; }
+
+/* ---- This Month: week rows ---- */
+.cal-month-title { text-align: center; font-size: 26px; margin: 36px 0 16px; }
+.month-weeks { display: flex; flex-direction: column; gap: 14px; }
+.mw { display: grid; grid-template-columns: 1fr; gap: 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper-2); padding: 16px; }
+@media (min-width: 640px) { .mw { grid-template-columns: 240px 1fr; align-items: center; } }
+.mw.is-this-week { border-color: var(--plum); box-shadow: 0 0 0 1px var(--plum); }
+.mw-range { font-family: var(--display); font-size: 15px; color: var(--plum); margin-bottom: 10px; }
+.mw.is-this-week .mw-range::after { content: " · this week"; color: var(--gold-solid); font-style: italic; }
+.mw-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px 2px; max-width: 230px; }
+.mw-dl { font-size: 10.5px; letter-spacing: .03em; text-transform: uppercase; color: var(--ink-soft); text-align: center; }
+.mw-day { text-align: center; font-size: 13px; color: var(--ink); padding: 4px 0; border-radius: 50%; font-variant-numeric: tabular-nums; }
+.mw-day.is-today { background: var(--plum); color: #fff; font-weight: 600; }
+.mw-class { display: flex; align-items: center; gap: 14px; border: none; }
+.mw-thumb { position: relative; flex: none; width: 132px; line-height: 0; }
+.mw-thumb img { width: 132px; height: 74px; object-fit: cover; border-radius: 9px; }
+.mw-info { display: flex; flex-direction: column; gap: 3px; }
+.mw-eyebrow { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--gold-solid); }
+.mw-title { font-family: var(--display); font-size: 18px; color: var(--plum-deep); line-height: 1.2; }
+.mw-class:hover .mw-title { color: var(--plum); }
+.mw-rest { margin: 0; color: var(--ink-soft); font-style: italic; }
+
 /* ---- Custom weekly calendar builder ---- */
 .cal-week { margin-top: 26px; }
 .cw-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
@@ -869,6 +907,8 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .cw-move { font: inherit; font-size: 12.5px; padding: 4px 6px; border-radius: 7px; border: 1px solid var(--line); background: var(--paper); color: var(--ink-soft); }
 .cw-del { font: inherit; font-size: 13px; width: 28px; height: 28px; border-radius: 7px; cursor: pointer; border: 1px solid var(--line); background: var(--paper); color: var(--ink-soft); }
 .cw-del:hover { border-color: var(--gold-solid); color: var(--gold-solid); }
+.cw-gcal { font-size: 12.5px; padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line); color: var(--plum-deep); background: var(--paper); white-space: nowrap; }
+.cw-gcal:hover { border-color: var(--plum); color: var(--plum); }
 .cw-msg { font-size: 14px; color: var(--plum); min-height: 1.2em; margin: 10px 0 0; text-align: center; }
 .day-chip.active { background: var(--plum); color: #fff; border-color: var(--plum); }
 .cat-addall { cursor: pointer; }
