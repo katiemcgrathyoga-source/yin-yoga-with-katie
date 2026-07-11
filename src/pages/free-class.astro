@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Branded OG card for shares.
+const ogImage = new URL('/og/card.png', Astro.site);
+ogImage.searchParams.set('t', 'A free Yin class');
+ogImage.searchParams.set('s', 'A members-only class, on the house');
+
+// MailerLite form (account 2503148, form L6O8I1). The form posts straight to
+// MailerLite; the free class is delivered by the welcome email automation.
+const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/192665473777665865/subscribe';
+---
+
+<BaseLayout
+  title="Get a Free Members-Only Yin Yoga Class — Yin Yoga with Katie"
+  description="Pop in your email and I'll send you a full members-only Yin Yoga class, free — yours to keep and practise any time. No experience needed."
+  image={ogImage.href}
+>
+  <div class="wrap">
+    <header class="hero">
+      <p class="eyebrow">A little gift</p>
+      <h1>A free members-only class</h1>
+      <p class="alt">a full Yin class from inside the membership — yours, on the house</p>
+    </header>
+
+    <p class="page-intro">
+      Pop your email below and I'll send you a complete members-only Yin Yoga class to keep and
+      practise whenever you like. It's a lovely way to feel what a longer, guided practice with me
+      is like — slow, calming, and kind to your body. No experience needed; come as you are.
+    </p>
+
+    <section class="lm">
+      <ul class="lm-points">
+        <li>A full members-only class, free to keep</li>
+        <li>Follow along any time — nothing to keep up with</li>
+        <li>A few gentle notes after, to help you get the most from it</li>
+      </ul>
+
+      <form
+        class="lm-form"
+        id="lm-form"
+        action={ML_ACTION}
+        method="post"
+        target="ml_frame"
+        aria-label="Get your free class"
+      >
+        <label class="sr-only" for="lm-email">Email address</label>
+        <input
+          id="lm-email"
+          type="email"
+          name="fields[email]"
+          placeholder="you@email.com"
+          autocomplete="email"
+          required
+          aria-required="true"
+        />
+        <input type="hidden" name="ml-submit" value="1" />
+        <input type="hidden" name="anticsrf" value="true" />
+        <button type="submit" class="btn-cta">Send me the free class →</button>
+      </form>
+
+      <p class="lm-fine">No spam, ever. Unsubscribe any time. I'll only send Yin.</p>
+
+      <div class="lm-success" id="lm-success" hidden role="status">
+        <h2>Check your inbox 🎁</h2>
+        <p>
+          Your free class is on its way. If it's not there in a minute or two, peek in your
+          spam or promotions folder and mark it "not spam" so you don't miss what's next.
+        </p>
+        <a class="cta-secondary" href="/">← Explore the free class library</a>
+      </div>
+    </section>
+
+    <iframe name="ml_frame" id="ml_frame" class="lm-frame" title="Sign-up" tabindex="-1" aria-hidden="true"></iframe>
+  </div>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('lm-form') as HTMLFormElement | null;
+  const success = document.getElementById('lm-success');
+  const fine = document.querySelector('.lm-fine') as HTMLElement | null;
+  form?.addEventListener('submit', () => {
+    // The POST goes to MailerLite in the hidden iframe; show our own thank-you.
+    setTimeout(() => {
+      form.hidden = true;
+      if (fine) fine.hidden = true;
+      if (success) success.hidden = false;
+      success?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 350);
+  });
+</script>
