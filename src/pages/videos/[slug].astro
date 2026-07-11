@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { lenLabel, videoHeadline, videoSubtitle, videoFaq } from '../../lib/video';
 import { SITE } from '../../data/site';
+import { PROGRAMS, resolveProgramClasses } from '../../data/programs';
 
 /**
  * One reusable template for every video class. `getStaticPaths` emits a static
@@ -16,16 +17,26 @@ export async function getStaticPaths() {
   const poseNames = Object.fromEntries(
     (await getCollection('poses')).map((p) => [p.data.slug, p.data.name_en]),
   );
+  // video slug → the guided programs that include it (so each class page can point
+  // viewers to the fuller path it belongs to).
+  const programsByVideo = new Map<string, { slug: string; title: string; tagline: string }[]>();
+  for (const p of PROGRAMS) {
+    for (const c of resolveProgramClasses(p, videos)) {
+      const arr = programsByVideo.get(c.data.slug) ?? [];
+      arr.push({ slug: p.slug, title: p.title, tagline: p.tagline });
+      programsByVideo.set(c.data.slug, arr);
+    }
+  }
   // Site rule: no pages for classes under 10 minutes (shorts / promos).
   return videos
     .filter((video) => video.data.length_minutes >= 10)
     .map((video) => ({
       params: { slug: video.data.slug },
-      props: { video, poseNames },
+      props: { video, poseNames, programs: programsByVideo.get(video.data.slug) ?? [] },
     }));
 }
 
-const { video, poseNames } = Astro.props;
+const { video, poseNames, programs } = Astro.props;
 const d = video.data;
 // Every held pose in a chapter (new `poses` array, falling back to the legacy single `pose`).
 const chapterPoses = (c: { pose?: string; poses?: string[] }) =>
@@ -223,11 +234,34 @@ const eyebrow = ['Yin Yoga', ...d.intent_tags.map(capitalise)].join(' · ');
       </p>
     </section>
 
+    {/* Programs that include this class — a nudge toward a fuller, guided path */}
+    {
+      programs.length > 0 && (
+        <section class="in-programs">
+          <h2>{programs.length === 1 ? 'Part of a program' : 'Part of these programs'}</h2>
+          <p class="in-programs-note">
+            This class belongs to {programs.length === 1 ? 'a guided program' : 'guided programs'} — a
+            short, ordered path you can follow instead of choosing a video each day.
+          </p>
+          <div class="in-programs-list">
+            {programs.map((p) => (
+              <a class="in-program" href={`/programs/${p.slug}`}>
+                <span class="in-program-title">{p.title}</span>
+                {p.tagline && <span class="in-program-tag">{p.tagline}</span>}
+                <span class="in-program-go" aria-hidden="true">→</span>
+              </a>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
     {/* Single CTA — the free two-hour retreat */}
     <div class="membership">
-      <p class="eyebrow">A little gift</p>
-      <h2>A free two-hour retreat, on me</h2>
-      <p>Enjoyed this? Treat yourself to two hours of pure rest — a guided Yin, restorative and Yoga Nidra journey to calm your nervous system. Pop in your email and it's yours to keep.</p>
+      <p class="eyebrow">A gift from me</p>
+      <h2>Two hours to completely switch off</h2>
+      <p class="cta-members">✦ A members-only class — free for you</p>
+      <p>Treat yourself to my free two-hour Yin, restorative and Yoga Nidra retreat. Free, and yours to keep.</p>
       <div class="cta-actions">
         <a class="btn-cta" href="/free-class">Send me the free retreat →</a>
       </div>

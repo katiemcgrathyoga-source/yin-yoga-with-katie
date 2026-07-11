@@ -9,15 +9,16 @@ interface Props {
   body?: string;
 }
 const {
-  eyebrow = 'A little gift',
-  heading = 'A free two-hour retreat, on me',
-  body = "Give yourself two hours of pure rest — a guided Yin, restorative and Yoga Nidra journey to calm your nervous system and melt off a stressful week. Pop in your email and it's yours to keep.",
+  eyebrow = 'A gift from me',
+  heading = 'Two hours to completely switch off',
+  body = 'Treat yourself to my free two-hour Yin, restorative and Yoga Nidra retreat. Free, and yours to keep.',
 } = Astro.props;
 ---
 
 <div class="membership cta-block">
   <p class="eyebrow">{eyebrow}</p>
   <h2>{heading}</h2>
+  <p class="cta-members">✦ A members-only class — free for you</p>
   <p>{body}</p>
   <div class="cta-actions">
     <a class="btn-cta" href="/free-class">Send me the free retreat →</a>

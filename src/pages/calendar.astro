@@ -133,7 +133,14 @@ const presentStyles = STYLE_OPTS.filter((o) => videos.some((v) => styleTags(v).i
         </div>
       )}
 
-      <div class="filters" id="cat-filters">
+      <div class="cat-controls">
+        <input type="search" class="cat-search" id="cat-search" placeholder="Search classes…" aria-label="Search classes" />
+        <button type="button" class="cat-filter-toggle" id="cat-filter-toggle" aria-expanded="false" aria-controls="cat-filters">
+          Filter <span class="caret" aria-hidden="true">▾</span>
+        </button>
+      </div>
+
+      <div class="filters collapsible" id="cat-filters" hidden>
         {presentIntents.length > 0 && (
           <div class="facet"><span class="facet-label">Intent</span>
             <div class="chips">{presentIntents.map((b) => (
@@ -153,12 +160,12 @@ const presentStyles = STYLE_OPTS.filter((o) => videos.some((v) => styleTags(v).i
             ))}</div>
           </div>
         )}
-        <input type="search" class="cat-search" id="cat-search" placeholder="Search classes…" aria-label="Search classes" />
-        <div class="filter-meta">
-          <button type="button" class="chip chip-clear" id="cat-clear" hidden>Clear filters</button>
-          <button type="button" class="chip cat-addall" id="cat-addall" disabled>Add all to selected day</button>
-          <span class="count" id="cat-count" aria-live="polite"></span>
-        </div>
+      </div>
+
+      <div class="filter-meta">
+        <button type="button" class="chip chip-clear" id="cat-clear" hidden>Clear filters</button>
+        <button type="button" class="chip cat-addall" id="cat-addall" disabled>Add all to selected day</button>
+        <span class="count" id="cat-count" aria-live="polite"></span>
       </div>
 
       <p class="cat-none" id="cat-none" hidden>No classes match those filters.</p>
@@ -187,6 +194,12 @@ const presentStyles = STYLE_OPTS.filter((o) => videos.some((v) => styleTags(v).i
       </ul>
     </section>
   </div>
+
+  {/* Mobile: a sticky reminder of which day you're adding to — tap to jump back up */}
+  <button type="button" class="cb-sticky" id="cb-sticky" hidden aria-label="Jump back to the calendar">
+    <span class="cb-sticky-txt" id="cb-sticky-txt"></span>
+    <span class="cb-sticky-jump" aria-hidden="true">▲</span>
+  </button>
 </BaseLayout>
 
 <script>
@@ -282,8 +295,17 @@ const presentStyles = STYLE_OPTS.filter((o) => videos.some((v) => styleTags(v).i
     clearBtn.hidden = n === 0;
     const anyActive = Boolean(active);
     ($('cat-addall') as HTMLButtonElement).disabled = !anyActive;
-    document.querySelectorAll<HTMLButtonElement>('.cat-add').forEach((b) => { b.disabled = !anyActive; });
+    document.querySelectorAll<HTMLButtonElement>('.cat-add').forEach((b) => { if (!b.classList.contains('is-added')) b.disabled = !anyActive; });
+
+    // mobile sticky "adding to" reminder
+    const sticky = $('cb-sticky');
+    if (active) {
+      const onDay = items.filter((i) => i.date === active).length;
+      $('cb-sticky-txt').textContent = `Adding to ${shortDate(active)} · ${onDay} ${onDay === 1 ? 'class' : 'classes'}`;
+      sticky.hidden = false;
+    } else sticky.hidden = true;
   }
+  const shortDate = (s: string) => { const [y, m, d] = s.split('-').map(Number); return new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric' }).format(new Date(y, m - 1, d)); };
 
   const render = () => { renderGrid(); renderDay(); };
 
@@ -316,12 +338,33 @@ const presentStyles = STYLE_OPTS.filter((o) => videos.some((v) => styleTags(v).i
 
   clearBtn.addEventListener('click', () => { save([]); render(); toast('Cleared.'); });
 
+  // inline "✓ Added" confirmation, right where the tap happened
+  function flashAdded(btn: HTMLButtonElement, label = 'Add') {
+    btn.textContent = '✓ Added'; btn.classList.add('is-added');
+    window.setTimeout(() => { btn.textContent = label; btn.classList.remove('is-added'); renderDay(); }, 1300);
+  }
+
   // catalogue add
   $('cat-list').addEventListener('click', (e) => {
     const btn = (e.target as HTMLElement).closest('.cat-add') as HTMLButtonElement | null;
     if (!btn || btn.disabled) return;
     add(btn.dataset.slug!, active);
-    toast('Added.');
+    flashAdded(btn);
+  });
+
+  // collapse/expand the granular filters (search + programs stay visible)
+  const filterToggle = $('cat-filter-toggle') as HTMLButtonElement;
+  const filtersEl = $('cat-filters');
+  filterToggle.addEventListener('click', () => {
+    const willOpen = filtersEl.hasAttribute('hidden');
+    if (willOpen) filtersEl.removeAttribute('hidden'); else filtersEl.setAttribute('hidden', '');
+    filterToggle.setAttribute('aria-expanded', String(willOpen));
+    filterToggle.classList.toggle('open', willOpen);
+  });
+
+  // tap the sticky bar to jump back up to the calendar
+  $('cb-sticky').addEventListener('click', () => {
+    document.querySelector('.cb')!.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
   // filters + search (intent / length / style / program)
@@ -347,9 +390,13 @@ const presentStyles = STYLE_OPTS.filter((o) => videos.some((v) => styleTags(v).i
     $('cat-none').hidden = visible > 0;
     $('cat-count').textContent = anyF ? `${visible} of ${rows.length}` : '';
     const addAll = $('cat-addall') as HTMLButtonElement;
-    addAll.textContent = activeF.program.size === 1
+    if (!addAll.classList.contains('is-added')) addAll.textContent = activeF.program.size === 1
       ? 'Add this program to selected day'
       : 'Add all to selected day';
+    // surface active granular-filter count on the collapsed toggle
+    const nGranular = activeF.intent.size + activeF.length.size + activeF.style.size;
+    filterToggle.innerHTML = `Filter${nGranular ? ` (${nGranular})` : ''} <span class="caret" aria-hidden="true">▾</span>`;
+    filterToggle.classList.toggle('open', !filtersEl.hasAttribute('hidden'));
   }
   chips.forEach((chip) => chip.addEventListener('click', () => {
     const f = chip.dataset.facet!, v = chip.dataset.value!, set = activeF[f];
@@ -370,13 +417,15 @@ const presentStyles = STYLE_OPTS.filter((o) => videos.some((v) => styleTags(v).i
 
   // add all visible to the active day (a whole program, or a filtered set)
   $('cat-addall').addEventListener('click', () => {
-    if (!active) return;
+    const addAll = $('cat-addall') as HTMLButtonElement;
+    if (!active || addAll.disabled) return;
     const items = load(); let added = 0;
     rows.filter((r) => !r.hidden).forEach((r) => {
       const slug = r.dataset.slug!;
       if (!items.some((i) => i.slug === slug && i.date === active)) { items.push({ slug, date: active }); added++; }
     });
-    save(items); render(); toast(`Added ${added} to ${fmtDate(active)}.`);
+    const lbl = addAll.textContent || 'Add all to selected day';
+    save(items); render(); flashAdded(addAll, lbl); toast(`Added ${added} to ${fmtDate(active)}.`);
   });
 
   // --- calendar exports -------------------------------------------------------
@@ -442,7 +491,7 @@ const presentStyles = STYLE_OPTS.filter((o) => videos.some((v) => styleTags(v).i
   render();
   applyFilters();
   if (preselected) {
-    $('cat-filters').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    document.querySelector('.catalogue')!.scrollIntoView({ behavior: 'smooth', block: 'start' });
     toast(`Showing the “${preselected}” classes — pick a day, then Add this program to it.`);
   }
 </script>

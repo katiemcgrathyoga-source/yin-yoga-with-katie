@@ -99,7 +99,10 @@ const nav = [
         <a class="brand" href="/" aria-label="Yin Yoga with Katie — home">
           <img src="/brand/wordmark-deep-sage.png" alt="Yin Yoga with Katie" class="brand-logo" width="176" height="30" />
         </a>
-        <nav class="nav" aria-label="Primary">
+        <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav">
+          <span class="nav-toggle-bars" aria-hidden="true"></span>
+        </button>
+        <nav class="nav" id="primary-nav" aria-label="Primary">
           {
             nav.map((item) => (
               <a href={item.href} aria-current={item.match(path) ? 'page' : undefined}>
@@ -110,6 +113,19 @@ const nav = [
         </nav>
       </div>
     </header>
+    <script>
+      const t = document.getElementById('nav-toggle');
+      const n = document.getElementById('primary-nav');
+      if (t && n) {
+        const close = () => { n.classList.remove('open'); t.setAttribute('aria-expanded', 'false'); };
+        t.addEventListener('click', () => {
+          const open = n.classList.toggle('open');
+          t.setAttribute('aria-expanded', String(open));
+        });
+        n.addEventListener('click', (e) => { if ((e.target as HTMLElement).tagName === 'A') close(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+      }
+    </script>
     <slot />
     <footer class="site-footer">
       <img src="/brand/submark-deep-sage.png" alt="Yin Yoga with Katie" class="site-footer-logo" width="125" height="104" loading="lazy" />
