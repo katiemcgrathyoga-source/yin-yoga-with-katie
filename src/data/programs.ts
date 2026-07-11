@@ -34,7 +34,7 @@ export const PROGRAMS: ProgramDef[] = [
       'A run of gentle evening practices to close the day and carry you toward sleep. Follow them in order, or drop into whichever night you need.',
     accent: 'plum',
     unit: 'Day',
-    count: 12,
+    count: 5,
     match: (d) => d.intent_tags.includes('sleep'),
   },
   {
@@ -43,10 +43,10 @@ export const PROGRAMS: ProgramDef[] = [
     tagline: 'bend like bamboo',
     outcome: 'Become someone who moves through the week looser and lighter.',
     blurb:
-      'Long, slow holds that open the whole body, in the spirit of the channel favourite, Bend Like Bamboo. Start at the top and build from there.',
+      'Five long, slow practices that open the whole body. Do one every few days and feel the difference by the end.',
     accent: 'gold',
     unit: 'Class',
-    count: 8,
+    count: 5,
     match: (d) => d.intent_tags.includes('flexibility'),
   },
   {
@@ -55,11 +55,11 @@ export const PROGRAMS: ProgramDef[] = [
     tagline: 'undo the hours of sitting',
     outcome: 'Become someone whose hips and lower back feel open and easy.',
     blurb:
-      'Targeted hip and lower-back openers to release where the day collects. A little every few days goes a long way.',
+      'Four targeted hip and lower-back openers to release where the day collects. A little every few days goes a long way.',
     accent: 'plum',
     unit: 'Class',
-    count: 8,
-    match: (d) => d.intent_tags.includes('hips-lower-back'),
+    count: 4,
+    match: (d) => d.intent_tags.includes('hips') || d.intent_tags.includes('hips-lower-back'),
   },
   {
     slug: 'calm-reset',
@@ -67,24 +67,11 @@ export const PROGRAMS: ProgramDef[] = [
     tagline: 'downshift the day',
     outcome: 'Become someone who ends the day calm, not wired.',
     blurb:
-      'Slow, grounding practices to settle a busy nervous system. Roll one out whenever the day has been a lot.',
+      'Five slow, grounding practices to settle a busy nervous system. Roll one out whenever the day has been a lot.',
     accent: 'gold',
     unit: 'Class',
-    count: 8,
-    match: (d) => d.intent_tags.includes('nervous-system'),
-  },
-  {
-    slug: 'members-collection',
-    title: 'Members Collection',
-    tagline: 'the deeper practice',
-    outcome: 'Become someone whose practice goes deeper — meridian work, Yoga Nidra, and long, quiet holds.',
-    blurb:
-      'The members-only library in one place — meridian classes, Yoga Nidra and extra-long practices. Join the membership to unlock the full collection.',
-    accent: 'gold',
-    unit: 'Class',
-    count: 12,
-    membersProgram: true,
-    match: (d) => d.membership,
+    count: 5,
+    match: (d) => d.intent_tags.includes('nervous-system') || d.intent_tags.includes('stress'),
   },
 ];
 
@@ -95,7 +82,7 @@ export const PROGRAMS: ProgramDef[] = [
  */
 export function resolveProgramClasses(def: ProgramDef, videos: Video[]): Video[] {
   const matches = videos
-    .filter((v) => def.match(v.data))
+    .filter((v) => v.data.enriched && def.match(v.data))
     .sort((a, b) => byRecencyThenWatch(a.data, b.data));
   if (def.membersProgram) return matches.slice(0, def.count);
 

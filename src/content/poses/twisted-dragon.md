@@ -45,7 +45,7 @@ faq:
     a: "Twisted Dragon mainly works the hips, hip flexors, groin, outer hip and IT band. Adds an outer-hip and IT-band element to Dragon as the front knee is pressed open and the torso rotates."
   - q: "Do you need props for Twisted Dragon?"
     a: "You don't have to, but a folded blanket or block can make Twisted Dragon more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
-related_poses: ["dragon", "low-dragon", "high-dragon", "cat-pulling-its-tail", "reclined-twist"]
+related_poses: ["dragon", "cat-pulling-its-tail", "reclined-twist", "swan"]
 youtube_video_id: ""
 images:
   - "/poses/twisted-dragon.jpg"

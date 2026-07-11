@@ -99,7 +99,8 @@ const videos = defineCollection({
           time: z.string().min(1), // display timestamp, e.g. "1:27:50"
           seconds: z.number().int().nonnegative(), // deep-link offset
           title: z.string().min(1),
-          pose: z.string().optional(), // slug → /poses/[slug]
+          pose: z.string().optional(), // legacy single slug → /poses/[slug] (kept for older files)
+          poses: z.array(z.string()).optional(), // slugs of every held pose in this chapter, in order
         }),
       )
       .default([]), // skeleton records have no chapters yet

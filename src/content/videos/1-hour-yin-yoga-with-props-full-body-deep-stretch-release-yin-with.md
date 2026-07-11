@@ -13,15 +13,15 @@ level: "all-levels"
 intent_tags: ["full-body", "flexibility", "nervous-system"]
 body_areas: ["shoulders", "chest", "spine", "hips", "hamstrings"]
 props: ["bolster", "blocks"]
-poses_featured: ["childs-pose", "caterpillar", "fish", "bridge", "reclined-butterfly", "cat-pulling-its-tail"]
+poses_featured: ["childs-pose", "caterpillar", "supported-fish", "supported-bridge", "butterfly", "cat-pulling-its-tail"]
 chapters:
   - { time: "0:00",   seconds: 0,    title: "Welcome & your props" }
   - { time: "0:37",   seconds: 37,   title: "Neck · Gentle neck stretches" }
   - { time: "5:00",   seconds: 300,  title: "Back · Child's Pose (with props)",         pose: "childs-pose" }
   - { time: "11:00",  seconds: 660,  title: "Spine · Caterpillar (over a bolster)",     pose: "caterpillar" }
-  - { time: "17:40",  seconds: 1060, title: "Chest · Supported Fish (on blocks)",       pose: "fish" }
-  - { time: "23:00",  seconds: 1380, title: "Spine · Supported Bridge (on blocks)",     pose: "bridge" }
-  - { time: "28:30",  seconds: 1710, title: "Hips · Reclined Butterfly (on a bolster)", pose: "reclined-butterfly" }
+  - { time: "17:40",  seconds: 1060, title: "Chest · Supported Fish (on blocks)",       pose: "supported-fish" }
+  - { time: "23:00",  seconds: 1380, title: "Spine · Supported Bridge (on blocks)",     pose: "supported-bridge" }
+  - { time: "28:30",  seconds: 1710, title: "Hips · Reclined Butterfly (on a bolster)", pose: "butterfly" }
   - { time: "35:00",  seconds: 2100, title: "Twist · Cat Pulling Its Tail (each side)", pose: "cat-pulling-its-tail" }
   - { time: "48:00",  seconds: 2880, title: "Corpse Pose / Savasana" }
 seo_title: "1-Hour Yin Yoga with Props — Bolster & Blocks Full-Body Stretch"

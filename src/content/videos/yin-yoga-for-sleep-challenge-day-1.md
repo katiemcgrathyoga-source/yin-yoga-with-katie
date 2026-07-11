@@ -16,7 +16,7 @@ props: ["cushion or block (optional)"]
 level: "all-levels"
 
 # ── Connective tissue: poses featured, in order ──
-poses_featured: ["butterfly", "sphinx", "childs-pose", "eagle-arms"]
+poses_featured: ["butterfly", "sphinx", "childs-pose", "eagle"]
 
 # ── Chapters (each time jumps to that moment on YouTube; each pose links to its page) ──
 chapters:
@@ -25,7 +25,7 @@ chapters:
   - { time: "5:33",   seconds: 333,  title: "Back · Sphinx (3 min)",                    pose: "sphinx" }
   - { time: "10:43",  seconds: 643,  title: "Back · Seal — deeper option (1 min)",       pose: "sphinx" }
   - { time: "13:43",  seconds: 823,  title: "Back · Child's Pose — counter (1 min)",     pose: "childs-pose" }
-  - { time: "16:04",  seconds: 964,  title: "Shoulders · Eagle Arms (2 min each side)",  pose: "eagle-arms" }
+  - { time: "16:04",  seconds: 964,  title: "Shoulders · Eagle Arms (2 min each side)",  pose: "eagle" }
   - { time: "22:32",  seconds: 1352, title: "Neck · Gentle Neck Stretches" }
   - { time: "25:02",  seconds: 1502, title: "Rest & Close" }
 

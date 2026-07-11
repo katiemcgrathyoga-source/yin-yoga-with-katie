@@ -13,15 +13,15 @@ level: "all-levels"
 intent_tags: ["nervous-system", "flexibility", "full-body"]
 body_areas: ["hips", "spine", "hamstrings", "chest", "shoulders"]
 props: []
-poses_featured: ["air-release", "reclined-butterfly", "eye-of-the-needle", "twisted-roots", "bananasana", "hamstring-stretch"]
+poses_featured: [  "butterfly", "reclined-swan", "reclined-twist", "banana"]
 chapters:
   - { time: "0:00",     seconds: 0,    title: "Welcome to reclined Yin" }
   - { time: "1:30",     seconds: 90,   title: "Rest · Corpse Pose" }
-  - { time: "7:00",     seconds: 420,  title: "Lower back · Knees-to-chest hug",           pose: "air-release" }
-  - { time: "12:40",    seconds: 760,  title: "Hips · Reclined Butterfly",                 pose: "reclined-butterfly" }
-  - { time: "19:40",    seconds: 1180, title: "Hips · Eye-of-the-Needle & Twist (each side)", pose: "eye-of-the-needle" }
-  - { time: "37:00",    seconds: 2220, title: "Side body · Banana Pose (each side)",       pose: "bananasana" }
-  - { time: "47:40",    seconds: 2860, title: "Hamstrings · Reclined Hamstring Stretch",   pose: "hamstring-stretch" }
+  - { time: "7:00",     seconds: 420,  title: "Lower back · Knees-to-chest hug" }
+  - { time: "12:40",    seconds: 760,  title: "Hips · Reclined Butterfly",                 pose: "butterfly" }
+  - { time: "19:40",    seconds: 1180, title: "Hips · Eye-of-the-Needle & Twist (each side)", pose: "reclined-swan" }
+  - { time: "37:00",    seconds: 2220, title: "Side body · Banana Pose (each side)",       pose: "banana" }
+  - { time: "47:40",    seconds: 2860, title: "Hamstrings · Reclined Hamstring Stretch" }
   - { time: "1:01:40",  seconds: 3700, title: "Corpse Pose / Savasana" }
 seo_title: "70-Min Reclined Yin Yoga — Deep Stretch, All Lying Down"
 seo_description: "A deeply relaxing 70-minute reclined Yin Yoga class — every pose lying down, held long and slow, for deep stretch and total relaxation. All levels."

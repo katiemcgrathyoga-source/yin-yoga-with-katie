@@ -13,7 +13,7 @@ level: "all-levels"
 intent_tags: ["nervous-system", "full-body", "flexibility"]
 body_areas: ["hips", "groin", "lower back", "spine", "quads", "shoulders", "chest"]
 props: ["blocks", "bolster"]
-poses_featured: ["childs-pose", "frog", "sleeping-swan", "shoelace", "saddle", "fish", "butterfly", "cat-pulling-its-tail"]
+poses_featured: ["childs-pose", "frog", "sleeping-swan", "shoelace", "saddle", "supported-fish", "butterfly", "cat-pulling-its-tail"]
 chapters:
   - { time: "0:00",     seconds: 0,    title: "Welcome & what you'll need" }
   - { time: "1:04",     seconds: 64,   title: "Back · Child's Pose (warm-up)",                        pose: "childs-pose" }
@@ -21,7 +21,7 @@ chapters:
   - { time: "21:52",    seconds: 1312, title: "Hips · Sleeping Swan, Shoelace & Twist (right side)", pose: "sleeping-swan" }
   - { time: "34:34",    seconds: 2074, title: "Hips · Sleeping Swan, Shoelace & Twist (left side)",  pose: "sleeping-swan" }
   - { time: "52:38",    seconds: 3158, title: "Legs · Saddle",                                       pose: "saddle" }
-  - { time: "59:49",    seconds: 3589, title: "Chest · Supported Fish with butterfly legs",          pose: "fish" }
+  - { time: "59:49",    seconds: 3589, title: "Chest · Supported Fish with butterfly legs",          pose: "supported-fish" }
   - { time: "1:06:46",  seconds: 4006, title: "Twist · Cat Pulling Its Tail (each side)",            pose: "cat-pulling-its-tail" }
   - { time: "1:19:03",  seconds: 4743, title: "Corpse Pose / Savasana" }
 seo_title: "Melt Tension Fast: 90-Min Deep Relaxation Yin Yoga"

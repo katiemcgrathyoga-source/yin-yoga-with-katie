@@ -13,7 +13,7 @@ level: "all-levels"
 intent_tags: ["flexibility", "full-body"]
 body_areas: ["shoulders", "upper back", "spine", "lower back", "hips", "hamstrings", "quads", "groin"]
 props: ["cushion or pillow (optional)", "blanket (optional)"]
-poses_featured: ["melting-heart", "caterpillar", "dragon", "sphinx", "frog", "cat-pulling-its-tail", "sleeping-swan", "shoelace", "bananasana"]
+poses_featured: ["melting-heart", "caterpillar", "dragon", "sphinx", "frog", "cat-pulling-its-tail", "sleeping-swan", "shoelace", "banana"]
 chapters:
   - { time: "0:00",     seconds: 0,    title: "Welcome & what you'll need" }
   - { time: "0:59",     seconds: 59,   title: "Shoulders · Melting Heart (5 min)",              pose: "melting-heart" }
@@ -24,7 +24,7 @@ chapters:
   - { time: "43:49",    seconds: 2629, title: "Twist · Cat Pulling Its Tail (5 min each side)", pose: "cat-pulling-its-tail" }
   - { time: "53:12",    seconds: 3192, title: "Hips · Sleeping Swan (5 min each side)",         pose: "sleeping-swan" }
   - { time: "1:02:55",  seconds: 3775, title: "Hips · Shoelace (5 min each side)",              pose: "shoelace" }
-  - { time: "1:12:35",  seconds: 4355, title: "Side Body · Bananasana (5 min each side)",       pose: "bananasana" }
+  - { time: "1:12:35",  seconds: 4355, title: "Side Body · Bananasana (5 min each side)",       pose: "banana" }
   - { time: "1:21:48",  seconds: 4908, title: "Corpse Pose / Savasana (7 min)" }
 seo_title: "90-Minute Full-Body Yin Yoga — Deep Stretch & Long Holds"
 seo_description: "A calming 90-minute full-body Yin Yoga class — deep stretches and long, quiet holds from melting heart to sleeping swan. A gentle and a deeper option in every pose. All levels, no props required."

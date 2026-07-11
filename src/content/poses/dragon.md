@@ -19,7 +19,9 @@ cues:
   - "Slide your left knee back until you feel a comfortable stretch through the front of the left hip and thigh. Rest the top of the back foot on the floor, or tuck the toes."
   - "Pad the back knee with a folded blanket if the floor feels sharp against it."
   - "Stack the front knee directly over the ankle — check that the knee stays above the heel, not pushing past the toes."
-  - "Let your hands frame the front foot, resting on the floor, on fingertips, or on a block. Let the hips sink and grow heavy."
+  - "Let your hands frame the front foot, resting on the floor, on fingertips, or on a block. Let the hips sink and grow heavy. This is your base Dragon (sometimes called Baby Dragon)."
+  - "For High Dragon: walk your hands back onto the front thigh and press down to lift the torso tall and upright, letting the hips keep sinking. Keep the tailbone heavy so you don't crunch the lower back."
+  - "For Low Dragon: walk your hands forward onto your forearms — on the floor, a block, or a bolster set inside the front foot — and let your head hang. If it's available, ease the front foot toward the edge of the mat and roll onto its outer edge to open the inner groin further."
   - "Find your edge — about 80% of your capacity, a real stretch but never forcing. Keep the breath slow and easy."
   - "Be still, and let the shape do the work. Stay, then step back and change sides."
 transitions_in:
@@ -45,7 +47,9 @@ faq:
     a: "Dragon mainly works the hips, hip flexors, groin and quadriceps. A strong, grounding lunge that opens deep through the hip flexors and the front of the back thigh."
   - q: "Do you need props for Dragon?"
     a: "You don't have to, but a folded blanket or bolster can make Dragon more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
-related_poses: ["low-dragon", "high-dragon", "twisted-dragon", "swan", "saddle"]
+  - q: "What's the difference between Low Dragon and High Dragon?"
+    a: "They're the same lunge with a different upper body. In High Dragon you lift the torso tall over the sinking hips; in Low Dragon you fold forward onto your forearms for a deeper groin and hip-flexor stretch. Start in the base Dragon and choose whichever your body wants that day."
+related_poses: ["twisted-dragon", "swan", "saddle", "dragonfly", "childs-pose"]
 youtube_video_id: ""
 images:
   - "/poses/dragon.jpg"

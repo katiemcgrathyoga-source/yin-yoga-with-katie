@@ -13,7 +13,7 @@ level: "all-levels"
 intent_tags: ["hips-lower-back", "full-body"]
 body_areas: ["hips", "lower back", "hamstrings", "spine"]
 props: []
-poses_featured: ["childs-pose", "sleeping-swan", "shoelace", "squat", "dangling", "twisted-roots", "air-release", "reclined-butterfly"]
+poses_featured: ["childs-pose", "sleeping-swan", "shoelace", "squat", "dangling", "reclined-twist",   "butterfly"]
 chapters:
   - { time: "0:00",   seconds: 0,    title: "Welcome & grounding" }
   - { time: "1:35",   seconds: 95,   title: "Back · Child's Pose",                      pose: "childs-pose" }
@@ -21,9 +21,9 @@ chapters:
   - { time: "17:20",  seconds: 1040, title: "Hips · Shoelace (each side)",              pose: "shoelace" }
   - { time: "29:37",  seconds: 1777, title: "Hips · Squat",                             pose: "squat" }
   - { time: "31:17",  seconds: 1877, title: "Hamstrings · Dangling",                    pose: "dangling" }
-  - { time: "36:11",  seconds: 2171, title: "Twist · Twisted Roots (each side)",        pose: "twisted-roots" }
-  - { time: "45:40",  seconds: 2740, title: "Lower back · Air-Releasing Pose",          pose: "air-release" }
-  - { time: "47:30",  seconds: 2850, title: "Hips · Reclined Butterfly",                pose: "reclined-butterfly" }
+  - { time: "36:11",  seconds: 2171, title: "Twist · Twisted Roots (each side)",        pose: "reclined-twist" }
+  - { time: "45:40",  seconds: 2740, title: "Lower back · Air-Releasing Pose" }
+  - { time: "47:30",  seconds: 2850, title: "Hips · Reclined Butterfly",                pose: "butterfly" }
   - { time: "51:25",  seconds: 3085, title: "Corpse Pose / Savasana" }
 seo_title: "1-Hour Yin Yoga for Hips & Lower Back Release"
 seo_description: "A soothing 1-hour Yin Yoga class for the lower body — long, slow holds to release tight hips and ease lower back tension, from sleeping swan to shoelace to a reclined twist. All levels."

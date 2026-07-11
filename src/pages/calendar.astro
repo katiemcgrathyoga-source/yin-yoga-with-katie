@@ -1,153 +1,448 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CalendarNav from '../components/CalendarNav.astro';
-import { derivedThumb, lenLabel, videoHeadline } from '../lib/video';
-import { MONTHLY_PLAN, MONTHLY_INTRO } from '../data/monthlyPlan';
-import { SITE } from '../data/site';
+import { derivedThumb, lenLabel, byRecencyThenWatch, videoHeadline } from '../lib/video';
+import { PROGRAMS, resolveProgramClasses } from '../data/programs';
 
-const videos = await getCollection('videos');
-const bySlug = new Map(videos.map((v) => [v.data.slug, v.data]));
-const weekly = MONTHLY_PLAN.map((s) => bySlug.get(s));
+const videos = (await getCollection('videos'))
+  .filter((v) => v.data.length_minutes >= 10)
+  .sort((a, b) => byRecencyThenWatch(a.data, b.data));
+const capitalise = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
-// Current month, baked at build (a rebuild rolls it forward).
-const now = new Date();
-const year = now.getFullYear();
-const month = now.getMonth();
-const monthName = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(now);
-const daysInMonth = new Date(year, month + 1, 0).getDate();
-const lead = (new Date(year, month, 1).getDay() + 6) % 7; // Monday-first offset
+// --- Programs → which classes belong to each, for the "start a program" picker --
+const programOf = new Map<string, string[]>(); // video slug → [program slug...]
+const programMeta = PROGRAMS.map((p) => {
+  const classes = resolveProgramClasses(p, videos);
+  for (const c of classes) {
+    const arr = programOf.get(c.data.slug) ?? [];
+    arr.push(p.slug);
+    programOf.set(c.data.slug, arr);
+  }
+  return { slug: p.slug, title: p.title, count: classes.length };
+}).filter((p) => p.count > 0);
 
-const cells: (number | null)[] = [];
-for (let i = 0; i < lead; i++) cells.push(null);
-for (let d = 1; d <= daysInMonth; d++) cells.push(d);
-while (cells.length % 7) cells.push(null);
-const weeks: (number | null)[][] = [];
-for (let i = 0; i < cells.length; i += 7) weeks.push(cells.slice(i, i + 7));
-
-const mon = (d: number) =>
-  new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(year, month, d));
-const rangeLabel = (week: (number | null)[]) => {
-  const days = week.filter((d): d is number => d !== null);
-  return days.length ? `${mon(days[0])} – ${mon(days[days.length - 1])}` : '';
+// --- Filter facets (mirrors the library) -------------------------------------
+type V = (typeof videos)[number];
+const BUCKETS = [
+  { key: 'under-20', label: 'Under 20 min', test: (m: number) => m < 20 },
+  { key: '20-40', label: '20–40 min', test: (m: number) => m >= 20 && m < 40 },
+  { key: '40-60', label: '40–60 min', test: (m: number) => m >= 40 && m < 60 },
+  { key: '60-90', label: '60–90 min', test: (m: number) => m >= 60 },
+];
+const bucketOf = (m: number) => BUCKETS.find((b) => b.test(m))!.key;
+const INTENT_BUCKETS = [
+  { key: 'sleep', label: 'Sleep', tags: ['sleep'] },
+  { key: 'calm', label: 'Stress & calm', tags: ['nervous-system', 'stress'] },
+  { key: 'digestion', label: 'Digestion', tags: ['digestion'] },
+  { key: 'energy', label: 'Energy', tags: ['energy'] },
+  { key: 'flexibility', label: 'Flexibility', tags: ['flexibility'] },
+  { key: 'full-body', label: 'Full body', tags: ['full-body'] },
+];
+const intentKeys = (v: V) =>
+  INTENT_BUCKETS.filter((b) => b.tags.some((t) => v.data.intent_tags.includes(t))).map((b) => b.key);
+const styleTags = (v: V) => {
+  const s: string[] = [];
+  if (/nidra|nsdr/i.test(v.data.title)) s.push('yoga-nidra');
+  if (/silent|minimal cues|no.?talking/i.test(v.data.title)) s.push('silent');
+  if (v.data.props.length === 0 || /no.?props|without props|prop.?free/i.test(v.data.title)) s.push('no-props');
+  if (v.data.membership) s.push('members');
+  return s;
 };
-
-const signup = SITE.calendarSignupAction;
-
-const ogImage = new URL('/og/card.png', Astro.site);
-ogImage.searchParams.set('t', 'My Monthly Yin Calendar');
-ogImage.searchParams.set('s', 'One class a week — a rhythm you can keep');
+const STYLE_OPTS = [
+  { key: 'silent', label: 'Silent' },
+  { key: 'no-props', label: 'No props' },
+  { key: 'yoga-nidra', label: 'Yoga Nidra' },
+  { key: 'members', label: 'Members only' },
+];
+const presentIntents = INTENT_BUCKETS.filter((b) => videos.some((v) => intentKeys(v).includes(b.key)));
+const presentBuckets = BUCKETS.filter((b) => videos.some((v) => bucketOf(v.data.length_minutes) === b.key));
+const presentStyles = STYLE_OPTS.filter((o) => videos.some((v) => styleTags(v).includes(o.key)));
 ---
 
 <BaseLayout
-  title="This Month's Yin Yoga Calendar — Yin Yoga with Katie"
-  description="Your Yin Yoga rhythm for the month — one class to practise each week, any day that suits you. Sign up to get a gentle email each week telling you which class to do."
-  image={ogImage.href}
+  title="Build Your Own Yin Yoga Calendar — Plan Your Practice"
+  description="Plan your Yin Yoga practice month by month: pick classes or a whole program, drop them onto the days you'll practise, then add them to Google, Apple or Outlook Calendar with reminders. Free."
 >
   <div class="wrap">
     <header class="hero">
-      <p class="eyebrow">Practice · This Month</p>
-      <h1>This Month</h1>
-      <p class="alt">one class a week — a gentle rhythm you can keep</p>
+      <p class="eyebrow">Practice · Your calendar</p>
+      <h1>Build your own calendar</h1>
+      <p class="alt">plan any month, then add it to your own calendar with reminders</p>
     </header>
 
-    <CalendarNav active="month" />
+    <p class="page-intro">
+      Tab through the months, tap a day to select it, then add the classes you'll practise — one at a
+      time, or a whole <strong>program</strong> at once. When you're happy, tap <strong>＋ Google</strong>
+      on any class, or <strong>Add to calendar</strong> to drop the whole plan into Apple or Outlook with
+      reminders. It's saved on this device, so it's here when you come back.
+    </p>
 
-    <p class="page-intro">{MONTHLY_INTRO}</p>
-
-    <section class="cal-signup-wrap" aria-label="Weekly reminders">
-      <div class="cal-signup-card">
-        <h2>Never miss a week</h2>
-        <p>Drop your email and I'll send a gentle nudge each week telling you which class to do.</p>
-        {
-          signup ? (
-            <>
-              <form class="cal-signup" id="cal-signup" action={signup} method="post" target="cal_frame">
-                <input type="text" name="fields[name]" placeholder="First name" autocomplete="given-name" required aria-label="First name" />
-                <input type="email" name="fields[email]" placeholder="you@email.com" autocomplete="email" required aria-label="Email" />
-                <input type="hidden" name="ml-submit" value="1" />
-                <input type="hidden" name="anticsrf" value="true" />
-                <button type="submit" class="btn-cta">Notify me each week →</button>
-              </form>
-              <p class="cal-fine">No spam, ever. Unsubscribe any time.</p>
-              <div class="cal-success" id="cal-success" hidden role="status">
-                <p><strong>You're in 🌙</strong> I'll email you each week with this week's class.</p>
-              </div>
-              <iframe name="cal_frame" class="lm-frame" title="Sign-up" tabindex="-1" aria-hidden="true"></iframe>
-            </>
-          ) : (
-            <p class="cal-soon">Weekly email reminders are coming soon — check back shortly.</p>
-          )
-        }
+    <section class="cb">
+      <div class="cb-top">
+        <div class="cb-nav">
+          <button type="button" class="cb-arrow" id="cb-prev" aria-label="Previous month">‹</button>
+          <h2 class="cb-month" id="cb-month">—</h2>
+          <button type="button" class="cb-arrow" id="cb-next" aria-label="Next month">›</button>
+        </div>
+        <div class="cb-opts">
+          <label>Practise at <input type="time" id="cb-time" value="18:00" /></label>
+          <label>Remind me
+            <select id="cb-remind">
+              <option value="0">at the time</option>
+              <option value="15">15 min before</option>
+              <option value="60" selected>1 hour before</option>
+              <option value="180">3 hours before</option>
+            </select>
+          </label>
+        </div>
       </div>
+
+      <div class="cb-grid" id="cb-grid">
+        <span class="cb-dl">Mon</span><span class="cb-dl">Tue</span><span class="cb-dl">Wed</span>
+        <span class="cb-dl">Thu</span><span class="cb-dl">Fri</span><span class="cb-dl">Sat</span><span class="cb-dl">Sun</span>
+      </div>
+      <noscript><p class="cb-msg">The calendar planner needs JavaScript. You can still browse and add classes to your own calendar from each class page.</p></noscript>
+
+      <div class="cb-actions">
+        <button type="button" class="btn-cta" id="cb-export" disabled>Add to calendar</button>
+        <button type="button" class="cb-clear" id="cb-clear" hidden>Clear all</button>
+        <span class="cb-total" id="cb-total" aria-live="polite"></span>
+      </div>
+
+      <div class="cb-day">
+        <h3><span id="cb-day-label">Select a day above</span></h3>
+        <ul class="cb-day-list" id="cb-day-list"></ul>
+        <p class="cb-day-empty" id="cb-day-empty">Tap a day in the calendar, then add classes below.</p>
+      </div>
+      <p class="cb-msg" id="cb-msg" aria-live="polite"></p>
     </section>
 
-    <h2 class="cal-month-title">{monthName}</h2>
+    <section class="catalogue" aria-label="Add classes">
+      <h2>Add to your plan</h2>
 
-    <div class="month-weeks">
-      {
-        weeks.map((week, i) => {
-          const v = weekly[Math.min(i, weekly.length - 1)];
-          return (
-            <div class="mw" data-week={i}>
-              <div class="mw-dates">
-                <div class="mw-range">Week {i + 1} · {rangeLabel(week)}</div>
-                <div class="mw-days" aria-hidden="true">
-                  {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((dl) => <span class="mw-dl">{dl}</span>)}
-                  {week.map((d) => (
-                    <span class="mw-day" data-date={d ?? ''}>{d ?? ''}</span>
-                  ))}
+      {programMeta.length > 0 && (
+        <div class="facet cb-programs">
+          <span class="facet-label">Start a program</span>
+          <div class="chips">
+            {programMeta.map((p) => (
+              <button type="button" class="chip chip-program" data-facet="program" data-value={p.slug} aria-pressed="false">
+                {p.title} <span class="chip-n">{p.count}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div class="filters" id="cat-filters">
+        {presentIntents.length > 0 && (
+          <div class="facet"><span class="facet-label">Intent</span>
+            <div class="chips">{presentIntents.map((b) => (
+              <button type="button" class="chip" data-facet="intent" data-value={b.key} aria-pressed="false">{b.label}</button>
+            ))}</div>
+          </div>
+        )}
+        <div class="facet"><span class="facet-label">Length</span>
+          <div class="chips">{presentBuckets.map((b) => (
+            <button type="button" class="chip" data-facet="length" data-value={b.key} aria-pressed="false">{b.label}</button>
+          ))}</div>
+        </div>
+        {presentStyles.length > 0 && (
+          <div class="facet"><span class="facet-label">Style</span>
+            <div class="chips">{presentStyles.map((o) => (
+              <button type="button" class="chip" data-facet="style" data-value={o.key} aria-pressed="false">{o.label}</button>
+            ))}</div>
+          </div>
+        )}
+        <input type="search" class="cat-search" id="cat-search" placeholder="Search classes…" aria-label="Search classes" />
+        <div class="filter-meta">
+          <button type="button" class="chip chip-clear" id="cat-clear" hidden>Clear filters</button>
+          <button type="button" class="chip cat-addall" id="cat-addall" disabled>Add all to selected day</button>
+          <span class="count" id="cat-count" aria-live="polite"></span>
+        </div>
+      </div>
+
+      <p class="cat-none" id="cat-none" hidden>No classes match those filters.</p>
+      <ul class="cat-list" id="cat-list">
+        {
+          videos.map((v) => {
+            const d = v.data;
+            return (
+              <li class="cat-row" data-slug={d.slug}
+                data-title={d.title.toLowerCase()}
+                data-intent={intentKeys(v).join('|')}
+                data-length={bucketOf(d.length_minutes)}
+                data-style={styleTags(v).join('|')}
+                data-program={(programOf.get(d.slug) ?? []).join('|')}
+                data-head={videoHeadline(d)} data-len={lenLabel(d)} data-href={`/videos/${d.slug}`}>
+                <img class="cat-thumb" src={derivedThumb(d, 'mqdefault')} alt="" loading="lazy" width="80" height="45" />
+                <div class="cat-info">
+                  <a class="cat-title" href={`/videos/${d.slug}`}>{videoHeadline(d)}</a>
+                  <span class="cat-meta">{lenLabel(d)}{d.intent_tags.length ? ` · ${d.intent_tags.slice(0, 2).map(capitalise).join(', ')}` : ''}</span>
                 </div>
-              </div>
-              <div class="mw-video">
-                {v ? (
-                  <a class="mw-class" href={`/videos/${v.slug}`}>
-                    <span class="mw-thumb">
-                      <img src={derivedThumb(v)} alt={v.title} loading="lazy" width="480" height="270" />
-                      <span class="day-len">{lenLabel(v)}</span>
-                    </span>
-                    <span class="mw-info">
-                      <span class="mw-eyebrow">This week's class</span>
-                      <span class="mw-title">{videoHeadline(v)}</span>
-                    </span>
-                  </a>
-                ) : (
-                  <p class="mw-rest">A week to rest, or repeat a favourite.</p>
-                )}
-              </div>
-            </div>
-          );
-        })
-      }
-    </div>
-
-    <footer>
-      <p class="src">
-        Practise each week's class on whatever day suits you. Prefer your own plan?
-        <a href="/calendar/build">Build your own calendar →</a>
-      </p>
-    </footer>
+                <button type="button" class="cat-add" data-slug={d.slug} disabled>Add</button>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </section>
   </div>
 </BaseLayout>
 
 <script>
-  // Highlight today and the current week (accurate regardless of last build date).
+  const KEY = 'kyk-cal-v2';
+  const MONTHS_AHEAD = 11; // how many months past the current one you can plan into
+
+  type Item = { slug: string; date: string }; // date = "YYYY-MM-DD"
+  type Meta = { head: string; len: string; href: string; thumb: string };
+  const CAT = new Map<string, Meta>();
+  document.querySelectorAll<HTMLElement>('.cat-row').forEach((r) => {
+    CAT.set(r.dataset.slug!, { head: r.dataset.head!, len: r.dataset.len!, href: r.dataset.href!, thumb: r.querySelector('img')!.getAttribute('src')! });
+  });
+
+  const $ = (id: string) => document.getElementById(id)!;
+  const grid = $('cb-grid'), dayList = $('cb-day-list'), msg = $('cb-msg');
+  const exportBtn = $('cb-export') as HTMLButtonElement, clearBtn = $('cb-clear') as HTMLButtonElement;
+
+  const pad = (n: number) => String(n).padStart(2, '0');
+  const iso = (y: number, m: number, d: number) => `${y}-${pad(m + 1)}-${pad(d)}`;
+  const todayISO = () => { const t = new Date(); return iso(t.getFullYear(), t.getMonth(), t.getDate()); };
+
   const now = new Date();
-  const cell = [...document.querySelectorAll<HTMLElement>('.mw-day')].find((c) => c.dataset.date === String(now.getDate()));
-  if (cell) {
-    cell.classList.add('is-today');
-    cell.closest('.mw')?.classList.add('is-this-week');
-    cell.closest('.mw')?.scrollIntoView?.({ block: 'nearest' });
+  const view = { y: now.getFullYear(), m: now.getMonth() }; // month currently shown
+  const minKey = view.y * 12 + view.m; // can't go before this month
+  let active = todayISO(); // selected day
+
+  function load(): Item[] {
+    try { const a = JSON.parse(localStorage.getItem(KEY) || '[]'); return Array.isArray(a) ? a.filter((i: Item) => i && CAT.has(i.slug) && /^\d{4}-\d\d-\d\d$/.test(i.date)) : []; } catch { return []; }
+  }
+  const save = (items: Item[]) => localStorage.setItem(KEY, JSON.stringify(items));
+
+  const fmtDate = (isoStr: string) => {
+    const [y, m, d] = isoStr.split('-').map(Number);
+    return new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric' }).format(new Date(y, m - 1, d));
+  };
+  const monthLabel = () => new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(new Date(view.y, view.m, 1));
+
+  function renderGrid() {
+    $('cb-month').textContent = monthLabel();
+    const key = view.y * 12 + view.m;
+    ($('cb-prev') as HTMLButtonElement).disabled = key <= minKey;
+    ($('cb-next') as HTMLButtonElement).disabled = key >= minKey + MONTHS_AHEAD;
+
+    // wipe old cells (keep the 7 day-labels)
+    grid.querySelectorAll('.cb-cell').forEach((c) => c.remove());
+    const items = load();
+    const days = new Date(view.y, view.m + 1, 0).getDate();
+    const lead = (new Date(view.y, view.m, 1).getDay() + 6) % 7; // Monday-first
+    const tISO = todayISO();
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < lead; i++) { const s = document.createElement('span'); s.className = 'cb-cell is-blank'; s.setAttribute('aria-hidden', 'true'); frag.appendChild(s); }
+    for (let d = 1; d <= days; d++) {
+      const dISO = iso(view.y, view.m, d);
+      const past = dISO < tISO;
+      const n = items.filter((i) => i.date === dISO).length;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'cb-cell' + (past ? ' is-past' : '') + (n > 0 ? ' has-items' : '') + (dISO === active ? ' is-active' : '');
+      btn.dataset.date = dISO;
+      if (past) btn.disabled = true;
+      btn.innerHTML = `<span class="cb-num">${d}</span><span class="cb-count" aria-hidden="true">${n ? n : ''}</span>`;
+      frag.appendChild(btn);
+    }
+    while ((lead + days + (frag.childNodes.length - lead - days)) % 7) { const s = document.createElement('span'); s.className = 'cb-cell is-blank'; s.setAttribute('aria-hidden', 'true'); frag.appendChild(s); }
+    grid.appendChild(frag);
   }
 
-  // Lead-magnet-style success toggle for the weekly signup.
-  const form = document.getElementById('cal-signup') as HTMLFormElement | null;
-  const success = document.getElementById('cal-success');
-  form?.addEventListener('submit', () => {
-    setTimeout(() => {
-      form.hidden = true;
-      document.querySelector('.cal-fine')?.setAttribute('hidden', '');
-      success?.removeAttribute('hidden');
-    }, 350);
+  function renderDay() {
+    const items = load();
+    const label = $('cb-day-label'), empty = $('cb-day-empty');
+    const activeInView = active && Number(active.slice(0, 4)) === view.y && Number(active.slice(5, 7)) - 1 === view.m;
+    if (!active) { label.textContent = 'Select a day above'; dayList.innerHTML = ''; empty.hidden = false; empty.textContent = 'Tap a day in the calendar, then add classes below.'; }
+    else {
+      label.textContent = fmtDate(active) + (activeInView ? '' : '');
+      const dayItems = items.filter((i) => i.date === active);
+      empty.hidden = dayItems.length > 0;
+      empty.textContent = 'Nothing on this day yet — add classes below.';
+      dayList.innerHTML = dayItems.map((i) => {
+        const m = CAT.get(i.slug)!;
+        return `<li class="cb-item" data-slug="${i.slug}">
+            <img src="${m.thumb}" alt="" width="64" height="36" loading="lazy" />
+            <a href="${m.href}">${m.head}</a>
+            <span class="cb-item-ctl">
+              <a class="cw-gcal" href="${gcalUrl(i.slug, active)}" target="_blank" rel="noopener" title="Add to Google Calendar">＋ Google</a>
+              <button type="button" class="cw-del" aria-label="Remove">✕</button>
+            </span>
+          </li>`;
+      }).join('');
+    }
+    const n = items.length;
+    $('cb-total').textContent = n ? `${n} ${n === 1 ? 'class' : 'classes'} planned` : '';
+    exportBtn.disabled = n === 0;
+    clearBtn.hidden = n === 0;
+    const anyActive = Boolean(active);
+    ($('cat-addall') as HTMLButtonElement).disabled = !anyActive;
+    document.querySelectorAll<HTMLButtonElement>('.cat-add').forEach((b) => { b.disabled = !anyActive; });
+  }
+
+  const render = () => { renderGrid(); renderDay(); };
+
+  function add(slug: string, date: string) {
+    if (!date) return;
+    const items = load();
+    if (items.some((i) => i.slug === slug && i.date === date)) return;
+    items.push({ slug, date }); save(items); render();
+  }
+
+  // month navigation
+  $('cb-prev').addEventListener('click', () => { const k = view.y * 12 + view.m; if (k <= minKey) return; view.m--; if (view.m < 0) { view.m = 11; view.y--; } render(); });
+  $('cb-next').addEventListener('click', () => { const k = view.y * 12 + view.m; if (k >= minKey + MONTHS_AHEAD) return; view.m++; if (view.m > 11) { view.m = 0; view.y++; } render(); });
+
+  // select a day
+  grid.addEventListener('click', (e) => {
+    const cell = (e.target as HTMLElement).closest('.cb-cell[data-date]') as HTMLElement | null;
+    if (!cell || cell.classList.contains('is-past')) return;
+    active = cell.dataset.date!;
+    render();
+    $('cb-day-label').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
+
+  // remove from day
+  dayList.addEventListener('click', (e) => {
+    const del = (e.target as HTMLElement).closest('.cw-del'); if (!del) return;
+    const slug = (del.closest('.cb-item') as HTMLElement).dataset.slug!;
+    save(load().filter((i) => !(i.slug === slug && i.date === active))); render();
+  });
+
+  clearBtn.addEventListener('click', () => { save([]); render(); toast('Cleared.'); });
+
+  // catalogue add
+  $('cat-list').addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest('.cat-add') as HTMLButtonElement | null;
+    if (!btn || btn.disabled) return;
+    add(btn.dataset.slug!, active);
+    toast('Added.');
+  });
+
+  // filters + search (intent / length / style / program)
+  const rows = Array.from(document.querySelectorAll<HTMLElement>('.cat-row'));
+  const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.chip[data-facet]'));
+  const activeF: Record<string, Set<string>> = { intent: new Set(), length: new Set(), style: new Set(), program: new Set() };
+  const searchEl = $('cat-search') as HTMLInputElement;
+  const split = (v?: string) => (v ? v.split('|').filter(Boolean) : []);
+  function applyFilters() {
+    const q = searchEl.value.trim().toLowerCase();
+    let visible = 0;
+    for (const row of rows) {
+      const okP = activeF.program.size === 0 || split(row.dataset.program).some((x) => activeF.program.has(x));
+      const okI = activeF.intent.size === 0 || split(row.dataset.intent).some((x) => activeF.intent.has(x));
+      const okL = activeF.length.size === 0 || activeF.length.has(row.dataset.length || '');
+      const okS = activeF.style.size === 0 || split(row.dataset.style).some((x) => activeF.style.has(x));
+      const okQ = !q || row.dataset.title!.includes(q);
+      const show = okP && okI && okL && okS && okQ;
+      row.hidden = !show; if (show) visible++;
+    }
+    const anyF = activeF.intent.size + activeF.length.size + activeF.style.size + activeF.program.size > 0 || q;
+    ($('cat-clear') as HTMLButtonElement).hidden = !anyF;
+    $('cat-none').hidden = visible > 0;
+    $('cat-count').textContent = anyF ? `${visible} of ${rows.length}` : '';
+    const addAll = $('cat-addall') as HTMLButtonElement;
+    addAll.textContent = activeF.program.size === 1
+      ? 'Add this program to selected day'
+      : 'Add all to selected day';
+  }
+  chips.forEach((chip) => chip.addEventListener('click', () => {
+    const f = chip.dataset.facet!, v = chip.dataset.value!, set = activeF[f];
+    if (set.has(v)) { set.delete(v); chip.setAttribute('aria-pressed', 'false'); chip.classList.remove('active'); }
+    else {
+      // program facet behaves as single-select for clarity
+      if (f === 'program') { set.clear(); document.querySelectorAll('.chip-program').forEach((c) => { c.setAttribute('aria-pressed', 'false'); c.classList.remove('active'); }); }
+      set.add(v); chip.setAttribute('aria-pressed', 'true'); chip.classList.add('active');
+    }
+    applyFilters();
+  }));
+  searchEl.addEventListener('input', applyFilters);
+  $('cat-clear').addEventListener('click', () => {
+    for (const k of Object.keys(activeF)) activeF[k].clear();
+    chips.forEach((c) => { c.setAttribute('aria-pressed', 'false'); c.classList.remove('active'); });
+    searchEl.value = ''; applyFilters();
+  });
+
+  // add all visible to the active day (a whole program, or a filtered set)
+  $('cat-addall').addEventListener('click', () => {
+    if (!active) return;
+    const items = load(); let added = 0;
+    rows.filter((r) => !r.hidden).forEach((r) => {
+      const slug = r.dataset.slug!;
+      if (!items.some((i) => i.slug === slug && i.date === active)) { items.push({ slug, date: active }); added++; }
+    });
+    save(items); render(); toast(`Added ${added} to ${fmtDate(active)}.`);
+  });
+
+  // --- calendar exports -------------------------------------------------------
+  const g = (d: Date) => `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`;
+  function slot(dateISO: string) {
+    const [y, m, d] = dateISO.split('-').map(Number);
+    const [hh, mm] = ($('cb-time') as HTMLInputElement).value.split(':').map(Number);
+    const start = new Date(y, m - 1, d, hh || 18, mm || 0);
+    return { start, end: new Date(start.getTime() + 45 * 60000) };
+  }
+  function gcalUrl(slug: string, dateISO: string) {
+    const m = CAT.get(slug); if (!m) return '#';
+    const { start, end } = slot(dateISO);
+    const p = new URLSearchParams({
+      action: 'TEMPLATE', text: `Yin — ${m.head}`,
+      details: `Time for your Yin practice with Katie.\nPress play: ${location.origin + m.href}`,
+      dates: `${g(start)}/${g(end)}`, ctz: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    });
+    return `https://calendar.google.com/calendar/render?${p.toString()}`;
+  }
+  function buildICS() {
+    const items = load();
+    const remind = Number(($('cb-remind') as HTMLSelectElement).value);
+    const L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Yin Yoga with Katie//Calendar//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH'];
+    items.forEach((it, i) => {
+      const m = CAT.get(it.slug); if (!m) return;
+      const { start, end } = slot(it.date);
+      const url = location.origin + m.href;
+      L.push('BEGIN:VEVENT', `UID:yyk-${it.slug}-${it.date}-${i}@yinyogawithkatie.com`, `DTSTAMP:${g(new Date())}`,
+        `DTSTART:${g(start)}`, `DTEND:${g(end)}`, `SUMMARY:Yin — ${m.head.replace(/[,;\\]/g, ' ')}`,
+        `DESCRIPTION:Time for your Yin practice with Katie.\\nPress play: ${url}`, `URL:${url}`);
+      L.push('BEGIN:VALARM', `TRIGGER:-PT${remind}M`, 'ACTION:DISPLAY', 'DESCRIPTION:Time for Yin', 'END:VALARM', 'END:VEVENT');
+    });
+    L.push('END:VCALENDAR');
+    return L.join('\r\n');
+  }
+  exportBtn.addEventListener('click', () => {
+    if (!load().length) return;
+    const blob = new Blob([buildICS()], { type: 'text/calendar;charset=utf-8' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'yin-yoga-with-katie.ics'; a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    toast('Downloaded — open it to add your plan to Apple, Google or Outlook.');
+  });
+  ($('cb-time') as HTMLInputElement).addEventListener('change', renderDay);
+
+  let toastT: number | undefined;
+  function toast(t: string) { msg.textContent = t; clearTimeout(toastT); toastT = window.setTimeout(() => (msg.textContent = ''), 6000); }
+
+  // Deep-link from a program page: /calendar?program=<slug> pre-selects that program
+  // (so its classes are shown, ready to drop onto a day) — no auto-scheduling.
+  function preselectProgram() {
+    const slug = new URLSearchParams(location.search).get('program');
+    history.replaceState(null, '', location.pathname);
+    if (!slug) return '';
+    const chip = document.querySelector<HTMLButtonElement>(`.chip-program[data-value="${slug}"]`);
+    if (!chip) return '';
+    activeF.program.clear(); activeF.program.add(slug);
+    chip.setAttribute('aria-pressed', 'true'); chip.classList.add('active');
+    return chip.textContent?.trim().replace(/\s+\d+$/, '') || '';
+  }
+
+  const preselected = preselectProgram();
+  render();
+  applyFilters();
+  if (preselected) {
+    $('cat-filters').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    toast(`Showing the “${preselected}” classes — pick a day, then Add this program to it.`);
+  }
 </script>

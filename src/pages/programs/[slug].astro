@@ -17,6 +17,10 @@ const { meta, classes } = Astro.props;
 const first = classes[0];
 const totalMin = classes.reduce((sum, c) => sum + c.length_minutes, 0);
 const hours = Math.round((totalMin / 60) * 10) / 10;
+
+// Deep-link to the calendar planner with this program pre-selected. The viewer
+// picks the days themselves, then syncs to Google/Apple/Outlook with reminders.
+const planUrl = `/calendar?program=${meta.slug}`;
 ---
 
 <BaseLayout
@@ -44,6 +48,13 @@ const hours = Math.round((totalMin / 60) * 10) / 10;
         first && (
           <a class={`btn btn-primary start-btn accent-${meta.accent}`} href={`/videos/${first.slug}`}>
             Start {meta.unit} 1 → {videoHeadline(first)}
+          </a>
+        )
+      }
+      {
+        classes.length > 0 && (
+          <a class="prog-cal-btn" href={planUrl}>
+            📅 Plan this program in my calendar
           </a>
         )
       }
@@ -78,6 +89,11 @@ const hours = Math.round((totalMin / 60) * 10) / 10;
           ))
         }
       </ol>
+      <p class="syll-note">
+        Want reminders? Tap <strong>📅 Plan this program in my calendar</strong> at the top — it opens
+        the <a href={planUrl}>calendar planner</a> with these classes ready, so you can pick the days
+        that suit you and sync to Google, Apple or Outlook with a reminder.
+      </p>
     </section>
 
     <section class="prog-closer">

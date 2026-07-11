@@ -12,17 +12,24 @@ import { SITE } from '../../data/site';
  */
 export async function getStaticPaths() {
   const videos = await getCollection('videos');
+  // slug → display name, so chapters can render a proper linked label per pose.
+  const poseNames = Object.fromEntries(
+    (await getCollection('poses')).map((p) => [p.data.slug, p.data.name_en]),
+  );
   // Site rule: no pages for classes under 10 minutes (shorts / promos).
   return videos
     .filter((video) => video.data.length_minutes >= 10)
     .map((video) => ({
       params: { slug: video.data.slug },
-      props: { video },
+      props: { video, poseNames },
     }));
 }
 
-const { video } = Astro.props;
+const { video, poseNames } = Astro.props;
 const d = video.data;
+// Every held pose in a chapter (new `poses` array, falling back to the legacy single `pose`).
+const chapterPoses = (c: { pose?: string; poses?: string[] }) =>
+  c.poses && c.poses.length ? c.poses : c.pose ? [c.pose] : [];
 const { Content } = await render(video);
 
 // --- Thumbnail: auto-derived from youtube_id unless a thumbnail is set --------
@@ -184,6 +191,7 @@ const eyebrow = ['Yin Yoga', ...d.intent_tags.map(capitalise)].join(' · ');
         {
           d.chapters.map((c) => {
             const { cat, name, note } = parseChapter(c.title);
+            const slugs = chapterPoses(c);
             return (
               <div class="chap">
                 <div class="t">
@@ -194,9 +202,16 @@ const eyebrow = ['Yin Yoga', ...d.intent_tags.map(capitalise)].join(' · ');
                 <div class="cbody">
                   {cat && <div class="cat">{cat}</div>}
                   <div class="nm">
-                    {c.pose ? <a href={`/poses/${c.pose}`}>{name}</a> : name}
+                    {slugs.length === 1 ? <a href={`/poses/${slugs[0]}`}>{name}</a> : name}
                     {note && <span> · {note}</span>}
                   </div>
+                  {slugs.length > 1 && (
+                    <div class="chap-poses">
+                      {slugs.map((s) => (
+                        <a href={`/poses/${s}`}>{poseNames[s] ?? s}</a>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             );
@@ -208,16 +223,14 @@ const eyebrow = ['Yin Yoga', ...d.intent_tags.map(capitalise)].join(' · ');
       </p>
     </section>
 
-    {/* Outcome-led membership CTA */}
+    {/* Single CTA — the free two-hour retreat */}
     <div class="membership">
-      <p class="eyebrow">Inside the membership</p>
-      <h2>Don't decide — just press play</h2>
-      <p>{d.membership_cta}</p>
+      <p class="eyebrow">A little gift</p>
+      <h2>A free two-hour retreat, on me</h2>
+      <p>Enjoyed this? Treat yourself to two hours of pure rest — a guided Yin, restorative and Yoga Nidra journey to calm your nervous system. Pop in your email and it's yours to keep.</p>
       <div class="cta-actions">
-        <a class="btn-cta" href="/free-class">Get a free class</a>
-        <a class="cta-secondary" href="/calendar">Follow my monthly calendar →</a>
+        <a class="btn-cta" href="/free-class">Send me the free retreat →</a>
       </div>
-      <p class="cta-tertiary">Ready for more? <a href={SITE.membershipUrl} target="_blank" rel="noopener">Join the membership →</a></p>
     </div>
 
     {

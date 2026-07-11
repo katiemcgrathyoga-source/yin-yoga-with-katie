@@ -8,10 +8,13 @@ export const SITE = {
   // (e.g. 'https://www.buymeacoffee.com/yourname' or a Ko-fi link). Leave '' to hide it.
   coffeeUrl: 'https://www.buymeacoffee.com/katiemcgrath',
 
-  // MailerLite form POST URL for the "This Month" calendar weekly-reminder signup.
-  // Create a MailerLite form/group for the calendar list, then paste its subscribe
-  // URL here (same shape as the free-class one:
-  // https://assets.mailerlite.com/jsonp/<account>/forms/<formId>/subscribe).
-  // Leave '' and the signup box shows a "coming soon" note instead.
-  calendarSignupAction: '',
+  // Social + newsletter links, shown as icons in the footer. Set any to '' to hide it.
+  // Substack is Katie's writing/newsletter home; the site's email list stays on MailerLite.
+  socials: {
+    substack: 'https://katiemcgrathyoga.substack.com/',
+    instagram: 'https://www.instagram.com/yinyogawithkatie/',
+    tiktok: 'https://www.tiktok.com/@yoga.with.katie',
+    pinterest: 'https://www.pinterest.com/YinYogaWithKatie',
+    youtube: 'https://www.youtube.com/@YinYogawithKatie',
+  },
 };

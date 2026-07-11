@@ -108,18 +108,23 @@ const holdSeconds = d.hold_seconds ?? 180;
       </div>
     </header>
 
-    {/* Single reference photo, directly under the hero. */}
+    {/* Single reference photo, directly under the hero. Poses still awaiting their own
+        photo use an on-brand illustration placeholder with a gentle "coming soon" note. */}
     {
-      d.images.length > 0 && (
-        <figure class="pose-photo">
-          <img
-            src={d.images[0]}
-            alt={`${d.name_en} yin yoga pose`}
-            loading="lazy"
-            onerror="this.closest('.pose-photo').remove()"
-          />
-        </figure>
-      )
+      d.images.length > 0 && (() => {
+        const pending = d.images[0].includes('pose-placeholder');
+        return (
+          <figure class={`pose-photo${pending ? ' is-placeholder' : ''}`}>
+            <img
+              src={d.images[0]}
+              alt={pending ? `${d.name_en} yin yoga pose illustration` : `${d.name_en} yin yoga pose`}
+              loading="lazy"
+              onerror="this.closest('.pose-photo').remove()"
+            />
+            {pending && <figcaption>Photo coming soon</figcaption>}
+          </figure>
+        );
+      })()
     }
 
     {/* Hold timer — set your length and let the shape do the work. */}
@@ -266,7 +271,7 @@ const holdSeconds = d.hold_seconds ?? 180;
     <Cta
       eyebrow="Practise with me"
       heading="Ready to move?"
-      body="Find this shape inside a full class, free to follow. New to Yin? Take a free members-only class as my gift, or follow my monthly calendar for what to practise next."
+      body="Find this shape inside a full class, free to follow. And whenever you need to truly switch off, treat yourself to my free two-hour Yin retreat — my gift to you."
     />
 
     {

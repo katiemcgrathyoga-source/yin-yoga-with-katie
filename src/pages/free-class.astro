@@ -3,8 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 // Branded OG card for shares.
 const ogImage = new URL('/og/card.png', Astro.site);
-ogImage.searchParams.set('t', 'A free Yin class');
-ogImage.searchParams.set('s', 'A members-only class, on the house');
+ogImage.searchParams.set('t', 'A free 2-hour Yin retreat');
+ogImage.searchParams.set('s', 'Yin, restorative & Yoga Nidra — deep rest, on the house');
 
 // MailerLite form (account 2503148, form L6O8I1). The form posts straight to
 // MailerLite; the free class is delivered by the welcome email automation.
@@ -12,28 +12,29 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
 ---
 
 <BaseLayout
-  title="Get a Free Members-Only Yin Yoga Class — Yin Yoga with Katie"
-  description="Pop in your email and I'll send you a full members-only Yin Yoga class, free — yours to keep and practise any time. No experience needed."
+  title="A Free 2-Hour Yin Yoga Retreat at Home — Yin Yoga with Katie"
+  description="Pop in your email and I'll send you a full two-hour Yin, restorative and Yoga Nidra retreat, free — two hours of pure rest to calm your nervous system. Yours to keep."
   image={ogImage.href}
 >
   <div class="wrap">
     <header class="hero">
       <p class="eyebrow">A little gift</p>
-      <h1>A free members-only class</h1>
-      <p class="alt">a full Yin class from inside the membership — yours, on the house</p>
+      <h1>A free two-hour retreat</h1>
+      <p class="alt">yin, restorative & yoga nidra — two hours of deep rest, on the house</p>
     </header>
 
     <p class="page-intro">
-      Pop your email below and I'll send you a complete members-only Yin Yoga class to keep and
-      practise whenever you like. It's a lovely way to feel what a longer, guided practice with me
-      is like — slow, calming, and kind to your body. No experience needed; come as you are.
+      Pop your email below and I'll send you a complete two-hour mini-retreat to keep and return to
+      any time. It's a slow, guided journey through Yin, restorative yoga and Yoga Nidra — designed
+      to calm your nervous system and melt off a busy, stressful week. Nowhere to be, nothing to
+      keep up with. Come as you are.
     </p>
 
     <section class="lm">
       <ul class="lm-points">
-        <li>A full members-only class, free to keep</li>
-        <li>Follow along any time — nothing to keep up with</li>
-        <li>A few gentle notes after, to help you get the most from it</li>
+        <li>A full two-hour guided retreat, free to keep</li>
+        <li>Yin + restorative yoga + Yoga Nidra + breathwork</li>
+        <li>Deep rest for your nervous system — real stress relief</li>
       </ul>
 
       <form
@@ -66,18 +67,18 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
         />
         <input type="hidden" name="ml-submit" value="1" />
         <input type="hidden" name="anticsrf" value="true" />
-        <button type="submit" class="btn-cta">Send me the free class →</button>
+        <button type="submit" class="btn-cta">Send me the free retreat →</button>
       </form>
 
       <p class="lm-fine">No spam, ever. Unsubscribe any time. I'll only send Yin.</p>
 
       <div class="lm-success" id="lm-success" hidden role="status">
-        <h2>Check your inbox 🎁</h2>
+        <h2>Check your inbox 🌙</h2>
         <p>
-          Your free class is on its way. If it's not there in a minute or two, peek in your
+          Your two-hour retreat is on its way. If it's not there in a minute or two, peek in your
           spam or promotions folder and mark it "not spam" so you don't miss what's next.
         </p>
-        <a class="cta-secondary" href="/">← Explore the free class library</a>
+        <a class="lm-success-link" href="/">← Explore the free class library</a>
       </div>
     </section>
 

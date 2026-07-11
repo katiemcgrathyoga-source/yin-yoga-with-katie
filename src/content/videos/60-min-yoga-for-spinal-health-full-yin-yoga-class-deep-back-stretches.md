@@ -13,13 +13,13 @@ level: "all-levels"
 intent_tags: ["flexibility", "full-body"]
 body_areas: ["spine", "lower back", "hips", "hamstrings", "shoulders"]
 props: []
-poses_featured: ["half-butterfly", "angel", "caterpillar", "air-release", "melting-heart", "sphinx", "dangling", "squat", "reclined-twist"]
+poses_featured: ["half-butterfly",   "caterpillar",   "melting-heart", "sphinx", "dangling", "squat", "reclined-twist"]
 chapters:
   - { time: "0:00",   seconds: 0,    title: "Welcome & how the class works" }
   - { time: "0:45",   seconds: 45,   title: "Hamstrings · Half-Butterfly (each side)",  pose: "half-butterfly" }
-  - { time: "12:00",  seconds: 720,  title: "Spine · Angel Pose",                       pose: "angel" }
+  - { time: "12:00",  seconds: 720,  title: "Spine · Angel Pose" }
   - { time: "14:30",  seconds: 870,  title: "Spine · Caterpillar",                      pose: "caterpillar" }
-  - { time: "21:20",  seconds: 1280, title: "Lower back · Air-Releasing Pose",          pose: "air-release" }
+  - { time: "21:20",  seconds: 1280, title: "Lower back · Air-Releasing Pose" }
   - { time: "27:28",  seconds: 1648, title: "Shoulders · Melting Heart",                pose: "melting-heart" }
   - { time: "31:45",  seconds: 1905, title: "Back · Sphinx & Seal",                     pose: "sphinx" }
   - { time: "38:30",  seconds: 2310, title: "Spine · Dangling",                         pose: "dangling" }

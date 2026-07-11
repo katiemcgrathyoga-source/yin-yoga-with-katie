@@ -1,10 +1,7 @@
 ---
-import { SITE } from '../data/site';
-
 /**
- * The site-wide two-tier call to action. Primary = the paid YouTube membership
- * (the revenue driver); secondary = the free on-site Programs (low-friction,
- * keeps people practising). Calm, no hype — in Katie's voice.
+ * The site-wide call to action — a single, low-friction ask: the free two-hour
+ * Yin retreat (email capture). Calm, no hype — in Katie's voice.
  */
 interface Props {
   eyebrow?: string;
@@ -12,9 +9,9 @@ interface Props {
   body?: string;
 }
 const {
-  eyebrow = 'Practise with me',
-  heading = 'A gentle place to start',
-  body = 'New here? Take a free members-only class — my gift — then follow my monthly calendar so you always know what to practise next.',
+  eyebrow = 'A little gift',
+  heading = 'A free two-hour retreat, on me',
+  body = "Give yourself two hours of pure rest — a guided Yin, restorative and Yoga Nidra journey to calm your nervous system and melt off a stressful week. Pop in your email and it's yours to keep.",
 } = Astro.props;
 ---
 
@@ -23,8 +20,6 @@ const {
   <h2>{heading}</h2>
   <p>{body}</p>
   <div class="cta-actions">
-    <a class="btn-cta" href="/free-class">Get a free class</a>
-    <a class="cta-secondary" href="/calendar">Follow my monthly calendar →</a>
+    <a class="btn-cta" href="/free-class">Send me the free retreat →</a>
   </div>
-  <p class="cta-tertiary">Ready for more? <a href={SITE.membershipUrl} target="_blank" rel="noopener">Join the membership →</a></p>
 </div>
