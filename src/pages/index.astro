@@ -5,7 +5,11 @@ import { derivedThumb, lenLabel, byRecencyThenWatch, videoHeadline } from '../li
 
 // Recent classes lead (current thumbnails / branding), then older ones — each
 // tier by watch-hours. New video files appear here automatically.
-const videos = (await getCollection('videos')).sort((a, b) => byRecencyThenWatch(a.data, b.data));
+// Site rule: classes under 10 minutes are shorts/promos and don't belong in the
+// library. Exclude them here (and in the video page's getStaticPaths).
+const videos = (await getCollection('videos'))
+  .filter((v) => v.data.length_minutes >= 10)
+  .sort((a, b) => byRecencyThenWatch(a.data, b.data));
 
 // --- Length buckets — fixed taxonomy; the top bucket catches 90+ so nothing
 //     ever falls through. Only buckets with at least one class are shown. ------
@@ -64,9 +68,10 @@ const areaBuckets = (v: V) => {
 };
 const presentAreas = AREA_BUCKETS.filter((b) => videos.some((v) => areaBuckets(v).includes(b.key)));
 
-// Style — silent · no props · members only.
+// Style — silent · no props · yoga nidra · members only.
 const styleTags = (v: V) => {
   const s: string[] = [];
+  if (/nidra|nsdr/i.test(v.data.title)) s.push('yoga-nidra');
   if (/silent|minimal cues|no extra talking|no.?talking/i.test(v.data.title)) s.push('silent');
   if (v.data.props.length === 0 || v.data.props.every((p) => /^none$/i.test(p)) || /no.?props|without props|prop.?free/i.test(v.data.title)) s.push('no-props');
   if (v.data.membership) s.push('members');
@@ -75,6 +80,7 @@ const styleTags = (v: V) => {
 const STYLE_OPTS = [
   { key: 'silent', label: 'Silent' },
   { key: 'no-props', label: 'No props' },
+  { key: 'yoga-nidra', label: 'Yoga Nidra' },
   { key: 'members', label: 'Members only' },
 ];
 const presentStyles = STYLE_OPTS.filter((o) => videos.some((v) => styleTags(v).includes(o.key)));

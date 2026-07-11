@@ -2,11 +2,23 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-// Poses are now a reference layer beneath the video library. This is their
-// browsable index (the homepage is the video library). Alphabetised; new pose
-// files appear automatically.
-const poses = (await getCollection('poses')).sort((a, b) =>
-  a.data.name_en.localeCompare(b.data.name_en),
+// Poses are the reference layer beneath the video library. This is their browsable
+// index. Ordered by how foundational/common each pose is — measured by how often it
+// appears across Katie's classes and routines — so the shapes she teaches most lead,
+// and obscure ones fall to the end. Ties break alphabetically.
+const refCount = new Map<string, number>();
+const bump = (slug: string, n = 1) => refCount.set(slug, (refCount.get(slug) ?? 0) + n);
+for (const v of await getCollection('videos')) {
+  if (v.data.length_minutes < 10) continue; // ignore removed shorts
+  for (const s of v.data.poses_featured) bump(s);
+  for (const c of v.data.chapters) if (c.pose) bump(c.pose);
+}
+for (const r of await getCollection('routines')) for (const st of r.data.steps) bump(st.pose);
+
+const poses = (await getCollection('poses')).sort(
+  (a, b) =>
+    (refCount.get(b.data.slug) ?? 0) - (refCount.get(a.data.slug) ?? 0) ||
+    a.data.name_en.localeCompare(b.data.name_en),
 );
 
 const titleCase = (s: string) => s.replace(/\b\w/g, (c) => c.toUpperCase());

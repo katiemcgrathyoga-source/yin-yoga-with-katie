@@ -12,10 +12,13 @@ import { SITE } from '../../data/site';
  */
 export async function getStaticPaths() {
   const videos = await getCollection('videos');
-  return videos.map((video) => ({
-    params: { slug: video.data.slug },
-    props: { video },
-  }));
+  // Site rule: no pages for classes under 10 minutes (shorts / promos).
+  return videos
+    .filter((video) => video.data.length_minutes >= 10)
+    .map((video) => ({
+      params: { slug: video.data.slug },
+      props: { video },
+    }));
 }
 
 const { video } = Astro.props;
