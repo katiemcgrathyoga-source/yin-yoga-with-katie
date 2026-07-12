@@ -2,14 +2,17 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { PROGRAMS, resolveProgramClasses, unitPlural } from '../data/programs';
-import { derivedThumb } from '../lib/video';
+import { videoHeadline, lenLabel } from '../lib/video';
 
 // Each program's class list is resolved live from the library.
 const videos = await getCollection('videos');
-const programs = PROGRAMS.map((def) => {
-  const classes = resolveProgramClasses(def, videos);
-  return { def, count: classes.length, lead: classes[0]?.data };
-});
+const resolved = PROGRAMS.map((def) => ({ def, classes: resolveProgramClasses(def, videos) }));
+
+// Spotlight the first program (the "if you're new, start here" path); the rest
+// sit below as a quiet index.
+const featured = resolved[0];
+const others = resolved.slice(1);
+const featuredFirst = featured.classes[0]?.data;
 ---
 
 <BaseLayout
@@ -17,39 +20,53 @@ const programs = PROGRAMS.map((def) => {
   description="Free, guided Yin Yoga programs — follow a plan instead of choosing a class each day. Wind down for sleep, get flexible, free your hips, or calm a busy mind."
 >
   <div class="wrap">
-    <header class="hero">
-      <p class="eyebrow">Guided · Free to follow</p>
-      <h1>Programs</h1>
-      <p class="alt">don't decide what to practise — follow a path, one class at a time</p>
+    <header class="hero pg-hero">
+      <p class="eyebrow">programs</p>
+      <h1>A few classes, in the right order</h1>
     </header>
-
-    <p class="intro">
-      Each program is a hand-picked run of classes with a single aim. Start at the beginning and
-      follow along, or dip into whichever one your body is asking for. No sign-up — just press play.
-    </p>
-
-    <div class="programs">
-      {
-        programs.map(({ def, count, lead }) => (
-          <a class={`program-card accent-${def.accent}`} href={`/programs/${def.slug}`}>
-            <div class="pc-thumb">
-              {lead && <img src={derivedThumb(lead)} alt={def.title} loading="lazy" width="480" height="270" />}
-              <span class="pc-count">{unitPlural(def, count)}</span>
-              {def.membersProgram && <span class="pc-members">Members only</span>}
-            </div>
-            <div class="pc-body">
-              <h2 class="pc-title">{def.title}</h2>
-              <p class="pc-tag">{def.tagline}</p>
-              <p class="pc-outcome">{def.outcome}</p>
-              <span class="pc-go">View the plan →</span>
-            </div>
-          </a>
-        ))
-      }
-    </div>
-
-    <footer>
-      <p class="src">Programs draw from the same class library — they just give it an order.</p>
-    </footer>
   </div>
+
+  <section class="pg-band">
+    <div class="pg-inner">
+      <div class="pg-featured">
+        <div class="pg-featured-copy">
+          <span class="pg-badge">if you're new, start here</span>
+          <h2>{featured.def.title}</h2>
+          <p class="pg-promise">{featured.def.outcome}</p>
+          <p class="pg-blurb">{featured.def.blurb}</p>
+          <div class="pg-featured-actions">
+            {featuredFirst && (
+              <a class="pg-begin" href={`/videos/${featuredFirst.slug}`}>Begin with class one →</a>
+            )}
+            <a class="pg-cal" href={`/calendar?program=${featured.def.slug}`}>Add to my calendar</a>
+          </div>
+        </div>
+        <div class="pg-classlist">
+          <div class="pg-classlist-head">what's inside · {unitPlural(featured.def, featured.classes.length)}</div>
+          {featured.classes.map((c, i) => (
+            <a class="pg-class-row" href={`/videos/${c.data.slug}`}>
+              <span class="pg-class-n">{i + 1}</span>
+              <span class="pg-class-title">{videoHeadline(c.data)}</span>
+              <span class="pg-class-len">{lenLabel(c.data)}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="pg-others">
+        <p class="pg-others-label">the other paths</p>
+        {others.map(({ def, classes }) => (
+          <a class="pg-other-row" href={`/programs/${def.slug}`}>
+            <span class="pg-other-name">
+              <span class="pg-other-title">{def.title}</span>
+              <span class="pg-other-meta">{unitPlural(def, classes.length)} · {def.tagline}</span>
+            </span>
+            <span class="pg-other-desc"><strong>{def.outcome}</strong> {def.blurb}</span>
+            <span class="pg-other-go">See the path →</span>
+          </a>
+        ))}
+        <p class="pg-foot">All programs are free, no login — and every class in them also lives in <a href="/">the library</a>.</p>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
