@@ -1,0 +1,48 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Cta from '../../components/Cta.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts
+    .filter((p) => !p.data.draft)
+    .map((post) => ({ params: { slug: post.data.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const d = post.data;
+const { Content } = await render(post);
+const fmt = (date: Date) => new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(date);
+
+const ogImage = new URL('/og/card.png', Astro.site);
+ogImage.searchParams.set('t', d.title.slice(0, 70));
+ogImage.searchParams.set('s', d.description.slice(0, 90));
+---
+
+<BaseLayout
+  title={`${d.seo_title ?? d.title} — Yin Yoga with Katie`}
+  description={d.seo_description ?? d.description}
+  ogType="article"
+  image={ogImage.href}
+>
+  <div class="wrap blog-post">
+    <p class="blog-back"><a href="/blog">← Journal</a></p>
+    <header class="hero blog-post-hero">
+      <p class="eyebrow">{fmt(d.published)}</p>
+      <h1>{d.title}</h1>
+    </header>
+
+    {d.hero && (
+      <figure class="blog-hero-img">
+        <img src={d.hero} alt="" loading="eager" />
+      </figure>
+    )}
+
+    <article class="prose blog-prose">
+      <Content />
+    </article>
+
+    <Cta />
+  </div>
+</BaseLayout>

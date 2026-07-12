@@ -159,4 +159,23 @@ const routines = defineCollection({
   }),
 });
 
-export const collections = { poses, videos, routines };
+/**
+ * The `blog` collection — Katie's Journal. Each post is one Markdown file in
+ * src/content/blog/. Body is Markdown; frontmatter drives the listing + SEO.
+ */
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  schema: z.object({
+    title: z.string().min(1),
+    slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'slug must be lowercase kebab-case'),
+    description: z.string().min(1), // excerpt for the listing + meta description
+    published: z.coerce.date(),
+    updated: z.coerce.date().optional(),
+    draft: z.boolean().default(false),
+    hero: z.string().optional(), // optional lead image (path under /public)
+    seo_title: z.string().optional(),
+    seo_description: z.string().optional(),
+  }),
+});
+
+export const collections = { poses, videos, routines, blog };

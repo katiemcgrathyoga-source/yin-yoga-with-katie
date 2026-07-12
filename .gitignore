@@ -38,3 +38,7 @@ pnpm-debug.log*
 # misc
 desktop.ini
 *.zip
+
+# design handoff packages + raw brand images — reference, not site source
+/design_handoff_library_homepage/
+/brand images/

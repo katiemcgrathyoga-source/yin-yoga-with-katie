@@ -218,8 +218,11 @@ const eyebrow = ['Yin Yoga', ...d.intent_tags.map(capitalise)].join(' · ');
                   </div>
                   {slugs.length > 1 && (
                     <div class="chap-poses">
-                      {slugs.map((s) => (
-                        <a href={`/poses/${s}`}>{poseNames[s] ?? s}</a>
+                      {slugs.map((s, i) => (
+                        <>
+                          {i > 0 && <span class="chap-poses-sep"> · </span>}
+                          <a href={`/poses/${s}`}>{poseNames[s] ?? s}</a>
+                        </>
                       ))}
                     </div>
                   )}

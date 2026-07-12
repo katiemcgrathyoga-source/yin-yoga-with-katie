@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
+const fmt = (d: Date) => new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(d);
+
+const ogImage = new URL('/og/card.png', Astro.site);
+ogImage.searchParams.set('t', 'The Journal');
+ogImage.searchParams.set('s', 'Words on Yin, rest, and slowing down');
+---
+
+<BaseLayout
+  title="Journal — Yin Yoga with Katie"
+  description="Words on Yin, rest and slowing down — notes from Katie alongside the class library."
+  image={ogImage.href}
+>
+  <div class="wrap">
+    <header class="hero">
+      <p class="eyebrow">Yin Yoga with Katie</p>
+      <h1>Journal</h1>
+      <p class="alt">words on Yin, rest, and slowing down</p>
+    </header>
+
+    {posts.length === 0 ? (
+      <p class="empty">The first post is on its way — check back soon.</p>
+    ) : (
+      <ul class="blog-list">
+        {posts.map((p) => (
+          <li class="blog-item">
+            <a href={`/blog/${p.data.slug}`}>
+              <p class="blog-date">{fmt(p.data.published)}</p>
+              <h2 class="blog-title">{p.data.title}</h2>
+              <p class="blog-excerpt">{p.data.description}</p>
+              <span class="blog-more">Read →</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</BaseLayout>

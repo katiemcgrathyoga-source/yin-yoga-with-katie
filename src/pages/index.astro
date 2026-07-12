@@ -5,14 +5,13 @@ import { derivedThumb, lenLabel, byRecencyThenWatch, videoHeadline } from '../li
 
 // Recent classes lead (current thumbnails / branding), then older ones — each
 // tier by watch-hours. New video files appear here automatically.
-// Site rule: classes under 10 minutes are shorts/promos and don't belong in the
-// library. Exclude them here (and in the video page's getStaticPaths).
+// Site rule: classes under 10 minutes are shorts/promos and don't belong here.
 const videos = (await getCollection('videos'))
   .filter((v) => v.data.length_minutes >= 10)
   .sort((a, b) => byRecencyThenWatch(a.data, b.data));
+type V = (typeof videos)[number];
 
-// --- Length buckets — fixed taxonomy; the top bucket catches 90+ so nothing
-//     ever falls through. Only buckets with at least one class are shown. ------
+// --- Length buckets ----------------------------------------------------------
 const BUCKETS = [
   { key: 'under-20', label: 'Under 20 min', test: (m: number) => m < 20 },
   { key: '20-40', label: '20–40 min', test: (m: number) => m >= 20 && m < 40 },
@@ -20,44 +19,15 @@ const BUCKETS = [
   { key: '60-90', label: '60–90 min', test: (m: number) => m >= 60 },
 ];
 const bucketOf = (m: number) => BUCKETS.find((b) => b.test(m))!.key;
+const presentBuckets = BUCKETS.filter((b) => videos.some((v) => bucketOf(v.data.length_minutes) === b.key));
 
-// --- Filter facets, built from the classes actually present -------------------
-type V = (typeof videos)[number];
-
-// Intent — a FIXED, curated taxonomy so the filter row stays clean no matter what
-// intent_tags future enrichments add. Raw tags map into these buckets; any tag not
-// listed here (e.g. "beginner", "back", "hips-lower-back") is simply not surfaced as
-// an Intent chip — it's still stored on the video and used elsewhere. To add/rename a
-// filter, edit THIS list only.
-const INTENT_BUCKETS = [
-  { key: 'sleep', label: 'Sleep', tags: ['sleep'] },
-  { key: 'calm', label: 'Stress & calm', tags: ['nervous-system', 'stress'] },
-  { key: 'digestion', label: 'Digestion', tags: ['digestion'] },
-  { key: 'energy', label: 'Energy', tags: ['energy'] },
-  { key: 'flexibility', label: 'Flexibility', tags: ['flexibility'] },
-  { key: 'full-body', label: 'Full body', tags: ['full-body'] },
-];
-const intentKeys = (v: V) =>
-  INTENT_BUCKETS.filter((b) => b.tags.some((t) => v.data.intent_tags.includes(t))).map((b) => b.key);
-const presentIntents = INTENT_BUCKETS.filter((b) => videos.some((v) => intentKeys(v).includes(b.key)));
-// Small tile badges show only the genuinely *distinguishing* intents — not the
-// near-universal calm / flexibility / full-body — so tiles stay uncluttered and a
-// badge actually means something. Capped at two.
-const BADGE_INTENTS = new Set(['sleep', 'digestion', 'energy']);
-const intentBadges = (v: V) => {
-  const keys = intentKeys(v).filter((k) => BADGE_INTENTS.has(k)).slice(0, 2);
-  return keys.map((k) => INTENT_BUCKETS.find((b) => b.key === k)!.label);
-};
-
-// Body area → a few curated buckets; each raw area maps into one.
+// Body-area buckets — used to build the merged Focus filter (below).
 const AREA_BUCKETS = [
   { key: 'hips', label: 'Hips', match: (a: string) => /hip|groin/.test(a) },
   { key: 'lower-back', label: 'Lower back', match: (a: string) => /lower back|low back|sacrum/.test(a) },
-  { key: 'shoulders', label: 'Shoulders', match: (a: string) => /shoulder|neck|upper back|chest/.test(a) },
-  { key: 'spine', label: 'Spine', match: (a: string) => /\bspine\b/.test(a) },
-  { key: 'legs', label: 'Legs', match: (a: string) => /hamstring|quad|\bleg|ankle|feet|knee/.test(a) },
+  { key: 'shoulders', label: 'Neck & shoulders', match: (a: string) => /shoulder|neck|upper back|chest/.test(a) },
 ];
-const areaBuckets = (v: V) => {
+const areaKeys = (v: V) => {
   const set = new Set<string>();
   for (const raw of v.data.body_areas) {
     const a = raw.toLowerCase();
@@ -66,28 +36,26 @@ const areaBuckets = (v: V) => {
   if (v.data.intent_tags.includes('hips-lower-back')) { set.add('hips'); set.add('lower-back'); }
   return [...set];
 };
-const presentAreas = AREA_BUCKETS.filter((b) => videos.some((v) => areaBuckets(v).includes(b.key)));
 
-// Style — silent · no props · yoga nidra · members only.
-const styleTags = (v: V) => {
-  const s: string[] = [];
-  if (/nidra|nsdr/i.test(v.data.title)) s.push('yoga-nidra');
-  if (/silent|minimal cues|no extra talking|no.?talking/i.test(v.data.title)) s.push('silent');
-  if (v.data.props.length === 0 || v.data.props.every((p) => /^none$/i.test(p)) || /no.?props|without props|prop.?free/i.test(v.data.title)) s.push('no-props');
-  if (v.data.membership) s.push('members');
-  return s;
-};
-const STYLE_OPTS = [
-  { key: 'silent', label: 'Silent' },
-  { key: 'no-props', label: 'No props' },
-  { key: 'yoga-nidra', label: 'Yoga Nidra' },
-  { key: 'members', label: 'Members only' },
+// --- Focus: intent + body area merged into one filter row (per the design) ----
+const FOCUS = [
+  { key: 'sleep', label: 'Sleep', match: (v: V) => v.data.intent_tags.includes('sleep') },
+  { key: 'calm', label: 'Stress & calm', match: (v: V) => v.data.intent_tags.some((t) => ['nervous-system', 'stress'].includes(t)) },
+  { key: 'energy', label: 'Energy', match: (v: V) => v.data.intent_tags.includes('energy') },
+  { key: 'flexibility', label: 'Flexibility', match: (v: V) => v.data.intent_tags.includes('flexibility') },
+  { key: 'hips', label: 'Hips', match: (v: V) => areaKeys(v).includes('hips') },
+  { key: 'lower-back', label: 'Lower back', match: (v: V) => areaKeys(v).includes('lower-back') },
+  { key: 'shoulders', label: 'Neck & shoulders', match: (v: V) => areaKeys(v).includes('shoulders') },
+  { key: 'full-body', label: 'Full body', match: (v: V) => v.data.intent_tags.includes('full-body') },
 ];
-const presentStyles = STYLE_OPTS.filter((o) => videos.some((v) => styleTags(v).includes(o.key)));
+const focusKeys = (v: V) => FOCUS.filter((f) => f.match(v)).map((f) => f.key);
+const focusLabels = (v: V) => FOCUS.filter((f) => f.match(v)).map((f) => f.label);
+const presentFocus = FOCUS.filter((f) => videos.some((v) => f.match(v)));
 
-const presentBuckets = BUCKETS.filter((b) => videos.some((v) => bucketOf(v.data.length_minutes) === b.key));
+// Signature filmstrip: a marquee of recent thumbnails (decorative, not links).
+const stripVideos = videos.slice(0, 10);
+const roughCount = Math.max(10, Math.floor(videos.length / 10) * 10);
 
-// Branded OG card for link previews of the homepage.
 const ogImage = new URL('/og/card.png', Astro.site);
 ogImage.searchParams.set('t', 'Free Yin Yoga Classes');
 ogImage.searchParams.set('s', 'Full-length practices to follow along');
@@ -95,31 +63,32 @@ ogImage.searchParams.set('s', 'Full-length practices to follow along');
 
 <BaseLayout
   title="Yin Yoga with Katie — the video library"
-  description="A growing library of full-length Yin Yoga classes you can follow on YouTube. Filter by intent, length and body area to find the right practice for today."
+  description="A growing library of full-length Yin Yoga classes you can follow on YouTube. Filter by focus and length to find the right practice for today."
   image={ogImage.href}
 >
-  <div class="wrap">
-    <header class="hero">
-      <p class="eyebrow">Yin Yoga with Katie</p>
+  <div class="wrap lib">
+    <header class="hero lib-hero">
+      <p class="eyebrow">Yin yoga with Katie</p>
       <h1>The Library</h1>
-      <p class="alt">full-length classes to settle into — filter for exactly what your body needs today</p>
+      <p class="lib-sub">Full-length classes to follow along on YouTube — filter for what your body needs today.</p>
     </header>
 
-    <p class="page-intro">
-      Every one of my Yin Yoga classes, in one place. Yin is slow, floor-based yoga —
-      long, gently-held stretches that ease tension, calm the mind and build flexibility
-      over time. Filter by how long you have, the part of the body you want to work, or
-      how you'd like to feel, and press play. New here? Start with a beginner class or a
-      short <a href="/routines">follow-along routine</a>.
-    </p>
+    <div class="lib-strip" aria-hidden="true">
+      <div class="lib-strip-track">
+        {[...stripVideos, ...stripVideos].map((v) => (
+          <img src={derivedThumb(v.data, 'mqdefault')} alt="" loading="lazy" width="176" height="99" />
+        ))}
+      </div>
+    </div>
+    <p class="lib-strip-caption">{roughCount}+ free classes, 10 to 90 minutes</p>
 
     <section>
-      <div class="filters" id="filters">
+      <div class="filters lib-filters" id="filters">
         <div class="facet">
-          <span class="facet-label">Intent</span>
-          <div class="chips">
-            {presentIntents.map((b) => (
-              <button type="button" class="chip" data-facet="intent" data-value={b.key} aria-pressed="false">{b.label}</button>
+          <span class="facet-label">Focus</span>
+          <div class="chips lib-chiprow">
+            {presentFocus.map((f) => (
+              <button type="button" class="chip" data-facet="focus" data-value={f.key} aria-pressed="false">{f.label}</button>
             ))}
           </div>
         </div>
@@ -127,29 +96,9 @@ ogImage.searchParams.set('s', 'Full-length practices to follow along');
         {presentBuckets.length > 0 && (
           <div class="facet">
             <span class="facet-label">Length</span>
-            <div class="chips">
+            <div class="chips lib-chiprow">
               {presentBuckets.map((b) => (
                 <button type="button" class="chip" data-facet="length" data-value={b.key} aria-pressed="false">{b.label}</button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        <div class="facet">
-          <span class="facet-label">Body area</span>
-          <div class="chips">
-            {presentAreas.map((b) => (
-              <button type="button" class="chip" data-facet="area" data-value={b.key} aria-pressed="false">{b.label}</button>
-            ))}
-          </div>
-        </div>
-
-        {presentStyles.length > 0 && (
-          <div class="facet">
-            <span class="facet-label">Style</span>
-            <div class="chips">
-              {presentStyles.map((o) => (
-                <button type="button" class="chip" data-facet="style" data-value={o.key} aria-pressed="false">{o.label}</button>
               ))}
             </div>
           </div>
@@ -161,15 +110,13 @@ ogImage.searchParams.set('s', 'Full-length practices to follow along');
         </div>
       </div>
 
-      <div class="tiles" id="tiles">
+      <div class="tiles lib-grid" id="tiles">
         {videos.map((v) => (
           <a
             class="tile"
             href={`/videos/${v.data.slug}`}
             data-tile
-            data-intent={intentKeys(v).join('|')}
-            data-area={areaBuckets(v).join('|')}
-            data-style={styleTags(v).join('|')}
+            data-focus={focusKeys(v).join('|')}
             data-length={bucketOf(v.data.length_minutes)}
           >
             <div class="tile-thumb">
@@ -179,9 +126,9 @@ ogImage.searchParams.set('s', 'Full-length practices to follow along');
             </div>
             <div class="tile-body">
               <h3 class="tile-name">{videoHeadline(v.data)}</h3>
-              <div class="tile-tags">
-                {intentBadges(v).map((label) => <span class="tag tag-intent">{label}</span>)}
-              </div>
+              {focusLabels(v).length > 0 && (
+                <p class="tile-meta">{focusLabels(v).slice(0, 2).join(' · ')}</p>
+              )}
             </div>
           </a>
         ))}
@@ -192,10 +139,6 @@ ogImage.searchParams.set('s', 'Full-length practices to follow along');
         <button type="button" class="btn btn-secondary" id="show-all" hidden></button>
       </div>
     </section>
-
-    <footer>
-      <p class="src">New classes are added by dropping a Markdown file into the library.</p>
-    </footer>
   </div>
 </BaseLayout>
 
@@ -208,51 +151,31 @@ ogImage.searchParams.set('s', 'Full-length practices to follow along');
   const emptyEl = document.getElementById('empty');
 
   const showAllBtn = document.getElementById('show-all') as HTMLButtonElement | null;
-  // Unfiltered, only the first LIMIT classes show, so the homepage isn't a wall
-  // of hundreds of tiles. Filtering (or "show all") reveals everything.
   const LIMIT = 36;
   let showAll = false;
 
-  const active: Record<string, Set<string>> = {
-    intent: new Set(),
-    length: new Set(),
-    area: new Set(),
-    style: new Set(),
-  };
-
+  const active: Record<string, Set<string>> = { focus: new Set(), length: new Set() };
   const split = (v: string | undefined) => (v ? v.split('|').filter(Boolean) : []);
 
   function apply() {
-    const anyActive =
-      active.intent.size + active.length.size + active.area.size + active.style.size > 0;
+    const anyActive = active.focus.size + active.length.size > 0;
     const capped = !anyActive && !showAll;
     let matched = 0;
     let shown = 0;
     for (const tile of tiles) {
-      const intents = split(tile.dataset.intent);
-      const areas = split(tile.dataset.area);
-      const styles = split(tile.dataset.style);
+      const focus = split(tile.dataset.focus);
       const length = tile.dataset.length ?? '';
-
-      const okIntent = active.intent.size === 0 || intents.some((v) => active.intent.has(v));
+      const okFocus = active.focus.size === 0 || focus.some((v) => active.focus.has(v));
       const okLength = active.length.size === 0 || active.length.has(length);
-      const okArea = active.area.size === 0 || areas.some((v) => active.area.has(v));
-      const okStyle = active.style.size === 0 || styles.some((v) => active.style.has(v));
-
-      const match = okIntent && okLength && okArea && okStyle;
+      const match = okFocus && okLength;
       if (match) matched++;
       const show = match && (!capped || shown < LIMIT);
       tile.hidden = !show;
       if (show) shown++;
     }
-
     if (clearBtn) clearBtn.hidden = !anyActive;
     if (emptyEl) emptyEl.hidden = matched > 0;
-    if (countEl) {
-      countEl.textContent = anyActive
-        ? `${matched} of ${tiles.length} ${tiles.length === 1 ? 'class' : 'classes'}`
-        : '';
-    }
+    if (countEl) countEl.textContent = anyActive ? `${matched} of ${tiles.length} ${tiles.length === 1 ? 'class' : 'classes'}` : '';
     if (showAllBtn) {
       const hiddenCount = tiles.length - LIMIT;
       showAllBtn.hidden = !(capped && hiddenCount > 0);
@@ -260,35 +183,20 @@ ogImage.searchParams.set('s', 'Full-length practices to follow along');
     }
   }
 
-  showAllBtn?.addEventListener('click', () => {
-    showAll = true;
-    apply();
-  });
+  showAllBtn?.addEventListener('click', () => { showAll = true; apply(); });
 
   for (const chip of chips) {
     chip.addEventListener('click', () => {
-      const facet = chip.dataset.facet!;
-      const value = chip.dataset.value!;
-      const set = active[facet];
-      if (set.has(value)) {
-        set.delete(value);
-        chip.setAttribute('aria-pressed', 'false');
-        chip.classList.remove('active');
-      } else {
-        set.add(value);
-        chip.setAttribute('aria-pressed', 'true');
-        chip.classList.add('active');
-      }
+      const facet = chip.dataset.facet!, value = chip.dataset.value!, set = active[facet];
+      if (set.has(value)) { set.delete(value); chip.setAttribute('aria-pressed', 'false'); chip.classList.remove('active'); }
+      else { set.add(value); chip.setAttribute('aria-pressed', 'true'); chip.classList.add('active'); }
       apply();
     });
   }
 
   clearBtn?.addEventListener('click', () => {
     for (const key of Object.keys(active)) active[key].clear();
-    for (const chip of chips) {
-      chip.setAttribute('aria-pressed', 'false');
-      chip.classList.remove('active');
-    }
+    for (const chip of chips) { chip.setAttribute('aria-pressed', 'false'); chip.classList.remove('active'); }
     apply();
   });
 
