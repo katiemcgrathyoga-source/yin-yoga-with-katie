@@ -17,7 +17,7 @@ poses_featured: ["broken-wing", "childs-pose", "deer", "sleeping-swan", "dragon"
 chapters:
   - { time: "0:00",   seconds: 0,    title: "Welcome to your hour of Yin" }
   - { time: "0:55",   seconds: 55,   title: "Breath · Alternate nostril breathing" }
-  - { time: "7:48",   seconds: 468,  title: "Spine · Side stretches & twists" }
+  - { time: "7:48",   seconds: 468,  title: "Spine · Side stretches & twists", poses: ["reclined-twist"] }
   - { time: "10:00",  seconds: 600,  title: "Shoulders · Supported shoulder release" }
   - { time: "15:40",  seconds: 940,  title: "Shoulders · Broken Wing (each side)",       pose: "broken-wing" }
   - { time: "23:40",  seconds: 1420, title: "Back · Child's Pose with side stretches",   pose: "childs-pose" }
@@ -31,7 +31,7 @@ chapters:
   - { time: "43:30",  seconds: 2610, title: "Hips · Sleeping Swan (side 2)",              pose: "sleeping-swan" }
   - { time: "46:33",  seconds: 2793, title: "Hips · Dragon & Twisted Dragon (side 2)", poses: ["dragon", "twisted-dragon"] }
   - { time: "51:22",  seconds: 3082, title: "Legs · Reclined wind-down" }
-  - { time: "54:39",  seconds: 3279, title: "Corpse Pose / Savasana" }
+  - { time: "54:39",  seconds: 3279, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "60-Minute Yin Yoga — Full-Body Stretch & Relaxation"
 seo_description: "A calming 60-minute Yin Yoga class for a full-body stretch and deep relaxation — breathwork, gentle twists and long-held poses. All levels, two blocks."
 membership_cta: "Inside the membership, this class anchors the Reset program — a guided way to downshift at the end of the day so you feel calmer and sleep more easily. Instead of choosing a class each night, you press play and follow the plan."

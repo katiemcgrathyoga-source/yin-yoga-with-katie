@@ -24,7 +24,7 @@ chapters:
   - { time: "36:11",  seconds: 2171, title: "Twist · Twisted Roots (each side)",        pose: "reclined-twist" }
   - { time: "45:40",  seconds: 2740, title: "Lower back · Air-Releasing Pose" }
   - { time: "47:30",  seconds: 2850, title: "Hips · Reclined Butterfly",                pose: "butterfly" }
-  - { time: "51:25",  seconds: 3085, title: "Corpse Pose / Savasana" }
+  - { time: "51:25",  seconds: 3085, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "1-Hour Yin Yoga for Hips & Lower Back Release"
 seo_description: "A soothing 1-hour Yin Yoga class for the lower body — long, slow holds to release tight hips and ease lower back tension, from sleeping swan to shoelace to a reclined twist. All levels."
 membership_cta: "Love releasing the hips like this? Inside the membership, classes like this one anchor a guided Hips & Lower Back program — follow it and become someone who moves through the day loose and easy."

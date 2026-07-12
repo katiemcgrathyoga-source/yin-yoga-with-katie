@@ -19,10 +19,10 @@ chapters:
   - { time: "5:35",   seconds: 335,  title: "Neck · Neck stretches" }
   - { time: "6:09",   seconds: 369,  title: "Shoulders · Bow Tie (both sides)", poses: ["bow-tie"] }
   - { time: "12:12",  seconds: 732,  title: "Shoulders · Broken Wing (both sides)", poses: ["broken-wing"] }
-  - { time: "18:00",  seconds: 1080, title: "Corpse Pose / Savasana" }
+  - { time: "18:00",  seconds: 1080, title: "Corpse Pose / Savasana", poses: ["corpse"] }
   - { time: "18:48",  seconds: 1128, title: "Spine · Twisted Roots (reclined twist)", poses: ["reclined-twist"] }
-  - { time: "25:57",  seconds: 1557, title: "Shoulders · Knees to chest & shoulder-neck release" }
-  - { time: "27:37",  seconds: 1657, title: "Corpse Pose / Savasana" }
+  - { time: "25:57",  seconds: 1557, title: "Shoulders · Knees to chest & shoulder-neck release", poses: ["wind-relieving"] }
+  - { time: "27:37",  seconds: 1657, title: "Corpse Pose / Savasana", poses: ["corpse"] }
   - { time: "29:10",  seconds: 1750, title: "Breath · Closing meditation" }
   - { time: "30:20",  seconds: 1820, title: "Like & subscribe" }
 seo_title: "Yin Yoga for Upper Body — Deep Shoulder Stretch, 31 min"

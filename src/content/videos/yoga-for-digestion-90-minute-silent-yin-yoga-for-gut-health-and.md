@@ -25,7 +25,7 @@ chapters:
   - { time: "55:37",    seconds: 3337, title: "Spine · Caterpillar",                    pose: "caterpillar" }
   - { time: "1:01:31",  seconds: 3691, title: "Hips · Dragon cycle (each side)",        pose: "dragon" }
   - { time: "1:14:01",  seconds: 4441, title: "Twist · Reclined Twist (each side)",     pose: "reclined-twist" }
-  - { time: "1:23:20",  seconds: 5000, title: "Corpse Pose / Savasana" }
+  - { time: "1:23:20",  seconds: 5000, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "90-Min Silent Yin Yoga for Digestion & Gut Health"
 seo_description: "A silent 90-minute Yin Yoga class for digestion and gut health — gentle compression and twists that massage the belly, held long and slow with minimal cues. All levels."
 membership_cta: "Love a long, quiet practice like this? Inside the membership it lives as part of a guided program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

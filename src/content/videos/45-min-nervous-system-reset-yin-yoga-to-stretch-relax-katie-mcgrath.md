@@ -22,7 +22,7 @@ chapters:
   - { time: "24:30",  seconds: 1470, title: "Rest and reset" }
   - { time: "27:30",  seconds: 1650, title: "Spine · Caterpillar",         pose: "caterpillar" }
   - { time: "33:00",  seconds: 1980, title: "Legs · Legs Up the Wall",     pose: "legs-up-the-wall" }
-  - { time: "38:00",  seconds: 2280, title: "Corpse Pose / Savasana" }
+  - { time: "38:00",  seconds: 2280, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "45-Min Nervous System Reset Yin Yoga to Stretch & Relax"
 seo_description: "A calming 45-minute Yin Yoga class to reset the nervous system — alternate nostril breathing, supported bridge and fish, and legs up the wall. All levels."
 membership_cta: "Inside the membership, this class anchors the Reset program — a guided way to downshift at the end of the day so you feel calmer and sleep more easily."

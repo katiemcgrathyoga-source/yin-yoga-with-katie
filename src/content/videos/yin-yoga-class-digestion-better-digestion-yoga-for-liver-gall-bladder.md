@@ -23,7 +23,7 @@ chapters:
   - { time: "35:00",    seconds: 2100, title: "Legs · Dragonfly folds (left, right, middle)", pose: "dragonfly" }
   - { time: "48:20",    seconds: 2900, title: "Side · Banana",                         pose: "banana" }
   - { time: "56:00",    seconds: 3360, title: "Twist · Reclined Twist (each side)",    pose: "reclined-twist" }
-  - { time: "1:03:00",  seconds: 3780, title: "Corpse Pose / Savasana" }
+  - { time: "1:03:00",  seconds: 3780, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "Yin Yoga for Digestion — Liver & Gall Bladder, 70 Min"
 seo_description: "A 70-minute Yin Yoga class for digestion, working the Liver and Gall Bladder lines through the inner legs, side body and twists. Held long and slow. All levels."
 membership_cta: "Inside the membership, this class is part of a guided Full-Body program — so instead of choosing a video each day, you follow the plan and move through your week feeling looser and lighter."

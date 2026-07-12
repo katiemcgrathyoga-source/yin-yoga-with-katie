@@ -21,14 +21,14 @@ chapters:
   - { time: "11:28",    seconds: 688,  title: "Breath · Rest & reset" }
   - { time: "14:00",    seconds: 840,  title: "Hips · Shoelace (each side)",            pose: "shoelace" }
   - { time: "22:00",    seconds: 1320, title: "Back · Child's Pose",                    pose: "childs-pose" }
-  - { time: "28:36",    seconds: 1716, title: "Back · Crocodile (rest)" }
+  - { time: "28:36",    seconds: 1716, title: "Back · Crocodile (rest)", poses: ["crocodile"] }
   - { time: "30:00",    seconds: 1800, title: "Hips · Sleeping Swan (each side)",       pose: "sleeping-swan" }
-  - { time: "40:50",    seconds: 2450, title: "Back · Crocodile (rest)" }
+  - { time: "40:50",    seconds: 2450, title: "Back · Crocodile (rest)", poses: ["crocodile"] }
   - { time: "42:30",    seconds: 2550, title: "Hips · Frog",                            pose: "frog" }
   - { time: "46:40",    seconds: 2800, title: "Hips · Angel (rebound rest)" }
   - { time: "48:50",    seconds: 2930, title: "Hips · Square Pose (each side)" }
   - { time: "58:30",    seconds: 3510, title: "Hips · Happy Baby",                      pose: "happy-baby" }
-  - { time: "1:04:30",  seconds: 3870, title: "Corpse Pose / Savasana" }
+  - { time: "1:04:30",  seconds: 3870, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "70-Minute Hip-Opening Yin Yoga for Tight Hips"
 seo_description: "A 70-minute hip-opening Yin Yoga class for tight hips — deep, slow holds that release the hips, glutes and lower back. Gentle and grounding, all levels."
 membership_cta: "Inside the membership, this class is part of the Hips & Lower Back program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the day loose and easy."

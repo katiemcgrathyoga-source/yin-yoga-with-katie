@@ -22,7 +22,7 @@ chapters:
   - { time: "25:19",  seconds: 1519, title: "Shoulders · Melting Heart",                pose: "melting-heart" }
   - { time: "30:30",  seconds: 1830, title: "Hips · Happy Baby",                        pose: "happy-baby" }
   - { time: "40:11",  seconds: 2411, title: "Hips · Reclined Swan & Twist (each side)", poses: ["reclined-swan", "reclined-twist"] }
-  - { time: "54:12",  seconds: 3252, title: "Corpse Pose / Savasana" }
+  - { time: "54:12",  seconds: 3252, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "1-Hour Silent Yin Yoga — Deep Full-Body Stretch, No Props"
 seo_description: "A silent 1-hour Yin Yoga class — a deep full-body stretch held long and slow with minimal cues and no props. Meditative, calming, and suitable for all levels."
 membership_cta: "Love a quiet, meditative practice? Inside the membership it lives as part of a guided program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

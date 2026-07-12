@@ -19,14 +19,14 @@ chapters:
   - { time: "1:40",     seconds: 100,  title: "Hips · Shoelace with a twist", poses: ["shoelace", "reclined-twist"] }
   - { time: "16:00",    seconds: 960,  title: "Chest · Angel Pose" }
   - { time: "18:20",    seconds: 1100, title: "Spine · Caterpillar",                 pose: "caterpillar" }
-  - { time: "25:00",    seconds: 1500, title: "Belly · Crocodile" }
+  - { time: "25:00",    seconds: 1500, title: "Belly · Crocodile", poses: ["crocodile"] }
   - { time: "27:00",    seconds: 1620, title: "Back · Sphinx",                       pose: "sphinx" }
   - { time: "32:00",    seconds: 1920, title: "Legs · Easy Saddle",                  pose: "saddle" }
   - { time: "38:40",    seconds: 2320, title: "Back · Child's Pose",                 pose: "childs-pose" }
   - { time: "45:00",    seconds: 2700, title: "Hips · Sleeping Swan (each side)",    pose: "sleeping-swan" }
   - { time: "55:00",    seconds: 3300, title: "Hips · Squat",                        pose: "squat" }
   - { time: "1:00:00",  seconds: 3600, title: "Twist · Reclined Twist (each side)",  pose: "reclined-twist" }
-  - { time: "1:06:00",  seconds: 3960, title: "Corpse Pose / Savasana" }
+  - { time: "1:06:00",  seconds: 3960, title: "Corpse Pose / Savasana", poses: ["corpse"] }
   - { time: "1:13:00",  seconds: 4380, title: "Close · Goodbye" }
 seo_title: "70-Min Yin Yoga for Digestion & Detox — Full Class"
 seo_description: "A guided 70-minute Yin Yoga class for digestion and detox — gentle twists, folds and compression to nourish the belly, held long and slow. All levels."

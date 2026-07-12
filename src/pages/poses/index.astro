@@ -48,9 +48,16 @@ const areaKeys = (p: (typeof poses)[number]) => {
   return [...set];
 };
 const areaLabel = (key: string) => AREA_BUCKETS.find((b) => b.key === key)!.label;
-const presentAreas = AREA_BUCKETS.filter((b) => poses.some((p) => areaKeys(p).includes(b.key)));
+// Keep each filter section to the 5 most-common values so the page stays tidy.
+const areaCount = (key: string) => poses.filter((p) => areaKeys(p).includes(key)).length;
+const presentAreas = AREA_BUCKETS.filter((b) => poses.some((p) => areaKeys(p).includes(b.key)))
+  .sort((a, b) => areaCount(b.key) - areaCount(a.key))
+  .slice(0, 5);
 
-const meridians = uniq(poses.flatMap((p) => p.data.meridians));
+const merCount = (m: string) => poses.filter((p) => p.data.meridians.includes(m)).length;
+const meridians = uniq(poses.flatMap((p) => p.data.meridians))
+  .sort((a, b) => merCount(b) - merCount(a))
+  .slice(0, 5);
 const levelOrder = ['beginner', 'intermediate', 'advanced'];
 const levels = uniq(poses.map((p) => p.data.accessibility)).sort(
   (a, b) => levelOrder.indexOf(a) - levelOrder.indexOf(b),

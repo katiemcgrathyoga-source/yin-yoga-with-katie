@@ -20,7 +20,7 @@ chapters:
   - { time: "8:20",   seconds: 500,  title: "Shoulders · Bow-Tie & Broken Wing (side 1)", poses: ["bow-tie", "broken-wing"] }
   - { time: "19:35",  seconds: 1175, title: "Shoulders · Bow-Tie & Broken Wing (side 2)", poses: ["bow-tie", "broken-wing"] }
   - { time: "31:00",  seconds: 1860, title: "Shoulders · Cow-Face Arms",                        pose: "cow-face" }
-  - { time: "39:07",  seconds: 2347, title: "Twist · Seated Twist & Neck Release" }
+  - { time: "39:07",  seconds: 2347, title: "Twist · Seated Twist & Neck Release", poses: ["seated-twist"] }
 seo_title: "Bedtime Yin Yoga for Shoulders — Stretch for Sleep, Day 9"
 seo_description: "A gentle 40-minute bedtime Yin Yoga class to release tight shoulders and upper back before sleep — slow, held stretches to unwind the day. Day 9."
 membership_cta: "This is Day 9 of the Bedtime Challenge. Inside the membership, the full challenge lives as a guided Sleep program — press play each night and let it carry you off. Become someone who unknots the day's tension and sleeps through."

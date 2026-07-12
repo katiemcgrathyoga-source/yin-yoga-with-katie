@@ -12,11 +12,12 @@ const videos = (await getCollection('videos'))
 type V = (typeof videos)[number];
 
 // --- Length buckets ----------------------------------------------------------
+// Length — displayed longest-first (subscribers prefer longer classes).
 const BUCKETS = [
-  { key: 'under-20', label: 'Under 20 min', test: (m: number) => m < 20 },
-  { key: '20-40', label: '20–40 min', test: (m: number) => m >= 20 && m < 40 },
-  { key: '40-60', label: '40–60 min', test: (m: number) => m >= 40 && m < 60 },
   { key: '60-90', label: '60–90 min', test: (m: number) => m >= 60 },
+  { key: '40-60', label: '40–60 min', test: (m: number) => m >= 40 && m < 60 },
+  { key: '20-40', label: '20–40 min', test: (m: number) => m >= 20 && m < 40 },
+  { key: 'under-20', label: 'Under 20 min', test: (m: number) => m < 20 },
 ];
 const bucketOf = (m: number) => BUCKETS.find((b) => b.test(m))!.key;
 const presentBuckets = BUCKETS.filter((b) => videos.some((v) => bucketOf(v.data.length_minutes) === b.key));
@@ -38,14 +39,15 @@ const areaKeys = (v: V) => {
 };
 
 // --- Focus: intent + body area merged into one filter row (per the design) ----
+// Focus — ordered most-popular-first (by watch-hours signal).
 const FOCUS = [
   { key: 'sleep', label: 'Sleep', match: (v: V) => v.data.intent_tags.includes('sleep') },
   { key: 'calm', label: 'Stress & calm', match: (v: V) => v.data.intent_tags.some((t) => ['nervous-system', 'stress'].includes(t)) },
-  { key: 'flexibility', label: 'Flexibility', match: (v: V) => v.data.intent_tags.includes('flexibility') },
   { key: 'hips', label: 'Hips', match: (v: V) => areaKeys(v).includes('hips') },
-  { key: 'lower-back', label: 'Lower back', match: (v: V) => areaKeys(v).includes('lower-back') },
-  { key: 'shoulders', label: 'Neck & shoulders', match: (v: V) => areaKeys(v).includes('shoulders') },
   { key: 'full-body', label: 'Full body', match: (v: V) => v.data.intent_tags.includes('full-body') },
+  { key: 'shoulders', label: 'Neck & shoulders', match: (v: V) => areaKeys(v).includes('shoulders') },
+  { key: 'flexibility', label: 'Flexibility', match: (v: V) => v.data.intent_tags.includes('flexibility') },
+  { key: 'lower-back', label: 'Lower back', match: (v: V) => areaKeys(v).includes('lower-back') },
 ];
 const focusKeys = (v: V) => FOCUS.filter((f) => f.match(v)).map((f) => f.key);
 const focusLabels = (v: V) => FOCUS.filter((f) => f.match(v)).map((f) => f.label);

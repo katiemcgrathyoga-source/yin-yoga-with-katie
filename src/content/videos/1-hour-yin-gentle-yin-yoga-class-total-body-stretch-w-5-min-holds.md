@@ -20,7 +20,7 @@ chapters:
   - { time: "12:46",    seconds: 766,  title: "Hips · Shoelace with Twist (each side)", poses: ["shoelace", "reclined-twist"] }
   - { time: "27:26",    seconds: 1646, title: "Hips · Sleeping Swan (each side)",         pose: "sleeping-swan" }
   - { time: "41:30",    seconds: 2490, title: "Twist · Cat-Pulling-Its-Tail (each side)", pose: "cat-pulling-its-tail" }
-  - { time: "55:40",    seconds: 3340, title: "Corpse Pose / Savasana" }
+  - { time: "55:40",    seconds: 3340, title: "Corpse Pose / Savasana", poses: ["corpse"] }
   - { time: "1:00:00",  seconds: 3600, title: "Breath · Closing meditation" }
 seo_title: "1-Hour Gentle Yin Yoga — Total-Body Stretch, 5-Min Holds"
 seo_description: "A gentle 1-hour Yin Yoga class for a total-body stretch — slow, chilled poses held for five minutes each to help you unwind, loosen up and relax. All levels."

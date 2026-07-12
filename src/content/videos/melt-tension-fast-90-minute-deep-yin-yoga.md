@@ -23,7 +23,7 @@ chapters:
   - { time: "52:38",    seconds: 3158, title: "Legs · Saddle",                                       pose: "saddle" }
   - { time: "59:49",    seconds: 3589, title: "Chest · Supported Fish with butterfly legs", poses: ["supported-fish", "butterfly"] }
   - { time: "1:06:46",  seconds: 4006, title: "Twist · Cat Pulling Its Tail (each side)",            pose: "cat-pulling-its-tail" }
-  - { time: "1:19:03",  seconds: 4743, title: "Corpse Pose / Savasana" }
+  - { time: "1:19:03",  seconds: 4743, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "Melt Tension Fast: 90-Min Deep Relaxation Yin Yoga"
 seo_description: "A gentle 90-minute deep Yin Yoga class to melt away tension and unwind — slow, supported holds for the hips, back, shoulders and legs. All levels; a bolster and blocks help you rest deeper."
 membership_cta: "Love unwinding like this? Inside the membership, classes like this one anchor a guided Reset program — press play in the evening and let your nervous system settle. Become someone who ends the day calm, not wired."

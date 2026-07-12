@@ -16,13 +16,13 @@ props: []
 poses_featured: [  "butterfly", "reclined-swan", "reclined-twist", "banana"]
 chapters:
   - { time: "0:00",     seconds: 0,    title: "Welcome to reclined Yin" }
-  - { time: "1:30",     seconds: 90,   title: "Rest · Corpse Pose" }
+  - { time: "1:30",     seconds: 90,   title: "Rest · Corpse Pose", poses: ["corpse"] }
   - { time: "7:00",     seconds: 420,  title: "Lower back · Knees-to-chest hug" }
   - { time: "12:40",    seconds: 760,  title: "Hips · Reclined Butterfly",                 pose: "butterfly" }
   - { time: "19:40",    seconds: 1180, title: "Hips · Eye-of-the-Needle & Twist (each side)", pose: "reclined-swan" }
   - { time: "37:00",    seconds: 2220, title: "Side body · Banana Pose (each side)",       pose: "banana" }
-  - { time: "47:40",    seconds: 2860, title: "Hamstrings · Reclined Hamstring Stretch" }
-  - { time: "1:01:40",  seconds: 3700, title: "Corpse Pose / Savasana" }
+  - { time: "47:40",    seconds: 2860, title: "Hamstrings · Reclined Hamstring Stretch", poses: ["reclined-hamstring"] }
+  - { time: "1:01:40",  seconds: 3700, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "70-Min Reclined Yin Yoga — Deep Stretch, All Lying Down"
 seo_description: "A deeply relaxing 70-minute reclined Yin Yoga class — every pose lying down, held long and slow, for deep stretch and total relaxation. All levels."
 membership_cta: "Love unwinding fully like this? Inside the membership, gentle classes like this one anchor a guided Reset program — press play and let your nervous system settle. Become someone who ends the day calm, not wired."

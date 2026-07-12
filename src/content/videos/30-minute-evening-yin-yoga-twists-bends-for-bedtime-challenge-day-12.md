@@ -13,7 +13,7 @@ body_areas: ["spine", "hips", "groin"]
 props: ["blocks", "cushion"]
 poses_featured: ["dragon", "twisted-dragon", "childs-pose", "shoelace", "reclined-twist"]
 chapters:
-  - { time: "0:00",  seconds: 0,    title: "Welcome · Bedtime twists" }
+  - { time: "0:00",  seconds: 0,    title: "Welcome · Bedtime twists", poses: ["reclined-twist"] }
   - { time: "0:37",  seconds: 37,   title: "Hips · Dragon, twist & Child's Pose", poses: ["dragon", "twisted-dragon", "childs-pose"] }
   - { time: "7:07",  seconds: 427,  title: "Hips · Shoelace with side bend & twist", poses: ["shoelace", "reclined-twist"] }
   - { time: "14:50", seconds: 890,  title: "Hips · Dragon & Shoelace (second side)", poses: ["dragon", "twisted-dragon", "childs-pose", "shoelace"] }

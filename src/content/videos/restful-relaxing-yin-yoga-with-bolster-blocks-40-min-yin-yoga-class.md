@@ -22,7 +22,7 @@ chapters:
   - { time: "18:00",  seconds: 1080, title: "Legs · Half Saddle with bolster",        pose: "saddle" }
   - { time: "22:20",  seconds: 1340, title: "Shoulders · Supported Fish on blocks",   pose: "supported-fish" }
   - { time: "33:20",  seconds: 2000, title: "Hips · Reclined Butterfly on bolster",   pose: "butterfly" }
-  - { time: "36:46",  seconds: 2206, title: "Corpse Pose / Savasana" }
+  - { time: "36:46",  seconds: 2206, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "Restful Yin Yoga with Bolster & Blocks — 40-Min Class"
 seo_description: "A restful 40-minute Yin Yoga class with a bolster and blocks — deeply supported poses to unwind, release tension and calm your mind. All levels."
 membership_cta: "Inside the membership, this class anchors the Reset program — a guided way to downshift at the end of the day so you feel calmer and sleep more easily."

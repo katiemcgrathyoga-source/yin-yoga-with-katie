@@ -24,7 +24,7 @@ chapters:
   - { time: "37:37",   seconds: 2257, title: "Spine · Caterpillar",                      pose: "caterpillar" }
   - { time: "44:00",   seconds: 2640, title: "Back · Sphinx",                            pose: "sphinx" }
   - { time: "52:00",   seconds: 3120, title: "Twist · Reclined Twist (each side)",       pose: "reclined-twist" }
-  - { time: "1:04:00", seconds: 3840, title: "Corpse Pose / Savasana" }
+  - { time: "1:04:00", seconds: 3840, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "Full-Body Deep Stretch Yin — No Props, 5-Min Holds"
 seo_description: "A no-props full-body Yin Yoga class in long five-minute holds — a deep stretch through shoulders, spine, hips and legs for deep relaxation. All levels."
 membership_cta: "Inside the membership, this class anchors the Reset program — a guided way to downshift at the end of the day so you feel calmer and sleep more easily."

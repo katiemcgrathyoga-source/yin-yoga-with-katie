@@ -24,7 +24,7 @@ chapters:
   - { time: "22:06",  seconds: 1326, title: "Twist · Reclined Twist (side 1)",      pose: "reclined-twist" }
   - { time: "26:13",  seconds: 1573, title: "Hips · Half Happy Baby (side 2)",      pose: "happy-baby" }
   - { time: "29:30",  seconds: 1770, title: "Twist · Reclined Twist (side 2)",      pose: "reclined-twist" }
-  - { time: "32:32",  seconds: 1952, title: "Corpse Pose / Savasana" }
+  - { time: "32:32",  seconds: 1952, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "35-Min Yin Yoga for Glutes, Hamstrings & Lower Body"
 seo_description: "A 35-minute Yin Yoga class for glutes, hamstrings and hips — deep lower-body stretches held about three minutes each, with a gentler and a deeper option. All levels."
 membership_cta: "Love a deep lower-body stretch like this? Inside the membership it lives as part of a guided Full-Body program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

@@ -25,7 +25,7 @@ chapters:
   - { time: "47:00",    seconds: 2820, title: "Back · Sphinx & Seal", poses: ["sphinx", "seal"] }
   - { time: "55:00",    seconds: 3300, title: "Hips · Happy Baby",                       pose: "happy-baby" }
   - { time: "1:00:50",  seconds: 3650, title: "Twist · Reclined Twist (each side)",      pose: "reclined-twist" }
-  - { time: "1:20:00",  seconds: 4800, title: "Corpse Pose / Savasana" }
+  - { time: "1:20:00",  seconds: 4800, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "90-Min Yin Yoga Full-Body Stretch — Minimal Cues"
 seo_description: "A 90-minute full-body Yin Yoga class with minimal cues and 5-minute long holds — silent, meditative and calming. Deep stretch for spine, shoulders and hips. All levels."
 membership_cta: "Love a long, quiet practice like this? Inside the membership it lives as part of a guided Full-Body program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

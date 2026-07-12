@@ -23,7 +23,7 @@ chapters:
   - { time: "40:40",    seconds: 2440, title: "Back · Sphinx & Seal", poses: ["sphinx", "seal"] }
   - { time: "54:45",    seconds: 3285, title: "Side body · Banana",                   pose: "banana" }
   - { time: "1:08:20",  seconds: 4100, title: "Spine · Reclined Twist",               pose: "reclined-twist" }
-  - { time: "1:21:40",  seconds: 4900, title: "Corpse Pose / Savasana" }
+  - { time: "1:21:40",  seconds: 4900, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "90-Min Silent Yin Yoga — Back & Spine, No Props"
 seo_description: "A silent 90-minute Yin Yoga class for the back and spine — long, slow holds with minimal cues and no props to unwind and settle. All levels."
 membership_cta: "Inside the membership, this class is part of a guided Back & Spine program — so instead of choosing a video each day, you follow the plan and move through your week feeling looser and lighter."

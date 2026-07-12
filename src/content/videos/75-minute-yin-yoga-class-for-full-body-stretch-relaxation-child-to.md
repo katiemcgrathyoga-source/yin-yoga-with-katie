@@ -25,7 +25,7 @@ chapters:
   - { time: "43:40",    seconds: 2620, title: "Hips · Shoelace (each side)", pose: "shoelace" }
   - { time: "59:40",    seconds: 3580, title: "Shoulders · Supported Fish",  pose: "supported-fish" }
   - { time: "1:05:00",  seconds: 3900, title: "Back · Supported Bridge",     pose: "supported-bridge" }
-  - { time: "1:10:00",  seconds: 4200, title: "Corpse Pose / Savasana" }
+  - { time: "1:10:00",  seconds: 4200, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "75-Minute Yin Yoga — Full-Body Stretch & Relaxation"
 seo_description: "A 75-minute Yin Yoga class themed on the seasons of life — a full-body stretch and deep relaxation, from Child's Pose to Corpse. All levels."
 membership_cta: "Inside the membership, this class anchors the Reset program — a guided way to downshift at the end of the day so you feel calmer and sleep more easily."

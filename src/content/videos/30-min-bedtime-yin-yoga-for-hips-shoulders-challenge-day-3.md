@@ -20,7 +20,7 @@ chapters:
   - { time: "6:20",   seconds: 380,  title: "Hips · Easy Pose Fold (side 1)",             pose: "easy-pose" }
   - { time: "10:19",  seconds: 619,  title: "Hips · Dragon & Easy Pose Fold (side 2)", poses: ["dragon", "easy-pose"] }
   - { time: "21:20",  seconds: 1280, title: "Shoulders · Cow-Face Arms",                  pose: "cow-face" }
-  - { time: "28:35",  seconds: 1715, title: "Twist · Gentle Spinal Twist" }
+  - { time: "28:35",  seconds: 1715, title: "Twist · Gentle Spinal Twist", poses: ["reclined-twist"] }
 seo_title: "30-Min Bedtime Yin Yoga for Hips & Shoulders — Day 3"
 seo_description: "A gentle 30-minute bedtime Yin Yoga class for hips and shoulders — slow evening stretches to release tension and settle you for sleep. Day 3 of the Bedtime Challenge."
 membership_cta: "This is Day 3 of the Bedtime Challenge. Inside the membership, the full challenge lives as a guided Sleep program — press play each night and let it carry you to sleep. Become someone who falls asleep faster and sleeps through."

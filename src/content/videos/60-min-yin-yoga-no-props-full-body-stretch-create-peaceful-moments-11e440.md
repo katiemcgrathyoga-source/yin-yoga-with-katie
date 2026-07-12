@@ -17,7 +17,7 @@ poses_featured: ["sleeping-swan", "folded-half-shoelace", "reclined-swan", "butt
 chapters:
   - { time: "0:00",   seconds: 0,    title: "Welcome · Intro to the hour" }
   - { time: "1:00",   seconds: 60,   title: "Breath · Guided breathing" }
-  - { time: "7:11",   seconds: 431,  title: "Spine · Seated stretches & twists" }
+  - { time: "7:11",   seconds: 431,  title: "Spine · Seated stretches & twists", poses: ["reclined-twist"] }
   - { time: "9:40",   seconds: 580,  title: "Spine · Cat-Cow to Downward Dog" }
   - { time: "12:30",  seconds: 750,  title: "Hips · Swan & Sleeping Swan (side 1)", poses: ["swan", "sleeping-swan"] }
   - { time: "18:00",  seconds: 1080, title: "Hips · Half-Shoelace Fold & Sitting Swan",  pose: "folded-half-shoelace" }
@@ -25,7 +25,7 @@ chapters:
   - { time: "34:20",  seconds: 2060, title: "Hips · Butterfly",                          pose: "butterfly" }
   - { time: "39:30",  seconds: 2370, title: "Shoulders · Eagle Arms (each side)",        pose: "eagle" }
   - { time: "46:50",  seconds: 2810, title: "Twist · Reclined Twist (each side)",        pose: "reclined-twist" }
-  - { time: "54:00",  seconds: 3240, title: "Corpse Pose / Savasana" }
+  - { time: "54:00",  seconds: 3240, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "60-Min Full-Body Yin Yoga — No Props, All Levels"
 seo_description: "A 60-minute full-body Yin Yoga class with no props — breath work, gentle spinal twists and long, calming holds to release tension and find some peace. All levels."
 membership_cta: "Love a full hour of quiet like this? Inside the membership it lives as part of a guided Full-Body program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

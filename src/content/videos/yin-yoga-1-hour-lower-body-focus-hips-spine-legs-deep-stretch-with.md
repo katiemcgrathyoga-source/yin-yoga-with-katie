@@ -24,7 +24,7 @@ chapters:
   - { time: "39:00",  seconds: 2340, title: "Spine · Melting Heart",                       pose: "melting-heart" }
   - { time: "44:20",  seconds: 2660, title: "Spine · Supported Fish",                      pose: "supported-fish" }
   - { time: "50:00",  seconds: 3000, title: "Twist · Reclined Twist (each side)",          pose: "reclined-twist" }
-  - { time: "57:48",  seconds: 3468, title: "Corpse Pose / Savasana" }
+  - { time: "57:48",  seconds: 3468, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "1-Hour Yin Yoga for Hips, Spine & Legs — Deep Stretch"
 seo_description: "A 60-minute Yin Yoga class for the lower body — deep hip, spine and leg stretches held long and slow with long holds to release tension. All levels."
 membership_cta: "Love a long, grounding stretch like this? Inside the membership it lives inside the Hips & Lower Back program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the day loose and easy."

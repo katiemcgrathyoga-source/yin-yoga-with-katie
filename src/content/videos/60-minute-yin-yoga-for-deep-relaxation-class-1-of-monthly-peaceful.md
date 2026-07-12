@@ -24,7 +24,7 @@ chapters:
   - { time: "35:30",  seconds: 2130, title: "Heart · Supported Bridge",                  pose: "supported-bridge" }
   - { time: "41:00",  seconds: 2460, title: "Heart · Supported Fish",                    pose: "supported-fish" }
   - { time: "45:10",  seconds: 2710, title: "Legs · Hamstring Stretch & Reclined Twist", poses: ["reclined-hamstring", "reclined-twist"] }
-  - { time: "54:40",  seconds: 3280, title: "Corpse Pose / Savasana" }
+  - { time: "54:40",  seconds: 3280, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "60-Min Yin Yoga for Deep Relaxation (Beginner-Friendly)"
 seo_description: "A gentle 60-minute beginner-friendly Yin Yoga class for deep relaxation and stress relief — slow, supported holds to unwind body and mind. Class 1 of the monthly series."
 membership_cta: "Love unwinding like this? Inside the membership, gentle classes like this one anchor a guided Reset program — press play and let your nervous system settle. Become someone who ends the day calm, not wired."

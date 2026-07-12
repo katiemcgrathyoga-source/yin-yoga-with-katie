@@ -23,7 +23,7 @@ chapters:
   - { time: "20:00",  seconds: 1200, title: "Shoulders · Cow Face arms",             pose: "cow-face" }
   - { time: "24:50",  seconds: 1490, title: "Hips · Swan & Cow Face arms (side 2)", poses: ["swan", "cow-face"] }
   - { time: "34:30",  seconds: 2070, title: "Twist · Reclined Twist (each side)",    pose: "reclined-twist" }
-  - { time: "40:00",  seconds: 2400, title: "Corpse Pose / Savasana" }
+  - { time: "40:00",  seconds: 2400, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "45-Minute Yin Yoga — Total Body Deep Stretch"
 seo_description: "A 45-minute Yin Yoga class for a full-body deep stretch — long, slow holds through the spine, hips and shoulders to open and release. All levels."
 membership_cta: "Love a deep, full-body stretch like this? Inside the membership it lives as part of a guided Full-Body program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

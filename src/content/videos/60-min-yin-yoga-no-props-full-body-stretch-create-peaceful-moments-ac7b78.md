@@ -23,7 +23,7 @@ chapters:
   - { time: "28:30",  seconds: 1710, title: "Back · Child's Pose",                  pose: "childs-pose" }
   - { time: "35:30",  seconds: 2130, title: "Hips · Deer & Swan (each side)", poses: ["deer", "swan"] }
   - { time: "45:00",  seconds: 2700, title: "Twist · Reclined Twist (each side)",   pose: "reclined-twist" }
-  - { time: "54:40",  seconds: 3280, title: "Corpse Pose / Savasana" }
+  - { time: "54:40",  seconds: 3280, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "60-Minute Yin Yoga: No Props Full-Body Stretch & Breath"
 seo_description: "A calming 60-minute Yin Yoga class — a no-props full-body stretch with breathwork and long, slow holds to create peaceful moments. All levels, nothing needed but your mat."
 membership_cta: "Love a full hour of quiet like this? Inside the membership it lives as part of a guided Full-Body program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

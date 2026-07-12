@@ -20,7 +20,7 @@ chapters:
   - { time: "7:00",   seconds: 420,  title: "Shoulders · Melting Heart on the bolster",  pose: "melting-heart" }
   - { time: "13:00",  seconds: 780,  title: "Spine · Caterpillar over the bolster",      pose: "caterpillar" }
   - { time: "19:30",  seconds: 1170, title: "Chest · Supported Fish over blocks",        pose: "supported-fish" }
-  - { time: "25:35",  seconds: 1535, title: "Breath · Corpse Pose" }
+  - { time: "25:35",  seconds: 1535, title: "Breath · Corpse Pose", poses: ["corpse"] }
 seo_title: "30-Min Bedtime Yin Yoga with Props — Full-Body Deep Stretch"
 seo_description: "A calming 30-minute bedtime Yin Yoga class with props — a bolster and blocks support slow, deep full-body stretches to help you unwind and sleep. All levels."
 membership_cta: "This class lives inside the membership's Sleep program — a night-by-night path that helps you fall asleep faster and sleep through. Press play and let the props carry you."

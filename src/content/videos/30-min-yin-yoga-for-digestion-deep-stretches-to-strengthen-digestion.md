@@ -20,7 +20,7 @@ chapters:
   - { time: "6:00",   seconds: 360,  title: "Hips · Shoelace sequence",         pose: "shoelace" }
   - { time: "15:00",  seconds: 900,  title: "Spine · Caterpillar",             pose: "caterpillar" }
   - { time: "19:30",  seconds: 1170, title: "Twist · Reclined Twist",          pose: "reclined-twist" }
-  - { time: "29:30",  seconds: 1770, title: "Corpse Pose / Savasana" }
+  - { time: "29:30",  seconds: 1770, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "30-Min Yin Yoga for Digestion — Ease Bloating & Cramps"
 seo_description: "A 30-minute Yin Yoga class for digestion — gentle compression and twists that massage the belly to ease bloating and cramps, held long and slow. All levels."
 membership_cta: "Love a short, soothing reset like this? Inside the membership it lives as part of a guided program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

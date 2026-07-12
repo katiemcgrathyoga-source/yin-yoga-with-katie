@@ -213,19 +213,20 @@ const eyebrow = ['Yin Yoga', ...d.intent_tags.map(capitalise)].join(' · ');
                 <div class="cbody">
                   {cat && <div class="cat">{cat}</div>}
                   <div class="nm">
-                    {slugs.length === 1 ? <a href={`/poses/${slugs[0]}`}>{name}</a> : name}
-                    {note && <span> · {note}</span>}
-                  </div>
-                  {slugs.length > 1 && (
-                    <div class="chap-poses">
-                      {slugs.map((s, i) => (
+                    {slugs.length === 0 ? (
+                      name
+                    ) : slugs.length === 1 ? (
+                      <a href={`/poses/${slugs[0]}`}>{name}</a>
+                    ) : (
+                      slugs.map((s, i) => (
                         <>
                           {i > 0 && <span class="chap-poses-sep"> · </span>}
                           <a href={`/poses/${s}`}>{poseNames[s] ?? s}</a>
                         </>
-                      ))}
-                    </div>
-                  )}
+                      ))
+                    )}
+                    {note && <span> · {note}</span>}
+                  </div>
                 </div>
               </div>
             );

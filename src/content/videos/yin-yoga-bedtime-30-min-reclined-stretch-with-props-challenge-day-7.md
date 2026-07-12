@@ -16,7 +16,7 @@ props: ["bolster", "block"]
 poses_featured: ["butterfly", "supported-bridge", "supported-fish", "reclined-twist"]
 chapters:
   - { time: "0:00",   seconds: 0,    title: "Welcome to Day 7" }
-  - { time: "0:43",   seconds: 43,   title: "Breath · Settle in Corpse" }
+  - { time: "0:43",   seconds: 43,   title: "Breath · Settle in Corpse", poses: ["corpse"] }
   - { time: "2:05",   seconds: 125,  title: "Hips · Reclined Butterfly",   pose: "butterfly" }
   - { time: "7:35",   seconds: 455,  title: "Back · Supported Bridge",     pose: "supported-bridge" }
   - { time: "14:09",  seconds: 849,  title: "Back · Knee Hugs" }

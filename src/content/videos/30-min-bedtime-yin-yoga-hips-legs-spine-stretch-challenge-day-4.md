@@ -20,10 +20,10 @@ chapters:
   - { time: "5:15",   seconds: 315,  title: "Hips · Dragonfly (fold over right leg)", pose: "dragonfly" }
   - { time: "8:55",   seconds: 535,  title: "Hips · Dragonfly (centre fold)",         pose: "dragonfly" }
   - { time: "13:24",  seconds: 804,  title: "Back · Reclined Windshield Wipers" }
-  - { time: "15:26",  seconds: 926,  title: "Back · Air-Releasing (knees to chest)" }
+  - { time: "15:26",  seconds: 926,  title: "Back · Air-Releasing (knees to chest)", poses: ["wind-relieving"] }
   - { time: "18:33",  seconds: 1113, title: "Spine · Banana (right side)",            pose: "banana" }
   - { time: "23:14",  seconds: 1394, title: "Spine · Banana (left side)",             pose: "banana" }
-  - { time: "26:42",  seconds: 1602, title: "Breath · Corpse Pose" }
+  - { time: "26:42",  seconds: 1602, title: "Breath · Corpse Pose", poses: ["corpse"] }
 seo_title: "30-Min Bedtime Yin for Sleep — Hips, Legs & Spine Stretch"
 seo_description: "A gentle 30-minute bedtime Yin Yoga class for sleep — slow hip, leg and spine stretches to release the day and help you drift off. Day 4 of the Bedtime Challenge."
 membership_cta: "This is Day 4 of the Bedtime Challenge. Inside the membership, the full challenge lives as a guided Sleep program — press play each night and let it carry you to sleep. Become someone who falls asleep faster and sleeps through."

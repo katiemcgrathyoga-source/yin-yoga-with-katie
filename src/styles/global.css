@@ -601,9 +601,6 @@ ul.plain li::before {
 .chap .cbody .cat { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); }
 .chap .cbody .nm { font-size: 16px; }
 .chap .cbody .nm a { border-bottom: 1px solid rgba(72,84,76,.35); }
-.chap-poses { margin-top: 5px; font-size: 14px; color: var(--ink-soft); }
-.chap-poses a { color: var(--plum); border-bottom: 1px solid rgba(72,84,76,.35); }
-.chap-poses a:hover { color: var(--plum-deep); }
 .chap-poses-sep { color: var(--ink-soft); }
 .chaps-note { font-size: 13px; color: var(--ink-soft); margin-top: 12px; }
 .in-programs { margin-top: 46px; }

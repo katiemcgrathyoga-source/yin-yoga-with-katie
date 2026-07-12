@@ -29,7 +29,7 @@ chapters:
   - { time: "1:04:08",  seconds: 3848, title: "Shoulders · Melting Heart or Sphinx", poses: ["melting-heart", "sphinx"] }
   - { time: "1:10:55",  seconds: 4255, title: "Twist · Reclined Twist (side 1)",          pose: "reclined-twist" }
   - { time: "1:17:19",  seconds: 4639, title: "Twist · Reclined Twist (side 2)",          pose: "reclined-twist" }
-  - { time: "1:23:34",  seconds: 5014, title: "Corpse Pose / Savasana" }
+  - { time: "1:23:34",  seconds: 5014, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "90-Min Yin Yoga for Full-Body Fascia Release"
 seo_description: "A 90-minute Yin Yoga class for full-body fascia release — long five-minute holds that open the hips, lengthen the front body and free the spine and shoulders. All levels."
 membership_cta: "Love a long, deep practice like this? Inside the membership it lives as part of a guided Full-Body program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

@@ -15,14 +15,14 @@ body_areas: ["legs", "hamstrings", "hips", "lower back"]
 props: ["wall", "bolster", "blanket"]
 poses_featured: ["legs-up-the-wall", "butterfly", "caterpillar", "dragonfly", "happy-baby", "reclined-twist"]
 chapters:
-  - { time: "0:00",   seconds: 0,    title: "Welcome to Legs Up the Wall Yin" }
+  - { time: "0:00",   seconds: 0,    title: "Welcome to Legs Up the Wall Yin", poses: ["legs-up-the-wall"] }
   - { time: "2:00",   seconds: 120,  title: "Legs · Legs Up the Wall (grounding)", pose: "legs-up-the-wall" }
   - { time: "5:30",   seconds: 330,  title: "Hips · Wall Butterfly",               pose: "butterfly" }
   - { time: "11:20",  seconds: 680,  title: "Legs · Wall Caterpillar",             pose: "caterpillar" }
   - { time: "16:30",  seconds: 990,  title: "Hips · Wall Straddle",                pose: "dragonfly" }
   - { time: "21:55",  seconds: 1315, title: "Hips · Wall Squat & Happy Baby", poses: ["squat", "happy-baby"] }
   - { time: "30:00",  seconds: 1800, title: "Twist · Reclined Twist",             pose: "reclined-twist" }
-  - { time: "49:40",  seconds: 2980, title: "Corpse Pose / Savasana" }
+  - { time: "49:40",  seconds: 2980, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "Legs Up the Wall Yin Yoga for Tired Legs — 60 Min"
 seo_description: "A gentle 60-minute Yin Yoga class at the wall for tired, heavy legs — legs up the wall, soft folds and twists held long and slow to soothe and restore. All levels."
 membership_cta: "Love a restorative practice like this? Inside the membership it lives as part of a guided Full-Body program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

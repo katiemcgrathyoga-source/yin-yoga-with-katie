@@ -26,8 +26,8 @@ chapters:
   - { time: "25:30",  seconds: 1530, title: "Back · Child's Pose",                  pose: "childs-pose" }
   - { time: "26:19",  seconds: 1579, title: "Shoulders · Melting Heart / Puppy", poses: ["melting-heart", "puppy"] }
   - { time: "30:00",  seconds: 1800, title: "Shoulders · Reverse Prayer" }
-  - { time: "34:50",  seconds: 2090, title: "Twist · Seated Spinal Twist (each side)" }
-  - { time: "38:30",  seconds: 2310, title: "Corpse Pose / Savasana" }
+  - { time: "34:50",  seconds: 2090, title: "Twist · Seated Spinal Twist (each side)", poses: ["reclined-twist"] }
+  - { time: "38:30",  seconds: 2310, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "40-Min Head-to-Toe Yin Yoga — Full-Body Deep Stretch"
 seo_description: "A 40-minute Yin Yoga class working head to toe — feet, hamstrings, hips, back and shoulders — held long and slow for a full-body deep stretch. All levels."
 membership_cta: "Love a full-body reset like this? Inside the membership it lives as part of a guided Full-Body program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

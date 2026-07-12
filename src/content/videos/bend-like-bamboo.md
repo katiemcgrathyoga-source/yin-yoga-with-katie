@@ -28,9 +28,9 @@ chapters:
   - { time: "42:00",    seconds: 2520, title: "Back · Cow-Face / Shoelace (5 min each side)", poses: ["cow-face", "shoelace"] }
   - { time: "56:40",    seconds: 3400, title: "Legs · Saddle (5 min)",                            pose: "saddle" }
   - { time: "1:02:40",  seconds: 3760, title: "Legs · Dangling (5 min)",                          pose: "dangling" }
-  - { time: "1:08:24",  seconds: 4104, title: "Legs · Hamstring Stretch with strap (5 min)" }
+  - { time: "1:08:24",  seconds: 4104, title: "Legs · Hamstring Stretch with strap (5 min)", poses: ["reclined-hamstring"] }
   - { time: "1:16:00",  seconds: 4560, title: "Back · Reclined Twist (5 min each side)",          pose: "reclined-twist" }
-  - { time: "1:27:50",  seconds: 5270, title: "Corpse Pose / Savasana (5 min)" }
+  - { time: "1:27:50",  seconds: 5270, title: "Corpse Pose / Savasana (5 min)", poses: ["corpse"] }
 
 # ── SEO ──
 seo_title: "Bend Like Bamboo: 90-Min Full-Body Yin Yoga for Flexibility"

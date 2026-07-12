@@ -20,7 +20,7 @@ chapters:
   - { time: "15:50",  seconds: 950,  title: "Shoulders · Cow-Face Arms & Shoelace", poses: ["cow-face", "shoelace"] }
   - { time: "30:50",  seconds: 1850, title: "Hips · Squat",                        pose: "squat" }
   - { time: "36:34",  seconds: 2194, title: "Legs · Dangling",                     pose: "dangling" }
-  - { time: "43:40",  seconds: 2620, title: "Corpse Pose / Savasana" }
+  - { time: "43:40",  seconds: 2620, title: "Corpse Pose / Savasana", poses: ["corpse"] }
 seo_title: "50-Min \"We Can Do Hard Things\" Yin Yoga | Full-Body"
 seo_description: "A deeper 50-minute full-body Yin Yoga class to challenge yourself and find inner strength — longer, tougher holds in Dragon, Squat and Dangling. Intermediate."
 membership_cta: "Loved being challenged like this? Inside the membership this class is part of a guided Full-Body program — so instead of choosing a video each day, you press play and follow the plan. Become someone who moves through the week feeling stronger, looser and lighter."

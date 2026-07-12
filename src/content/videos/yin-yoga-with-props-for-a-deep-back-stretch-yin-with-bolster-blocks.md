@@ -15,7 +15,7 @@ chapters:
   - { time: "0:00",  seconds: 0,    title: "Welcome · Deep back stretch with props" }
   - { time: "1:00",  seconds: 60,   title: "Spine · Caterpillar over a bolster",     poses: ["caterpillar"] }
   - { time: "8:00",  seconds: 480,  title: "Spine · Supported Bridge on blocks",     poses: ["supported-bridge"] }
-  - { time: "14:00", seconds: 840,  title: "Lower back · Air-releasing pose (knees to chest)" }
+  - { time: "14:00", seconds: 840,  title: "Lower back · Air-releasing pose (knees to chest)", poses: ["wind-relieving"] }
   - { time: "20:00", seconds: 1200, title: "Chest · Supported Fish on blocks",       poses: ["supported-fish"] }
   - { time: "26:00", seconds: 1560, title: "Spine · Reclined Twist, both sides",     poses: ["reclined-twist"] }
   - { time: "35:00", seconds: 2100, title: "Corpse Pose / Savasana",                 poses: ["corpse"] }
