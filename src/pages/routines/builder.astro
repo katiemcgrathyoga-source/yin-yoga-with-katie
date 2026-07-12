@@ -12,8 +12,21 @@ const poses = (await getCollection('poses'))
     secs: p.data.hold_seconds ?? 120,
     note: p.data.cues?.[0] ?? '',
     areas: p.data.target_areas,
+    sides: /per side|each side|second side/i.test(p.data.hold_time) ? 2 : 1,
   }))
   .sort((a, b) => a.name.localeCompare(b.name));
+
+// The "compose for me" focus pools — curated, ordered rough-to-restful.
+// Every sequence opens settling in Child's Pose and closes in Corpse.
+const present = new Set(poses.map((p) => p.slug));
+const FOCUSES = [
+  { key: 'sleep', label: 'Wind down for sleep', pool: ['butterfly', 'sleeping-swan', 'caterpillar', 'reclined-twist', 'banana', 'happy-baby', 'supported-bridge', 'legs-up-the-wall', 'supported-fish'] },
+  { key: 'hips', label: 'Open the hips', pool: ['dragon', 'sleeping-swan', 'swan', 'shoelace', 'dragonfly', 'half-butterfly', 'frog', 'deer', 'reclined-swan', 'butterfly'] },
+  { key: 'back', label: 'Release the back', pool: ['sphinx', 'seal', 'melting-heart', 'cat-pulling-its-tail', 'caterpillar', 'reclined-twist', 'banana'] },
+  { key: 'shoulders', label: 'Neck & shoulders', pool: ['melting-heart', 'puppy', 'thread-the-needle', 'eagle', 'cow-face', 'broken-wing', 'bow-tie'] },
+  { key: 'flexibility', label: 'Deep stretch', pool: ['dragon', 'half-butterfly', 'dragonfly', 'shoelace', 'saddle', 'dangling', 'reclined-hamstring', 'frog', 'caterpillar'] },
+  { key: 'full-body', label: 'Full body', pool: ['dragon', 'butterfly', 'sphinx', 'shoelace', 'sleeping-swan', 'melting-heart', 'reclined-twist', 'caterpillar', 'saddle'] },
+].map((f) => ({ ...f, pool: f.pool.filter((s) => present.has(s)) }));
 ---
 
 <BaseLayout
@@ -24,15 +37,37 @@ const poses = (await getCollection('poses'))
     <header class="hero">
       <p class="eyebrow">Yin Yoga · Practise Along</p>
       <h1>Build your own routine</h1>
-      <p class="alt">choose your poses, set each hold, then press play — your sequence, guided by the timer</p>
+      <p class="alt">tell me your focus and time, or pick your own poses — then press play</p>
     </header>
 
     <p class="page-intro">
-      Make a Yin practice that fits exactly what your body needs today. Add poses from the
-      list, set how long to hold each one, and press <strong>Start practice</strong> — the
-      player guides you through pose by pose, just like the ready-made routines. Save it for
-      next time, or copy a link to share your sequence with a friend.
+      Make a Yin practice that fits exactly what your body needs today. Not sure where to start?
+      Tell me your <strong>focus</strong> and how long you have, and I'll compose a sequence from
+      Katie's pose library — you can tweak it, then press play. Prefer to choose yourself? Build
+      it by hand below. Either way, the guided timer walks you through pose by pose.
     </p>
+
+    <section class="pb-compose">
+      <h2>Compose one for me</h2>
+      <div class="pb-compose-group">
+        <span class="pb-compose-label">Focus</span>
+        <div class="chips">
+          {FOCUSES.map((f) => (
+            <button type="button" class="chip" data-compose-focus={f.key} aria-pressed="false">{f.label}</button>
+          ))}
+        </div>
+      </div>
+      <div class="pb-compose-group">
+        <span class="pb-compose-label">Time</span>
+        <div class="chips">
+          <button type="button" class="chip" data-compose-time="10" aria-pressed="false">10 minutes</button>
+          <button type="button" class="chip" data-compose-time="20" aria-pressed="false">20 minutes</button>
+          <button type="button" class="chip" data-compose-time="30" aria-pressed="false">30 minutes</button>
+        </div>
+      </div>
+      <button type="button" class="pb-compose-go btn-cta" disabled>Compose my sequence</button>
+      <p class="pb-compose-note">Poses come only from Katie's library — with her cues and cautions on every pose page.</p>
+    </section>
 
     <div class="builder">
       <section class="pb-picker">
@@ -72,9 +107,10 @@ const poses = (await getCollection('poses'))
   </div>
 
   <script type="application/json" id="pb-data" is:inline set:html={JSON.stringify(poses)} />
+  <script type="application/json" id="pb-focuses" is:inline set:html={JSON.stringify(FOCUSES)} />
 
   <script>
-    interface Pose { slug: string; name: string; img: string; secs: number; note: string; areas: string[]; }
+    interface Pose { slug: string; name: string; img: string; secs: number; note: string; areas: string[]; sides: 1 | 2; }
     interface Step { slug: string; secs: number; sides: 1 | 2 }
 
     const data: Pose[] = JSON.parse(document.getElementById('pb-data')!.textContent || '[]');
@@ -237,5 +273,56 @@ const poses = (await getCollection('poses'))
 
     if (!fromHash()) fromStore();
     render();
+
+    // ---- "Compose for me": a rules-based sequence from a focus + a time ----
+    interface Focus { key: string; label: string; pool: string[]; }
+    const FOCUSES: Focus[] = JSON.parse(document.getElementById('pb-focuses')!.textContent || '[]');
+    const composeGo = $('.pb-compose-go') as HTMLButtonElement;
+    let cFocus: string | null = null;
+    let cTime: number | null = null;
+    const refreshCompose = () => { composeGo.disabled = !(cFocus && cTime); };
+
+    const pickGroup = (attr: string, set: (v: string) => void) => {
+      document.querySelectorAll<HTMLButtonElement>(`[data-${attr}]`).forEach((b) =>
+        b.addEventListener('click', () => {
+          document.querySelectorAll<HTMLElement>(`[data-${attr}]`).forEach((x) => { x.setAttribute('aria-pressed', 'false'); x.classList.remove('active'); });
+          b.setAttribute('aria-pressed', 'true'); b.classList.add('active');
+          set(b.dataset[attr.replace(/-([a-z])/g, (_m, c) => c.toUpperCase())]!);
+          refreshCompose();
+        }),
+      );
+    };
+    pickGroup('compose-focus', (v) => (cFocus = v));
+    pickGroup('compose-time', (v) => (cTime = Number(v)));
+
+    function compose() {
+      const focus = FOCUSES.find((f) => f.key === cFocus);
+      if (!focus || !cTime) return;
+      const OPENER = 'childs-pose', CLOSER = 'corpse';
+      const openerSecs = cTime <= 10 ? 90 : 120;
+      const closerSecs = cTime <= 10 ? 120 : 180;
+      let budget = cTime * 60 - closerSecs;
+      const seq: Step[] = [];
+      if (bySlug.has(OPENER)) { seq.push({ slug: OPENER, secs: openerSecs, sides: 1 }); budget -= openerSecs; }
+      const pool = focus.pool.filter((s) => s !== OPENER && s !== CLOSER && bySlug.has(s));
+      for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
+      for (const slug of pool) {
+        if (budget <= 45) break;
+        const p = bySlug.get(slug)!;
+        const sides = p.sides === 2 ? 2 : 1;
+        const secs = Math.min(Math.max(p.secs, 120), 240);
+        const cost = secs * sides;
+        if (cost - budget > 90) continue; // would overshoot too far — try a shorter pose
+        seq.push({ slug, secs, sides });
+        budget -= cost;
+      }
+      if (bySlug.has(CLOSER)) seq.push({ slug: CLOSER, secs: closerSecs, sides: 1 });
+      steps = seq;
+      render();
+      msg(`Here's a ${cTime}-minute sequence — tweak it below, or press Start practice.`);
+      composeGo.textContent = 'Compose another';
+      $('.pb-seq').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    composeGo.addEventListener('click', compose);
   </script>
 </BaseLayout>

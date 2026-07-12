@@ -377,6 +377,18 @@ routine-player.is-done .rp-done { display: flex; }
 .rp-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* custom routine builder */
+/* "compose for me" panel (routine builder) */
+.pb-compose { border: 1px solid var(--line); border-radius: 16px; background: var(--paper-2); padding: 24px 22px; margin: 28px 0 0; }
+.pb-compose h2 { font-size: 22px; margin: 0 0 16px; }
+.pb-compose-group { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.pb-compose-label { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); flex: 0 0 44px; padding-top: 8px; }
+.pb-compose .chips { flex: 1; }
+.pb-compose .chip { background: #fff; }
+.pb-compose .chip.active { background: var(--plum); color: #fff; border-color: var(--plum); }
+.pb-compose-go { margin-top: 6px; cursor: pointer; }
+.pb-compose-go:disabled { opacity: .5; cursor: default; }
+.pb-compose-note { font-size: 13px; color: var(--ink-soft); margin: 12px 0 0; }
+
 .builder { display: grid; grid-template-columns: 1fr; gap: 22px; margin-top: 28px; }
 @media (min-width: 820px) { .builder { grid-template-columns: 1fr 1fr; align-items: start; } }
 .pb-picker, .pb-seq { border: 1px solid var(--line); border-radius: 16px; background: var(--paper-2); padding: 18px; }
