@@ -18,6 +18,29 @@ const fmt = (date: Date) => new Intl.DateTimeFormat('en-US', { month: 'long', da
 const ogImage = new URL('/og/card.png', Astro.site);
 ogImage.searchParams.set('t', d.title.slice(0, 70));
 ogImage.searchParams.set('s', d.description.slice(0, 90));
+
+// Article structured data (E-E-A-T + rich results), per the content blueprint.
+const heroAbs = d.hero ? new URL(d.hero, Astro.site).href : ogImage.href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: d.title,
+  description: d.seo_description ?? d.description,
+  datePublished: d.published.toISOString(),
+  dateModified: (d.updated ?? d.published).toISOString(),
+  image: heroAbs,
+  author: {
+    '@type': 'Person',
+    name: 'Katie McGrath',
+    description: 'Yin Yoga & Yoga Nidra teacher',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Yin Yoga with Katie',
+    logo: { '@type': 'ImageObject', url: new URL('/brand/submark-deep-sage.png', Astro.site).href },
+  },
+  mainEntityOfPage: new URL(`/blog/${d.slug}`, Astro.site).href,
+};
 ---
 
 <BaseLayout
@@ -25,6 +48,7 @@ ogImage.searchParams.set('s', d.description.slice(0, 90));
   description={d.seo_description ?? d.description}
   ogType="article"
   image={ogImage.href}
+  jsonLd={jsonLd}
 >
   <div class="wrap blog-post">
     <p class="blog-back"><a href="/blog">← Journal</a></p>
@@ -42,6 +66,17 @@ ogImage.searchParams.set('s', d.description.slice(0, 90));
     <article class="prose blog-prose">
       <Content />
     </article>
+
+    <aside class="blog-author">
+      <img src="/brand/submark-deep-sage.png" alt="" class="blog-author-mark" width="56" height="47" loading="lazy" />
+      <div>
+        <p class="blog-author-name">Katie McGrath</p>
+        <p class="blog-author-bio">
+          Yin Yoga &amp; Yoga Nidra teacher based in Taipei, teaching since 2018. She makes slow,
+          gentle classes for tired minds and bodies. <a href="/blog">More from the Journal →</a>
+        </p>
+      </div>
+    </aside>
 
     <Cta />
   </div>

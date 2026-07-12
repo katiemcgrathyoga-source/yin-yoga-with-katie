@@ -764,6 +764,17 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .blog-prose { max-width: 68ch; margin-left: auto; margin-right: auto; }
 .blog-hero-img { margin: 0 auto 30px; max-width: 760px; }
 .blog-hero-img img { width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--line); display: block; }
+/* photos inside a post: markdown images + figure/caption */
+.blog-prose img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); display: block; margin: 28px 0; }
+.blog-prose figure { margin: 28px 0; }
+.blog-prose figure img { margin: 0; }
+.blog-prose figcaption { margin-top: 8px; font-size: 13.5px; color: var(--ink-soft); text-align: center; font-style: italic; }
+/* author block (E-E-A-T) */
+.blog-author { max-width: 68ch; margin: 40px auto 0; padding: 22px 0 0; border-top: 1px solid var(--line); display: flex; gap: 16px; align-items: flex-start; }
+.blog-author-mark { flex: 0 0 auto; opacity: .9; }
+.blog-author-name { font-family: var(--display); font-weight: 500; font-size: 17px; color: var(--plum); margin: 2px 0 4px; }
+.blog-author-bio { font-size: 14.5px; color: var(--ink-soft); line-height: 1.6; margin: 0; }
+.blog-author-bio a { color: var(--plum); }
 
 /* ============ Library homepage redesign (hero · filmstrip · focus/length · grid) ============ */
 .lib-hero { padding: 34px 0 0; }

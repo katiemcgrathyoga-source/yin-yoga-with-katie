@@ -1,0 +1,5 @@
+Drop photos for this post here, then reference them in the Markdown as:
+  ![Descriptive alt text](/blog/a-new-home-for-yin/your-photo.jpg)
+or set a lead image in the post's frontmatter:
+  hero: "/blog/a-new-home-for-yin/hero.jpg"
+Export web-sized (~1600px wide, under ~300KB) — these are served as-is.
