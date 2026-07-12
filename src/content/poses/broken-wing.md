@@ -17,7 +17,8 @@ cues:
   - "Lie face down and stretch your right arm straight out to the side at roughly shoulder height, palm down."
   - "Bring your left hand under your shoulder and start to roll your chest and hips over toward the right, away from the extended arm."
   - "Let the top of the left foot step over behind you to catch your balance, and rest the side of your head on the mat or a cushion."
-  - "Adjust the height of the extended arm — higher toward the head or lower toward the hip — to move the stretch around the shoulder and chest."
+  - "Adjust the height of the extended arm — higher toward the head or lower toward the hip — to move the stretch around the shoulder and chest. Everyone's shoulder is built a little differently, so the angle that opens the front of your shoulder may not match the next person's; explore slowly to find yours."
+  - "Keep the sensation to a broad, soft stretch across the chest and front of the shoulder. Anything sharp, pinching or bone-on-bone at the front of the joint is a hard stop, not an edge to push through."
   - "Find your edge — about 80% of your capacity, a real stretch but never forcing — then be still and let the shape do the work."
   - "This one is intense, so give yourself permission to stay lighter than you think you should."
 transitions_in:
@@ -37,9 +38,9 @@ faq:
   - q: "Is Broken Wing suitable for beginners?"
     a: "Broken Wing suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
   - q: "What does Broken Wing stretch?"
-    a: "Broken Wing mainly works the chest, shoulders, pectorals and upper back. A strong opener for the front of the shoulder and the chest, reaching the pectoral muscles that rounded shoulders keep tight."
-  - q: "Do you need props for Broken Wing?"
-    a: "You don't have to, but a cushion or blanket can make Broken Wing more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
+    a: "Broken Wing is a strong opener for the front of the shoulder and the chest, reaching the pectoral muscles that rounded, forward-hunched posture keeps tight. Changing the angle of the extended arm moves the stretch around different parts of the shoulder and chest."
+  - q: "What's the difference between Broken Wing and Bow Tie?"
+    a: "They open opposite sides of the shoulder. Broken Wing extends one arm out and rolls the chest away from it, opening the front of the shoulder and the chest. Bow Tie crosses both arms underneath you to open the upper back and the backs of the shoulders. They complement each other well in the same practice."
 related_poses: ["bow-tie", "thread-the-needle", "melting-heart", "sphinx", "supported-fish"]
 youtube_video_id: ""
 images:

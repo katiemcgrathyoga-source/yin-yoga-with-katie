@@ -38,13 +38,13 @@ cautions:
 faq:
   - q: "How long do you hold Folded Half Shoelace in Yin Yoga?"
     a: "Most people hold Folded Half Shoelace for 3–5 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
-  - q: "Is Folded Half Shoelace suitable for beginners?"
-    a: "Yes. Folded Half Shoelace is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
   - q: "What does Folded Half Shoelace stretch?"
-    a: "Folded Half Shoelace mainly works the outer hips, glutes, hamstrings and lower back. Blends two stretches in one — the outer hip and glute of the folded top leg, and the hamstring and back line of the extended lower leg."
-  - q: "Do you need props for Folded Half Shoelace?"
-    a: "You don't have to, but a cushion, bolster or blanket can make Folded Half Shoelace more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
-related_poses: ["shoelace", "half-butterfly", "deer", "swan", "caterpillar"]
+    a: "Two things at once — the outer hip and glute of the crossed top leg, and the hamstring and back line of the straight lower leg. As you fold forward and let the spine round, the lower back opens too."
+  - q: "What's the difference between Folded Half Shoelace and Shoelace?"
+    a: "In full Shoelace both knees stack on top of each other, which asks a lot of the knees. Folded Half Shoelace keeps the bottom leg straight instead, so it's much kinder to the knees while still reaching the outer hip — a good choice on days when stacking feels like too much."
+  - q: "Is Folded Half Shoelace safe for the knees?"
+    a: "It's gentler than full Shoelace because the bottom leg stays straight. Keep the sensation in the outer hip and the back of the straight leg, never in the knee joint. If the crossed knee complains, slide that foot further from the hip or rest it on a cushion."
+related_poses: ["shoelace", "half-butterfly", "sleeping-swan", "swan", "caterpillar"]
 youtube_video_id: ""
 images:
   - "/poses/folded-half-shoelace.jpg"
@@ -52,5 +52,6 @@ seo_title: "Folded Half Shoelace Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Folded Half Shoelace is a knee-friendly Yin Yoga fold blending an outer-hip and glute stretch with a hamstring and back-line release, one side at a time."
 ---
 
-<!-- Original copy in Katie's voice, grounded in Bernie Clark, The Complete Guide to
-Yin Yoga, and Paul Grilley. Contraindications to be verified before publishing as advice. -->
+<!-- Original copy in Katie's voice. This is a knee-friendly variation (bottom leg straight)
+not described as its own pose in the source books; cues follow the general Shoelace / forward-fold
+principles in Bernie Clark. Contraindications to be verified before publishing as advice. -->

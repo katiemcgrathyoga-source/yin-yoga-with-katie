@@ -17,7 +17,7 @@ poses_featured: ["half-butterfly", "shoelace", "sleeping-swan", "cat-pulling-its
 chapters:
   - { time: "0:00",     seconds: 0,    title: "Welcome to gentle Yin" }
   - { time: "0:57",     seconds: 57,   title: "Hips · Half-Butterfly (each side)",       pose: "half-butterfly" }
-  - { time: "12:46",    seconds: 766,  title: "Hips · Shoelace with Twist (each side)",  pose: "shoelace" }
+  - { time: "12:46",    seconds: 766,  title: "Hips · Shoelace with Twist (each side)", poses: ["shoelace", "reclined-twist"] }
   - { time: "27:26",    seconds: 1646, title: "Hips · Sleeping Swan (each side)",         pose: "sleeping-swan" }
   - { time: "41:30",    seconds: 2490, title: "Twist · Cat-Pulling-Its-Tail (each side)", pose: "cat-pulling-its-tail" }
   - { time: "55:40",    seconds: 3340, title: "Corpse Pose / Savasana" }

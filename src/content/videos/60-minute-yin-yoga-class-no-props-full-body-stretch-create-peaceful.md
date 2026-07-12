@@ -18,8 +18,8 @@ chapters:
   - { time: "0:00",   seconds: 0,    title: "Welcome to your hour of Yin" }
   - { time: "1:29",   seconds: 89,   title: "Breath · Calming breathing" }
   - { time: "8:00",   seconds: 480,  title: "Hips · Reclined Butterfly",                pose: "butterfly" }
-  - { time: "15:00",  seconds: 900,  title: "Hips · Reclined Swan to Twist",            pose: "reclined-swan" }
-  - { time: "30:50",  seconds: 1850, title: "Hips · Shoelace, Eagle arms, twist & bend", pose: "shoelace" }
+  - { time: "15:00",  seconds: 900,  title: "Hips · Reclined Swan to Twist", poses: ["reclined-swan", "reclined-twist"] }
+  - { time: "30:50",  seconds: 1850, title: "Hips · Shoelace, Eagle arms, twist & bend", poses: ["shoelace", "eagle", "reclined-twist"] }
   - { time: "46:00",  seconds: 2760, title: "Spine · Caterpillar",                      pose: "caterpillar" }
   - { time: "51:00",  seconds: 3060, title: "Neck · Neck & shoulder stretches" }
   - { time: "54:00",  seconds: 3240, title: "Corpse Pose / Savasana" }

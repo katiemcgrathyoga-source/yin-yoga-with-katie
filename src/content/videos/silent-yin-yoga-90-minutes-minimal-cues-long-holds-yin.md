@@ -17,12 +17,12 @@ poses_featured: ["childs-pose", "sleeping-swan", "broken-wing", "melting-heart",
 chapters:
   - { time: "0:00",     seconds: 0,    title: "Welcome to silent Yin" }
   - { time: "1:11",     seconds: 71,   title: "Back · Child's Pose",                        pose: "childs-pose" }
-  - { time: "8:30",     seconds: 510,  title: "Hips · Sleeping Swan to Crocodile",          pose: "sleeping-swan" }
+  - { time: "8:30",     seconds: 510,  title: "Hips · Sleeping Swan to Crocodile", poses: ["sleeping-swan", "crocodile"] }
   - { time: "15:20",    seconds: 920,  title: "Shoulders · Broken Wing",                    pose: "broken-wing" }
-  - { time: "19:20",    seconds: 1160, title: "Hips · Sleeping Swan & Broken Wing (side 2)", pose: "sleeping-swan" }
+  - { time: "19:20",    seconds: 1160, title: "Hips · Sleeping Swan & Broken Wing (side 2)", poses: ["sleeping-swan", "broken-wing"] }
   - { time: "31:15",    seconds: 1875, title: "Shoulders · Melting Heart",                  pose: "melting-heart" }
-  - { time: "35:00",    seconds: 2100, title: "Hips · Dragon to Shoelace (side 1)",         pose: "dragon" }
-  - { time: "47:20",    seconds: 2840, title: "Hips · Dragon to Shoelace (side 2)",         pose: "dragon" }
+  - { time: "35:00",    seconds: 2100, title: "Hips · Dragon to Shoelace (side 1)", poses: ["dragon", "shoelace"] }
+  - { time: "47:20",    seconds: 2840, title: "Hips · Dragon to Shoelace (side 2)", poses: ["dragon", "shoelace"] }
   - { time: "59:40",    seconds: 3580, title: "Legs · Dangling",                            pose: "dangling" }
   - { time: "1:03:33",  seconds: 3813, title: "Hips · Happy Baby",                          pose: "happy-baby" }
   - { time: "1:08:00",  seconds: 4080, title: "Chest · Supported Fish",                     pose: "supported-fish" }

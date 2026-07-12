@@ -32,7 +32,8 @@ counterposes:
 cautions:
   - "Keep a soft bend in the knee — never lock it straight, especially if you're very flexible or have hypermobile joints."
   - "If your lower back lifts or complains, bend the resting leg and place that foot on the floor to keep the pelvis grounded."
-  - "Ease off if you feel any pulling behind the knee or in the sciatic line down the leg; this shape should feel long and steady, never sharp."
+  - "A broad, spreadable stretch down the back of the leg is soft-tissue tension — safe to explore slowly and patiently. A sharp, pulling or electric feeling behind the knee or down the leg is a nerve signal, not a stretch: ease straight off if you feel it."
+  - "Naturally tight hamstrings are completely normal — for athletic or very muscular bodies they're meant to be springy and strong. Work gently rather than chasing a deeper shape; length comes slowly, if at all, and that's absolutely fine."
 faq:
   - q: "Do I need a strap for the reclined hamstring stretch?"
     a: "A strap makes it much easier and more restful — it does the reaching so you can lie back and relax rather than straining to hold your foot. A belt, dressing-gown tie or towel works just as well."
@@ -40,6 +41,8 @@ faq:
     a: "Around 2 to 4 minutes per side in Yin. Settle in, keep a soft bend in the knee, and let the back of the leg slowly release rather than forcing it."
   - q: "What if my hamstrings are really tight?"
     a: "Bend the raised knee generously and hold the strap higher up — you'll still get a deep, useful release. Flexibility comes with time and patient, regular practice, never from pushing."
+  - q: "Is it okay to keep my knee bent?"
+    a: "Absolutely — a soft bend in the knee isn't cheating. The back of the leg still releases, and bending the knee actually lets the hip fold more freely, so the stretch stays comfortable and useful. Straightening the leg is simply an option for a little more, never a requirement. Aim for a steady, spreadable stretch rather than a sharp pull."
 related_poses: ["banana", "caterpillar", "legs-up-the-wall", "happy-baby"]
 youtube_video_id: ""
 images:

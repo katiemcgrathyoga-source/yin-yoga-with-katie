@@ -32,15 +32,15 @@ cautions:
   - "If lying flat bothers your lower back, support the knees with a bolster or bend the knees with feet on the floor."
   - "It is easy to drift toward sleep; that is fine, though a gentle return to the breath keeps you present."
 faq:
-  - q: "How long do you hold Corpse in Yin Yoga?"
-    a: "Most people hold Corpse for 5–10 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
-  - q: "Is Corpse suitable for beginners?"
-    a: "Yes. Corpse is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
-  - q: "What does Corpse stretch?"
-    a: "Corpse mainly works the whole body, nervous system and spine. Invites total rest, letting the body settle completely after your practice."
-  - q: "Do you need props for Corpse?"
-    a: "You don't have to, but a bolster, blanket or eye pillow can make Corpse more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
-related_poses: ["childs-pose", "supported-bridge", "reclined-twist", "happy-baby"]
+  - q: "How long do you hold Corpse Pose in Yin Yoga?"
+    a: "Around 5–10 minutes is typical. Because a Yin practice doesn't work the muscles hard, a slightly shorter rest — roughly 5 to 8 percent of your total practice time — is often enough. If you're practising alone, a soft timer lets you stay relaxed without worrying about drifting off."
+  - q: "Why is Corpse Pose (Savasana) important?"
+    a: "It's the final rest that closes your practice. Lying completely still gives the body and nervous system time to absorb everything you've done, and many people find it deeply settling. Skipping it means missing the part of the practice where all the work quietly lands."
+  - q: "How do you do Corpse Pose?"
+    a: "Lie flat on your back and let the floor take all your weight. Let the feet fall open, rest the arms a little away from the body with palms turned up, and support the knees with a bolster if the lower back would like it. Close your eyes, soften the face, and let the breath find its own slow rhythm — there's nothing to stretch or hold."
+  - q: "Is Corpse Pose safe during pregnancy?"
+    a: "Lying flat on the back can feel uncomfortable later in pregnancy. A comfortable alternative is to rest on your side with a bolster or cushion between the knees, which offers the same complete rest without lying flat."
+related_poses: ["childs-pose", "legs-up-the-wall", "supported-bridge", "reclined-twist", "happy-baby"]
 youtube_video_id: ""
 images:
   - "/poses/corpse.jpg"

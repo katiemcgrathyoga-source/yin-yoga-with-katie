@@ -18,11 +18,11 @@ chapters:
   - { time: "0:00",     seconds: 0,    title: "Welcome to minimal-cues Yin" }
   - { time: "0:55",     seconds: 55,   title: "Breath · Five-minute meditation" }
   - { time: "5:10",     seconds: 310,  title: "Back · Child's Pose",                     pose: "childs-pose" }
-  - { time: "11:00",    seconds: 660,  title: "Shoulders · Melting Heart / Puppy",       pose: "melting-heart" }
+  - { time: "11:00",    seconds: 660,  title: "Shoulders · Melting Heart / Puppy", poses: ["melting-heart", "puppy"] }
   - { time: "18:00",    seconds: 1080, title: "Hips · Butterfly",                        pose: "butterfly" }
   - { time: "24:00",    seconds: 1440, title: "Hips · Dragon (each side)",               pose: "dragon" }
   - { time: "29:00",    seconds: 1740, title: "Hips · Swan (each side)",                 pose: "swan" }
-  - { time: "47:00",    seconds: 2820, title: "Back · Sphinx & Seal",                    pose: "sphinx" }
+  - { time: "47:00",    seconds: 2820, title: "Back · Sphinx & Seal", poses: ["sphinx", "seal"] }
   - { time: "55:00",    seconds: 3300, title: "Hips · Happy Baby",                       pose: "happy-baby" }
   - { time: "1:00:50",  seconds: 3650, title: "Twist · Reclined Twist (each side)",      pose: "reclined-twist" }
   - { time: "1:20:00",  seconds: 4800, title: "Corpse Pose / Savasana" }

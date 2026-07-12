@@ -18,7 +18,7 @@ chapters:
   - { time: "0:00",   seconds: 0,    title: "Welcome to Day 3" }
   - { time: "0:46",   seconds: 46,   title: "Hips · Dragon (side 1)",                     pose: "dragon" }
   - { time: "6:20",   seconds: 380,  title: "Hips · Easy Pose Fold (side 1)",             pose: "easy-pose" }
-  - { time: "10:19",  seconds: 619,  title: "Hips · Dragon & Easy Pose Fold (side 2)",    pose: "dragon" }
+  - { time: "10:19",  seconds: 619,  title: "Hips · Dragon & Easy Pose Fold (side 2)", poses: ["dragon", "easy-pose"] }
   - { time: "21:20",  seconds: 1280, title: "Shoulders · Cow-Face Arms",                  pose: "cow-face" }
   - { time: "28:35",  seconds: 1715, title: "Twist · Gentle Spinal Twist" }
 seo_title: "30-Min Bedtime Yin Yoga for Hips & Shoulders — Day 3"

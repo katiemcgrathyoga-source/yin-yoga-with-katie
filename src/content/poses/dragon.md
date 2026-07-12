@@ -3,7 +3,7 @@ name_en: "Dragon"
 slug: "dragon"
 also_known_as: ["Dragon Pose", "Yin Low Lunge", "Lizard (yin variation)"]
 target_areas: ["hips", "hip flexors", "groin", "quadriceps"]
-meridians: ["stomach", "spleen", "liver", "gall bladder"]
+meridians: ["stomach", "spleen", "liver", "gall bladder", "kidney"]
 accessibility: "intermediate"
 hold_time: "2–5 minutes per side"
 hold_seconds: 120
@@ -49,7 +49,9 @@ faq:
     a: "You don't have to, but a folded blanket or bolster can make Dragon more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
   - q: "What's the difference between Low Dragon and High Dragon?"
     a: "They're the same lunge with a different upper body. In High Dragon you lift the torso tall over the sinking hips; in Low Dragon you fold forward onto your forearms for a deeper groin and hip-flexor stretch. Start in the base Dragon and choose whichever your body wants that day."
-related_poses: ["twisted-dragon", "swan", "saddle", "dragonfly", "childs-pose"]
+  - q: "Is Dragon safe for the knees?"
+    a: "It can be, with a little care. Pad the back knee with a folded blanket or slide a bolster under the shin so bare kneecap isn't pressing into a hard floor. Keep the front knee stacked over the ankle and tracking toward the middle toes. The front-of-hip stretch on the back leg is soft-tissue tension you can slowly explore, but sharp knee sensation is a signal to back off."
+related_poses: ["twisted-dragon", "swan", "saddle", "deer", "childs-pose"]
 youtube_video_id: ""
 images:
   - "/poses/dragon.jpg"

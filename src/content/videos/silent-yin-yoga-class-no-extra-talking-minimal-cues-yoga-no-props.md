@@ -21,7 +21,7 @@ chapters:
   - { time: "18:40",  seconds: 1120, title: "Spine · Cat-Cow" }
   - { time: "19:50",  seconds: 1190, title: "Shoulders · Puppy Pose",                      pose: "melting-heart" }
   - { time: "23:00",  seconds: 1380, title: "Shoulders · Angel Pose" }
-  - { time: "25:00",  seconds: 1500, title: "Hips · Shoelace with Eagle Arms & Twist (each side)", pose: "shoelace" }
+  - { time: "25:00",  seconds: 1500, title: "Hips · Shoelace with Eagle Arms & Twist (each side)", poses: ["shoelace", "eagle", "reclined-twist"] }
   - { time: "37:27",  seconds: 2247, title: "Corpse Pose / Savasana" }
 seo_title: "Silent Yin Yoga — 42-Min Full-Body Stretch, No Props"
 seo_description: "A silent 42-minute Yin Yoga class from Taipei — a full-body stretch held long and slow with minimal cues and no props. No extra talking. All levels."

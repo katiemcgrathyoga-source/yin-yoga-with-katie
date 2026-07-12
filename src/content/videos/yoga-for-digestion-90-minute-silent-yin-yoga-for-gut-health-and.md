@@ -18,9 +18,9 @@ chapters:
   - { time: "0:00",     seconds: 0,    title: "Welcome to Yin for digestion" }
   - { time: "1:10",     seconds: 70,   title: "Breath · Self-guided breathing" }
   - { time: "4:30",     seconds: 270,  title: "Back · Child's Pose",                    pose: "childs-pose" }
-  - { time: "9:40",     seconds: 580,  title: "Back · Sphinx & Seal",                   pose: "sphinx" }
+  - { time: "9:40",     seconds: 580,  title: "Back · Sphinx & Seal", poses: ["sphinx", "seal"] }
   - { time: "23:26",    seconds: 1406, title: "Legs · Saddle",                          pose: "saddle" }
-  - { time: "31:22",    seconds: 1882, title: "Hips · Shoelace, fold & twists",         pose: "shoelace" }
+  - { time: "31:22",    seconds: 1882, title: "Hips · Shoelace, fold & twists", poses: ["shoelace", "reclined-twist"] }
   - { time: "44:40",    seconds: 2680, title: "Hips · Dragonfly / Straddle",            pose: "dragonfly" }
   - { time: "55:37",    seconds: 3337, title: "Spine · Caterpillar",                    pose: "caterpillar" }
   - { time: "1:01:31",  seconds: 3691, title: "Hips · Dragon cycle (each side)",        pose: "dragon" }

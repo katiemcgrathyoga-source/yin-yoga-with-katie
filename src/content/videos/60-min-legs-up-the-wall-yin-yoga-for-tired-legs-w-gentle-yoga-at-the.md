@@ -20,7 +20,7 @@ chapters:
   - { time: "5:30",   seconds: 330,  title: "Hips · Wall Butterfly",               pose: "butterfly" }
   - { time: "11:20",  seconds: 680,  title: "Legs · Wall Caterpillar",             pose: "caterpillar" }
   - { time: "16:30",  seconds: 990,  title: "Hips · Wall Straddle",                pose: "dragonfly" }
-  - { time: "21:55",  seconds: 1315, title: "Hips · Wall Squat & Happy Baby",      pose: "happy-baby" }
+  - { time: "21:55",  seconds: 1315, title: "Hips · Wall Squat & Happy Baby", poses: ["squat", "happy-baby"] }
   - { time: "30:00",  seconds: 1800, title: "Twist · Reclined Twist",             pose: "reclined-twist" }
   - { time: "49:40",  seconds: 2980, title: "Corpse Pose / Savasana" }
 seo_title: "Legs Up the Wall Yin Yoga for Tired Legs — 60 Min"

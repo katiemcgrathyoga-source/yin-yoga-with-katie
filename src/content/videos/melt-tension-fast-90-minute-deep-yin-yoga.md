@@ -18,10 +18,10 @@ chapters:
   - { time: "0:00",     seconds: 0,    title: "Welcome & what you'll need" }
   - { time: "1:04",     seconds: 64,   title: "Back · Child's Pose (warm-up)",                        pose: "childs-pose" }
   - { time: "15:16",    seconds: 916,  title: "Hips · Frog (deep stretch)",                          pose: "frog" }
-  - { time: "21:52",    seconds: 1312, title: "Hips · Sleeping Swan, Shoelace & Twist (right side)", pose: "sleeping-swan" }
-  - { time: "34:34",    seconds: 2074, title: "Hips · Sleeping Swan, Shoelace & Twist (left side)",  pose: "sleeping-swan" }
+  - { time: "21:52",    seconds: 1312, title: "Hips · Sleeping Swan, Shoelace & Twist (right side)", poses: ["sleeping-swan", "shoelace", "reclined-twist"] }
+  - { time: "34:34",    seconds: 2074, title: "Hips · Sleeping Swan, Shoelace & Twist (left side)", poses: ["sleeping-swan", "shoelace", "reclined-twist"] }
   - { time: "52:38",    seconds: 3158, title: "Legs · Saddle",                                       pose: "saddle" }
-  - { time: "59:49",    seconds: 3589, title: "Chest · Supported Fish with butterfly legs",          pose: "supported-fish" }
+  - { time: "59:49",    seconds: 3589, title: "Chest · Supported Fish with butterfly legs", poses: ["supported-fish", "butterfly"] }
   - { time: "1:06:46",  seconds: 4006, title: "Twist · Cat Pulling Its Tail (each side)",            pose: "cat-pulling-its-tail" }
   - { time: "1:19:03",  seconds: 4743, title: "Corpse Pose / Savasana" }
 seo_title: "Melt Tension Fast: 90-Min Deep Relaxation Yin Yoga"

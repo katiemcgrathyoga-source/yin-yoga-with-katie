@@ -11,7 +11,7 @@ props: ["bolster", "block"]
 benefits:
   - "Opens the chest, shoulders and upper back — a lovely antidote to hours rounded forward over a desk or phone."
   - "Gently lengthens the spine, decompressing between the shoulder blades while the lower back stays supported by the hips."
-  - "A soft, heart-opening shape that encourages fuller breathing and lifts the mood without the intensity of a deep backbend."
+  - "A soft, heart-opening shape that encourages fuller, easier breathing without the intensity of a deep backbend."
   - "Keeping the hips stacked over the knees makes it gentler on the lower back than its deeper cousin, Melting Heart."
 cues:
   - "Come as you are. Begin on your hands and knees in tabletop, knees under hips."
@@ -32,6 +32,7 @@ counterposes:
 cautions:
   - "This is a gentler shape than Melting Heart — if you want more opening through the chest, walk the hips forward of the knees, but expect more sensation in the lower back."
   - "Shoulder injuries: keep the arms a little wider and don't force the chest down; let it descend only as far as is comfortable."
+  - "How far the chest melts toward the floor depends on your own shoulders and upper back — it varies a lot from body to body. Let the shape find its own depth rather than measuring it against anyone else's; rest on a bolster or block wherever you land."
   - "Support a stiff neck by resting the forehead on a block rather than reaching the chin to the floor."
 faq:
   - q: "What's the difference between Puppy Pose and Melting Heart?"
@@ -48,5 +49,6 @@ seo_title: "Puppy Pose (Anahatasana) in Yin Yoga: Benefits & How-To"
 seo_description: "Puppy Pose is a gentle yin heart-opener for the shoulders, chest and upper back — the softer cousin of Melting Heart. Learn the cues, benefits and hold time."
 ---
 
-<!-- Original copy in Katie's voice, grounded in Bernie Clark, The Complete Guide to
-Yin Yoga, and Paul Grilley. Contraindications to be verified before publishing as advice. -->
+<!-- Original copy in Katie's voice. NOTE: Anahatasana/Puppy is not covered in the two
+source books in docs/ (shoulder segment is a separate volume) — do not attribute this page
+to Grilley/Clark. Contraindications to be verified before publishing. -->

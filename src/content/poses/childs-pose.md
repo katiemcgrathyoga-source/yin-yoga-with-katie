@@ -30,18 +30,19 @@ counterposes:
   - "Sphinx or a soft, supported backbend to balance the forward fold."
 cautions:
   - "If your knees complain, widen them, add padding behind them, or place a rolled blanket in the crease of the knees to ease the bend."
+  - "If you feel a pinch in the front of the hips or lower belly as you fold, take the knees wider — that pinching is compression where the thigh meets the hip, not a stretch to push into."
   - "Coming forward over the belly may be uncomfortable in later pregnancy — take the knees wide, or choose a different resting pose."
   - "If pressure builds in your head or you feel dizzy, turn your head to the side or rest your forehead higher on a block."
 faq:
-  - q: "How long do you hold Child's Pose in Yin Yoga?"
-    a: "Most people hold Child's Pose for 2–5 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
-  - q: "Is Child's Pose suitable for beginners?"
-    a: "Yes. Child's Pose is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
   - q: "What does Child's Pose stretch?"
-    a: "Child's Pose mainly works the lower back, hips, spine and knees. Gently lengthens the lower back and lets the whole spine settle after backbends or a busy day."
-  - q: "Do you need props for Child's Pose?"
-    a: "You don't have to, but a bolster, blanket or cushion can make Child's Pose more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
-related_poses: ["corpse", "caterpillar", "saddle", "dragonfly"]
+    a: "Child's Pose gently lengthens the lower back and spine while the hips fold back toward the heels and the knees settle into a soft bend. It's a restful, grounding shape rather than a deep stretch, which is why it makes such a good counterpose after backbends."
+  - q: "How long do you hold Child's Pose in Yin Yoga?"
+    a: "As a Yin pose in its own right, 2–5 minutes is lovely. Used as a quick counterpose between other shapes, even a minute is enough to let the back settle. Stay as long as it feels soothing — there's no need to rush out of it."
+  - q: "Is Child's Pose safe for your knees and in pregnancy?"
+    a: "For sensitive knees, widen them, pad behind them, or tuck a rolled blanket into the crease to ease the bend, and cushion the ankle-tops if they feel tender. Folding over the belly can be uncomfortable in later pregnancy, so take the knees wide or choose a different resting pose."
+  - q: "What's the difference between Child's Pose and Corpse Pose?"
+    a: "Both are resting poses, but they hold the body differently. Child's Pose is a kneeling forward fold that gently opens the lower back and hips and feels grounding and inward. Corpse is lying flat on your back in complete neutrality — the final rest at the very end of a practice."
+related_poses: ["corpse", "caterpillar", "saddle", "frog", "puppy"]
 youtube_video_id: ""
 images:
   - "/poses/childs-pose.jpg"

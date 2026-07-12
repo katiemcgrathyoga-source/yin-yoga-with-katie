@@ -29,7 +29,7 @@ chapters:
   - { time: "38:53",  seconds: 2333, title: "Hips · Dragonfly",                           pose: "dragonfly" }
   - { time: "41:43",  seconds: 2503, title: "Hips · Deer (side 2)",                       pose: "deer" }
   - { time: "43:30",  seconds: 2610, title: "Hips · Sleeping Swan (side 2)",              pose: "sleeping-swan" }
-  - { time: "46:33",  seconds: 2793, title: "Hips · Dragon & Twisted Dragon (side 2)",    pose: "dragon" }
+  - { time: "46:33",  seconds: 2793, title: "Hips · Dragon & Twisted Dragon (side 2)", poses: ["dragon", "twisted-dragon"] }
   - { time: "51:22",  seconds: 3082, title: "Legs · Reclined wind-down" }
   - { time: "54:39",  seconds: 3279, title: "Corpse Pose / Savasana" }
 seo_title: "60-Minute Yin Yoga — Full-Body Stretch & Relaxation"

@@ -44,7 +44,11 @@ faq:
     a: "Dangling mainly works the spine, hamstrings and lower back. Uses gravity to decompress the whole back line and spine — the weight of your upper body does the work while you simply hang."
   - q: "Do you need props for Dangling?"
     a: "You don't have to, but a bolster can make Dangling more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
-related_poses: ["squat", "caterpillar", "dragonfly", "childs-pose"]
+  - q: "Should I keep my knees bent in Dangling?"
+    a: "Yes — bend them generously. In Yin, Dangling is about letting the lower back and spine release under the weight of the upper body, not straining the hamstrings. Bent knees soften the back line and move the fold into the lower back; straighten them only a little, and only if you want more hamstring sensation."
+  - q: "What's the difference between Dangling and Caterpillar?"
+    a: "They're the same forward fold in different orientations. Dangling is standing, so gravity draws the spine long; Caterpillar is the seated version folding over straight legs. Caterpillar is the gentler choice if standing forward folds feel too intense or you have blood-pressure concerns."
+related_poses: ["squat", "caterpillar", "half-butterfly", "dragonfly", "childs-pose"]
 youtube_video_id: ""
 images:
   - "/poses/dangling.jpg"

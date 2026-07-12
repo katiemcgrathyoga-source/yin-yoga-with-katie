@@ -3,7 +3,7 @@ name_en: "Twisted Dragon"
 slug: "twisted-dragon"
 also_known_as: ["Dragon Twist", "Twisting Dragon"]
 target_areas: ["hips", "hip flexors", "groin", "outer hip", "IT band"]
-meridians: ["stomach", "spleen", "liver", "gall bladder"]
+meridians: ["stomach", "spleen", "liver", "gall bladder", "kidney"]
 accessibility: "intermediate"
 hold_time: "2–5 minutes per side"
 hold_seconds: 120
@@ -37,14 +37,14 @@ cautions:
   - "Lead the twist from the ribs and upper back, not the neck. Turn the head only as far as feels easy, and back off any lower-back pinch."
   - "Come out slowly and unwind gently — the spine and hips both need a moment to resettle before you move on."
 faq:
-  - q: "How long do you hold Twisted Dragon in Yin Yoga?"
-    a: "Most people hold Twisted Dragon for 2–5 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
-  - q: "Is Twisted Dragon suitable for beginners?"
-    a: "Twisted Dragon suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
   - q: "What does Twisted Dragon stretch?"
-    a: "Twisted Dragon mainly works the hips, hip flexors, groin, outer hip and IT band. Adds an outer-hip and IT-band element to Dragon as the front knee is pressed open and the torso rotates."
-  - q: "Do you need props for Twisted Dragon?"
-    a: "You don't have to, but a folded blanket or block can make Twisted Dragon more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
+    a: "Twisted Dragon keeps the deep hip-flexor and groin opening of the Dragon lunge and adds an outer-hip element as one hand eases the front knee open. Rotating the chest toward the sky then brings a gentle twist through the waist and side body."
+  - q: "What's the difference between Dragon and Twisted Dragon?"
+    a: "Dragon is a low lunge that opens the front hip and groin. Twisted Dragon is one of its variations: you press the front knee out to the side with a hand and turn the chest up toward the sky, adding an outer-hip stretch and a spinal twist on top of the same lunge."
+  - q: "How long do you hold Twisted Dragon in Yin Yoga?"
+    a: "Most people hold Twisted Dragon for 2–5 minutes per side. Settle in, keep the hips heavy and low, soften into the twist, and come out a little sooner if you ever need to."
+  - q: "Is Twisted Dragon safe for the knees?"
+    a: "Take care with both knees. You're pressing the front knee open, so keep it stacked over the ankle — never past the toes — and stop if pressure lands in the joint rather than the hip. Pad the back knee with a folded blanket, since the twist can load it unevenly."
 related_poses: ["dragon", "cat-pulling-its-tail", "reclined-twist", "swan"]
 youtube_video_id: ""
 images:

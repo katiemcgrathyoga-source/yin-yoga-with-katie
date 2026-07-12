@@ -16,10 +16,10 @@ props: []
 poses_featured: ["sphinx", "childs-pose", "swan", "shoelace", "dragonfly", "banana", "reclined-twist"]
 chapters:
   - { time: "0:00",     seconds: 0,    title: "Welcome to Yin for digestion" }
-  - { time: "0:01",     seconds: 1,    title: "Back · Sphinx & Seal",                  pose: "sphinx" }
+  - { time: "0:01",     seconds: 1,    title: "Back · Sphinx & Seal", poses: ["sphinx", "seal"] }
   - { time: "6:30",     seconds: 390,  title: "Back · Child's Pose",                   pose: "childs-pose" }
-  - { time: "8:40",     seconds: 520,  title: "Hips · Swan, with Child's Pose between", pose: "swan" }
-  - { time: "21:00",    seconds: 1260, title: "Hips · Shoelace, twists & side bends",  pose: "shoelace" }
+  - { time: "8:40",     seconds: 520,  title: "Hips · Swan, with Child's Pose between", poses: ["swan", "childs-pose"] }
+  - { time: "21:00",    seconds: 1260, title: "Hips · Shoelace, twists & side bends", poses: ["shoelace", "reclined-twist"] }
   - { time: "35:00",    seconds: 2100, title: "Legs · Dragonfly folds (left, right, middle)", pose: "dragonfly" }
   - { time: "48:20",    seconds: 2900, title: "Side · Banana",                         pose: "banana" }
   - { time: "56:00",    seconds: 3360, title: "Twist · Reclined Twist (each side)",    pose: "reclined-twist" }

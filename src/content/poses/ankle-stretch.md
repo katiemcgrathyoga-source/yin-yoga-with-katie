@@ -3,21 +3,22 @@ name_en: "Ankle Stretch"
 slug: "ankle-stretch"
 also_known_as: []
 target_areas: ["ankles", "shins", "feet", "knees"]
-meridians: ["kidney", "urinary bladder", "spleen", "liver", "stomach"]
+meridians: ["stomach", "spleen", "liver", "gall bladder"]
 accessibility: "intermediate"
 hold_time: "1–3 minutes"
 hold_seconds: 60
 props: ["blanket", "bolster"]
 benefits:
   - "Stretches the fronts of the ankles and the tops of the feet, an area that stays short in most of us."
-  - "Lengthens along the shins and stimulates the meridian lines running down the front of the leg."
+  - "Lengthens along the shins and stimulates the four meridian lines that run through the feet and ankles — stomach, spleen, liver and gall bladder."
   - "The natural counter to Toe Squat, balancing the front and back of the ankle."
-  - "Encourages healthy mobility in the ankle joints, which supports steady standing and walking."
+  - "Opens and gently strengthens the ankle joints, a welcome release after squatting, kneeling or seated meditation."
 cues:
   - "Come to kneeling with the tops of your feet flat on the floor, toes pointing straight back and untucked."
   - "Slowly lean your weight back, letting the fronts of the ankles and shins begin to stretch."
   - "Support yourself on your hands behind you and add only as much lean as feels right."
   - "Find your edge — a real stretch but never forcing. If it is strong enough already, there is no need to lean far."
+  - "This is a soft-tissue stretch across the front of the ankle, not a joint you crank. If you meet a hard, bone-on-bone stop or anything sharp in the knee, that is compression — ease straight off rather than pushing through it."
   - "Padding a rolled blanket under the ankles or shins softens the intensity if the tops of the feet feel too much."
 transitions_in:
   - "From kneeling on the tops of the feet, place the hands behind you and lean the weight back."
@@ -35,13 +36,13 @@ cautions:
 faq:
   - q: "How long do you hold Ankle Stretch in Yin Yoga?"
     a: "Most people hold Ankle Stretch for 1–3 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
-  - q: "Is Ankle Stretch suitable for beginners?"
-    a: "Ankle Stretch suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
+  - q: "What's the difference between Ankle Stretch and Toe Squat?"
+    a: "They are opposites, which is why they pair so well. Ankle Stretch keeps the toes untucked to lengthen the fronts of the ankles and the tops of the feet, while Toe Squat tucks the toes under to stretch the soles of the feet and the toes. Practising both balances the front and back of the ankle."
+  - q: "Is Ankle Stretch safe for the knees?"
+    a: "Go gently. The shape asks the knees to fold fully as you sit back, which not every knee enjoys. Keep the knees comfortable throughout, pad behind them or under the ankles with a rolled blanket, and ease off at once if you feel anything sharp — a hard, bone-on-bone sensation in the joint is your cue to stop, not to push."
   - q: "What does Ankle Stretch stretch?"
-    a: "Ankle Stretch mainly works the ankles, shins, feet and knees. Stretches the fronts of the ankles and the tops of the feet, an area that stays short in most of us."
-  - q: "Do you need props for Ankle Stretch?"
-    a: "You don't have to, but a blanket or bolster can make Ankle Stretch more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
-related_poses: ["toe-squat", "saddle", "childs-pose", "squat"]
+    a: "Ankle Stretch mainly targets the fronts of the ankles and the tops of the feet, working up along the shins — an area that stays short in most of us. It stimulates the stomach, spleen, liver and gall bladder meridian lines that run through the feet and ankles."
+related_poses: ["toe-squat", "saddle", "squat", "dangling", "childs-pose"]
 youtube_video_id: ""
 images:
   - "/poses/ankle-stretch.jpg"

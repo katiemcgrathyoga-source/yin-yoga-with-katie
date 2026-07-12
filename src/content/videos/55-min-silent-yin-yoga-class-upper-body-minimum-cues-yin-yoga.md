@@ -16,7 +16,7 @@ props: ["bolster", "block", "cushion", "blanket", "strap"]
 poses_featured: ["melting-heart", "sphinx", "seal", "broken-wing", "eagle", "cow-face", "caterpillar", "butterfly", "reclined-twist", "corpse"]
 chapters:
   - { time: "0:00",   seconds: 0,    title: "Intro to Upper-Body Yin" }
-  - { time: "4:15",   seconds: 255,  title: "Chest · Puppy Pose (Melting Heart)", poses: ["melting-heart"] }
+  - { time: "4:15",   seconds: 255,  title: "Chest · Puppy Pose (Melting Heart)", poses: ["puppy", "melting-heart"] }
   - { time: "10:40",  seconds: 640,  title: "Spine · Sphinx",                     poses: ["sphinx"] }
   - { time: "15:50",  seconds: 950,  title: "Spine · Seal",                       poses: ["seal"] }
   - { time: "19:00",  seconds: 1140, title: "Shoulders · Broken Wing",            poses: ["broken-wing"] }

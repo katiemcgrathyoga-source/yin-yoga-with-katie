@@ -16,9 +16,9 @@ props: ["strap or belt", "yoga block"]
 poses_featured: ["melting-heart", "childs-pose", "bow-tie", "broken-wing", "cow-face"]
 chapters:
   - { time: "0:00",   seconds: 0,    title: "Welcome to Day 9" }
-  - { time: "0:40",   seconds: 40,   title: "Shoulders · Melting Heart & Child's Pose",        pose: "melting-heart" }
-  - { time: "8:20",   seconds: 500,  title: "Shoulders · Bow-Tie & Broken Wing (side 1)",       pose: "bow-tie" }
-  - { time: "19:35",  seconds: 1175, title: "Shoulders · Bow-Tie & Broken Wing (side 2)",       pose: "bow-tie" }
+  - { time: "0:40",   seconds: 40,   title: "Shoulders · Melting Heart & Child's Pose", poses: ["melting-heart", "childs-pose"] }
+  - { time: "8:20",   seconds: 500,  title: "Shoulders · Bow-Tie & Broken Wing (side 1)", poses: ["bow-tie", "broken-wing"] }
+  - { time: "19:35",  seconds: 1175, title: "Shoulders · Bow-Tie & Broken Wing (side 2)", poses: ["bow-tie", "broken-wing"] }
   - { time: "31:00",  seconds: 1860, title: "Shoulders · Cow-Face Arms",                        pose: "cow-face" }
   - { time: "39:07",  seconds: 2347, title: "Twist · Seated Twist & Neck Release" }
 seo_title: "Bedtime Yin Yoga for Shoulders — Stretch for Sleep, Day 9"

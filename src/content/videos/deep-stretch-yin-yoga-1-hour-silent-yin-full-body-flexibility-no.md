@@ -18,7 +18,7 @@ chapters:
   - { time: "0:00",   seconds: 0,    title: "Welcome to silent Yin" }
   - { time: "0:53",   seconds: 53,   title: "Back · Child's Pose to Cat/Cow",   pose: "childs-pose" }
   - { time: "5:08",   seconds: 308,  title: "Shoulders · Melting Heart",        pose: "melting-heart" }
-  - { time: "9:30",   seconds: 570,  title: "Back · Sphinx & Seal",             pose: "sphinx" }
+  - { time: "9:30",   seconds: 570,  title: "Back · Sphinx & Seal", poses: ["sphinx", "seal"] }
   - { time: "18:00",  seconds: 1080, title: "Hips · Shoelace (each side)",      pose: "shoelace" }
   - { time: "32:00",  seconds: 1920, title: "Hips · Happy Baby",                pose: "happy-baby" }
   - { time: "36:00",  seconds: 2160, title: "Spine · Reclined Twist (each side)", pose: "reclined-twist" }

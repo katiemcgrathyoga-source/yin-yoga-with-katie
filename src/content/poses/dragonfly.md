@@ -41,6 +41,10 @@ faq:
     a: "Dragonfly mainly works the hamstrings, inner thighs, lower back and hips. Opens the inner thighs and adductors as the legs spread wide."
   - q: "Do you need props for Dragonfly?"
     a: "You don't have to, but a cushion, bolster, block or blanket can make Dragonfly more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
+  - q: "What's the difference between Dragonfly and Butterfly?"
+    a: "Both open the inner thighs, but the legs are placed differently. In Butterfly the soles come together and the knees fall open, which stays gentler on the hamstrings. In Dragonfly the legs spread wide and straight, adding a hamstring and back-line stretch alongside the inner-thigh opening. Many people move from Butterfly into Dragonfly as they warm up."
+  - q: "How wide should my legs be in Dragonfly?"
+    a: "Only as wide as still lets your hips tip forward — often somewhere between 90 and 120 degrees. A full split isn't the goal. If the hips roll backward and your lower back rounds hard, bring the legs closer together and sit up on a cushion so the pelvis can tilt forward instead."
 related_poses: ["butterfly", "caterpillar", "half-butterfly", "frog", "squat"]
 youtube_video_id: ""
 images:

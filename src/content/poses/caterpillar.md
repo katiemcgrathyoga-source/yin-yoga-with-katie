@@ -17,7 +17,7 @@ cues:
   - "Sit up on the edge of a folded blanket or cushion so your hips are lifted a little higher than your knees — this takes strain off the lower back."
   - "Stretch both legs out in front of you. Let the feet relax and fall open however they like."
   - "On an out-breath, walk your hands forward and let your spine round gently. In Yin we allow the back to curl — you are folding from the whole spine, not just hinging at the hips."
-  - "Find your edge — about 80% of your capacity, a real stretch but never forcing. Then stop travelling forward and let the shape do the work."
+  - "Find your edge — about 80% of your capacity, a real stretch but never forcing. Then stop travelling forward and let the shape do the work. A broad pull along the backs of the legs and up the spine is soft-tissue tension and safe to soften into; anything sharp, pinching or electric is a signal to ease back, not push through."
   - "Rest your hands wherever they land — on your shins, your feet, or the floor. If your head hangs a long way from your legs, slide a bolster onto your thighs and let your forehead melt down onto it."
   - "Soften your neck, your jaw, your shoulders. Be still, and let each breath carry you a fraction deeper."
 transitions_in:
@@ -36,15 +36,15 @@ cautions:
   - "Bend your knees as much as you need — tight hamstrings are welcome here, and softening the knees lets the stretch reach your spine instead."
   - "If you are pregnant, take the legs a little wider and fold only to a comfortable, open place with no compression through the belly."
 faq:
-  - q: "How long do you hold Caterpillar in Yin Yoga?"
-    a: "Most people hold Caterpillar for 3–5 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
-  - q: "Is Caterpillar suitable for beginners?"
-    a: "Yes. Caterpillar is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
   - q: "What does Caterpillar stretch?"
-    a: "Caterpillar mainly works the spine, hamstrings and lower back. Gives the whole back line — from your heels, up the calves and hamstrings, all the way to the crown of your head — one long, quiet stretch."
-  - q: "Do you need props for Caterpillar?"
-    a: "You don't have to, but a bolster or cushion can make Caterpillar more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
-related_poses: ["half-butterfly", "butterfly", "dangling", "childs-pose"]
+    a: "Caterpillar works the whole back line — from the heels up through the calves and hamstrings and all the way along the spine. Unlike an active forward fold, the aim isn't to reach for the toes but to let the spine round softly, so the stretch is felt along the back body rather than pulled from the hamstrings alone."
+  - q: "How long do you hold Caterpillar in Yin Yoga?"
+    a: "Most people hold Caterpillar for 3–5 minutes. The long, still hold lets gravity draw you down gradually — settle in, let the head hang heavy, and soften a fraction deeper with each breath. Come out a little sooner if you need to."
+  - q: "Is Caterpillar safe with tight hamstrings or a sensitive lower back?"
+    a: "Yes, with a little set-up. Sit up on a folded blanket so your hips are higher than your knees, and bend the knees as much as you need — a bolster underneath supports them and lets the spine round instead. If a back condition means you shouldn't round the spine, or if you have sciatica, keep the back longer and sit higher, or choose another pose."
+  - q: "What's the difference between Caterpillar and Butterfly?"
+    a: "Both are seated Yin forward folds, but the legs differ. Caterpillar keeps the legs straight and together, folding along the whole back line. Butterfly brings the soles of the feet together with the knees dropping wide, so the focus shifts to the inner thighs and hips as you fold."
+related_poses: ["half-butterfly", "butterfly", "dragonfly", "dangling", "reclined-hamstring"]
 youtube_video_id: ""
 images:
   - "/poses/caterpillar.jpg"

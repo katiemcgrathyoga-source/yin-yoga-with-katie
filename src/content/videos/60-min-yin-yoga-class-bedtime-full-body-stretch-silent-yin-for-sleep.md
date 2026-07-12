@@ -18,9 +18,9 @@ chapters:
   - { time: "0:00",   seconds: 0,    title: "Welcome to bedtime Yin" }
   - { time: "1:30",   seconds: 90,   title: "Breath · 4:8 breathing" }
   - { time: "3:30",   seconds: 210,  title: "Hips · Butterfly",                          pose: "butterfly" }
-  - { time: "9:00",   seconds: 540,  title: "Back · Sphinx & Seal",                      pose: "sphinx" }
-  - { time: "16:00",  seconds: 960,  title: "Shoulders · Child's Pose & Melting Heart",  pose: "childs-pose" }
-  - { time: "23:00",  seconds: 1380, title: "Hips · Dragon, Sleeping Swan & Shoelace",   pose: "dragon" }
+  - { time: "9:00",   seconds: 540,  title: "Back · Sphinx & Seal", poses: ["sphinx", "seal"] }
+  - { time: "16:00",  seconds: 960,  title: "Shoulders · Child's Pose & Melting Heart", poses: ["childs-pose", "melting-heart"] }
+  - { time: "23:00",  seconds: 1380, title: "Hips · Dragon, Sleeping Swan & Shoelace", poses: ["dragon", "sleeping-swan", "shoelace"] }
   - { time: "46:00",  seconds: 2760, title: "Spine · Gentle Cat-Cow" }
   - { time: "49:00",  seconds: 2940, title: "Twist · Reclined Twist (each side)",        pose: "reclined-twist" }
   - { time: "55:00",  seconds: 3300, title: "Corpse Pose / Savasana" }

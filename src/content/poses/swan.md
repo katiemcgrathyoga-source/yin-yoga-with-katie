@@ -3,7 +3,7 @@ name_en: "Swan"
 slug: "swan"
 also_known_as: ["Full Swan", "Tall Swan", "Yin Pigeon (upright)"]
 target_areas: ["hips", "hip flexors", "quadriceps", "lower back", "chest"]
-meridians: ["liver", "gall bladder", "kidney", "stomach", "spleen"]
+meridians: ["liver", "gall bladder", "kidney", "stomach", "spleen", "urinary bladder"]
 accessibility: "intermediate"
 hold_time: "1–5 minutes per side"
 hold_seconds: 60
@@ -37,14 +37,14 @@ cautions:
   - "Keep the backbend gentle. If the lower back complains, lower the chest slightly or come forward into a fold instead."
   - "Come out slowly. After a long hold the joints feel tender for a moment — that passes; move gently into your counterpose."
 faq:
+  - q: "What's the difference between Swan and Sleeping Swan?"
+    a: "Swan is the upright version, chest lifted, so more weight sits right above the front hip — a deeper hip opener with a gentle backbend. Sleeping Swan is when you fold forward over the front leg, which softens the backbend and lets the hip release with gravity. A classic sequence is a couple of minutes tall in Swan, then folding down into Sleeping Swan."
+  - q: "What's the difference between Swan and Pigeon?"
+    a: "The shape is nearly identical — Swan is the Yin name. The difference is intention: in Pigeon you tend to stay active and engaged, while in Swan you relax the muscles and let gravity soak into the deeper tissues of the hip. Same legs, quieter approach."
+  - q: "Is Swan safe for the knees?"
+    a: "It can drive pressure into the front knee, especially when the hips are tight, so keep the front foot flexed and, if you feel any pinch, draw the foot in closer to your hip until the knee goes quiet. Approach with great care, or skip it, with a meniscus injury or any knee instability — the sensation should be in the hip, never the knee."
   - q: "How long do you hold Swan in Yin Yoga?"
-    a: "Most people hold Swan for 1–5 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
-  - q: "Is Swan suitable for beginners?"
-    a: "Swan suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
-  - q: "What does Swan stretch?"
-    a: "Swan mainly works the hips, hip flexors, quadriceps, lower back and chest. Draws the front hip into strong external rotation, opening deep through the outer hip and glute."
-  - q: "Do you need props for Swan?"
-    a: "You don't have to, but a folded blanket or bolster can make Swan more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
+    a: "Most people hold Swan for 1–5 minutes per side, often flowing from a minute or two upright into Sleeping Swan for the rest. Settle in, soften, and come out a little sooner if you ever need to."
 related_poses: ["sleeping-swan", "reclined-swan", "dragon", "shoelace", "childs-pose"]
 youtube_video_id: ""
 images:

@@ -19,8 +19,8 @@ chapters:
   - { time: "1:00",   seconds: 60,   title: "Back · Extended Child's Pose",                pose: "childs-pose" }
   - { time: "6:00",   seconds: 360,  title: "Hips · Dragon (side 1)",                      pose: "dragon" }
   - { time: "11:00",  seconds: 660,  title: "Hips · Sleeping Swan (side 1)",               pose: "sleeping-swan" }
-  - { time: "15:30",  seconds: 930,  title: "Hips · Shoelace, fold & twist (side 1)",      pose: "shoelace" }
-  - { time: "24:00",  seconds: 1440, title: "Hips · Dragon, Swan & Shoelace (side 2)",     pose: "dragon" }
+  - { time: "15:30",  seconds: 930,  title: "Hips · Shoelace, fold & twist (side 1)", poses: ["shoelace", "reclined-twist"] }
+  - { time: "24:00",  seconds: 1440, title: "Hips · Dragon, Swan & Shoelace (side 2)", poses: ["dragon", "swan", "shoelace"] }
   - { time: "39:00",  seconds: 2340, title: "Spine · Melting Heart",                       pose: "melting-heart" }
   - { time: "44:20",  seconds: 2660, title: "Spine · Supported Fish",                      pose: "supported-fish" }
   - { time: "50:00",  seconds: 3000, title: "Twist · Reclined Twist (each side)",          pose: "reclined-twist" }

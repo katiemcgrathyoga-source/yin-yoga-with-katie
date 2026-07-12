@@ -15,7 +15,7 @@ poses_featured: ["dragon", "twisted-dragon", "childs-pose", "shoelace", "recline
 chapters:
   - { time: "0:00",  seconds: 0,    title: "Welcome · Bedtime twists" }
   - { time: "0:37",  seconds: 37,   title: "Hips · Dragon, twist & Child's Pose", poses: ["dragon", "twisted-dragon", "childs-pose"] }
-  - { time: "7:07",  seconds: 427,  title: "Hips · Shoelace with side bend & twist", poses: ["shoelace"] }
+  - { time: "7:07",  seconds: 427,  title: "Hips · Shoelace with side bend & twist", poses: ["shoelace", "reclined-twist"] }
   - { time: "14:50", seconds: 890,  title: "Hips · Dragon & Shoelace (second side)", poses: ["dragon", "twisted-dragon", "childs-pose", "shoelace"] }
   - { time: "27:04", seconds: 1624, title: "Spine · Two-knee reclined twist", poses: ["reclined-twist"] }
   - { time: "32:39", seconds: 1959, title: "Like & Subscribe" }

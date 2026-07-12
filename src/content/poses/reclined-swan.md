@@ -37,14 +37,14 @@ cautions:
   - "For lower-back or sacroiliac sensitivity, keep the draw-in gentle and shallow — the stretch belongs in the hip, not the back."
   - "Come out slowly and hug the knees in before moving on."
 faq:
+  - q: "What does Reclined Swan stretch?"
+    a: "Reclined Swan draws the front hip into external rotation, so most people feel it in the glutes and the outer hip — the area that often tightens from sitting. Because you lie on your back, the lower back and knees stay well supported."
   - q: "How long do you hold Reclined Swan in Yin Yoga?"
     a: "Most people hold Reclined Swan for 2–5 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
-  - q: "Is Reclined Swan suitable for beginners?"
-    a: "Yes. Reclined Swan is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
-  - q: "What does Reclined Swan stretch?"
-    a: "Reclined Swan mainly works the hips, glutes, outer hip and lower back. An accessible hip opener that draws the front hip into external rotation while you lie safely on your back."
-  - q: "Do you need props for Reclined Swan?"
-    a: "You don't have to, but a folded blanket or strap can make Reclined Swan more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
+  - q: "What's the difference between Reclined Swan and Sleeping Swan?"
+    a: "Both open the hip in external rotation, but Reclined Swan does it lying on your back with the floor taking the weight, while Sleeping Swan is done face-forward over a bent front leg and asks much more of the knee. Reclined Swan is the kinder choice if kneeling hip openers bother your knees."
+  - q: "Is Reclined Swan safe for the knees?"
+    a: "It's usually gentler on the knees than the kneeling Swan poses because the joint isn't bearing weight. Keep the crossed foot flexed to support the ankle and knee, and back off if you feel any pinch in the joint rather than a stretch in the hip. Take care, or skip it, with a meniscus or knee injury."
 related_poses: ["sleeping-swan", "swan", "reclined-twist", "happy-baby", "thread-the-needle"]
 youtube_video_id: ""
 images:

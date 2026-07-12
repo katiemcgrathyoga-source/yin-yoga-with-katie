@@ -17,9 +17,9 @@ poses_featured: ["melting-heart", "childs-pose", "shoelace", "butterfly", "cater
 chapters:
   - { time: "0:00",    seconds: 0,    title: "Welcome to full-body deep stretch" }
   - { time: "1:11",    seconds: 71,   title: "Breath · Opening meditation" }
-  - { time: "3:40",    seconds: 220,  title: "Shoulders · Melting Heart (Puppy)",        pose: "melting-heart" }
+  - { time: "3:40",    seconds: 220,  title: "Shoulders · Melting Heart (Puppy)", poses: ["melting-heart", "puppy"] }
   - { time: "9:00",    seconds: 540,  title: "Back · Child's Pose",                      pose: "childs-pose" }
-  - { time: "14:40",   seconds: 880,  title: "Hips · Shoelace with arms & twist",        pose: "shoelace" }
+  - { time: "14:40",   seconds: 880,  title: "Hips · Shoelace with arms & twist", poses: ["shoelace", "reclined-twist"] }
   - { time: "30:13",   seconds: 1813, title: "Hips · Butterfly",                         pose: "butterfly" }
   - { time: "37:37",   seconds: 2257, title: "Spine · Caterpillar",                      pose: "caterpillar" }
   - { time: "44:00",   seconds: 2640, title: "Back · Sphinx",                            pose: "sphinx" }

@@ -40,11 +40,15 @@ faq:
     a: "Sphinx mainly works the lower back, sacrum and spine. A gentle backbend that restores the natural curve of the lower back — the very curve that long hours of sitting tend to flatten."
   - q: "Do you need props for Sphinx?"
     a: "You don't have to, but a bolster or blanket can make Sphinx more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
+  - q: "What's the difference between Sphinx and Seal?"
+    a: "Sphinx rests on the forearms for a gentle backbend that most people can hold comfortably. Seal straightens the arms and lifts the chest higher for a deeper compression in the lower back. Sphinx is the doorway into this family; Seal is the deeper room once Sphinx feels easy."
+  - q: "Is Sphinx safe for your lower back?"
+    a: "Sphinx is one of the gentler Yin backbends and easy to adjust. The lower-back sensation is a compression, so keep it comfortable rather than sharp — slide your elbows forward to lower the chest if it feels too strong. Support the pelvis with a bolster if you're pregnant, and skip it with a headache."
 related_poses: ["seal", "melting-heart", "saddle", "childs-pose", "supported-bridge"]
 youtube_video_id: ""
 images:
   - "/poses/sphinx.jpg"
-seo_title: "Sphinx Pose in Yin Yoga: Benefits & How-To"
+seo_title: "Sphinx Pose: Benefits, How-To & Hold Time"
 seo_description: "Sphinx is a gentle yin backbend on the forearms that restores the lower-back curve. Learn the cues, hold time, props and the cautions that matter."
 ---
 

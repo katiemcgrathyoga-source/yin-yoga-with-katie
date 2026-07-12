@@ -17,7 +17,7 @@ poses_featured: ["childs-pose", "melting-heart", "thread-the-needle", "broken-wi
 chapters:
   - { time: "0:00",   seconds: 0,    title: "Welcome to the upper back" }
   - { time: "0:55",   seconds: 55,   title: "Back · Child's Pose",                    pose: "childs-pose" }
-  - { time: "3:00",   seconds: 180,  title: "Shoulders · Puppy / Melting Heart",      pose: "melting-heart" }
+  - { time: "3:00",   seconds: 180,  title: "Shoulders · Puppy / Melting Heart", poses: ["puppy", "melting-heart"] }
   - { time: "7:00",   seconds: 420,  title: "Shoulders · Thread-the-Needle (each side)", pose: "thread-the-needle" }
   - { time: "15:20",  seconds: 920,  title: "Twist · Broken Wing (each side)",        pose: "broken-wing" }
   - { time: "24:00",  seconds: 1440, title: "Spine · Supported Bridge",               pose: "supported-bridge" }

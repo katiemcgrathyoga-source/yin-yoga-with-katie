@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Cta from '../../components/Cta.astro';
+import { PROGRAMS } from '../../data/programs';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -12,6 +13,9 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const d = post.data;
+// One CTA per post: a specific program when set (the blueprint's conversion target),
+// otherwise the site-wide free-retreat email capture.
+const ctaProgram = d.cta_program ? PROGRAMS.find((p) => p.slug === d.cta_program) : undefined;
 const { Content } = await render(post);
 const fmt = (date: Date) => new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(date);
 
@@ -78,6 +82,15 @@ const jsonLd = {
       </div>
     </aside>
 
-    <Cta />
+    {ctaProgram ? (
+      <aside class="blog-cta">
+        <p class="eyebrow">Practise this</p>
+        <h2>{ctaProgram.title}</h2>
+        <p>{ctaProgram.outcome} {ctaProgram.blurb}</p>
+        <a class="btn-cta" href={`/programs/${ctaProgram.slug}`}>Start the program →</a>
+      </aside>
+    ) : (
+      <Cta />
+    )}
   </div>
 </BaseLayout>

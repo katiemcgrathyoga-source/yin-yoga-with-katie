@@ -21,7 +21,7 @@ chapters:
   - { time: "12:00",  seconds: 720,  title: "Hips · Swan (side 1)",                  pose: "swan" }
   - { time: "15:40",  seconds: 940,  title: "Hips · Shoelace",                       pose: "shoelace" }
   - { time: "20:00",  seconds: 1200, title: "Shoulders · Cow Face arms",             pose: "cow-face" }
-  - { time: "24:50",  seconds: 1490, title: "Hips · Swan & Cow Face arms (side 2)",  pose: "swan" }
+  - { time: "24:50",  seconds: 1490, title: "Hips · Swan & Cow Face arms (side 2)", poses: ["swan", "cow-face"] }
   - { time: "34:30",  seconds: 2070, title: "Twist · Reclined Twist (each side)",    pose: "reclined-twist" }
   - { time: "40:00",  seconds: 2400, title: "Corpse Pose / Savasana" }
 seo_title: "45-Minute Yin Yoga — Total Body Deep Stretch"

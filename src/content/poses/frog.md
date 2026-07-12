@@ -11,7 +11,7 @@ props: ["bolster", "blanket"]
 benefits:
   - "A deep groin opener that targets the adductors (inner thighs)."
   - "Adds a slight backbend that gently compresses the lower and upper back."
-  - "Aids digestion and can ease cramps — both menstrual and digestive."
+  - "The soft belly compression and slow, still hold leave many people feeling settled and calm."
   - "Stimulates the Spleen line through the inner knees and the Liver and Kidney lines through the inner groins."
 cues:
   - "Start in Child's Pose, then slide your hands forward and walk the knees apart while staying back on your heels. This gentle starting shape is called Tadpole."
@@ -35,13 +35,13 @@ cautions:
 faq:
   - q: "How long do you hold Frog in Yin Yoga?"
     a: "Most people hold Frog for 3–5 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
-  - q: "Is Frog suitable for beginners?"
-    a: "Yes. Frog is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
   - q: "What does Frog stretch?"
-    a: "Frog mainly works the hips, inner thighs, groin and lower back. A deep groin opener that targets the adductors (inner thighs)."
-  - q: "Do you need props for Frog?"
-    a: "You don't have to, but a bolster or blanket can make Frog more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
-related_poses: ["sleeping-swan", "dragonfly", "butterfly", "childs-pose"]
+    a: "Frog mainly opens the groin and inner thighs — the adductor muscles that run from the pelvis to the inner knee. The slight backbend also brings a gentle compression to the lower back. The wider your feet and the more the hips stack over the knees, the stronger the groin opening."
+  - q: "Is Frog safe for the knees?"
+    a: "It can be, with care. The knees carry some load, so always pad them with a folded blanket, and keep any sensation in the inner groin — never in the knee joint itself. If the knees complain, bring the feet closer together or skip the pose."
+  - q: "How do I make Frog easier?"
+    a: "Start in Tadpole — knees apart but hips back on the heels — which is much gentler. From there, only stack the hips over the knees as far as feels kind. Rest your chest and forehead on a bolster, and let the hips drift forward any time the groin sensation is too strong. To go deeper over time, don't push lower — just stay longer."
+related_poses: ["butterfly", "dragonfly", "childs-pose", "sleeping-swan", "squat"]
 youtube_video_id: ""
 images:
   - "/poses/frog.jpg"

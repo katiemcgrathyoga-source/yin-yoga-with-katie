@@ -42,11 +42,15 @@ faq:
     a: "Seal mainly works the lower back, sacrum and spine. A deeper backbend than Sphinx that draws a strong, tonifying compression into the sacral-lumbar arch."
   - q: "Do you need props for Seal?"
     a: "You don't have to, but a bolster or blanket can make Seal more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
+  - q: "What's the difference between Sphinx and Seal?"
+    a: "Both are Yin backbends done lying on your belly. Sphinx rests on the forearms for a gentler curve; Seal straightens the arms and lifts the chest higher for a deeper compression in the lower back. Start with Sphinx and move to Seal once it feels easy."
+  - q: "Is Seal safe for your lower back?"
+    a: "Seal is a strong backbend, so let it stay a firm-but-comfortable compression, never sharp. If the lower back pinches, drop down to Sphinx, which gives a similar effect more gently. Work in shorter rounds if you need to, and approach cautiously with any lower-back or SI-joint injury."
 related_poses: ["sphinx", "melting-heart", "saddle", "childs-pose", "supported-bridge"]
 youtube_video_id: ""
 images:
   - "/poses/seal.jpg"
-seo_title: "Seal Pose in Yin Yoga: Benefits & How-To"
+seo_title: "Seal Pose: Benefits, How-To & Hold Time"
 seo_description: "Seal is a deeper yin backbend with straight arms that tones the lower-back curve. Learn the cues, hold time, props and the cautions that matter."
 ---
 

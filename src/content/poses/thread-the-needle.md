@@ -34,14 +34,14 @@ cautions:
   - "Ease off the twist if you have disc trouble, keeping the rotation gentle and shallow."
   - "Go carefully with shoulder injuries; keep within a comfortable, pain-free range."
 faq:
-  - q: "How long do you hold Thread the Needle in Yin Yoga?"
-    a: "Most people hold Thread the Needle for 2–4 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
-  - q: "Is Thread the Needle suitable for beginners?"
-    a: "Yes. Thread the Needle is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
   - q: "What does Thread the Needle stretch?"
-    a: "Thread the Needle mainly works the upper back, shoulders, neck and spine. Opens the upper back and the space between the shoulder blades, where desk tension loves to gather."
-  - q: "Do you need props for Thread the Needle?"
-    a: "You don't have to, but a cushion or blanket can make Thread the Needle more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
+    a: "Thread the Needle opens the upper back and the space between the shoulder blades — where desk tension loves to gather — along with the back of the shoulder and outer arm. Because the twist happens high up, it works the upper spine without loading the lower back."
+  - q: "How long do you hold Thread the Needle in Yin Yoga?"
+    a: "Most people hold Thread the Needle for 2–4 minutes per side. Rest the weight into the shoulder, let the head grow heavy, and come out a little sooner if you ever need to."
+  - q: "Is Thread the Needle good for shoulder and upper-back tension?"
+    a: "It's a favourite for exactly that. Threading the arm under the body opens across the upper back and the back of the shoulder, areas that tighten from sitting and screen time. Many people find their shoulders feel more spacious afterwards. Keep it gentle if you have a shoulder injury."
+  - q: "Is Thread the Needle safe for the neck?"
+    a: "Yes, as long as you rest on the shoulder and take the weight there — never crank or grind the head into the mat. If you feel any pinching, lift the head onto a cushion so the neck can lengthen, and keep the twist shallow if you have disc trouble."
 related_poses: ["melting-heart", "childs-pose", "bow-tie", "broken-wing", "cow-face"]
 youtube_video_id: ""
 images:

@@ -173,6 +173,7 @@ const blog = defineCollection({
     updated: z.coerce.date().optional(),
     draft: z.boolean().default(false),
     hero: z.string().optional(), // optional lead image (path under /public)
+    cta_program: z.string().optional(), // slug of the program to CTA to (else the free-retreat CTA)
     seo_title: z.string().optional(),
     seo_description: z.string().optional(),
   }),

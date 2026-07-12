@@ -33,14 +33,14 @@ cautions:
   - "Approach cautiously with a lower-back or neck injury, and start with the lowest prop height."
   - "If pregnant, avoid lying flat on the back for long holds; check with your care provider before choosing this shape."
 faq:
+  - q: "What does Supported Bridge do?"
+    a: "It's a passive, propped backbend: with a block or bolster under the sacrum, the front of the hips opens and the lower back gently arches while the prop holds you up. Because the hips rest above the heart, it's also a mild inversion that many people find quietly settling."
+  - q: "Where should the block go in Supported Bridge?"
+    a: "Under the sacrum — the flat bony plate at the base of the spine — not under the lower back. Placed too high, the prop can pinch the lumbar spine, so slide it down until the sacrum feels evenly supported and comfortable. Start on the lowest block height and build up."
   - q: "How long do you hold Supported Bridge in Yin Yoga?"
-    a: "Most people hold Supported Bridge for 3–5 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
-  - q: "Is Supported Bridge suitable for beginners?"
-    a: "Yes. Supported Bridge is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
-  - q: "What does Supported Bridge stretch?"
-    a: "Supported Bridge mainly works the lower back, sacrum, chest and spine. A passive, propped backbend that opens the front of the hips and gently arches the lower back — the prop holds you so you can let go."
-  - q: "Do you need props for Supported Bridge?"
-    a: "You don't have to, but a block or bolster can make Supported Bridge more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
+    a: "Most people rest here for 3–5 minutes. Because it's a passive shape, you can stay comfortably as long as the sacrum feels supported and the lower back stays easy. Come out a little sooner if you ever need to."
+  - q: "What's the difference between Supported Bridge and Bridge Pose?"
+    a: "Regular Bridge is an active backbend — you press into the feet and hold the hips up with your muscles. Supported Bridge is the restful version: a prop under the sacrum carries the lift so you can release completely, making it far gentler on the back and easy to hold for minutes."
 related_poses: ["supported-fish", "sphinx", "seal", "camel", "corpse"]
 youtube_video_id: ""
 images:

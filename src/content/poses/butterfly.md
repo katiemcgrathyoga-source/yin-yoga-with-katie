@@ -3,14 +3,14 @@ name_en: "Butterfly"
 slug: "butterfly"
 also_known_as: []
 target_areas: ["inner thighs", "hips", "lower back", "spine"]
-meridians: ["liver", "spleen", "kidney", "urinary bladder"]
+meridians: ["kidney", "liver", "gall bladder", "urinary bladder"]
 accessibility: "beginner"
 hold_time: "3–5 minutes"
 hold_seconds: 180
 props: ["bolster", "cushion"]
 benefits:
   - "Opens the inner thighs, groin and hips while the fold lengthens the whole back line — a lovely two-for-one shape."
-  - "Stimulates the liver, spleen and kidney lines through the inner legs, and the urinary bladder line up the back."
+  - "Stimulates the gall bladder line down the outer legs and the urinary bladder line up the spine; with the feet drawn closer in, the kidney and liver lines of the inner thighs come into play too."
   - "One of the most settling, grounding poses in Yin. Many people find it quietens the mind almost at once."
   - "Kind to the knees, because the feet sit further from the pelvis than in a tight cross-legged shape."
 cues:
@@ -38,13 +38,13 @@ cautions:
 faq:
   - q: "How long do you hold Butterfly in Yin Yoga?"
     a: "Most people hold Butterfly for 3–5 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
-  - q: "Is Butterfly suitable for beginners?"
-    a: "Yes. Butterfly is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+  - q: "What's the difference between Butterfly and Dragonfly?"
+    a: "In Butterfly the soles of the feet come together in a diamond shape, so the stretch centres on the inner thighs and lower back. In Dragonfly (a wide straddle) the legs are spread straight apart, which reaches further into the hamstrings and inner-leg lines. Butterfly is the gentler, more grounding of the two."
+  - q: "Is Butterfly safe for the lower back?"
+    a: "For most people, yes — the gently rounding spine is part of the pose. If you have disc issues or sciatica, sit up higher on a cushion so the hips tip forward, keep the fold shallow and the back longer, or try the reclining version. Take the feet further from the pelvis if you feel any pinching at the front of the hips."
   - q: "What does Butterfly stretch?"
-    a: "Butterfly mainly works the inner thighs, hips, lower back and spine. Opens the inner thighs, groin and hips while the fold lengthens the whole back line — a lovely two-for-one shape."
-  - q: "Do you need props for Butterfly?"
-    a: "You don't have to, but a bolster or cushion can make Butterfly more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
-related_poses: ["half-butterfly", "caterpillar", "dragonfly", "frog"]
+    a: "Butterfly mainly opens the inner thighs, groin and hips while the forward fold lengthens the whole back line. Sliding the feet further out draws more of the stretch into the back; drawing them closer in emphasises the inner thighs."
+related_poses: ["half-butterfly", "dragonfly", "caterpillar", "frog", "easy-pose"]
 youtube_video_id: ""
 images:
   - "/poses/butterfly.jpg"

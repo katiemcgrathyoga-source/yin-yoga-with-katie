@@ -46,11 +46,17 @@ faq:
     a: "Sleeping Swan mainly works the hips, hip flexors, quadriceps and lower back. A deep hip opener that lets gravity, rather than muscular effort, draw the front hip into strong external rotation."
   - q: "Do you need props for Sleeping Swan?"
     a: "You don't have to, but a bolster or folded blanket can make Sleeping Swan more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
+  - q: "What's the difference between Sleeping Swan and Swan?"
+    a: "Same shape, different depth. Swan keeps the chest lifted and is a little more active — a moderate hip opener with a gentle backbend. Sleeping Swan folds the chest down over the front leg so gravity does the work, giving a deeper, more surrendering hip release. Many people flow from one into the other."
+  - q: "Is Sleeping Swan the same as Pigeon Pose?"
+    a: "The shape is nearly identical to yoga's Pigeon, which is why it's often called Yin Pigeon. The difference is intention: in Sleeping Swan you relax the muscles and let the pose settle into the deep tissues of the hip over a long, still hold, rather than holding it actively."
+  - q: "Is Sleeping Swan safe for your knees?"
+    a: "It can drive pressure into the front knee when the hips are tight. Keep the front foot flexed and, if you feel any pinch, draw the foot in toward your hip until the knee goes quiet. Approach with great caution, or skip it, with a meniscus injury or any knee instability."
 related_poses: ["swan", "reclined-swan", "shoelace", "dragon", "childs-pose"]
 youtube_video_id: ""
 images:
   - "/poses/sleeping-swan.jpg"
-seo_title: "Sleeping Swan Pose in Yin Yoga: Benefits & How-To"
+seo_title: "Sleeping Swan Pose: Benefits, How-To & Hold Time"
 seo_description: "Sleeping Swan is a deep, gravity-led yin hip opener and the yin form of Pigeon. Learn the cues, benefits, hold time, props and the key knee cautions."
 ---
 

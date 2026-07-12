@@ -17,7 +17,7 @@ poses_featured: ["dragon", "cow-face", "shoelace", "squat", "dangling"]
 chapters:
   - { time: "0:00",   seconds: 0,    title: "Welcome · Intro to We Can Do Hard Things" }
   - { time: "2:00",   seconds: 120,  title: "Hips · Dragon (each side)",           pose: "dragon" }
-  - { time: "15:50",  seconds: 950,  title: "Shoulders · Cow-Face Arms & Shoelace", pose: "cow-face" }
+  - { time: "15:50",  seconds: 950,  title: "Shoulders · Cow-Face Arms & Shoelace", poses: ["cow-face", "shoelace"] }
   - { time: "30:50",  seconds: 1850, title: "Hips · Squat",                        pose: "squat" }
   - { time: "36:34",  seconds: 2194, title: "Legs · Dangling",                     pose: "dangling" }
   - { time: "43:40",  seconds: 2620, title: "Corpse Pose / Savasana" }

@@ -20,7 +20,7 @@ chapters:
   - { time: "7:40",    seconds: 460,  title: "Breath · Rest" }
   - { time: "10:00",   seconds: 600,  title: "Hips · Shoelace (each side)", pose: "shoelace" }
   - { time: "21:30",   seconds: 1290, title: "Shoulders · Angel" }
-  - { time: "23:40",   seconds: 1420, title: "Back · Sphinx & Seal",        pose: "sphinx" }
+  - { time: "23:40",   seconds: 1420, title: "Back · Sphinx & Seal", poses: ["sphinx", "seal"] }
   - { time: "29:20",   seconds: 1760, title: "Back · Crocodile" }
   - { time: "31:13",   seconds: 1873, title: "Back · Child's Pose",         pose: "childs-pose" }
   - { time: "34:30",   seconds: 2070, title: "Hips · Sleeping Swan (each side)", pose: "sleeping-swan" }

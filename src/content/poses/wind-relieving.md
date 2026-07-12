@@ -18,7 +18,7 @@ cues:
   - "On an exhale, draw both knees in toward your chest and wrap your arms around your shins — or hold the backs of the thighs if that's kinder on the knees."
   - "Let your shoulders, head and lower back stay heavy on the mat. There's no need to pull hard — just enough to feel a soft rounding through the lower back."
   - "If it feels nice, you can rock a little side to side, or make slow circles with the knees, then come back to stillness."
-  - "For tender knees, keep a little space and hold behind the thighs; for tight hips, let the knees drift slightly apart toward the ribs."
+  - "For tender knees, keep a little space and hold behind the thighs; if you feel a pinch at the front of the hips, let the knees drift wider, out toward the ribs, rather than forcing them together."
   - "Soften your jaw, and let each exhale carry you a touch deeper into the floor."
 transitions_in:
   - "From lying on your back — draw both knees in"
@@ -31,6 +31,7 @@ counterposes:
   - "A gentle Reclined Twist to rebalance the spine"
 cautions:
   - "Knees: if hugging the shins compresses the knee joint, hold behind the thighs instead."
+  - "A pinch at the front of the hip, where the thigh meets the pelvis, is the bones meeting — not tightness you can stretch through. Simply take the knees a little wider, out toward the ribs, to move around it. There's no need to keep the knees glued together."
   - "Pregnancy: take the knees wide apart, out toward the ribs, so there's no pressure on the belly — or skip in favour of a side-lying rest."
   - "Recent abdominal surgery: approach gently or avoid, since the pose presses the thighs into the abdomen."
 faq:
@@ -40,6 +41,8 @@ faq:
     a: "Usually 1 to 3 minutes, or just long enough to feel your lower back soften. It's a restful shape, so let comfort be your guide."
   - q: "Is it safe for sore knees?"
     a: "Yes — simply hold behind your thighs rather than wrapping your arms around your shins. That keeps the knee joint open and comfortable while you still get the lower-back release."
+  - q: "Why do my hips pinch at the front when I hug my knees in?"
+    a: "That pinch is usually the top of the thigh meeting the front of the pelvis — a matter of your own bone structure rather than tight muscles, so effort won't 'stretch' past it. The easy fix is to take the knees a little wider, out toward your ribs, which lets the shape open up comfortably. Your knees don't need to be together here."
 related_poses: ["happy-baby", "banana", "reclined-twist", "corpse"]
 youtube_video_id: ""
 images:

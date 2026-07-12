@@ -41,11 +41,15 @@ faq:
     a: "Saddle mainly works the front of thighs, hip flexors, lower back, sacrum, spine and knees. A strong opener for the front of the thighs and the hip flexors — the muscles that shorten with sitting, cycling and running."
   - q: "Do you need props for Saddle?"
     a: "You don't have to, but a bolster, block or blanket can make Saddle more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
+  - q: "What's the difference between Saddle and Half Saddle?"
+    a: "Half Saddle keeps one leg straight out in front while the other folds back, so it's gentler on the knees and lower back — a good stepping stone. Full Saddle folds both legs back at once for a deeper opening through the front of the thighs and the sacral-lumbar curve."
+  - q: "Is Saddle safe for your knees and lower back?"
+    a: "Ease in slowly. The stretch across the front of the thighs is soft-tissue tension you can gently explore; the sensation deep in the lower back is compression — a firmer limit, so never force it. Use a bolster or blocks to shorten the range, come out at any sharp knee or back pain, and choose Sphinx if Saddle is too much."
 related_poses: ["sphinx", "seal", "camel", "dragon", "caterpillar", "supported-bridge"]
 youtube_video_id: ""
 images:
   - "/poses/saddle.jpg"
-seo_title: "Saddle Pose in Yin Yoga: Benefits & How-To"
+seo_title: "Saddle Pose: Benefits, How-To & Hold Time"
 seo_description: "Saddle is a deep yin reclining backbend over the heels, opening the thighs and lower back. Learn the cues, hold time, props and the vital knee cautions."
 ---
 

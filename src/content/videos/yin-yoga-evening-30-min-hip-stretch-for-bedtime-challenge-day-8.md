@@ -18,10 +18,10 @@ chapters:
   - { time: "0:00",   seconds: 0,    title: "Welcome to Day 8" }
   - { time: "0:30",   seconds: 30,   title: "Hips · Dragon (side 1)",           pose: "dragon" }
   - { time: "5:16",   seconds: 316,  title: "Hips · Sleeping Swan (side 1)",    pose: "sleeping-swan" }
-  - { time: "11:00",  seconds: 660,  title: "Hips · Shoelace & Twist (side 1)", pose: "shoelace" }
+  - { time: "11:00",  seconds: 660,  title: "Hips · Shoelace & Twist (side 1)", poses: ["shoelace", "reclined-twist"] }
   - { time: "17:05",  seconds: 1025, title: "Hips · Dragon (side 2)",           pose: "dragon" }
   - { time: "21:54",  seconds: 1314, title: "Hips · Sleeping Swan (side 2)",    pose: "sleeping-swan" }
-  - { time: "26:51",  seconds: 1611, title: "Hips · Shoelace & Twist (side 2)", pose: "shoelace" }
+  - { time: "26:51",  seconds: 1611, title: "Hips · Shoelace & Twist (side 2)", poses: ["shoelace", "reclined-twist"] }
   - { time: "32:05",  seconds: 1925, title: "Hips · Butterfly (release)",       pose: "butterfly" }
 seo_title: "30-Min Bedtime Yin Yoga — Hip Stretch for Sleep, Day 8"
 seo_description: "A gentle 30-minute evening Yin Yoga class of deep hip stretches to release tension, loosen tight hips and calm the body for sleep. Day 8 Bedtime Challenge."

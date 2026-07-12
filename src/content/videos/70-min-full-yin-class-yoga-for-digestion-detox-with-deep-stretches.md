@@ -16,7 +16,7 @@ props: ["blanket", "block"]
 poses_featured: ["shoelace", "caterpillar", "sphinx", "saddle", "childs-pose", "sleeping-swan", "squat", "reclined-twist"]
 chapters:
   - { time: "0:00",     seconds: 0,    title: "Welcome · Intro to digestion & detox" }
-  - { time: "1:40",     seconds: 100,  title: "Hips · Shoelace with a twist",        pose: "shoelace" }
+  - { time: "1:40",     seconds: 100,  title: "Hips · Shoelace with a twist", poses: ["shoelace", "reclined-twist"] }
   - { time: "16:00",    seconds: 960,  title: "Chest · Angel Pose" }
   - { time: "18:20",    seconds: 1100, title: "Spine · Caterpillar",                 pose: "caterpillar" }
   - { time: "25:00",    seconds: 1500, title: "Belly · Crocodile" }

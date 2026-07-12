@@ -10,7 +10,7 @@ hold_seconds: 120
 props: ["cushion", "block", "blanket", "bolster"]
 benefits:
   - "A simple, comfortable seat for breathing and meditation, and a grounding way to begin or close a practice."
-  - "Gently opens the hips and outer thighs as the knees ease toward the floor."
+  - "Crossing the legs is a gentle outward rotation of the hips — the mild, everyday version of deeper hip openers like Square (Fire Log) or Shoelace."
   - "Invites the spine to grow tall and the breath to move freely, which helps you feel calm and settled."
   - "Teaches the stillness at the heart of Yin — sitting quietly and simply being here."
 cues:
@@ -34,13 +34,13 @@ cautions:
 faq:
   - q: "How long do you hold Easy Pose in Yin Yoga?"
     a: "Most people hold Easy Pose for as long as comfortable. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
-  - q: "Is Easy Pose suitable for beginners?"
-    a: "Yes. Easy Pose is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
   - q: "What does Easy Pose stretch?"
-    a: "Easy Pose mainly works the hips, spine and knees. A simple, comfortable seat for breathing and meditation, and a grounding way to begin or close a practice."
-  - q: "Do you need props for Easy Pose?"
-    a: "You don't have to, but a cushion, block, blanket or bolster can make Easy Pose more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
-related_poses: ["butterfly", "childs-pose", "corpse", "cow-face", "eagle"]
+    a: "Easy Pose is mostly a resting seat rather than a strong stretch. The cross-legged shape gently rotates the hips outward and lets the spine grow tall — enough to feel a soft opening in the outer hips, especially if the knees sit high."
+  - q: "Why do my knees lift up when I sit cross-legged?"
+    a: "That's your hips, not a lack of effort — how far the knees drop depends on your own hip joints. Never force them down. Sit up on a cushion so the hips are higher than the knees, and support each knee on a block or cushion so the outer hips can soften."
+  - q: "What's the difference between Easy Pose and Square (Fire Log) Pose?"
+    a: "Same idea, different intensity. Easy Pose is a relaxed cross-legged seat where the feet tuck near the shins. Square stacks one shin over the other to load the outer hips much more strongly. If a simple cross-legged seat already feels like plenty in your hips, that's your version of Square — stay and enjoy it."
+related_poses: ["shoelace", "butterfly", "cow-face", "childs-pose", "corpse"]
 youtube_video_id: ""
 images:
   - "/poses/easy-pose.jpg"
@@ -48,5 +48,6 @@ seo_title: "Easy Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Easy Pose is a simple cross-legged Yin Yoga seat for breathing and meditation that gently opens the hips. Learn how to sit well, with props and cautions."
 ---
 
-<!-- Original copy in Katie's voice, grounded in Bernie Clark, The Complete Guide to
-Yin Yoga, and Paul Grilley. Contraindications to be verified before publishing as advice. -->
+<!-- Original copy in Katie's voice. Grounded in Bernie Clark, The Complete Guide to Yin
+Yoga (Square pose — this is the gentle cross-legged version Clark describes). Contraindications
+to be verified before publishing as advice. -->

@@ -1,14 +1,14 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { derivedThumb, lenLabel, byRecencyThenWatch, videoHeadline } from '../lib/video';
+import { derivedThumb, lenLabel, videoHeadline } from '../lib/video';
 
-// Recent classes lead (current thumbnails / branding), then older ones — each
-// tier by watch-hours. New video files appear here automatically.
-// Site rule: classes under 10 minutes are shorts/promos and don't belong here.
+// "Most-loved first": order by lifetime watch-hours, so the classes subscribers
+// actually return to (which skews long + silent) lead the library. New files
+// appear automatically. Site rule: classes under 10 minutes are shorts/promos.
 const videos = (await getCollection('videos'))
   .filter((v) => v.data.length_minutes >= 10)
-  .sort((a, b) => byRecencyThenWatch(a.data, b.data));
+  .sort((a, b) => (b.data.watch_hours ?? 0) - (a.data.watch_hours ?? 0));
 type V = (typeof videos)[number];
 
 // --- Length buckets ----------------------------------------------------------
@@ -41,7 +41,6 @@ const areaKeys = (v: V) => {
 const FOCUS = [
   { key: 'sleep', label: 'Sleep', match: (v: V) => v.data.intent_tags.includes('sleep') },
   { key: 'calm', label: 'Stress & calm', match: (v: V) => v.data.intent_tags.some((t) => ['nervous-system', 'stress'].includes(t)) },
-  { key: 'energy', label: 'Energy', match: (v: V) => v.data.intent_tags.includes('energy') },
   { key: 'flexibility', label: 'Flexibility', match: (v: V) => v.data.intent_tags.includes('flexibility') },
   { key: 'hips', label: 'Hips', match: (v: V) => areaKeys(v).includes('hips') },
   { key: 'lower-back', label: 'Lower back', match: (v: V) => areaKeys(v).includes('lower-back') },
@@ -52,6 +51,16 @@ const focusKeys = (v: V) => FOCUS.filter((f) => f.match(v)).map((f) => f.key);
 const focusLabels = (v: V) => FOCUS.filter((f) => f.match(v)).map((f) => f.label);
 const presentFocus = FOCUS.filter((f) => videos.some((v) => f.match(v)));
 
+// Format — how the class is taught (a distinct axis from Focus). Silent + Yoga
+// Nidra are strong subscriber preferences, so they earn a filter of their own.
+const FORMAT = [
+  { key: 'silent', label: 'Silent', match: (v: V) => /silent|minimal cues|no.?talking/i.test(v.data.title) },
+  { key: 'yoga-nidra', label: 'Yoga Nidra', match: (v: V) => /nidra|nsdr/i.test(v.data.title) },
+  { key: 'no-props', label: 'No props', match: (v: V) => v.data.props.length === 0 || v.data.props.every((p) => /^none$/i.test(p)) || /no.?props|without props|prop.?free/i.test(v.data.title) },
+];
+const formatKeys = (v: V) => FORMAT.filter((f) => f.match(v)).map((f) => f.key);
+const presentFormat = FORMAT.filter((f) => videos.some((v) => f.match(v)));
+
 // Signature filmstrip: a marquee of recent thumbnails (decorative, not links).
 const stripVideos = videos.slice(0, 10);
 const roughCount = Math.max(10, Math.floor(videos.length / 10) * 10);
@@ -59,6 +68,23 @@ const roughCount = Math.max(10, Math.floor(videos.length / 10) * 10);
 const ogImage = new URL('/og/card.png', Astro.site);
 ogImage.searchParams.set('t', 'Free Yin Yoga Classes');
 ogImage.searchParams.set('s', 'Full-length practices to follow along');
+
+// The four non-library tools surfaced in the "More than a library" band.
+const TOOLS = [
+  { href: '/programs', name: 'Programs', benefit: 'Follow a path, not a guessing game.', link: 'See the programs' },
+  { href: '/routines', name: 'Routines', benefit: 'Short sequences with a built-in timer — practise screen-free.', link: 'Try a routine' },
+  { href: '/calendar', name: 'Calendar', benefit: 'Plan your month, with gentle reminders.', link: 'Plan your month' },
+  { href: '/poses', name: 'Poses', benefit: 'Understand every shape you practise.', link: 'Browse the poses' },
+];
+const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/192665473777665865/subscribe';
+
+// Monoline (1.5px) tool icons.
+const ICONS: Record<string, string> = {
+  Programs: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18h4l4-12h4"/><circle cx="4" cy="18" r="1.5"/><circle cx="20" cy="6" r="1.5"/></svg>',
+  Routines: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9"/><path d="M9.5 3.5h5"/></svg>',
+  Calendar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3"/></svg>',
+  Poses: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5.5" r="2.2"/><path d="M12 8.2c-3.2 0-4.3 3.3-4.3 6.3M12 8.2c3.2 0 4.3 3.3 4.3 6.3M6 20.5c2-1.1 4-1.7 6-1.7s4 .6 6 1.7"/></svg>',
+};
 ---
 
 <BaseLayout
@@ -104,6 +130,17 @@ ogImage.searchParams.set('s', 'Full-length practices to follow along');
           </div>
         )}
 
+        {presentFormat.length > 0 && (
+          <div class="facet">
+            <span class="facet-label">Format</span>
+            <div class="chips lib-chiprow">
+              {presentFormat.map((f) => (
+                <button type="button" class="chip" data-facet="format" data-value={f.key} aria-pressed="false">{f.label}</button>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div class="filter-meta">
           <button type="button" class="chip chip-clear" id="clear-filters" hidden>Clear filters</button>
           <span class="count" id="result-count" aria-live="polite"></span>
@@ -118,6 +155,7 @@ ogImage.searchParams.set('s', 'Full-length practices to follow along');
             data-tile
             data-focus={focusKeys(v).join('|')}
             data-length={bucketOf(v.data.length_minutes)}
+            data-format={formatKeys(v).join('|')}
           >
             <div class="tile-thumb">
               <img class="tile-img" src={derivedThumb(v.data)} alt={v.data.title} loading="lazy" width="480" height="270" />
@@ -135,55 +173,108 @@ ogImage.searchParams.set('s', 'Full-length practices to follow along');
       </div>
 
       <p class="empty" id="empty" hidden>No classes match those filters yet.</p>
-      <div class="show-more">
-        <button type="button" class="btn btn-secondary" id="show-all" hidden></button>
-      </div>
+      <nav class="lib-pager" id="pager" aria-label="Library pages"></nav>
     </section>
   </div>
+
+  {/* "More than a library" — surface the free tools, calmly */}
+  <section class="lib-toolkit">
+    <div class="tk-inner">
+      <p class="eyebrow">beyond the classes</p>
+      <h2>More than a library</h2>
+      <p class="tk-lead">A few quiet tools to help the practice take root — whichever way you like to practise.</p>
+      <p class="tk-free">No paywall, no login — the classes, pose guides, programs and planner are all free, for now.</p>
+      <div class="tk-cards">
+        {TOOLS.map((t) => (
+          <a class="tk-card" href={t.href}>
+            <span class="tk-ico" aria-hidden="true" set:html={ICONS[t.name]} />
+            <span class="tk-name">{t.name}</span>
+            <span class="tk-benefit">{t.benefit}</span>
+            <span class="tk-cta-link">{t.link} →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* The one email-capture ask: the free two-hour retreat */}
+  <section class="lib-retreat">
+    <div class="rt-inner">
+      <p class="eyebrow">a gift from me</p>
+      <h2>Two hours to completely switch off</h2>
+      <p class="rt-members">✦ A members-only class — free for you</p>
+      <form class="rt-form" id="rt-form" action={ML_ACTION} method="post" target="ml_frame_home">
+        <input type="email" name="fields[email]" required placeholder="Your email" aria-label="Your email" />
+        <input type="hidden" name="ml-submit" value="1" />
+        <input type="hidden" name="anticsrf" value="true" />
+        <button type="submit" class="btn-cta">Send me the free retreat →</button>
+      </form>
+      <p class="rt-done" id="rt-done" hidden>Check your inbox 🌙 your two-hour retreat is on its way.</p>
+      <iframe name="ml_frame_home" hidden title="Sign-up" tabindex="-1" aria-hidden="true"></iframe>
+    </div>
+  </section>
 </BaseLayout>
 
 <script>
-  // Client-side faceted filtering — no framework. OR within a facet, AND across.
+  // Client-side faceted filtering + pagination — no framework. OR within a facet, AND across.
   const tiles = Array.from(document.querySelectorAll<HTMLElement>('[data-tile]'));
   const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.chip[data-facet]'));
   const clearBtn = document.getElementById('clear-filters') as HTMLButtonElement | null;
   const countEl = document.getElementById('result-count');
   const emptyEl = document.getElementById('empty');
+  const pager = document.getElementById('pager')!;
+  const grid = document.getElementById('tiles')!;
 
-  const showAllBtn = document.getElementById('show-all') as HTMLButtonElement | null;
-  const LIMIT = 36;
-  let showAll = false;
-
-  const active: Record<string, Set<string>> = { focus: new Set(), length: new Set() };
+  const PER_PAGE = 24;
+  let page = 1;
+  const active: Record<string, Set<string>> = { focus: new Set(), length: new Set(), format: new Set() };
   const split = (v: string | undefined) => (v ? v.split('|').filter(Boolean) : []);
 
-  function apply() {
-    const anyActive = active.focus.size + active.length.size > 0;
-    const capped = !anyActive && !showAll;
-    let matched = 0;
-    let shown = 0;
-    for (const tile of tiles) {
-      const focus = split(tile.dataset.focus);
-      const length = tile.dataset.length ?? '';
-      const okFocus = active.focus.size === 0 || focus.some((v) => active.focus.has(v));
-      const okLength = active.length.size === 0 || active.length.has(length);
-      const match = okFocus && okLength;
-      if (match) matched++;
-      const show = match && (!capped || shown < LIMIT);
-      tile.hidden = !show;
-      if (show) shown++;
-    }
+  const matchOf = (tile: HTMLElement) => {
+    const okFocus = active.focus.size === 0 || split(tile.dataset.focus).some((v) => active.focus.has(v));
+    const okLength = active.length.size === 0 || active.length.has(tile.dataset.length ?? '');
+    const okFormat = active.format.size === 0 || split(tile.dataset.format).some((v) => active.format.has(v));
+    return okFocus && okLength && okFormat;
+  };
+
+  function apply(resetPage = true) {
+    if (resetPage) page = 1;
+    const anyActive = active.focus.size + active.length.size + active.format.size > 0;
+    const matched = tiles.filter(matchOf);
+    const pages = Math.max(1, Math.ceil(matched.length / PER_PAGE));
+    if (page > pages) page = pages;
+    const start = (page - 1) * PER_PAGE;
+    const visible = new Set(matched.slice(start, start + PER_PAGE));
+    for (const t of tiles) t.hidden = !visible.has(t);
+
     if (clearBtn) clearBtn.hidden = !anyActive;
-    if (emptyEl) emptyEl.hidden = matched > 0;
-    if (countEl) countEl.textContent = anyActive ? `${matched} of ${tiles.length} ${tiles.length === 1 ? 'class' : 'classes'}` : '';
-    if (showAllBtn) {
-      const hiddenCount = tiles.length - LIMIT;
-      showAllBtn.hidden = !(capped && hiddenCount > 0);
-      showAllBtn.textContent = `Show all ${tiles.length} classes`;
-    }
+    if (emptyEl) emptyEl.hidden = matched.length > 0;
+    if (countEl) countEl.textContent = anyActive ? `${matched.length} of ${tiles.length} ${tiles.length === 1 ? 'class' : 'classes'}` : '';
+    renderPager(pages);
   }
 
-  showAllBtn?.addEventListener('click', () => { showAll = true; apply(); });
+  function renderPager(pages: number) {
+    pager.innerHTML = '';
+    if (pages <= 1) return;
+    const btn = (label: string, target: number, opts: { disabled?: boolean; current?: boolean } = {}) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.textContent = label; b.className = 'lib-page' + (opts.current ? ' is-current' : '');
+      if (opts.disabled) b.disabled = true;
+      if (opts.current) b.setAttribute('aria-current', 'page');
+      if (!opts.disabled && !opts.current) b.addEventListener('click', () => { page = target; apply(false); grid.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+      return b;
+    };
+    pager.appendChild(btn('‹', page - 1, { disabled: page === 1 }));
+    const nums = new Set([1, pages, page, page - 1, page + 1]);
+    let prev = 0;
+    for (let i = 1; i <= pages; i++) {
+      if (!nums.has(i)) continue;
+      if (i - prev > 1) { const e = document.createElement('span'); e.className = 'lib-ellip'; e.textContent = '…'; pager.appendChild(e); }
+      pager.appendChild(btn(String(i), i, { current: i === page }));
+      prev = i;
+    }
+    pager.appendChild(btn('›', page + 1, { disabled: page === pages }));
+  }
 
   for (const chip of chips) {
     chip.addEventListener('click', () => {
@@ -193,12 +284,17 @@ ogImage.searchParams.set('s', 'Full-length practices to follow along');
       apply();
     });
   }
-
   clearBtn?.addEventListener('click', () => {
     for (const key of Object.keys(active)) active[key].clear();
     for (const chip of chips) { chip.setAttribute('aria-pressed', 'false'); chip.classList.remove('active'); }
     apply();
   });
-
   apply();
+
+  // Retreat CTA — MailerLite email capture (posts to a hidden iframe; swap to success).
+  const rtForm = document.getElementById('rt-form') as HTMLFormElement | null;
+  const rtDone = document.getElementById('rt-done');
+  rtForm?.addEventListener('submit', () => {
+    window.setTimeout(() => { rtForm.hidden = true; if (rtDone) rtDone.hidden = false; }, 400);
+  });
 </script>

@@ -3,7 +3,7 @@ name_en: "Squat"
 slug: "squat"
 also_known_as: ["Yin Squat", "Garland"]
 target_areas: ["hips", "groin", "ankles", "lower back"]
-meridians: ["kidney", "urinary bladder", "spleen", "liver", "stomach"]
+meridians: ["liver", "kidney", "urinary bladder", "spleen", "stomach", "gall bladder"]
 accessibility: "intermediate"
 hold_time: "1–3 minutes"
 hold_seconds: 60
@@ -29,19 +29,19 @@ counterposes:
   - "Dangling or a soft standing forward fold to lengthen the backs of the legs."
   - "A gentle seat with the legs extended, such as Caterpillar."
 cautions:
-  - "If the knees complain or the heels lift, sit on a block or a rolled mat so the joints are supported."
-  - "Deep knee bending can aggravate knee issues — reduce the depth or choose a hip opener with the knees more open, like Butterfly."
+  - "If the hips are tight, the pressure can travel into the knees. Keep the knees and toes pointing the same way, widen the feet if you need to, and back off the depth if you feel anything in the knee joint itself."
+  - "If you have injured or unstable knees, approach with great care or choose a hip opener that keeps the knees more open, like Butterfly."
   - "Come up slowly to avoid feeling light-headed after a long hold low to the ground."
 faq:
+  - q: "What does Squat stretch in Yin Yoga?"
+    a: "Squat mainly opens the hips and inner groin as the pelvis sinks low between the thighs, and it stretches the ankles and lower leg. Rounding forward also lets the lower back lengthen. Wider feet work more into the hips; feet closer together works more into the ankles."
   - q: "How long do you hold Squat in Yin Yoga?"
-    a: "Most people hold Squat for 1–3 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
-  - q: "Is Squat suitable for beginners?"
-    a: "Squat suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
-  - q: "What does Squat stretch?"
-    a: "Squat mainly works the hips, groin, ankles and lower back. Opens the hips and inner groin deeply as the hips sink low between the thighs."
-  - q: "Do you need props for Squat?"
-    a: "You don't have to, but a block, rolled mat, blanket or bolster can make Squat more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
-related_poses: ["dangling", "butterfly", "frog", "toe-squat", "dragon"]
+    a: "Most people hold Squat for 1–3 minutes, and you can revisit it a couple of times in a practice. The long, still hold is what makes it Yin — settle in, soften, and come out a little sooner if you ever need to."
+  - q: "Why do my heels lift in Squat, and how do I fix it?"
+    a: "Lifting heels usually mean the ankles have reached their limit, and how far they bend is partly down to your own bone structure — your body, your yoga. There's no need to force them down. Rest the heels on a rolled mat or folded blanket, or step the feet a little wider, so you can relax and settle into the hold."
+  - q: "Is Squat safe for the knees?"
+    a: "For most people, yes, as long as the knees and toes point the same way and you feel the work in the hips, not the knee joint. If the hips are tight the pressure can shift into the knees — widen the feet, sit up onto a block, or ease off the depth. Take great care, or skip it, with a knee injury."
+related_poses: ["dangling", "butterfly", "dragon", "toe-squat", "ankle-stretch"]
 youtube_video_id: ""
 images:
   - "/poses/squat.jpg"

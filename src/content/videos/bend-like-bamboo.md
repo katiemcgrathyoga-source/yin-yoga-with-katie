@@ -25,7 +25,7 @@ chapters:
   - { time: "14:00",    seconds: 840,  title: "Shoulders · Melting Heart / Anahatasana (5 min)",  pose: "melting-heart" }
   - { time: "22:20",    seconds: 1340, title: "Hips · Butterfly (5 min)",                         pose: "butterfly" }
   - { time: "28:30",    seconds: 1710, title: "Hips · Dragon (5 min each side)",                  pose: "dragon" }
-  - { time: "42:00",    seconds: 2520, title: "Back · Cow-Face / Shoelace (5 min each side)",     pose: "shoelace" }
+  - { time: "42:00",    seconds: 2520, title: "Back · Cow-Face / Shoelace (5 min each side)", poses: ["cow-face", "shoelace"] }
   - { time: "56:40",    seconds: 3400, title: "Legs · Saddle (5 min)",                            pose: "saddle" }
   - { time: "1:02:40",  seconds: 3760, title: "Legs · Dangling (5 min)",                          pose: "dangling" }
   - { time: "1:08:24",  seconds: 4104, title: "Legs · Hamstring Stretch with strap (5 min)" }

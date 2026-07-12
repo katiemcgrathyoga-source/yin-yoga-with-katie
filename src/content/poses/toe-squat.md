@@ -3,7 +3,7 @@ name_en: "Toe Squat"
 slug: "toe-squat"
 also_known_as: []
 target_areas: ["feet", "toes", "ankles"]
-meridians: ["kidney", "urinary bladder", "spleen", "liver", "stomach"]
+meridians: ["kidney", "urinary bladder", "spleen", "liver", "stomach", "gall bladder"]
 accessibility: "intermediate"
 hold_time: "30 seconds–2 minutes"
 hold_seconds: 30
@@ -32,14 +32,14 @@ cautions:
   - "A rolled blanket tucked under the ankles eases the pressure and lets you stay a little longer in comfort."
   - "If you have injured toes or acute foot problems, skip this one or lighten the load by keeping weight in your hands."
 faq:
-  - q: "How long do you hold Toe Squat in Yin Yoga?"
-    a: "Most people hold Toe Squat for 30 seconds–2 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
-  - q: "Is Toe Squat suitable for beginners?"
-    a: "Toe Squat suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
   - q: "What does Toe Squat stretch?"
-    a: "Toe Squat mainly works the feet, toes and ankles. Gives a strong, direct stretch to the soles of the feet and the undersides of the toes — areas that rarely get any attention."
-  - q: "Do you need props for Toe Squat?"
-    a: "You don't have to, but a blanket or block can make Toe Squat more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
+    a: "Toe Squat gives a strong, direct stretch to the soles of the feet and the undersides of the toes — areas that rarely get any attention — while opening the toe joints. Because all six lower-body meridian lines begin or end in the toes, it's a favourite for waking the feet up."
+  - q: "How long do you hold Toe Squat in Yin Yoga?"
+    a: "Keep it short — often 30 seconds to 2 minutes. Toe Squat gets intense quickly, so let intensity, not the clock, be your guide, and come out at the first sign of cramp. You can always return to it later in your practice."
+  - q: "Why is Toe Squat so intense, and is that normal?"
+    a: "Yes, a strong sensation in the toes and soles is normal — most people rarely bend the toes this far, so the tissues aren't used to it. Breathe steadily and stay only as long as it feels like a stretch, never a sharp pain. Ease weight into your hands or lift onto the knees if you need a break."
+  - q: "Is Toe Squat safe for the knees?"
+    a: "Sitting back on the heels can strain the knees. If yours feel it, slip a blanket behind the knees or a cushion between hips and heels, keep the hold short, and ease weight forward into your hands. Skip it with an acute knee or foot injury."
 related_poses: ["ankle-stretch", "childs-pose", "squat", "saddle"]
 youtube_video_id: ""
 images:

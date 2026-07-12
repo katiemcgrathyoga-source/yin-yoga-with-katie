@@ -18,12 +18,12 @@ chapters:
   - { time: "0:00",     seconds: 0,    title: "Welcome & the movie-night idea" }
   - { time: "1:11",     seconds: 71,   title: "Hips · Shoelace (right side)",                       pose: "shoelace" }
   - { time: "8:13",     seconds: 493,  title: "Hips · Dragonfly",                                   pose: "dragonfly" }
-  - { time: "14:40",    seconds: 880,  title: "Hips · Deer — fold & twist",                         pose: "deer" }
-  - { time: "19:00",    seconds: 1140, title: "Hips · Shoelace, Dragonfly & Deer (left side)",      pose: "shoelace" }
-  - { time: "40:00",    seconds: 2400, title: "Back · Sphinx & Seal",                               pose: "sphinx" }
-  - { time: "49:47",    seconds: 2987, title: "Shoulders · Bow Tie & Broken Wing",                  pose: "bow-tie" }
-  - { time: "1:04:44",  seconds: 3884, title: "Shoulders · Melting Heart & Child's Pose",           pose: "melting-heart" }
-  - { time: "1:12:30",  seconds: 4350, title: "Feet · Toe Squat & Ankle Stretch",                  pose: "toe-squat" }
+  - { time: "14:40",    seconds: 880,  title: "Hips · Deer — fold & twist", poses: ["deer", "reclined-twist"] }
+  - { time: "19:00",    seconds: 1140, title: "Hips · Shoelace, Dragonfly & Deer (left side)", poses: ["shoelace", "deer", "dragonfly"] }
+  - { time: "40:00",    seconds: 2400, title: "Back · Sphinx & Seal", poses: ["sphinx", "seal"] }
+  - { time: "49:47",    seconds: 2987, title: "Shoulders · Bow Tie & Broken Wing", poses: ["bow-tie", "broken-wing"] }
+  - { time: "1:04:44",  seconds: 3884, title: "Shoulders · Melting Heart & Child's Pose", poses: ["melting-heart", "childs-pose"] }
+  - { time: "1:12:30",  seconds: 4350, title: "Feet · Toe Squat & Ankle Stretch", poses: ["toe-squat", "ankle-stretch"] }
   - { time: "1:17:11",  seconds: 4631, title: "Twist · Reclined Twist (each side)",                pose: "reclined-twist" }
   - { time: "1:25:37",  seconds: 5137, title: "Corpse Pose / Savasana" }
 seo_title: "Movie Night Yin: 90-Min Full-Body Deep Stretch Yin Yoga"

@@ -18,7 +18,7 @@ chapters:
   - { time: "0:00",     seconds: 0,    title: "Welcome to heart-opening Yin" }
   - { time: "1:50",     seconds: 110,  title: "Rest · Corpse Pose",                            pose: "corpse" }
   - { time: "4:30",     seconds: 270,  title: "Chest · Supported Fish",                        pose: "supported-fish" }
-  - { time: "15:00",    seconds: 900,  title: "Shoulders · Child's Pose & Thread-the-Needle",  pose: "thread-the-needle" }
+  - { time: "15:00",    seconds: 900,  title: "Shoulders · Child's Pose & Thread-the-Needle", poses: ["childs-pose", "thread-the-needle"] }
   - { time: "26:00",    seconds: 1560, title: "Chest · Melting Heart",                         pose: "melting-heart" }
   - { time: "31:00",    seconds: 1860, title: "Shoulders · Broken Wing (each side)",           pose: "broken-wing" }
   - { time: "41:00",    seconds: 2460, title: "Shoulders · Cow-Face (each side)",              pose: "cow-face" }

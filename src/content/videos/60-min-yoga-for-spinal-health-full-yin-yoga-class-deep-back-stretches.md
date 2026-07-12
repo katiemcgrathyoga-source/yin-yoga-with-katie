@@ -21,7 +21,7 @@ chapters:
   - { time: "14:30",  seconds: 870,  title: "Spine · Caterpillar",                      pose: "caterpillar" }
   - { time: "21:20",  seconds: 1280, title: "Lower back · Air-Releasing Pose" }
   - { time: "27:28",  seconds: 1648, title: "Shoulders · Melting Heart",                pose: "melting-heart" }
-  - { time: "31:45",  seconds: 1905, title: "Back · Sphinx & Seal",                     pose: "sphinx" }
+  - { time: "31:45",  seconds: 1905, title: "Back · Sphinx & Seal", poses: ["sphinx", "seal"] }
   - { time: "38:30",  seconds: 2310, title: "Spine · Dangling",                         pose: "dangling" }
   - { time: "43:10",  seconds: 2590, title: "Hips · Squat",                             pose: "squat" }
   - { time: "48:00",  seconds: 2880, title: "Twist · Reclined Twist (each side)",       pose: "reclined-twist" }

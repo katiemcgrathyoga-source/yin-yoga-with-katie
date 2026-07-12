@@ -40,6 +40,8 @@ faq:
     a: "Yes — it's one of the gentlest, most accessible shapes there is, and a lovely place to start. There's nothing to stretch into and nothing to force; you simply rest. Read the cautions on this page first if you have high blood pressure or eye-pressure conditions."
   - q: "What is Legs Up the Wall good for?"
     a: "It calms the nervous system, eases tired or swollen legs and feet, and gives the lower back a soft, effortless release. It's a beautiful way to wind down before bed or reset after a long day on your feet."
+  - q: "What's the difference between Legs Up the Wall and Corpse pose?"
+    a: "Both are restful, effortless shapes, but Legs Up the Wall raises the legs against a wall so gravity helps drain the legs and it becomes a gentle inversion, while Corpse rests flat with the whole body on the floor. Legs Up the Wall is the one to choose when your legs feel tired or heavy."
   - q: "Do you need props for Legs Up the Wall?"
     a: "No — just a wall and a bit of floor. If you'd like, a folded blanket under the hips or head adds comfort, and cushions under the upper body make it kinder in later pregnancy."
 related_poses: ["corpse", "happy-baby", "reclined-twist", "supported-bridge", "reclined-swan"]

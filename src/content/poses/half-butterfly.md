@@ -2,17 +2,17 @@
 name_en: "Half Butterfly"
 slug: "half-butterfly"
 also_known_as: []
-target_areas: ["hamstrings", "spine", "lower back", "inner thighs"]
-meridians: ["urinary bladder", "kidney", "liver", "spleen"]
+target_areas: ["spine", "lower back", "hamstrings", "inner thighs"]
+meridians: ["urinary bladder", "kidney", "liver"]
 accessibility: "beginner"
 hold_time: "3–5 minutes per side"
 hold_seconds: 180
 props: ["bolster", "cushion"]
 benefits:
-  - "Stretches one hamstring and the whole back line at a time, so you can meet each side of your body just where it is that day."
+  - "Above all a stretch for the back line and the length of the spine — and because you let the back round, you don't need loose hamstrings to feel it."
   - "Because one leg is folded in, the inner-thigh and groin lines get a gentle opening too."
-  - "Works the urinary bladder and kidney lines down the back, and the liver and spleen lines through the bent leg's inner thigh."
-  - "A wonderful, patient way to coax open tight hamstrings without the pull of both legs at once."
+  - "Works the urinary bladder line down the back, with the liver and kidney lines waking up if you feel plenty of sensation through the inner groin."
+  - "A wonderful, patient way to meet one tight hamstring at a time, without the pull of both legs at once."
 cues:
   - "Sit up on a folded blanket. Stretch your right leg out in front of you and draw the left foot in so the sole rests against your right inner thigh."
   - "Let the bent left knee drop out toward the floor. If it hovers up high, tuck a cushion underneath it so it can rest."
@@ -38,13 +38,13 @@ cautions:
 faq:
   - q: "How long do you hold Half Butterfly in Yin Yoga?"
     a: "Most people hold Half Butterfly for 3–5 minutes per side. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
-  - q: "Is Half Butterfly suitable for beginners?"
-    a: "Yes. Half Butterfly is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
   - q: "What does Half Butterfly stretch?"
-    a: "Half Butterfly mainly works the hamstrings, spine, lower back and inner thighs. Stretches one hamstring and the whole back line at a time, so you can meet each side of your body just where it is that day."
-  - q: "Do you need props for Half Butterfly?"
-    a: "You don't have to, but a bolster or cushion can make Half Butterfly more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
-related_poses: ["caterpillar", "butterfly", "dragonfly", "shoelace"]
+    a: "Mostly the back line — the length of the spine and lower back — one side at a time, plus the hamstring of the straight leg. Folding in the other leg adds a gentle opening through the inner thigh and groin. Because you let the spine round, it works even if your hamstrings are tight."
+  - q: "Do I need flexible hamstrings for Half Butterfly?"
+    a: "No. Half Butterfly is designed to stretch the back and spine without needing loose hamstrings. Let the back round softly and bring your head toward the knee, not the foot. Bend the straight knee freely and sit up on a cushion — a soft knee simply sends more of the stretch into the spine."
+  - q: "What's the difference between Half Butterfly and Butterfly?"
+    a: "Butterfly folds forward with both soles together, opening both hips and the whole back at once. Half Butterfly extends one leg straight so you can meet each hamstring and each side of the spine on its own — helpful when one side is much tighter than the other."
+related_poses: ["caterpillar", "butterfly", "dragonfly", "shoelace", "folded-half-shoelace"]
 youtube_video_id: ""
 images:
   - "/poses/half-butterfly.jpg"
@@ -52,5 +52,6 @@ seo_title: "Half Butterfly Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Half Butterfly is a one-legged Yin Yoga forward fold that stretches the hamstring, back line and inner thigh, opening each side of the body at its own pace."
 ---
 
-<!-- Original copy in Katie's voice, grounded in Bernie Clark, The Complete Guide to
-Yin Yoga, and Paul Grilley. Contraindications to be verified before publishing as advice. -->
+<!-- Original copy in Katie's voice, grounded in Bernie Clark, The Complete Guide to Yin
+Yoga (Half Butterfly — a back-line/spine stretch that does not require loose hamstrings; head
+to knee, not to foot). Contraindications to be verified before publishing as advice. -->

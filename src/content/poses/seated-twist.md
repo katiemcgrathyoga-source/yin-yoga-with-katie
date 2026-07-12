@@ -30,7 +30,8 @@ counterposes:
   - "A forward fold such as Caterpillar to neutralise the spine"
   - "Corpse Pose to rest"
 cautions:
-  - "Keep the twist gentle and led by the breath — never crank on the knee or force the head around."
+  - "Keep the twist gentle and led by the breath — never crank on the knee or force the head around. How far you turn is judged by the spine, not by how far the head or shoulder travels."
+  - "How much you rotate is shaped by your own spine, ribs and hips, and most bodies turn a little further one way than the other. That's normal, not something to fix or force — meet your own honest edge on each side."
   - "Pregnancy: twist 'open' (turning toward the back hand and keeping length across the belly) rather than pressing the belly into the thigh."
   - "Go slowly and stay shallow if you have any disc or spinal condition, or simply enjoy the length without much rotation."
 faq:
@@ -40,6 +41,8 @@ faq:
     a: "About 1 to 3 minutes on each side. Find a comfortable edge, then let the breath do the work — with each exhale the spine lengthens and the twist softens a little deeper on its own."
   - q: "How do I protect my lower back in a seated twist?"
     a: "Sit up on the edge of a cushion or folded blanket so the pelvis can tilt slightly forward and the lower back doesn't round. Begin the turn low in the belly, stay tall, and keep it gentle."
+  - q: "Why can I twist further to one side than the other?"
+    a: "That's completely normal. How far you rotate is shaped by your own spine, ribs and hips, and most bodies are a little more open on one side — it isn't something to fix or force. Work to a comfortable edge on each side and let the breath, not effort, carry the turn. Where you stop is simply where your body stops today."
 related_poses: ["easy-pose", "reclined-twist", "twisted-dragon", "cat-pulling-its-tail"]
 youtube_video_id: ""
 images:

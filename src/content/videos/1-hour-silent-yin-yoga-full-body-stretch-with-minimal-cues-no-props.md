@@ -17,10 +17,10 @@ poses_featured: ["childs-pose", "melting-heart", "seal", "half-butterfly", "drag
 chapters:
   - { time: "0:00",   seconds: 0,    title: "Welcome to silent Yin" }
   - { time: "0:40",   seconds: 40,   title: "Back · Child's Pose to Cat-Cow",              pose: "childs-pose" }
-  - { time: "8:30",   seconds: 510,  title: "Shoulders · Melting Heart to Crocodile",      pose: "melting-heart" }
-  - { time: "13:30",  seconds: 810,  title: "Back · Seal to Crocodile",                    pose: "seal" }
-  - { time: "17:20",  seconds: 1040, title: "Hips · Half-Butterfly, Dragon & Twisted Dragon (each side)", pose: "half-butterfly" }
-  - { time: "34:50",  seconds: 2090, title: "Hips · Reclined Swan & Twist (each side)",    pose: "reclined-swan" }
+  - { time: "8:30",   seconds: 510,  title: "Shoulders · Melting Heart to Crocodile", poses: ["melting-heart", "crocodile"] }
+  - { time: "13:30",  seconds: 810,  title: "Back · Seal to Crocodile", poses: ["seal", "crocodile"] }
+  - { time: "17:20",  seconds: 1040, title: "Hips · Half-Butterfly, Dragon & Twisted Dragon (each side)", poses: ["half-butterfly", "dragon", "twisted-dragon"] }
+  - { time: "34:50",  seconds: 2090, title: "Hips · Reclined Swan & Twist (each side)", poses: ["reclined-swan", "reclined-twist"] }
   - { time: "52:50",  seconds: 3170, title: "Corpse Pose / Savasana" }
 seo_title: "1-Hour Silent Yin Yoga — Full-Body Stretch, No Props"
 seo_description: "A silent 1-hour Yin Yoga class — a full-body stretch held long and slow with minimal cues and no props. Meditative, calming, and suitable for all levels."

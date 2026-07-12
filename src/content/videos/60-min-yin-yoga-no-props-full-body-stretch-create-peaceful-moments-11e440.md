@@ -19,7 +19,7 @@ chapters:
   - { time: "1:00",   seconds: 60,   title: "Breath · Guided breathing" }
   - { time: "7:11",   seconds: 431,  title: "Spine · Seated stretches & twists" }
   - { time: "9:40",   seconds: 580,  title: "Spine · Cat-Cow to Downward Dog" }
-  - { time: "12:30",  seconds: 750,  title: "Hips · Swan & Sleeping Swan (side 1)",      pose: "sleeping-swan" }
+  - { time: "12:30",  seconds: 750,  title: "Hips · Swan & Sleeping Swan (side 1)", poses: ["swan", "sleeping-swan"] }
   - { time: "18:00",  seconds: 1080, title: "Hips · Half-Shoelace Fold & Sitting Swan",  pose: "folded-half-shoelace" }
   - { time: "23:11",  seconds: 1391, title: "Hips · Swan & Half-Shoelace (side 2)",      pose: "sleeping-swan" }
   - { time: "34:20",  seconds: 2060, title: "Hips · Butterfly",                          pose: "butterfly" }

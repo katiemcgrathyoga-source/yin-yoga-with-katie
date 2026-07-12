@@ -21,7 +21,7 @@ chapters:
   - { time: "14:20",  seconds: 860,  title: "Shoulders · Melting Heart",            pose: "melting-heart" }
   - { time: "20:00",  seconds: 1200, title: "Shoulders · Bow-Tie",                  pose: "bow-tie" }
   - { time: "28:30",  seconds: 1710, title: "Back · Child's Pose",                  pose: "childs-pose" }
-  - { time: "35:30",  seconds: 2130, title: "Hips · Deer & Swan (each side)",       pose: "deer" }
+  - { time: "35:30",  seconds: 2130, title: "Hips · Deer & Swan (each side)", poses: ["deer", "swan"] }
   - { time: "45:00",  seconds: 2700, title: "Twist · Reclined Twist (each side)",   pose: "reclined-twist" }
   - { time: "54:40",  seconds: 3280, title: "Corpse Pose / Savasana" }
 seo_title: "60-Minute Yin Yoga: No Props Full-Body Stretch & Breath"

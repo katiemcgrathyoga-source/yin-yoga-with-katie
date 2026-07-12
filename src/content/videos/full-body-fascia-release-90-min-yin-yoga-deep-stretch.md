@@ -17,16 +17,16 @@ poses_featured: ["childs-pose", "squat", "happy-baby", "saddle", "dragon", "slee
 chapters:
   - { time: "0:00",     seconds: 0,    title: "Welcome to full-body fascia release" }
   - { time: "1:04",     seconds: 64,   title: "Back · Wide-Knee Child's Pose",            pose: "childs-pose" }
-  - { time: "7:40",     seconds: 460,  title: "Hips · Squat or Frog",                     pose: "squat" }
+  - { time: "7:40",     seconds: 460,  title: "Hips · Squat or Frog", poses: ["squat", "frog"] }
   - { time: "14:40",    seconds: 880,  title: "Hips · Happy Baby",                        pose: "happy-baby" }
-  - { time: "21:24",    seconds: 1284, title: "Legs · Saddle or Supported Bridge",        pose: "saddle" }
+  - { time: "21:24",    seconds: 1284, title: "Legs · Saddle or Supported Bridge", poses: ["saddle", "supported-bridge"] }
   - { time: "29:04",    seconds: 1744, title: "Hips · Dragon (side 1)",                   pose: "dragon" }
   - { time: "34:42",    seconds: 2082, title: "Hips · Sleeping Swan (side 1)",            pose: "sleeping-swan" }
-  - { time: "40:12",    seconds: 2412, title: "Hips · Shoelace with Cow-Face Arms (side 1)", pose: "shoelace" }
+  - { time: "40:12",    seconds: 2412, title: "Hips · Shoelace with Cow-Face Arms (side 1)", poses: ["shoelace", "cow-face"] }
   - { time: "46:45",    seconds: 2805, title: "Hips · Dragon (side 2)",                   pose: "dragon" }
   - { time: "52:07",    seconds: 3127, title: "Hips · Sleeping Swan (side 2)",            pose: "sleeping-swan" }
-  - { time: "58:02",    seconds: 3482, title: "Hips · Shoelace with Cow-Face Arms (side 2)", pose: "shoelace" }
-  - { time: "1:04:08",  seconds: 3848, title: "Shoulders · Melting Heart or Sphinx",      pose: "melting-heart" }
+  - { time: "58:02",    seconds: 3482, title: "Hips · Shoelace with Cow-Face Arms (side 2)", poses: ["shoelace", "cow-face"] }
+  - { time: "1:04:08",  seconds: 3848, title: "Shoulders · Melting Heart or Sphinx", poses: ["melting-heart", "sphinx"] }
   - { time: "1:10:55",  seconds: 4255, title: "Twist · Reclined Twist (side 1)",          pose: "reclined-twist" }
   - { time: "1:17:19",  seconds: 4639, title: "Twist · Reclined Twist (side 2)",          pose: "reclined-twist" }
   - { time: "1:23:34",  seconds: 5014, title: "Corpse Pose / Savasana" }

@@ -21,7 +21,7 @@ chapters:
   - { time: "19:19",  seconds: 1159, title: "Hips · Air-Releasing to Happy Baby",         pose: "happy-baby" }
   - { time: "28:50",  seconds: 1730, title: "Spine · Caterpillar",                        pose: "caterpillar" }
   - { time: "33:40",  seconds: 2020, title: "Spine · Spinal & neck stretches" }
-  - { time: "38:30",  seconds: 2310, title: "Shoulders · Thread-the-Needle to Child's Pose", pose: "thread-the-needle" }
+  - { time: "38:30",  seconds: 2310, title: "Shoulders · Thread-the-Needle to Child's Pose", poses: ["thread-the-needle", "childs-pose"] }
   - { time: "47:20",  seconds: 2840, title: "Spine · Downward Dog & Cat-Cow" }
   - { time: "50:30",  seconds: 3030, title: "Shoulders · Melting Heart",                  pose: "melting-heart" }
   - { time: "53:40",  seconds: 3220, title: "Corpse Pose / Savasana" }

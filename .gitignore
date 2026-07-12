@@ -39,7 +39,8 @@ pnpm-debug.log*
 desktop.ini
 *.zip
 
-# design handoff packages + raw brand images — reference, not site source
-/design_handoff_library_homepage/
+# design handoff packages + raw brand images — reference, not site source.
+# `design_handoff_*` matches ANY handoff folder dropped at the repo root.
+/design_handoff_*/
 /brand images/
 /blog blueprint.md

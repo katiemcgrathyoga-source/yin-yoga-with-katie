@@ -18,6 +18,7 @@ cues:
   - "Rest your forehead on the mat, or turn your head to one side, or set your chin down — whatever your neck prefers."
   - "Let your chest sink toward the floor so the weight of your torso opens the shoulders."
   - "The higher the arms are stacked toward the collarbones, the stronger the stretch — start lower and adjust."
+  - "How open the shoulders feel is partly down to your own build — everyone's shoulder joints are shaped a little differently, so let your body set the range rather than chasing a picture. This should be a soft stretch, never a sharp or pinching sensation in the joint."
   - "Find your edge — about 80% of your capacity, a real stretch but never forcing — then let the shape do the work."
   - "Swap which arm is on top halfway through, as the two arrangements feel quite different."
   - "Cushion the forehead or the chest if you need a little more comfort."
@@ -38,9 +39,9 @@ faq:
   - q: "Is Bow Tie suitable for beginners?"
     a: "Bow Tie suits you best once you have a little Yin experience. It's still accessible if you ease in slowly, use props where you need them and respect the cautions on this page — never force the shape."
   - q: "What does Bow Tie stretch?"
-    a: "Bow Tie mainly works the shoulders, upper back and chest. Lets the weight of your own body open the shoulders and the space between the shoulder blades — no effort required."
-  - q: "Do you need props for Bow Tie?"
-    a: "You don't have to, but a cushion or blanket can make Bow Tie more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
+    a: "Bow Tie mainly works the shoulders and the upper back, drawing the shoulder blades apart and opening across the backs of the shoulders. With the forearms crossed beneath you, your own body weight does the opening — there is nothing to hold or muscle into."
+  - q: "What's the difference between Bow Tie and Broken Wing?"
+    a: "They open different parts of the shoulder. Bow Tie has both arms crossed underneath you and works across the upper back and the backs of the shoulders. Broken Wing extends one arm out to the side and rolls the chest away, opening the front of the shoulder and the chest. Many practices use them together for an all-round shoulder release."
 related_poses: ["broken-wing", "thread-the-needle", "melting-heart", "supported-fish", "cow-face"]
 youtube_video_id: ""
 images:

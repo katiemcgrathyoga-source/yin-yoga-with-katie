@@ -16,12 +16,12 @@ props: []
 poses_featured: ["sphinx", "seal", "thread-the-needle", "melting-heart", "happy-baby", "reclined-swan"]
 chapters:
   - { time: "0:00",   seconds: 0,    title: "Welcome to silent Yin" }
-  - { time: "0:53",   seconds: 53,   title: "Back · Sphinx to Crocodile",               pose: "sphinx" }
-  - { time: "7:37",   seconds: 457,  title: "Back · Seal to Crocodile",                 pose: "seal" }
-  - { time: "11:07",  seconds: 667,  title: "Shoulders · Thread-the-Needle & Child's Pose (each side)", pose: "thread-the-needle" }
+  - { time: "0:53",   seconds: 53,   title: "Back · Sphinx to Crocodile", poses: ["sphinx", "crocodile"] }
+  - { time: "7:37",   seconds: 457,  title: "Back · Seal to Crocodile", poses: ["seal", "crocodile"] }
+  - { time: "11:07",  seconds: 667,  title: "Shoulders · Thread-the-Needle & Child's Pose (each side)", poses: ["thread-the-needle", "childs-pose"] }
   - { time: "25:19",  seconds: 1519, title: "Shoulders · Melting Heart",                pose: "melting-heart" }
   - { time: "30:30",  seconds: 1830, title: "Hips · Happy Baby",                        pose: "happy-baby" }
-  - { time: "40:11",  seconds: 2411, title: "Hips · Reclined Swan & Twist (each side)", pose: "reclined-swan" }
+  - { time: "40:11",  seconds: 2411, title: "Hips · Reclined Swan & Twist (each side)", poses: ["reclined-swan", "reclined-twist"] }
   - { time: "54:12",  seconds: 3252, title: "Corpse Pose / Savasana" }
 seo_title: "1-Hour Silent Yin Yoga — Deep Full-Body Stretch, No Props"
 seo_description: "A silent 1-hour Yin Yoga class — a deep full-body stretch held long and slow with minimal cues and no props. Meditative, calming, and suitable for all levels."

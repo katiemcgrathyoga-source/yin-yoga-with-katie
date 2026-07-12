@@ -24,7 +24,7 @@ chapters:
   - { time: "16:00",  seconds: 960,  title: "Back · Half-Butterfly (side 1)",       pose: "half-butterfly" }
   - { time: "20:52",  seconds: 1252, title: "Back · Half-Butterfly (side 2)",       pose: "half-butterfly" }
   - { time: "25:30",  seconds: 1530, title: "Back · Child's Pose",                  pose: "childs-pose" }
-  - { time: "26:19",  seconds: 1579, title: "Shoulders · Melting Heart / Puppy",    pose: "melting-heart" }
+  - { time: "26:19",  seconds: 1579, title: "Shoulders · Melting Heart / Puppy", poses: ["melting-heart", "puppy"] }
   - { time: "30:00",  seconds: 1800, title: "Shoulders · Reverse Prayer" }
   - { time: "34:50",  seconds: 2090, title: "Twist · Seated Spinal Twist (each side)" }
   - { time: "38:30",  seconds: 2310, title: "Corpse Pose / Savasana" }

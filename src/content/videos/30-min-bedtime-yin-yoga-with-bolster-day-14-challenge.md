@@ -16,7 +16,7 @@ props: ["bolster", "block"]
 poses_featured: ["sleeping-swan", "melting-heart", "butterfly"]
 chapters:
   - { time: "0:00",   seconds: 0,    title: "Welcome to Day 14" }
-  - { time: "0:36",   seconds: 36,   title: "Hips · Sleeping Swan & Child's Pose (both sides)", pose: "sleeping-swan" }
+  - { time: "0:36",   seconds: 36,   title: "Hips · Sleeping Swan & Child's Pose (both sides)", poses: ["sleeping-swan", "childs-pose"] }
   - { time: "12:00",  seconds: 720,  title: "Shoulders · Melting Heart on the bolster",         pose: "melting-heart" }
   - { time: "17:40",  seconds: 1060, title: "Hips · Reclined Butterfly on the bolster",         pose: "butterfly" }
   - { time: "22:55",  seconds: 1375, title: "Hips · Spider-Man over the bolster (both sides)" }

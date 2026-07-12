@@ -18,8 +18,8 @@ chapters:
   - { time: "0:00",   seconds: 0,    title: "Welcome to bedtime Yin" }
   - { time: "0:50",   seconds: 50,   title: "Breath · Box Breathing" }
   - { time: "5:30",   seconds: 330,  title: "Hips · Sleeping Swan (right side)",              pose: "sleeping-swan" }
-  - { time: "9:30",   seconds: 570,  title: "Shoulders · Eagle Arms in Shoelace (right side)", pose: "shoelace" }
-  - { time: "15:30",  seconds: 930,  title: "Hips · Sleeping Swan & Shoelace (left side)",    pose: "sleeping-swan" }
+  - { time: "9:30",   seconds: 570,  title: "Shoulders · Eagle Arms in Shoelace (right side)", poses: ["eagle", "shoelace"] }
+  - { time: "15:30",  seconds: 930,  title: "Hips · Sleeping Swan & Shoelace (left side)", poses: ["sleeping-swan", "shoelace"] }
   - { time: "20:30",  seconds: 1230, title: "Spine · Side-Body Stretch" }
   - { time: "21:50",  seconds: 1310, title: "Twist · Windshield Wipers",                      pose: "reclined-twist" }
   - { time: "23:30",  seconds: 1410, title: "Breath · Closing Meditation" }

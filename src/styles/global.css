@@ -775,6 +775,13 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .blog-author-name { font-family: var(--display); font-weight: 500; font-size: 17px; color: var(--plum); margin: 2px 0 4px; }
 .blog-author-bio { font-size: 14.5px; color: var(--ink-soft); line-height: 1.6; margin: 0; }
 .blog-author-bio a { color: var(--plum); }
+/* per-post program CTA (the blueprint's single conversion ask) */
+.blog-cta { max-width: 68ch; margin: 40px auto 0; padding: 30px 28px; border: 1px solid var(--line); border-radius: 16px; background: var(--paper-2); text-align: center; }
+.blog-cta .eyebrow { color: var(--gold-solid); }
+.blog-cta h2 { margin: 8px 0 10px; }
+.blog-cta p { color: var(--ink-soft); max-width: 52ch; margin: 0 auto 20px; }
+.blog-cta .btn-cta { display: inline-block; background: var(--plum); color: #fff; font-weight: 600; padding: 12px 24px; border-radius: 11px; border: none; }
+.blog-cta .btn-cta:hover { background: var(--plum-deep); color: #fff; }
 
 /* ============ Library homepage redesign (hero · filmstrip · focus/length · grid) ============ */
 .lib-hero { padding: 34px 0 0; }
@@ -802,9 +809,10 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .lib-chiprow .chip { flex: none; }
 @media (min-width: 768px) {
   .lib-filters { align-items: center; }
-  .lib-filters .facet { display: flex; align-items: center; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .lib-filters .facet-label { margin: 0; }
-  .lib-chiprow { flex-wrap: wrap; overflow: visible; justify-content: center; }
+  /* label column + chips column, so every row's header lines up vertically */
+  .lib-filters .facet { display: grid; grid-template-columns: 76px 1fr; align-items: baseline; column-gap: 14px; row-gap: 8px; width: 100%; max-width: 680px; }
+  .lib-filters .facet-label { margin: 0; text-align: right; }
+  .lib-chiprow { flex-wrap: wrap; overflow: visible; justify-content: flex-start; }
 }
 
 /* flat grid: 2 → 3 → 4 columns; thumbnail + duration pill + serif title */
@@ -821,6 +829,51 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .lib-grid .tile-meta { font-size: 12.5px; color: var(--ink-soft); margin: 4px 0 0; }
 @media (min-width: 980px) { .lib-grid .tile-name { font-size: 16px; } }
 @media (max-width: 767px) { .lib-grid .tile-meta { display: none; } }
+
+/* library pagination */
+.lib-pager { display: flex; justify-content: center; align-items: center; gap: 6px; margin: 34px 0 0; flex-wrap: wrap; }
+.lib-page { min-width: 38px; height: 38px; padding: 0 10px; border: 1px solid var(--line); border-radius: 9px; background: #fff; color: var(--plum); font: inherit; font-size: 14px; cursor: pointer; }
+.lib-page:hover:not(:disabled):not(.is-current) { border-color: var(--plum); }
+.lib-page.is-current { background: var(--plum); color: #fff; border-color: var(--plum); }
+.lib-page:disabled { opacity: .4; cursor: default; }
+.lib-ellip { color: var(--ink-soft); padding: 0 2px; }
+
+/* "More than a library" toolkit band */
+.lib-toolkit { border-top: 1px solid var(--line); background: #fff; margin-top: 60px; }
+.tk-inner { max-width: 1060px; margin: 0 auto; padding: 64px 24px; text-align: center; }
+@media (min-width: 768px) { .tk-inner { padding: 88px 24px; } }
+.tk-inner .eyebrow { color: var(--ink-soft); }
+.tk-inner h2 { font-family: var(--display); font-weight: 500; font-size: 40px; color: var(--plum); margin: 8px 0 0; }
+.tk-lead { font-size: 17px; color: var(--ink); max-width: 62ch; margin: 14px auto 0; }
+.tk-free { font-size: 14.5px; color: var(--ink-soft); margin: 12px auto 0; }
+.tk-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 34px 0 0; text-align: left; }
+@media (min-width: 860px) { .tk-cards { grid-template-columns: repeat(4, 1fr); gap: 20px; } }
+.tk-card { display: flex; flex-direction: column; padding: 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); color: var(--ink); }
+@media (min-width: 768px) { .tk-card { padding: 28px; } }
+.tk-card:hover { border-color: #bea690; color: var(--ink); }
+.tk-ico { width: 26px; height: 26px; color: var(--plum); margin-bottom: 14px; }
+.tk-ico svg { width: 100%; height: 100%; display: block; }
+.tk-name { font-family: var(--display); font-weight: 500; font-size: 20px; color: var(--plum); }
+@media (min-width: 768px) { .tk-name { font-size: 22px; } }
+.tk-benefit { font-size: 14.5px; color: var(--ink-soft); margin: 8px 0 16px; flex: 1; line-height: 1.5; }
+.tk-cta-link { font-size: 14px; font-weight: 600; color: var(--gold-solid); }
+.tk-card:hover .tk-cta-link { color: #6E3A3C; }
+
+/* retreat CTA band (homepage) */
+.lib-retreat { background: var(--ink); color: var(--paper); }
+.rt-inner { max-width: 620px; margin: 0 auto; padding: 64px 24px; text-align: center; }
+@media (min-width: 768px) { .rt-inner { padding: 76px 24px; } }
+.rt-inner .eyebrow { color: var(--gold); }
+.rt-inner h2 { font-family: var(--display); font-weight: 500; font-size: 34px; color: var(--paper); margin: 8px 0 0; }
+.rt-members { font-size: 15px; color: rgba(249,241,234,.85); margin: 12px 0 22px; }
+.rt-form { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.rt-form input[type=email] { flex: 1; min-width: 220px; max-width: 320px; padding: 13px 18px; border-radius: 100px; border: 1px solid rgba(249,241,234,.45); background: transparent; color: var(--paper); font: inherit; font-size: 15px; }
+.rt-form input[type=email]::placeholder { color: rgba(249,241,234,.6); }
+.rt-form input[type=email]:focus { outline: none; border-color: var(--paper); }
+.rt-form .btn-cta { background: var(--paper); color: var(--plum); font-weight: 600; padding: 13px 24px; border-radius: 100px; border: none; cursor: pointer; white-space: nowrap; }
+.rt-form .btn-cta:hover { background: #f3e7db; color: var(--plum); }
+.rt-done { font-size: 16px; color: var(--paper); margin: 4px 0 0; }
+@media (max-width: 520px) { .rt-form { flex-direction: column; align-items: stretch; } .rt-form input[type=email], .rt-form .btn-cta { max-width: none; } }
 
 /* ---- Placeholder pages ---- */
 .coming-soon {

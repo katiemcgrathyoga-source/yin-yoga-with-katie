@@ -16,11 +16,11 @@ props: []
 poses_featured: ["dangling", "squat", "dragonfly", "caterpillar", "sphinx", "seal", "banana", "reclined-twist"]
 chapters:
   - { time: "0:00",     seconds: 0,    title: "Welcome to silent Yin" }
-  - { time: "1:17",     seconds: 77,   title: "Legs · Dangling to Squat (twice)",     pose: "dangling" }
+  - { time: "1:17",     seconds: 77,   title: "Legs · Dangling to Squat (twice)", poses: ["dangling", "squat"] }
   - { time: "13:10",    seconds: 790,  title: "Hips · Dragonfly",                     pose: "dragonfly" }
   - { time: "31:44",    seconds: 1904, title: "Spine · Caterpillar",                  pose: "caterpillar" }
   - { time: "34:40",    seconds: 2080, title: "Spine · Snail" }
-  - { time: "40:40",    seconds: 2440, title: "Back · Sphinx & Seal",                 pose: "sphinx" }
+  - { time: "40:40",    seconds: 2440, title: "Back · Sphinx & Seal", poses: ["sphinx", "seal"] }
   - { time: "54:45",    seconds: 3285, title: "Side body · Banana",                   pose: "banana" }
   - { time: "1:08:20",  seconds: 4100, title: "Spine · Reclined Twist",               pose: "reclined-twist" }
   - { time: "1:21:40",  seconds: 4900, title: "Corpse Pose / Savasana" }

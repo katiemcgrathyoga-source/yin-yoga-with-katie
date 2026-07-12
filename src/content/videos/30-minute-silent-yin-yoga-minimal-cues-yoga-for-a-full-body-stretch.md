@@ -19,8 +19,8 @@ chapters:
   - { time: "0:42",   seconds: 42,   title: "Back · Child's Pose",                       pose: "childs-pose" }
   - { time: "4:50",   seconds: 290,  title: "Shoulders · Melting Heart",                 pose: "melting-heart" }
   - { time: "9:40",   seconds: 580,  title: "Back · Seal",                               pose: "seal" }
-  - { time: "13:30",  seconds: 810,  title: "Hips · Half-Butterfly & Shoelace (side 1)", pose: "half-butterfly" }
-  - { time: "22:40",  seconds: 1360, title: "Hips · Half-Butterfly & Shoelace (side 2)", pose: "half-butterfly" }
+  - { time: "13:30",  seconds: 810,  title: "Hips · Half-Butterfly & Shoelace (side 1)", poses: ["half-butterfly", "shoelace"] }
+  - { time: "22:40",  seconds: 1360, title: "Hips · Half-Butterfly & Shoelace (side 2)", poses: ["half-butterfly", "shoelace"] }
 seo_title: "30-Minute Silent Yin Yoga — Full-Body Stretch, No Props"
 seo_description: "A short, silent 30-minute Yin Yoga class — a full-body stretch held long and slow with minimal cues and no props, to shut the world out and settle. All levels."
 membership_cta: "Love a short, quiet reset like this? Inside the membership it lives as part of a guided program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

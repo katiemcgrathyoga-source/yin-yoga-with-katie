@@ -5,7 +5,7 @@ also_known_as: ["Stirrup Pose"]
 target_areas: ["inner groin", "inner thighs", "hips", "lower back"]
 meridians: ["liver", "kidney", "urinary bladder"]
 accessibility: "beginner"
-hold_time: "2–4 minutes"
+hold_time: "2–5 minutes"
 hold_seconds: 120
 props: ["strap"]
 benefits:
@@ -32,15 +32,15 @@ cautions:
   - "If your lower back lifts off the mat, hold behind the thighs instead of the feet so the spine can stay grounded."
   - "Ease off during menstruation or if a lower-back condition dislikes this position, keeping the range shallow."
 faq:
-  - q: "How long do you hold Happy Baby in Yin Yoga?"
-    a: "Most people hold Happy Baby for 2–4 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
-  - q: "Is Happy Baby suitable for beginners?"
-    a: "Yes. Happy Baby is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
   - q: "What does Happy Baby stretch?"
-    a: "Happy Baby mainly works the inner groin, inner thighs, hips and lower back. A gentle, playful opener for the inner groin and inner thighs that you can ease into with the arms."
-  - q: "Do you need props for Happy Baby?"
-    a: "You don't have to, but a strap can make Happy Baby more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
-related_poses: ["butterfly", "frog", "dragonfly", "sleeping-swan", "reclined-twist"]
+    a: "Happy Baby opens the inner groin and inner thighs (the adductors) and draws the hips into external rotation, while gently releasing the lower back and sacroiliac joints. Because you can draw the knees down with your arms, you decide how deep it goes."
+  - q: "How long do you hold Happy Baby in Yin Yoga?"
+    a: "Around 2 minutes if you're actively drawing the knees down with your arms, or up to 5 minutes once you relax the arms and let the weight of the legs do the work. Come out a little sooner if you ever need to."
+  - q: "Is Happy Baby safe for the lower back?"
+    a: "For most people, yes, as long as the head, shoulders and hips stay heavy on the floor. If your lower back rounds and your hips lift off the mat, hold the backs of the thighs instead so the sacrum can stay grounded. Many people also keep the range shallow during menstruation."
+  - q: "What's the difference between Happy Baby and Frog?"
+    a: "Both open the inner groin and adductors, but Happy Baby does it lying safely on your back with the hips supported, while Frog works the same lines face-down and tends to go deeper. Happy Baby is the gentler, more accessible of the two."
+related_poses: ["butterfly", "frog", "dragonfly", "reclined-swan", "reclined-twist"]
 youtube_video_id: ""
 images:
   - "/poses/happy-baby.jpg"

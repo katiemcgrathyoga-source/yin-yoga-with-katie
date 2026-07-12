@@ -16,14 +16,14 @@ props: []
 poses_featured: ["melting-heart", "childs-pose", "broken-wing", "sphinx", "dragon", "swan", "shoelace", "reclined-twist"]
 chapters:
   - { time: "0:00",    seconds: 0,    title: "Welcome to beginner Yin" }
-  - { time: "0:58",    seconds: 58,   title: "Shoulders · Puppy / Melting Heart",         pose: "melting-heart" }
+  - { time: "0:58",    seconds: 58,   title: "Shoulders · Puppy / Melting Heart", poses: ["puppy", "melting-heart"] }
   - { time: "5:30",    seconds: 330,  title: "Back · Child's Pose",                        pose: "childs-pose" }
   - { time: "7:30",    seconds: 450,  title: "Shoulders · Broken Wing (side 1)",           pose: "broken-wing" }
   - { time: "15:15",   seconds: 915,  title: "Shoulders · Broken Wing (side 2)",           pose: "broken-wing" }
   - { time: "23:50",   seconds: 1430, title: "Back · Sphinx",                              pose: "sphinx" }
   - { time: "28:28",   seconds: 1708, title: "Spine · Gentle Cat-Cow" }
-  - { time: "29:50",   seconds: 1790, title: "Hips · Dragon, Swan & Shoelace (side 1)",    pose: "dragon" }
-  - { time: "40:22",   seconds: 2422, title: "Hips · Dragon, Swan & Shoelace (side 2)",    pose: "dragon" }
+  - { time: "29:50",   seconds: 1790, title: "Hips · Dragon, Swan & Shoelace (side 1)", poses: ["dragon", "swan", "shoelace"] }
+  - { time: "40:22",   seconds: 2422, title: "Hips · Dragon, Swan & Shoelace (side 2)", poses: ["dragon", "swan", "shoelace"] }
   - { time: "51:30",   seconds: 3090, title: "Twist · Reclined Twist (each side)",         pose: "reclined-twist" }
   - { time: "1:00:00", seconds: 3600, title: "Corpse Pose / Savasana" }
 seo_title: "60-Min Beginner Yin Yoga — Full-Body Stretch, No Props"

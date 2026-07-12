@@ -44,11 +44,15 @@ faq:
     a: "Shoelace mainly works the outer hips, glutes and lower back. A deep opener for the outer hips and glutes — that broad, satisfying stretch across the outside of the top thigh."
   - q: "Do you need props for Shoelace?"
     a: "You don't have to, but a cushion, bolster or blanket can make Shoelace more comfortable and help you relax into the hold. Props in Yin aren't a shortcut — they let you stay longer and soften more deeply."
+  - q: "What's the difference between Shoelace and Cow Face pose?"
+    a: "They stack the knees the same way for a deep outer-hip stretch. Cow Face (the yang version) usually adds the bound arms and keeps the spine upright; Shoelace is the Yin form — muscles relaxed, often folding forward to release the lower back and held still for several minutes."
+  - q: "Is Shoelace safe for your knees?"
+    a: "Keep the sensation in the outer hip, never in the knee joint. Sharp or twisting knee sensation means back off — sit up on a cushion, slide a blanket under the top knee, or straighten the bottom leg for Folded Half Shoelace. If you have sciatica, lift the hips so the knees sit below them."
 related_poses: ["folded-half-shoelace", "deer", "swan", "sleeping-swan", "cow-face"]
 youtube_video_id: ""
 images:
   - "/poses/shoelace.jpg"
-seo_title: "Shoelace Pose in Yin Yoga: Benefits & How-To"
+seo_title: "Shoelace Pose: Benefits, How-To & Hold Time"
 seo_description: "Shoelace is a Yin Yoga pose with knees stacked and an optional forward fold, giving a deep outer-hip and glute opening to release tension from long sitting."
 ---
 
