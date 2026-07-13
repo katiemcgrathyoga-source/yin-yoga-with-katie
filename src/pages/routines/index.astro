@@ -1,172 +1,51 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-
-const routines = (await getCollection('routines')).sort((a, b) => a.data.minutes - b.data.minutes);
-const poses = await getCollection('poses');
-const bySlug = new Map(poses.map((p) => [p.data.slug, p.data]));
-const titleCase = (s: string) => s.replace(/\b\w/g, (c) => c.toUpperCase());
-const humanise = (slug: string) => titleCase(slug.replace(/-/g, ' '));
-
-// Demo sequence for the "practice view" mock — the first routine's opening poses.
-const demoRoutine = routines[0];
-const demo = (demoRoutine?.data.steps ?? []).slice(0, 5).map((s) => {
-  const p = bySlug.get(s.pose);
-  return { name: p?.name_en ?? humanise(s.pose), img: p?.images?.[0] ?? '', secs: s.seconds, cue: (s.note ?? p?.cues?.[0] ?? '').slice(0, 90) };
-}).filter((d) => d.img);
-const fmt = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 ---
 
 <BaseLayout
   title="Yin Yoga Routines — Follow-Along Practices with a Timer"
-  description="Short, self-guided Yin Yoga routines with a built-in hold timer — no video to watch. Choose one by how long you have. For sleep, hips, shoulders and full-body. Free."
+  description="Short, self-guided Yin Yoga routines with a built-in hold timer — no video to watch. Browse curated sequences by time, area and mood, or build your own. Free."
 >
-  <section class="rt3-herowrap">
-   <div class="rt3-heroinner">
-    <header class="hero rt3-hero">
-      <div class="rt3-hero-copy">
-        <p class="eyebrow">routines</p>
-        <h1>How long do you have?</h1>
-        <p class="rt3-lead">Short, self-guided pose sequences — no video to watch. A built-in timer counts each hold, a soft bell moves you on, and the practice stays quiet and off-screen.</p>
-        <div class="rt3-chips" id="rt3-chips">
-          <button type="button" class="chip" data-max="12" aria-pressed="false">I have ten minutes</button>
-          <button type="button" class="chip" data-max="22" aria-pressed="false">twenty minutes</button>
-          <button type="button" class="chip" data-max="35" aria-pressed="false">half an hour</button>
-        </div>
-        <p class="rt3-hint" id="rt3-hint">Or browse all {routines.length} — none of them ask for more than half an hour.</p>
-      </div>
-      {demo.length > 0 && (
-        <div class="rt3-demo-wrap">
-          <div class="rt3-demo" id="rt3-demo" data-seq={JSON.stringify(demo)}>
-            <div class="rt3-demo-bar"><span id="rt3-demo-name-top">{demoRoutine.data.title}</span><span id="rt3-demo-count">pose 1 of {demo.length}</span></div>
-            <div class="rt3-demo-body">
-              <div class="rt3-demo-photo"><img id="rt3-demo-img" src={demo[0].img} alt="" /></div>
-              <div class="rt3-demo-info">
-                <div class="rt3-demo-name" id="rt3-demo-name">{demo[0].name}</div>
-                <div class="rt3-demo-cue" id="rt3-demo-cue">{demo[0].cue}</div>
-                <div class="rt3-demo-time" id="rt3-demo-time">{fmt(demo[0].secs)}</div>
-                <div class="rt3-demo-micro">the hold, timed for you · a soft bell moves you on</div>
-              </div>
-            </div>
-            <div class="rt3-demo-foot">
-              <span class="rt3-demo-next">up next · <b id="rt3-demo-nextname">{demo[1]?.name ?? '—'}</b></span>
-              <span class="rt3-demo-dots" id="rt3-demo-dots">{demo.map((_, i) => <span class={i === 0 ? 'on' : ''} />)}</span>
-            </div>
-          </div>
-          <p class="rt3-demo-cap">the practice view — what you'll see once you press begin</p>
-        </div>
-      )}
+  <div class="wrap fork-wrap">
+    <header class="hero fork-hero">
+      <p class="eyebrow">routines</p>
+      <h1>How would you like to practise today?</h1>
+      <p class="fork-note">both are free — self-guided, timed, quiet</p>
     </header>
-   </div>
-  </section>
 
-  <section class="rt3-band">
-    <div class="rt3-inner">
-      <div class="rt3-cards" id="rt3-cards">
-        {routines.map((r) => (
-          <a class="rt3-card" href={`/routines/${r.data.slug}`} data-min={r.data.minutes}>
-            <div class="rt3-card-meta">
-              <span>{r.data.steps.length} poses · {r.data.minutes} min</span>
-              <span class="rt3-card-fit" aria-hidden="true">✦</span>
-            </div>
-            <h2 class="rt3-card-title">{r.data.title}</h2>
-            <p class="rt3-card-benefit">{r.data.tagline ?? r.data.summary}</p>
-            <span class="rt3-card-go">Begin — screen-free →</span>
-          </a>
-        ))}
-      </div>
-
-      <a class="build-cta rt3-build" href="/routines/builder">
-        <b>Or make your own — in seconds →</b>
-        <span>Tell me your focus and time and I'll compose a sequence for you, or pick your own poses. Tweak it, press play, save or share.</span>
+    <div class="fork-cards">
+      <a class="fork-card fork-prebuilt" href="/routines/all" data-choice="prebuilt">
+        <span class="fork-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+        </span>
+        <span class="fork-title">Pre-built routines</span>
+        <span class="fork-desc">Curated sequences, ready to begin — by time, by area, by mood.</span>
+        <span class="fork-go">Browse the routines →</span>
       </a>
-
-      <div class="rt3-spotlight">
-        <div class="rt3-spotlight-copy">
-          <p class="eyebrow">the built-in player</p>
-          <h2>Press begin, then put the phone down</h2>
-          <p>Routines are for practising without watching anything. The player shows the pose, counts the hold, and rings a soft bell when it's time to move — your eyes can close, and the room stays quiet.</p>
-          <div class="rt3-points">
-            <div><span aria-hidden="true">—</span> Self-guided — no video, no voice-over unless you want it</div>
-            <div><span aria-hidden="true">—</span> A soft bell at each change; a readable timer you can glance at</div>
-            <div><span aria-hidden="true">—</span> Pause any time, and no account needed</div>
-          </div>
-        </div>
-        <div class="rt3-spotlight-visual" aria-hidden="true">
-          <div class="rt3-timer-ring"><span>2:00</span></div>
-        </div>
-      </div>
+      <a class="fork-card fork-build" href="/routines/builder" data-choice="build">
+        <span class="fork-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h4l2-7 3 14 2-7h3"/></svg>
+        </span>
+        <span class="fork-title">Build your own</span>
+        <span class="fork-desc">Tell Katie what your body needs — a sequence is composed for you.</span>
+        <span class="fork-go">Start building →</span>
+      </a>
     </div>
-  </section>
+  </div>
+
+  <script>
+    // Remember the choice so returning visitors skip the fork. `?fork` forces it.
+    const KEY = 'yin-routine-choice';
+    const params = new URLSearchParams(location.search);
+    if (!params.has('fork')) {
+      try {
+        const c = localStorage.getItem(KEY);
+        if (c === 'prebuilt') location.replace('/routines/all');
+        else if (c === 'build') location.replace('/routines/builder');
+      } catch (e) {}
+    }
+    document.querySelectorAll<HTMLAnchorElement>('[data-choice]').forEach((a) =>
+      a.addEventListener('click', () => { try { localStorage.setItem(KEY, a.dataset.choice!); } catch (e) {} }),
+    );
+  </script>
 </BaseLayout>
-
-<script>
-  // Time-chip filter: highlight fitting routines, dim the rest, sort matched-first.
-  const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('#rt3-chips .chip'));
-  const cardsWrap = document.getElementById('rt3-cards')!;
-  const cards = Array.from(cardsWrap.querySelectorAll<HTMLElement>('.rt3-card'));
-  const hint = document.getElementById('rt3-hint')!;
-  const total = cards.length;
-  let active: number | null = null;
-
-  function applyTime() {
-    if (active === null) {
-      cards.forEach((c) => { c.classList.remove('is-match', 'is-dim'); });
-      cardsWrap.append(...cards.sort((a, b) => Number(a.dataset.min) - Number(b.dataset.min)));
-      hint.textContent = `Or browse all ${total} — none of them ask for more than half an hour.`;
-      return;
-    }
-    const max = active;
-    let n = 0;
-    for (const c of cards) {
-      const fits = Number(c.dataset.min) <= max;
-      c.classList.toggle('is-match', fits);
-      c.classList.toggle('is-dim', !fits);
-      if (fits) n++;
-    }
-    // matched first, then by length
-    cardsWrap.append(...cards.sort((a, b) => {
-      const am = Number(a.dataset.min) <= max ? 0 : 1;
-      const bm = Number(b.dataset.min) <= max ? 0 : 1;
-      return am - bm || Number(a.dataset.min) - Number(b.dataset.min);
-    }));
-    hint.textContent = `${n} routine${n === 1 ? '' : 's'} fit${n === 1 ? 's' : ''} — highlighted below.`;
-  }
-
-  chips.forEach((chip) => chip.addEventListener('click', () => {
-    const max = Number(chip.dataset.max);
-    if (active === max) { active = null; chip.setAttribute('aria-pressed', 'false'); chip.classList.remove('active'); }
-    else {
-      active = max;
-      chips.forEach((c) => { c.setAttribute('aria-pressed', 'false'); c.classList.remove('active'); });
-      chip.setAttribute('aria-pressed', 'true'); chip.classList.add('active');
-    }
-    applyTime();
-  }));
-
-  // Practice-view demo: auto-advance every 3s (decorative). Pauses for reduced motion.
-  const demoEl = document.getElementById('rt3-demo');
-  if (demoEl && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const seq: { name: string; img: string; secs: number; cue: string }[] = JSON.parse(demoEl.dataset.seq || '[]');
-    const f = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
-    const els = {
-      img: document.getElementById('rt3-demo-img') as HTMLImageElement,
-      name: document.getElementById('rt3-demo-name')!, cue: document.getElementById('rt3-demo-cue')!,
-      time: document.getElementById('rt3-demo-time')!, count: document.getElementById('rt3-demo-count')!,
-      next: document.getElementById('rt3-demo-nextname')!, dots: document.getElementById('rt3-demo-dots')!,
-    };
-    let i = 0;
-    setInterval(() => {
-      i = (i + 1) % seq.length;
-      const d = seq[i];
-      demoEl.classList.add('fading');
-      setTimeout(() => {
-        els.img.src = d.img; els.name.textContent = d.name; els.cue.textContent = d.cue;
-        els.time.textContent = f(d.secs); els.count.textContent = `pose ${i + 1} of ${seq.length}`;
-        els.next.textContent = seq[(i + 1) % seq.length].name;
-        els.dots.querySelectorAll('span').forEach((s, j) => s.classList.toggle('on', j === i));
-        demoEl.classList.remove('fading');
-      }, 300);
-    }, 3000);
-  }
-</script>

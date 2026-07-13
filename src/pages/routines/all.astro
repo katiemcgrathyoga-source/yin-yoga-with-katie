@@ -1,0 +1,128 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const routines = (await getCollection('routines')).sort((a, b) => a.data.minutes - b.data.minutes);
+const poses = await getCollection('poses');
+const bySlug = new Map(poses.map((p) => [p.data.slug, p.data]));
+const humanise = (s: string) => s.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+
+type R = (typeof routines)[number];
+const hay = (r: R) => `${r.data.intent} ${r.data.title} ${r.data.tagline ?? ''}`.toLowerCase();
+
+const AREAS = [
+  { key: 'hips', label: 'Hips', test: (r: R) => /hip|glute|full.body/.test(hay(r)) },
+  { key: 'back', label: 'Back', test: (r: R) => /back|spine|full.body/.test(hay(r)) },
+  { key: 'shoulders', label: 'Neck & shoulders', test: (r: R) => /shoulder|neck|desk|upper/.test(hay(r)) },
+  { key: 'legs', label: 'Legs', test: (r: R) => /leg|hamstring|flexib|feet/.test(hay(r)) },
+];
+const MOODS = [
+  { key: 'sleep', label: 'Wind down for sleep', test: (r: R) => /sleep|bedtime|wind|relax/.test(hay(r)) },
+  { key: 'desk', label: 'Undo the desk day', test: (r: R) => /shoulder|neck|desk|back/.test(hay(r)) },
+  { key: 'release', label: 'Slow, deep release', test: (r: R) => /hip|deep|full.body|flexib|digest/.test(hay(r)) },
+];
+const areaKeys = (r: R) => AREAS.filter((a) => a.test(r)).map((a) => a.key);
+const moodKeys = (r: R) => MOODS.filter((m) => m.test(r)).map((m) => m.key);
+
+// Featured suggestion — the bedtime wind-down (evening feel), else the first.
+const featured = routines.find((r) => r.data.intent === 'sleep') ?? routines[0];
+const featuredPoses = featured.data.steps.slice(0, 5).map((s) => {
+  const p = bySlug.get(s.pose);
+  return { name: p?.name_en ?? humanise(s.pose), img: p?.images?.[0] ?? '' };
+});
+---
+
+<BaseLayout
+  title="Browse Yin Yoga Routines — By Time, Area & Mood"
+  description="Browse short, self-guided Yin Yoga routines by area and mood, each with a built-in hold timer — for sleep, hips, the desk day, deep release and more. Free."
+>
+  <section class="disc">
+    <div class="disc-inner">
+      <p class="eyebrow disc-daypart">may we suggest</p>
+      <h1 class="disc-h1">Find tonight's practice</h1>
+
+      <a class="disc-featured" href={`/routines/${featured.data.slug}`}>
+        <div class="disc-featured-top">
+          <span class="disc-featured-name">{featured.data.title}</span>
+          <span class="disc-featured-min">{featured.data.minutes} min</span>
+        </div>
+        <div class="disc-featured-poses">
+          {featuredPoses.map((p) => (
+            <span class="disc-fp">
+              {p.img ? <img src={p.img} alt="" loading="lazy" /> : <span class="disc-fp-blank" />}
+              <span class="disc-fp-name">{p.name}</span>
+            </span>
+          ))}
+        </div>
+        <span class="disc-featured-go">Begin — screen-free →</span>
+      </a>
+
+      <input type="search" class="disc-search" id="disc-search" placeholder="Search the routines…" aria-label="Search the routines" />
+
+      <div class="disc-facet">
+        <span class="disc-facet-label">by area</span>
+        <div class="chips">
+          {AREAS.map((a) => (
+            <button type="button" class="chip" data-facet="area" data-value={a.key} aria-pressed="false">{a.label}</button>
+          ))}
+        </div>
+      </div>
+      <div class="disc-facet">
+        <span class="disc-facet-label">by mood</span>
+        <div class="chips">
+          {MOODS.map((m) => (
+            <button type="button" class="chip" data-facet="mood" data-value={m.key} aria-pressed="false">{m.label}</button>
+          ))}
+        </div>
+      </div>
+
+      <div class="rt3-cards disc-cards" id="disc-cards">
+        {routines.map((r) => (
+          <a class="rt3-card" href={`/routines/${r.data.slug}`}
+            data-title={r.data.title.toLowerCase()} data-area={areaKeys(r).join('|')} data-mood={moodKeys(r).join('|')}>
+            <div class="rt3-card-meta"><span>{r.data.steps.length} poses · {r.data.minutes} min</span></div>
+            <h2 class="rt3-card-title">{r.data.title}</h2>
+            <p class="rt3-card-benefit">{r.data.tagline ?? r.data.summary}</p>
+            <span class="rt3-card-go">Begin — screen-free →</span>
+          </a>
+        ))}
+      </div>
+      <p class="disc-none" id="disc-none" hidden>No routines match — try another area or mood.</p>
+
+      <div class="disc-foot">
+        <a class="disc-build" href="/routines/builder">Nothing quite fits? Build your own →</a>
+        <a class="disc-switch" href="/routines?fork=1">← choose differently</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('#disc-cards .rt3-card'));
+  const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.disc-facet .chip'));
+  const search = document.getElementById('disc-search') as HTMLInputElement;
+  const none = document.getElementById('disc-none')!;
+  const active: Record<string, Set<string>> = { area: new Set(), mood: new Set() };
+  const split = (v?: string) => (v ? v.split('|').filter(Boolean) : []);
+
+  function apply() {
+    const q = search.value.trim().toLowerCase();
+    let shown = 0;
+    for (const c of cards) {
+      const okA = active.area.size === 0 || split(c.dataset.area).some((x) => active.area.has(x));
+      const okM = active.mood.size === 0 || split(c.dataset.mood).some((x) => active.mood.has(x));
+      const okQ = !q || c.dataset.title!.includes(q);
+      const show = okA && okM && okQ;
+      c.hidden = !show;
+      if (show) shown++;
+    }
+    none.hidden = shown > 0;
+  }
+  chips.forEach((chip) => chip.addEventListener('click', () => {
+    const set = active[chip.dataset.facet!], v = chip.dataset.value!;
+    if (set.has(v)) { set.delete(v); chip.setAttribute('aria-pressed', 'false'); chip.classList.remove('active'); }
+    else { set.add(v); chip.setAttribute('aria-pressed', 'true'); chip.classList.add('active'); }
+    apply();
+  }));
+  search.addEventListener('input', apply);
+</script>
