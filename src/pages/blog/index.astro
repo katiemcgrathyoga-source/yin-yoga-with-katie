@@ -6,6 +6,11 @@ const posts = (await getCollection('blog'))
   .filter((p) => !p.data.draft)
   .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
 const fmt = (d: Date) => new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(d);
+const readMin = (body: string | undefined) => Math.max(1, Math.round((body || '').split(/\s+/).filter(Boolean).length / 200));
+
+// Featured = most recent post that has a lead image; the rest fall into the list.
+const featured = posts.find((p) => p.data.hero) ?? posts[0];
+const rest = posts.filter((p) => p !== featured);
 
 const ogImage = new URL('/og/card.png', Astro.site);
 ogImage.searchParams.set('t', 'The Journal');
@@ -13,32 +18,65 @@ ogImage.searchParams.set('s', 'Words on Yin, rest, and slowing down');
 ---
 
 <BaseLayout
-  title="Journal — Yin Yoga with Katie"
-  description="Words on Yin, rest and slowing down — notes from Katie alongside the class library."
+  title="The Journal — Yin Yoga with Katie"
+  description="Notes from Katie on Yin, rest and slowing down — alongside the free Yin Yoga class library."
   image={ogImage.href}
 >
-  <div class="wrap">
-    <header class="hero">
-      <p class="eyebrow">Yin Yoga with Katie</p>
-      <h1>Journal</h1>
-      <p class="alt">words on Yin, rest, and slowing down</p>
+  <div class="jindex">
+    <header class="ji-hero">
+      <p class="ji-eyebrow">yin yoga with katie</p>
+      <h1>The Journal</h1>
+      <p class="ji-sub">Notes from Katie on Yin, rest, and slowing down — written to be read the way the classes are practised: slowly.</p>
     </header>
 
-    {posts.length === 0 ? (
-      <p class="empty">The first post is on its way — check back soon.</p>
-    ) : (
-      <ul class="blog-list">
-        {posts.map((p) => (
-          <li class="blog-item">
-            <a href={`/blog/${p.data.slug}`}>
-              <p class="blog-date">{fmt(p.data.published)}</p>
-              <h2 class="blog-title">{p.data.title}</h2>
-              <p class="blog-excerpt">{p.data.description}</p>
-              <span class="blog-more">Read →</span>
-            </a>
-          </li>
-        ))}
-      </ul>
+    {featured && (
+      <a class="ji-featured" href={`/blog/${featured.data.slug}/`}>
+        <span class="ji-featured-photo">
+          {featured.data.hero && <img src={featured.data.hero} alt="" loading="eager" />}
+        </span>
+        <span class="ji-featured-body">
+          <span class="ji-meta">
+            {featured.data.eyebrow_tag && <span class="ji-badge">{featured.data.eyebrow_tag}</span>}
+            <span class="ji-date">{fmt(featured.data.published)} &nbsp;·&nbsp; {readMin(featured.body)} minute read</span>
+          </span>
+          <span class="ji-featured-title">{featured.data.title}</span>
+          <span class="ji-featured-excerpt">{featured.data.description}</span>
+          <span class="ji-featured-btn">Read the post →</span>
+        </span>
+      </a>
     )}
+
+    {rest.length > 0 && (
+      <section class="ji-list-sec">
+        <div class="ji-list-head">
+          <p class="ji-eyebrow">recent entries</p>
+          <h2>More from the mat</h2>
+        </div>
+        <div class="ji-list">
+          {rest.map((p) => (
+            <a class="ji-row" href={`/blog/${p.data.slug}/`}>
+              <span class="ji-meta">
+                {p.data.eyebrow_tag && <span class="ji-cat">{p.data.eyebrow_tag}</span>}
+                <span class="ji-date">{fmt(p.data.published)}</span>
+              </span>
+              <span class="ji-row-body">
+                <span class="ji-row-main">
+                  <span class="ji-row-title">{p.data.title}</span>
+                  <span class="ji-row-excerpt">{p.data.description}</span>
+                </span>
+                <span class="ji-row-read">read →</span>
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <section class="ji-news">
+      <img class="ji-news-mark" src="/brand/submark-soft-oat.png" alt="" height="84" loading="lazy" />
+      <h2>Letters from the mat</h2>
+      <p>New journal entries and classes, sent slowly — a quiet note now and then, never more than you need.</p>
+      <a class="ji-news-btn" href="https://katiemcgrathyoga.substack.com/" target="_blank" rel="noopener noreferrer">Join on Substack</a>
+    </section>
   </div>
 </BaseLayout>

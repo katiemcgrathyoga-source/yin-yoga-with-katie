@@ -19,11 +19,21 @@ Every class I've made, in one place — and you can filter it the way your body 
 
 [Browse the library →](/)
 
+<figure>
+<img src="/blog/a-new-home-for-yin/home.jpg" alt="The Library — the filterable Yin Yoga class library at yinyogawithkatie.com" loading="lazy" />
+<figcaption>The Library — 310+ free classes, filtered by focus, length and format.</figcaption>
+</figure>
+
 ## A pose library, to understand the shapes
 
 Not just *what* to do, but *why*. Each Yin pose now has its own page — what it targets, how long to hold, the gentler option and the deeper one, and the little cues that make all the difference. And every class links straight to the poses inside it, so if you've ever wondered "wait, what's this one doing for me?", the answer is one tap away.
 
 [Explore the poses →](/poses)
+
+<figure>
+<img src="/blog/a-new-home-for-yin/poses.jpg" alt="A Yin Yoga pose page with cues, hold time and a built-in hold timer" loading="lazy" />
+<figcaption>Every pose has its own page — cues, hold times, cautions, and a built-in timer.</figcaption>
+</figure>
 
 ## Guided programs, so you never have to decide
 
@@ -36,6 +46,11 @@ This is the one I'm most excited about. If you've ever wanted a *path* rather th
 There's a calendar planner where you can lay out your practice, drop classes (or a whole program) onto the days that suit you, and send the lot to your own Google, Apple or Outlook calendar — reminders and all. Because the practice that changes you is the one you actually come back to.
 
 [Plan your practice →](/calendar)
+
+<figure>
+<img src="/blog/a-new-home-for-yin/routines.jpg" alt="Self-guided Yin Yoga routines, filterable by area and mood" loading="lazy" />
+<figcaption>Prefer no screen? Self-guided routines time each hold for you — by area, mood and length.</figcaption>
+</figure>
 
 ## And a gift to begin with
 

@@ -14,6 +14,16 @@ type Plan = { description: string; pins: Pin[] };
 
 // Photos with focal data (see the crop spec): upright → camel/caterpillar/swan; lying → banana/corpse/childs-pose.
 const PLAN: Record<string, Plan> = {
+  'yin-yoga-for-sleep': {
+    description:
+      'How Yin Yoga helps you sleep — why the slow, long holds calm a busy mind, the best poses to do before bed, and short follow-along practices to help you drift off.',
+    pins: [
+      { tpl: 'band', img: '/poses/corpse.jpg', eyebrow: 'let the day go', title: 'Yin Yoga for Sleep: A Gentle Practice for Deeper Rest', board: 'Bedtime Yoga & Yin for Sleep' },
+      { tpl: 'numbered', eyebrow: 'before bed', title: '6 Yin Yoga Poses for Better Sleep', board: 'Bedtime Yoga & Yin for Sleep',
+        items: [{ name: 'Legs up the wall', note: '5 minutes', img: '/poses/legs-up-the-wall.jpg' }, { name: 'Butterfly', note: '3 minutes', img: '/poses/butterfly.jpg' }, { name: 'Caterpillar', note: '3 minutes', img: '/poses/caterpillar.jpg' }, { name: 'Banana', note: 'each side', img: '/poses/banana.jpg' }, { name: 'Savasana', note: 'until you drift off', img: '/poses/corpse.jpg' }] },
+      { tpl: 'quote', eyebrow: 'from the journal', quote: 'You can’t force sleep — but you can make a soft place for it to find you.', title: 'You can’t force sleep', board: 'Yin Yoga Routines' },
+    ],
+  },
   'yin-yoga-for-beginners': {
     description:
       'New to Yin Yoga? What it is, how it’s different from other yoga, the three simple cues, and a gentle first practice you can do tonight — a calming beginner’s guide.',
@@ -100,6 +110,29 @@ const posePins = poses.map((pose) => {
   const clip = `${d.name_en}\n\n${d.seo_description}\n\nImage: ${img}\nLink: ${poseUrl}`;
   return { name: d.name_en, img, save, clip };
 });
+
+// Routine pins — each routine as a numbered-sequence pin (first five poses) → Yin Yoga Routines board.
+const poseBy = new Map((await getCollection('poses')).map((p) => [p.data.slug, p.data]));
+const routines = (await getCollection('routines')).sort((a, b) => a.data.title.localeCompare(b.data.title));
+const fmtHold = (secs: number, sides: number) => `${Math.max(1, Math.round(secs / 60))} min${sides === 2 ? ' each side' : ''}`;
+const routinePins = routines.map((r) => {
+  const d = r.data;
+  const items = d.steps.slice(0, 5).map((s) => {
+    const p = poseBy.get(s.pose);
+    const photo = p?.images?.[0] && !p.images[0].includes('pose-placeholder') ? p.images[0] : undefined;
+    return { name: p?.name_en ?? s.pose, note: fmtHold(s.seconds, s.sides), ...(photo ? { img: photo } : {}) };
+  });
+  const u = new URL('/pin/card.png', site);
+  u.searchParams.set('tpl', 'numbered');
+  u.searchParams.set('t', d.title);
+  u.searchParams.set('s', `${d.minutes}-minute yin routine`);
+  u.searchParams.set('items', JSON.stringify(items));
+  const img = u.href;
+  const rUrl = new URL(`/routines/${d.slug}/`, site).href;
+  const save = `https://www.pinterest.com/pin/create/button/?url=${enc(rUrl)}&media=${enc(img)}&description=${enc(d.summary)}`;
+  const clip = `${d.title}\n\n${d.summary}\n\nImage: ${img}\nLink: ${rUrl}`;
+  return { name: d.title, img, save, clip };
+});
 ---
 
 <BaseLayout title="Pin console" description="Private pinning console" noindex={true}>
@@ -131,6 +164,25 @@ const posePins = poses.map((pose) => {
         </div>
       </section>
     ))}
+
+    <section class="pins-sec">
+      <h2>Routines <span class="pins-board">→ board: Yin Yoga Routines</span></h2>
+      <p class="pins-lead">Each routine as a save-worthy numbered sequence — the pin is the practice, and it links to the timed player.</p>
+      <div class="pins-grid">
+        {routinePins.map((pin) => (
+          <div class="pincard">
+            <a href={pin.save} target="_blank" rel="noopener noreferrer" class="pincard-img">
+              <img src={pin.img} alt={pin.name} loading="lazy" width="240" height="360" />
+              <span class="pincard-tpl">{pin.name}</span>
+            </a>
+            <div class="pincard-actions">
+              <a class="pincard-save" href={pin.save} target="_blank" rel="noopener noreferrer">Save now →</a>
+              <button type="button" class="pincard-copy" data-clip={pin.clip}>Copy for scheduler</button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
 
     <section class="pins-sec">
       <h2>Poses <span class="pins-board">→ board: Yin Yoga Poses</span></h2>

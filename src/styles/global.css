@@ -758,6 +758,62 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .empty { text-align: center; color: var(--ink-soft); padding: 36px 0; }
 .show-more { text-align: center; margin: 30px 0 0; }
 
+/* ===== Journal index (blog listing) redesign ===== */
+.jindex { padding-bottom: 0; }
+.ji-hero { max-width: 640px; margin: 0 auto; text-align: center; padding: 72px 24px 56px; }
+.ji-eyebrow { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 18px; }
+.ji-hero h1 { font-family: var(--display); font-weight: 500; font-size: clamp(40px, 8vw, 58px); line-height: 1.12; color: var(--plum); margin: 0; }
+.ji-sub { font-size: 18px; line-height: 1.65; color: var(--ink-soft); max-width: 44ch; margin: 20px auto 0; }
+/* featured card */
+.ji-featured { display: grid; grid-template-columns: 340px 1fr; gap: 48px; align-items: center; max-width: 960px; margin: 0 auto; padding: 44px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 2px 12px rgba(72,84,76,0.08); text-decoration: none; color: inherit; }
+.ji-featured-photo { width: 340px; height: 420px; border-radius: 999px 999px 0 0; overflow: hidden; background: #F0E4E2; display: flex; align-items: center; justify-content: center; }
+[data-theme="dark"] .ji-featured-photo { background: var(--paper); }
+.ji-featured-photo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.ji-featured-body { display: flex; flex-direction: column; align-items: flex-start; }
+.ji-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 18px; }
+.ji-badge { font-size: 12.5px; letter-spacing: .04em; color: var(--gold-solid); background: #F0E4E2; padding: 4px 13px; border-radius: 999px; }
+[data-theme="dark"] .ji-badge { background: var(--paper); }
+.ji-date { font-size: 13px; color: var(--ink-soft); }
+.ji-featured-title { font-family: var(--display); font-weight: 500; font-size: clamp(26px, 4vw, 38px); line-height: 1.2; color: var(--plum); }
+.ji-featured:hover .ji-featured-title { color: var(--gold-solid); }
+.ji-featured-excerpt { font-size: 16px; line-height: 1.65; color: var(--ink-soft); max-width: 52ch; margin: 14px 0 26px; }
+.ji-featured-btn { display: inline-block; font-size: 14px; letter-spacing: .03em; color: var(--gold-solid); border: 1px solid var(--gold); border-radius: 999px; padding: 10px 22px; transition: background .15s, color .15s; }
+.ji-featured:hover .ji-featured-btn { background: var(--gold-solid); color: var(--paper); }
+[data-theme="dark"] .ji-featured:hover .ji-featured-btn { color: #2f3833; }
+/* list */
+.ji-list-sec { border-top: 1px solid var(--line); margin: 80px 0 0; padding: 80px 24px 48px; background: var(--paper-2); }
+.ji-list-head { text-align: center; margin-bottom: 32px; }
+.ji-list-head h2 { font-family: var(--display); font-weight: 500; font-size: 32px; color: var(--plum); margin: 8px 0 0; }
+.ji-list { max-width: 820px; margin: 0 auto; }
+.ji-row { display: block; padding: 34px 8px; border-top: 1px solid var(--line); text-decoration: none; color: inherit; transition: background .15s; }
+.ji-list .ji-row:last-child { border-bottom: 1px solid var(--line); }
+.ji-row:hover { background: var(--paper); }
+.ji-row .ji-meta { margin-bottom: 10px; }
+.ji-cat { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-solid); }
+.ji-row-body { display: flex; align-items: baseline; justify-content: space-between; gap: 32px; }
+.ji-row-main { min-width: 0; }
+.ji-row-title { display: block; font-family: var(--display); font-weight: 500; font-size: 24px; line-height: 1.25; color: var(--plum); margin-bottom: 8px; }
+.ji-row:hover .ji-row-title { color: var(--gold-solid); }
+.ji-row-excerpt { display: block; font-size: 15px; line-height: 1.6; color: var(--ink-soft); max-width: 60ch; }
+.ji-row-read { flex: 0 0 auto; font-size: 15px; color: var(--gold-solid); white-space: nowrap; }
+/* newsletter band */
+.ji-news { background: var(--plum); text-align: center; padding: 80px 24px; }
+[data-theme="dark"] .ji-news { background: var(--paper-2); }
+.ji-news-mark { display: block; margin: 0 auto 22px; height: 84px; width: auto; }
+.ji-news h2 { font-family: var(--display); font-weight: 500; font-size: 34px; color: var(--paper); margin: 0; }
+[data-theme="dark"] .ji-news h2 { color: var(--ink); }
+.ji-news p { font-size: 16px; line-height: 1.75; color: var(--paper); opacity: .85; max-width: 48ch; margin: 14px auto 28px; }
+[data-theme="dark"] .ji-news p { color: var(--ink-soft); opacity: 1; }
+.ji-news-btn { display: inline-block; border: 1px solid var(--paper); color: var(--paper); border-radius: 999px; padding: 12px 30px; font-size: 15px; letter-spacing: .03em; transition: background .15s, color .15s; }
+.ji-news-btn:hover { background: var(--paper); color: var(--plum); }
+[data-theme="dark"] .ji-news-btn { border-color: var(--ink); color: var(--ink); }
+[data-theme="dark"] .ji-news-btn:hover { background: var(--ink); color: var(--paper-2); }
+@media (max-width: 800px) {
+  .ji-featured { grid-template-columns: 1fr; gap: 26px; padding: 26px; }
+  .ji-featured-photo { width: 100%; height: 360px; }
+  .ji-row-body { flex-direction: column; gap: 8px; }
+}
+
 /* Save-this-pose to Pinterest button (pose pages) */
 .pose-share { display: flex; justify-content: center; margin: 18px 0 0; }
 .pose-pin-btn { display: inline-flex; align-items: center; gap: 9px; background: #E60023; color: #fff; font-weight: 600; font-size: 14px; letter-spacing: .02em; padding: 10px 20px; border-radius: 999px; text-decoration: none; transition: background .15s; }
@@ -894,6 +950,9 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .posecard { background: var(--paper-2); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; }
 .posecard-a { display: block; color: inherit; text-decoration: none; border: none; }
 .posecard-img img { display: block; width: 100%; height: 300px; object-fit: cover; object-position: center 45%; }
+/* for full-length poses (e.g. legs up the wall) — show the whole body, letterboxed on the card */
+.posecard-img--contain { background: var(--paper); }
+.posecard-img--contain img { object-fit: contain; height: 340px; }
 .posecard-info { padding: 22px 30px 26px; display: flex; flex-direction: column; gap: 8px; }
 .posecard-name { font-family: var(--display); font-weight: 400; font-size: 25px; color: var(--plum); }
 .posecard-hold { font-size: 14px; font-style: italic; color: var(--ink-soft); }
