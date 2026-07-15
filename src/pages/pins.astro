@@ -81,6 +81,25 @@ const cards = posts.map((post) => {
   });
   return { title: d.title, pins };
 });
+
+// Pose pins — every pose with a real photo becomes a band-template pin for the "Yin Yoga Poses" board.
+const poses = (await getCollection('poses'))
+  .filter((p) => p.data.images?.[0] && !p.data.images[0].includes('pose-placeholder'))
+  .sort((a, b) => a.data.name_en.localeCompare(b.data.name_en));
+
+const posePins = poses.map((pose) => {
+  const d = pose.data;
+  const u = new URL('/pin/card.png', site);
+  u.searchParams.set('tpl', 'band');
+  u.searchParams.set('t', d.name_en);
+  u.searchParams.set('s', 'a yin yoga pose');
+  u.searchParams.set('img', d.images[0]);
+  const img = u.href;
+  const poseUrl = new URL(`/poses/${d.slug}/`, site).href;
+  const save = `https://www.pinterest.com/pin/create/button/?url=${enc(poseUrl)}&media=${enc(img)}&description=${enc(d.seo_description)}`;
+  const clip = `${d.name_en}\n\n${d.seo_description}\n\nImage: ${img}\nLink: ${poseUrl}`;
+  return { name: d.name_en, img, save, clip };
+});
 ---
 
 <BaseLayout title="Pin console" description="Private pinning console" noindex={true}>
@@ -112,9 +131,29 @@ const cards = posts.map((post) => {
         </div>
       </section>
     ))}
+
+    <section class="pins-sec">
+      <h2>Poses <span class="pins-board">→ board: Yin Yoga Poses</span></h2>
+      <p class="pins-lead">Every pose with a photo, ready to pin. Great evergreen traffic — pin a handful a week.</p>
+      <div class="pins-grid">
+        {posePins.map((pin) => (
+          <div class="pincard">
+            <a href={pin.save} target="_blank" rel="noopener noreferrer" class="pincard-img">
+              <img src={pin.img} alt={pin.name} loading="lazy" width="240" height="360" />
+              <span class="pincard-tpl">{pin.name}</span>
+            </a>
+            <div class="pincard-actions">
+              <a class="pincard-save" href={pin.save} target="_blank" rel="noopener noreferrer">Save now →</a>
+              <button type="button" class="pincard-copy" data-clip={pin.clip}>Copy for scheduler</button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
   </div>
 
   <style>
+    .pins-board { font-family: var(--body); font-size: 15px; color: var(--ink-soft); font-weight: 400; }
     .pins { padding: 40px 22px 90px; }
     .pins h1 { font-family: var(--display); color: var(--plum); font-size: 40px; margin: 0 0 10px; }
     .pins-lead { color: var(--ink-soft); max-width: 66ch; margin: 0; line-height: 1.6; }

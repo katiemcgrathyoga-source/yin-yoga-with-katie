@@ -84,7 +84,7 @@ function listPin({ title, eyebrow: eb, items = [] }) {
       eb ? box({ fontFamily: 'Cabin', fontSize: '26px', letterSpacing: '6px', color: QUARTZ, marginBottom: '26px' }, eb.toUpperCase()) : box({ width: '0', height: '0' }),
       box({ fontFamily: 'Serif', fontSize: '66px', lineHeight: 1.25, color: OAT, maxWidth: '760px', textAlign: 'center' }, title),
     ]),
-    box({ flexDirection: 'column', flexGrow: 1, justifyContent: 'center', padding: '30px 90px 0' }, rows),
+    box({ flexDirection: 'column', flexGrow: 1, justifyContent: 'space-between', padding: '24px 90px 24px' }, rows),
     box({ justifyContent: 'center', padding: '0 0 60px' }, [wordmark(SAGE)]),
   ]);
 }
@@ -117,7 +117,7 @@ function numberedPoses({ title, eyebrow: eb, items = [] }) {
       eb ? box({ fontFamily: 'Cabin', fontSize: '24px', letterSpacing: '5px', color: ROSEWOOD, marginBottom: '20px' }, eb.toUpperCase()) : box({ width: '0', height: '0' }),
       box({ fontFamily: 'Serif', fontSize: '72px', lineHeight: 1.2, color: SAGE, maxWidth: '780px', textAlign: 'center' }, title),
     ]),
-    box({ flexDirection: 'column', flexGrow: 1, justifyContent: 'center', padding: '36px 84px 0' }, rows),
+    box({ flexDirection: 'column', flexGrow: 1, justifyContent: 'space-between', padding: '30px 84px 18px' }, rows),
     box({ justifyContent: 'center', padding: '0 0 56px' }, [wordmark(SAGE)]),
   ]);
 }
@@ -152,7 +152,7 @@ function eveningRitual({ title, eyebrow: eb, items = [] }) {
   return box({ width: '100%', height: '100%', flexDirection: 'column', textAlign: 'center', backgroundColor: SAGE, padding: '100px 90px 90px' }, [
     eyebrow(eb || 'tonight', QUARTZ),
     box({ fontFamily: 'Serif', fontSize: '72px', lineHeight: 1.22, color: OAT, marginTop: '22px', justifyContent: 'center', textAlign: 'center' }, title),
-    box({ flexDirection: 'column', flexGrow: 1, justifyContent: 'center', marginTop: '48px', textAlign: 'left' }, rows),
+    box({ flexDirection: 'column', flexGrow: 1, justifyContent: 'space-between', marginTop: '40px', textAlign: 'left' }, rows),
     box({ justifyContent: 'center', marginTop: '30px' }, [wordmark(OAT)]),
   ]);
 }
@@ -168,7 +168,7 @@ function checklist({ title, eyebrow: eb, items = [], footer }) {
   return box({ width: '100%', height: '100%', flexDirection: 'column', alignItems: 'center', textAlign: 'center', backgroundColor: WASH, padding: '90px 80px 80px' }, [
     eyebrow(eb || 'save this — start tonight', ROSEWOOD),
     box({ fontFamily: 'Serif', fontSize: '70px', lineHeight: 1.22, color: SAGE, maxWidth: '600px', marginTop: '22px', justifyContent: 'center', textAlign: 'center' }, title),
-    box({ width: '100%', flexGrow: 1, flexDirection: 'column', justifyContent: 'center', backgroundColor: CARD, border: `1.5px solid ${LINE}`, borderRadius: '24px', padding: '40px 64px', marginTop: '48px', textAlign: 'left' }, rows),
+    box({ width: '100%', flexGrow: 1, flexDirection: 'column', justifyContent: 'space-between', backgroundColor: CARD, border: `1.5px solid ${LINE}`, borderRadius: '24px', padding: '48px 64px', marginTop: '44px', textAlign: 'left' }, rows),
     footer ? box({ fontFamily: 'Cabin', fontSize: '26px', color: MUTED, marginTop: '34px' }, footer) : box({ width: '0', height: '0' }),
     box({ marginTop: '26px' }, [wordmark(SAGE)]),
   ]);
