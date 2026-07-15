@@ -2,73 +2,82 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Katie's private pinning console (noindex, unlisted). Every blog post is shown with
-// its ready-made 1000×1500 pins; click "Save to Pinterest" and pick the suggested board.
+// Katie's private pinning console (noindex, unlisted). Every post's ready-made pins,
+// rendered by the /pin function, with one-click Save + copy-for-scheduler.
 const posts = (await getCollection('blog'))
   .filter((p) => !p.data.draft)
   .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
 
-// Per-post SEO plan: target boards, pin titles, and the pin description (keyword-led).
-const PLAN: Record<string, { boards: string[]; titles: string[]; description: string }> = {
+type Item = Record<string, string>;
+type Pin = { tpl: string; title: string; board: string; eyebrow?: string; img?: string; quote?: string; footer?: string; items?: Item[] };
+type Plan = { description: string; pins: Pin[] };
+
+// Photos with focal data (see the crop spec): upright → camel/caterpillar/swan; lying → banana/corpse/childs-pose.
+const PLAN: Record<string, Plan> = {
   'yin-yoga-for-beginners': {
-    boards: ['Yin Yoga for Beginners', 'Yin Yoga Poses', 'Bedtime Yoga & Yin for Sleep'],
-    titles: [
-      'Yin Yoga for Beginners: How to Start Tonight',
-      'New to Yin? The 3 Simple Cues That Make It Work',
-      'A Gentle Beginner’s Guide to Yin Yoga',
-    ],
     description:
       'New to Yin Yoga? What it is, how it’s different from other yoga, the three simple cues, and a gentle first practice you can do tonight — a calming beginner’s guide.',
+    pins: [
+      { tpl: 'photo', img: '/poses/camel.jpg', eyebrow: 'start tonight', title: 'Yin Yoga for Beginners: How to Start Tonight', board: 'Yin Yoga for Beginners' },
+      { tpl: 'checklist', eyebrow: 'save this — start tonight', title: 'Everything a Yin Beginner Actually Needs', footer: 'the full beginner’s guide is on the blog', board: 'Yin Yoga for Beginners',
+        items: [{ text: 'a folded blanket', aside: '(no mat needed)' }, { text: 'two pillows for support' }, { text: '15 unhurried minutes' }, { text: 'no flexibility whatsoever' }] },
+      { tpl: 'numbered', eyebrow: 'to start with', title: '5 Gentle Yin Poses for Beginners', board: 'Yin Yoga Poses',
+        items: [{ name: 'Caterpillar', note: '3 minutes', img: '/poses/caterpillar.jpg' }, { name: 'Swan', note: '3 min each side', img: '/poses/swan.jpg' }, { name: "Child's pose", note: '4 minutes', img: '/poses/childs-pose.jpg' }, { name: 'Banana', note: 'each side', img: '/poses/banana.jpg' }, { name: 'Savasana', note: 'to finish', img: '/poses/corpse.jpg' }] },
+      { tpl: 'text', img: '/poses/caterpillar.jpg', eyebrow: 'begin gently', title: 'New to Yin? The 3 Simple Cues That Make It Work', board: 'Bedtime Yoga & Yin for Sleep' },
+    ],
   },
   'bedtime-yin-yoga-3-night-wind-down': {
-    boards: ['Bedtime Yoga & Yin for Sleep', 'Yin Yoga Routines', 'Yin Yoga for Beginners'],
-    titles: [
-      'Bedtime Yin Yoga: A 3-Night Wind-Down for Better Sleep',
-      'Can’t Switch Off at Night? Try This Gentle Bedtime Yin',
-      '3 Nights of Bedtime Yin to Help You Unwind',
-    ],
     description:
       'A gentle 3-night bedtime Yin Yoga wind-down — three 30-minute evening classes to help you slow down, quiet a racing mind and fall asleep more easily. No props required.',
+    pins: [
+      { tpl: 'band', img: '/poses/banana.jpg', eyebrow: 'three quiet evenings', title: 'Bedtime Yin Yoga: A Gentle 3-Night Wind-Down', board: 'Bedtime Yoga & Yin for Sleep' },
+      { tpl: 'numbered', eyebrow: 'for deeper sleep', title: '5 Yin Poses to Do in Bed Tonight', board: 'Bedtime Yoga & Yin for Sleep',
+        items: [{ name: 'Caterpillar', note: '3 minutes', img: '/poses/caterpillar.jpg' }, { name: "Child's pose", note: '4 minutes', img: '/poses/childs-pose.jpg' }, { name: 'Banana', note: 'each side', img: '/poses/banana.jpg' }, { name: 'Reclined swan', note: '3 min each side', img: '/poses/swan.jpg' }, { name: 'Savasana', note: 'until you drift off', img: '/poses/corpse.jpg' }] },
+      { tpl: 'ritual', eyebrow: 'tonight, from nine', title: 'An Unhurried Hour Before Sleep', board: 'Yin Yoga Routines',
+        items: [{ time: '9:00', text: 'lights low, phone away' }, { time: '9:10', text: 'butterfly, three quiet minutes' }, { time: '9:20', text: 'a slow twist, each side' }, { time: '9:35', text: 'legs up the wall' }, { time: '9:50', text: 'into bed, already resting' }] },
+      { tpl: 'quote', eyebrow: 'from the journal', quote: 'You don’t have to earn your rest.', title: 'You don’t have to earn your rest', board: 'Bedtime Yoga & Yin for Sleep' },
+    ],
   },
   'how-long-to-hold-yin-poses': {
-    boards: ['Yin Yoga Poses', 'Yin Yoga for Beginners', 'Yin Yoga for Flexibility'],
-    titles: [
-      'How Long to Hold Yin Yoga Poses (a Simple Guide)',
-      'Why Yin Poses Are Held So Long — and What’s Right for You',
-      'How Long Should You Hold a Yin Pose?',
-    ],
     description:
       'How long to hold Yin Yoga poses, why the holds are so long, what’s right for beginners, and how to know when it’s time to ease out.',
+    pins: [
+      { tpl: 'text', img: '/poses/caterpillar.jpg', eyebrow: 'stay a while', title: 'How Long Should You Hold Yin Yoga Poses?', board: 'Yin Yoga Poses' },
+      { tpl: 'photo', img: '/poses/swan.jpg', eyebrow: 'the simple answer', title: 'How Long to Hold Yin Yoga Poses (a Simple Guide)', board: 'Yin Yoga for Beginners' },
+      { tpl: 'quote', eyebrow: 'on the mat', quote: 'Long enough to let go.', title: 'Long enough to let go', board: 'Yin Yoga for Flexibility' },
+    ],
   },
   'a-new-home-for-yin': {
-    boards: ['Yin Yoga Routines'],
-    titles: ['A New Home for Yin — Free Classes, Poses & Routines'],
     description:
       'A calm, filterable home for every Yin Yoga class — with a pose library, guided programs, routines and a free two-hour retreat to begin.',
+    pins: [{ tpl: 'text', img: '/poses/camel.jpg', eyebrow: 'a new home', title: 'A New Home for Yin — Free Classes, Poses & Routines', board: 'Yin Yoga Routines' }],
   },
 };
 
 const site = Astro.site!;
 const enc = encodeURIComponent;
 
-function pinImage(hero: string | undefined, eyebrow: string | undefined, title: string, tpl: 'photo' | 'text') {
+function pinImage(pin: Pin) {
   const u = new URL('/pin/card.png', site);
-  u.searchParams.set('t', title);
-  if (eyebrow) u.searchParams.set('s', eyebrow);
-  if (hero) u.searchParams.set('img', hero);
-  u.searchParams.set('tpl', tpl);
+  u.searchParams.set('tpl', pin.tpl);
+  u.searchParams.set('t', pin.title);
+  if (pin.eyebrow) u.searchParams.set('s', pin.eyebrow);
+  if (pin.img) u.searchParams.set('img', pin.img);
+  if (pin.quote) u.searchParams.set('q', pin.quote);
+  if (pin.footer) u.searchParams.set('footer', pin.footer);
+  if (pin.items) u.searchParams.set('items', JSON.stringify(pin.items));
   return u.href;
 }
 
 const cards = posts.map((post) => {
   const d = post.data;
-  const plan = PLAN[d.slug] ?? { boards: ['Yin Yoga Routines'], titles: [d.title], description: d.description };
+  const plan = PLAN[d.slug] ?? { description: d.description, pins: [{ tpl: 'text', title: d.title, board: 'Yin Yoga Routines' } as Pin] };
   const postUrl = new URL(`/blog/${d.slug}/`, site).href;
-  const pins = plan.titles.map((title, i) => {
-    const tpl: 'photo' | 'text' = i % 2 === 0 && d.hero ? 'photo' : 'text';
-    const img = pinImage(d.hero, d.eyebrow_tag, title, tpl);
+  const pins = plan.pins.map((pin) => {
+    const img = pinImage(pin);
     const save = `https://www.pinterest.com/pin/create/button/?url=${enc(postUrl)}&media=${enc(img)}&description=${enc(plan.description)}`;
-    return { title, img, save, board: plan.boards[i % plan.boards.length] };
+    const clip = `${pin.title}\n\n${plan.description}\n\nImage: ${img}\nLink: ${postUrl}`;
+    return { ...pin, img, save, clip };
   });
   return { title: d.title, pins };
 });
@@ -78,8 +87,9 @@ const cards = posts.map((post) => {
   <div class="wrap pins">
     <h1>Pin console</h1>
     <p class="pins-lead">
-      Every post's ready-made pins. Click <strong>Save to Pinterest</strong>, choose the suggested board, and you're
-      done — no Canva. Pin 2–3 per post, spaced a day or two apart (Pinterest rewards fresh pins).
+      Every post's ready-made pins, rendered on-brand at 1000×1500. <strong>Save now</strong> pins immediately;
+      <strong>Copy for scheduler</strong> copies the pin's image, title, description and link so you can drop it into
+      Pinterest's native scheduler or Buffer. Pin 2–3 per post, spaced a day or two apart.
     </p>
 
     {cards.map((card) => (
@@ -89,10 +99,14 @@ const cards = posts.map((post) => {
           {card.pins.map((pin) => (
             <div class="pincard">
               <a href={pin.save} target="_blank" rel="noopener noreferrer" class="pincard-img">
-                <img src={pin.img} alt={pin.title} loading="lazy" width="220" height="330" />
+                <img src={pin.img} alt={pin.title} loading="lazy" width="240" height="360" />
+                <span class="pincard-tpl">{pin.tpl}</span>
               </a>
               <p class="pincard-board">Board: <strong>{pin.board}</strong></p>
-              <a class="pincard-save" href={pin.save} target="_blank" rel="noopener noreferrer">Save to Pinterest →</a>
+              <div class="pincard-actions">
+                <a class="pincard-save" href={pin.save} target="_blank" rel="noopener noreferrer">Save now →</a>
+                <button type="button" class="pincard-copy" data-clip={pin.clip}>Copy for scheduler</button>
+              </div>
             </div>
           ))}
         </div>
@@ -101,17 +115,36 @@ const cards = posts.map((post) => {
   </div>
 
   <style>
-    .pins { padding: 40px 22px 80px; }
+    .pins { padding: 40px 22px 90px; }
     .pins h1 { font-family: var(--display); color: var(--plum); font-size: 40px; margin: 0 0 10px; }
-    .pins-lead { color: var(--ink-soft); max-width: 60ch; margin: 0 0 8px; }
+    .pins-lead { color: var(--ink-soft); max-width: 66ch; margin: 0; line-height: 1.6; }
     .pins-sec { margin-top: 48px; border-top: 1px solid var(--line); padding-top: 28px; }
-    .pins-sec h2 { font-family: var(--display); font-weight: 400; color: var(--plum); font-size: 26px; margin: 0 0 20px; }
-    .pins-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 26px; }
+    .pins-sec h2 { font-family: var(--display); font-weight: 400; color: var(--plum); font-size: 26px; margin: 0 0 22px; }
+    .pins-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 30px; }
     .pincard { display: flex; flex-direction: column; gap: 10px; }
-    .pincard-img { display: block; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
-    .pincard-img img { width: 100%; height: auto; display: block; background: var(--paper-2); }
+    .pincard-img { position: relative; display: block; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+    .pincard-img img { width: 100%; height: auto; display: block; background: var(--paper-2); aspect-ratio: 2 / 3; object-fit: cover; }
+    .pincard-tpl { position: absolute; top: 8px; left: 8px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; background: rgba(46,52,47,.7); color: #F9F1EA; padding: 3px 9px; border-radius: 999px; }
     .pincard-board { font-size: 13.5px; color: var(--ink-soft); margin: 2px 0 0; }
-    .pincard-save { display: inline-block; text-align: center; background: #E60023; color: #fff; font-weight: 600; font-size: 14px; padding: 10px 14px; border-radius: 999px; }
+    .pincard-actions { display: flex; flex-direction: column; gap: 8px; }
+    .pincard-save { display: block; text-align: center; background: #E60023; color: #fff; font-weight: 600; font-size: 14px; padding: 10px 14px; border-radius: 999px; }
     .pincard-save:hover { background: #c9001e; color: #fff; }
+    .pincard-copy { font-family: inherit; font-size: 14px; padding: 9px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
+    .pincard-copy:hover { border-color: var(--plum); color: var(--plum); }
+    .pincard-copy.copied { border-color: var(--plum); color: var(--plum); }
   </style>
+
+  <script>
+    document.querySelectorAll<HTMLButtonElement>('.pincard-copy').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(btn.dataset.clip || '');
+          const prev = btn.textContent;
+          btn.classList.add('copied');
+          btn.textContent = 'Copied ✓';
+          setTimeout(() => { btn.classList.remove('copied'); btn.textContent = prev; }, 1600);
+        } catch (e) {}
+      });
+    });
+  </script>
 </BaseLayout>
