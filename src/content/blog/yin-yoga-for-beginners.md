@@ -5,6 +5,9 @@ description: "New to Yin Yoga? What it is, how it's different from other yoga, w
 published: 2026-07-13
 cta_program: "bedtime-reset"
 hero: "/poses/butterfly.jpg"
+hero_caption: "butterfly — a calm, welcoming first shape"
+subtitle: "start where you are"
+eyebrow_tag: "beginners"
 seo_title: "Yin Yoga for Beginners: What It Is & How to Start Tonight"
 seo_description: "New to Yin Yoga? A beginner's guide: what it is, how it differs from other yoga, what you need, the three simple cues, and a gentle first practice for tonight."
 ---
@@ -49,12 +52,33 @@ You could build a lovely first practice from just these — each links to its ow
 - **[Reclined Twist](/poses/reclined-twist)** — a gentle wring-out for the spine, lying down.
 - **[Corpse Pose](/poses/corpse)** — the final rest, where the practice quietly settles.
 
+<aside class="posecard" data-orient>
+<a class="posecard-a" href="/poses/butterfly">
+<span class="posecard-img"><img src="/poses/butterfly.jpg" alt="" loading="lazy" /></span>
+<span class="posecard-info"><span class="ctile-eyebrow">from the pose guide</span><span class="posecard-name">Butterfly</span><span class="posecard-hold">Baddha Konasana · hold 3–5 minutes</span><span class="posecard-desc">Soles of the feet together and a soft fold forward — a calming opener for the hips, inner thighs and the whole back line. One of the friendliest shapes to begin with.</span><span class="ctile-watch">view this pose →</span></span>
+</a>
+</aside>
+
 ## How to start tonight
 
-Two easy ways in, both free:
+Two easy ways in, both free. Press play on a beginner class and follow along from start to finish:
 
-- **Press play on a beginner class.** [25-Minute Yin Yoga for Complete Beginners](/videos/25-minute-yin-yoga-for-complete-beginners) walks you through everything, gently, from start to finish — or try the [30-minute no-props beginner class](/videos/yin-yoga-for-beginners-30-minutes-no-props).
-- **Follow a short routine with a timer.** If you'd rather practise without a screen narrating every second, a [self-guided routine](/routines) counts each hold for you and chimes softly when it's time to move on.
+<div class="ctile-2up">
+<aside class="ctile ctile--sm">
+<a class="ctile-a" href="/videos/25-minute-yin-yoga-for-complete-beginners">
+<span class="ctile-thumb"><img src="https://i.ytimg.com/vi/ENOBK0Q1GgM/hqdefault.jpg" alt="" loading="lazy" /><span class="ctile-play" aria-hidden="true"></span><span class="ctile-dur">25 min</span></span>
+<span class="ctile-info"><span class="ctile-text"><span class="ctile-title">25-Minute Yin for Complete Beginners</span><span class="ctile-meta">25 minutes · beginner</span></span><span class="ctile-watch">watch →</span></span>
+</a>
+</aside>
+<aside class="ctile ctile--sm">
+<a class="ctile-a" href="/videos/yin-yoga-for-beginners-30-minutes-no-props">
+<span class="ctile-thumb"><img src="https://i.ytimg.com/vi/juWZIHm1xDA/hqdefault.jpg" alt="" loading="lazy" /><span class="ctile-play" aria-hidden="true"></span><span class="ctile-dur">34 min</span></span>
+<span class="ctile-info"><span class="ctile-text"><span class="ctile-title">Yin Yoga for Beginners — No Props</span><span class="ctile-meta">34 minutes · beginner</span></span><span class="ctile-watch">watch →</span></span>
+</a>
+</aside>
+</div>
+
+Or, if you'd rather practise without a screen narrating every second, a [self-guided routine](/routines) counts each hold for you and chimes softly when it's time to move on.
 
 Practise in the hour before bed if you can — dim the lights, get warm, and let it be the slow end to your day.
 

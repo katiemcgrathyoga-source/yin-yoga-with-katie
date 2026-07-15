@@ -5,6 +5,9 @@ description: "How long to hold Yin Yoga poses — the simple answer, why the hol
 published: 2026-07-13
 cta_program: "full-body-flexibility"
 hero: "/poses/caterpillar.jpg"
+hero_caption: "caterpillar — a long, patient forward fold"
+subtitle: "long enough to let go"
+eyebrow_tag: "practice"
 seo_title: "How Long to Hold Yin Yoga Poses (And Why It Matters)"
 seo_description: "How long should you hold Yin Yoga poses? The simple answer, why the holds are so long, what's right for beginners, and how to know when to ease out."
 ---
@@ -27,6 +30,13 @@ Use these as a starting point, not a rule:
 - **Two-sided poses** (anything "per side"): give each side its own full hold.
 
 The honest answer to "how long?" is: *long enough that the shape has time to work, and no longer than you can stay comfortably with your breath.* Some pose pages here suggest a range — see **[Caterpillar](/poses/caterpillar)**, **[Sleeping Swan](/poses/sleeping-swan)** or **[Saddle](/poses/saddle)** for a sense of typical hold times — but your body has the final say on any given day.
+
+<aside class="posecard" data-orient>
+<a class="posecard-a" href="/poses/caterpillar">
+<span class="posecard-img"><img src="/poses/caterpillar.jpg" alt="" loading="lazy" /></span>
+<span class="posecard-info"><span class="ctile-eyebrow">from the pose guide</span><span class="posecard-name">Caterpillar</span><span class="posecard-hold">Paschimottanasana · hold 3–5 minutes</span><span class="posecard-desc">A long, calming forward fold down the back body. Let the spine round and the head grow heavy — a good place to feel how a hold changes the longer you stay.</span><span class="ctile-watch">view this pose →</span></span>
+</a>
+</aside>
 
 ## Is holding *longer* always better?
 

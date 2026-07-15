@@ -173,6 +173,9 @@ const blog = defineCollection({
     updated: z.coerce.date().optional(),
     draft: z.boolean().default(false),
     hero: z.string().optional(), // optional lead image (path under /public)
+    hero_caption: z.string().optional(), // italic caption under the hero image
+    subtitle: z.string().optional(), // short italic line under the H1
+    eyebrow_tag: z.string().optional(), // topic shown after "the journal ·" in the hero eyebrow
     cta_program: z.string().optional(), // slug of the program to CTA to (else the free-retreat CTA)
     seo_title: z.string().optional(),
     seo_description: z.string().optional(),

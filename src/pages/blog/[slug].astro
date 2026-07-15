@@ -18,6 +18,8 @@ const d = post.data;
 const ctaProgram = d.cta_program ? PROGRAMS.find((p) => p.slug === d.cta_program) : undefined;
 const { Content } = await render(post);
 const fmt = (date: Date) => new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(date);
+const words = (post.body ?? '').split(/\s+/).filter(Boolean).length;
+const readMin = Math.max(1, Math.round(words / 200));
 
 const ogImage = new URL('/og/card.png', Astro.site);
 ogImage.searchParams.set('t', d.title.slice(0, 70));
@@ -45,6 +47,15 @@ const jsonLd = {
   },
   mainEntityOfPage: new URL(`/blog/${d.slug}`, Astro.site).href,
 };
+
+// Share links — let readers distribute the post for us (Pinterest is the priority channel).
+const postUrl = new URL(`/blog/${d.slug}/`, Astro.site).href;
+const enc = encodeURIComponent;
+const shareLinks = {
+  pinterest: `https://www.pinterest.com/pin/create/button/?url=${enc(postUrl)}&media=${enc(heroAbs)}&description=${enc(d.description)}`,
+  facebook: `https://www.facebook.com/sharer/sharer.php?u=${enc(postUrl)}`,
+  x: `https://twitter.com/intent/tweet?url=${enc(postUrl)}&text=${enc(d.title)}`,
+};
 ---
 
 <BaseLayout
@@ -54,33 +65,33 @@ const jsonLd = {
   image={ogImage.href}
   jsonLd={jsonLd}
 >
-  <div class="wrap blog-post">
-    <p class="blog-back"><a href="/blog">← Journal</a></p>
-    <header class="hero blog-post-hero">
-      <p class="eyebrow">{fmt(d.published)}</p>
+  <article class="journal">
+    <p class="jr-back"><a href="/blog">← the journal</a></p>
+
+    <header class="jr-hero">
+      <p class="jr-eyebrow">the journal{d.eyebrow_tag ? ` · ${d.eyebrow_tag}` : ''}</p>
       <h1>{d.title}</h1>
+      {d.subtitle && <p class="jr-sub">{d.subtitle}</p>}
+      <p class="jr-meta">{fmt(d.published)} &nbsp;·&nbsp; {readMin} minute read &nbsp;·&nbsp; by Katie</p>
+      {d.hero && (
+        <figure class="jr-heroimg" data-orient>
+          <img src={d.hero} alt="" loading="eager" />
+          {d.hero_caption && <figcaption>{d.hero_caption}</figcaption>}
+        </figure>
+      )}
     </header>
 
-    {d.hero && (
-      <figure class="blog-hero-img">
-        <img src={d.hero} alt="" loading="eager" />
-      </figure>
-    )}
-
-    <article class="prose blog-prose">
+    <div class="jr-body prose blog-prose">
       <Content />
-    </article>
+    </div>
 
-    <aside class="blog-author">
-      <img src="/brand/submark-deep-sage.png" alt="" class="blog-author-mark" width="56" height="47" loading="lazy" />
-      <div>
-        <p class="blog-author-name">Katie McGrath</p>
-        <p class="blog-author-bio">
-          Yin Yoga &amp; Yoga Nidra teacher based in Taipei, teaching since 2018. She makes slow,
-          gentle classes for tired minds and bodies. <a href="/blog">More from the Journal →</a>
-        </p>
-      </div>
-    </aside>
+    <div class="blog-share" data-share-url={postUrl}>
+      <span class="blog-share-label">Share this</span>
+      <a class="blog-share-btn blog-share-pin" href={shareLinks.pinterest} target="_blank" rel="noopener noreferrer">Save to Pinterest</a>
+      <a class="blog-share-btn" href={shareLinks.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>
+      <a class="blog-share-btn" href={shareLinks.x} target="_blank" rel="noopener noreferrer">X</a>
+      <button type="button" class="blog-share-btn blog-share-copy">Copy link</button>
+    </div>
 
     {ctaProgram ? (
       <aside class="blog-cta">
@@ -92,5 +103,48 @@ const jsonLd = {
     ) : (
       <Cta />
     )}
-  </div>
+
+    <aside class="jr-author">
+      <span class="jr-author-badge">
+        <img src="/brand/submark-deep-sage.png" alt="" width="44" height="37" loading="lazy" />
+      </span>
+      <div class="jr-author-copy">
+        <p class="jr-author-eyebrow">written by</p>
+        <p class="jr-author-name">Katie McGrath</p>
+        <p class="jr-author-bio">
+          Yin Yoga &amp; Yoga Nidra teacher based in Taipei, teaching since 2018. She makes slow,
+          gentle classes for tired minds and bodies. <a href="/blog">More from the Journal →</a>
+        </p>
+      </div>
+      <p class="jr-author-sign" aria-hidden="true">katie</p>
+    </aside>
+  </article>
+
+  <script>
+    // Copy-link share button
+    document.querySelectorAll<HTMLButtonElement>('.blog-share-copy').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const url = btn.closest('.blog-share')?.getAttribute('data-share-url') || location.href;
+        try {
+          await navigator.clipboard.writeText(url);
+          const prev = btn.textContent;
+          btn.textContent = 'Copied ✓';
+          setTimeout(() => { btn.textContent = prev; }, 1600);
+        } catch (e) {}
+      });
+    });
+
+    // Orientation-aware framing: portrait photos take the arch, landscape (lying-down) get the rounded frame.
+    document.querySelectorAll<HTMLElement>('[data-orient]').forEach((el) => {
+      const img = el.querySelector('img');
+      if (!img) return;
+      const apply = () => {
+        const landscape = img.naturalWidth >= img.naturalHeight;
+        el.classList.toggle('is-landscape', landscape);
+        el.classList.toggle('is-portrait', !landscape);
+      };
+      if (img.complete && img.naturalWidth) apply();
+      else img.addEventListener('load', apply);
+    });
+  </script>
 </BaseLayout>

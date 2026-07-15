@@ -62,6 +62,7 @@ const nav = [
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/png" href="/brand/submark-deep-sage.png" />
+    <link rel="alternate" type="application/rss+xml" title="Yin Yoga with Katie — Journal" href="/rss.xml" />
 
     <!-- Open Graph -->
     <meta property="og:title" content={ogTitle} />
@@ -100,7 +101,8 @@ const nav = [
         try {
           var q = new URLSearchParams(location.search).get('theme');
           var t = (q === 'dark' || q === 'light') ? q : localStorage.getItem('theme');
-          if (t !== 'dark' && t !== 'light') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          // Default to light everywhere; dark only when the visitor explicitly chooses it.
+          if (t !== 'dark' && t !== 'light') t = 'light';
           document.documentElement.dataset.theme = t;
         } catch (e) {}
       })();

@@ -33,19 +33,4 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </div>
   </div>
 
-  <script>
-    // Remember the choice so returning visitors skip the fork. `?fork` forces it.
-    const KEY = 'yin-routine-choice';
-    const params = new URLSearchParams(location.search);
-    if (!params.has('fork')) {
-      try {
-        const c = localStorage.getItem(KEY);
-        if (c === 'prebuilt') location.replace('/routines/all');
-        else if (c === 'build') location.replace('/routines/builder');
-      } catch (e) {}
-    }
-    document.querySelectorAll<HTMLAnchorElement>('[data-choice]').forEach((a) =>
-      a.addEventListener('click', () => { try { localStorage.setItem(KEY, a.dataset.choice!); } catch (e) {} }),
-    );
-  </script>
 </BaseLayout>
