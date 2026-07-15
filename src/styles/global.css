@@ -796,6 +796,8 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .jr-body.blog-prose li::marker { color: var(--gold-solid); }
 .jr-body.blog-prose hr { border: none; border-top: 1px solid var(--line); margin: 52px 0 0; }
 .jr-body.blog-prose hr + p { margin-top: 32px; }
+/* keep bold text in the body font (not the serif) so the type stays consistent */
+.jr-body.blog-prose strong, .jr-body.blog-prose b { font-family: var(--body); font-weight: 600; color: inherit; }
 /* reset framing on component images so tiles/cards aren't styled like inline photos */
 .jr-body .ctile img, .jr-body .posecard img, .jr-body .img-2up img, .jr-body .img-break img { margin: 0; border: none; border-radius: 0; }
 /* photos inside a post: markdown images + figure/caption */
@@ -804,24 +806,30 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .blog-prose figure img { margin: 0; }
 .blog-prose figcaption { margin-top: 8px; font-size: 13.5px; color: var(--ink-soft); text-align: center; font-style: italic; }
 /* share row — lets readers distribute the post; Pinterest is the priority pill */
-.blog-share { max-width: 66ch; margin: 48px auto 0; padding: 22px 24px 0; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.blog-share { max-width: 66ch; margin: 48px auto 0; padding: 22px 24px 0; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 .blog-share-label { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); margin-right: 4px; }
-.blog-share-btn { font-family: inherit; font-size: 14px; line-height: 1; padding: 9px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; text-decoration: none; transition: border-color .15s, background .15s, color .15s; }
-.blog-share-btn:hover { border-color: var(--plum); color: var(--plum); }
-.blog-share-pin { background: var(--plum); border-color: var(--plum); color: var(--paper); }
-.blog-share-pin:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
-[data-theme="dark"] .blog-share-pin { color: #2f3833; }
-/* author block (E-E-A-T) — badge, bio, script signature */
-.jr-author { max-width: 66ch; margin: 56px auto 0; padding: 44px 24px 0; border-top: 1px solid var(--line); display: flex; gap: 22px; align-items: center; }
-.jr-author-badge { flex: 0 0 auto; width: 72px; height: 72px; border-radius: 999px; background: var(--paper-2); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; }
-.jr-author-badge img { opacity: .9; }
-.jr-author-copy { flex: 1; min-width: 0; }
+.blog-share-btn { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink-soft); cursor: pointer; text-decoration: none; transition: transform .15s, border-color .15s, background .15s; }
+.blog-share-btn:hover { transform: translateY(-1px); border-color: var(--ink-soft); }
+.blog-share-btn svg { width: 19px; height: 19px; display: block; }
+.blog-share-pin { background: #E60023; border-color: #E60023; }
+.blog-share-pin:hover { background: #c9001e; border-color: #c9001e; }
+.blog-share-pin svg { fill: #fff; }
+.blog-share-fb svg { fill: #1877F2; }
+.blog-share-x svg { fill: var(--ink); }
+.blog-share-copy svg { fill: none; stroke: var(--ink-soft); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.blog-share-copy.copied { border-color: var(--plum); }
+.blog-share-copy.copied svg { stroke: var(--plum); }
+/* author block (E-E-A-T) — photo, bio, script signature */
+.jr-author { max-width: 66ch; margin: 56px auto 0; padding: 44px 24px 0; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 22px; align-items: center; }
+.jr-author-photo { flex: 0 0 auto; width: 84px; height: 84px; border-radius: 999px; overflow: hidden; background: var(--paper-2); border: 1px solid var(--line); }
+.jr-author-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+.jr-author-copy { flex: 1; min-width: 200px; }
 .jr-author-eyebrow { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); margin: 0; }
 .jr-author-name { font-family: var(--display); font-weight: 400; font-size: 22px; color: var(--plum); margin: 6px 0 0; }
 .jr-author-bio { font-size: 14.5px; line-height: 1.65; color: var(--ink-soft); margin: 8px 0 0; }
 .jr-author-bio a { color: var(--gold-solid); }
-.jr-author-sign { flex: 0 0 auto; font-family: var(--script); font-size: 46px; color: var(--gold); margin: 0; line-height: 1; }
-@media (max-width: 640px) { .jr-author-sign { display: none; } }
+.jr-author-sign { flex: 0 0 auto; font-family: var(--script); font-size: 50px; color: var(--gold); margin: 0; line-height: 1; }
+@media (max-width: 560px) { .jr-author { gap: 16px; } .jr-author-sign { font-size: 44px; margin-top: 4px; } }
 /* per-post program CTA — sage panel (the blueprint's single conversion ask) */
 .blog-cta { max-width: 66ch; margin: 48px auto 0; padding: 44px 40px; border: none; border-radius: 20px; background: var(--plum); text-align: center; }
 [data-theme="dark"] .blog-cta { background: var(--paper-2); }
@@ -857,7 +865,13 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .ctile-eyebrow { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-solid); }
 .ctile-title { font-family: var(--display); font-weight: 400; font-size: 23px; line-height: 1.3; color: var(--plum); }
 .ctile-meta { font-size: 14px; color: var(--ink-soft); }
-.ctile-watch { flex: 0 0 auto; padding: 11px 24px; border-radius: 999px; border: 1px solid var(--gold-solid); color: var(--gold-solid); font-size: 14px; letter-spacing: .04em; white-space: nowrap; transition: background .15s, color .15s; }
+.ctile-watch { flex: 0 0 auto; padding: 11px 24px; border-radius: 999px; border: 1px solid var(--gold-solid); color: var(--gold-solid); font-size: 14px; letter-spacing: .04em; white-space: nowrap; text-align: center; transition: background .15s, color .15s; }
+/* on narrow screens the info block stacks so the title isn't squeezed beside the pill */
+@media (max-width: 560px) {
+  .ctile-info { flex-direction: column; align-items: flex-start; gap: 14px; padding: 18px 20px 20px; }
+  .ctile-title { font-size: 21px; }
+  .ctile-watch { align-self: stretch; }
+}
 .ctile-a:hover .ctile-watch { background: var(--gold-solid); color: var(--paper); }
 [data-theme="dark"] .ctile-a:hover .ctile-watch { color: #2f3833; }
 .ctile-a:hover .ctile-title { color: var(--plum-deep); }

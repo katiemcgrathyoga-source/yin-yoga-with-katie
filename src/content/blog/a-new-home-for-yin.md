@@ -3,6 +3,8 @@ title: "A new home for Yin"
 slug: "a-new-home-for-yin"
 description: "After years of classes scattered across YouTube, there's finally one calm place to find exactly the practice you need — and it's free. A tour of the new site."
 published: 2026-07-12
+subtitle: "one calm place for the practice"
+eyebrow_tag: "a new home"
 seo_title: "A New Home for Yin — Introducing the Yin Yoga with Katie Library"
 seo_description: "A calm, filterable home for every Yin Yoga class — with a pose library, guided programs, a practice calendar, and a free two-hour retreat to begin."
 ---
