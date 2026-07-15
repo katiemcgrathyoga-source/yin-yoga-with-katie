@@ -1,0 +1,117 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Katie's private pinning console (noindex, unlisted). Every blog post is shown with
+// its ready-made 1000×1500 pins; click "Save to Pinterest" and pick the suggested board.
+const posts = (await getCollection('blog'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
+
+// Per-post SEO plan: target boards, pin titles, and the pin description (keyword-led).
+const PLAN: Record<string, { boards: string[]; titles: string[]; description: string }> = {
+  'yin-yoga-for-beginners': {
+    boards: ['Yin Yoga for Beginners', 'Yin Yoga Poses', 'Bedtime Yoga & Yin for Sleep'],
+    titles: [
+      'Yin Yoga for Beginners: How to Start Tonight',
+      'New to Yin? The 3 Simple Cues That Make It Work',
+      'A Gentle Beginner’s Guide to Yin Yoga',
+    ],
+    description:
+      'New to Yin Yoga? What it is, how it’s different from other yoga, the three simple cues, and a gentle first practice you can do tonight — a calming beginner’s guide.',
+  },
+  'bedtime-yin-yoga-3-night-wind-down': {
+    boards: ['Bedtime Yoga & Yin for Sleep', 'Yin Yoga Routines', 'Yin Yoga for Beginners'],
+    titles: [
+      'Bedtime Yin Yoga: A 3-Night Wind-Down for Better Sleep',
+      'Can’t Switch Off at Night? Try This Gentle Bedtime Yin',
+      '3 Nights of Bedtime Yin to Help You Unwind',
+    ],
+    description:
+      'A gentle 3-night bedtime Yin Yoga wind-down — three 30-minute evening classes to help you slow down, quiet a racing mind and fall asleep more easily. No props required.',
+  },
+  'how-long-to-hold-yin-poses': {
+    boards: ['Yin Yoga Poses', 'Yin Yoga for Beginners', 'Yin Yoga for Flexibility'],
+    titles: [
+      'How Long to Hold Yin Yoga Poses (a Simple Guide)',
+      'Why Yin Poses Are Held So Long — and What’s Right for You',
+      'How Long Should You Hold a Yin Pose?',
+    ],
+    description:
+      'How long to hold Yin Yoga poses, why the holds are so long, what’s right for beginners, and how to know when it’s time to ease out.',
+  },
+  'a-new-home-for-yin': {
+    boards: ['Yin Yoga Routines'],
+    titles: ['A New Home for Yin — Free Classes, Poses & Routines'],
+    description:
+      'A calm, filterable home for every Yin Yoga class — with a pose library, guided programs, routines and a free two-hour retreat to begin.',
+  },
+};
+
+const site = Astro.site!;
+const enc = encodeURIComponent;
+
+function pinImage(hero: string | undefined, eyebrow: string | undefined, title: string, tpl: 'photo' | 'text') {
+  const u = new URL('/pin/card.png', site);
+  u.searchParams.set('t', title);
+  if (eyebrow) u.searchParams.set('s', eyebrow);
+  if (hero) u.searchParams.set('img', hero);
+  u.searchParams.set('tpl', tpl);
+  return u.href;
+}
+
+const cards = posts.map((post) => {
+  const d = post.data;
+  const plan = PLAN[d.slug] ?? { boards: ['Yin Yoga Routines'], titles: [d.title], description: d.description };
+  const postUrl = new URL(`/blog/${d.slug}/`, site).href;
+  const pins = plan.titles.map((title, i) => {
+    const tpl: 'photo' | 'text' = i % 2 === 0 && d.hero ? 'photo' : 'text';
+    const img = pinImage(d.hero, d.eyebrow_tag, title, tpl);
+    const save = `https://www.pinterest.com/pin/create/button/?url=${enc(postUrl)}&media=${enc(img)}&description=${enc(plan.description)}`;
+    return { title, img, save, board: plan.boards[i % plan.boards.length] };
+  });
+  return { title: d.title, pins };
+});
+---
+
+<BaseLayout title="Pin console" description="Private pinning console" noindex={true}>
+  <div class="wrap pins">
+    <h1>Pin console</h1>
+    <p class="pins-lead">
+      Every post's ready-made pins. Click <strong>Save to Pinterest</strong>, choose the suggested board, and you're
+      done — no Canva. Pin 2–3 per post, spaced a day or two apart (Pinterest rewards fresh pins).
+    </p>
+
+    {cards.map((card) => (
+      <section class="pins-sec">
+        <h2>{card.title}</h2>
+        <div class="pins-grid">
+          {card.pins.map((pin) => (
+            <div class="pincard">
+              <a href={pin.save} target="_blank" rel="noopener noreferrer" class="pincard-img">
+                <img src={pin.img} alt={pin.title} loading="lazy" width="220" height="330" />
+              </a>
+              <p class="pincard-board">Board: <strong>{pin.board}</strong></p>
+              <a class="pincard-save" href={pin.save} target="_blank" rel="noopener noreferrer">Save to Pinterest →</a>
+            </div>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <style>
+    .pins { padding: 40px 22px 80px; }
+    .pins h1 { font-family: var(--display); color: var(--plum); font-size: 40px; margin: 0 0 10px; }
+    .pins-lead { color: var(--ink-soft); max-width: 60ch; margin: 0 0 8px; }
+    .pins-sec { margin-top: 48px; border-top: 1px solid var(--line); padding-top: 28px; }
+    .pins-sec h2 { font-family: var(--display); font-weight: 400; color: var(--plum); font-size: 26px; margin: 0 0 20px; }
+    .pins-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 26px; }
+    .pincard { display: flex; flex-direction: column; gap: 10px; }
+    .pincard-img { display: block; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+    .pincard-img img { width: 100%; height: auto; display: block; background: var(--paper-2); }
+    .pincard-board { font-size: 13.5px; color: var(--ink-soft); margin: 2px 0 0; }
+    .pincard-save { display: inline-block; text-align: center; background: #E60023; color: #fff; font-weight: 600; font-size: 14px; padding: 10px 14px; border-radius: 999px; }
+    .pincard-save:hover { background: #c9001e; color: #fff; }
+  </style>
+</BaseLayout>

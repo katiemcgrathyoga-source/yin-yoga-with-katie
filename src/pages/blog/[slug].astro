@@ -53,8 +53,15 @@ const jsonLd = {
 // Share links — let readers distribute the post for us (Pinterest is the priority channel).
 const postUrl = new URL(`/blog/${d.slug}/`, Astro.site).href;
 const enc = encodeURIComponent;
+// Branded 1000×1500 pin image (rendered by the /pin function) — used as the Pinterest media
+// so saving the post pins an on-brand vertical image, not the landscape hero.
+const pinImg = new URL('/pin/card.png', Astro.site);
+pinImg.searchParams.set('t', d.title);
+if (d.eyebrow_tag) pinImg.searchParams.set('s', d.eyebrow_tag);
+if (d.hero) pinImg.searchParams.set('img', d.hero);
+pinImg.searchParams.set('tpl', d.hero ? 'photo' : 'text');
 const shareLinks = {
-  pinterest: `https://www.pinterest.com/pin/create/button/?url=${enc(postUrl)}&media=${enc(heroAbs)}&description=${enc(d.description)}`,
+  pinterest: `https://www.pinterest.com/pin/create/button/?url=${enc(postUrl)}&media=${enc(pinImg.href)}&description=${enc(d.description)}`,
   facebook: `https://www.facebook.com/sharer/sharer.php?u=${enc(postUrl)}`,
   x: `https://twitter.com/intent/tweet?url=${enc(postUrl)}&text=${enc(d.title)}`,
 };
