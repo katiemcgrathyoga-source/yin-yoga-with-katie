@@ -1,226 +1,175 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { journalPinVariants, type JournalVariant } from '../lib/journalPin';
 
-// Katie's private pinning console (noindex, unlisted). Every post's ready-made pins,
-// rendered by the /pin function, with one-click Save + copy-for-scheduler.
+// Katie's private pinning console (noindex, unlisted). Every journal post, pose and
+// routine, rendered by /pin/journal.png in all four handoff variants — pick the one
+// that fits the board, Save it, or copy the image+link for a scheduler.
+const site = Astro.site!;
+const enc = encodeURIComponent;
+const VARIANTS: JournalVariant[] = ['arch', 'oat-frame', 'split', 'card'];
+
+type Card = {
+  title: string;
+  board: string;
+  url: string;
+  description: string;
+  pins: { variant: JournalVariant; img: string; save: string; clip: string }[];
+};
+
+// Build the four-variant pin set for one content item.
+function makeCard(o: {
+  title: string;
+  board: string;
+  path: string;
+  description: string;
+  eyebrow: string;
+  meta?: string;
+  excerpt?: string;
+  photo?: string | null;
+}): Card {
+  const url = new URL(o.path, site).href;
+  const variants = journalPinVariants(site, {
+    title: o.title,
+    eyebrow: o.eyebrow,
+    meta: o.meta,
+    excerpt: o.excerpt,
+    photo: o.photo,
+  });
+  const pins = VARIANTS.map((variant) => {
+    const img = variants[variant];
+    const save = `https://www.pinterest.com/pin/create/button/?url=${enc(url)}&media=${enc(img)}&description=${enc(o.description)}`;
+    const clip = `${o.title}\n\n${o.description}\n\nImage: ${img}\nLink: ${url}`;
+    return { variant, img, save, clip };
+  });
+  return { title: o.title, board: o.board, url, description: o.description, pins };
+}
+
+const realPhoto = (p?: string) => (p && !p.includes('pose-placeholder') ? p : null);
+
+// Journal posts.
 const posts = (await getCollection('blog'))
   .filter((p) => !p.data.draft)
   .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
-
-type Item = Record<string, string>;
-type Pin = { tpl: string; title: string; board: string; eyebrow?: string; img?: string; quote?: string; footer?: string; items?: Item[] };
-type Plan = { description: string; pins: Pin[] };
-
-// Photos with focal data (see the crop spec): upright → camel/caterpillar/swan; lying → banana/corpse/childs-pose.
-const PLAN: Record<string, Plan> = {
-  'yin-yoga-for-sleep': {
-    description:
-      'How Yin Yoga helps you sleep — why the slow, long holds calm a busy mind, the best poses to do before bed, and short follow-along practices to help you drift off.',
-    pins: [
-      { tpl: 'band', img: '/poses/corpse.jpg', eyebrow: 'let the day go', title: 'Yin Yoga for Sleep: A Gentle Practice for Deeper Rest', board: 'Bedtime Yoga & Yin for Sleep' },
-      { tpl: 'numbered', eyebrow: 'before bed', title: '6 Yin Yoga Poses for Better Sleep', board: 'Bedtime Yoga & Yin for Sleep',
-        items: [{ name: 'Legs up the wall', note: '5 minutes', img: '/poses/legs-up-the-wall.jpg' }, { name: 'Butterfly', note: '3 minutes', img: '/poses/butterfly.jpg' }, { name: 'Caterpillar', note: '3 minutes', img: '/poses/caterpillar.jpg' }, { name: 'Banana', note: 'each side', img: '/poses/banana.jpg' }, { name: 'Savasana', note: 'until you drift off', img: '/poses/corpse.jpg' }] },
-      { tpl: 'quote', eyebrow: 'from the journal', quote: 'You can’t force sleep — but you can make a soft place for it to find you.', title: 'You can’t force sleep', board: 'Yin Yoga Routines' },
-    ],
-  },
-  'yin-yoga-for-beginners': {
-    description:
-      'New to Yin Yoga? What it is, how it’s different from other yoga, the three simple cues, and a gentle first practice you can do tonight — a calming beginner’s guide.',
-    pins: [
-      { tpl: 'photo', img: '/poses/camel.jpg', eyebrow: 'start tonight', title: 'Yin Yoga for Beginners: How to Start Tonight', board: 'Yin Yoga for Beginners' },
-      { tpl: 'checklist', eyebrow: 'save this — start tonight', title: 'Everything a Yin Beginner Actually Needs', footer: 'the full beginner’s guide is on the blog', board: 'Yin Yoga for Beginners',
-        items: [{ text: 'a folded blanket', aside: '(no mat needed)' }, { text: 'two pillows for support' }, { text: '15 unhurried minutes' }, { text: 'no flexibility whatsoever' }] },
-      { tpl: 'numbered', eyebrow: 'to start with', title: '5 Gentle Yin Poses for Beginners', board: 'Yin Yoga Poses',
-        items: [{ name: 'Caterpillar', note: '3 minutes', img: '/poses/caterpillar.jpg' }, { name: 'Swan', note: '3 min each side', img: '/poses/swan.jpg' }, { name: "Child's pose", note: '4 minutes', img: '/poses/childs-pose.jpg' }, { name: 'Banana', note: 'each side', img: '/poses/banana.jpg' }, { name: 'Savasana', note: 'to finish', img: '/poses/corpse.jpg' }] },
-      { tpl: 'text', img: '/poses/caterpillar.jpg', eyebrow: 'begin gently', title: 'New to Yin? The 3 Simple Cues That Make It Work', board: 'Bedtime Yoga & Yin for Sleep' },
-    ],
-  },
-  'bedtime-yin-yoga-3-night-wind-down': {
-    description:
-      'A gentle 3-night bedtime Yin Yoga wind-down — three 30-minute evening classes to help you slow down, quiet a racing mind and fall asleep more easily. No props required.',
-    pins: [
-      { tpl: 'band', img: '/poses/banana.jpg', eyebrow: 'three quiet evenings', title: 'Bedtime Yin Yoga: A Gentle 3-Night Wind-Down', board: 'Bedtime Yoga & Yin for Sleep' },
-      { tpl: 'numbered', eyebrow: 'for deeper sleep', title: '5 Yin Poses to Do in Bed Tonight', board: 'Bedtime Yoga & Yin for Sleep',
-        items: [{ name: 'Caterpillar', note: '3 minutes', img: '/poses/caterpillar.jpg' }, { name: "Child's pose", note: '4 minutes', img: '/poses/childs-pose.jpg' }, { name: 'Banana', note: 'each side', img: '/poses/banana.jpg' }, { name: 'Reclined swan', note: '3 min each side', img: '/poses/swan.jpg' }, { name: 'Savasana', note: 'until you drift off', img: '/poses/corpse.jpg' }] },
-      { tpl: 'ritual', eyebrow: 'tonight, from nine', title: 'An Unhurried Hour Before Sleep', board: 'Yin Yoga Routines',
-        items: [{ time: '9:00', text: 'lights low, phone away' }, { time: '9:10', text: 'butterfly, three quiet minutes' }, { time: '9:20', text: 'a slow twist, each side' }, { time: '9:35', text: 'legs up the wall' }, { time: '9:50', text: 'into bed, already resting' }] },
-      { tpl: 'quote', eyebrow: 'from the journal', quote: 'You don’t have to earn your rest.', title: 'You don’t have to earn your rest', board: 'Bedtime Yoga & Yin for Sleep' },
-    ],
-  },
-  'how-long-to-hold-yin-poses': {
-    description:
-      'How long to hold Yin Yoga poses, why the holds are so long, what’s right for beginners, and how to know when it’s time to ease out.',
-    pins: [
-      { tpl: 'text', img: '/poses/caterpillar.jpg', eyebrow: 'stay a while', title: 'How Long Should You Hold Yin Yoga Poses?', board: 'Yin Yoga Poses' },
-      { tpl: 'photo', img: '/poses/swan.jpg', eyebrow: 'the simple answer', title: 'How Long to Hold Yin Yoga Poses (a Simple Guide)', board: 'Yin Yoga for Beginners' },
-      { tpl: 'quote', eyebrow: 'on the mat', quote: 'Long enough to let go.', title: 'Long enough to let go', board: 'Yin Yoga for Flexibility' },
-    ],
-  },
-  'a-new-home-for-yin': {
-    description:
-      'A calm, filterable home for every Yin Yoga class — with a pose library, guided programs, routines and a free two-hour retreat to begin.',
-    pins: [{ tpl: 'text', img: '/poses/camel.jpg', eyebrow: 'a new home', title: 'A New Home for Yin — Free Classes, Poses & Routines', board: 'Yin Yoga Routines' }],
-  },
-};
-
-const site = Astro.site!;
-const enc = encodeURIComponent;
-
-function pinImage(pin: Pin) {
-  const u = new URL('/pin/card.png', site);
-  u.searchParams.set('tpl', pin.tpl);
-  u.searchParams.set('t', pin.title);
-  if (pin.eyebrow) u.searchParams.set('s', pin.eyebrow);
-  if (pin.img) u.searchParams.set('img', pin.img);
-  if (pin.quote) u.searchParams.set('q', pin.quote);
-  if (pin.footer) u.searchParams.set('footer', pin.footer);
-  if (pin.items) u.searchParams.set('items', JSON.stringify(pin.items));
-  return u.href;
-}
-
-const cards = posts.map((post) => {
+const postCards = posts.map((post) => {
   const d = post.data;
-  const plan = PLAN[d.slug] ?? { description: d.description, pins: [{ tpl: 'text', title: d.title, board: 'Yin Yoga Routines' } as Pin] };
-  const postUrl = new URL(`/blog/${d.slug}/`, site).href;
-  const pins = plan.pins.map((pin) => {
-    const img = pinImage(pin);
-    const save = `https://www.pinterest.com/pin/create/button/?url=${enc(postUrl)}&media=${enc(img)}&description=${enc(plan.description)}`;
-    const clip = `${pin.title}\n\n${plan.description}\n\nImage: ${img}\nLink: ${postUrl}`;
-    return { ...pin, img, save, clip };
+  return makeCard({
+    title: d.title,
+    board: 'From the journal',
+    path: `/blog/${d.slug}/`,
+    description: d.seo_description ?? d.description,
+    eyebrow: 'From the journal',
+    excerpt: d.description,
+    photo: realPhoto(d.hero),
   });
-  return { title: d.title, pins };
 });
 
-// Pose pins — every pose with a real photo becomes a band-template pin for the "Yin Yoga Poses" board.
-const poses = (await getCollection('poses'))
-  .filter((p) => p.data.images?.[0] && !p.data.images[0].includes('pose-placeholder'))
-  .sort((a, b) => a.data.name_en.localeCompare(b.data.name_en));
-
-const posePins = poses.map((pose) => {
+// Poses (photo poses first — they read best in the split/card variants).
+const poses = (await getCollection('poses')).sort((a, b) => {
+  const pa = realPhoto(a.data.images?.[0]) ? 0 : 1;
+  const pb = realPhoto(b.data.images?.[0]) ? 0 : 1;
+  return pa - pb || a.data.name_en.localeCompare(b.data.name_en);
+});
+const poseCards = poses.map((pose) => {
   const d = pose.data;
-  const u = new URL('/pin/card.png', site);
-  u.searchParams.set('tpl', 'band');
-  u.searchParams.set('t', d.name_en);
-  u.searchParams.set('s', 'a yin yoga pose');
-  u.searchParams.set('img', d.images[0]);
-  const img = u.href;
-  const poseUrl = new URL(`/poses/${d.slug}/`, site).href;
-  const save = `https://www.pinterest.com/pin/create/button/?url=${enc(poseUrl)}&media=${enc(img)}&description=${enc(d.seo_description)}`;
-  const clip = `${d.name_en}\n\n${d.seo_description}\n\nImage: ${img}\nLink: ${poseUrl}`;
-  return { name: d.name_en, img, save, clip };
+  return makeCard({
+    title: d.name_en,
+    board: 'Yin Yoga Poses',
+    path: `/poses/${d.slug}/`,
+    description: d.seo_description,
+    eyebrow: 'Pose library',
+    // Never reveal the hold time on a pin (handoff rule): "Long hold" + areas.
+    meta: `Long hold · ${d.target_areas.slice(0, 2).join(' & ')}`,
+    excerpt: d.benefits[0],
+    photo: realPhoto(d.images?.[0]),
+  });
 });
 
-// Routine pins — each routine as a numbered-sequence pin (first five poses) → Yin Yoga Routines board.
+// Routines.
 const poseBy = new Map((await getCollection('poses')).map((p) => [p.data.slug, p.data]));
-const routines = (await getCollection('routines')).sort((a, b) => a.data.title.localeCompare(b.data.title));
-const fmtHold = (secs: number, sides: number) => `${Math.max(1, Math.round(secs / 60))} min${sides === 2 ? ' each side' : ''}`;
-const routinePins = routines.map((r) => {
+const routines = (await getCollection('routines')).sort((a, b) => a.data.minutes - b.data.minutes);
+const routineCards = routines.map((r) => {
   const d = r.data;
-  const items = d.steps.slice(0, 5).map((s) => {
-    const p = poseBy.get(s.pose);
-    const photo = p?.images?.[0] && !p.images[0].includes('pose-placeholder') ? p.images[0] : undefined;
-    return { name: p?.name_en ?? s.pose, note: fmtHold(s.seconds, s.sides), ...(photo ? { img: photo } : {}) };
+  const heroPose = (d.hero_pose && poseBy.get(d.hero_pose)) || poseBy.get(d.steps[0]?.pose);
+  return makeCard({
+    title: d.title,
+    board: 'Yin Yoga Routines',
+    path: `/routines/${d.slug}/`,
+    description: d.summary,
+    eyebrow: 'Routines',
+    meta: `${d.minutes} minutes · ${d.level.replace(/-/g, ' ')}`,
+    excerpt: d.summary,
+    photo: realPhoto(heroPose?.images?.[0]),
   });
-  const u = new URL('/pin/card.png', site);
-  u.searchParams.set('tpl', 'numbered');
-  u.searchParams.set('t', d.title);
-  u.searchParams.set('s', `${d.minutes}-minute yin routine`);
-  u.searchParams.set('items', JSON.stringify(items));
-  const img = u.href;
-  const rUrl = new URL(`/routines/${d.slug}/`, site).href;
-  const save = `https://www.pinterest.com/pin/create/button/?url=${enc(rUrl)}&media=${enc(img)}&description=${enc(d.summary)}`;
-  const clip = `${d.title}\n\n${d.summary}\n\nImage: ${img}\nLink: ${rUrl}`;
-  return { name: d.title, img, save, clip };
 });
+
+const sections = [
+  { heading: 'Journal', lead: 'Every post as a text-led pin. The arch is the canonical one saved as og:image; the others give you variety for different boards.', cards: postCards },
+  { heading: 'Poses', lead: 'Every pose in four looks — the split (full photo) and card variants read best where there’s a photo. Board: Yin Yoga Poses.', cards: poseCards },
+  { heading: 'Routines', lead: 'Each routine as a pin. Meta shows the length and level — never the individual hold times. Board: Yin Yoga Routines.', cards: routineCards },
+];
 ---
 
 <BaseLayout title="Pin console" description="Private pinning console" noindex={true}>
   <div class="wrap pins">
     <h1>Pin console</h1>
     <p class="pins-lead">
-      Every post's ready-made pins, rendered on-brand at 1000×1500. <strong>Save now</strong> pins immediately;
-      <strong>Copy for scheduler</strong> copies the pin's image, title, description and link so you can drop it into
-      Pinterest's native scheduler or Buffer. Pin 2–3 per post, spaced a day or two apart.
+      Every journal post, pose and routine, rendered on-brand at 1000×1500 in all four pin variants
+      (<strong>arch · oat-frame · split · card</strong>). <strong>Save now</strong> pins immediately;
+      <strong>Copy</strong> grabs the image, title, description and link for Pinterest's scheduler or Buffer.
+      Pin 2–3 variants per item, spaced a day or two apart.
     </p>
 
-    {cards.map((card) => (
+    {sections.map((sec) => (
       <section class="pins-sec">
-        <h2>{card.title}</h2>
-        <div class="pins-grid">
-          {card.pins.map((pin) => (
-            <div class="pincard">
-              <a href={pin.save} target="_blank" rel="noopener noreferrer" class="pincard-img">
-                <img src={pin.img} alt={pin.title} loading="lazy" width="240" height="360" />
-                <span class="pincard-tpl">{pin.tpl}</span>
-              </a>
-              <p class="pincard-board">Board: <strong>{pin.board}</strong></p>
-              <div class="pincard-actions">
-                <a class="pincard-save" href={pin.save} target="_blank" rel="noopener noreferrer">Save now →</a>
-                <button type="button" class="pincard-copy" data-clip={pin.clip}>Copy for scheduler</button>
-              </div>
+        <h2>{sec.heading}</h2>
+        <p class="pins-lead">{sec.lead}</p>
+        {sec.cards.map((card) => (
+          <div class="pinrow">
+            <div class="pinrow-head">
+              <h3>{card.title}</h3>
+              <p class="pinrow-board">Board: <strong>{card.board}</strong></p>
             </div>
-          ))}
-        </div>
+            <div class="pins-grid">
+              {card.pins.map((pin) => (
+                <div class="pincard">
+                  <a href={pin.save} target="_blank" rel="noopener noreferrer" class="pincard-img">
+                    <img src={pin.img} alt={`${card.title} — ${pin.variant} pin`} loading="lazy" width="200" height="300" />
+                    <span class="pincard-tpl">{pin.variant}</span>
+                  </a>
+                  <div class="pincard-actions">
+                    <a class="pincard-save" href={pin.save} target="_blank" rel="noopener noreferrer">Save</a>
+                    <button type="button" class="pincard-copy" data-clip={pin.clip}>Copy</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
       </section>
     ))}
-
-    <section class="pins-sec">
-      <h2>Routines <span class="pins-board">→ board: Yin Yoga Routines</span></h2>
-      <p class="pins-lead">Each routine as a save-worthy numbered sequence — the pin is the practice, and it links to the timed player.</p>
-      <div class="pins-grid">
-        {routinePins.map((pin) => (
-          <div class="pincard">
-            <a href={pin.save} target="_blank" rel="noopener noreferrer" class="pincard-img">
-              <img src={pin.img} alt={pin.name} loading="lazy" width="240" height="360" />
-              <span class="pincard-tpl">{pin.name}</span>
-            </a>
-            <div class="pincard-actions">
-              <a class="pincard-save" href={pin.save} target="_blank" rel="noopener noreferrer">Save now →</a>
-              <button type="button" class="pincard-copy" data-clip={pin.clip}>Copy for scheduler</button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <section class="pins-sec">
-      <h2>Poses <span class="pins-board">→ board: Yin Yoga Poses</span></h2>
-      <p class="pins-lead">Every pose with a photo, ready to pin. Great evergreen traffic — pin a handful a week.</p>
-      <div class="pins-grid">
-        {posePins.map((pin) => (
-          <div class="pincard">
-            <a href={pin.save} target="_blank" rel="noopener noreferrer" class="pincard-img">
-              <img src={pin.img} alt={pin.name} loading="lazy" width="240" height="360" />
-              <span class="pincard-tpl">{pin.name}</span>
-            </a>
-            <div class="pincard-actions">
-              <a class="pincard-save" href={pin.save} target="_blank" rel="noopener noreferrer">Save now →</a>
-              <button type="button" class="pincard-copy" data-clip={pin.clip}>Copy for scheduler</button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
   </div>
 
   <style>
-    .pins-board { font-family: var(--body); font-size: 15px; color: var(--ink-soft); font-weight: 400; }
     .pins { padding: 40px 22px 90px; }
     .pins h1 { font-family: var(--display); color: var(--plum); font-size: 40px; margin: 0 0 10px; }
-    .pins-lead { color: var(--ink-soft); max-width: 66ch; margin: 0; line-height: 1.6; }
+    .pins-lead { color: var(--ink-soft); max-width: 72ch; margin: 0; line-height: 1.6; }
     .pins-sec { margin-top: 48px; border-top: 1px solid var(--line); padding-top: 28px; }
-    .pins-sec h2 { font-family: var(--display); font-weight: 400; color: var(--plum); font-size: 26px; margin: 0 0 22px; }
-    .pins-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 30px; }
-    .pincard { display: flex; flex-direction: column; gap: 10px; }
+    .pins-sec h2 { font-family: var(--display); font-weight: 400; color: var(--plum); font-size: 26px; margin: 0 0 6px; }
+    .pinrow { margin-top: 30px; }
+    .pinrow-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; margin: 0 0 14px; }
+    .pinrow-head h3 { font-family: var(--display); font-weight: 500; color: var(--ink); font-size: 20px; margin: 0; }
+    .pinrow-board { font-size: 13.5px; color: var(--ink-soft); margin: 0; }
+    .pins-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 22px; }
+    .pincard { display: flex; flex-direction: column; gap: 8px; }
     .pincard-img { position: relative; display: block; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
     .pincard-img img { width: 100%; height: auto; display: block; background: var(--paper-2); aspect-ratio: 2 / 3; object-fit: cover; }
     .pincard-tpl { position: absolute; top: 8px; left: 8px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; background: rgba(46,52,47,.7); color: #F9F1EA; padding: 3px 9px; border-radius: 999px; }
-    .pincard-board { font-size: 13.5px; color: var(--ink-soft); margin: 2px 0 0; }
-    .pincard-actions { display: flex; flex-direction: column; gap: 8px; }
-    .pincard-save { display: block; text-align: center; background: #E60023; color: #fff; font-weight: 600; font-size: 14px; padding: 10px 14px; border-radius: 999px; }
+    .pincard-actions { display: flex; gap: 8px; }
+    .pincard-save { flex: 1; text-align: center; background: #E60023; color: #fff; font-weight: 600; font-size: 13px; padding: 8px 10px; border-radius: 999px; }
     .pincard-save:hover { background: #c9001e; color: #fff; }
-    .pincard-copy { font-family: inherit; font-size: 14px; padding: 9px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
+    .pincard-copy { flex: 1; font-family: inherit; font-size: 13px; padding: 7px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
     .pincard-copy:hover { border-color: var(--plum); color: var(--plum); }
     .pincard-copy.copied { border-color: var(--plum); color: var(--plum); }
   </style>

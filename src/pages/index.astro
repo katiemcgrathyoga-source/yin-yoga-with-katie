@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { derivedThumb, lenLabel, videoHeadline } from '../lib/video';
+import { journalPinUrl } from '../lib/journalPin';
 
 // "Most-loved first": order by lifetime watch-hours, so the classes subscribers
 // actually return to (which skews long + silent) lead the library. New files
@@ -67,9 +68,13 @@ const presentFormat = FORMAT.filter((f) => videos.some((v) => f.match(v)));
 const stripVideos = videos.slice(0, 10);
 const roughCount = Math.max(10, Math.floor(videos.length / 10) * 10);
 
-const ogImage = new URL('/og/card.png', Astro.site);
-ogImage.searchParams.set('t', 'Free Yin Yoga Classes');
-ogImage.searchParams.set('s', 'Full-length practices to follow along');
+// Library home pin (og:image + "Pin it"): a text-led arch pin from the handoff.
+const ogImage = journalPinUrl(Astro.site, {
+  variant: 'arch',
+  title: 'Free Yin Yoga Classes',
+  eyebrow: 'The library',
+  excerpt: 'full-length practices to follow along — filter by focus and length to find the right one for today.',
+});
 
 // The four non-library tools surfaced in the "More than a library" band.
 const TOOLS = [
@@ -92,7 +97,7 @@ const ICONS: Record<string, string> = {
 <BaseLayout
   title="Yin Yoga with Katie — the video library"
   description="A growing library of full-length Yin Yoga classes you can follow on YouTube. Filter by focus and length to find the right practice for today."
-  image={ogImage.href}
+  image={ogImage}
 >
   <div class="wrap lib">
     <header class="hero lib-hero">
@@ -207,6 +212,7 @@ const ICONS: Record<string, string> = {
       <p class="rt-members">✦ A members-only class — free for you</p>
       <form class="rt-form" id="rt-form" action={ML_ACTION} method="post" target="ml_frame_home">
         <input type="email" name="fields[email]" required placeholder="Your email" aria-label="Your email" />
+        <input type="hidden" name="fields[signup_source]" value="home-retreat" />
         <input type="hidden" name="ml-submit" value="1" />
         <input type="hidden" name="anticsrf" value="true" />
         <button type="submit" class="btn-cta">Send me the free retreat →</button>
