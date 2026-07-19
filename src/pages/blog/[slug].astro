@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Cta from '../../components/Cta.astro';
 import { PROGRAMS } from '../../data/programs';
+import { journalPinUrl } from '../../lib/journalPin';
 import katieHello from '../../assets/katie-hello.jpg';
 
 export async function getStaticPaths() {
@@ -53,15 +54,18 @@ const jsonLd = {
 // Share links — let readers distribute the post for us (Pinterest is the priority channel).
 const postUrl = new URL(`/blog/${d.slug}/`, Astro.site).href;
 const enc = encodeURIComponent;
-// Branded 1000×1500 pin image (rendered by the /pin function) — used as the Pinterest media
-// so saving the post pins an on-brand vertical image, not the landscape hero.
-const pinImg = new URL('/pin/card.png', Astro.site);
-pinImg.searchParams.set('t', d.title);
-if (d.eyebrow_tag) pinImg.searchParams.set('s', d.eyebrow_tag);
-if (d.hero) pinImg.searchParams.set('img', d.hero);
-pinImg.searchParams.set('tpl', 'text');
+// Branded 1000×1500 Journal Pin (rendered by /pin/journal.png) — the arch variant
+// is this post's canonical pin: og:image so "Pin it"/Rich Pins grab a tall on-brand
+// image, and the Pinterest share media so saving pins it too (not the landscape hero).
+const journalPin = journalPinUrl(Astro.site, {
+  variant: 'arch',
+  title: d.title,
+  eyebrow: 'From the journal',
+  excerpt: d.description,
+  photo: d.hero,
+});
 const shareLinks = {
-  pinterest: `https://www.pinterest.com/pin/create/button/?url=${enc(postUrl)}&media=${enc(pinImg.href)}&description=${enc(d.description)}`,
+  pinterest: `https://www.pinterest.com/pin/create/button/?url=${enc(postUrl)}&media=${enc(journalPin)}&description=${enc(d.description)}`,
   facebook: `https://www.facebook.com/sharer/sharer.php?u=${enc(postUrl)}`,
   x: `https://twitter.com/intent/tweet?url=${enc(postUrl)}&text=${enc(d.title)}`,
 };
@@ -71,7 +75,7 @@ const shareLinks = {
   title={`${d.seo_title ?? d.title} — Yin Yoga with Katie`}
   description={d.seo_description ?? d.description}
   ogType="article"
-  image={ogImage.href}
+  image={journalPin}
   jsonLd={jsonLd}
 >
   <article class="journal">
@@ -110,16 +114,21 @@ const shareLinks = {
       </button>
     </div>
 
-    {ctaProgram ? (
+    {ctaProgram && (
       <aside class="blog-cta">
         <p class="eyebrow">Practise this</p>
         <h2>{ctaProgram.title}</h2>
         <p>{ctaProgram.outcome} {ctaProgram.blurb}</p>
         <a class="btn-cta" href={`/programs/${ctaProgram.slug}`}>Start the program →</a>
       </aside>
-    ) : (
-      <Cta />
     )}
+
+    <Cta
+      source="journal"
+      eyebrow="From the mat"
+      heading="Ready to actually practise?"
+      body="Reading about Yin is one thing — feeling it is another. Whenever you're ready, pop your email in and I'll send you my free two-hour Yin, restorative and Yoga Nidra retreat. Two slow hours to properly switch off, yours to keep."
+    />
 
     <aside class="jr-author">
       <span class="jr-author-photo">

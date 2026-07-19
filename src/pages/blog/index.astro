@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { journalPinUrl } from '../../lib/journalPin';
 
 const posts = (await getCollection('blog'))
   .filter((p) => !p.data.draft)
@@ -12,15 +13,19 @@ const readMin = (body: string | undefined) => Math.max(1, Math.round((body || ''
 const featured = posts.find((p) => p.data.hero) ?? posts[0];
 const rest = posts.filter((p) => p !== featured);
 
-const ogImage = new URL('/og/card.png', Astro.site);
-ogImage.searchParams.set('t', 'The Journal');
-ogImage.searchParams.set('s', 'Words on Yin, rest, and slowing down');
+// Journal index pin (og:image + "Pin it"): a text-led arch pin from the handoff.
+const ogImage = journalPinUrl(Astro.site, {
+  variant: 'arch',
+  title: 'The Journal',
+  eyebrow: 'From the journal',
+  excerpt: 'notes from Katie on Yin, rest and slowing down — read the way the classes are practised: slowly.',
+});
 ---
 
 <BaseLayout
   title="The Journal — Yin Yoga with Katie"
   description="Notes from Katie on Yin, rest and slowing down — alongside the free Yin Yoga class library."
-  image={ogImage.href}
+  image={ogImage}
 >
   <div class="jindex">
     <header class="ji-hero">

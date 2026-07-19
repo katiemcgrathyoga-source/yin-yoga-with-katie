@@ -1,18 +1,57 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { journalPinVariants, type JournalVariant } from '../lib/journalPin';
 
-// Katie's private pinning console (noindex, unlisted). Every post's ready-made pins,
-// rendered by the /pin function, with one-click Save + copy-for-scheduler.
-const posts = (await getCollection('blog'))
-  .filter((p) => !p.data.draft)
-  .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
+// Katie's private pinning console (noindex, unlisted). Shows BOTH the original
+// hand-curated pins (the /pin/card.png template set) AND the newer four-variant
+// Journal Pins (/pin/journal.png) — the new designs are added alongside the old,
+// not replacing them. Routines are the exception: their pins move fully to the
+// new Journal Pin (the old numbered-sequence routine pin is retired).
+const site = Astro.site!;
+const enc = encodeURIComponent;
+const JOURNAL_VARIANTS: JournalVariant[] = ['arch', 'oat-frame', 'split', 'card'];
+const realPhoto = (p?: string) => (p && !p.includes('pose-placeholder') ? p : null);
 
+type Pin = { label: string; isNew: boolean; img: string; save: string; clip: string };
+
+// One Pinterest "Save" + copy-for-scheduler payload for a given rendered image.
+function pinActions(img: string, title: string, description: string, pageUrl: string) {
+  const save = `https://www.pinterest.com/pin/create/button/?url=${enc(pageUrl)}&media=${enc(img)}&description=${enc(description)}`;
+  const clip = `${title}\n\n${description}\n\nImage: ${img}\nLink: ${pageUrl}`;
+  return { save, clip };
+}
+
+// The four new Journal Pin variants for one item.
+function journalPins(o: {
+  title: string;
+  description: string;
+  pageUrl: string;
+  eyebrow: string;
+  meta?: string;
+  excerpt?: string;
+  photo?: string | null;
+}): Pin[] {
+  const variants = journalPinVariants(site, {
+    title: o.title,
+    eyebrow: o.eyebrow,
+    meta: o.meta,
+    excerpt: o.excerpt,
+    photo: o.photo,
+  });
+  return JOURNAL_VARIANTS.map((variant) => ({
+    label: variant,
+    isNew: true,
+    img: variants[variant],
+    ...pinActions(variants[variant], o.title, o.description, o.pageUrl),
+  }));
+}
+
+// --- Original curated pins (the /pin/card.png template set) -------------------
 type Item = Record<string, string>;
-type Pin = { tpl: string; title: string; board: string; eyebrow?: string; img?: string; quote?: string; footer?: string; items?: Item[] };
-type Plan = { description: string; pins: Pin[] };
+type OldPin = { tpl: string; title: string; board: string; eyebrow?: string; img?: string; quote?: string; footer?: string; items?: Item[] };
+type Plan = { description: string; pins: OldPin[] };
 
-// Photos with focal data (see the crop spec): upright → camel/caterpillar/swan; lying → banana/corpse/childs-pose.
 const PLAN: Record<string, Plan> = {
   'yin-yoga-for-sleep': {
     description:
@@ -64,10 +103,7 @@ const PLAN: Record<string, Plan> = {
   },
 };
 
-const site = Astro.site!;
-const enc = encodeURIComponent;
-
-function pinImage(pin: Pin) {
+function oldPinImage(pin: OldPin): string {
   const u = new URL('/pin/card.png', site);
   u.searchParams.set('tpl', pin.tpl);
   u.searchParams.set('t', pin.title);
@@ -79,148 +115,143 @@ function pinImage(pin: Pin) {
   return u.href;
 }
 
-const cards = posts.map((post) => {
+// --- Journal posts: original curated pins + the four new Journal Pins ---------
+const posts = (await getCollection('blog'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
+
+const postCards = posts.map((post) => {
   const d = post.data;
-  const plan = PLAN[d.slug] ?? { description: d.description, pins: [{ tpl: 'text', title: d.title, board: 'Yin Yoga Routines' } as Pin] };
+  const plan = PLAN[d.slug] ?? { description: d.seo_description ?? d.description, pins: [{ tpl: 'text', title: d.title, board: 'Yin Yoga Routines' } as OldPin] };
   const postUrl = new URL(`/blog/${d.slug}/`, site).href;
-  const pins = plan.pins.map((pin) => {
-    const img = pinImage(pin);
-    const save = `https://www.pinterest.com/pin/create/button/?url=${enc(postUrl)}&media=${enc(img)}&description=${enc(plan.description)}`;
-    const clip = `${pin.title}\n\n${plan.description}\n\nImage: ${img}\nLink: ${postUrl}`;
-    return { ...pin, img, save, clip };
+  const oldPins: Pin[] = plan.pins.map((pin) => {
+    const img = oldPinImage(pin);
+    return { label: pin.tpl, isNew: false, img, ...pinActions(img, pin.title, plan.description, postUrl) };
   });
-  return { title: d.title, pins };
+  const newPins = journalPins({
+    title: d.title,
+    description: d.seo_description ?? d.description,
+    pageUrl: postUrl,
+    eyebrow: 'From the journal',
+    excerpt: d.description,
+    photo: realPhoto(d.hero),
+  });
+  return { title: d.title, board: 'From the journal', pins: [...oldPins, ...newPins] };
 });
 
-// Pose pins — every pose with a real photo becomes a band-template pin for the "Yin Yoga Poses" board.
+// --- Poses: original band pin + the four new Journal Pins ---------------------
 const poses = (await getCollection('poses'))
-  .filter((p) => p.data.images?.[0] && !p.data.images[0].includes('pose-placeholder'))
+  .filter((p) => realPhoto(p.data.images?.[0]))
   .sort((a, b) => a.data.name_en.localeCompare(b.data.name_en));
 
-const posePins = poses.map((pose) => {
+const poseCards = poses.map((pose) => {
   const d = pose.data;
-  const u = new URL('/pin/card.png', site);
-  u.searchParams.set('tpl', 'band');
-  u.searchParams.set('t', d.name_en);
-  u.searchParams.set('s', 'a yin yoga pose');
-  u.searchParams.set('img', d.images[0]);
-  const img = u.href;
   const poseUrl = new URL(`/poses/${d.slug}/`, site).href;
-  const save = `https://www.pinterest.com/pin/create/button/?url=${enc(poseUrl)}&media=${enc(img)}&description=${enc(d.seo_description)}`;
-  const clip = `${d.name_en}\n\n${d.seo_description}\n\nImage: ${img}\nLink: ${poseUrl}`;
-  return { name: d.name_en, img, save, clip };
+  const photo = realPhoto(d.images[0]);
+  const oldImg = oldPinImage({ tpl: 'band', title: d.name_en, eyebrow: 'a yin yoga pose', img: photo ?? undefined, board: 'Yin Yoga Poses' });
+  const oldPins: Pin[] = [{ label: 'band', isNew: false, img: oldImg, ...pinActions(oldImg, d.name_en, d.seo_description, poseUrl) }];
+  const newPins = journalPins({
+    title: d.name_en,
+    description: d.seo_description,
+    pageUrl: poseUrl,
+    eyebrow: 'Pose library',
+    // Never reveal the hold time on a pin (handoff rule): "Long hold" + areas.
+    meta: `Long hold · ${d.target_areas.slice(0, 2).join(' & ')}`,
+    excerpt: d.benefits[0],
+    photo,
+  });
+  return { title: d.name_en, board: 'Yin Yoga Poses', pins: [...oldPins, ...newPins] };
 });
 
-// Routine pins — each routine as a numbered-sequence pin (first five poses) → Yin Yoga Routines board.
+// --- Routines: replaced — the four new Journal Pins only ----------------------
 const poseBy = new Map((await getCollection('poses')).map((p) => [p.data.slug, p.data]));
-const routines = (await getCollection('routines')).sort((a, b) => a.data.title.localeCompare(b.data.title));
-const fmtHold = (secs: number, sides: number) => `${Math.max(1, Math.round(secs / 60))} min${sides === 2 ? ' each side' : ''}`;
-const routinePins = routines.map((r) => {
+const routines = (await getCollection('routines')).sort((a, b) => a.data.minutes - b.data.minutes);
+const routineCards = routines.map((r) => {
   const d = r.data;
-  const items = d.steps.slice(0, 5).map((s) => {
-    const p = poseBy.get(s.pose);
-    const photo = p?.images?.[0] && !p.images[0].includes('pose-placeholder') ? p.images[0] : undefined;
-    return { name: p?.name_en ?? s.pose, note: fmtHold(s.seconds, s.sides), ...(photo ? { img: photo } : {}) };
-  });
-  const u = new URL('/pin/card.png', site);
-  u.searchParams.set('tpl', 'numbered');
-  u.searchParams.set('t', d.title);
-  u.searchParams.set('s', `${d.minutes}-minute yin routine`);
-  u.searchParams.set('items', JSON.stringify(items));
-  const img = u.href;
+  const heroPose = (d.hero_pose && poseBy.get(d.hero_pose)) || poseBy.get(d.steps[0]?.pose);
   const rUrl = new URL(`/routines/${d.slug}/`, site).href;
-  const save = `https://www.pinterest.com/pin/create/button/?url=${enc(rUrl)}&media=${enc(img)}&description=${enc(d.summary)}`;
-  const clip = `${d.title}\n\n${d.summary}\n\nImage: ${img}\nLink: ${rUrl}`;
-  return { name: d.title, img, save, clip };
+  return {
+    title: d.title,
+    board: 'Yin Yoga Routines',
+    pins: journalPins({
+      title: d.title,
+      description: d.summary,
+      pageUrl: rUrl,
+      eyebrow: 'Routines',
+      meta: `${d.minutes} minutes · ${d.level.replace(/-/g, ' ')}`,
+      excerpt: d.summary,
+      photo: realPhoto(heroPose?.images?.[0]),
+    }),
+  };
 });
+
+const sections = [
+  { heading: 'Journal', lead: 'Each post’s original curated pins plus the four new Journal Pin variants (arch · oat-frame · split · card) — pick whichever suits the board.', cards: postCards },
+  { heading: 'Poses', lead: 'Every pose with a photo: the original band pin plus the four new variants. Board: Yin Yoga Poses.', cards: poseCards },
+  { heading: 'Routines', lead: 'Routines now use the new Journal Pin only (the old numbered pin is retired). Meta shows length + level, never individual hold times. Board: Yin Yoga Routines.', cards: routineCards },
+];
 ---
 
 <BaseLayout title="Pin console" description="Private pinning console" noindex={true}>
   <div class="wrap pins">
     <h1>Pin console</h1>
     <p class="pins-lead">
-      Every post's ready-made pins, rendered on-brand at 1000×1500. <strong>Save now</strong> pins immediately;
-      <strong>Copy for scheduler</strong> copies the pin's image, title, description and link so you can drop it into
-      Pinterest's native scheduler or Buffer. Pin 2–3 per post, spaced a day or two apart.
+      Every journal post, pose and routine, rendered on-brand at 1000×1500. The original pins are still here;
+      the <strong>new</strong>-tagged cards are the four Journal Pin variants, added alongside.
+      <strong>Save now</strong> pins immediately; <strong>Copy</strong> grabs the image, title, description and
+      link for Pinterest’s scheduler or Buffer. Pin 2–3 per item, spaced a day or two apart.
     </p>
 
-    {cards.map((card) => (
+    {sections.map((sec) => (
       <section class="pins-sec">
-        <h2>{card.title}</h2>
-        <div class="pins-grid">
-          {card.pins.map((pin) => (
-            <div class="pincard">
-              <a href={pin.save} target="_blank" rel="noopener noreferrer" class="pincard-img">
-                <img src={pin.img} alt={pin.title} loading="lazy" width="240" height="360" />
-                <span class="pincard-tpl">{pin.tpl}</span>
-              </a>
-              <p class="pincard-board">Board: <strong>{pin.board}</strong></p>
-              <div class="pincard-actions">
-                <a class="pincard-save" href={pin.save} target="_blank" rel="noopener noreferrer">Save now →</a>
-                <button type="button" class="pincard-copy" data-clip={pin.clip}>Copy for scheduler</button>
-              </div>
+        <h2>{sec.heading}</h2>
+        <p class="pins-lead">{sec.lead}</p>
+        {sec.cards.map((card) => (
+          <div class="pinrow">
+            <div class="pinrow-head">
+              <h3>{card.title}</h3>
+              <p class="pinrow-board">Board: <strong>{card.board}</strong></p>
             </div>
-          ))}
-        </div>
+            <div class="pins-grid">
+              {card.pins.map((pin) => (
+                <div class="pincard">
+                  <a href={pin.save} target="_blank" rel="noopener noreferrer" class="pincard-img">
+                    <img src={pin.img} alt={`${card.title} — ${pin.label} pin`} loading="lazy" width="200" height="300" />
+                    <span class={`pincard-tpl${pin.isNew ? ' is-new' : ''}`}>{pin.isNew ? `new · ${pin.label}` : pin.label}</span>
+                  </a>
+                  <div class="pincard-actions">
+                    <a class="pincard-save" href={pin.save} target="_blank" rel="noopener noreferrer">Save</a>
+                    <button type="button" class="pincard-copy" data-clip={pin.clip}>Copy</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
       </section>
     ))}
-
-    <section class="pins-sec">
-      <h2>Routines <span class="pins-board">→ board: Yin Yoga Routines</span></h2>
-      <p class="pins-lead">Each routine as a save-worthy numbered sequence — the pin is the practice, and it links to the timed player.</p>
-      <div class="pins-grid">
-        {routinePins.map((pin) => (
-          <div class="pincard">
-            <a href={pin.save} target="_blank" rel="noopener noreferrer" class="pincard-img">
-              <img src={pin.img} alt={pin.name} loading="lazy" width="240" height="360" />
-              <span class="pincard-tpl">{pin.name}</span>
-            </a>
-            <div class="pincard-actions">
-              <a class="pincard-save" href={pin.save} target="_blank" rel="noopener noreferrer">Save now →</a>
-              <button type="button" class="pincard-copy" data-clip={pin.clip}>Copy for scheduler</button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <section class="pins-sec">
-      <h2>Poses <span class="pins-board">→ board: Yin Yoga Poses</span></h2>
-      <p class="pins-lead">Every pose with a photo, ready to pin. Great evergreen traffic — pin a handful a week.</p>
-      <div class="pins-grid">
-        {posePins.map((pin) => (
-          <div class="pincard">
-            <a href={pin.save} target="_blank" rel="noopener noreferrer" class="pincard-img">
-              <img src={pin.img} alt={pin.name} loading="lazy" width="240" height="360" />
-              <span class="pincard-tpl">{pin.name}</span>
-            </a>
-            <div class="pincard-actions">
-              <a class="pincard-save" href={pin.save} target="_blank" rel="noopener noreferrer">Save now →</a>
-              <button type="button" class="pincard-copy" data-clip={pin.clip}>Copy for scheduler</button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
   </div>
 
   <style>
-    .pins-board { font-family: var(--body); font-size: 15px; color: var(--ink-soft); font-weight: 400; }
     .pins { padding: 40px 22px 90px; }
     .pins h1 { font-family: var(--display); color: var(--plum); font-size: 40px; margin: 0 0 10px; }
-    .pins-lead { color: var(--ink-soft); max-width: 66ch; margin: 0; line-height: 1.6; }
+    .pins-lead { color: var(--ink-soft); max-width: 72ch; margin: 0; line-height: 1.6; }
     .pins-sec { margin-top: 48px; border-top: 1px solid var(--line); padding-top: 28px; }
-    .pins-sec h2 { font-family: var(--display); font-weight: 400; color: var(--plum); font-size: 26px; margin: 0 0 22px; }
-    .pins-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 30px; }
-    .pincard { display: flex; flex-direction: column; gap: 10px; }
+    .pins-sec h2 { font-family: var(--display); font-weight: 400; color: var(--plum); font-size: 26px; margin: 0 0 6px; }
+    .pinrow { margin-top: 30px; }
+    .pinrow-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; margin: 0 0 14px; }
+    .pinrow-head h3 { font-family: var(--display); font-weight: 500; color: var(--ink); font-size: 20px; margin: 0; }
+    .pinrow-board { font-size: 13.5px; color: var(--ink-soft); margin: 0; }
+    .pins-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 22px; }
+    .pincard { display: flex; flex-direction: column; gap: 8px; }
     .pincard-img { position: relative; display: block; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
     .pincard-img img { width: 100%; height: auto; display: block; background: var(--paper-2); aspect-ratio: 2 / 3; object-fit: cover; }
     .pincard-tpl { position: absolute; top: 8px; left: 8px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; background: rgba(46,52,47,.7); color: #F9F1EA; padding: 3px 9px; border-radius: 999px; }
-    .pincard-board { font-size: 13.5px; color: var(--ink-soft); margin: 2px 0 0; }
-    .pincard-actions { display: flex; flex-direction: column; gap: 8px; }
-    .pincard-save { display: block; text-align: center; background: #E60023; color: #fff; font-weight: 600; font-size: 14px; padding: 10px 14px; border-radius: 999px; }
+    .pincard-tpl.is-new { background: #89494b; }
+    .pincard-actions { display: flex; gap: 8px; }
+    .pincard-save { flex: 1; text-align: center; background: #E60023; color: #fff; font-weight: 600; font-size: 13px; padding: 8px 10px; border-radius: 999px; }
     .pincard-save:hover { background: #c9001e; color: #fff; }
-    .pincard-copy { font-family: inherit; font-size: 14px; padding: 9px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
+    .pincard-copy { flex: 1; font-family: inherit; font-size: 13px; padding: 7px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
     .pincard-copy:hover { border-color: var(--plum); color: var(--plum); }
     .pincard-copy.copied { border-color: var(--plum); color: var(--plum); }
   </style>

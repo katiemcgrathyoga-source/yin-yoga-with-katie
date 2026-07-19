@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Cta from '../../components/Cta.astro';
 import PoseTimer from '../../components/PoseTimer.astro';
 import { videoHeadline } from '../../lib/video';
+import { journalPinUrl } from '../../lib/journalPin';
 
 /**
  * One reusable template for every pose. `getStaticPaths` reads the whole
@@ -66,10 +67,19 @@ const jsonLd = {
 const hasVideo = Boolean(d.youtube_video_id && d.youtube_video_id.trim());
 const eyebrow = `Yin Yoga · ${titleCase(d.accessibility)}`;
 
-// Branded OG card for link previews (matches the routine cards + completion badge).
-const ogImage = new URL('/og/card.png', Astro.site);
-ogImage.searchParams.set('t', d.name_en);
-ogImage.searchParams.set('s', 'A Yin Yoga pose');
+// Canonical pin (og:image + Pinterest media): the split variant when the pose has a
+// real photo (full subject, natural aspect), else a text-led arch pin. Per the handoff,
+// meta NEVER reveals the hold time — "Long hold" + the areas worked; the click reveals it.
+const posePhoto = d.images[0] && !d.images[0].includes('pose-placeholder') ? d.images[0] : null;
+const poseMeta = `Long hold · ${d.target_areas.slice(0, 2).join(' & ')}`;
+const journalPin = journalPinUrl(Astro.site, {
+  variant: posePhoto ? 'split' : 'arch',
+  title: d.name_en,
+  eyebrow: 'Pose library',
+  meta: poseMeta,
+  excerpt: d.benefits[0],
+  photo: posePhoto,
+});
 
 // FAQPage schema — rendered alongside the HowTo when the pose has FAQs.
 const faqLd = d.faq.length
@@ -87,18 +97,9 @@ const faqLd = d.faq.length
 // Default target for the on-page hold timer (all poses carry hold_seconds; 180s is a safe fallback).
 const holdSeconds = d.hold_seconds ?? 180;
 
-// Save-to-Pinterest: a branded band-template pin (whole pose visible) linking to this page.
-const posePhoto = d.images[0] && !d.images[0].includes('pose-placeholder') ? d.images[0] : null;
-let poseSave: string | null = null;
-if (posePhoto) {
-  const poseUrl = new URL(`/poses/${d.slug}/`, Astro.site).href;
-  const pinImg = new URL('/pin/card.png', Astro.site);
-  pinImg.searchParams.set('tpl', 'band');
-  pinImg.searchParams.set('t', d.name_en);
-  pinImg.searchParams.set('s', 'a yin yoga pose');
-  pinImg.searchParams.set('img', posePhoto);
-  poseSave = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(poseUrl)}&media=${encodeURIComponent(pinImg.href)}&description=${encodeURIComponent(d.seo_description)}`;
-}
+// Save-to-Pinterest uses the same canonical pin, linking back to this pose page.
+const poseUrl = new URL(`/poses/${d.slug}/`, Astro.site).href;
+const poseSave = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(poseUrl)}&media=${encodeURIComponent(journalPin)}&description=${encodeURIComponent(d.seo_description)}`;
 ---
 
 <BaseLayout
@@ -107,7 +108,7 @@ if (posePhoto) {
   ogTitle={d.name_en}
   ogDescription={d.seo_description}
   ogType="article"
-  image={ogImage.href}
+  image={journalPin}
   jsonLd={faqLd ? [jsonLd, faqLd] : jsonLd}
 >
   <div class="wrap">
@@ -290,7 +291,12 @@ if (posePhoto) {
       )
     }
 
-    <Cta />
+    <Cta
+      source="pose"
+      eyebrow="Put it all together"
+      heading="When you want the whole practice"
+      body={`${d.name_en} is one shape among many. When you'd like to put a whole sequence together into one long, slow practice, pop your email in and I'll send you my free two-hour Yin, restorative and Yoga Nidra retreat. Yours to keep.`}
+    />
 
     {
       d.related_poses.length > 0 && (
