@@ -59,8 +59,8 @@ export default async (req) => {
   const img = frame ? await loadImage(imgPath) : null;
   const focal = frame ? focalFor(imgPath, frame) : 'center';
 
-  // Numbered template: each row can carry a small square thumbnail.
-  if (tpl === 'numbered' && Array.isArray(items)) {
+  // Numbered / list templates: each row can carry a landscape pose thumbnail (200×144).
+  if ((tpl === 'numbered' || tpl === 'list') && Array.isArray(items)) {
     items = await Promise.all(
       items.map(async (it) => (it && it.img ? { ...it, thumb: await loadImage(it.img), focal: focalFor(it.img, 'square') } : it)),
     );

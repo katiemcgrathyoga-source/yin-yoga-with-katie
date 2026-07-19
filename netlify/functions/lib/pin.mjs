@@ -72,11 +72,12 @@ function textLed({ title, eyebrow: eb, img, focal }) {
 function listPin({ title, eyebrow: eb, items = [] }) {
   const rows = items.slice(0, 3).map((it, i, arr) =>
     box({ alignItems: 'center', gap: '40px', padding: '40px 0', ...(i < arr.length - 1 ? { borderBottom: `2px solid ${LINE}` } : {}) }, [
-      box({ fontFamily: 'Serif', fontSize: '72px', color: ROSEWOOD }, String(i + 1).padStart(2, '0')),
-      box({ flexDirection: 'column' }, [
+      box({ fontFamily: 'Serif', fontSize: '72px', color: ROSEWOOD, flexShrink: 0 }, String(i + 1).padStart(2, '0')),
+      box({ flexGrow: 1, flexDirection: 'column' }, [
         box({ fontFamily: 'Serif', fontSize: '42px', color: SAGE }, it.name || ''),
         it.note ? box({ fontFamily: 'Cabin', fontSize: '25px', color: MUTED, marginTop: '6px' }, it.note) : box({ width: '0', height: '0' }),
       ]),
+      ...(it.thumb ? [photo(200, 144, it.thumb, it.focal, { borderRadius: '14px', flexShrink: 0 })] : []),
     ]),
   );
   return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: OAT }, [
@@ -109,7 +110,7 @@ function numberedPoses({ title, eyebrow: eb, items = [] }) {
         box({ fontFamily: 'Serif', fontSize: '36px', color: SAGE }, it.name || ''),
         it.note ? box({ fontFamily: 'Cabin', fontSize: '24px', color: MUTED, marginTop: '2px' }, it.note) : box({ width: '0', height: '0' }),
       ]),
-      photo(96, 96, it.thumb, it.focal, { borderRadius: '14px', flexShrink: 0 }),
+      photo(200, 144, it.thumb, it.focal, { borderRadius: '14px', flexShrink: 0 }),
     ]),
   );
   return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: OAT }, [

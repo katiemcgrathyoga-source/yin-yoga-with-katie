@@ -163,32 +163,52 @@ const poseCards = poses.map((pose) => {
   return { title: d.name_en, board: 'Yin Yoga Poses', pins: [...oldPins, ...newPins] };
 });
 
-// --- Routines: replaced — the four new Journal Pins only ----------------------
+// --- Routines: the numbered pose-list pin (lead) + the four new Journal Pins --
 const poseBy = new Map((await getCollection('poses')).map((p) => [p.data.slug, p.data]));
 const routines = (await getCollection('routines')).sort((a, b) => a.data.minutes - b.data.minutes);
+const humanise = (slug: string) => slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+const fmtHold = (secs: number, sides: number) => `${Math.max(1, Math.round(secs / 60))} min${sides === 2 ? ' each side' : ''}`;
+
+// The original numbered "5 poses" sequence pin (/pin/card.png), now with the
+// enlarged 200×144 real-photo thumbnails. The strongest routine creative for
+// Pinterest — kept as the lead, with the four Journal Pins as extra creatives.
+function numberedRoutinePin(r: (typeof routines)[number]): Pin {
+  const d = r.data;
+  const rUrl = new URL(`/routines/${d.slug}/`, site).href;
+  const items = d.steps.slice(0, 5).map((s) => {
+    const p = poseBy.get(s.pose);
+    const photo = realPhoto(p?.images?.[0]);
+    return { name: p?.name_en ?? humanise(s.pose), note: fmtHold(s.seconds, s.sides), ...(photo ? { img: photo } : {}) };
+  });
+  const u = new URL('/pin/card.png', site);
+  u.searchParams.set('tpl', 'numbered');
+  u.searchParams.set('t', d.title);
+  u.searchParams.set('s', `${d.minutes}-minute yin routine`);
+  u.searchParams.set('items', JSON.stringify(items));
+  const img = u.href;
+  return { label: 'numbered · sequence', isNew: false, img, ...pinActions(img, d.title, d.summary, rUrl) };
+}
+
 const routineCards = routines.map((r) => {
   const d = r.data;
   const heroPose = (d.hero_pose && poseBy.get(d.hero_pose)) || poseBy.get(d.steps[0]?.pose);
   const rUrl = new URL(`/routines/${d.slug}/`, site).href;
-  return {
+  const journalVariants = journalPins({
     title: d.title,
-    board: 'Yin Yoga Routines',
-    pins: journalPins({
-      title: d.title,
-      description: d.summary,
-      pageUrl: rUrl,
-      eyebrow: 'Routines',
-      meta: `${d.minutes} minutes · ${d.level.replace(/-/g, ' ')}`,
-      excerpt: d.summary,
-      photo: realPhoto(heroPose?.images?.[0]),
-    }),
-  };
+    description: d.summary,
+    pageUrl: rUrl,
+    eyebrow: 'Routines',
+    meta: `${d.minutes} minutes · ${d.level.replace(/-/g, ' ')}`,
+    excerpt: d.summary,
+    photo: realPhoto(heroPose?.images?.[0]),
+  });
+  return { title: d.title, board: 'Yin Yoga Routines', pins: [numberedRoutinePin(r), ...journalVariants] };
 });
 
 const sections = [
   { heading: 'Journal', lead: 'Each post’s original curated pins plus the four new Journal Pin variants (arch · oat-frame · split · card) — pick whichever suits the board.', cards: postCards },
   { heading: 'Poses', lead: 'Every pose with a photo: the original band pin plus the four new variants. Board: Yin Yoga Poses.', cards: poseCards },
-  { heading: 'Routines', lead: 'Routines now use the new Journal Pin only (the old numbered pin is retired). Meta shows length + level, never individual hold times. Board: Yin Yoga Routines.', cards: routineCards },
+  { heading: 'Routines', lead: 'Lead with the numbered “sequence” pin — the pose photos are the draw (now enlarged to 200×144). The four Journal Pin variants are extra creatives to space out over time. Board: Yin Yoga Routines.', cards: routineCards },
 ];
 ---
 
