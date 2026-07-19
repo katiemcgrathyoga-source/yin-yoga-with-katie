@@ -101,16 +101,22 @@ function quotePin({ quote, eyebrow: eb }) {
   ]);
 }
 
-// 4a — numbered poses ("5 poses for…") with thumbnails.
+// 4a — numbered poses ("5 poses for…") with thumbnails. Shows EVERY pose; the
+// thumbnail keeps the approved 200×144 up to 7 rows, then scales down (same 0.72
+// aspect) so an 8–10 pose sequence still fits the 1500px canvas. Type never shrinks.
 function numberedPoses({ title, eyebrow: eb, items = [] }) {
-  const rows = items.slice(0, 5).map((it, i, arr) =>
-    box({ alignItems: 'center', gap: '32px', padding: '24px 0', ...(i < arr.length - 1 ? { borderBottom: `1.5px solid ${LINE}` } : {}) }, [
+  const n = Math.max(1, items.length);
+  const thumbH = n <= 7 ? 144 : n <= 8 ? 122 : n <= 9 ? 110 : 98;
+  const thumbW = Math.round(thumbH / 0.72); // 144→200, preserves the landscape crop
+  const rowPad = n <= 5 ? 24 : n <= 7 ? 16 : 9;
+  const rows = items.map((it, i, arr) =>
+    box({ alignItems: 'center', gap: '32px', padding: `${rowPad}px 0`, ...(i < arr.length - 1 ? { borderBottom: `1.5px solid ${LINE}` } : {}) }, [
       box({ fontFamily: 'Serif', fontSize: '52px', color: ROSEWOOD, width: '58px', flexShrink: 0 }, String(i + 1)),
       box({ flexGrow: 1, flexDirection: 'column' }, [
         box({ fontFamily: 'Serif', fontSize: '36px', color: SAGE }, it.name || ''),
         it.note ? box({ fontFamily: 'Cabin', fontSize: '24px', color: MUTED, marginTop: '2px' }, it.note) : box({ width: '0', height: '0' }),
       ]),
-      photo(200, 144, it.thumb, it.focal, { borderRadius: '14px', flexShrink: 0 }),
+      photo(thumbW, thumbH, it.thumb, it.focal, { borderRadius: '14px', flexShrink: 0 }),
     ]),
   );
   return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: OAT }, [

@@ -1,0 +1,216 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { journalPinUrl } from '../lib/journalPin';
+
+// Katie's private board-planning console (noindex, unlisted). Where /pins is
+// organised by content item (every pin for one post/pose/routine), /boards is
+// organised by destination board — so you can work one board at a time: "today
+// I'll pin five to Yoga for Hips." Each item shows its recommended pin for that
+// board; /pins has all four variants if you want to vary the creative.
+const site = Astro.site!;
+const enc = encodeURIComponent;
+const realPhoto = (p?: string) => (p && !p.includes('pose-placeholder') ? p : null);
+
+// The eight canonical boards (from the brand board-cover set), in pinning order.
+const BOARDS = [
+  { key: 'beginners', name: 'Yin Yoga for Beginners', blurb: 'New-to-Yin content — gentle poses, first-practice routines, the beginner’s guide.' },
+  { key: 'sleep', name: 'Bedtime Yoga & Yin for Sleep', blurb: 'Evening wind-downs and the restful shapes that carry into sleep.' },
+  { key: 'poses', name: 'Yin Yoga Poses', blurb: 'Every pose in the library — evergreen search traffic; pin a handful a week.' },
+  { key: 'flexibility', name: 'Yin Yoga for Flexibility', blurb: 'Deep stretches — hamstrings, hips, quads, side body.' },
+  { key: 'hips', name: 'Yoga for Hips', blurb: 'Hip, groin and glute openers.' },
+  { key: 'back', name: 'Yoga for Back & Spine', blurb: 'Lower back, spine, shoulders and neck.' },
+  { key: 'routines', name: 'Yin Yoga Routines', blurb: 'Full timed sequences — the numbered “save this” pins.' },
+  { key: 'nidra', name: 'Yoga Nidra & Deep Rest', blurb: 'Deep rest — savasana, legs up the wall, and the most calming practices.' },
+] as const;
+type BoardKey = (typeof BOARDS)[number]['key'];
+
+type Entry = { title: string; kind: string; img: string; save: string; clip: string };
+const byBoard = Object.fromEntries(BOARDS.map((b) => [b.key, [] as Entry[]])) as Record<BoardKey, Entry[]>;
+
+function makeEntry(title: string, kind: string, img: string, description: string, pageUrl: string): Entry {
+  const save = `https://www.pinterest.com/pin/create/button/?url=${enc(pageUrl)}&media=${enc(img)}&description=${enc(description)}`;
+  const clip = `${title}\n\n${description}\n\nImage: ${img}\nLink: ${pageUrl}`;
+  return { title, kind, img, save, clip };
+}
+const add = (keys: BoardKey[], e: Entry) => keys.forEach((k) => byBoard[k].push(e));
+
+// --- Poses → Yin Yoga Poses + topical boards by target area -------------------
+const poses = (await getCollection('poses'))
+  .filter((p) => realPhoto(p.data.images?.[0]))
+  .sort((a, b) => a.data.name_en.localeCompare(b.data.name_en));
+for (const pose of poses) {
+  const d = pose.data;
+  const photo = realPhoto(d.images[0]);
+  const url = new URL(`/poses/${d.slug}/`, site).href;
+  const img = journalPinUrl(site, {
+    variant: 'split',
+    title: d.name_en,
+    eyebrow: 'Pose library',
+    meta: `Long hold · ${d.target_areas.slice(0, 2).join(' & ')}`,
+    excerpt: d.benefits[0],
+    photo,
+  });
+  const e = makeEntry(d.name_en, 'pose', img, d.seo_description, url);
+  const areas = d.target_areas.join(' ').toLowerCase();
+  const keys: BoardKey[] = ['poses'];
+  if (/\b(hip|hips|hip flexor|hip flexors|groin|glute|glutes|inner thigh|inner thighs|outer hip|outer hips)\b/.test(areas)) keys.push('hips');
+  if (/\b(lower back|spine|upper back|sacrum|oblique|obliques|neck|shoulder|shoulders)\b/.test(areas)) keys.push('back');
+  if (/\b(hamstring|hamstrings|quadriceps|hip flexor|hip flexors|inner thigh|inner thighs|it band|side body|calf|calves|front of thigh|front of thighs|shin|shins)\b/.test(areas)) keys.push('flexibility');
+  if (d.accessibility === 'beginner') keys.push('beginners');
+  if (/(corpse|savasana|legs-up-the-wall|reclined|banana|child|caterpillar|butterfly|melting-heart|half-butterfly|snail|supported|sphinx|seal)/.test(d.slug)) keys.push('sleep');
+  if (/(corpse|savasana|legs-up-the-wall|reclined-twist|snail|supported)/.test(d.slug) || /nervous system/.test(areas)) keys.push('nidra');
+  add([...new Set(keys)] as BoardKey[], e);
+}
+
+// --- Routines → Yin Yoga Routines + topical boards (numbered "sequence" pin) ---
+const poseBy = new Map((await getCollection('poses')).map((p) => [p.data.slug, p.data]));
+const humanise = (slug: string) => slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+const fmtHold = (secs: number, sides: number) => `${Math.max(1, Math.round(secs / 60))} min${sides === 2 ? ' each side' : ''}`;
+const routines = (await getCollection('routines')).sort((a, b) => a.data.minutes - b.data.minutes);
+for (const r of routines) {
+  const d = r.data;
+  const url = new URL(`/routines/${d.slug}/`, site).href;
+  const items = d.steps.map((s) => {
+    const p = poseBy.get(s.pose);
+    const photo = realPhoto(p?.images?.[0]);
+    return { name: p?.name_en ?? humanise(s.pose), note: fmtHold(s.seconds, s.sides), ...(photo ? { img: photo } : {}) };
+  });
+  const u = new URL('/pin/card.png', site);
+  u.searchParams.set('tpl', 'numbered');
+  u.searchParams.set('t', d.title);
+  u.searchParams.set('s', `${d.minutes}-minute yin routine`);
+  u.searchParams.set('items', JSON.stringify(items));
+  const e = makeEntry(d.title, 'routine', u.href, d.summary, url);
+  const t = `${d.title} ${d.summary}`.toLowerCase();
+  const keys: BoardKey[] = ['routines'];
+  if (d.level === 'beginner' || /beginner|gentle/.test(t)) keys.push('beginners');
+  if (/bedtime|wind.?down|sleep|night|evening/.test(t)) keys.push('sleep');
+  if (/\bhip|hips\b/.test(t)) keys.push('hips');
+  if (/back|spine|shoulder|neck|desk/.test(t)) keys.push('back');
+  if (/hamstring|leg|legs|flexib|hip|splits/.test(t)) keys.push('flexibility');
+  if (/stress|overwhelm|calm|wind.?down|bedtime|deep rest|relax/.test(t)) keys.push('nidra');
+  add([...new Set(keys)] as BoardKey[], e);
+}
+
+// --- Journal posts → their best board(s), shown as the arch Journal Pin --------
+const postBoards = (slug: string, title: string): BoardKey[] => {
+  const t = `${slug} ${title}`.toLowerCase();
+  const keys: BoardKey[] = [];
+  if (/sleep|bed|night|wind.?down|evening/.test(t)) keys.push('sleep');
+  if (/beginner|new to|start|first/.test(t)) keys.push('beginners');
+  if (/\bhip|hips\b/.test(t)) keys.push('hips');
+  if (/back|spine/.test(t)) keys.push('back');
+  if (/flexib|hamstring|splits|stretch/.test(t)) keys.push('flexibility');
+  if (/hold|pose|poses/.test(t)) keys.push('poses');
+  if (/routine|home|library|class/.test(t)) keys.push('routines');
+  return keys.length ? ([...new Set(keys)] as BoardKey[]) : ['poses'];
+};
+const posts = (await getCollection('blog'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
+for (const post of posts) {
+  const d = post.data;
+  const url = new URL(`/blog/${d.slug}/`, site).href;
+  const img = journalPinUrl(site, {
+    variant: 'arch',
+    title: d.title,
+    eyebrow: 'From the journal',
+    excerpt: d.description,
+    photo: realPhoto(d.hero),
+  });
+  const e = makeEntry(d.title, 'journal', img, d.seo_description ?? d.description, url);
+  add(postBoards(d.slug, d.title), e);
+}
+
+const boardSections = BOARDS.map((b) => ({ ...b, entries: byBoard[b.key] }));
+const totalPins = boardSections.reduce((n, b) => n + b.entries.length, 0);
+---
+
+<BaseLayout title="Board planner" description="Private board-planning console" noindex={true}>
+  <div class="wrap pins">
+    <h1>Board planner</h1>
+    <p class="pins-lead">
+      The same pins as the <a href="/pins">pin console</a>, re-sorted by the board they belong on — so you can
+      work one board at a time. Each item shows the recommended pin for that board; pop over to
+      <a href="/pins">/pins</a> if you want a different variant. Items can appear on more than one board
+      (pin once, then repin to the others a few days apart). {totalPins} pins across {boardSections.length} boards.
+    </p>
+
+    <nav class="board-jump">
+      {boardSections.map((b) => (
+        <a href={`#${b.key}`}>{b.name} <span>{b.entries.length}</span></a>
+      ))}
+    </nav>
+
+    {boardSections.map((b) => (
+      <section class="pins-sec" id={b.key}>
+        <h2>{b.name} <span class="board-count">{b.entries.length} pins</span></h2>
+        <p class="pins-lead">{b.blurb}</p>
+        {b.entries.length === 0 ? (
+          <p class="board-empty">No pins land here yet.</p>
+        ) : (
+          <div class="pins-grid">
+            {b.entries.map((pin) => (
+              <div class="pincard">
+                <a href={pin.save} target="_blank" rel="noopener noreferrer" class="pincard-img">
+                  <img src={pin.img} alt={`${pin.title} pin`} loading="lazy" width="200" height="300" />
+                  <span class={`pincard-tpl kind-${pin.kind}`}>{pin.kind}</span>
+                </a>
+                <p class="pincard-name">{pin.title}</p>
+                <div class="pincard-actions">
+                  <a class="pincard-save" href={pin.save} target="_blank" rel="noopener noreferrer">Save</a>
+                  <button type="button" class="pincard-copy" data-clip={pin.clip}>Copy</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+    ))}
+  </div>
+
+  <style>
+    .pins { padding: 40px 22px 90px; }
+    .pins h1 { font-family: var(--display); color: var(--plum); font-size: 40px; margin: 0 0 10px; }
+    .pins-lead { color: var(--ink-soft); max-width: 74ch; margin: 0; line-height: 1.6; }
+    .pins-lead a { color: var(--plum); text-decoration: underline; }
+    .board-jump { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 0; }
+    .board-jump a { font-size: 13px; color: var(--ink); background: var(--paper-2); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; }
+    .board-jump a:hover { border-color: var(--plum); color: var(--plum); }
+    .board-jump span { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+    .pins-sec { margin-top: 44px; border-top: 1px solid var(--line); padding-top: 24px; scroll-margin-top: 20px; }
+    .pins-sec h2 { font-family: var(--display); font-weight: 400; color: var(--plum); font-size: 26px; margin: 0 0 6px; }
+    .board-count { font-family: var(--body); font-size: 14px; color: var(--ink-soft); font-weight: 400; }
+    .board-empty { color: var(--ink-soft); font-style: italic; margin: 8px 0 0; }
+    .pins-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 22px; margin-top: 14px; }
+    .pincard { display: flex; flex-direction: column; gap: 8px; }
+    .pincard-img { position: relative; display: block; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+    .pincard-img img { width: 100%; height: auto; display: block; background: var(--paper-2); aspect-ratio: 2 / 3; object-fit: cover; }
+    .pincard-tpl { position: absolute; top: 8px; left: 8px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; background: rgba(46,52,47,.72); color: #F9F1EA; padding: 3px 9px; border-radius: 999px; }
+    .kind-pose { background: rgba(72,84,76,.78); }
+    .kind-routine { background: rgba(137,73,75,.82); }
+    .kind-journal { background: rgba(120,105,90,.82); }
+    .pincard-name { font-size: 13.5px; color: var(--ink); margin: 0; line-height: 1.35; }
+    .pincard-actions { display: flex; gap: 8px; }
+    .pincard-save { flex: 1; text-align: center; background: #E60023; color: #fff; font-weight: 600; font-size: 13px; padding: 8px 10px; border-radius: 999px; }
+    .pincard-save:hover { background: #c9001e; color: #fff; }
+    .pincard-copy { flex: 1; font-family: inherit; font-size: 13px; padding: 7px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
+    .pincard-copy:hover { border-color: var(--plum); color: var(--plum); }
+    .pincard-copy.copied { border-color: var(--plum); color: var(--plum); }
+  </style>
+
+  <script>
+    document.querySelectorAll<HTMLButtonElement>('.pincard-copy').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(btn.dataset.clip || '');
+          const prev = btn.textContent;
+          btn.classList.add('copied');
+          btn.textContent = 'Copied ✓';
+          setTimeout(() => { btn.classList.remove('copied'); btn.textContent = prev; }, 1600);
+        } catch (e) {}
+      });
+    });
+  </script>
+</BaseLayout>

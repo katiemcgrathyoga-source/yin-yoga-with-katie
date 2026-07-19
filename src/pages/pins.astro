@@ -59,7 +59,7 @@ const PLAN: Record<string, Plan> = {
     pins: [
       { tpl: 'band', img: '/poses/corpse.jpg', eyebrow: 'let the day go', title: 'Yin Yoga for Sleep: A Gentle Practice for Deeper Rest', board: 'Bedtime Yoga & Yin for Sleep' },
       { tpl: 'numbered', eyebrow: 'before bed', title: '6 Yin Yoga Poses for Better Sleep', board: 'Bedtime Yoga & Yin for Sleep',
-        items: [{ name: 'Legs up the wall', note: '5 minutes', img: '/poses/legs-up-the-wall.jpg' }, { name: 'Butterfly', note: '3 minutes', img: '/poses/butterfly.jpg' }, { name: 'Caterpillar', note: '3 minutes', img: '/poses/caterpillar.jpg' }, { name: 'Banana', note: 'each side', img: '/poses/banana.jpg' }, { name: 'Savasana', note: 'until you drift off', img: '/poses/corpse.jpg' }] },
+        items: [{ name: 'Legs up the wall', note: '5 minutes', img: '/poses/legs-up-the-wall.jpg' }, { name: 'Butterfly', note: '3 minutes', img: '/poses/butterfly.jpg' }, { name: 'Caterpillar', note: '3 minutes', img: '/poses/caterpillar.jpg' }, { name: 'Banana', note: 'each side', img: '/poses/banana.jpg' }, { name: 'Reclined twist', note: 'each side', img: '/poses/reclined-twist.jpg' }, { name: 'Savasana', note: 'until you drift off', img: '/poses/corpse.jpg' }] },
       { tpl: 'quote', eyebrow: 'from the journal', quote: 'You can’t force sleep — but you can make a soft place for it to find you.', title: 'You can’t force sleep', board: 'Yin Yoga Routines' },
     ],
   },
@@ -175,7 +175,7 @@ const fmtHold = (secs: number, sides: number) => `${Math.max(1, Math.round(secs 
 function numberedRoutinePin(r: (typeof routines)[number]): Pin {
   const d = r.data;
   const rUrl = new URL(`/routines/${d.slug}/`, site).href;
-  const items = d.steps.slice(0, 5).map((s) => {
+  const items = d.steps.map((s) => {
     const p = poseBy.get(s.pose);
     const photo = realPhoto(p?.images?.[0]);
     return { name: p?.name_en ?? humanise(s.pose), note: fmtHold(s.seconds, s.sides), ...(photo ? { img: photo } : {}) };
