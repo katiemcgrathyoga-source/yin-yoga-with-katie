@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { lenLabel, videoHeadline, videoSubtitle, videoFaq } from '../../lib/video';
 import { SITE } from '../../data/site';
 import { PROGRAMS, resolveProgramClasses } from '../../data/programs';
+import Cta from '../../components/Cta.astro';
 
 /**
  * One reusable template for every video class. `getStaticPaths` emits a static
@@ -260,16 +261,11 @@ const eyebrow = ['Yin Yoga', ...d.intent_tags.map(capitalise)].join(' · ');
       )
     }
 
-    {/* Single CTA — the free two-hour retreat */}
-    <div class="membership">
-      <p class="eyebrow">A gift from me</p>
-      <h2>Two hours to completely switch off</h2>
-      <p class="cta-members">✦ A members-only class — free for you</p>
-      <p>Treat yourself to my free two-hour Yin, restorative and Yoga Nidra retreat. Free, and yours to keep.</p>
-      <div class="cta-actions">
-        <a class="btn-cta" href="/free-class">Send me the free retreat →</a>
-      </div>
-    </div>
+    {/* Single CTA — the free two-hour retreat (inline email capture) */}
+    <Cta
+      source="video"
+      body="Enjoyed this class? I'll send you my free two-hour Yin, restorative and Yoga Nidra retreat — two slow hours to properly switch off, yours to keep. Just pop your email in."
+    />
 
     {
       faq.length > 0 && (

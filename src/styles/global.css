@@ -1150,13 +1150,20 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .rt-inner h2 { font-family: var(--display); font-weight: 500; font-size: 34px; color: var(--paper); margin: 8px 0 0; }
 .rt-members { font-size: 15px; color: rgba(249,241,234,.85); margin: 12px 0 22px; }
 .rt-form { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-.rt-form input[type=email] { flex: 1; min-width: 220px; max-width: 320px; padding: 13px 18px; border-radius: 100px; border: 1px solid rgba(249,241,234,.45); background: transparent; color: var(--paper); font: inherit; font-size: 15px; }
-.rt-form input[type=email]::placeholder { color: rgba(249,241,234,.6); }
-.rt-form input[type=email]:focus { outline: none; border-color: var(--paper); }
+.rt-form input[type=email], .rt-form input[type=text] { flex: 1; min-width: 220px; max-width: 320px; padding: 13px 18px; border-radius: 100px; border: 1px solid rgba(249,241,234,.45); background: transparent; color: var(--paper); font: inherit; font-size: 15px; }
+.rt-form input[type=email]::placeholder, .rt-form input[type=text]::placeholder { color: rgba(249,241,234,.6); }
+.rt-form input[type=email]:focus, .rt-form input[type=text]:focus { outline: none; border-color: var(--paper); }
 .rt-form .btn-cta { background: var(--paper); color: var(--plum); font-weight: 600; padding: 13px 24px; border-radius: 100px; border: none; cursor: pointer; white-space: nowrap; }
 .rt-form .btn-cta:hover { background: #f3e7db; color: var(--plum); }
 .rt-done { font-size: 16px; color: var(--paper); margin: 4px 0 0; }
-@media (max-width: 520px) { .rt-form { flex-direction: column; align-items: stretch; } .rt-form input[type=email], .rt-form .btn-cta { max-width: none; } }
+@media (max-width: 520px) { .rt-form { flex-direction: column; align-items: stretch; } .rt-form input[type=email], .rt-form input[type=text], .rt-form .btn-cta { max-width: none; } }
+
+/* Inline capture card (Cta.astro) — reuses the dark .membership card + .rt-form. */
+.cta-block .cta-form { margin-top: 6px; }
+.cta-block .cta-fine { font-size: 13px; color: rgba(249,241,234,.72); margin: 14px 0 0; }
+.cta-block .cta-done { font-size: 16px; color: var(--paper); margin: 8px 0 0; }
+[data-theme="dark"] .cta-block .cta-fine { color: var(--ink-soft); }
+[data-theme="dark"] .cta-block .cta-done { color: var(--ink); }
 
 /* ---- Placeholder pages ---- */
 .coming-soon {
@@ -1574,8 +1581,8 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 [data-theme="dark"] .membership p, [data-theme="dark"] .cta p, [data-theme="dark"] .rt-members { color: var(--ink-soft); }
 [data-theme="dark"] .membership .btn-cta, [data-theme="dark"] .cta .btn-cta { background: var(--gold-solid); color: #2f3833; }
 [data-theme="dark"] .rt-form .btn-cta { background: var(--plum); color: #2f3833; }
-[data-theme="dark"] .rt-form input[type=email] { border-color: var(--line); color: var(--ink); }
-[data-theme="dark"] .rt-form input[type=email]::placeholder { color: var(--ink-soft); }
+[data-theme="dark"] .rt-form input[type=email], [data-theme="dark"] .rt-form input[type=text] { border-color: var(--line); color: var(--ink); }
+[data-theme="dark"] .rt-form input[type=email]::placeholder, [data-theme="dark"] .rt-form input[type=text]::placeholder { color: var(--ink-soft); }
 /* practice-view demo distinct from page bg */
 [data-theme="dark"] .rt3-demo { background: var(--paper-2); }
 /* tags / badges keep contrast on ink */

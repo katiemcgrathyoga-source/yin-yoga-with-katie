@@ -182,4 +182,47 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { poses, videos, routines, blog };
+/**
+ * The `sessions` collection — course practices (e.g. the Runner's Reset). A
+ * session is a routine PLUS a teaching layer: a follow-along video, the "why"
+ * (science), level modifications and an access flag. Each session page shows the
+ * video, the timed RoutinePlayer, the science, written cues and a body map — one
+ * page for every learning style. `access` gates it for the future membership;
+ * `youtube_video_id` is left blank until the class is filmed.
+ */
+const sessions = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/sessions' }),
+  schema: z.object({
+    title: z.string().min(1),
+    slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'slug must be lowercase kebab-case'),
+    collection: z.string(),                     // e.g. "runners-reset"
+    kind: z.enum(['post-run', 'rest-day', 'target', 'full-reset', 'start-here']),
+    area: z.string(),                           // e.g. "hips", "hamstrings", "full-body"
+    body_map: z.enum(['hips', 'hamstrings', 'calves', 'quads', 'back', 'full']).default('full'),
+    level: z.enum(['all-levels', 'beginner', 'intermediate', 'advanced']).default('all-levels'),
+    minutes: z.number().int().positive(),
+    hold_label: z.string().default('2-minute holds'),
+    props: z.array(z.string()).default([]),
+    youtube_video_id: z.string().default(''),   // plug in after filming
+    why: z.string().min(1),                     // the science rationale
+    angle: z.string().optional(),               // a one-line message angle
+    intro: z.string().min(1),                   // short intro in Katie's voice
+    steps: z
+      .array(
+        z.object({
+          pose: z.string(),                     // slug → poses collection
+          seconds: z.number().int().positive(),
+          sides: z.union([z.literal(1), z.literal(2)]).default(1),
+          note: z.string().optional(),          // cue shown while holding
+        }),
+      )
+      .min(1),
+    scale: z.array(z.object({ level: z.string(), note: z.string() })).default([]),
+    when: z.array(z.string()).default([]),
+    access: z.enum(['free', 'members']).default('members'),
+    seo_title: z.string().optional(),
+    seo_description: z.string().optional(),
+  }),
+});
+
+export const collections = { poses, videos, routines, blog, sessions };

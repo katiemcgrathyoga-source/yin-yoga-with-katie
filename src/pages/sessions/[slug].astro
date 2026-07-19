@@ -1,0 +1,265 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RoutinePlayer from '../../components/RoutinePlayer.astro';
+
+/**
+ * One reusable template for every course session (the Runner's Reset, and future
+ * collections). Built for every learning style on one page: the follow-along
+ * VIDEO (watch), the timed RoutinePlayer (practise screen-free once you know it),
+ * the WHY (science), written CUES (read), and a body map (see). Renders from a
+ * `sessions` entry; the video plugs in via `youtube_video_id` after filming.
+ */
+export async function getStaticPaths() {
+  const sessions = await getCollection('sessions');
+  const poses = await getCollection('poses');
+  return sessions.map((session) => ({ params: { slug: session.data.slug }, props: { session, poses } }));
+}
+
+const { session, poses } = Astro.props;
+const d = session.data;
+
+const titleCase = (s: string) => s.replace(/\b\w/g, (c) => c.toUpperCase());
+const humanise = (slug: string) => titleCase(slug.replace(/-/g, ' '));
+const bySlug = new Map(poses.map((p) => [p.data.slug, p.data]));
+
+// Expand steps → the flat hold list the RoutinePlayer runs (two-sided → Side 1/2).
+type Hold = { name: string; slug: string; img: string; seconds: number; note: string; sideLabel?: string };
+const holds: Hold[] = d.steps.flatMap((s) => {
+  const p = bySlug.get(s.pose);
+  const base = {
+    name: p?.name_en ?? humanise(s.pose),
+    slug: s.pose,
+    img: p?.images?.[0] ?? '',
+    seconds: s.seconds,
+    note: s.note ?? p?.cues?.[0] ?? '',
+  };
+  return s.sides === 2 ? [{ ...base, sideLabel: 'Side 1' }, { ...base, sideLabel: 'Side 2' }] : [base];
+});
+
+// A hold length as words, e.g. "2 minutes each".
+const holdWords = (secs: number, sides: number) => {
+  const base = secs % 60 === 0 ? `${secs / 60} minute${secs === 60 ? '' : 's'}` : `${secs} sec`;
+  return sides === 2 ? `${base} each` : base;
+};
+
+// Body map — highlight position + caption per target area.
+const MAP: Record<string, { cy: number; ry: number; label: string }> = {
+  hips: { cy: 92, ry: 17, label: 'the hips and hip flexors' },
+  hamstrings: { cy: 120, ry: 20, label: 'the hamstrings and glutes' },
+  quads: { cy: 112, ry: 18, label: 'the quads and outer hip' },
+  calves: { cy: 158, ry: 20, label: 'the calves, ankles and feet' },
+  back: { cy: 74, ry: 16, label: 'the lower back and spine' },
+  full: { cy: 112, ry: 60, label: 'the whole lower body' },
+};
+const bm = MAP[d.body_map] ?? MAP.full;
+
+const kindLabel: Record<string, string> = {
+  'post-run': 'Post-Run Reset', 'rest-day': 'Rest-Day Deep Stretch', target: 'Target Session',
+  'full-reset': 'Full Reset', 'start-here': 'Start Here',
+};
+---
+
+<BaseLayout
+  title={d.seo_title ?? `${d.title} — Yin Yoga with Katie`}
+  description={d.seo_description ?? d.intro}
+  noindex={d.access === 'members'}
+>
+  <div class="wrap sp">
+    <header class="sp-head">
+      <p class="sp-eyebrow">The Runner's Reset · {kindLabel[d.kind] ?? 'Session'}</p>
+      <h1>{d.title}</h1>
+      <div class="sp-chips">
+        <span class="sp-chip area">Area · {titleCase(d.area)}</span>
+        <span class="sp-chip">~{d.minutes} min</span>
+        <span class="sp-chip">{d.hold_label}</span>
+        <span class="sp-chip">{titleCase(d.level.replace(/-/g, ' '))}</span>
+        <span class="sp-chip">{d.props.length ? d.props.join(', ') : 'No props needed'}</span>
+      </div>
+    </header>
+
+    {/* 1 · PRACTISE — watch or use the timer */}
+    <section class="sp-sec">
+      <p class="sp-label"><span class="sp-num">1</span> Practise</p>
+      <div class="sp-tabs" role="tablist" aria-label="How to practise">
+        <button id="tab-watch" role="tab" aria-selected="true" aria-controls="p-watch">▶ Watch &amp; learn</button>
+        <button id="tab-timer" role="tab" aria-selected="false" aria-controls="p-timer">⏱ Practise with the timer</button>
+      </div>
+
+      <div class="sp-panel" id="p-watch" role="tabpanel" aria-labelledby="tab-watch">
+        {d.youtube_video_id ? (
+          <div class="sp-video">
+            <iframe
+              src={`https://www.youtube.com/embed/${d.youtube_video_id}`}
+              title={`${d.title} — follow-along class`}
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            />
+          </div>
+        ) : (
+          <div class="sp-video-slot">
+            <span class="sp-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            <b>Follow-along video coming soon</b>
+            <span>Katie's guided class will play here — everything else on the page is ready to practise now.</span>
+          </div>
+        )}
+      </div>
+
+      <div class="sp-panel" id="p-timer" role="tabpanel" aria-labelledby="tab-timer" hidden>
+        <RoutinePlayer title={d.title} holds={holds} />
+        <p class="sp-hint">For when you know the shapes and just want to flow — screen-free, no narration. A gentle chime moves you between holds.</p>
+      </div>
+    </section>
+
+    {/* 2 · WHY + HOW + SEE + SCALE */}
+    <section class="sp-sec">
+      <p class="sp-label"><span class="sp-num">2</span> Why it helps &amp; how to practise</p>
+      <div class="sp-grid">
+        <div>
+          <div class="sp-card">
+            <h3>Why this one</h3>
+            <p class="muted">{d.why}</p>
+            {d.angle && <p class="sp-angle">“{d.angle}”</p>}
+          </div>
+          <div class="sp-card">
+            <h3>How to practise — the shapes</h3>
+            {d.steps.map((s, i) => {
+              const p = bySlug.get(s.pose);
+              const name = p?.name_en ?? humanise(s.pose);
+              return (
+                <div class="sp-cue">
+                  <span class="n">{i + 1}</span>
+                  <div class="body">
+                    <h4>
+                      <a href={`/poses/${s.pose}`}>{name}</a>
+                      {s.sides === 2 && <span class="side"> · each side</span>}
+                    </h4>
+                    <span class="hold">{holdWords(s.seconds, s.sides)}</span>
+                    {s.note && <p>{s.note}</p>}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div>
+          <div class="sp-card sp-map">
+            <svg viewBox="0 0 100 200" aria-hidden="true">
+              <circle cx="50" cy="20" r="11"/>
+              <path d="M38 34 Q50 30 62 34 L60 96 Q50 100 40 96 Z"/>
+              <rect x="30" y="40" width="10" height="46" rx="5"/>
+              <rect x="60" y="40" width="10" height="46" rx="5"/>
+              <path d="M41 96 Q46 100 46 108 L44 176 Q42 182 38 176 L40 108 Q39 100 41 96Z"/>
+              <path d="M59 96 Q54 100 54 108 L56 176 Q58 182 62 176 L60 108 Q61 100 59 96Z"/>
+              <ellipse cx="50" cy={bm.cy} rx="24" ry={bm.ry} class="hl a"/>
+              <ellipse cx="50" cy={bm.cy} rx="13" ry={Math.max(9, bm.ry - 8)} class="hl b"/>
+            </svg>
+            <p class="sp-mapcap"><b>Where it works:</b> {bm.label}.</p>
+          </div>
+
+          {d.scale.length > 0 && (
+            <div class="sp-card">
+              <h3>Scale it to you</h3>
+              {d.scale.map((l) => (
+                <div class="sp-lvl"><span class="tag">{l.level}</span><p>{l.note}</p></div>
+              ))}
+            </div>
+          )}
+
+          {d.when.length > 0 && (
+            <div class="sp-card">
+              <h3>When to use it</h3>
+              <ul class="sp-when">{d.when.map((w) => <li>{w}</li>)}</ul>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+
+    <div class="sp-learn">
+      <b>Why the page looks like this:</b> everyone learns differently — so every session gives you the <b>video</b> (watch &amp; follow), the <b>timer</b> (practise screen-free once you know it), the <b>why</b> (understand it), <b>written cues</b> (read it) and a <b>body map</b> (see where it works).
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const tw = document.getElementById('tab-watch');
+  const tt = document.getElementById('tab-timer');
+  const pw = document.getElementById('p-watch');
+  const pt = document.getElementById('p-timer');
+  function sel(watch: boolean) {
+    tw?.setAttribute('aria-selected', String(watch));
+    tt?.setAttribute('aria-selected', String(!watch));
+    if (pw) pw.hidden = !watch;
+    if (pt) pt.hidden = watch;
+  }
+  tw?.addEventListener('click', () => sel(true));
+  tt?.addEventListener('click', () => sel(false));
+</script>
+
+<style>
+  .sp { max-width: 960px; }
+  .sp-head { padding: 8px 0 6px; }
+  .sp-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--gold-solid); }
+  .sp-head h1 { margin: 10px 0 0; }
+  .sp-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .sp-chip { font-size: 12.5px; font-weight: 600; color: var(--ink); background: var(--paper-2); border: 1px solid var(--line); border-radius: 100px; padding: 6px 13px; }
+  .sp-chip.area { background: rgba(188,157,154,.24); border-color: transparent; }
+
+  .sp-sec { padding: 26px 0; }
+  .sp-label { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--plum-deep); margin-bottom: 14px; display: flex; align-items: center; gap: 9px; }
+  .sp-num { width: 22px; height: 22px; border-radius: 50%; background: var(--plum); color: var(--paper); display: inline-flex; align-items: center; justify-content: center; font-size: 12px; }
+
+  .sp-tabs { display: inline-flex; background: var(--paper-2); border: 1px solid var(--line); border-radius: 100px; padding: 4px; margin-bottom: 16px; }
+  .sp-tabs button { border: none; background: transparent; font: inherit; font-weight: 600; font-size: 14.5px; color: var(--ink-soft); padding: 9px 18px; border-radius: 100px; cursor: pointer; }
+  .sp-tabs button[aria-selected="true"] { background: var(--plum); color: var(--paper); }
+  .sp-panel[hidden] { display: none; }
+
+  .sp-video { position: relative; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); }
+  .sp-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .sp-video-slot { aspect-ratio: 16/9; border-radius: 16px; border: 2px dashed rgba(137,73,75,.5); background: var(--paper-2); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; padding: 20px; color: var(--ink-soft); }
+  .sp-video-slot b { color: var(--ink); font-family: var(--display); font-size: 19px; }
+  .sp-play { width: 62px; height: 62px; border-radius: 50%; background: rgba(137,73,75,.16); display: flex; align-items: center; justify-content: center; }
+  .sp-play svg { width: 24px; height: 24px; fill: var(--gold-solid); margin-left: 4px; }
+  .sp-hint { font-size: 12.5px; color: var(--ink-soft); font-style: italic; text-align: center; margin-top: 10px; }
+
+  .sp-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 24px; align-items: start; }
+  @media (max-width: 760px) { .sp-grid { grid-template-columns: 1fr; } }
+  .sp-card { background: var(--paper-2); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; }
+  .sp-card + .sp-card { margin-top: 18px; }
+  .sp-card h3 { font-size: 20px; margin-bottom: 8px; }
+  .sp-card p { font-size: 15px; }
+  .sp-card p.muted { color: var(--ink-soft); }
+  .sp-angle { margin-top: 12px; font-family: var(--display); font-style: italic; font-size: 16px; color: var(--plum-deep); }
+
+  .sp-cue { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .sp-cue:last-child { border-bottom: none; }
+  .sp-cue .n { font-family: var(--display); color: var(--gold); font-size: 20px; width: 22px; flex: none; }
+  .sp-cue h4 { font-size: 16px; }
+  .sp-cue h4 a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--gold); }
+  .sp-cue h4 .side { font-weight: 400; color: var(--ink-soft); font-size: 13px; }
+  .sp-cue .hold { font-size: 12.5px; font-weight: 600; color: var(--gold-solid); }
+  .sp-cue p { font-size: 14px; color: var(--ink-soft); margin-top: 3px; }
+
+  .sp-map { text-align: center; }
+  .sp-map svg { width: 116px; height: auto; }
+  .sp-map svg circle, .sp-map svg path, .sp-map svg rect { fill: var(--ink-soft); }
+  .sp-map svg .hl { stroke: none; }
+  .sp-map svg .hl.a { fill: var(--gold-solid); opacity: .26; }
+  .sp-map svg .hl.b { fill: var(--gold-solid); opacity: .45; }
+  .sp-mapcap { font-size: 13px; color: var(--ink-soft); margin-top: 8px; }
+  .sp-mapcap b { color: var(--ink); }
+
+  .sp-lvl { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .sp-lvl:last-child { border-bottom: none; }
+  .sp-lvl .tag { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--paper); background: var(--plum); border-radius: 100px; padding: 4px 10px; height: fit-content; white-space: nowrap; }
+  .sp-lvl p { font-size: 14px; color: var(--ink-soft); }
+
+  .sp-when { margin: 0; padding-left: 18px; }
+  .sp-when li { margin: 7px 0; color: var(--ink-soft); font-size: 14.5px; }
+
+  .sp-learn { background: rgba(188,157,154,.14); border: 1px solid rgba(188,157,154,.4); border-radius: 14px; padding: 16px 20px; font-size: 14.5px; color: var(--ink); margin: 10px 0 30px; }
+  .sp-learn b { color: var(--plum-deep); }
+</style>

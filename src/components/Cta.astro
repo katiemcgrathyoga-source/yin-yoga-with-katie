@@ -1,26 +1,97 @@
 ---
 /**
  * The site-wide call to action — a single, low-friction ask: the free two-hour
- * Yin retreat (email capture). Calm, no hype — in Katie's voice.
+ * Yin retreat. Calm, no hype — in Katie's voice.
+ *
+ * Captures email INLINE (no extra click) by posting straight to MailerLite in a
+ * hidden iframe, then swapping in our own thank-you — the same technique as the
+ * homepage retreat band and /free-class. Every signup is tagged with `source`
+ * (MailerLite custom field `signup_source`) so we can see which pages convert.
  */
+const ML_ACTION =
+  'https://assets.mailerlite.com/jsonp/2503148/forms/192665473777665865/subscribe';
+
 interface Props {
   eyebrow?: string;
   heading?: string;
   body?: string;
+  /** Where this signup came from, e.g. "pose", "journal", "video". */
+  source?: string;
 }
 const {
   eyebrow = 'A gift from me',
   heading = 'Two hours to completely switch off',
-  body = 'Treat yourself to my free two-hour Yin, restorative and Yoga Nidra retreat. Free, and yours to keep.',
+  body =
+    "Pop your email in and I'll send you my free two-hour Yin, restorative and Yoga Nidra retreat — two slow hours to properly switch off. Yours to keep, and to come back to any time.",
+  source = 'site',
 } = Astro.props;
+
+// Unique per render so several capture cards on one page never collide.
+const uid = 'cta-' + Math.random().toString(36).slice(2, 9);
+const frame = uid + '-frame';
 ---
 
-<div class="membership cta-block">
+<section class="membership cta-block" data-cta>
   <p class="eyebrow">{eyebrow}</p>
   <h2>{heading}</h2>
   <p class="cta-members">✦ A members-only class — free for you</p>
   <p>{body}</p>
-  <div class="cta-actions">
-    <a class="btn-cta" href="/free-class">Send me the free retreat →</a>
-  </div>
-</div>
+
+  <form
+    class="rt-form cta-form"
+    action={ML_ACTION}
+    method="post"
+    target={frame}
+    data-cta-form
+    aria-label="Get the free two-hour retreat"
+  >
+    <label class="sr-only" for={uid + '-name'}>First name</label>
+    <input
+      id={uid + '-name'}
+      type="text"
+      name="fields[name]"
+      placeholder="First name"
+      autocomplete="given-name"
+      required
+      aria-required="true"
+    />
+    <label class="sr-only" for={uid + '-email'}>Email address</label>
+    <input
+      id={uid + '-email'}
+      type="email"
+      name="fields[email]"
+      placeholder="you@email.com"
+      autocomplete="email"
+      required
+      aria-required="true"
+    />
+    <input type="hidden" name="fields[signup_source]" value={source} />
+    <input type="hidden" name="ml-submit" value="1" />
+    <input type="hidden" name="anticsrf" value="true" />
+    <button type="submit" class="btn-cta">Send me the free retreat →</button>
+  </form>
+
+  <p class="cta-fine" data-cta-fine>No spam, ever. Unsubscribe any time. I'll only send Yin.</p>
+  <p class="cta-done" hidden role="status" data-cta-done>
+    Check your inbox 🌙 your two-hour retreat is on its way.
+  </p>
+
+  <iframe name={frame} class="lm-frame" title="Sign-up" tabindex="-1" aria-hidden="true"></iframe>
+</section>
+
+<script>
+  // Wire every inline capture card on the page. The POST lands in the card's
+  // hidden iframe; we swap the form out for our own thank-you.
+  document.querySelectorAll('[data-cta]').forEach((card) => {
+    const form = card.querySelector('[data-cta-form]') as HTMLFormElement | null;
+    const done = card.querySelector('[data-cta-done]') as HTMLElement | null;
+    const fine = card.querySelector('[data-cta-fine]') as HTMLElement | null;
+    form?.addEventListener('submit', () => {
+      window.setTimeout(() => {
+        form.hidden = true;
+        if (fine) fine.hidden = true;
+        if (done) done.hidden = false;
+      }, 400);
+    });
+  });
+</script>

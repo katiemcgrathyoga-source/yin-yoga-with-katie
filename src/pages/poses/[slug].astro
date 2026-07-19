@@ -291,7 +291,12 @@ const poseSave = `https://www.pinterest.com/pin/create/button/?url=${encodeURICo
       )
     }
 
-    <Cta />
+    <Cta
+      source="pose"
+      eyebrow="Put it all together"
+      heading="When you want the whole practice"
+      body={`${d.name_en} is one shape among many. When you'd like to put a whole sequence together into one long, slow practice, pop your email in and I'll send you my free two-hour Yin, restorative and Yoga Nidra retreat. Yours to keep.`}
+    />
 
     {
       d.related_poses.length > 0 && (

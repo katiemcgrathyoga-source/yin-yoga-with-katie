@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { PROGRAMS, resolveProgramClasses, unitPlural } from '../../data/programs';
 import { derivedThumb, lenLabel, videoHeadline } from '../../lib/video';
+import Cta from '../../components/Cta.astro';
 
 export async function getStaticPaths() {
   const videos = await getCollection('videos');
@@ -103,6 +104,13 @@ const planUrl = `/calendar?program=${meta.slug}`;
       </p>
       <a class="btn btn-secondary" href="/programs">← All programs</a>
     </section>
+
+    <Cta
+      source="program"
+      eyebrow="Alongside your program"
+      heading="A free retreat to go with it"
+      body={`Following ${meta.title}? This free two-hour Yin, restorative and Yoga Nidra retreat sits nicely alongside it — a long, slow practice for whenever you need to properly rest. Pop your email in and it's yours to keep.`}
+    />
 
     <footer>
       <p class="src">Every class links out to the full practice on YouTube.</p>
