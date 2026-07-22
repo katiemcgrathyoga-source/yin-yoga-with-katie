@@ -7,6 +7,19 @@ subtitle: "one calm place for the practice"
 eyebrow_tag: "a new home"
 seo_title: "A New Home for Yin — Introducing the Yin Yoga with Katie Library"
 seo_description: "A calm, filterable home for every Yin Yoga class — with a pose library, guided programs, a practice calendar, and a free two-hour retreat to begin."
+practise:
+  routine: "gentle-beginner-yin"
+  video: "juWZIHm1xDA"
+  video_label: "Yin Yoga for Beginners, 30 minutes"
+faq:
+  - q: "Is everything on Yin Yoga with Katie free?"
+    a: "Yes — the classes, pose guides, routines and the practice planner are all free to use. There's a free two-hour retreat to begin with, too."
+  - q: "Do I need an account to use the site?"
+    a: "No account needed. Everything is open — just find a class or routine and press play."
+  - q: "Where should I start?"
+    a: "If you're new, begin with a gentle beginner routine or the free two-hour retreat, then explore the library and filter by what your body needs today."
+  - q: "Are the classes suitable for beginners?"
+    a: "Many of them are — gentle, slow and beginner-friendly. You can filter by focus and length to find a shorter, softer practice to start with."
 ---
 
 For a long time now, everything I make has lived on YouTube. I love YouTube — it's where we found each other — but it was never built for the way people actually *practise* Yin. You'd come looking for "something for my hips before bed," and end up scrolling past thumbnails, half-remembering which class was the good one, talking yourself out of rolling out the mat at all.

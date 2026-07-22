@@ -10,6 +10,19 @@ subtitle: "rest is a practice"
 eyebrow_tag: "sleep & rest"
 seo_title: "Bedtime Yin Yoga: A Gentle 3-Night Wind-Down"
 seo_description: "A gentle 3-night bedtime Yin Yoga wind-down: three 30-minute evening classes to follow in order, each pose linked, to help you slow down before sleep."
+practise:
+  routine: "bedtime-wind-down"
+  video: "WM0Nc8OXAtk"
+  video_label: "30-Min Yin Yoga for Sleep"
+faq:
+  - q: "How many nights of bedtime Yin do I need to feel a difference?"
+    a: "Even one quiet evening can help you wind down, but a few nights in a row is where it becomes a habit your body starts to expect — a gentle signal that the day is over."
+  - q: "Can I do bedtime Yin every night?"
+    a: "Absolutely. A short wind-down is a lovely thing to do every night; it's gentle enough that there's no need for a rest day."
+  - q: "What time should I do my bedtime wind-down?"
+    a: "The hour or so before bed is ideal. Dim the lights, put your phone in another room, and let the practice be the bridge between your day and sleep."
+  - q: "Do I need props for a bedtime practice?"
+    a: "No — a cushion or two and a blanket to keep warm are nice, but nothing's required. You can practise right on your bed and drift straight off afterwards."
 ---
 
 If your mind is still racing when your head hits the pillow, a short, slow Yin practice in the hour before bed can be a lovely way to change gears. Yin Yoga asks almost nothing of you — you settle into a handful of floor-based shapes, hold each one for a few quiet minutes, and let gravity do the work. The long holds and slow, unhurried breathing gently invite the body out of "doing" mode and toward its rest state.

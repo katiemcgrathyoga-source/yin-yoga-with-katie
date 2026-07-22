@@ -10,6 +10,21 @@ subtitle: "start where you are"
 eyebrow_tag: "beginners"
 seo_title: "Yin Yoga for Beginners: What It Is & How to Start Tonight"
 seo_description: "New to Yin Yoga? A beginner's guide: what it is, how it differs from other yoga, what you need, the three simple cues, and a gentle first practice for tonight."
+practise:
+  routine: "gentle-beginner-yin"
+  video: "ENOBK0Q1GgM"
+  video_label: "25-Minute Yin Yoga for Complete Beginners"
+faq:
+  - q: "Is Yin Yoga good for complete beginners?"
+    a: "Yes — it's one of the gentlest ways to start. You don't need any flexibility or experience; you simply settle into a few floor-based shapes and let gravity do the work. Tight, stiff bodies are exactly who Yin is for."
+  - q: "How is Yin Yoga different from regular yoga?"
+    a: "Most yoga flows from pose to pose and builds strength. Yin is the opposite — slow and still. You hold each shape for a few quiet minutes and let it soften you, rather than working or sweating."
+  - q: "How often should a beginner practise Yin Yoga?"
+    a: "Even once or twice a week makes a difference. Little and often does far more than long and rare, so start small and let it become something you look forward to."
+  - q: "Do I need to be flexible to start?"
+    a: "Not at all — quite the opposite. You only ever go to about the point your body's happy with, and let it soften from there. There's no right or wrong shape."
+  - q: "How long should beginners hold each pose?"
+    a: "Start with a minute or two per shape and build up from there. If anything feels sharp or nervy, come straight out — you never need to wait for me."
 ---
 
 Yin Yoga is a slow, quiet style of yoga where you settle into gentle, mostly floor-based shapes and hold each one for a few minutes, letting gravity — not muscular effort — do the work. It's one of the kindest ways to begin a practice: there's no flow to memorise, nothing to keep up with, and every pose has an easier option. Here's what it is, how it's different, and a simple way to start tonight.

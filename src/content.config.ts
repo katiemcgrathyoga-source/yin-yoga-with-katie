@@ -180,6 +180,13 @@ const blog = defineCollection({
     subtitle: z.string().optional(), // short italic line under the H1
     eyebrow_tag: z.string().optional(), // topic shown after "the journal ·" in the hero eyebrow
     cta_program: z.string().optional(), // slug of the program to CTA to (else the free-retreat CTA)
+    // FAQ block → rendered on the post + emitted as FAQPage schema (rich results).
+    faq: z.array(z.object({ q: z.string().min(1), a: z.string().min(1) })).default([]),
+    // "Practise along" block: a routine slug (its page has the built-in timer) + an
+    // optional full-class YouTube id to embed.
+    practise: z
+      .object({ routine: z.string(), video: z.string().optional(), video_label: z.string().optional() })
+      .optional(),
     seo_title: z.string().optional(),
     seo_description: z.string().optional(),
   }),

@@ -9,6 +9,19 @@ subtitle: "two slow practices, two different jobs"
 eyebrow_tag: "yin basics"
 seo_title: "Yin Yoga vs. Restorative Yoga: What's the Difference?"
 seo_description: "The real difference between Yin and Restorative Yoga: Yin gently stresses the deep tissues to build mobility; Restorative fully supports you for pure rest. How to choose."
+practise:
+  routine: "stress-overwhelm-relief"
+  video: "9FuEpOKS5Eg"
+  video_label: "30-Min Restorative Yin Yoga"
+faq:
+  - q: "Can beginners do both Yin and Restorative yoga?"
+    a: "Yes — both are gentle, slow and beginner-friendly, and neither asks for any flexibility. They're two of the kindest ways to start a practice."
+  - q: "Which is better for stress or a busy mind?"
+    a: "Both calm you beautifully. Reach for Restorative when you're truly depleted and just need to be held, and Yin when you'd also like a gentle stretch. On many evenings, either is exactly right."
+  - q: "Do you need props for Restorative yoga?"
+    a: "Yes — props are the whole point of Restorative; bolsters, blankets and blocks hold you in full support. Yin needs few or none."
+  - q: "Is one more of a workout than the other?"
+    a: "Neither is a workout — both are about rest and mobility rather than effort or calories. If you want to sweat, this isn't the practice; if you want to unwind, it's perfect."
 ---
 
 If you've ever scrolled past a "Yin Yoga" class and a "Restorative Yoga" class and wondered whether they're the same thing — you're in good company. They *look* alike: slow, quiet, floor-based, held for a long time, and deeply calming. But under the surface they're doing two quite different jobs. Here's the difference, in plain language, and how to pick the one your body actually needs today.

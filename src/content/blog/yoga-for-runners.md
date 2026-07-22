@@ -10,6 +10,21 @@ subtitle: "keep running for years, not seasons"
 eyebrow_tag: "for runners"
 seo_title: "Yoga for Runners: Best Yin Poses for Tight Hips, Hamstrings & Recovery"
 seo_description: "Yin Yoga for runners: the best poses for tight hips, hamstrings, calves and the outer hip, when to do them (after a run, not before), and free follow-along classes."
+practise:
+  routine: "deep-hips-lower-body"
+  video: "NDOsdt86vcs"
+  video_label: "Deep Stretch Yoga for Runners"
+faq:
+  - q: "Is yoga good for runners?"
+    a: "Yes — for mobility and recovery especially. The long, slow holds gently ease the tightness running builds up in the hips, hamstrings and calves, and help you feel less stiff."
+  - q: "Should runners do yoga before or after running?"
+    a: "After a run and on rest days is the sweet spot, while you're warm. Keep anything before a run short and gentle — long, deep holds right before running can leave you feeling a little loose and less powerful."
+  - q: "How often should a runner do yoga?"
+    a: "A couple of short sessions a week, plus one longer session on a rest day, is plenty to keep the tightness from building up."
+  - q: "Can yoga help tight hips from running?"
+    a: "Yes — this is where it shines. Running plus sitting shortens the hip flexors, and long Yin holds gently open them back up so your stride feels freer."
+  - q: "Will yoga prevent running injuries?"
+    a: "It can ease the everyday tightness that contributes to overuse niggles, which helps — but it's not a guarantee, and it isn't a substitute for good training and rest. If you have sharp or lasting pain, see a physio."
 ---
 
 If you run, you already know the feeling: you finish a good run with heavy legs, tight hips and that familiar pull down the back of your leg. You mean to stretch. Usually you don't. And it quietly stacks up — run after run — until a niggle turns into "maybe I'll take a week off."

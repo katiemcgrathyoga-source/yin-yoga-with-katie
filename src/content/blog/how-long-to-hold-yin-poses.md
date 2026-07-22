@@ -10,6 +10,19 @@ subtitle: "long enough to let go"
 eyebrow_tag: "practice"
 seo_title: "How Long to Hold Yin Yoga Poses (And Why It Matters)"
 seo_description: "How long should you hold Yin Yoga poses? The simple answer, why the holds are so long, what's right for beginners, and how to know when to ease out."
+practise:
+  routine: "full-body-reset"
+  video: "SORXjbO9BfA"
+  video_label: "30-Minute Silent Yin Yoga"
+faq:
+  - q: "How long should a beginner hold Yin Yoga poses?"
+    a: "Start with one to two minutes per pose and build up as it feels comfortable. There's no rush — even a shorter hold is worthwhile, and you can always stay longer another day."
+  - q: "Why do you hold Yin poses for so long?"
+    a: "The long, still holds are what reach the deeper connective tissue around the joints and hips — the part a quick, active stretch never quite touches. Time is the whole method."
+  - q: "Can you hold a Yin pose for too long?"
+    a: "You can. Five minutes is a common ceiling, and the real guide is sensation — if a stretch turns sharp, or you feel anything electric or nervy, ease out. You're always your own teacher."
+  - q: "Should Yin Yoga poses hurt?"
+    a: "No. A gentle, steady stretch is what you're after — never pain. Aim for about 80% of your capacity and let the breath do the softening."
 ---
 
 Most Yin Yoga poses are held for **two to five minutes**. If you're new, it's perfectly fine to start around **one to three minutes** and build up over the weeks; more experienced practitioners often settle in for five minutes or longer in the gentler shapes. But the exact number matters less than the principle behind it — so here's how to find the right hold for *you*, and how to know when it's time to come out.

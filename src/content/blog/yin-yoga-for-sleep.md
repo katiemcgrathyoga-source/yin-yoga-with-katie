@@ -10,6 +10,21 @@ subtitle: "let the day go"
 eyebrow_tag: "sleep & rest"
 seo_title: "Yin Yoga for Sleep: A Gentle Practice for Deeper Rest"
 seo_description: "Yin Yoga for sleep: why the slow, long holds calm a busy mind, the best poses to do before bed, and short follow-along practices to help you drift off."
+practise:
+  routine: "bedtime-wind-down"
+  video: "hZ1rEDI-ITQ"
+  video_label: "30-Min Yin Yoga for Sleep"
+faq:
+  - q: "Can I do Yin Yoga in bed?"
+    a: "Yes — and it's one of the loveliest ways to practise before sleep. Soft, reclined shapes like a gentle twist, butterfly or a simple forward fold work beautifully on a mattress. Keep to the calm, lying-down poses rather than anything deep or balancing, and let yourself drift straight into sleep afterwards."
+  - q: "How long before bed should I practise?"
+    a: "The hour or so before bed is the sweet spot. Dim the lights, put your phone in another room, and let the practice be the bridge between your day and sleep. Even ten quiet minutes counts — little and often does far more than long and rare."
+  - q: "Do I need props for bedtime Yin?"
+    a: "Not at all. A cushion or two and a blanket to keep warm are nice, but nothing is required — you can practise right on your bed. Come as you are, in whatever's comfortable."
+  - q: "What if my mind won't switch off while I practise?"
+    a: "That's completely normal — it doesn't mean it isn't working. As soon as you notice you're thinking, just gently come back to the feeling of your breath. You're not trying to empty your mind, only to give it something soft to rest on."
+  - q: "Is Yin or Restorative Yoga better for sleep?"
+    a: "Both are wonderful before bed, and many bedtime practices blend the two. Reach for Restorative if you're truly depleted and just need to be held; reach for Yin if you'd also like a gentle stretch. If you're curious, I wrote more on the difference in the journal."
 ---
 
 If your body is tired but your mind won't stop, you're not alone — and a short, slow Yin practice in the hour before bed can be one of the kindest ways to bridge the gap between a busy day and sleep. Yin Yoga asks almost nothing of you: you settle into a few floor-based shapes, hold each one for a few quiet minutes, and let the long, unhurried holds do the quieting. Here's how it works, the poses that help most, and a couple of short practices you can follow tonight.
