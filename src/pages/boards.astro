@@ -172,16 +172,18 @@ const totalPins = boardSections.reduce((n, b) => n + b.entries.length, 0);
         ) : (
           <div class="pins-grid">
             {b.entries.map((pin) => (
-              <div class="pincard">
+              <div class="pincard" data-pinkey={`${b.name}::${pin.img}`}>
                 <a href={pin.save} target="_blank" rel="noopener noreferrer" class="pincard-img">
                   <img src={pin.img} alt={`${pin.title} pin`} loading="lazy" width="200" height="300" />
                   <span class={`pincard-tpl kind-${pin.kind}`}>{pin.kind}</span>
+                  <span class="pincard-check" aria-hidden="true">✓ pinned</span>
                 </a>
                 <p class="pincard-name">{pin.title}</p>
                 <div class="pincard-actions">
                   <a class="pincard-save" href={pin.save} target="_blank" rel="noopener noreferrer">Save</a>
                   <button type="button" class="pincard-copy" data-clip={pin.clip}>Copy</button>
                 </div>
+                <button type="button" class="pincard-pinned">Mark pinned</button>
               </div>
             ))}
           </div>
@@ -218,6 +220,12 @@ const totalPins = boardSections.reduce((n, b) => n + b.entries.length, 0);
     .pincard-copy { flex: 1; font-family: inherit; font-size: 13px; padding: 7px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
     .pincard-copy:hover { border-color: var(--plum); color: var(--plum); }
     .pincard-copy.copied { border-color: var(--plum); color: var(--plum); }
+    .pincard-check { position: absolute; top: 8px; right: 8px; display: none; font-size: 11px; font-weight: 600; letter-spacing: .04em; background: var(--plum); color: var(--paper-2); padding: 3px 9px; border-radius: 999px; }
+    .pincard.is-pinned .pincard-check { display: inline-block; }
+    .pincard.is-pinned .pincard-img img { opacity: .45; }
+    .pincard-pinned { width: 100%; font-family: inherit; font-size: 12.5px; padding: 6px 10px; border-radius: 999px; border: 1px dashed var(--line); background: transparent; color: var(--ink-soft); cursor: pointer; }
+    .pincard-pinned:hover { border-color: var(--plum); color: var(--plum); }
+    .pincard.is-pinned .pincard-pinned { background: var(--plum); color: var(--paper-2); border-style: solid; border-color: transparent; }
   </style>
 
   <script>
@@ -232,5 +240,28 @@ const totalPins = boardSections.reduce((n, b) => n + b.entries.length, 0);
         } catch (e) {}
       });
     });
+
+    // "Pinned" tracker — mark which creatives you've already pinned (persists per browser).
+    (() => {
+      const KEY = 'pinnedPins';
+      const read = (): Record<string, boolean> => { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch { return {}; } };
+      let pinned = read();
+      document.querySelectorAll<HTMLElement>('.pincard[data-pinkey]').forEach((card) => {
+        const k = card.dataset.pinkey!;
+        const btn = card.querySelector<HTMLButtonElement>('.pincard-pinned');
+        const apply = () => {
+          const on = !!pinned[k];
+          card.classList.toggle('is-pinned', on);
+          if (btn) { btn.textContent = on ? '✓ Pinned' : 'Mark pinned'; btn.setAttribute('aria-pressed', String(on)); }
+        };
+        apply();
+        btn?.addEventListener('click', () => {
+          pinned = read();
+          if (pinned[k]) delete pinned[k]; else pinned[k] = true;
+          localStorage.setItem(KEY, JSON.stringify(pinned));
+          apply();
+        });
+      });
+    })();
   </script>
 </BaseLayout>

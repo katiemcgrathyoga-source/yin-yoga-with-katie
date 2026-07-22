@@ -495,7 +495,9 @@ routine-player.is-done .rp-done { display: flex; }
 /* FAQ accordion (pose + routine pages) */
 /* "Practise along" block on journal posts — links a follow-along routine (with its
    timer) and an optional embedded class. */
-.practise-block { background: var(--paper-2); border: 1px solid var(--line); border-radius: 18px; padding: 28px 30px; margin: 44px 0; }
+.practise-block { width: calc(100% - 48px); max-width: 66ch; margin: 44px auto; background: var(--paper-2); border: 1px solid var(--line); border-radius: 18px; padding: 28px 30px; }
+/* Keep the journal FAQ in the reading column (shares .faq styles with pose pages). */
+.jr-faq { width: calc(100% - 48px); max-width: 66ch; margin-left: auto; margin-right: auto; }
 .practise-block .eyebrow { color: var(--gold-solid); }
 .practise-block h2 { margin: 8px 0 4px; }
 .practise-block .practise-meta { font-size: 14px; font-weight: 600; color: var(--plum); margin: 0 0 12px; }
@@ -782,7 +784,7 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .ji-featured { display: grid; grid-template-columns: 340px 1fr; gap: 48px; align-items: center; max-width: 960px; margin: 0 auto; padding: 44px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 2px 12px rgba(72,84,76,0.08); text-decoration: none; color: inherit; }
 .ji-featured-photo { width: 340px; height: 420px; border-radius: 999px 999px 0 0; overflow: hidden; background: #F0E4E2; display: flex; align-items: center; justify-content: center; }
 [data-theme="dark"] .ji-featured-photo { background: var(--paper); }
-.ji-featured-photo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.ji-featured-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 42%; display: block; }
 .ji-featured-body { display: flex; flex-direction: column; align-items: flex-start; }
 .ji-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 18px; }
 .ji-badge { font-size: 12.5px; letter-spacing: .04em; color: var(--gold-solid); background: #F0E4E2; padding: 4px 13px; border-radius: 999px; }
