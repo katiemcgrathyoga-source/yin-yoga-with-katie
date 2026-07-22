@@ -16,7 +16,7 @@ const esc = (s: string) =>
 
 export const GET: APIRoute = async () => {
   const posts = (await getCollection('blog'))
-    .filter((p) => !p.data.draft)
+    .filter((p) => !p.data.draft && !p.data.unlisted)
     .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
 
   const items = posts

@@ -19,6 +19,15 @@ const focalFor = (imgPath, frame) => {
   return (rec && rec[frame]) || 'center';
 };
 
+// Photo hook is a full-bleed 2:3 crop; bias the vertical downward (64%) so the
+// subject — usually low in the frame — shows, with less empty ceiling above.
+// Keep any registered horizontal focal (e.g. corpse's 30%).
+const hookFocal = (imgPath) => {
+  const rec = PHOTOS[baseName(imgPath)];
+  const horiz = rec?.square ? rec.square.split(' ')[0] : '50%';
+  return `${horiz} 64%`;
+};
+
 async function loadImage(src) {
   if (!src) return null;
   try {
@@ -33,8 +42,9 @@ async function loadImage(src) {
   }
 }
 
-// Which focal key each template's main photo uses (photo=1a square; band/text/step = wide band).
-const MAIN_FRAME = { photo: 'square', band: 'band', text: 'band', step: 'band' };
+// Which focal key each template's main photo uses (photo=1a square; band/text/step = wide band;
+// photohook = full-bleed 2:3, reuse the square focal to keep the subject framed).
+const MAIN_FRAME = { photo: 'square', band: 'band', text: 'band', step: 'band', photohook: 'square' };
 
 /**
  * On-the-fly branded Pinterest pin (1000×1500, 2:3), matching the Claude Design system.
@@ -48,6 +58,7 @@ export default async (req) => {
   const tpl = p.get('tpl') || 'photo';
   const title = (p.get('t') || 'Yin Yoga with Katie').slice(0, 160);
   const eyebrow = (p.get('s') || '').slice(0, 48);
+  const subline = (p.get('sub') || '').slice(0, 120);
   const quote = (p.get('q') || '').slice(0, 160);
   const footer = (p.get('footer') || '').slice(0, 120);
   let items = [];
@@ -57,7 +68,7 @@ export default async (req) => {
   const imgPath = p.get('img') || '';
   const frame = MAIN_FRAME[tpl];
   const img = frame ? await loadImage(imgPath) : null;
-  const focal = frame ? focalFor(imgPath, frame) : 'center';
+  const focal = tpl === 'photohook' ? hookFocal(imgPath) : frame ? focalFor(imgPath, frame) : 'center';
 
   // Numbered / list templates: each row can carry a landscape pose thumbnail (200×144).
   if ((tpl === 'numbered' || tpl === 'list') && Array.isArray(items)) {
@@ -67,7 +78,7 @@ export default async (req) => {
   }
 
   try {
-    const png = await renderPin({ tpl, title, eyebrow, img, focal, quote, items, footer });
+    const png = await renderPin({ tpl, title, eyebrow, subline, img, focal, quote, items, footer });
     return new Response(png, {
       headers: {
         'content-type': 'image/png',

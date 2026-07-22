@@ -172,6 +172,9 @@ const blog = defineCollection({
     published: z.coerce.date(),
     updated: z.coerce.date().optional(),
     draft: z.boolean().default(false),
+    // Unlisted: builds its page (reviewable at the URL) but noindex + hidden from
+    // the /blog listing and RSS. Used to soft-launch a post before it's public.
+    unlisted: z.boolean().default(false),
     hero: z.string().optional(), // optional lead image (path under /public)
     hero_caption: z.string().optional(), // italic caption under the hero image
     subtitle: z.string().optional(), // short italic line under the H1

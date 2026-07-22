@@ -181,10 +181,65 @@ function checklist({ title, eyebrow: eb, items = [], footer }) {
   ]);
 }
 
+// ─── New "feed-first" templates (2026 redesign) — Cormorant + Cabin ───────────
+// Photo hook: full-bleed photo + dark bottom scrim + keyword pill + hook.
+function photoHook({ title, eyebrow: eb, subline, img, focal }) {
+  const bg = img
+    ? { type: 'img', props: { src: img, style: { position: 'absolute', top: '0', left: '0', width: '1000px', height: '1500px', objectFit: 'cover', objectPosition: focal || 'center' } } }
+    : box({ position: 'absolute', top: '0', left: '0', width: '1000px', height: '1500px', backgroundColor: LINE });
+  return box({ width: '100%', height: '100%', position: 'relative', backgroundColor: SAGE, overflow: 'hidden' }, [
+    bg,
+    box({ position: 'absolute', top: '0', left: '0', width: '1000px', height: '1500px', backgroundImage: 'linear-gradient(to top, rgba(38,44,39,0.92) 0%, rgba(38,44,39,0.76) 24%, rgba(38,44,39,0) 60%)' }),
+    box({ position: 'absolute', top: '64px', left: '64px', backgroundColor: SAGE, color: OAT, fontFamily: 'Cabin', fontSize: '30px', letterSpacing: '6px', padding: '16px 34px', borderRadius: '999px' }, (eb || 'For runners').toUpperCase()),
+    box({ position: 'absolute', left: '64px', right: '64px', bottom: '56px', flexDirection: 'column' }, [
+      box({ fontFamily: 'Serif', fontSize: '100px', lineHeight: 1.04, color: CARD }, title),
+      subline ? box({ fontFamily: 'Cabin', fontSize: '40px', lineHeight: 1.35, color: OAT, marginTop: '30px' }, subline) : box({ width: '0', height: '0' }),
+      box({ height: '2px', backgroundColor: 'rgba(249,241,234,0.55)', marginTop: '32px' }),
+      box({ fontFamily: 'Cabin', fontSize: '30px', letterSpacing: '4px', color: OAT, marginTop: '30px' }, 'yinyogawithkatie.com'),
+    ]),
+  ]);
+}
+
+// Numbered list: oat field, big title, up to 6 pose rows with hold times, save-prompt footer.
+function numberList({ title, eyebrow: eb, items = [], footer }) {
+  const rows = items.slice(0, 6).map((it, i) =>
+    box({ alignItems: 'baseline', padding: '33px 0', borderBottom: `2px solid ${LINE}` }, [
+      box({ fontFamily: 'Serif', fontSize: '58px', color: ROSEWOOD, width: '70px', flexShrink: 0 }, String(i + 1)),
+      box({ fontFamily: 'Cabin', fontSize: '42px', color: SAGE, marginLeft: '36px', flexGrow: 1 }, it.name || ''),
+      it.note ? box({ fontFamily: 'Cabin', fontSize: '30px', color: SAGE, flexShrink: 0 }, it.note) : box({ width: '0', height: '0' }),
+    ]),
+  );
+  return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: OAT, padding: '96px 84px 72px' }, [
+    eb ? box({ fontFamily: 'Cabin', fontSize: '30px', letterSpacing: '6px', color: ROSEWOOD }, eb.toUpperCase()) : box({ width: '0', height: '0' }),
+    box({ fontFamily: 'Serif', fontSize: '108px', lineHeight: 1.02, color: SAGE, marginTop: '28px' }, title),
+    box({ flexDirection: 'column', marginTop: '52px' }, rows),
+    box({ flexGrow: 1 }),
+    box({ alignItems: 'center', justifyContent: 'space-between' }, [
+      box({ fontFamily: 'Cabin', fontSize: '30px', letterSpacing: '4px', color: SAGE }, 'yinyogawithkatie.com'),
+      footer ? box({ fontFamily: 'Cabin', fontSize: '30px', color: ROSEWOOD }, footer) : box({ width: '0', height: '0' }),
+    ]),
+  ]);
+}
+
+// Benefit card: deep-sage field, arched hairline frame, big benefit line + keyword eyebrow.
+function benefitCard({ title, eyebrow: eb }) {
+  return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: SAGE, padding: '72px' }, [
+    box({ flexGrow: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', border: `2px solid ${LINE}`, borderRadius: '424px 424px 18px 18px', padding: '96px 72px' }, [
+      box({ fontFamily: 'Cabin', fontSize: '30px', letterSpacing: '7px', color: OAT, borderBottom: '2px solid rgba(249,241,234,0.6)', paddingBottom: '18px' }, (eb || 'Yin yoga for runners').toUpperCase()),
+      box({ fontFamily: 'Serif', fontSize: '94px', lineHeight: 1.12, color: CARD, maxWidth: '700px', marginTop: '52px', justifyContent: 'center', textAlign: 'center' }, title),
+      box({ fontFamily: 'Serif', fontSize: '36px', letterSpacing: '1px', color: OAT, marginTop: '52px' }, 'yin yoga with katie'),
+    ]),
+    box({ justifyContent: 'center', fontFamily: 'Cabin', fontSize: '30px', letterSpacing: '4px', color: OAT, marginTop: '48px' }, 'yinyogawithkatie.com'),
+  ]);
+}
+
 /** Render a 1000×1500 (2:3) Pinterest pin to a PNG Buffer. */
-export async function renderPin({ tpl, title, eyebrow: eb, img, focal, quote, items, footer }) {
+export async function renderPin({ tpl, title, eyebrow: eb, subline, img, focal, quote, items, footer }) {
   let tree;
   switch (tpl) {
+    case 'photohook': tree = photoHook({ title, eyebrow: eb, subline, img, focal }); break;
+    case 'numberlist': tree = numberList({ title, eyebrow: eb, items, footer }); break;
+    case 'benefit': tree = benefitCard({ title, eyebrow: eb }); break;
     case 'text': tree = textLed({ title, eyebrow: eb, img, focal }); break;
     case 'band': tree = landscapeBand({ title, eyebrow: eb, img, focal }); break;
     case 'list': tree = listPin({ title, eyebrow: eb, items }); break;

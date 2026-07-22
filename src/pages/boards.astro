@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { journalPinUrl } from '../lib/journalPin';
 
 // Katie's private board-planning console (noindex, unlisted). Where /pins is
 // organised by content item (every pin for one post/pose/routine), /boards is
@@ -12,12 +11,38 @@ const site = Astro.site!;
 const enc = encodeURIComponent;
 const realPhoto = (p?: string) => (p && !p.includes('pose-placeholder') ? p : null);
 
-// The eight canonical boards (from the brand board-cover set), in pinning order.
+// Word-safe truncation for pin sublines (never cut mid-word).
+const clip = (s: string | undefined, n: number) => {
+  const t = (s || '').trim();
+  if (t.length <= n) return t;
+  const cut = t.slice(0, n);
+  const sp = cut.lastIndexOf(' ');
+  return (sp > 40 ? cut.slice(0, sp) : cut).replace(/[\s,;:.—-]+$/, '') + '…';
+};
+
+// Poses shot lying/low read best in the clean landscape BAND; upright/seated poses
+// in the square PHOTO-led template. Everything not listed defaults to photo.
+const LYING = new Set(['corpse','banana','childs-pose','reclined-swan','reclined-twist','reclined-hamstring','happy-baby','supported-bridge','supported-fish','legs-up-the-wall','wind-relieving','sphinx','seal','crocodile','melting-heart','sleeping-swan','thread-the-needle','broken-wing','puppy']);
+const cleanTpl = (slug: string) => (LYING.has(slug) ? 'band' : 'photo');
+
+// Build a /pin/card.png URL (clean photo-led/band, photohook, numberlist, benefit).
+const pinUrl = (params: Record<string, unknown>) => {
+  const u = new URL('/pin/card.png', site);
+  for (const [k, v] of Object.entries(params)) {
+    if (v == null || v === '') continue;
+    u.searchParams.set(k, typeof v === 'string' ? v : JSON.stringify(v));
+  }
+  return u.href;
+};
+
+// The canonical boards, in pinning order. (Yin Yoga for Runners is new — it still
+// needs a board cover; see the board-cover design set.)
 const BOARDS = [
   { key: 'beginners', name: 'Yin Yoga for Beginners', blurb: 'New-to-Yin content — gentle poses, first-practice routines, the beginner’s guide.' },
   { key: 'sleep', name: 'Bedtime Yoga & Yin for Sleep', blurb: 'Evening wind-downs and the restful shapes that carry into sleep.' },
   { key: 'poses', name: 'Yin Yoga Poses', blurb: 'Every pose in the library — evergreen search traffic; pin a handful a week.' },
   { key: 'flexibility', name: 'Yin Yoga for Flexibility', blurb: 'Deep stretches — hamstrings, hips, quads, side body.' },
+  { key: 'runners', name: 'Yin Yoga for Runners', blurb: 'Recovery, mobility and follow-along Yin for runners — tight hips, hamstrings, calves and the IT band.' },
   { key: 'hips', name: 'Yoga for Hips', blurb: 'Hip, groin and glute openers.' },
   { key: 'back', name: 'Yoga for Back & Spine', blurb: 'Lower back, spine, shoulders and neck.' },
   { key: 'routines', name: 'Yin Yoga Routines', blurb: 'Full timed sequences — the numbered “save this” pins.' },
@@ -43,14 +68,7 @@ for (const pose of poses) {
   const d = pose.data;
   const photo = realPhoto(d.images[0]);
   const url = new URL(`/poses/${d.slug}/`, site).href;
-  const img = journalPinUrl(site, {
-    variant: 'split',
-    title: d.name_en,
-    eyebrow: 'Pose library',
-    meta: `Long hold · ${d.target_areas.slice(0, 2).join(' & ')}`,
-    excerpt: d.benefits[0],
-    photo,
-  });
+  const img = pinUrl({ tpl: cleanTpl(d.slug), t: d.name_en, s: 'a yin yoga pose', img: photo });
   const e = makeEntry(d.name_en, 'pose', img, d.seo_description, url);
   const areas = d.target_areas.join(' ').toLowerCase();
   const keys: BoardKey[] = ['poses'];
@@ -60,6 +78,7 @@ for (const pose of poses) {
   if (d.accessibility === 'beginner') keys.push('beginners');
   if (/(corpse|savasana|legs-up-the-wall|reclined|banana|child|caterpillar|butterfly|melting-heart|half-butterfly|snail|supported|sphinx|seal)/.test(d.slug)) keys.push('sleep');
   if (/(corpse|savasana|legs-up-the-wall|reclined-twist|snail|supported)/.test(d.slug) || /nervous system/.test(areas)) keys.push('nidra');
+  if (/\b(hip|hips|hip flexor|hip flexors|hamstring|hamstrings|glute|glutes|quadriceps|quads?|calf|calves|ankle|ankles|foot|feet|it band|groin|outer hip|outer hips|inner thigh|inner thighs|lower back|side body|shin|shins)\b/.test(areas)) keys.push('runners');
   add([...new Set(keys)] as BoardKey[], e);
 }
 
@@ -76,12 +95,14 @@ for (const r of routines) {
     const photo = realPhoto(p?.images?.[0]);
     return { name: p?.name_en ?? humanise(s.pose), note: fmtHold(s.seconds, s.sides), ...(photo ? { img: photo } : {}) };
   });
-  const u = new URL('/pin/card.png', site);
-  u.searchParams.set('tpl', 'numbered');
-  u.searchParams.set('t', d.title);
-  u.searchParams.set('s', `${d.minutes}-minute yin routine`);
-  u.searchParams.set('items', JSON.stringify(items));
-  const e = makeEntry(d.title, 'routine', u.href, d.summary, url);
+  const img = pinUrl({
+    tpl: 'numberlist',
+    t: d.title,
+    s: `${d.minutes}-minute routine`,
+    items: items.map((it) => ({ name: it.name, note: it.note })),
+    footer: 'save for later',
+  });
+  const e = makeEntry(d.title, 'routine', img, d.summary, url);
   const t = `${d.title} ${d.summary}`.toLowerCase();
   const keys: BoardKey[] = ['routines'];
   if (d.level === 'beginner' || /beginner|gentle/.test(t)) keys.push('beginners');
@@ -90,6 +111,7 @@ for (const r of routines) {
   if (/back|spine|shoulder|neck|desk/.test(t)) keys.push('back');
   if (/hamstring|leg|legs|flexib|hip|splits/.test(t)) keys.push('flexibility');
   if (/stress|overwhelm|calm|wind.?down|bedtime|deep rest|relax/.test(t)) keys.push('nidra');
+  if (/hip|hamstring|leg|legs|glute|calf|quad|back|flexib|lower body|deep stretch|recovery|runner/.test(t)) keys.push('runners');
   add([...new Set(keys)] as BoardKey[], e);
 }
 
@@ -104,6 +126,7 @@ const postBoards = (slug: string, title: string): BoardKey[] => {
   if (/flexib|hamstring|splits|stretch/.test(t)) keys.push('flexibility');
   if (/hold|pose|poses/.test(t)) keys.push('poses');
   if (/routine|home|library|class/.test(t)) keys.push('routines');
+  if (/runner|running/.test(t)) keys.push('runners');
   return keys.length ? ([...new Set(keys)] as BoardKey[]) : ['poses'];
 };
 const posts = (await getCollection('blog'))
@@ -112,13 +135,10 @@ const posts = (await getCollection('blog'))
 for (const post of posts) {
   const d = post.data;
   const url = new URL(`/blog/${d.slug}/`, site).href;
-  const img = journalPinUrl(site, {
-    variant: 'arch',
-    title: d.title,
-    eyebrow: 'From the journal',
-    excerpt: d.description,
-    photo: realPhoto(d.hero),
-  });
+  const hero = realPhoto(d.hero);
+  const img = hero
+    ? pinUrl({ tpl: 'photohook', t: d.title, s: 'From the journal', sub: clip(d.description, 84), img: hero })
+    : pinUrl({ tpl: 'benefit', t: d.title, s: 'From the journal' });
   const e = makeEntry(d.title, 'journal', img, d.seo_description ?? d.description, url);
   add(postBoards(d.slug, d.title), e);
 }
