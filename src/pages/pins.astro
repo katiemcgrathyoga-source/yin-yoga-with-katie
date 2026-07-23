@@ -28,14 +28,26 @@ const clip = (s: string | undefined, n: number) => {
   return (sp > 40 ? cut.slice(0, sp) : cut).replace(/[\s,;:.—-]+$/, '') + '…';
 };
 
-const pinUrl = (params: Record<string, unknown>) => {
-  const u = new URL('/pin/card.png', site);
+const buildUrl = (path: string, params: Record<string, unknown>) => {
+  const u = new URL(path, site);
   for (const [k, v] of Object.entries(params)) {
     if (v == null || v === '') continue;
     u.searchParams.set(k, typeof v === 'string' ? v : JSON.stringify(v));
   }
   return u.href;
 };
+// /pin/card.png → poses, routines, quote, photo-hook (the pin.mjs template set).
+const pinUrl = (params: Record<string, unknown>) => buildUrl('/pin/card.png', params);
+// /pin/journal.png → the four Journal Pin variants (arch · oat-frame · split · card).
+const journalUrl = (params: Record<string, unknown>) => buildUrl('/pin/journal.png', params);
+
+// The four Journal Pin variants, already split across dark/light grounds.
+const JOURNAL_VARIANTS = [
+  { v: 'arch', label: 'journal · arch (dark)' },
+  { v: 'oat-frame', label: 'journal · oat-frame (light)' },
+  { v: 'split', label: 'journal · split (dark)' },
+  { v: 'card', label: 'journal · card (light)' },
+] as const;
 
 const humanise = (slug: string) => slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 const fmtHold = (secs: number, sides: number) => `${Math.max(1, Math.round(secs / 60))} min${sides === 2 ? ' each side' : ''}`;
@@ -45,7 +57,7 @@ const fmtHold = (secs: number, sides: number) => `${Math.max(1, Math.round(secs 
 const LYING = new Set(['corpse','banana','childs-pose','reclined-swan','reclined-twist','reclined-hamstring','happy-baby','supported-bridge','supported-fish','legs-up-the-wall','wind-relieving','sphinx','seal','crocodile','melting-heart','sleeping-swan','thread-the-needle','broken-wing','puppy']);
 const cleanTpl = (slug: string) => (LYING.has(slug) ? 'band' : 'photo');
 
-// --- Journal posts → photo hook (over the hero) + a benefit card --------------
+// --- Journal posts → photo hook + the four Journal Pin variants + quote (L/D) --
 const posts = (await getCollection('blog'))
   .filter((p) => !p.data.draft)
   .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
@@ -54,10 +66,20 @@ const postCards = posts.map((post) => {
   const url = new URL(`/blog/${d.slug}/`, site).href;
   const desc = d.seo_description ?? d.description;
   const hero = realPhoto(d.hero);
+  const eb = d.eyebrow_tag || 'From the journal';
   const pins: Pin[] = [];
+  // The photo-forward, highest-reach creative — kept.
   if (hero)
-    pins.push(mkPin('photo hook', pinUrl({ tpl: 'photohook', t: d.title, s: 'From the journal', sub: clip(d.description, 84), img: hero }), d.title, desc, url));
-  pins.push(mkPin('benefit', pinUrl({ tpl: 'benefit', t: d.title, s: 'From the journal' }), d.title, desc, url));
+    pins.push(mkPin('photo hook', pinUrl({ tpl: 'photohook', t: d.title, s: eb, sub: clip(d.description, 84), img: hero }), d.title, desc, url));
+  // The four brand Journal Pins (natural-aspect photo, never cropped).
+  if (hero)
+    for (const jv of JOURNAL_VARIANTS)
+      pins.push(mkPin(jv.label, journalUrl({ variant: jv.v, t: d.title, s: 'from the journal', img: hero }), d.title, desc, url));
+  // Optional pull-quote pin (blush + deep-sage twins). Needs a pin_quote in the post.
+  if (d.pin_quote) {
+    pins.push(mkPin('quote (light)', pinUrl({ tpl: 'quote', q: d.pin_quote, s: 'from the journal', tone: 'light' }), d.title, desc, url));
+    pins.push(mkPin('quote (dark)', pinUrl({ tpl: 'quote', q: d.pin_quote, s: 'from the journal', tone: 'dark' }), d.title, desc, url));
+  }
   return { title: d.title, board: 'From the journal', pins };
 });
 
@@ -69,17 +91,19 @@ const poseCards = poses.map((pose) => {
   const d = pose.data;
   const url = new URL(`/poses/${d.slug}/`, site).href;
   const photo = realPhoto(d.images[0]);
-  const ct = cleanTpl(d.slug);
-  const cleanImg = pinUrl({ tpl: ct, t: d.name_en, s: 'a yin yoga pose', img: photo });
+  const ct = cleanTpl(d.slug); // 'band' for lying poses, 'photo' for upright
   const hookImg = pinUrl({ tpl: 'photohook', t: d.name_en, s: d.target_areas[0] || 'Yin yoga', sub: clip(d.benefits[0], 84), img: photo });
-  return {
-    title: d.name_en,
-    board: 'Yin Yoga Poses',
-    pins: [
-      mkPin(ct === 'band' ? 'photo band' : 'photo', cleanImg, d.name_en, d.seo_description, url),
-      mkPin('photo hook', hookImg, d.name_en, d.seo_description, url),
-    ],
-  };
+  const pins: Pin[] = [];
+  if (ct === 'band') {
+    // Lying poses read best in the clean landscape band (light only — band-dark dropped).
+    pins.push(mkPin('photo band (light)', pinUrl({ tpl: 'band', t: d.name_en, s: 'a yin yoga pose', img: photo, tone: 'light' }), d.name_en, d.seo_description, url));
+  } else {
+    // Upright/seated poses: square photo-led in both colourways.
+    pins.push(mkPin('photo (light)', pinUrl({ tpl: 'photo', t: d.name_en, s: 'a yin yoga pose', img: photo, tone: 'light' }), d.name_en, d.seo_description, url));
+    pins.push(mkPin('photo (dark)', pinUrl({ tpl: 'photo', t: d.name_en, s: 'a yin yoga pose', img: photo, tone: 'dark' }), d.name_en, d.seo_description, url));
+  }
+  pins.push(mkPin('photo hook', hookImg, d.name_en, d.seo_description, url));
+  return { title: d.name_en, board: 'Yin Yoga Poses', pins };
 });
 
 // --- Routines → numbered list + photo hook over the lead pose -----------------
@@ -88,24 +112,42 @@ const routines = (await getCollection('routines')).sort((a, b) => a.data.minutes
 const routineCards = routines.map((r) => {
   const d = r.data;
   const url = new URL(`/routines/${d.slug}/`, site).href;
-  const items = d.steps.map((s) => {
+  const eb = `${d.minutes}-minute routine`;
+  // Full item list (name · hold · photo) for the numbered-thumbnail pin.
+  const itemsFull = d.steps.map((s) => {
     const p = poseBy.get(s.pose);
-    return { name: p?.name_en ?? humanise(s.pose), note: fmtHold(s.seconds, s.sides) };
+    const ph = realPhoto(p?.images?.[0]);
+    return { name: p?.name_en ?? humanise(s.pose), note: fmtHold(s.seconds, s.sides), ...(ph ? { img: ph } : {}) };
   });
+  const itemsLite = itemsFull.map((it) => ({ name: it.name, note: it.note }));
   const pins: Pin[] = [
-    mkPin('numbered list', pinUrl({ tpl: 'numberlist', t: d.title, s: `${d.minutes}-minute routine`, items, footer: 'save for later' }), d.title, d.summary, url),
+    mkPin('numbered + thumbs (light)', pinUrl({ tpl: 'numbered', t: d.title, s: eb, items: itemsFull, tone: 'light' }), d.title, d.summary, url),
+    mkPin('numbered + thumbs (dark)', pinUrl({ tpl: 'numbered', t: d.title, s: eb, items: itemsFull, tone: 'dark' }), d.title, d.summary, url),
+    mkPin('numbered list (light)', pinUrl({ tpl: 'numberlist', t: d.title, s: eb, items: itemsLite, footer: 'save for later', tone: 'light' }), d.title, d.summary, url),
   ];
-  const heroPose = (d.hero_pose && poseBy.get(d.hero_pose)) || poseBy.get(d.steps[0]?.pose);
-  const heroPhoto = realPhoto(heroPose?.images?.[0]);
-  if (heroPhoto)
-    pins.push(mkPin('photo hook', pinUrl({ tpl: 'photohook', t: d.title, s: `${d.minutes}-min routine`, sub: clip(d.summary, 84), img: heroPhoto }), d.title, d.summary, url));
+  // Photo-hook variations: up to 4 distinct pose photos from the sequence, hero first,
+  // so each routine has several fresh photo-forward pins to the same URL.
+  const seen = new Set<string>();
+  const order = [d.hero_pose, ...d.steps.map((s) => s.pose)].filter(Boolean) as string[];
+  const hookPoses: { name: string; photo: string }[] = [];
+  for (const slug of order) {
+    if (seen.has(slug)) continue;
+    seen.add(slug);
+    const p = poseBy.get(slug);
+    const ph = realPhoto(p?.images?.[0]);
+    if (p && ph) hookPoses.push({ name: p.name_en, photo: ph });
+    if (hookPoses.length >= 4) break;
+  }
+  hookPoses.forEach((hp, i) =>
+    pins.push(mkPin(`photo hook · ${hp.name}`, pinUrl({ tpl: 'photohook', t: d.title, s: eb, sub: clip(d.summary, 84), img: hp.photo }), d.title, d.summary, url)),
+  );
   return { title: d.title, board: 'Yin Yoga Routines', pins };
 });
 
 const sections = [
-  { heading: 'Journal', lead: 'Each post as a photo-hook pin over its hero image, plus a benefit card — space them a few days apart.', cards: postCards },
-  { heading: 'Poses', lead: 'Every pose with a photo, as a photo-hook pin. Board: Yin Yoga Poses.', cards: poseCards },
-  { heading: 'Routines', lead: 'The numbered sequence pin (the strongest routine creative) plus a photo-hook over the lead pose. Board: Yin Yoga Routines.', cards: routineCards },
+  { heading: 'Journal', lead: 'Each post as a photo-hook pin plus the four Journal Pin variants (arch · oat-frame · split · card) — two dark grounds, two light. Add a pin_quote to a post to unlock its blush/sage quote pins. Space the variants a few days apart as fresh pins to the same URL.', cards: postCards },
+  { heading: 'Poses', lead: 'Upright poses in both colourways (photo light + dark) plus a photo-hook; lying poses in the clean landscape band plus a photo-hook. Board: Yin Yoga Poses.', cards: poseCards },
+  { heading: 'Routines', lead: 'The numbered sequence pin in light + dark, a text-forward numbered list, and up to four photo-hooks — each over a different pose from the sequence. Board: Yin Yoga Routines.', cards: routineCards },
 ];
 ---
 
@@ -113,10 +155,11 @@ const sections = [
   <div class="wrap pins">
     <h1>Pin console</h1>
     <p class="pins-lead">
-      Every journal post, pose and routine, rendered on-brand at 1000×1500 in the new pin designs
-      (photo hook · numbered list · benefit). <strong>Save</strong> pins immediately; <strong>Copy</strong>
-      grabs the image, title, description and link for Pinterest’s scheduler or Buffer. Pin 2–3 per item,
-      spaced a day or two apart — and lead with the photo-hook and numbered-list styles.
+      Every journal post, pose and routine, rendered on-brand at 1000×1500 — now with light and dark
+      colourways of each template, so there are 4–5 variations to choose from. <strong>Save</strong> pins
+      immediately; <strong>Copy</strong> grabs the image, title, description and link for Pinterest’s scheduler
+      or Buffer. Pin 2–3 variants per item, spaced a day or two apart (fresh pins to the same URL lift reach) —
+      and lead with the photo-hook and numbered styles.
     </p>
 
     {sections.map((sec) => (

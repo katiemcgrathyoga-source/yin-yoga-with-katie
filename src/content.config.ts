@@ -179,6 +179,8 @@ const blog = defineCollection({
     hero_caption: z.string().optional(), // italic caption under the hero image
     subtitle: z.string().optional(), // short italic line under the H1
     eyebrow_tag: z.string().optional(), // topic shown after "the journal ·" in the hero eyebrow
+    // Optional pull-quote → activates the blush/sage Quote pin for this post (light + dark).
+    pin_quote: z.string().optional(),
     cta_program: z.string().optional(), // slug of the program to CTA to (else the free-retreat CTA)
     // FAQ block → rendered on the post + emitted as FAQPage schema (rich results).
     faq: z.array(z.object({ q: z.string().min(1), a: z.string().min(1) })).default([]),

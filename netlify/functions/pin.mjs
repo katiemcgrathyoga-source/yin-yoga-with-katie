@@ -61,6 +61,7 @@ export default async (req) => {
   const subline = (p.get('sub') || '').slice(0, 120);
   const quote = (p.get('q') || '').slice(0, 160);
   const footer = (p.get('footer') || '').slice(0, 120);
+  const tone = p.get('tone') === 'dark' ? 'dark' : 'light';
   let items = [];
   try { const raw = p.get('items'); if (raw) items = JSON.parse(raw); } catch { items = []; }
 
@@ -78,7 +79,7 @@ export default async (req) => {
   }
 
   try {
-    const png = await renderPin({ tpl, title, eyebrow, subline, img, focal, quote, items, footer });
+    const png = await renderPin({ tpl, title, eyebrow, subline, img, focal, quote, items, footer, tone });
     return new Response(png, {
       headers: {
         'content-type': 'image/png',

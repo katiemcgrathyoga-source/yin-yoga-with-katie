@@ -64,11 +64,15 @@ const add = (keys: BoardKey[], e: Entry) => keys.forEach((k) => byBoard[k].push(
 const poses = (await getCollection('poses'))
   .filter((p) => realPhoto(p.data.images?.[0]))
   .sort((a, b) => a.data.name_en.localeCompare(b.data.name_en));
+let poseIdx = 0;
 for (const pose of poses) {
   const d = pose.data;
   const photo = realPhoto(d.images[0]);
   const url = new URL(`/poses/${d.slug}/`, site).href;
-  const img = pinUrl({ tpl: cleanTpl(d.slug), t: d.name_en, s: 'a yin yoga pose', img: photo });
+  const ct = cleanTpl(d.slug);
+  // Upright poses alternate light/dark for a varied feed; lying poses stay light (band-dark dropped).
+  const tone = ct === 'band' ? 'light' : poseIdx++ % 2 === 0 ? 'light' : 'dark';
+  const img = pinUrl({ tpl: ct, t: d.name_en, s: 'a yin yoga pose', img: photo, tone });
   const e = makeEntry(d.name_en, 'pose', img, d.seo_description, url);
   const areas = d.target_areas.join(' ').toLowerCase();
   const keys: BoardKey[] = ['poses'];
@@ -87,6 +91,7 @@ const poseBy = new Map((await getCollection('poses')).map((p) => [p.data.slug, p
 const humanise = (slug: string) => slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 const fmtHold = (secs: number, sides: number) => `${Math.max(1, Math.round(secs / 60))} min${sides === 2 ? ' each side' : ''}`;
 const routines = (await getCollection('routines')).sort((a, b) => a.data.minutes - b.data.minutes);
+let routineIdx = 0;
 for (const r of routines) {
   const d = r.data;
   const url = new URL(`/routines/${d.slug}/`, site).href;
@@ -95,13 +100,9 @@ for (const r of routines) {
     const photo = realPhoto(p?.images?.[0]);
     return { name: p?.name_en ?? humanise(s.pose), note: fmtHold(s.seconds, s.sides), ...(photo ? { img: photo } : {}) };
   });
-  const img = pinUrl({
-    tpl: 'numberlist',
-    t: d.title,
-    s: `${d.minutes}-minute routine`,
-    items: items.map((it) => ({ name: it.name, note: it.note })),
-    footer: 'save for later',
-  });
+  // The numbered-thumbnail sequence pin (strongest routine creative), alternating tone.
+  const tone = routineIdx++ % 2 === 0 ? 'light' : 'dark';
+  const img = pinUrl({ tpl: 'numbered', t: d.title, s: `${d.minutes}-minute routine`, items, tone });
   const e = makeEntry(d.title, 'routine', img, d.summary, url);
   const t = `${d.title} ${d.summary}`.toLowerCase();
   const keys: BoardKey[] = ['routines'];
@@ -152,9 +153,10 @@ const totalPins = boardSections.reduce((n, b) => n + b.entries.length, 0);
     <h1>Board planner</h1>
     <p class="pins-lead">
       The same pins as the <a href="/pins">pin console</a>, re-sorted by the board they belong on — so you can
-      work one board at a time. Each item shows the recommended pin for that board; pop over to
-      <a href="/pins">/pins</a> if you want a different variant. Items can appear on more than one board
-      (pin once, then repin to the others a few days apart). {totalPins} pins across {boardSections.length} boards.
+      work one board at a time. Each item shows one recommended creative (tones alternate light/dark for a varied
+      feed); pop over to <a href="/pins">/pins</a> for the full 4–5 variants per item, including every photo-hook.
+      Items can appear on more than one board (pin once, then repin to the others a few days apart).
+      {totalPins} pins across {boardSections.length} boards.
     </p>
 
     <nav class="board-jump">
