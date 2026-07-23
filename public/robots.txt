@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Update the host below to match `site` in astro.config.mjs after deploy.
-Sitemap: https://your-site.netlify.app/sitemap-index.xml
+Sitemap: https://yinyogawithkatie.com/sitemap-index.xml
