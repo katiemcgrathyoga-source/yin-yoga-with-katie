@@ -103,7 +103,7 @@ const shareLinks = {
       <p class="jr-meta">{fmt(d.published)} &nbsp;·&nbsp; {readMin} minute read &nbsp;·&nbsp; by Katie</p>
       {d.hero && (
         <figure class="jr-heroimg" data-orient>
-          <img src={d.hero} alt="" loading="eager" />
+          <img src={d.hero} alt="" loading="eager" style={d.hero_focal ? `object-position:${d.hero_focal}` : undefined} />
           {d.hero_caption && <figcaption>{d.hero_caption}</figcaption>}
         </figure>
       )}

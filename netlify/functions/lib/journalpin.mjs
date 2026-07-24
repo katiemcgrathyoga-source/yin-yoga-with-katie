@@ -25,6 +25,7 @@ const FONTS = [
 // Brand tokens (design_handoff .../tokens/colors.css).
 const DEEP_SAGE = '#48544c';
 const SOFT_OAT = '#f9f1ea';
+const BLUSH = '#f0e4e2';
 const SANDSTONE = '#bea690';
 const ROSEWOOD = '#89494b';
 const ROSE_QUARTZ = '#bc9d9a';
@@ -99,18 +100,26 @@ function oatFramePin({ title, eyebrow, meta, excerpt, photo, showEyebrow, footer
   ]);
 }
 
-// 3. split — full-bleed photo up top, deep-sage text field below.
-function splitPin({ title, eyebrow, meta, excerpt, photo, showEyebrow, footer, footerImg }) {
+// 3. split — full-bleed photo up top, text field below (dark sage or light blush).
+function splitPin({ title, eyebrow, meta, excerpt, photo, showEyebrow, footer, footerImg, tone }) {
+  const light = tone === 'light';
+  const ground = light ? BLUSH : DEEP_SAGE;
+  const eyeC = light ? ROSEWOOD : ROSE_QUARTZ;
+  const titleC = light ? DEEP_SAGE : SOFT_OAT;
+  const metaC = light ? TEXT_MUTED : OAT_70;
+  const excerptC = light ? TEXT_BODY : OAT_82;
+  const ruleC = light ? SANDSTONE : ROSE_QUARTZ;
+  const footerC = light ? TEXT_MUTED : OAT_75;
   const below = [];
-  if (showEyebrow && eyebrow) below.push(eyebrowEl(eyebrow, ROSE_QUARTZ));
-  below.push(box({ marginTop: '40px' }, [titleEl(title, 82, 1.26, SOFT_OAT)]));
-  if (meta) below.push(metaEl(meta, OAT_70));
-  if (excerpt) below.push(excerptEl(excerpt, OAT_82, 680));
-  below.push(box({ marginTop: '48px', width: '64px', height: '1px', backgroundColor: ROSE_QUARTZ }));
+  if (showEyebrow && eyebrow) below.push(eyebrowEl(eyebrow, eyeC));
+  below.push(box({ marginTop: '40px' }, [titleEl(title, 82, 1.26, titleC)]));
+  if (meta) below.push(metaEl(meta, metaC));
+  if (excerpt) below.push(excerptEl(excerpt, excerptC, 680));
+  below.push(box({ marginTop: '48px', width: '64px', height: '1px', backgroundColor: ruleC }));
   below.push(spacer());
-  below.push(footerEl({ footer, footerImg, color: OAT_75 }));
-  return box({ width: '1000px', height: '1500px', backgroundColor: DEEP_SAGE, flexDirection: 'column', overflow: 'hidden' }, [
-    photo ? naturalPhoto(photo, 1000, { flexShrink: 0 }) : box({ width: '1000px', height: '560px', backgroundColor: '#3a443d' }),
+  below.push(footerEl({ footer, footerImg, color: footerC }));
+  return box({ width: '1000px', height: '1500px', backgroundColor: ground, flexDirection: 'column', overflow: 'hidden' }, [
+    photo ? naturalPhoto(photo, 1000, { flexShrink: 0 }) : box({ width: '1000px', height: '560px', backgroundColor: light ? '#e7d8d4' : '#3a443d' }),
     box({ flexGrow: 1, flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '88px 88px 72px' }, below),
   ]);
 }
@@ -133,9 +142,9 @@ function cardPin({ title, eyebrow, meta, excerpt, photo, showEyebrow, footer, fo
 const VARIANTS = { arch: archPin, 'oat-frame': oatFramePin, split: splitPin, card: cardPin };
 
 /** Render a Journal Pin (1000×1500, 2:3) to a PNG Buffer. */
-export async function renderJournalPin({ variant = 'arch', title, eyebrow, meta, excerpt, photo, showEyebrow = true, footer = 'url', footerImg }) {
+export async function renderJournalPin({ variant = 'arch', title, eyebrow, meta, excerpt, photo, showEyebrow = true, footer = 'url', footerImg, tone }) {
   const build = VARIANTS[variant] ?? archPin;
-  const tree = build({ title, eyebrow, meta, excerpt, photo, showEyebrow, footer, footerImg });
+  const tree = build({ title, eyebrow, meta, excerpt, photo, showEyebrow, footer, footerImg, tone });
   const svg = await satori(tree, { width: 1000, height: 1500, fonts: FONTS });
   return new Resvg(svg, { fitTo: { mode: 'width', value: 1000 } }).render().asPng();
 }

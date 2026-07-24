@@ -176,6 +176,9 @@ const blog = defineCollection({
     // the /blog listing and RSS. Used to soft-launch a post before it's public.
     unlisted: z.boolean().default(false),
     hero: z.string().optional(), // optional lead image (path under /public)
+    // object-position for cropping the hero (keeps the head/heart centred, esp. in the
+    // portrait featured-card crop). e.g. "74% 55%". Defaults to centred when absent.
+    hero_focal: z.string().optional(),
     hero_caption: z.string().optional(), // italic caption under the hero image
     subtitle: z.string().optional(), // short italic line under the H1
     eyebrow_tag: z.string().optional(), // topic shown after "the journal ·" in the hero eyebrow

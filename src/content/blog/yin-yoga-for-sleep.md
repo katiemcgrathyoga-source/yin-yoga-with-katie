@@ -5,6 +5,7 @@ description: "How Yin Yoga helps you sleep — why the long, slow holds calm a r
 published: 2026-07-17
 cta_program: "bedtime-reset"
 hero: "/poses/corpse.jpg"
+hero_focal: "16% 50%"
 hero_caption: "savasana — where the practice quietly settles into sleep"
 subtitle: "let the day go"
 eyebrow_tag: "sleep & rest"

@@ -41,10 +41,11 @@ const pinUrl = (params: Record<string, unknown>) => buildUrl('/pin/card.png', pa
 // /pin/journal.png → the four Journal Pin variants (arch · oat-frame · split · card).
 const journalUrl = (params: Record<string, unknown>) => buildUrl('/pin/journal.png', params);
 
-// The four Journal Pin variants, already split across dark/light grounds.
+// The Journal Pin variants, across dark/light grounds. `split` ships both tones.
 const JOURNAL_VARIANTS = [
   { v: 'arch', label: 'journal · arch (dark)' },
   { v: 'oat-frame', label: 'journal · oat-frame (light)' },
+  { v: 'split', tone: 'light', label: 'journal · split (light)' },
   { v: 'split', label: 'journal · split (dark)' },
   { v: 'card', label: 'journal · card (light)' },
 ] as const;
@@ -74,7 +75,7 @@ const postCards = posts.map((post) => {
   // The four brand Journal Pins (natural-aspect photo, never cropped).
   if (hero)
     for (const jv of JOURNAL_VARIANTS)
-      pins.push(mkPin(jv.label, journalUrl({ variant: jv.v, t: d.title, s: 'from the journal', img: hero }), d.title, desc, url));
+      pins.push(mkPin(jv.label, journalUrl({ variant: jv.v, tone: (jv as { tone?: string }).tone, t: d.title, s: 'from the journal', img: hero }), d.title, desc, url));
   // Optional pull-quote pin (blush + deep-sage twins). Needs a pin_quote in the post.
   if (d.pin_quote) {
     pins.push(mkPin('quote (light)', pinUrl({ tpl: 'quote', q: d.pin_quote, s: 'from the journal', tone: 'light' }), d.title, desc, url));

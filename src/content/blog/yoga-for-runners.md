@@ -5,6 +5,7 @@ description: "Why Yin Yoga is the recovery runners are missing — the best pose
 published: 2026-07-19
 unlisted: true
 hero: "/poses/dragon.jpg"
+hero_focal: "56% 45%"
 hero_caption: "dragon — the deep hip-flexor opener runners need most"
 subtitle: "keep running for years, not seasons"
 eyebrow_tag: "for runners"

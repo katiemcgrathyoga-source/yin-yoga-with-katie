@@ -4,6 +4,7 @@ slug: "yin-vs-restorative-yoga"
 description: "Yin and Restorative Yoga look similar — slow, floor-based, deeply calming — but they do different jobs. Here's the real difference, and how to choose the one your body needs today."
 published: 2026-07-22
 hero: "/poses/legs-up-the-wall.jpg"
+hero_focal: "74% 55%"
 hero_caption: "legs up the wall — a shape both Yin and Restorative call home"
 subtitle: "two slow practices, two different jobs"
 eyebrow_tag: "yin basics"

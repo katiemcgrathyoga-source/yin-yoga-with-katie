@@ -5,6 +5,7 @@ description: "How long to hold Yin Yoga poses — the simple answer, why the hol
 published: 2026-07-13
 cta_program: "full-body-flexibility"
 hero: "/poses/caterpillar.jpg"
+hero_focal: "50% 42%"
 hero_caption: "caterpillar — a long, patient forward fold"
 subtitle: "long enough to let go"
 eyebrow_tag: "practice"

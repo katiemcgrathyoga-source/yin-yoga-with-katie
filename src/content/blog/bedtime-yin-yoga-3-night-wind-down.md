@@ -5,6 +5,7 @@ description: "A gentle 3-night bedtime Yin Yoga wind-down — three 30-minute ev
 published: 2026-07-12
 cta_program: "bedtime-reset"
 hero: "/poses/reclined-swan.jpg"
+hero_focal: "20% 52%"
 hero_caption: "reclined swan — an easy evening release for the outer hips"
 subtitle: "rest is a practice"
 eyebrow_tag: "sleep & rest"

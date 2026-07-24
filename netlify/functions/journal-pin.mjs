@@ -64,15 +64,17 @@ export default async (req) => {
   const meta = (p.get('meta') || '').slice(0, 80);
   const excerpt = (p.get('ex') || '').slice(0, 220);
   const footer = p.get('footer') === 'wordmark' ? 'wordmark' : 'url';
+  const tone = p.get('tone') === 'light' ? 'light' : undefined;
   const showEyebrow = p.get('noeyebrow') !== '1' && eyebrow.length > 0;
 
   const photo = await loadPhoto(p.get('img') || '');
+  const isLightGround = LIGHT_VARIANTS.has(variant) || tone === 'light';
   const footerImg = footer === 'wordmark'
-    ? await loadPhoto(LIGHT_VARIANTS.has(variant) ? WORDMARK.light : WORDMARK.dark)
+    ? await loadPhoto(isLightGround ? WORDMARK.light : WORDMARK.dark)
     : null;
 
   try {
-    const png = await renderJournalPin({ variant, title, eyebrow, meta, excerpt, photo, showEyebrow, footer, footerImg });
+    const png = await renderJournalPin({ variant, title, eyebrow, meta, excerpt, photo, showEyebrow, footer, footerImg, tone });
     return new Response(png, {
       headers: {
         'content-type': 'image/png',

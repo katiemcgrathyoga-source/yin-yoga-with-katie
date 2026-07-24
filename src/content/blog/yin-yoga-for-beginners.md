@@ -5,6 +5,7 @@ description: "New to Yin Yoga? What it is, how it's different from other yoga, w
 published: 2026-07-13
 cta_program: "bedtime-reset"
 hero: "/poses/butterfly.jpg"
+hero_focal: "50% 32%"
 hero_caption: "butterfly — a calm, welcoming first shape"
 subtitle: "start where you are"
 eyebrow_tag: "beginners"

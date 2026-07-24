@@ -37,7 +37,7 @@ const ogImage = journalPinUrl(Astro.site, {
     {featured && (
       <a class="ji-featured" href={`/blog/${featured.data.slug}/`}>
         <span class="ji-featured-photo">
-          {featured.data.hero && <img src={featured.data.hero} alt="" loading="eager" />}
+          {featured.data.hero && <img src={featured.data.hero} alt="" loading="eager" style={featured.data.hero_focal ? `object-position:${featured.data.hero_focal}` : undefined} />}
         </span>
         <span class="ji-featured-body">
           <span class="ji-meta">
