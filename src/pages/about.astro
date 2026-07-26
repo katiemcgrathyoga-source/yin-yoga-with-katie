@@ -50,7 +50,7 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
         <iframe name="ml_frame_about" hidden title="Sign-up" tabindex="-1" aria-hidden="true"></iframe>
       </section>
 
-      <p class="about-signoff">Take good care of yourself,<br /><span class="about-sig">katie</span></p>
+      <p class="about-signoff">Take good care of yourself,<span class="about-sig">katie</span></p>
     </div>
   </article>
 </BaseLayout>
@@ -73,7 +73,7 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
   .about-form { justify-content: center; max-width: 460px; margin: 0 auto; }
   .about-cta .eyebrow { justify-content: center; }
   .about-signoff { font-size: 17px; color: var(--ink-soft); line-height: 1.5; margin-top: 34px; }
-  .about-sig { font-family: var(--script); font-size: 46px; color: var(--gold); line-height: 1; }
+  .about-sig { display: block; font-family: var(--script); font-size: 46px; color: var(--gold); line-height: 1.1; margin-top: 24px; padding-top: 6px; }
 
   /* shared capture styles (mirrors the homepage hero) */
   .home-capture { display: flex; gap: 8px; flex-wrap: wrap; }
