@@ -1,0 +1,213 @@
+# Pages CMS — a friendly web editor for the site's content, backed by this repo.
+# Setup: at app.pagescms.org, sign in with GitHub and authorise the Pages CMS app
+# on katiemcgrathyoga-source/yin-yoga-with-katie. Edits commit to the repo and
+# Netlify rebuilds automatically. Docs: https://pagescms.org/docs
+#
+# Routines are pure structured data — safe and ideal to edit here.
+# For the Journal (blog): the fields (title, SEO, FAQ, hero, etc.) are safe to edit;
+# the body of a post that contains embedded pose-card / class-tile HTML is best
+# left to code edits, since a rich-text editor can reformat raw HTML.
+
+media:
+  input: public
+  output: /
+
+content:
+  # ── Routines ──────────────────────────────────────────────────────────────
+  - name: routines
+    label: Routines
+    type: collection
+    path: src/content/routines
+    format: yaml-frontmatter
+    filename: '{fields.slug}.md'
+    view:
+      primary: title
+      fields: [title, intent, minutes, level]
+      sort: [minutes]
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: slug
+        label: Slug (URL — lowercase, dashes)
+        type: string
+        required: true
+        pattern: '^[a-z0-9]+(?:-[a-z0-9]+)*$'
+      - name: tagline
+        label: Tagline
+        type: string
+      - name: intent
+        label: Focus
+        type: select
+        required: true
+        options:
+          values: [sleep, hips, back, shoulders, flexibility, full-body, beginner, heart, energy, stress, digestion]
+      - name: level
+        label: Level
+        type: select
+        required: true
+        default: all-levels
+        options:
+          values: [all-levels, beginner, intermediate, advanced]
+      - name: minutes
+        label: Minutes
+        type: number
+        required: true
+      - name: hero_pose
+        label: Hero pose (pose slug — used for the card image)
+        type: string
+      - name: intro
+        label: Intro (a short paragraph in Katie's voice)
+        type: text
+        required: true
+      - name: props
+        label: Props
+        type: string
+        list: true
+      - name: steps
+        label: The sequence
+        type: object
+        list: true
+        fields:
+          - name: pose
+            label: Pose (slug)
+            type: string
+            required: true
+          - name: seconds
+            label: Hold (seconds)
+            type: number
+            required: true
+          - name: sides
+            label: Sides (1 = once · 2 = each side)
+            type: number
+            default: 1
+          - name: note
+            label: Cue while holding
+            type: text
+      - name: faq
+        label: FAQ
+        type: object
+        list: true
+        fields:
+          - name: q
+            label: Question
+            type: string
+          - name: a
+            label: Answer
+            type: text
+      - name: summary
+        label: Summary (listing + meta)
+        type: text
+        required: true
+      - name: membership_cta
+        label: Membership CTA line
+        type: text
+        required: true
+      - name: seo_title
+        label: SEO title
+        type: string
+        required: true
+      - name: seo_description
+        label: SEO description
+        type: text
+        required: true
+      - name: body
+        label: Body (optional — not shown on the page)
+        type: rich-text
+
+  # ── Journal (blog) ────────────────────────────────────────────────────────
+  - name: blog
+    label: Journal
+    type: collection
+    path: src/content/blog
+    format: yaml-frontmatter
+    filename: '{fields.slug}.md'
+    view:
+      primary: title
+      fields: [title, published, draft]
+      sort: [published]
+      order: desc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: slug
+        label: Slug (URL — lowercase, dashes)
+        type: string
+        required: true
+        pattern: '^[a-z0-9]+(?:-[a-z0-9]+)*$'
+      - name: description
+        label: Description (excerpt + meta)
+        type: text
+        required: true
+      - name: published
+        label: Published
+        type: date
+        required: true
+      - name: updated
+        label: Updated
+        type: date
+      - name: draft
+        label: Draft (hidden everywhere)
+        type: boolean
+        default: false
+      - name: unlisted
+        label: Unlisted (reviewable at the URL, but hidden from the listing + noindex)
+        type: boolean
+        default: false
+      - name: hero
+        label: Hero image
+        type: image
+      - name: hero_focal
+        label: Hero crop focus (object-position, e.g. "74% 55%")
+        type: string
+      - name: hero_caption
+        label: Hero caption
+        type: string
+      - name: subtitle
+        label: Subtitle
+        type: string
+      - name: eyebrow_tag
+        label: Eyebrow tag
+        type: string
+      - name: pin_quote
+        label: Pull-quote (activates the blush/sage quote pin)
+        type: text
+      - name: cta_program
+        label: CTA program (program slug)
+        type: string
+      - name: practise
+        label: Practise-along block
+        type: object
+        fields:
+          - name: routine
+            label: Routine slug
+            type: string
+          - name: video
+            label: YouTube video id (optional)
+            type: string
+          - name: video_label
+            label: Video label (optional)
+            type: string
+      - name: faq
+        label: FAQ
+        type: object
+        list: true
+        fields:
+          - name: q
+            label: Question
+            type: string
+          - name: a
+            label: Answer
+            type: text
+      - name: seo_title
+        label: SEO title
+        type: string
+      - name: seo_description
+        label: SEO description
+        type: text
+      - name: body
+        label: Body
+        type: rich-text
