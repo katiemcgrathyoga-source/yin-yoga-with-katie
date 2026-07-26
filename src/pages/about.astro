@@ -67,8 +67,7 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
   .about-body a { color: var(--gold-solid); text-decoration: underline; text-underline-offset: 2px; }
   .about-todo { background: repeating-linear-gradient(-45deg, rgba(188,157,154,.10), rgba(188,157,154,.10) 10px, transparent 10px, transparent 20px); border: 1px dashed var(--quartz); border-radius: 10px; padding: 14px 16px; font-size: 15px !important; color: var(--ink-soft) !important; font-style: italic; }
   .about-todo strong { color: var(--gold-solid); font-style: normal; }
-  .about-cta { background: var(--wash); border: 1px solid var(--line); border-radius: 18px; padding: 32px; margin: 40px 0 32px; text-align: center; }
-  [data-theme="dark"] .about-cta { background: var(--paper-2); }
+  .about-cta { background: var(--paper-2); border: 1px solid var(--line); border-radius: 18px; padding: 32px; margin: 40px 0 32px; text-align: center; }
   .about-cta h3 { font-family: var(--display); font-weight: 500; font-size: 24px; color: var(--plum); margin: 4px 0 8px; }
   .about-cta-sub { font-size: 15.5px !important; color: var(--ink-soft) !important; max-width: 46ch; margin: 0 auto 18px !important; }
   .about-form { justify-content: center; max-width: 460px; margin: 0 auto; }
@@ -79,7 +78,8 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
   /* shared capture styles (mirrors the homepage hero) */
   .home-capture { display: flex; gap: 8px; flex-wrap: wrap; }
   .home-capture input { flex: 1 1 140px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); color: var(--ink); font: inherit; font-size: 15px; }
-  .home-capture .btn-cta { white-space: nowrap; }
+  .home-capture .btn-cta { background: #89494B; color: #fff; font-weight: 600; font-size: 15px; padding: 13px 26px; border-radius: 100px; border: none; cursor: pointer; white-space: nowrap; transition: background .15s; }
+  .home-capture .btn-cta:hover { background: #6E3A3C; color: #fff; }
   .home-fine { font-size: 13px; color: var(--ink-soft); margin: 12px 0 0; }
   .home-done { font-size: 15px; color: var(--plum); margin: 12px 0 0; }
 

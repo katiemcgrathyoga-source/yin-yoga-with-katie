@@ -2,7 +2,6 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Cta from '../../components/Cta.astro';
-import PoseTimer from '../../components/PoseTimer.astro';
 import { videoHeadline } from '../../lib/video';
 import { journalPinUrl } from '../../lib/journalPin';
 
@@ -10,6 +9,11 @@ import { journalPinUrl } from '../../lib/journalPin';
  * One reusable template for every pose. `getStaticPaths` reads the whole
  * collection and emits a static page per file, keyed by each pose's `slug`.
  * Add a Markdown file to src/content/poses/ and a new page appears — no code.
+ *
+ * Page order is by reader intent: recognise the pose (photo) → save it →
+ * the scannable facts (At a glance) → how to do it → why → cautions →
+ * transitions → FAQ → practise it in context (routines/classes) → related →
+ * the one email ask. No hold timer here — timing belongs on the routine player.
  */
 export async function getStaticPaths() {
   const poses = await getCollection('poses');
@@ -27,13 +31,14 @@ const d = pose.data;
 const bySlug = new Map(poses.map((p) => [p.data.slug, p.data]));
 
 // Reverse of the routine→pose link: follow-along routines that feature this pose,
-// shortest first. Only shown when at least one routine includes the pose.
+// shortest first — capped at 3 so the section stays a quick next-step, not a list.
 const featuredRoutines = (await getCollection('routines'))
   .filter((r) => r.data.steps.some((s) => s.pose === d.slug))
-  .sort((a, b) => a.data.minutes - b.data.minutes);
+  .sort((a, b) => a.data.minutes - b.data.minutes)
+  .slice(0, 3);
 
 // Full YouTube classes that feature this pose — best 3 (enriched first, then most
-// watched). Shown at the very bottom as an "also in these classes" cross-link.
+// watched). Shown near the bottom as an "also in these classes" cross-link.
 const featuredClasses = (await getCollection('videos'))
   .filter((v) => v.data.poses_featured.includes(d.slug))
   .sort(
@@ -94,12 +99,11 @@ const faqLd = d.faq.length
     }
   : null;
 
-// Default target for the on-page hold timer (all poses carry hold_seconds; 180s is a safe fallback).
-const holdSeconds = d.hold_seconds ?? 180;
-
 // Save-to-Pinterest uses the same canonical pin, linking back to this pose page.
 const poseUrl = new URL(`/poses/${d.slug}/`, Astro.site).href;
 const poseSave = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(poseUrl)}&media=${encodeURIComponent(journalPin)}&description=${encodeURIComponent(d.seo_description)}`;
+
+const hasPractise = hasVideo || featuredRoutines.length > 0 || featuredClasses.length > 0;
 ---
 
 <BaseLayout
@@ -111,19 +115,13 @@ const poseSave = `https://www.pinterest.com/pin/create/button/?url=${encodeURICo
   image={journalPin}
   jsonLd={faqLd ? [jsonLd, faqLd] : jsonLd}
 >
-  <div class="wrap">
+  <div class="wrap pose-page">
     <header class="hero">
       <p class="eyebrow">{eyebrow}</p>
       <h1>{d.name_en}</h1>
-
-      <div class="hold" aria-label="Recommended hold time">
-        <span class="hold-eyebrow">Hold</span>
-        <p class="hold-time">{d.hold_time}</p>
-      </div>
     </header>
 
-    {/* Single reference photo, directly under the hero. Poses still awaiting their own
-        photo use an on-brand illustration placeholder with a gentle "coming soon" note. */}
+    {/* Reference photo. Poses awaiting a photo show an on-brand placeholder. */}
     {
       d.images.length > 0 && (() => {
         const pending = d.images[0].includes('pose-placeholder');
@@ -141,22 +139,7 @@ const poseSave = `https://www.pinterest.com/pin/create/button/?url=${encodeURICo
       })()
     }
 
-    {/* The essentials — how to do the pose and why — right under the photo, so the
-        information someone came for is the first thing they read (not below the tools). */}
-    <section>
-      <h2>How to do it</h2>
-      <ol class="cues">
-        {d.cues.map((cue) => <li>{cue}</li>)}
-      </ol>
-    </section>
-
-    <section>
-      <h2>Why practise it</h2>
-      <ul class="plain">
-        {d.benefits.map((b) => <li>{b}</li>)}
-      </ul>
-    </section>
-
+    {/* Save to Pinterest — straight under the photo, where the pinner's eye is. */}
     {poseSave && (
       <div class="pose-share">
         <a class="pose-pin-btn" href={poseSave} target="_blank" rel="noopener noreferrer" aria-label="Save this pose to Pinterest">
@@ -166,84 +149,8 @@ const poseSave = `https://www.pinterest.com/pin/create/button/?url=${encodeURICo
       </div>
     )}
 
-    {/* Hold timer — set your length and let the shape do the work. */}
-    <section class="timer-section">
-      <h2>Time your hold</h2>
-      <PoseTimer seconds={holdSeconds} holdLabel={d.hold_time} />
-    </section>
-
-    {/* Follow-along video — separate section, only when a video id is set. */}
-    {
-      hasVideo && (
-        <section class="follow-along">
-          <h2>Follow along</h2>
-          <div class="video-embed">
-            <iframe
-              src={`https://www.youtube.com/embed/${d.youtube_video_id}`}
-              title={`${d.name_en} — practice video`}
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            />
-          </div>
-        </section>
-      )
-    }
-
-    {
-      featuredRoutines.length > 0 && (
-        <section class="featured-in">
-          <h2>Routines featuring this pose</h2>
-          {featuredRoutines.map((r) => (
-            <a href={`/routines/${r.data.slug}`}>
-              {r.data.title}
-              <span>{r.data.minutes} min · {r.data.summary}</span>
-            </a>
-          ))}
-        </section>
-      )
-    }
-
-    {
-      (d.transitions_in.length > 0 || d.transitions_out.length > 0) && (
-        <section>
-          <h2>Coming in &amp; out</h2>
-          <div class="transitions">
-            {d.transitions_in.length > 0 && (
-              <div>
-                <h3>Into the pose</h3>
-                <ul class="plain">
-                  {d.transitions_in.map((t) => <li>{t}</li>)}
-                </ul>
-              </div>
-            )}
-            {d.transitions_out.length > 0 && (
-              <div>
-                <h3>Out of the pose</h3>
-                <ul class="plain">
-                  {d.transitions_out.map((t) => <li>{t}</li>)}
-                </ul>
-              </div>
-            )}
-          </div>
-        </section>
-      )
-    }
-
-    {
-      d.cautions.length > 0 && (
-        <section>
-          <div class="cautions">
-            <h2>Take care</h2>
-            <ul class="plain">
-              {d.cautions.map((c) => <li>{c}</li>)}
-            </ul>
-          </div>
-        </section>
-      )
-    }
-
-    <section>
+    {/* At a glance — the scannable facts, up high where the reader looks first. */}
+    <section class="glance-section">
       <h2>At a glance</h2>
       <dl class="glance">
         <div class="row"><dt>Hold</dt><dd>{d.hold_time}</dd></div>
@@ -279,6 +186,60 @@ const poseSave = `https://www.pinterest.com/pin/create/button/?url=${encodeURICo
       </dl>
     </section>
 
+    {/* How to do it — the core "how", the main thing people came to read. */}
+    <section>
+      <h2>How to do it</h2>
+      <ol class="cues">
+        {d.cues.map((cue) => <li>{cue}</li>)}
+      </ol>
+    </section>
+
+    <section>
+      <h2>Why practise it</h2>
+      <ul class="plain">
+        {d.benefits.map((b) => <li>{b}</li>)}
+      </ul>
+    </section>
+
+    {
+      d.cautions.length > 0 && (
+        <section>
+          <div class="cautions">
+            <h2>Take care</h2>
+            <ul class="plain">
+              {d.cautions.map((c) => <li>{c}</li>)}
+            </ul>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      (d.transitions_in.length > 0 || d.transitions_out.length > 0) && (
+        <section>
+          <h2>Coming in &amp; out</h2>
+          <div class="transitions">
+            {d.transitions_in.length > 0 && (
+              <div>
+                <h3>Into the pose</h3>
+                <ul class="plain">
+                  {d.transitions_in.map((t) => <li>{t}</li>)}
+                </ul>
+              </div>
+            )}
+            {d.transitions_out.length > 0 && (
+              <div>
+                <h3>Out of the pose</h3>
+                <ul class="plain">
+                  {d.transitions_out.map((t) => <li>{t}</li>)}
+                </ul>
+              </div>
+            )}
+          </div>
+        </section>
+      )
+    }
+
     {
       d.faq.length > 0 && (
         <section class="faq-section">
@@ -293,12 +254,48 @@ const poseSave = `https://www.pinterest.com/pin/create/button/?url=${encodeURICo
       )
     }
 
-    <Cta
-      source="pose"
-      eyebrow="Put it all together"
-      heading="When you want the whole practice"
-      body={`${d.name_en} is one shape among many. When you'd like to put a whole sequence together into one long, slow practice, pop your email in and I'll send you my free two-hour Yin, restorative and Yoga Nidra retreat. Yours to keep.`}
-    />
+    {/* Practise it in context — the next step, kept low and short. */}
+    {hasPractise && (
+      <section class="pose-practise">
+        <h2>Practise it</h2>
+
+        {hasVideo && (
+          <div class="video-embed">
+            <iframe
+              src={`https://www.youtube.com/embed/${d.youtube_video_id}`}
+              title={`${d.name_en} — practice video`}
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            />
+          </div>
+        )}
+
+        {featuredRoutines.length > 0 && (
+          <div class="featured-in">
+            <h3>In a routine</h3>
+            {featuredRoutines.map((r) => (
+              <a href={`/routines/${r.data.slug}`}>
+                {r.data.title}
+                <span>{r.data.minutes} min · {r.data.summary}</span>
+              </a>
+            ))}
+          </div>
+        )}
+
+        {featuredClasses.length > 0 && (
+          <div class="featured-in">
+            <h3>In a class</h3>
+            {featuredClasses.map((v) => (
+              <a href={`/videos/${v.data.slug}`}>
+                {videoHeadline(v.data)}
+                <span>{v.data.display_length?.trim() || `${v.data.length_minutes} min`} · {v.data.summary}</span>
+              </a>
+            ))}
+          </div>
+        )}
+      </section>
+    )}
 
     {
       d.related_poses.length > 0 && (
@@ -317,19 +314,12 @@ const poseSave = `https://www.pinterest.com/pin/create/button/?url=${encodeURICo
       )
     }
 
-    {
-      featuredClasses.length > 0 && (
-        <section class="featured-in">
-          <h2>Classes featuring this pose</h2>
-          {featuredClasses.map((v) => (
-            <a href={`/videos/${v.data.slug}`}>
-              {videoHeadline(v.data)}
-              <span>{v.data.display_length?.trim() || `${v.data.length_minutes} min`} · {v.data.summary}</span>
-            </a>
-          ))}
-        </section>
-      )
-    }
+    <Cta
+      source="pose"
+      eyebrow="Put it all together"
+      heading="When you want the whole practice"
+      body={`${d.name_en} is one shape among many. When you'd like to put a whole sequence together into one long, slow practice, pop your email in and I'll send you my free two-hour Yin, restorative and Yoga Nidra retreat. Yours to keep.`}
+    />
 
     <footer>
       <p class="src">
