@@ -36,7 +36,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "No — this one is designed with no props at all, so you just need your mat. If your heels don't reach the floor in squat, you can fold the edge of your mat into a little cushion for them, and a folded blanket under your head in child's pose is nice if you'd like it. Everything here works with just you and your mat."
   - q: "Is this class really suitable if I'm brand new to Yin?"
-    a: "Absolutely — this is an introduction, so Katie explains the three principles of Yin as you go and holds each pose for just one to two minutes. Come to about 80% of your capacity, never forcing, and take the gentler option in any shape. It's a lovely first taste of Yin."
+    a: "Absolutely — this is an introduction, so Katie explains the three principles of Yin as you go and holds each pose for just one to two minutes. Come to about 60–80% of your capacity, never forcing, and take the gentler option in any shape. It's a lovely first taste of Yin."
   - q: "What if I'm not very flexible?"
     a: "That's completely fine — Yin isn't about how far you go. You can bend your knees, bring your feet closer together, or rest on your hands wherever you need to. The shape does the work over time, and you'll notice things easing open with regular practice."
 ---
@@ -55,6 +55,6 @@ Just your mat and a quiet, warm space where you can be still. This is a no-props
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

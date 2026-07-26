@@ -27,7 +27,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "Not at all — your mat and a cozy space are all you really need. That said, Katie does reach for a couple of yoga blocks and a cushion in a few of the seated poses, so if you have them nearby they're lovely for sitting on or resting an elbow onto. Everything works beautifully without them too."
   - q: "Is this suitable if I'm not very flexible?"
-    a: "Yes. Every pose has a gentler version and a deeper one, and twisting especially is about staying at your appropriate edge — around 80% — rather than going as far as you can. As Katie says, as long as you can feel a little twist in your spine, you're doing it just right."
+    a: "Yes. Every pose has a gentler version and a deeper one, and twisting especially is about staying at your appropriate edge — around 60–80% — rather than going as far as you can. As Katie says, as long as you can feel a little twist in your spine, you're doing it just right."
   - q: "Why an evening class of twists before bed?"
     a: "Gentle twists feel really soothing for the spine and help release the tension of the day, and this slow, still practice is designed to calm your mind and ease you towards a restful night. It's a beautiful way to unwind before you sleep."
 ---
@@ -46,6 +46,6 @@ Just your mat and a warm, quiet space where you can be still. A couple of yoga b
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

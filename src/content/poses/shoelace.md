@@ -18,7 +18,7 @@ cues:
   - "If the hips feel uneven or one sit bone lifts, slide a folded blanket under the higher hip so you feel level and grounded."
   - "Sit tall for a breath or two, feeling the outer hips. If that is already plenty, stay upright — that is the full pose."
   - "To go deeper, walk your hands forward and fold over the stacked legs on an out-breath, letting your spine round."
-  - "Find your edge — about 80% of your capacity, a real stretch but never forcing. Rest your forehead or forearms on a bolster if the floor is far away."
+  - "Find your edge — about 60–80% of your capacity, a real stretch but never forcing. Rest your forehead or forearms on a bolster if the floor is far away."
   - "Be still and let the shape do the work. Then come out slowly and swap the cross of the legs for the second side."
 transitions_in:
   - "From a seated position, cross one knee over the other and stack them, drawing the feet back beside the hips."

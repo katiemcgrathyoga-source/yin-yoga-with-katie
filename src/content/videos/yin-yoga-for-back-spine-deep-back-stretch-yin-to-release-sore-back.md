@@ -54,6 +54,6 @@ Just your mat and a warm, quiet space where you can be still for a while. No pro
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining. With time that edge may soften and let you fold a little deeper.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining. With time that edge may soften and let you fold a little deeper.
 - **Hold for time.** Yin poses are held a few minutes each; let the shape do the work. Come out gently, and sooner if the sensation asks you to.
 - **Be still.** Settle body and mind and rest your attention on your breath — letting each slow exhale invite a little more ease into your back.

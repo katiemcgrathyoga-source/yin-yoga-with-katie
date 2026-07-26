@@ -19,7 +19,7 @@ cues:
   - "Let the top of the left foot step over behind you to catch your balance, and rest the side of your head on the mat or a cushion."
   - "Adjust the height of the extended arm — higher toward the head or lower toward the hip — to move the stretch around the shoulder and chest. Everyone's shoulder is built a little differently, so the angle that opens the front of your shoulder may not match the next person's; explore slowly to find yours."
   - "Keep the sensation to a broad, soft stretch across the chest and front of the shoulder. Anything sharp, pinching or bone-on-bone at the front of the joint is a hard stop, not an edge to push through."
-  - "Find your edge — about 80% of your capacity, a real stretch but never forcing — then be still and let the shape do the work."
+  - "Find your edge — about 60–80% of your capacity, a real stretch but never forcing — then be still and let the shape do the work."
   - "This one is intense, so give yourself permission to stay lighter than you think you should."
 transitions_in:
   - "From lying face down, extend one arm out to the side and roll the chest toward that arm."

@@ -33,7 +33,7 @@ faq:
   - q: "Who is this class for?"
     a: "It's designed to feel comforting when you're dealing with cramps or lower back tension — whether that's around your period, from PMS, or simply digestive or lower-back discomfort. The shapes are gentle and every one has an easier and a deeper option, so it suits complete beginners as well as regular practitioners."
   - q: "What if I'm not very flexible?"
-    a: "That's completely fine — Yin isn't about how far you go. Find your edge at about 80%, let the shape do the work, and take the gentler option whenever you need it. Slide your feet wider in butterfly, keep a generous bend in the knees in dangling, and rest on a cushion any time it helps."
+    a: "That's completely fine — Yin isn't about how far you go. Find your edge at about 60–80%, let the shape do the work, and take the gentler option whenever you need it. Slide your feet wider in butterfly, keep a generous bend in the knees in dangling, and rest on a cushion any time it helps."
 ---
 
 ## What this Yin class is
@@ -50,6 +50,6 @@ Just your mat and a warm, quiet space where you can be still. This is a no-props
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

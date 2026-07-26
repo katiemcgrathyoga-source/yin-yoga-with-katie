@@ -27,7 +27,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "A yoga block or two is the one thing worth having — you'll rest on them in supported fish and can sit on one in saddle. A cushion, bolster or folded blanket are all lovely extras if you have them, but anything soft from around the house will do. Nothing fancy is needed."
   - q: "Are backbends safe if my back feels sensitive?"
-    a: "These are gentle, supported Yin backbends, not deep or forceful ones. Every pose has a softer option — you can stay in sphinx instead of seal, keep saddle upright rather than reclining, and come out any time. Move to about 80% of your edge and let your body guide you."
+    a: "These are gentle, supported Yin backbends, not deep or forceful ones. Every pose has a softer option — you can stay in sphinx instead of seal, keep saddle upright rather than reclining, and come out any time. Move to about 60–80% of your edge and let your body guide you."
   - q: "Is this suitable if I'm a beginner or not very flexible?"
     a: "Yes. Yin isn't about how far you go — you find your edge, let the shape do the work, and take the gentler version whenever you need it. Follow along at your own pace, and over the challenge you'll notice things opening in their own time."
 ---
@@ -46,6 +46,6 @@ A yoga block or two is the main thing — you'll rest on them in supported fish 
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

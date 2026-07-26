@@ -82,7 +82,7 @@ const { title, holds, shareUrl, imageUrl } = Astro.props;
               <h3 class="rp-name"></h3>
               <p class="rp-note"></p>
             </div>
-            <div class="rp-ring-wrap">
+            <div class="rp-ring-wrap" role="button" tabindex="0" aria-label="Start or pause the practice" style="cursor:pointer">
               <svg class="rp-ring" viewBox="0 0 120 120" aria-hidden="true">
                 <circle class="rp-track" cx="60" cy="60" r="52"></circle>
                 <circle class="rp-prog" cx="60" cy="60" r="52" stroke-dasharray="${RING_C}" stroke-dashoffset="0"></circle>
@@ -139,6 +139,13 @@ const { title, holds, shareUrl, imageUrl } = Astro.props;
       );
       $('.rp-download').addEventListener('click', () => this.downloadBadge());
       $('.rp-again').addEventListener('click', () => this.restart());
+
+      // The timer ring itself is a start/pause control (mirrors the tappable pose timer).
+      const ring = $('.rp-ring-wrap') as HTMLElement;
+      ring.addEventListener('click', () => this.onToggle());
+      ring.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.onToggle(); }
+      });
 
       const dotWrap = $('.rp-dots');
       dotWrap.innerHTML = this.holds.map(() => `<span class="rp-dot"></span>`).join('');
@@ -357,8 +364,8 @@ const { title, holds, shareUrl, imageUrl } = Astro.props;
         const o = ctx.createOscillator(), g = ctx.createGain();
         o.type = 'sine'; o.frequency.value = freq;
         g.gain.setValueAtTime(0.0001, now + at);
-        g.gain.exponentialRampToValueAtTime(0.22, now + at + 0.04);
-        g.gain.exponentialRampToValueAtTime(0.0001, now + at + 1.6);
+        g.gain.exponentialRampToValueAtTime(0.32, now + at + 0.04);
+        g.gain.exponentialRampToValueAtTime(0.0001, now + at + 1.8);
         o.connect(g).connect(ctx.destination);
         o.start(now + at); o.stop(now + at + 1.7);
       });

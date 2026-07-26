@@ -34,7 +34,7 @@ faq:
   - q: "It's silent — how will I know what to do?"
     a: "I name each shape and roughly how long we'll stay, then let you sink into the quiet. If you're new to Yin, read the pose notes below before you begin, and remember every pose has a gentler option and a deeper one. Follow along at your own pace."
   - q: "Is 90 minutes too long if my back feels sensitive?"
-    a: "Not at all — the long, slow holds are exactly what tight, tired backs respond to. Find your edge at about 80%, never forcing, and come out of any pose sooner if you need to. You can also press pause at any time and rejoin when you're ready."
+    a: "Not at all — the long, slow holds are exactly what tight, tired backs respond to. Find your edge at about 60–80%, never forcing, and come out of any pose sooner if you need to. You can also press pause at any time and rejoin when you're ready."
 ---
 
 ## What this Yin class is
@@ -51,6 +51,6 @@ Just your mat, and a warm, quiet space where you can be still. No props required
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a while; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — especially helpful in a silent practice.

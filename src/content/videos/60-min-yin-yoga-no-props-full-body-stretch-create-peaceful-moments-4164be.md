@@ -33,7 +33,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "No. This is a no-props class — just your mat and a quiet space. If you'd like a little extra support you can slide a cushion or blanket under your hips or knees, but nothing is required."
   - q: "Is this 60-minute Yin class suitable for beginners?"
-    a: "Yes. It's an all-levels class and I talk you into each shape. Every pose has a gentler option and a deeper one, so come as you are and find your edge at about 80%."
+    a: "Yes. It's an all-levels class and I talk you into each shape. Every pose has a gentler option and a deeper one, so come as you are and find your edge at about 60–80%."
   - q: "Which part of the Create Peaceful Moments series is this?"
     a: "This is class 8 of the Create Peaceful Moments series. All the classes share the same hour-long structure and can be done in any order, so you can start wherever you like."
 ---
@@ -52,7 +52,7 @@ Just your mat, and a warm, quiet space where you can be still for an hour. No pr
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a while; let the shape do the work, and come out slowly and sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath.
 </content>

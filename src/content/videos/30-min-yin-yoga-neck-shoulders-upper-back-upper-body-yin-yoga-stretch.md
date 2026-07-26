@@ -29,7 +29,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "No — you can do the whole class with just your mat. If you'd like a little support, a folded blanket or cushion is lovely under the forehead or knees, and a block is handy to sit up on, but all of it is optional. Come as you are."
   - q: "The neck and shoulders feel tight and sensitive — is this safe for me?"
-    a: "This class is made exactly for that. Because it's such a sensitive area, we hold gently for about two minutes rather than the usual longer Yin holds, and Katie reminds you throughout to stay at around 80% and never force. If you ever feel numbness or tingling in the hands, ease your arms in closer or come out of the pose — there's no shame in stopping a shape early."
+    a: "This class is made exactly for that. Because it's such a sensitive area, we hold gently for about two minutes rather than the usual longer Yin holds, and Katie reminds you throughout to stay at around 60–80% and never force. If you ever feel numbness or tingling in the hands, ease your arms in closer or come out of the pose — there's no shame in stopping a shape early."
   - q: "Is this suitable if I'm not very flexible?"
     a: "Absolutely. Yin isn't about how far you reach — it's about finding your edge and letting the shape do the work. Every pose here has a gentler option and a deeper one, so you can meet your body wherever it is today."
 ---
@@ -48,6 +48,6 @@ Just your mat and a quiet spot where you can be still. This is a no-props class,
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

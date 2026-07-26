@@ -18,7 +18,7 @@ cues:
   - "Only if that is comfortable, begin to lean back onto your hands, then your forearms, letting the front of the thighs stretch."
   - "For the gentler option, rest back onto a bolster or a stack of blocks that meets your spine — let the prop hold you rather than reaching for the floor."
   - "For the deepest option, and only if the knees and back are happy, lower all the way down so the back rests on the floor. Never force towards it."
-  - "Find your edge — about 80%, a strong stretch through the thighs but never sharp pain in the knees. Back off the moment the knees protest."
+  - "Find your edge — about 60–80%, a strong stretch through the thighs but never sharp pain in the knees. Back off the moment the knees protest."
   - "One knee at a time can be lifted to ease out, or keep the legs closer if wide is too much. Let the shape do the work and be still."
 transitions_in:
   - "From kneeling between the heels, lean back onto the hands, then the forearms, then lower as far as is comfortable."

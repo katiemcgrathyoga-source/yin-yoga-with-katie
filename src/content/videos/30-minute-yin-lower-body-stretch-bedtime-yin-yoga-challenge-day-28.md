@@ -26,7 +26,7 @@ faq:
   - q: "Do I need any props for this bedtime class?"
     a: "Nothing is essential, but a cushion or a yoga block to sit on makes the seated poses much kinder on the hips — it helps your pelvis tip forward and your seat bones settle. If you have a block or two, they're lovely to rest your forehead on as you fold. Come as you are and use what you have."
   - q: "Is this suitable if I'm not very flexible?"
-    a: "Absolutely. Yin isn't about how far you fold — every pose has a gentler option, from staying upright in half shoelace to letting your head simply hang. Find your edge at about 80%, let the shape do the work, and let your body open in its own time."
+    a: "Absolutely. Yin isn't about how far you fold — every pose has a gentler option, from staying upright in half shoelace to letting your head simply hang. Find your edge at about 60–80%, let the shape do the work, and let your body open in its own time."
   - q: "Can I really do this right before bed?"
     a: "Yes — that's exactly what it's made for. The whole class is slow, still and calming, working gently through the legs and hips so your body and mind can wind down. Dim the lights, get warm, and let it be the last thing you do before sleep."
 ---
@@ -45,6 +45,6 @@ Just your mat and a warm, quiet space where you can be still. A cushion or yoga 
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

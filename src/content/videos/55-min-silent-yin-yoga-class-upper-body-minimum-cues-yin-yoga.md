@@ -36,7 +36,7 @@ faq:
   - q: "What does 'silent' and 'minimal cues' mean?"
     a: "It means Katie gives you just enough guidance to settle into each pose, then leaves you in quiet to hold it and feel your breath. It's a peaceful, meditative way to practise. If you're brand new to Yin you may prefer a fully guided class first, but every pose here has a gentler option so you can always ease back."
   - q: "Is this suitable if my shoulders feel tight?"
-    a: "Yes — tight shoulders are exactly what this class is for. Find your edge at about 80%, let the shape do the work, and take the gentler option whenever you need it. In broken wing you set your own intensity by shifting your weight slowly, so you stay completely in control."
+    a: "Yes — tight shoulders are exactly what this class is for. Find your edge at about 60–80%, let the shape do the work, and take the gentler option whenever you need it. In broken wing you set your own intensity by shifting your weight slowly, so you stay completely in control."
 ---
 
 ## What this Yin class is
@@ -53,6 +53,6 @@ Just your mat and a warm, quiet space where you can be still. No props are requi
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

@@ -32,7 +32,7 @@ faq:
   - q: "Do I need any props?"
     a: "No props are required — just your mat. A cushion or a couple of yoga blocks nearby are lovely to sit on or lean into if you have them, but they're entirely optional."
   - q: "Is this class suitable for beginners?"
-    a: "Yes. It's a gentle, all-levels practice with only a handful of simple shapes. Find your edge at about 80%, and take the gentler option of any pose whenever you like."
+    a: "Yes. It's a gentle, all-levels practice with only a handful of simple shapes. Find your edge at about 60–80%, and take the gentler option of any pose whenever you like."
 ---
 
 ## What this Yin class is
@@ -49,7 +49,7 @@ Just your mat, and a warm, quiet space where you can be still. No props are requ
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Stay in each shape for a few minutes and let the shape do the work. Come out slowly, and sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath.
 </content>

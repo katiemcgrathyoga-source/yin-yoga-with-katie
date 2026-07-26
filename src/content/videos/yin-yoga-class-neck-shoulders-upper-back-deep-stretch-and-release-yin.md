@@ -34,7 +34,7 @@ faq:
   - q: "I hold a lot of tension in my neck and shoulders — is this a good class for me?"
     a: "It's exactly what I made it for. We move slowly through the neck, shoulders and upper back and hold each shape long enough for the area to soften — the part of the body where so many of us carry the day. Stay gentle, breathe into wherever feels tightest, and let the holds do the work."
   - q: "How long do we hold the poses, and is this okay for beginners?"
-    a: "The deeper poses are held for one to two minutes each, with plenty of guidance in between. It's very beginner-friendly — every shape has a lighter option and a deeper one, so you choose how far to go. Find your edge at about 80%, never force, and come out sooner any time you need to."
+    a: "The deeper poses are held for one to two minutes each, with plenty of guidance in between. It's very beginner-friendly — every shape has a lighter option and a deeper one, so you choose how far to go. Find your edge at about 60–80%, never force, and come out sooner any time you need to."
 ---
 
 ## What this Yin class is
@@ -51,6 +51,6 @@ Just your mat and a warm, quiet space where you can be still for half an hour. N
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch through the neck, shoulders and upper back, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch through the neck, shoulders and upper back, but never forcing or straining.
 - **Hold for time.** Yin poses are held a while; let the shape and your breath do the work. Come out slowly, and sooner if you need to.
 - **Be still.** Soften the jaw and face, let the shoulders drop away from the ears, and rest your attention on your breath.

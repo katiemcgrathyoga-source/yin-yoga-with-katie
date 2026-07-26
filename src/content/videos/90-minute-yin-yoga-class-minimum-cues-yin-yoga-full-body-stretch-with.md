@@ -34,7 +34,7 @@ faq:
   - q: "Is this a silent, minimal-cues class?"
     a: "Almost silent. I give just enough cues to guide you into each shape and let you know how long we'll hold, then leave you to the quiet. There's very little talking, so you can drop out of your head and fully into each pose."
   - q: "How long are the holds?"
-    a: "Around five minutes in each pose. The long holds are where Yin does its work — softening the deeper connective tissue — so settle in, find your edge at about 80%, and let the shape do the work. Come out slowly, and sooner if you need to."
+    a: "Around five minutes in each pose. The long holds are where Yin does its work — softening the deeper connective tissue — so settle in, find your edge at about 60–80%, and let the shape do the work. Come out slowly, and sooner if you need to."
   - q: "Do I need any props for this class?"
     a: "No props are required — all you need is your mat. If you'd like extra support, a cushion or folded blanket nearby is lovely for padding sensitive knees or lifting the hips, but nothing is essential. Come as you are."
 ---
@@ -53,6 +53,6 @@ Just your mat, and a warm, quiet space where you can be still for a while. No pr
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining. Let the shape do the work.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining. Let the shape do the work.
 - **Hold for time.** Yin poses are held a while; the length is where the change happens. Come out slowly, and sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — especially helpful in a quiet, minimal-cues practice.

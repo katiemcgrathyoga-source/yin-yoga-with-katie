@@ -35,7 +35,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "Nothing essential — just your mat. A pillow or cushion is lovely to have nearby, though: there are moments to hold it close or rest your head or forehead on it, and a couple of blocks or cushions are nice to sit up on if that's more comfortable for you. Come as you are."
   - q: "Is this class suitable if I'm not very flexible?"
-    a: "Yes. This is a soft, gentle practice, and Yin isn't about how far you go. Find your edge at about 80%, let each shape do the work, and take the gentler option whenever you'd like. Everything here can be softened with a cushion or a bend in the elbows."
+    a: "Yes. This is a soft, gentle practice, and Yin isn't about how far you go. Find your edge at about 60–80%, let each shape do the work, and take the gentler option whenever you'd like. Everything here can be softened with a cushion or a bend in the elbows."
   - q: "I'm feeling emotional — is that okay in this practice?"
     a: "Completely. This class was made as a quiet, comforting place to land when the heart feels heavy. Move at your own pace, rest whenever you need to, and let the breath and the stillness hold you. There's nothing you need to do except be here."
 ---
@@ -54,6 +54,6 @@ Just your mat and a warm, quiet space where you can be still. A pillow or cushio
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

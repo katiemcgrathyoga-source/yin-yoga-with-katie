@@ -17,7 +17,7 @@ cues:
   - "Stand with your feet about hip-width apart and soften your knees generously — a real bend, not locked and straight."
   - "Fold forward from the hips and let your upper body hang down like a ragdoll. Let your head be heavy and your neck completely loose."
   - "Hold opposite elbows and let your folded arms swing gently, or let the arms and hands simply dangle toward the floor."
-  - "Find your edge — about 80% of your capacity, a real stretch but never forcing. Bend the knees more to move the stretch into the lower back, or straighten them a little to reach the hamstrings."
+  - "Find your edge — about 60–80% of your capacity, a real stretch but never forcing. Bend the knees more to move the stretch into the lower back, or straighten them a little to reach the hamstrings."
   - "Let the spine round and lengthen under its own weight. Be still and let the shape do the work."
   - "If the floor feels far and reaching down strains you, rest your forearms or forehead on a bolster or a stack of blocks."
 transitions_in:
@@ -39,7 +39,7 @@ faq:
   - q: "How long do you hold Dangling in Yin Yoga?"
     a: "Most people hold Dangling for 1–3 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
   - q: "Is Dangling suitable for beginners?"
-    a: "Yes. Dangling is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+    a: "Yes. Dangling is a beginner-friendly Yin pose — approachable and easy to support. Work at about 60–80% of your edge, breathe, and read the cues and cautions on this page before you begin."
   - q: "What does Dangling stretch?"
     a: "Dangling mainly works the spine, hamstrings and lower back. Uses gravity to decompress the whole back line and spine — the weight of your upper body does the work while you simply hang."
   - q: "Do you need props for Dangling?"

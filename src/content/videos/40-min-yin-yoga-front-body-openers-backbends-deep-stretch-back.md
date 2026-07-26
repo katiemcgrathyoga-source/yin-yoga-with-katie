@@ -30,7 +30,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "No — you can practise this with just your mat. That said, it's always nice to have a cushion or a couple of yoga blocks nearby if you have them, especially to sit or lean on in Saddle or to rest your forehead in Puppy. Nothing is required, but a little extra padding is always welcome."
   - q: "Are backbends okay if my back feels sensitive?"
-    a: "These are gentle, supported openers rather than deep or forceful backbends. Every pose has a lighter version — you can slide your elbows further forward in Sphinx, keep your hands wide in Puppy, or stay upright in Saddle rather than leaning back. Find about 80% of your edge, never a sharp pinch, and come out slowly whenever you need to."
+    a: "These are gentle, supported openers rather than deep or forceful backbends. Every pose has a lighter version — you can slide your elbows further forward in Sphinx, keep your hands wide in Puppy, or stay upright in Saddle rather than leaning back. Find about 60–80% of your edge, never a sharp pinch, and come out slowly whenever you need to."
   - q: "Which parts of the body does this stretch?"
     a: "We work along the whole front line — the chest and the front of the shoulders, the belly and torso, and the quads at the front of the thighs — with the spine gently arching through Sphinx, Seal, Puppy and Saddle. Child's Pose and Corpse are woven in so the back can round and soften again between the openers."
 ---
@@ -49,6 +49,6 @@ Just your mat and a warm, quiet space where you can be still. No props are requi
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch across the front body, but never forcing or straining into the knees or lower back.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch across the front body, but never forcing or straining into the knees or lower back.
 - **Hold for time.** Yin poses are held a while; let the shape do the work. Come out slowly, and sooner if you feel tingling, numbness or any sharp sensation.
 - **Be still.** Settle body and mind, soften the jaw and face, and rest your attention on the breath — using each inhale to open a little more and each exhale to let something go.

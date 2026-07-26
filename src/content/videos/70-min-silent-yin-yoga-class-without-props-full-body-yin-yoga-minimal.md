@@ -37,7 +37,7 @@ faq:
   - q: "Do I need any props?"
     a: "No. This is a no-props class — just your mat and a warm, quiet space. If you have a cushion or blanket nearby it can pad sensitive knees or support the head, but nothing is required."
   - q: "Is 70 minutes of Yin suitable for beginners?"
-    a: "Yes. Every pose has a gentler option and a deeper one, and you set the depth. Read the pose notes below before you begin, come to about 80% of your capacity, and come out of any shape sooner if you need to."
+    a: "Yes. Every pose has a gentler option and a deeper one, and you set the depth. Read the pose notes below before you begin, come to about 60–80% of your capacity, and come out of any shape sooner if you need to."
 ---
 
 ## What this Yin class is
@@ -54,6 +54,6 @@ Just your mat, and a warm, quiet space where you can be still. No props required
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining. Let the shape do the work.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining. Let the shape do the work.
 - **Hold for time.** Yin poses are held a while; the length is where the change happens. Come out slowly, and sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — especially helpful in a silent practice.

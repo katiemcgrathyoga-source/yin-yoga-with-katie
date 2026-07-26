@@ -31,7 +31,7 @@ faq:
   - q: "Is this a good practice before bed?"
     a: "That's exactly what it's made for. Everything stays low to the mat and unhurried, and we finish lying down in stillness — so it's an easy way to let the day go, quiet a busy mind, and feel your body get heavy and calm before sleep."
   - q: "Can I do this with a stiff or sore back?"
-    a: "Gently, yes. Every pose has a lighter option — slide your feet away in Butterfly, walk your elbows forward in Sphinx, widen your knees in Child's Pose — so you choose how much sensation you feel. Come to about 80%, never forcing, and ease out any time you need to."
+    a: "Gently, yes. Every pose has a lighter option — slide your feet away in Butterfly, walk your elbows forward in Sphinx, widen your knees in Child's Pose — so you choose how much sensation you feel. Come to about 60–80%, never forcing, and ease out any time you need to."
 ---
 
 ## What this Yin class is
@@ -48,6 +48,6 @@ Just your mat and a warm, quiet space where you can be still and comfortable. No
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining. In the twists especially, only go as far as that first gentle sensation.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining. In the twists especially, only go as far as that first gentle sensation.
 - **Hold for time.** Yin poses are held a while; let the shape do the work. Come out slowly, and sooner if you need to.
 - **Be still.** Soften your jaw, your shoulders, your neck, and rest your attention on your breath — no special breathing, just noticing it come in and out.

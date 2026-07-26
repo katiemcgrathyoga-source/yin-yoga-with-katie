@@ -28,16 +28,19 @@ const uniq = (arr: string[]) => [...new Set(arr)].sort((a, b) => a.localeCompare
 // tidy. Each pose's many raw target_areas map into these buckets; unlisted raw
 // values aren't surfaced as filters. Edit THIS list to change the filter.
 const AREA_BUCKETS = [
-  { key: 'hips', label: 'Hips', match: (a: string) => /hips|outer hip|glute|it band/.test(a) },
-  { key: 'hip-flexors', label: 'Hip flexors', match: (a: string) => /hip flexor|front of thigh|quad/.test(a) },
-  { key: 'groin', label: 'Groin & inner thigh', match: (a: string) => /groin|inner thigh/.test(a) },
+  { key: 'hips', label: 'Hips', match: (a: string) => /hips|outer hip/.test(a) },
+  { key: 'glutes', label: 'Glutes', match: (a: string) => /glute/.test(a) },
+  { key: 'hip-flexors', label: 'Hip flexors', match: (a: string) => /hip flexor/.test(a) },
+  { key: 'quads', label: 'Quads', match: (a: string) => /quadricep|front of thigh/.test(a) },
   { key: 'hamstrings', label: 'Hamstrings', match: (a: string) => /hamstring/.test(a) },
+  { key: 'it-band', label: 'IT band', match: (a: string) => /it band|iliotibial/.test(a) },
+  { key: 'groin', label: 'Groin & inner thigh', match: (a: string) => /groin|inner thigh/.test(a) },
+  { key: 'calves-feet', label: 'Calves & feet', match: (a: string) => /\bcalf\b|calves|ankle|shin|feet|foot|toe/.test(a) },
   { key: 'lower-back', label: 'Lower back', match: (a: string) => /lower back|low back|sacrum/.test(a) },
   { key: 'spine', label: 'Spine', match: (a: string) => /\bspine\b|side body|oblique|rib/.test(a) },
   { key: 'shoulders', label: 'Shoulders', match: (a: string) => /shoulder|upper back/.test(a) },
   { key: 'chest', label: 'Chest', match: (a: string) => /chest|pectoral|lung/.test(a) },
   { key: 'neck', label: 'Neck', match: (a: string) => /neck|throat/.test(a) },
-  { key: 'legs-feet', label: 'Legs & feet', match: (a: string) => /knee|ankle|feet|foot|shin|toe|\bcalf\b|\blegs?\b/.test(a) },
 ];
 const areaKeys = (p: (typeof poses)[number]) => {
   const set = new Set<string>();
@@ -48,16 +51,9 @@ const areaKeys = (p: (typeof poses)[number]) => {
   return [...set];
 };
 const areaLabel = (key: string) => AREA_BUCKETS.find((b) => b.key === key)!.label;
-// Keep each filter section to the 5 most-common values so the page stays tidy.
-const areaCount = (key: string) => poses.filter((p) => areaKeys(p).includes(key)).length;
-const presentAreas = AREA_BUCKETS.filter((b) => poses.some((p) => areaKeys(p).includes(b.key)))
-  .sort((a, b) => areaCount(b.key) - areaCount(a.key))
-  .slice(0, 5);
-
-const merCount = (m: string) => poses.filter((p) => p.data.meridians.includes(m)).length;
-const meridians = uniq(poses.flatMap((p) => p.data.meridians))
-  .sort((a, b) => merCount(b) - merCount(a))
-  .slice(0, 5);
+// Show every target area that has at least one pose (in anatomical order) so runners
+// can filter straight to IT band, calves, hip flexors, hamstrings, quads and glutes.
+const presentAreas = AREA_BUCKETS.filter((b) => poses.some((p) => areaKeys(p).includes(b.key)));
 const levelOrder = ['beginner', 'intermediate', 'advanced'];
 const levels = uniq(poses.map((p) => p.data.accessibility)).sort(
   (a, b) => levelOrder.indexOf(a) - levelOrder.indexOf(b),
@@ -66,7 +62,7 @@ const levels = uniq(poses.map((p) => p.data.accessibility)).sort(
 
 <BaseLayout
   title="Yin Yoga Pose Reference — Yin Yoga with Katie"
-  description="A reference library of yin yoga poses — cues, benefits, hold times and cautions. Browse by target area, meridian and level, or open a class to practise them in sequence."
+  description="A reference library of yin yoga poses — cues, benefits, hold times and cautions. Browse by target area and level, or open a class to practise them in sequence."
 >
   <div class="wrap">
     <header class="hero">
@@ -94,17 +90,6 @@ const levels = uniq(poses.map((p) => p.data.accessibility)).sort(
           </div>
         </div>
 
-        {meridians.length > 0 && (
-          <div class="facet">
-            <span class="facet-label">Meridians</span>
-            <div class="chips">
-              {meridians.map((m) => (
-                <button type="button" class="chip" data-facet="meridian" data-value={m} aria-pressed="false">{m}</button>
-              ))}
-            </div>
-          </div>
-        )}
-
         <div class="facet">
           <span class="facet-label">Level</span>
           <div class="chips">
@@ -127,7 +112,6 @@ const levels = uniq(poses.map((p) => p.data.accessibility)).sort(
             href={`/poses/${p.data.slug}`}
             data-tile
             data-areas={areaKeys(p).join('|')}
-            data-meridians={p.data.meridians.join('|')}
             data-level={p.data.accessibility}
           >
             <div class="tile-thumb">
@@ -167,7 +151,6 @@ const levels = uniq(poses.map((p) => p.data.accessibility)).sort(
 
   const active: Record<string, Set<string>> = {
     area: new Set(),
-    meridian: new Set(),
     level: new Set(),
   };
 
@@ -177,19 +160,17 @@ const levels = uniq(poses.map((p) => p.data.accessibility)).sort(
     let visible = 0;
     for (const tile of tiles) {
       const areas = split(tile.dataset.areas);
-      const meridians = split(tile.dataset.meridians);
       const level = tile.dataset.level ?? '';
 
       const okArea = active.area.size === 0 || areas.some((a) => active.area.has(a));
-      const okMer = active.meridian.size === 0 || meridians.some((m) => active.meridian.has(m));
       const okLvl = active.level.size === 0 || active.level.has(level);
 
-      const show = okArea && okMer && okLvl;
+      const show = okArea && okLvl;
       tile.hidden = !show;
       if (show) visible++;
     }
 
-    const anyActive = active.area.size + active.meridian.size + active.level.size > 0;
+    const anyActive = active.area.size + active.level.size > 0;
     if (clearBtn) clearBtn.hidden = !anyActive;
     if (emptyEl) emptyEl.hidden = visible > 0;
     if (countEl) {

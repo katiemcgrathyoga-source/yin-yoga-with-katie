@@ -48,6 +48,6 @@ Your mat, a couple of yoga blocks, and a strap. The blocks support your hands in
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a while, and the length is where the change happens. Come out sooner if you need to — the hold times are only suggestions.
 - **Be still.** Settle body and mind, let the shape do the work, and rest your attention on the sensations and your breath. Come out slowly when it's time.

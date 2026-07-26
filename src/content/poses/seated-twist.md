@@ -18,7 +18,7 @@ cues:
   - "Rest your left hand on your right knee and bring your right hand to the floor behind you."
   - "Breathe in and grow tall through the crown of your head; breathe out and turn gently toward the right, starting the twist low in the belly and letting it travel up the spine."
   - "Let your gaze follow last, turning the head only as far as the neck is happy to go."
-  - "This is a Yin hold, so find a soft, sustainable edge — about 80% — and then stop working and simply breathe there."
+  - "This is a Yin hold, so find a soft, sustainable edge — about 60–80% — and then stop working and simply breathe there."
   - "With each exhale, feel the spine lengthen a fraction and the twist deepen on its own. Slowly unwind, pause in the centre, then turn to the other side."
 transitions_in:
   - "From Easy Pose or any comfortable seat"

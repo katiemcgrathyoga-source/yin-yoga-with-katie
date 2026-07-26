@@ -53,7 +53,7 @@ Very little. A mat or a bit of carpet, warm clothes you can be still in, and a q
 
 Almost everything in Yin comes down to three simple ideas. Keep these in mind and you already know how to practise:
 
-1. **Find your edge.** Come to about 80% of your capacity — a real, honest stretch, but never forcing or straining. Yin should feel like *a lot of something gentle*, not a little of something sharp.
+1. **Find your edge.** Come to about 60–80% of your capacity — a real, honest stretch, but never forcing or straining. Yin should feel like *a lot of something gentle*, not a little of something sharp.
 2. **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner whenever you need to.
 3. **Be still.** Once you've found your shape, stop adjusting. Let your body grow heavy, rest your attention on your breath, and let the pose do the work.
 

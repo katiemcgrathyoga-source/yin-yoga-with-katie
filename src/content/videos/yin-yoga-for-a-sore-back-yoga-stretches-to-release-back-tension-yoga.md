@@ -34,7 +34,7 @@ faq:
   - q: "Do I need any props?"
     a: "No — all you really need is your mat and a warm, quiet spot. If you'd like a little extra comfort, keep a cushion or folded blanket nearby to tuck under your knees or head, but nothing is required. Come as you are."
   - q: "I'm new to Yin — is this a good place to start?"
-    a: "It is. The poses are simple and every one has a gentler option, so you decide how far to go. Find your edge at about 80 percent — a real, honest stretch, never a strain — read the pose notes below first if you're brand new, and rest whenever you need to. In Yin, the length of the hold is where the softening happens."
+    a: "It is. The poses are simple and every one has a gentler option, so you decide how far to go. Find your edge at about 60 to 80 percent — a real, honest stretch, never a strain — read the pose notes below first if you're brand new, and rest whenever you need to. In Yin, the length of the hold is where the softening happens."
 ---
 
 ## What this Yin class is
@@ -51,6 +51,6 @@ Just your mat and a warm, quiet space where you can be still and undisturbed. No
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining, and always back off if anything feels sharp.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining, and always back off if anything feels sharp.
 - **Hold for time.** Yin poses are held a few minutes; let the shape do the work and let each exhale carry a little tension out of your back. Come out slowly.
 - **Be still.** Soften your jaw, your shoulders, your hips, and rest your attention on your breath — that quiet is where the release begins.

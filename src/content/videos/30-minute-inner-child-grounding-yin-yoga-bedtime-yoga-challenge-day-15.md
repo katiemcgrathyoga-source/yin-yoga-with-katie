@@ -26,7 +26,7 @@ faq:
   - q: "What props do I need for this class?"
     a: "Just something to sit on — a cushion, a yoga block or a bolster — so your hips are a little higher than your knees in butterfly and saddle. It's optional, but it makes the seated poses much kinder. Otherwise all you need is your mat and somewhere warm and quiet to be still."
   - q: "Is this class okay if I'm not very flexible?"
-    a: "Absolutely. Every pose has a gentler version — sit further from your feet in butterfly, stay upright in saddle rather than leaning back, and hug your knees in for happy baby. Find your edge at about 80%, let the shape do the work, and never force anything. Yin isn't about how far you go."
+    a: "Absolutely. Every pose has a gentler version — sit further from your feet in butterfly, stay upright in saddle rather than leaning back, and hug your knees in for happy baby. Find your edge at about 60–80%, let the shape do the work, and never force anything. Yin isn't about how far you go."
   - q: "Why is it called 'inner child' Yin?"
     a: "Katie built this routine from the grounding, low-to-the-floor ways her kindergarten students naturally sit and move. The result is a simple, calming sequence that keeps you close to the earth — perfect for winding down at the end of the day."
 ---
@@ -45,6 +45,6 @@ A cushion, yoga block or bolster to sit on for the seated poses, your mat, and a
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

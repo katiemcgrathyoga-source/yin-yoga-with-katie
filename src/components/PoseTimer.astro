@@ -58,7 +58,6 @@ const { seconds, holdLabel } = Astro.props;
             <button type="button" data-add="30">+30s</button>
           </div>
           <div class="pt-controls">
-            <button type="button" class="pt-toggle btn-cta">Start</button>
             <button type="button" class="pt-reset">Reset</button>
           </div>
           <p class="pt-live" aria-live="polite"></p>
@@ -66,12 +65,10 @@ const { seconds, holdLabel } = Astro.props;
 
       this.clock = this.querySelector('.pt-clock') as HTMLElement;
       this.prog = this.querySelector('.pt-prog') as SVGCircleElement;
-      this.toggleBtn = this.querySelector('.pt-toggle') as HTMLButtonElement;
       this.live = this.querySelector('.pt-live') as HTMLElement;
       this.C = C;
 
       this.querySelector('.pt-time')!.addEventListener('click', () => this.toggle());
-      this.toggleBtn.addEventListener('click', () => this.toggle());
       this.querySelector('.pt-reset')!.addEventListener('click', () => this.reset());
       this.querySelectorAll<HTMLButtonElement>('.pt-presets button').forEach((b) =>
         b.addEventListener('click', () => {
@@ -92,7 +89,7 @@ const { seconds, holdLabel } = Astro.props;
 
     disconnectedCallback() { this.stop(); this.releaseWake(); }
 
-    clock!: HTMLElement; prog!: SVGCircleElement; toggleBtn!: HTMLButtonElement;
+    clock!: HTMLElement; prog!: SVGCircleElement;
     live!: HTMLElement; C!: number;
 
     fmt(s: number) {
@@ -104,9 +101,8 @@ const { seconds, holdLabel } = Astro.props;
       this.clock.textContent = this.fmt(this.remaining);
       const frac = this.target > 0 ? this.remaining / this.target : 0;
       this.prog.style.strokeDashoffset = String(this.C * (1 - frac));
-      this.toggleBtn.textContent = this.running ? 'Pause' : this.remaining === 0 ? 'Start' : 'Start';
       const hint = this.querySelector('.pt-hint') as HTMLElement;
-      if (hint) hint.textContent = this.running ? 'holding…' : 'tap to start';
+      if (hint) hint.textContent = this.running ? 'tap to pause' : this.remaining === 0 ? 'tap to restart' : 'tap to start';
       this.classList.toggle('is-running', this.running);
     }
 
@@ -119,7 +115,6 @@ const { seconds, holdLabel } = Astro.props;
       this.running = true;
       this.endAt = performance.now() + this.remaining * 1000;
       this.tick = window.setInterval(() => this.step(), 200);
-      this.toggleBtn.textContent = 'Pause';
       this.live.textContent = `Timer started, ${this.fmt(this.remaining)} remaining.`;
       this.render();
     }
@@ -181,8 +176,8 @@ const { seconds, holdLabel } = Astro.props;
         o.type = 'sine';
         o.frequency.value = freq;
         g.gain.setValueAtTime(0.0001, now + at);
-        g.gain.exponentialRampToValueAtTime(0.22, now + at + 0.04);
-        g.gain.exponentialRampToValueAtTime(0.0001, now + at + 1.6);
+        g.gain.exponentialRampToValueAtTime(0.32, now + at + 0.04);
+        g.gain.exponentialRampToValueAtTime(0.0001, now + at + 1.8);
         o.connect(g).connect(ctx.destination);
         o.start(now + at);
         o.stop(now + at + 1.7);

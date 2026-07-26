@@ -20,7 +20,7 @@ cues:
   - "Flex the right foot to support the knee, and slide your left leg long behind you, the top of the foot on the floor."
   - "Before you settle, check the front knee. If you feel any pinch, draw the front foot in closer toward your right hip until the knee goes quiet."
   - "On an exhale, walk your hands forward and lower your chest over a few breaths — down onto your forearms, a bolster, a stack of blankets, or the mat."
-  - "Let your forehead rest and your whole body grow heavy. Find your edge — about 80% of your capacity, a real stretch but never forcing."
+  - "Let your forehead rest and your whole body grow heavy. Find your edge — about 60–80% of your capacity, a real stretch but never forcing."
   - "Soften completely. Be still, and let the shape do the work. Stay, then repeat on the second side."
 transitions_in:
   - "From Swan — walk the hands forward and lower the chest"

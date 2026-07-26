@@ -33,7 +33,7 @@ faq:
   - q: "Which poses does this class include?"
     a: "Three long-held Yin poses, each worked on both sides — Thread the Needle (sliding back into Child's Pose to rest), Half-Butterfly for the hips and hamstrings, and Cat Pulling Its Tail for a gentle spinal twist — before settling into Corpse pose. Together they give the whole body a slow, even stretch."
   - q: "Is this class suitable for beginners?"
-    a: "Yes. It's an all-levels bedtime class, and every pose has a gentler option and a deeper one. Find your edge at about 80%, hold for the time that feels right, and come out sooner whenever you need to."
+    a: "Yes. It's an all-levels bedtime class, and every pose has a gentler option and a deeper one. Find your edge at about 60–80%, hold for the time that feels right, and come out sooner whenever you need to."
 ---
 
 ## What this Yin class is
@@ -50,6 +50,6 @@ Just your mat, and somewhere warm and quiet where you can be still. A cushion or
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining. Softer is perfect before bed.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining. Softer is perfect before bed.
 - **Hold for time.** Stay a few minutes and let the shape do the work. Come out sooner if you need to.
 - **Be still.** Let the body and mind settle, and follow your breath as it slows. When we finish, come out slowly.

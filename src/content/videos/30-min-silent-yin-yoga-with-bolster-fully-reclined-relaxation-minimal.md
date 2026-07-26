@@ -33,7 +33,7 @@ faq:
   - q: "Why is this class silent with minimal cues?"
     a: "Once you're settled into each shape I step back and let you rest in stillness, with only a few gentle words to guide you in and out. It gives your mind space to soften and your nervous system time to downshift — perfect if you find lots of talking distracting, or if you're winding down towards sleep."
   - q: "Is this suitable if I'm not very flexible or brand new to Yin?"
-    a: "Absolutely. The whole class is fully reclined and supported by the bolster, so there's no deep stretching or effort required — find your edge at about 80% and let the props hold you. It's one of the gentlest ways to start Yin, and just as welcome after a long day whatever your experience."
+    a: "Absolutely. The whole class is fully reclined and supported by the bolster, so there's no deep stretching or effort required — find your edge at about 60–80% and let the props hold you. It's one of the gentlest ways to start Yin, and just as welcome after a long day whatever your experience."
 ---
 
 ## What this Yin class is
@@ -50,6 +50,6 @@ A bolster is all you really need — or a firm cushion or a couple of folded bla
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

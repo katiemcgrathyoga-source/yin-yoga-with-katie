@@ -141,6 +141,22 @@ const poseSave = `https://www.pinterest.com/pin/create/button/?url=${encodeURICo
       })()
     }
 
+    {/* The essentials — how to do the pose and why — right under the photo, so the
+        information someone came for is the first thing they read (not below the tools). */}
+    <section>
+      <h2>How to do it</h2>
+      <ol class="cues">
+        {d.cues.map((cue) => <li>{cue}</li>)}
+      </ol>
+    </section>
+
+    <section>
+      <h2>Why practise it</h2>
+      <ul class="plain">
+        {d.benefits.map((b) => <li>{b}</li>)}
+      </ul>
+    </section>
+
     {poseSave && (
       <div class="pose-share">
         <a class="pose-pin-btn" href={poseSave} target="_blank" rel="noopener noreferrer" aria-label="Save this pose to Pinterest">
@@ -187,20 +203,6 @@ const poseSave = `https://www.pinterest.com/pin/create/button/?url=${encodeURICo
         </section>
       )
     }
-
-    <section>
-      <h2>How to do it</h2>
-      <ol class="cues">
-        {d.cues.map((cue) => <li>{cue}</li>)}
-      </ol>
-    </section>
-
-    <section>
-      <h2>Why practise it</h2>
-      <ul class="plain">
-        {d.benefits.map((b) => <li>{b}</li>)}
-      </ul>
-    </section>
 
     {
       (d.transitions_in.length > 0 || d.transitions_out.length > 0) && (

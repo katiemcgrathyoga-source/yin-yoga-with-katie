@@ -34,7 +34,7 @@ faq:
   - q: "What does the class actually cover?"
     a: "We settle in with child's pose, then work through the hips with dragon, sleeping swan and shoelace on both sides, before a grounding yogi squat and a forward-hanging dangle. We finish by stretching the legs in caterpillar with a gentle seated twist, then rest in corpse pose."
   - q: "Is this suitable if I'm not very flexible or my hips feel tight?"
-    a: "Yes — this class is made for tight hips and lower backs. Yin isn't about how far you go; find your edge at about 80%, let the pose do the work, and take the gentler version whenever you need it. Nothing here should ever be forced."
+    a: "Yes — this class is made for tight hips and lower backs. Yin isn't about how far you go; find your edge at about 60–80%, let the pose do the work, and take the gentler version whenever you need it. Nothing here should ever be forced."
 ---
 
 ## What this Yin class is
@@ -51,6 +51,6 @@ Just your mat and a quiet space where you can be still for three-quarters of an 
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

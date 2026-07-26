@@ -17,7 +17,7 @@ cues:
   - "Stack one knee directly over the other, feet resting to either side of the hips, and settle onto a cushion so the hips feel level."
   - "Reach your top-side arm up, bend the elbow and let the hand walk down your back; bring the other arm behind and down, and reach the hands toward each other."
   - "If the hands do not meet, hold a strap between them — never force the clasp. Let the shape find its own reach over time."
-  - "Find your edge — about 80% of your capacity, a real stretch but never forcing. Soften and let the shape do the work."
+  - "Find your edge — about 60–80% of your capacity, a real stretch but never forcing. Soften and let the shape do the work."
   - "For the legs alone, keep them stacked; for a gentler seat, cross the shins simply and focus on the arms."
 transitions_in:
   - "From a cross-legged seat, stack one knee over the other, then take up the arm bind."

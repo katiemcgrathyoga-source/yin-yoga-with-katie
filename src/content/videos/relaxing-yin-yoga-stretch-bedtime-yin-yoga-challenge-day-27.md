@@ -29,7 +29,7 @@ faq:
   - q: "Is this a good class to do right before bed?"
     a: "Yes — it's Day 27 of the Bedtime Yin challenge, designed to be done in the evening. The poses are slow, grounding and lower-body focused, and we finish lying supported over a block so you can melt into stillness. It's a lovely way to let go of the day and ease your body towards sleep."
   - q: "Can I follow along if I'm not very flexible?"
-    a: "Absolutely. Yin is never about how far you go — find your edge at about 80% and let the shape do the work. Every pose here has a gentler option: keep your knees bent in dangling, rest onto a block in deer, and adjust the height of your bridge. Take whatever version feels kind to your body tonight."
+    a: "Absolutely. Yin is never about how far you go — find your edge at about 60–80% and let the shape do the work. Every pose here has a gentler option: keep your knees bent in dangling, rest onto a block in deer, and adjust the height of your bridge. Take whatever version feels kind to your body tonight."
 ---
 
 ## What this Yin class is
@@ -46,6 +46,6 @@ A yoga block or two is ideal — we rest on them in several poses — but a cush
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

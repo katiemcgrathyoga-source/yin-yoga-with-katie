@@ -34,7 +34,7 @@ faq:
   - q: "Do I need any props for this morning practice?"
     a: "No props are needed — just your mat. If it feels nicer, you're welcome to slip a cushion or folded blanket under your hips or knees, and a couple of blocks or books under your hands can make Dragon a little easier. All optional, nothing required."
   - q: "I'm new to Yin — is this class beginner-friendly?"
-    a: "It is. Every shape has a lighter option and a deeper one, so you choose how far to go. Come to about 80% of your stretch, keep the breath soft and slow, and come out of anything sooner if you need to. Come as you are and let the practice meet you where you're at."
+    a: "It is. Every shape has a lighter option and a deeper one, so you choose how far to go. Come to about 60–80% of your stretch, keep the breath soft and slow, and come out of anything sooner if you need to. Come as you are and let the practice meet you where you're at."
 ---
 
 ## What this Yin class is
@@ -51,6 +51,6 @@ Just your mat and a little space to move. No props are required, though a cushio
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real, honest stretch, but never forcing or straining, especially first thing in the morning.
+- **Find your edge.** Come to about 60–80% of your capacity — a real, honest stretch, but never forcing or straining, especially first thing in the morning.
 - **Hold for time.** Yin poses are held a little while; let the shape do the work while you breathe. Come out slowly, and sooner if you need to.
 - **Be still.** Soften your face and shoulders, and rest your attention on your breath — if the mind drifts, that's okay, just gently bring it back.

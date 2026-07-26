@@ -29,7 +29,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "Not at all — your mat is all you really need. If you'd like a little more comfort, keep a cushion or block nearby: you can fold your mat or slide a cushion under your knees in child's pose, or sit on a block if your hips feel tight. Everything here is optional."
   - q: "Is this suitable if I'm brand new to Yin or not very flexible?"
-    a: "Yes — this is a beginner-friendly class and Yin isn't about how far you go. Every pose has a gentler option, and I talk you through it as we go. Find your edge at about 80%, let the shape do the work, and bend your knees or take the softer version whenever you need to."
+    a: "Yes — this is a beginner-friendly class and Yin isn't about how far you go. Every pose has a gentler option, and I talk you through it as we go. Find your edge at about 60–80%, let the shape do the work, and bend your knees or take the softer version whenever you need to."
   - q: "Will this help my lower back feel more comfortable?"
     a: "Many people find these slow, supported stretches leave the lower back feeling easier and more released. Move gently, never push into pain, and come out of any pose sooner if you need to. If you have an ongoing back concern, check with your doctor before starting."
 ---
@@ -48,6 +48,6 @@ Just your mat and a little quiet space. This is a no-props class, though a cushi
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

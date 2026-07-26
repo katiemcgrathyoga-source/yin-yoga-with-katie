@@ -32,7 +32,7 @@ faq:
   - q: "How does this class help my digestion?"
     a: "The shapes gently compress and twist the belly while stimulating the Liver and Gall Bladder lines through the inner legs and side body. Long, still holds bring your awareness into the digestive system and help to get things moving again."
   - q: "How long do we hold each pose?"
-    a: "Around 3 to 5 minutes each. That's plenty of time to soften, settle and let the shape do the work — so come to about 80% and let the holding do the rest."
+    a: "Around 3 to 5 minutes each. That's plenty of time to soften, settle and let the shape do the work — so come to about 60–80% and let the holding do the rest."
   - q: "Do I need any props?"
     a: "No props are required. It's a lovely idea to keep a couple of cushions or blocks nearby in case you'd like a little support in a pose, but you can do the whole class on just your mat."
 ---
@@ -51,6 +51,6 @@ Just your mat, and a warm, quiet space where you can be still for a while. No pr
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** We stay in each pose for three to five minutes; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath and the gentle sensations in your belly. When you come out, come out slowly.

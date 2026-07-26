@@ -20,7 +20,7 @@ cues:
   - "Where you place the knees changes where you feel the twist: drawn higher toward the chest, the rotation moves into the upper back; lowered toward the floor, it settles into the lumbar and sacrum. Play until it feels right for you."
   - "Open the opposite arm out along the mat and turn your gaze softly toward that hand."
   - "If your top shoulder floats up, that's fine — let it rest wherever it lands rather than pinning it down."
-  - "Find your edge — about 80% of your capacity, a real stretch but never forcing — then let the shape do the work."
+  - "Find your edge — about 60–80% of your capacity, a real stretch but never forcing — then let the shape do the work."
   - "Slide a cushion under the knees if the twist feels sharp, so the prop takes the strain instead of your spine."
   - "Be still, soften your jaw, and let each exhale melt you a little deeper."
 transitions_in:

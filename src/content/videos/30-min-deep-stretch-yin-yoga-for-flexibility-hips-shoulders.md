@@ -28,7 +28,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "A strap, belt or anything strap-like is handy for the cow face arms — but if you can't reach, simply hold opposite shoulders instead. A folded blanket under your knees is lovely too, since we spend time kneeling, and a cushion or block to sit on is nice if your hips feel tight. Nothing fancy required."
   - q: "Is this suitable if I'm not very flexible?"
-    a: "Absolutely — this class is designed to build flexibility, so there's a gentler option for every pose. In shoelace you can stay in half shoelace or sit cross-legged, and with the arms you simply hold your shoulders rather than the strap. Find your edge at about 80% and let the holds do the work over time."
+    a: "Absolutely — this class is designed to build flexibility, so there's a gentler option for every pose. In shoelace you can stay in half shoelace or sit cross-legged, and with the arms you simply hold your shoulders rather than the strap. Find your edge at about 60–80% and let the holds do the work over time."
   - q: "How long are the poses held?"
     a: "Each pose is held for around three to five minutes, which is what gives your muscles and connective tissue the time to gently open and lengthen. If a shape becomes too much you can always come out sooner or take the easier variation — there's no rush anywhere in this practice."
 ---
@@ -47,6 +47,6 @@ A strap, belt or any strap-like object for the cow face arms, plus a folded blan
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

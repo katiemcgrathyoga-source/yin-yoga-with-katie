@@ -34,7 +34,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "No props are required. If your hips feel tight, sitting up on a cushion or a block for the dragonfly can make the forward folds easier and kinder. A blanket nearby is lovely for warmth as you settle."
   - q: "I'm new to Yin — is this suitable for beginners?"
-    a: "Yes, it's all levels. Every pose has a gentler option and a deeper one, and you only ever come to about 80% of your edge — never forcing. Read the pose notes below, then follow along at your own pace."
+    a: "Yes, it's all levels. Every pose has a gentler option and a deeper one, and you only ever come to about 60–80% of your edge — never forcing. Read the pose notes below, then follow along at your own pace."
 ---
 
 ## What this Yin class is
@@ -51,6 +51,6 @@ Just your mat, and somewhere warm and quiet where you can be still. A cushion or
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining. Softer is perfect before bed.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining. Softer is perfect before bed.
 - **Hold for time.** Stay a few minutes and let the shape do the work. Come out sooner if you need to.
 - **Be still.** Let the body and mind settle, follow your breath as it slows, and come out slowly at the end.

@@ -27,7 +27,7 @@ faq:
   - q: "Do I need any props for this bedtime class?"
     a: "Not at all — this one is done entirely lying down, so all you need is your mat or even your bed. If you happen to have a bolster, it can feel lovely tucked under your hips or lengthways along your spine, but it's completely optional. Come as you are."
   - q: "Is this suitable if I'm not very flexible?"
-    a: "Yes. Yin isn't about how far you go — it's about finding your edge at around 80% and letting the shape do the work. Every pose here has a gentler version and a deeper one, so you simply choose what feels right tonight. Nothing is forced."
+    a: "Yes. Yin isn't about how far you go — it's about finding your edge at around 60–80% and letting the shape do the work. Every pose here has a gentler version and a deeper one, so you simply choose what feels right tonight. Nothing is forced."
   - q: "Can I do this in bed to help me sleep?"
     a: "Absolutely — this whole practice is reclined and calming, so it works beautifully on the mattress. Move slowly, keep the lights low, and let each long hold settle your body and mind. Afterwards you can drift straight off, or follow it with a guided relaxation."
 ---
@@ -46,6 +46,6 @@ Only your mat — or your bed, if that's where you'd like to practise. This is a
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

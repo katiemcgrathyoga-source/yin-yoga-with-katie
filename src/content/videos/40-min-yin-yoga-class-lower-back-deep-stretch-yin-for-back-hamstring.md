@@ -31,7 +31,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "A strap is lovely for the reclined hamstring holds — a yoga strap, a belt or anything strap-like will do. If you don't have one, that's completely fine: you can hold behind the leg with your hands instead. The strap just lets you settle in and take the stretch a little deeper."
   - q: "Is this suitable if I'm not very flexible?"
-    a: "Absolutely. Yin isn't about how far you go — you'll find your edge at about 80% and let the shape do the work. Every pose here has a gentler option, whether that's bending your knees in the forward fold or resting your foot on the floor in the hamstring stretch. Come as you are."
+    a: "Absolutely. Yin isn't about how far you go — you'll find your edge at about 60–80% and let the shape do the work. Every pose here has a gentler option, whether that's bending your knees in the forward fold or resting your foot on the floor in the hamstring stretch. Come as you are."
   - q: "What part of the body does this class focus on?"
     a: "The lower back and hamstrings, mostly. We start on the belly in Sphinx and Seal to gently compress and wake up the low back, ease into Child's Pose, then work the hamstrings through a standing fold and long reclined holds, before unwinding the spine with a reclined twist and resting in corpse."
 ---
@@ -50,6 +50,6 @@ Your mat, a warm quiet space, and a strap if you have one — a belt or anything
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

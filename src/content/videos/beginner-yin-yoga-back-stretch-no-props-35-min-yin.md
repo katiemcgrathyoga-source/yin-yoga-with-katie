@@ -29,7 +29,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "Not at all — this one is designed for just you and your mat, so you can press play anywhere. If you'd like a little support, keep a cushion or pillow nearby to sit on or tuck under you in child's pose or butterfly, but it's completely optional."
   - q: "Is this suitable if I'm a complete beginner or not very flexible?"
-    a: "Absolutely — this is a beginner-friendly class and flexibility isn't the point. Every pose has a gentler option: bend your knees in caterpillar, sit further from your feet in butterfly, or rest your head in your hands. Find your edge at about 80% and let the shape do the work."
+    a: "Absolutely — this is a beginner-friendly class and flexibility isn't the point. Every pose has a gentler option: bend your knees in caterpillar, sit further from your feet in butterfly, or rest your head in your hands. Find your edge at about 60–80% and let the shape do the work."
   - q: "I get back stiffness and aches — will this help?"
     a: "This class is built to gently soothe the back and spine, moving from the upper back through the lower back and into the hamstrings, which are often tight when the back feels sore. Move slowly, stay within a comfortable stretch, and come out of any pose sooner if you need to."
 ---
@@ -48,6 +48,6 @@ Just your mat and a quiet space where you can be still for half an hour. This is
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

@@ -30,7 +30,7 @@ faq:
   - q: "Do I need any props?"
     a: "No props are required — just your mat. A cushion or folded blanket under the hip in Sleeping Swan, or beneath your knees in the twist, can make the holds more comfortable if you'd like some support."
   - q: "I'm new to Yin and my hips are tight — can I still do this?"
-    a: "Yes. It's suitable for all levels. Every pose has a gentler option and a deeper one, so you find your own edge at about 80% and never force. Come out slowly and rest whenever you need to."
+    a: "Yes. It's suitable for all levels. Every pose has a gentler option and a deeper one, so you find your own edge at about 60–80% and never force. Come out slowly and rest whenever you need to."
 ---
 
 ## What this Yin class is
@@ -47,6 +47,6 @@ Just your mat, and a warm, quiet space where you can be still for a while. No pr
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Stay a few minutes and let the shape do the work. Come out slowly if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath.

@@ -35,7 +35,7 @@ faq:
   - q: "Do I need to have done the earlier challenge classes?"
     a: "Not at all. This is the ninth and final class of my Yin Yoga Challenge, but it stands completely on its own. Drop in fresh whenever you'd like a full head-to-toe stretch — you won't have missed anything you need."
   - q: "Is 70 minutes of Yin suitable for beginners?"
-    a: "Yes. Every pose has a gentler option and a deeper one, so you decide how far to go. Read the pose notes first if you're new, find your edge at about 80%, and come out of any shape sooner if you need to — the length is where the change happens."
+    a: "Yes. Every pose has a gentler option and a deeper one, so you decide how far to go. Read the pose notes first if you're new, find your edge at about 60–80%, and come out of any shape sooner if you need to — the length is where the change happens."
 ---
 
 ## What this Yin class is
@@ -52,7 +52,7 @@ Just your mat, and a warm, quiet space where you can be still for a while. A cus
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a while; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, rest your attention on your breath, and come out slowly when it's time.
 </content>

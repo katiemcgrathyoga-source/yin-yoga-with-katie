@@ -23,7 +23,7 @@ faq:
   - q: "Can you hold a Yin pose for too long?"
     a: "You can. Five minutes is a common ceiling, and the real guide is sensation — if a stretch turns sharp, or you feel anything electric or nervy, ease out. You're always your own teacher."
   - q: "Should Yin Yoga poses hurt?"
-    a: "No. A gentle, steady stretch is what you're after — never pain. Aim for about 80% of your capacity and let the breath do the softening."
+    a: "No. A gentle, steady stretch is what you're after — never pain. Aim for about 60–80% of your capacity and let the breath do the softening."
 ---
 
 Most Yin Yoga poses are held for **two to five minutes**. If you're new, it's perfectly fine to start around **one to three minutes** and build up over the weeks; more experienced practitioners often settle in for five minutes or longer in the gentler shapes. But the exact number matters less than the principle behind it — so here's how to find the right hold for *you*, and how to know when it's time to come out.

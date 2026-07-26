@@ -48,6 +48,6 @@ Your mat and a bolster, or a couple of yoga blocks — or both, if you have them
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% — a real stretch, but never forcing or straining. With props you can hold back even more; softer is perfect before bed.
+- **Find your edge.** Come to about 60–80% — a real stretch, but never forcing or straining. With props you can hold back even more; softer is perfect before bed.
 - **Hold for time.** Stay a few minutes and let the shape do the work. Come out slowly, and sooner if you need to.
 - **Be still.** Let body and mind settle over your props, and follow your breath as it slows.

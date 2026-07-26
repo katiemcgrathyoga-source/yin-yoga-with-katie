@@ -25,7 +25,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "Nothing is essential, but you may like something to sit up on for dragonfly and caterpillar — a cushion or block helps your pelvis tip forward so the folds feel kinder. A rolled blanket under the knees is lovely too if your hamstrings feel tight. Otherwise, just your mat is plenty."
   - q: "Is this suitable if I'm not very flexible?"
-    a: "Absolutely. Yin isn't about how far you fold — in dragonfly you can keep the soles of your feet on the floor and bend your knees, and there's no need to bring your nose anywhere near your knee. Come to about 80% of your stretch and let the shape do the work. Every pose has a gentler and a deeper option."
+    a: "Absolutely. Yin isn't about how far you fold — in dragonfly you can keep the soles of your feet on the floor and bend your knees, and there's no need to bring your nose anywhere near your knee. Come to about 60–80% of your stretch and let the shape do the work. Every pose has a gentler and a deeper option."
   - q: "Why is it called 'insect' Yin?"
     a: "It's a gentle bit of fun — each shape takes its inspiration from a little creepy-crawly friend, from dragonfly to caterpillar. The theme just ties the sequence together; the real work is a lovely slow opening through the spine, hips and hamstrings."
 ---
@@ -44,6 +44,6 @@ Just your mat, and ideally something to sit up on — a cushion or yoga block �
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

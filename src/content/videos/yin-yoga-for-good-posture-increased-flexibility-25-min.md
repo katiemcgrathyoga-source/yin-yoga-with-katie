@@ -31,7 +31,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "A little kit helps here. Have a strap or a belt for the cow-face arms, and one or two yoga blocks — or a couple of thick books — for the supported fish and bridge. Use as much support as you need; props aren't cheating, they're how you stay at a comfortable edge and let the shape do the work."
   - q: "Is this suitable for beginners?"
-    a: "Yes. Every pose has a lighter option and a deeper one, so you choose how far to go. If the cow-face arms feel tight, walk your hands further apart on the strap; if a shape feels too intense, bring in a cushion or block. Come to about 80% and let time do the rest."
+    a: "Yes. Every pose has a lighter option and a deeper one, so you choose how far to go. If the cow-face arms feel tight, walk your hands further apart on the strap; if a shape feels too intense, bring in a cushion or block. Come to about 60–80% and let time do the rest."
   - q: "Will this help with the stiffness from sitting all day?"
     a: "It's a lovely one for that. So much of the day rounds us forward over a desk or phone, and these poses gently open the chest and the fronts of the shoulders, and invite a little length back into the spine. It won't fix anything overnight, but practised regularly it can leave the upper body feeling more open and at ease."
 ---
@@ -50,6 +50,6 @@ Your mat, a strap or belt, and one or two yoga blocks — a couple of thick book
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real, honest stretch, but never forcing or pushing into pain.
+- **Find your edge.** Come to about 60–80% of your capacity — a real, honest stretch, but never forcing or pushing into pain.
 - **Hold for time.** These poses are held a few minutes; soften and let the shape do the work rather than gripping. Come out slowly, and sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath and the sensations in your body — when the mind wanders, gently guide it back.

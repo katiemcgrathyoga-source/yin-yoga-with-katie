@@ -36,7 +36,7 @@ faq:
   - q: "What is the echo, or rebound, that Katie keeps mentioning?"
     a: "It's that quiet moment right after you release a pose, when you stay still and feel the sensations resonating all through your body. In this class we deliberately pause after each shape to notice it — it's one of the things that makes Yin so special, and there's nothing you need to do but feel it."
   - q: "Is this suitable if I'm not very flexible or I'm a beginner?"
-    a: "Yes — Yin isn't about how deep you go. Come to about 80% of your edge, let the shape do the work, and take the gentler option in any pose. Sphinx can stand in for seal, and melting heart can be softened by bending the elbows. Rest whenever you need to."
+    a: "Yes — Yin isn't about how deep you go. Come to about 60–80% of your edge, let the shape do the work, and take the gentler option in any pose. Sphinx can stand in for seal, and melting heart can be softened by bending the elbows. Rest whenever you need to."
 ---
 
 ## What this Yin class is
@@ -53,6 +53,6 @@ Just your mat and a warm, quiet space where you can be still for half an hour. T
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

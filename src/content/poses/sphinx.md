@@ -18,7 +18,7 @@ cues:
   - "Notice your lower back. If the sensation feels too strong, slide the elbows further forward to lower the chest; if you want more, draw them back beneath you."
   - "Let the legs be heavy and soft. Keeping them apart deepens the low-back sensation; drawing them together spreads it more evenly along the spine."
   - "Relax the buttocks, soften the shoulders down away from the ears, and breathe down into the belly."
-  - "Find your edge — about 80%, a clear stretch through the front of the body but never forcing. Then let the shape do the work and be still."
+  - "Find your edge — about 60–80%, a clear stretch through the front of the body but never forcing. Then let the shape do the work and be still."
 transitions_in:
   - "From lying on your belly, prop up onto the forearms."
 transitions_out:
@@ -35,7 +35,7 @@ faq:
   - q: "How long do you hold Sphinx in Yin Yoga?"
     a: "Most people hold Sphinx for 3–5 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
   - q: "Is Sphinx suitable for beginners?"
-    a: "Yes. Sphinx is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+    a: "Yes. Sphinx is a beginner-friendly Yin pose — approachable and easy to support. Work at about 60–80% of your edge, breathe, and read the cues and cautions on this page before you begin."
   - q: "What does Sphinx stretch?"
     a: "Sphinx mainly works the lower back, sacrum and spine. A gentle backbend that restores the natural curve of the lower back — the very curve that long hours of sitting tend to flatten."
   - q: "Do you need props for Sphinx?"

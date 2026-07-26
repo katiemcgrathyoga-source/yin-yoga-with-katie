@@ -26,7 +26,7 @@ faq:
   - q: "Do I need any props for this bedtime class?"
     a: "Not at all — this one is designed to be done with nothing but your mat, so you can roll it out beside your bed and press play. If you'd like a little extra comfort, a cushion or folded blanket to sit on or rest under is lovely, but it's entirely optional."
   - q: "Is this suitable if I'm not very flexible?"
-    a: "Yes — Yin isn't about how far you go. Find your edge at about 80%, let the shape do the work, and take the gentler option in any pose whenever you need it. Over the nights of the challenge you'll notice things easing in their own time."
+    a: "Yes — Yin isn't about how far you go. Find your edge at about 60–80%, let the shape do the work, and take the gentler option in any pose whenever you need it. Over the nights of the challenge you'll notice things easing in their own time."
   - q: "What does Day 19 actually cover?"
     a: "We settle in with some calming breath, then hold a long half-butterfly for the backs of the legs, ease out the upper back and shoulders with thread-the-needle and child's pose, and finish in a slow reclined twist to unwind the spine before bed."
 ---
@@ -45,6 +45,6 @@ Just your mat and a warm, quiet space where you can be still — ideally somewhe
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

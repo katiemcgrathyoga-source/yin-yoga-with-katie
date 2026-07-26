@@ -27,7 +27,7 @@ faq:
   - q: "Is this suitable for beginners?"
     a: "Absolutely. This is a beginner-friendly routine with just a handful of poses, each held for two minutes, and Katie guides you into every shape with a gentler option and a deeper one. There's no rush and nothing to get right — just settle in and breathe."
   - q: "What if I'm not very flexible?"
-    a: "That's completely fine — Yin isn't about how far you go. Come to about 80% of your edge, let the pose do the work, and slide your feet or knees to ease the stretch whenever you need to. Over time you'll notice the hips softening in their own way."
+    a: "That's completely fine — Yin isn't about how far you go. Come to about 60–80% of your edge, let the pose do the work, and slide your feet or knees to ease the stretch whenever you need to. Over time you'll notice the hips softening in their own way."
 ---
 
 ## What this Yin class is
@@ -44,6 +44,6 @@ Just your mat and a warm, quiet space where you can lie down and be still. This 
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

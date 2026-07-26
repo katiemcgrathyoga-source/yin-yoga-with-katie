@@ -40,7 +40,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "No props at all — that's the whole idea. If it helps, you can sit up on a cushion or block in Butterfly, or slip a cushion under your hips in Reclined Swan, but nothing is required. Just a mat and a little space."
   - q: "Is this really suitable if I'm brand new to Yin?"
-    a: "Yes, it's designed for complete beginners. There are only a handful of simple shapes, each one clearly guided, and Katie explains the three principles of Yin as you go. You only ever work to about 50–70% of your capacity, so there's no forcing."
+    a: "Yes, it's designed for complete beginners. There are only a handful of simple shapes, each one clearly guided, and Katie explains the three principles of Yin as you go. You only ever work to about 60–80% of your capacity, so there's no forcing."
   - q: "What if I'm not very flexible?"
     a: "That's completely fine — Yin isn't about touching your toes. You pause at the very first feeling of resistance, and every pose has a gentler and a deeper option so you can find what feels right for your body today."
 ---
@@ -59,6 +59,6 @@ Just a mat and a little quiet space — no props at all. If you'd like extra sup
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

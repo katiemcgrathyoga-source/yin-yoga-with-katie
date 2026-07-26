@@ -17,7 +17,7 @@ cues:
   - "Stand with your feet a little wider than your hips and turn your toes out slightly. Bend your knees and sink your hips low toward the floor."
   - "Let your heels stay down if they will; if they lift, sit them on a rolled mat or blanket so you can settle in."
   - "Bring your hands together at your chest and use your elbows to gently ease the knees wider, or simply let your arms hang."
-  - "Find your edge — about 80% of your capacity, a real stretch but never forcing. Soften and let the shape do the work."
+  - "Find your edge — about 60–80% of your capacity, a real stretch but never forcing. Soften and let the shape do the work."
   - "If sinking all the way down is too much for the knees, perch on a block or bolster and let it hold some of your weight."
 transitions_in:
   - "From standing, step your feet a little wider than your hips and slowly lower your hips down into the squat."

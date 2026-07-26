@@ -42,7 +42,7 @@ faq:
   - q: "What props do I need for this class?"
     a: "Have a yoga block or two nearby, and a cushion is handy too. You'll sit on a block for Deer Pose and can tuck one under your hips or head in Child's Pose. If you don't have blocks, a firm cushion or a folded blanket works just as well."
   - q: "Is this suitable if I'm not very flexible?"
-    a: "Absolutely. Every pose has a gentler option — you can widen your knees in Child's Pose, sit on blocks in Squat, keep your knees bent in Dangling, and prop your hips in Deer Pose. You're only ever going to about 80% of your edge, so there's no forcing."
+    a: "Absolutely. Every pose has a gentler option — you can widen your knees in Child's Pose, sit on blocks in Squat, keep your knees bent in Dangling, and prop your hips in Deer Pose. You're only ever going to about 60–80% of your edge, so there's no forcing."
   - q: "Can I do this right before sleep?"
     a: "Yes — it's designed as a bedtime practice to calm the nervous system and ground your energy. You finish lying down in Corpse Pose, and Katie suggests flowing straight into the linked 10-minute guided relaxation to drift off."
 ---
@@ -61,6 +61,6 @@ Have a yoga block or two within reach, and a cushion or folded blanket nearby fo
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

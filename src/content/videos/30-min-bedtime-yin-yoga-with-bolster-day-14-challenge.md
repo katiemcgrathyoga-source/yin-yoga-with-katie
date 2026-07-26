@@ -29,7 +29,7 @@ faq:
   - q: "What props do I need for this class?"
     a: "A bolster is all you really need — and if you don't have one, a firm cushion, a thick pillow or a couch cushion works just as well. If you have a pair of yoga blocks, keep them nearby: you can rest the bolster on them to lift it higher and deepen the stretch, but they're entirely optional."
   - q: "Do I need any experience with Yin Yoga?"
-    a: "Not at all. This is an all-levels class, and the bolster takes much of your weight so nothing feels forced. Find your edge at about 80%, let the shape do the work, and come out slowly. Read the pose notes above first if you're brand new."
+    a: "Not at all. This is an all-levels class, and the bolster takes much of your weight so nothing feels forced. Find your edge at about 60–80%, let the shape do the work, and come out slowly. Read the pose notes above first if you're brand new."
   - q: "Can I still do this if I've missed earlier days of the challenge?"
     a: "Absolutely. Although this is Day 14, each class stands on its own — you're so welcome to practise at your own pace and drop in whenever suits you. Come as you are."
 ---
@@ -48,6 +48,6 @@ A bolster is the heart of this class — but a firm cushion, a thick pillow or a
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% — a real stretch, but never forcing or straining. Softer is perfect before bed.
+- **Find your edge.** Come to about 60–80% — a real stretch, but never forcing or straining. Softer is perfect before bed.
 - **Hold for time.** Stay a few minutes and let the shape do the work. Come out sooner if you need to.
 - **Be still.** Let the body and mind settle, and follow your breath as it slows.

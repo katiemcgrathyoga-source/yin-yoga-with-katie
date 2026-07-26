@@ -34,7 +34,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "A strap or belt is handy for the Cow Face arms and a cushion or a couple of blocks are lovely for sitting, but none of it is essential. If you don't have props, you can still do the whole class — every pose has a gentler option."
   - q: "Is this class suitable for beginners?"
-    a: "Yes. It's an all-levels practice. Come to about 80% of your capacity rather than your deepest stretch, ease into each shape slowly, and come out of anything that feels sharp."
+    a: "Yes. It's an all-levels practice. Come to about 60–80% of your capacity rather than your deepest stretch, ease into each shape slowly, and come out of anything that feels sharp."
 ---
 
 ## What this Yin class is
@@ -51,6 +51,6 @@ Just your mat, and a warm, quiet space where you can be still for a while. A str
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining. Ease in slowly, especially if you're new.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining. Ease in slowly, especially if you're new.
 - **Hold for time.** Stay a few minutes and let the shape do the work; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on the sensations and your breath.

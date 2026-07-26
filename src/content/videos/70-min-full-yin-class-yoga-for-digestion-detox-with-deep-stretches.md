@@ -38,7 +38,7 @@ faq:
   - q: "Do I need any props?"
     a: "A blanket and a cushion or a yoga block to sit on. We use them to lift the hips in the seated folds and twists, like Shoelace, which makes the shapes much kinder on the knees and lower back. A cushion works just as well if you don't have a block."
   - q: "Is this suitable for beginners?"
-    a: "Yes. It's all levels — I guide you into each shape and tell you how long we'll stay. Find your edge at about 80%, take the gentler option whenever you need it, and come out of every pose slowly."
+    a: "Yes. It's all levels — I guide you into each shape and tell you how long we'll stay. Find your edge at about 60–80%, take the gentler option whenever you need it, and come out of every pose slowly."
 ---
 
 ## What this Yin class is
@@ -55,6 +55,6 @@ Your mat, and a blanket and a cushion or a yoga block to sit on — we use them 
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a while; the length is where the change happens. Come out sooner if you need to, and come out slowly.
 - **Be still.** Let the shape do the work, settle body and mind, and rest your attention on your breath.

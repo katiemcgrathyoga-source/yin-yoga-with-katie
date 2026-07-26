@@ -26,7 +26,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "Nothing is essential, but a couple of yoga blocks or firm cushions are lovely to have nearby — to sit on in the half shoelace, or to rest under you in the squat. A rolled blanket under your heels can help in the squat too. If you don't have any of these, come just as you are."
   - q: "Is this suitable if I'm not very flexible?"
-    a: "Yes. Yin isn't about how far you go — find your edge at about 80%, let the shape do the work, and take the gentler option in every pose whenever you need it. The poses are held a little longer today (up to five minutes), but you can always come out sooner and build up over time."
+    a: "Yes. Yin isn't about how far you go — find your edge at about 60–80%, let the shape do the work, and take the gentler option in every pose whenever you need it. The poses are held a little longer today (up to five minutes), but you can always come out sooner and build up over time."
   - q: "What does the class cover?"
     a: "We open both hips and hamstrings with half shoelace on each side, then move into a long squat to open the hips and groin, and finish in a dangling forward fold to release the hamstrings and lower back. It's a short, focused sequence with plenty of time to settle and breathe."
 ---
@@ -45,6 +45,6 @@ Your mat, and a warm, quiet space to be still. A couple of yoga blocks or firm c
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

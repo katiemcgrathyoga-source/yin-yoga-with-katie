@@ -31,7 +31,7 @@ faq:
   - q: "Is this suitable if I'm stiff first thing in the morning?"
     a: "Absolutely — that's exactly what it's for. We start slow and stay mindful of a body that isn't warmed up yet, with a gentler and a deeper option in every pose. Take only as much as feels good, and come out of anything sooner if you need to."
   - q: "I'm not very flexible — can I still follow along?"
-    a: "Yes. Yin isn't about how far you go. Find your edge at around 80%, let the shape do the work, and take the softer version whenever you like. Over time you'll notice things opening up in their own way."
+    a: "Yes. Yin isn't about how far you go. Find your edge at around 60–80%, let the shape do the work, and take the softer version whenever you like. Over time you'll notice things opening up in their own way."
 ---
 
 ## What this Yin class is
@@ -48,6 +48,6 @@ Just your mat and a quiet corner where you can be still for twenty minutes. This
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

@@ -35,7 +35,7 @@ faq:
   - q: "How long is each pose held?"
     a: "Each pose is held for around five minutes, since in Yin the length of the hold is where the release happens. If five minutes ever feels too long, simply come out sooner."
   - q: "Is this suitable for beginners?"
-    a: "Yes — it's an all-levels class. Every pose has a gentler option and a deeper one, so you can find your edge at about 80% and never force or strain."
+    a: "Yes — it's an all-levels class. Every pose has a gentler option and a deeper one, so you can find your edge at about 60–80% and never force or strain."
 ---
 
 ## What this Yin class is
@@ -52,7 +52,7 @@ Just your mat and a warm, quiet space where you can be still. This is a no-props
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** We stay around five minutes in each shape; let the shape do the work, and come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath.
 </content>

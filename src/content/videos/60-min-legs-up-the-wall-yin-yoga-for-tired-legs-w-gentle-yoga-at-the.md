@@ -50,6 +50,6 @@ A clear stretch of wall and enough floor space to lie down with your legs up it 
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining. With the wall taking the weight, let the shape do the work.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining. With the wall taking the weight, let the shape do the work.
 - **Hold for time.** Yin poses are held a while; the length is where the change happens. Come out slowly, and come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath and the feeling of your legs growing lighter.

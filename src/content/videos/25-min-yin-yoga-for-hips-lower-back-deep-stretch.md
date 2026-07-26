@@ -32,7 +32,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "No props are needed — just your mat. That said, a cushion or block is welcome if you'd like it: you can sit up on one in butterfly, tuck one under a knee in half-butterfly or swan, or rest your forehead on one in child's pose. Use whatever helps you feel supported, and skip it if you don't need it."
   - q: "Is this suitable for beginners?"
-    a: "Yes. Every pose here has a gentler option and a deeper one, so you choose how far to go — bring your feet closer or further in butterfly, slide your elbows forward in sphinx, prop yourself up wherever you'd like. Find your edge at about 80%, never force, and come out of anything sooner if you need to."
+    a: "Yes. Every pose here has a gentler option and a deeper one, so you choose how far to go — bring your feet closer or further in butterfly, slide your elbows forward in sphinx, prop yourself up wherever you'd like. Find your edge at about 60–80%, never force, and come out of anything sooner if you need to."
 ---
 
 ## What this Yin class is
@@ -49,6 +49,6 @@ Just your mat and a warm, quiet space where you can be still. No props are requi
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining. Let your body invite you deeper over time.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining. Let your body invite you deeper over time.
 - **Hold for time.** Each pose is held a while; let the shape do the work rather than pushing. Come out slowly, and sooner if you need to.
 - **Be still.** Soften your shoulders and jaw, and rest your attention on your breath — a gentle anchor to keep you here on your mat.

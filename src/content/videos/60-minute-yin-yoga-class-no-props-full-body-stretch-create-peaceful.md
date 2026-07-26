@@ -33,7 +33,7 @@ faq:
   - q: "What does this hour actually cover?"
     a: "We start with some calming breathing, then work through the hips with reclined butterfly, reclined swan and a long shoelace with eagle arms and a twist. From there we fold forward in caterpillar, ease out the neck and shoulders, and finish resting in corpse pose. A gentle, full-body stretch from start to finish."
   - q: "Is this class suitable if I'm not very flexible?"
-    a: "Yes — Yin isn't about how far you go. Find your edge at about 80%, let the shape do the work, and take the gentler option in any pose whenever you need it. Over the weeks of the series you'll notice things opening up in their own time."
+    a: "Yes — Yin isn't about how far you go. Find your edge at about 60–80%, let the shape do the work, and take the gentler option in any pose whenever you need it. Over the weeks of the series you'll notice things opening up in their own time."
 ---
 
 ## What this Yin class is
@@ -50,6 +50,6 @@ Just your mat, and a warm, quiet space where you can be still for an hour. This 
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

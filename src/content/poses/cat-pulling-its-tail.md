@@ -20,7 +20,7 @@ cues:
   - "Reach back with your right hand and catch the left foot or ankle — loop a strap around it if it's out of reach."
   - "Draw the foot gently toward you until you feel the front of that lower thigh open up."
   - "Open your left arm out to the side and turn your gaze softly that way."
-  - "Find your edge — about 80% of your capacity, a real stretch but never forcing — then be still and let the shape do the work. Let the twist find its own depth rather than cranking; drawing the foot toward you is where the pose turns more active, so ease the pressure if it starts to feel effortful."
+  - "Find your edge — about 60–80% of your capacity, a real stretch but never forcing — then be still and let the shape do the work. Let the twist find its own depth rather than cranking; drawing the foot toward you is where the pose turns more active, so ease the pressure if it starts to feel effortful."
   - "If the twist bites in the lower back, tuck a cushion under the top knee to take the strain."
 transitions_in:
   - "From a Reclined Twist with knees dropped to one side, extend the bottom leg long and reach the top hand back for the bottom foot."

@@ -19,7 +19,7 @@ cues:
   - "Cross your right ankle over your left thigh, just above the knee, and gently flex the right foot to support the ankle and knee."
   - "Let the right knee open away from you, so the shape makes a figure four."
   - "Reach your right hand through the gap between your thighs and your left hand around the outside of the left leg. Clasp your hands behind the left thigh — or hold the shin if that's within reach."
-  - "Draw the left thigh toward your chest until you find your edge — about 80% of your capacity, a real stretch through the right outer hip but never forcing."
+  - "Draw the left thigh toward your chest until you find your edge — about 60–80% of your capacity, a real stretch through the right outer hip but never forcing."
   - "Let your head, shoulders and lower back stay heavy on the floor. If reaching the thigh lifts the head, loop a strap around it instead, or rest the lifted foot against a wall."
   - "Be still, soften, and let the shape do the work. Stay, then swap sides."
 transitions_in:

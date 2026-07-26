@@ -32,7 +32,7 @@ faq:
   - q: "Is this class suitable for beginners?"
     a: "Yes — it's an all-levels practice, and the props actually make it more accessible, not less. They hold you in each shape so you can soften and stay a while. Come as you are — every pose has a gentler option and a deeper one."
   - q: "How long do we hold each pose?"
-    a: "A few minutes on each side, settling in at about 80% of your edge and letting the shape do the work. My hold times are only suggestions — come out sooner whenever you need to."
+    a: "A few minutes on each side, settling in at about 60–80% of your edge and letting the shape do the work. My hold times are only suggestions — come out sooner whenever you need to."
 ---
 
 ## What this Yin class is
@@ -49,6 +49,6 @@ A bolster and/or blocks — you can use both, or just one. You should be able to
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining. Let the props take your weight.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining. Let the props take your weight.
 - **Hold for time.** Stay a few minutes and let the shape do the work. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath.

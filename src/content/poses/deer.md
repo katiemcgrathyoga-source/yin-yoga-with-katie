@@ -18,7 +18,7 @@ cues:
   - "Settle both sit bones down. If the back-leg hip lifts, slide a cushion under the front-leg sit bone so you feel level."
   - "You can simply stay upright here, tall through the spine, feeling both hips. That alone is a complete pose."
   - "To add more, turn toward the front shin and fold gently forward over it, or twist away from it — let your body choose which direction has something to release."
-  - "Find your edge — about 80% of your capacity, a real stretch but never forcing. Be still and let the shape do the work."
+  - "Find your edge — about 60–80% of your capacity, a real stretch but never forcing. Be still and let the shape do the work."
   - "Come out slowly and switch the legs for the second side."
 transitions_in:
   - "From a cross-legged seat, sweep one shin forward and the other behind you."
@@ -39,7 +39,7 @@ faq:
   - q: "How long do you hold Deer in Yin Yoga?"
     a: "Around 1–3 minutes per side. Deer is often used as a shorter, soothing counterpose between deeper hip openers, so it doesn't need the long hold of a main pose — settle in, soften, and come out a little sooner if you ever need to."
   - q: "Is Deer suitable for beginners?"
-    a: "Yes. Deer is a beginner-friendly Yin pose — approachable and easy to support. Work at about 80% of your edge, breathe, and read the cues and cautions on this page before you begin."
+    a: "Yes. Deer is a beginner-friendly Yin pose — approachable and easy to support. Work at about 60–80% of your edge, breathe, and read the cues and cautions on this page before you begin."
   - q: "What does Deer stretch?"
     a: "Deer mainly works the hips, outer hips, inner thighs and lower back. Opens both sides of the hip at once — one thigh in external rotation, the other in internal rotation — in a shape that is remarkably kind to the knees."
   - q: "Do you need props for Deer?"

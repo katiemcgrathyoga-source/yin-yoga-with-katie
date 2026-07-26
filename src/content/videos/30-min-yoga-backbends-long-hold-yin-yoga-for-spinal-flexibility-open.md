@@ -33,7 +33,7 @@ faq:
   - q: "Is this class good for a stiff back or rounded shoulders?"
     a: "Yes — this is exactly the kind of practice to come back to if you spend a lot of time folding forward, whether that's at a desk, driving or gardening. The gentle backbends open the front of the body and ease the shoulders back, which can feel wonderful after being hunched over."
   - q: "I'm not very bendy — can I still do the backbends?"
-    a: "Absolutely. Every pose has a gentler option and a deeper one, and Katie talks you through both. Come to about 80% of your edge, let the shape do the work, and rest whenever you need to — Yin isn't about how far you go."
+    a: "Absolutely. Every pose has a gentler option and a deeper one, and Katie talks you through both. Come to about 60–80% of your edge, let the shape do the work, and rest whenever you need to — Yin isn't about how far you go."
 ---
 
 ## What this Yin class is
@@ -50,6 +50,6 @@ A couple of yoga blocks (or two thick books) for the supported fish and the deep
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

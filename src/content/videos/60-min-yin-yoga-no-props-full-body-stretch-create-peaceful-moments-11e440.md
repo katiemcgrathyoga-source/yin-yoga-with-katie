@@ -36,7 +36,7 @@ faq:
   - q: "What does the hour actually cover?"
     a: "We open with a guided breathing exercise, move through gentle spinal stretches and cat-cow, then settle into long-held Yin poses — Swan, half-shoelace, butterfly and eagle arms — before a reclined twist and five minutes of stillness in Corpse Pose."
   - q: "Is this suitable for beginners?"
-    a: "Yes, it's an all-levels class. Every pose has a gentler option and a deeper one. Find your edge at about 80%, let the shape do the work, and come out of any pose sooner if you need to."
+    a: "Yes, it's an all-levels class. Every pose has a gentler option and a deeper one. Find your edge at about 60–80%, let the shape do the work, and come out of any pose sooner if you need to."
 ---
 
 ## What this Yin class is
@@ -53,6 +53,6 @@ Just your mat, and a warm, quiet space where you can be still for a while. No pr
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a few minutes; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on the sensations and your breath.

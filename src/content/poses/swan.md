@@ -21,7 +21,7 @@ cues:
   - "Before you settle, check the front knee. If you feel any pinch, draw the front foot in closer toward your right hip until the knee goes quiet."
   - "Walk your hands back beside your hips and press down to lift the chest tall. Let the hips sink toward the floor as the heart rises — a gentle backbend."
   - "Square your hips toward the front of the mat as far as is comfortable, and let your gaze soften forward and slightly up."
-  - "Find your edge — about 80% of your capacity, a real stretch but never forcing. Be still, and let the shape do the work. Stay, then repeat on the second side."
+  - "Find your edge — about 60–80% of your capacity, a real stretch but never forcing. Be still, and let the shape do the work. Stay, then repeat on the second side."
 transitions_in:
   - "From tabletop or Cat (hands and knees)"
   - "From Downward-Facing Dog — draw one knee forward toward the same-side wrist"

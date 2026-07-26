@@ -26,7 +26,7 @@ faq:
   - q: "Do I need a bolster for this class?"
     a: "It's lovely to have one, but not essential. Katie uses a bolster and block to prop up sleeping swan and support the hips, though a couple of firm pillows or cushions work just as well. If you have nothing to hand, simply do the poses as they are — you'll still feel every bit of the calm."
   - q: "Is this suitable if I'm not very flexible?"
-    a: "Absolutely. Yin isn't about how far you go — you come to about 80% of your stretch and let the shape do the work. Every pose here has a gentler option, from resting on your props in sleeping swan to bending your elbows in puppy, so you can always find a version that feels right for your body."
+    a: "Absolutely. Yin isn't about how far you go — you come to about 60–80% of your stretch and let the shape do the work. Every pose here has a gentler option, from resting on your props in sleeping swan to bending your elbows in puppy, so you can always find a version that feels right for your body."
   - q: "Can I really do this right before bed?"
     a: "Yes — that's exactly what it's designed for. The whole class winds down towards stillness, and Katie invites you to stay resting in corpse pose for as long as you like at the end, or drift straight into her 10-minute guided relaxation. It's made to soften you into sleep."
 ---
@@ -45,6 +45,6 @@ A bolster is nice for this one, and a yoga block to prop it up, but a couple of 
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

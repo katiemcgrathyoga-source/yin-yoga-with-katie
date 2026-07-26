@@ -22,7 +22,7 @@ cues:
   - "Let your hands frame the front foot, resting on the floor, on fingertips, or on a block. Let the hips sink and grow heavy. This is your base Dragon (sometimes called Baby Dragon)."
   - "For High Dragon: walk your hands back onto the front thigh and press down to lift the torso tall and upright, letting the hips keep sinking. Keep the tailbone heavy so you don't crunch the lower back."
   - "For Low Dragon: walk your hands forward onto your forearms — on the floor, a block, or a bolster set inside the front foot — and let your head hang. If it's available, ease the front foot toward the edge of the mat and roll onto its outer edge to open the inner groin further."
-  - "Find your edge — about 80% of your capacity, a real stretch but never forcing. Keep the breath slow and easy."
+  - "Find your edge — about 60–80% of your capacity, a real stretch but never forcing. Keep the breath slow and easy."
   - "Be still, and let the shape do the work. Stay, then step back and change sides."
 transitions_in:
   - "From tabletop or Downward-Facing Dog — step one foot forward between the hands"

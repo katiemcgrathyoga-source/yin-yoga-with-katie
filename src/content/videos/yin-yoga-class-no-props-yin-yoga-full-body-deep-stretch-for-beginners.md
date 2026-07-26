@@ -31,7 +31,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "Not a thing — this one is designed for no props at all, so you can press play wherever you are. Rather than reaching for a bolster or block, we simply adjust the shape of each pose to suit your body. Just your mat is all you need."
   - q: "Is this really suitable if I'm a beginner or not very flexible?"
-    a: "Absolutely — this is an intro to Yin made with beginners in mind. Yin isn't about how far you go; you come to about 80% of your capacity and let the shape do the work. I offer a gentler alternative in every pose, so you can always find a version that feels right for you."
+    a: "Absolutely — this is an intro to Yin made with beginners in mind. Yin isn't about how far you go; you come to about 60–80% of your capacity and let the shape do the work. I offer a gentler alternative in every pose, so you can always find a version that feels right for you."
   - q: "How long are the poses held?"
     a: "Each pose is held for around three to four minutes, which is where the deep, slow stretch happens. If it ever becomes too much, you can gently ease out early or take the easier option — there's nothing wrong with adjusting a pose when you need to."
 ---
@@ -50,6 +50,6 @@ Only your mat and a warm, quiet space where you can be still. This is a no-props
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

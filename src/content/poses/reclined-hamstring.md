@@ -17,7 +17,7 @@ cues:
   - "Come as you are. Lie on your back with both knees bent, feet on the floor."
   - "Hug one knee in, loop a strap (or a belt or towel) around the ball of that foot, and hold an end in each hand."
   - "Slowly extend the leg up toward the ceiling, only as far as the hamstring happily allows — a soft bend in the knee is completely fine and often kinder."
-  - "Let your shoulders, head and hips stay heavy on the mat. Walk your hands down the strap only to the point of a real but comfortable stretch — about 80% of your edge."
+  - "Let your shoulders, head and hips stay heavy on the mat. Walk your hands down the strap only to the point of a real but comfortable stretch — about 60–80% of your edge."
   - "The lower leg can stay bent with the foot on the floor, or extend along the mat for a little more — whichever keeps your lower back at ease."
   - "Relax your hands, your jaw and your belly. Settle in and breathe, then switch sides."
 transitions_in:

@@ -27,7 +27,7 @@ faq:
   - q: "Do I need any props for this bedtime class?"
     a: "No — this one is designed for just you and your mat, so you can roll it out beside the bed and press play. If you'd like a little extra comfort you're welcome to slip a cushion or blanket under your hips or knees, but nothing is required."
   - q: "Is this suitable if my back feels stiff or I'm a beginner?"
-    a: "Yes — it's a gentle, all-levels practice made to ease a tight back after a long day. Every shape has a softer option: you can slide the elbows further forward in sphinx, keep a bend in your arms in the side bend, and let the twist stay small. Find your 80% and let the pose do the work."
+    a: "Yes — it's a gentle, all-levels practice made to ease a tight back after a long day. Every shape has a softer option: you can slide the elbows further forward in sphinx, keep a bend in your arms in the side bend, and let the twist stay small. Find your 60–80% and let the pose do the work."
   - q: "Why do we finish with a reclined twist before bed?"
     a: "A slow twist gently unwinds the spine and invites the whole body to settle, which makes it a lovely way to end the day. We hold each side for a few quiet minutes so you can soften, breathe, and feel yourself drifting towards rest."
 ---
@@ -46,6 +46,6 @@ Just your mat and a warm, quiet space where you can be still. This is a no-props
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

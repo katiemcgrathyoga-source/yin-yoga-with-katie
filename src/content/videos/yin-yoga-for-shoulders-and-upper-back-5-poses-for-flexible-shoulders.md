@@ -28,7 +28,7 @@ faq:
   - q: "Do I need a strap for this shoulder class?"
     a: "It's handy but not essential. We use a strap for the cow-face arms near the end, so your hands have something to hold if they don't quite meet behind your back. If you don't have one, don't worry — you can simply reach your hands towards each other instead. A yoga block or cushion is also nice to have for resting your forehead early on."
   - q: "Is this class okay if my shoulders feel really tight?"
-    a: "Yes — that's exactly who it's for. Every pose has a lighter option, and I'll remind you to come to about 80 percent rather than forcing. If your hands or arms start to tingle in the first pose, simply bend your elbows to ease off. You choose how deep to go, and tight shoulders are welcome just as they are."
+    a: "Yes — that's exactly who it's for. Every pose has a lighter option, and I'll remind you to come to about 60 to 80 percent rather than forcing. If your hands or arms start to tingle in the first pose, simply bend your elbows to ease off. You choose how deep to go, and tight shoulders are welcome just as they are."
   - q: "How long are the poses held?"
     a: "A while — this is Yin, so we settle in and let gravity do the work. The opening poses are held around three minutes each, and the arm poses around two minutes per side. If a shape becomes too intense, come out slowly and rest whenever you need to. The length is where the softening happens."
 ---
@@ -47,6 +47,6 @@ Your mat, and a strap if you have one — we use it for the cow-face arms near t
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch through the shoulders, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch through the shoulders, but never forcing or straining.
 - **Hold for time.** Yin poses are held a while; let gravity do the work. Come out slowly, and sooner if you feel any tingling or it becomes too intense.
 - **Be still.** Settle body and mind, rest your attention on your breath, and let each shape gently soften the area over time.

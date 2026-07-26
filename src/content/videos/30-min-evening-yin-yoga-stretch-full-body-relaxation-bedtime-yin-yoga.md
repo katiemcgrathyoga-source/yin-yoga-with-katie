@@ -31,7 +31,7 @@ faq:
   - q: "Is this a good class to do right before bed?"
     a: "Yes — it's part of a bedtime Yin series, designed to help you unwind, relax and let go of the day. Keep the lights low and your movements slow, and if you'd like to drift off even more gently, follow it with the 10-minute guided relaxation Katie links at the end."
   - q: "Is this suitable if I'm not very flexible?"
-    a: "Absolutely. Yin isn't about how far you go — find your edge at about 80%, let the shape do the work, and take the gentler option in any pose whenever you need it. Every pose here has an easier version and a deeper one."
+    a: "Absolutely. Yin isn't about how far you go — find your edge at about 60–80%, let the shape do the work, and take the gentler option in any pose whenever you need it. Every pose here has an easier version and a deeper one."
 ---
 
 ## What this Yin class is
@@ -48,6 +48,6 @@ One or two yoga blocks are handy and a cushion is lovely to sit on, though nothi
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

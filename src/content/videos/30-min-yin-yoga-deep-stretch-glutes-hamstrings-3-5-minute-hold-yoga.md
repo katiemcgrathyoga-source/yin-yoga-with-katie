@@ -49,7 +49,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "Nothing is essential, but a cushion or yoga block to sit up on makes shoelace far more comfortable, and a folded blanket is lovely for padding the bottom knee. Have them nearby before you begin so you can settle in without interrupting your practice."
   - q: "Is this class suitable if I'm not very flexible?"
-    a: "Absolutely. Every pose has a gentler and a deeper option, so you simply choose where to meet your body. In shoelace you can sit tall rather than folding forward, and in dangling you can rest your elbows on your thighs. Come to about 80% of your stretch and let the long holds do the work."
+    a: "Absolutely. Every pose has a gentler and a deeper option, so you simply choose where to meet your body. In shoelace you can sit tall rather than folding forward, and in dangling you can rest your elbows on your thighs. Come to about 60–80% of your stretch and let the long holds do the work."
   - q: "Why do we hold the poses for three to five minutes?"
     a: "In Yin Yoga the long, still holds are where the change happens, gently working into the deeper connective tissue around the hips and hamstrings. If you ever reach your maximum for the day, it's completely okay to come out of a pose early — you'll still feel the benefit."
 ---
@@ -68,6 +68,6 @@ Just a mat and a little floor space. Keep a cushion or a yoga block nearby to si
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

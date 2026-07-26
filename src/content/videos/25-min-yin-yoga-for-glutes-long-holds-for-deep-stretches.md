@@ -31,7 +31,7 @@ faq:
   - q: "Do I need any props?"
     a: "Not really — all you truly need is your mat. That said, a cushion or block nearby is lovely if you'd like a little support under a hip in Swan, or to sit on in Shoelace. Use them whenever a shape feels intense, and leave them aside if you don't."
   - q: "Is this suitable if I'm new to Yin?"
-    a: "Yes. Every pose has a gentler option and a deeper one, so you choose how far to go — you can straighten the bottom leg in Shoelace, or stay upright in Swan rather than folding down. Find your edge at about 80%, and come out sooner if you ever feel pain."
+    a: "Yes. Every pose has a gentler option and a deeper one, so you choose how far to go — you can straighten the bottom leg in Shoelace, or stay upright in Swan rather than folding down. Find your edge at about 60–80%, and come out sooner if you ever feel pain."
 ---
 
 ## What this Yin class is
@@ -48,6 +48,6 @@ Just your mat and a warm, quiet space. Nothing else is required, though you migh
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch through the glute, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch through the glute, but never forcing or straining.
 - **Hold for time.** These poses are held a few minutes each; let the shape do the work. Come out slowly, and sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on the sensation in the glute and on your breath — let each exhale carry a little tension out.

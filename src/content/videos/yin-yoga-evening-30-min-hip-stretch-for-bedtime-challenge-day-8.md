@@ -43,14 +43,14 @@ Just your mat, and somewhere warm and quiet where you can be still. If you have 
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% — a real stretch, but never forcing or straining. Softer is perfect before bed.
+- **Find your edge.** Come to about 60–80% — a real stretch, but never forcing or straining. Softer is perfect before bed.
 - **Hold for time.** Stay a few minutes and let the shape do the work. Come out sooner if you need to.
 - **Be still.** Settle body and mind, rest your attention on your breath, and come out slowly when it's time.
 
 ## FAQ
 
 **Q: I have tight hips — can I still do this class?**
-A: Yes, this class is made for tight hips, and it's all-levels. Every pose has a gentler option: rest your hands or forearms on yoga blocks in Dragon, come into a half-shoelace by straightening the bottom leg, and slip a block or cushion under a hip in Sleeping Swan for support. Find your edge at about 80% and let the shape do the work.
+A: Yes, this class is made for tight hips, and it's all-levels. Every pose has a gentler option: rest your hands or forearms on yoga blocks in Dragon, come into a half-shoelace by straightening the bottom leg, and slip a block or cushion under a hip in Sleeping Swan for support. Find your edge at about 60–80% and let the shape do the work.
 
 **Q: Do I need yoga blocks for this class?**
 A: No. Blocks and a cushion are optional supports — handy for resting your hands in Dragon or sitting up taller in Shoelace — but the class works perfectly well with just your mat. Use whatever you have to hand.

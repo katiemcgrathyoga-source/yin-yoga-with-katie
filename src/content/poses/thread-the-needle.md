@@ -19,7 +19,7 @@ cues:
   - "Let your right shoulder and the side of your head rest down onto the mat — rest on the shoulder, not on the crown, so the neck stays soft."
   - "Walk your left hand forward or reach it overhead for a little more opening, or simply leave it planted for support."
   - "Let your hips stay lifted over the knees so the weight settles into the upper back, not the neck."
-  - "Find your edge — about 80% of your capacity, a real stretch but never forcing — then be still."
+  - "Find your edge — about 60–80% of your capacity, a real stretch but never forcing — then be still."
   - "Pop a cushion under the resting shoulder or head if the floor feels too far away."
 transitions_in:
   - "From tabletop on all fours, thread one arm under the body and lower onto that shoulder."

@@ -32,7 +32,7 @@ faq:
   - q: "Do I need props for this hip class?"
     a: "Not at all, but they're lovely to have nearby. A cushion, folded blanket, pillow or block can slip under the hips in tadpole, under a sensitive knee in frog, or beneath the hip in swan to keep you at a comfortable edge. Use as much support as your body asks for — it's not cheating, it's caring for your hips."
   - q: "My hips feel really tight — can I still do this?"
-    a: "Yes, this class is made for tight hips. Every pose has a lighter option and a deeper one, so you choose how far to go. Stay at about 80% of your capacity — a real stretch, never a strain — and back off any time a shape feels like too much. Tight hips soften slowly, so let the long holds do the gentle work."
+    a: "Yes, this class is made for tight hips. Every pose has a lighter option and a deeper one, so you choose how far to go. Stay at about 60–80% of your capacity — a real stretch, never a strain — and back off any time a shape feels like too much. Tight hips soften slowly, so let the long holds do the gentle work."
   - q: "How long are the poses held?"
     a: "Between two and four minutes each. Tadpole is held for around three minutes with an option to melt into frog, swan is three minutes on each side, and happy baby is about four minutes total. The length is where the release happens, so settle in and let time carry you deeper."
 ---
@@ -51,6 +51,6 @@ Just your mat and a warm, quiet space to be still. Have a few soft things nearby
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — the orange zone, a real stretch but never the red zone of pain or strain. Don't sacrifice your body for the glory of the pose.
+- **Find your edge.** Come to about 60–80% of your capacity — the orange zone, a real stretch but never the red zone of pain or strain. Don't sacrifice your body for the glory of the pose.
 - **Hold for time.** These poses are held two to four minutes; let the shape do the work, and come out slowly, sooner if you need to.
 - **Be still.** Keep a little quiet activity in the body rather than collapsing, then soften your jaw, your face, your shoulders, and rest your attention on your breath.

@@ -33,7 +33,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "Not a thing — this one is designed for just you and your mat, so you can press play wherever you are. If you'd like a little extra comfort, a cushion to sit on or rest your forehead against in child's pose is lovely, but it's entirely optional."
   - q: "Is this suitable if I'm not very flexible?"
-    a: "Absolutely. Yin isn't about how far you go — you'll find your edge at around 80%, let the shape do the work, and every pose has a gentler option. In poses like toe squat, come out whenever you need to; there's no need to hold the full time."
+    a: "Absolutely. Yin isn't about how far you go — you'll find your edge at around 60–80%, let the shape do the work, and every pose has a gentler option. In poses like toe squat, come out whenever you need to; there's no need to hold the full time."
   - q: "What will I actually feel by the end?"
     a: "We use the breath as a bridge between body and mind, so as we move slowly through butterfly, sphinx, child's pose and a soft reclined twist, busy thoughts start to settle. Most people finish feeling calmer in the mind and looser in the body."
 ---
@@ -52,6 +52,6 @@ Just your mat and a warm, quiet space where you can be still for around forty mi
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

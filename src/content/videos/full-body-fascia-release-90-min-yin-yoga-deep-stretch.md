@@ -36,7 +36,7 @@ membership_cta: "Love a long, deep practice like this? Inside the membership it 
 summary: "A 90-minute Yin class for full-body fascia release — deep five-minute holds that open the hips, lengthen the front body and free the spine and shoulders. All levels."
 faq:
   - q: "How long are the holds?"
-    a: "Five minutes in each pose. The long holds are where Yin does its work — giving the deeper connective tissue and fascia time to soften and release. There's a clock on screen so you can keep an eye on the time, and once we settle into each shape I stay nice and quiet. Find your edge at about 80%, let the shape do the work, and come out slowly."
+    a: "Five minutes in each pose. The long holds are where Yin does its work — giving the deeper connective tissue and fascia time to soften and release. There's a clock on screen so you can keep an eye on the time, and once we settle into each shape I stay nice and quiet. Find your edge at about 60–80%, let the shape do the work, and come out slowly."
   - q: "Do I need any props for this class?"
     a: "A strap is handy for the Cow-Face arms, and it's a good idea to keep a couple of blocks or a bolster nearby — the bolster is lovely for supporting Saddle, and a cushion is welcome under sensitive knees or hips. Nothing is essential though; every pose has a gentler option, so work with what you have."
   - q: "Is this suitable for beginners?"
@@ -57,6 +57,6 @@ Your mat, and a warm, quiet space where you can be still for a while. Have a str
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** We stay around five minutes in each pose; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on the sensations and your breath.

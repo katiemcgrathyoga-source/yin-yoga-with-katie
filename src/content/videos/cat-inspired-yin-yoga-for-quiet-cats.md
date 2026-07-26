@@ -32,7 +32,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "No — all you really need is your mat. There's one spot in Cat Pulling Its Tail where a cushion or bolster tucked under the shoulder can feel lovely if your shoulder doesn't quite reach the floor, so keep one nearby if you'd like. Nothing else is required."
   - q: "Is this suitable for beginners?"
-    a: "Yes. It's an all-levels practice, and every shape has a gentler option and a deeper one, so you get to choose how far to go. Find your edge at about 80 percent, keep a soft bend where you need it, and come out of any pose sooner than I suggest if that feels better for you."
+    a: "Yes. It's an all-levels practice, and every shape has a gentler option and a deeper one, so you get to choose how far to go. Find your edge at about 60 to 80 percent, keep a soft bend where you need it, and come out of any pose sooner than I suggest if that feels better for you."
 ---
 
 ## What this Yin class is
@@ -49,6 +49,6 @@ Just your mat and a warm, quiet space where you can be still. No props are requi
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a while; let the shape do the work. Come out slowly, and sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on the physical sensations and your breath.

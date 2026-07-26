@@ -33,7 +33,7 @@ faq:
   - q: "Do I need any props?"
     a: "No, just your mat is enough. If you'd like a little extra support, a cushion or two under the knees in Reclined Butterfly, or under the hips in the hug, can make the holds feel softer — but nothing is required. Use whatever helps you feel more at ease."
   - q: "I'm new to Yin — is this a good place to start?"
-    a: "It is. The poses are simple and stay close to the ground, and I offer a lighter option and a deeper one for each, so you choose how far to go. Come to about 80% of your stretch, never forcing, and read the pose notes below first if you'd like to know what's coming."
+    a: "It is. The poses are simple and stay close to the ground, and I offer a lighter option and a deeper one for each, so you choose how far to go. Come to about 60–80% of your stretch, never forcing, and read the pose notes below first if you'd like to know what's coming."
 ---
 
 ## What this Yin class is
@@ -50,6 +50,6 @@ Just your mat and a warm, quiet space where you can be still. No props are requi
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your stretch — enough to feel it, but never forcing or straining. In a bedtime practice especially, softer is better.
+- **Find your edge.** Come to about 60–80% of your stretch — enough to feel it, but never forcing or straining. In a bedtime practice especially, softer is better.
 - **Hold for time.** Yin poses are held a few minutes each; let the shape do the work while you breathe. Come out slowly, and sooner if you need to.
 - **Be still.** Soften your jaw, drop your shoulders, and rest your attention on your breath. Each time a thought drifts in, gently come back to the sensations you're feeling — that's how the body starts to let go.

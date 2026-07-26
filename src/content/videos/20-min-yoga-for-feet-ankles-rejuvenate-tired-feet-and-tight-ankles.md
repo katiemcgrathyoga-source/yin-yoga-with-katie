@@ -28,7 +28,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "Not really — just your mat. Toe squat can feel intense, so it's lovely to have a cushion or yoga block to sit on, and a folded blanket or the edge of your mat to pad your knees. All of it is optional, so come as you are."
   - q: "Toe squat looks intense — is that normal?"
-    a: "Yes, it's a strong sensation through the soles of the feet and toes, and it's completely normal to need to build up to the full hold. Come to about 80% of your edge, rest up on your knees whenever you need to, and come out any time there's pain in the ankles or knees. Never force it."
+    a: "Yes, it's a strong sensation through the soles of the feet and toes, and it's completely normal to need to build up to the full hold. Come to about 60–80% of your edge, rest up on your knees whenever you need to, and come out any time there's pain in the ankles or knees. Never force it."
   - q: "Who is this class for?"
     a: "Anyone with tired, achey feet or stiff ankles — walkers, runners, people on their feet all day, or anyone who's never given their feet a moment of care. It's beginner-friendly and every pose has a gentler option, so you can make it as soft or as deep as you like."
 ---
@@ -47,6 +47,6 @@ Just your mat and a little space to sit. Toe squat can be strong, so a cushion o
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

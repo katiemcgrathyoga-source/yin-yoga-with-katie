@@ -32,7 +32,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "Yes — a yoga block or two. You'll rest back over a block in Supported Fish and place one under your hips for the Pontoon shape, and you can sit on a block in the squat or tuck one under your feet in the final rest. A firm cushion works just as well."
   - q: "Is this class suitable for beginners?"
-    a: "Yes, it's all levels. Every pose has a gentler option and a deeper one, so you can build the class around your own body. Find your edge at about 80%, and come out slowly whenever you need to."
+    a: "Yes, it's all levels. Every pose has a gentler option and a deeper one, so you can build the class around your own body. Find your edge at about 60–80%, and come out slowly whenever you need to."
   - q: "How long are the poses held?"
     a: "Holds run from about three to five minutes each — Supported Fish for five, the Pontoon and twists for three, Dangling and the squat for three, and Thread the Needle for four on each side. The times are only suggestions; listen to your body and rest sooner if you need to."
 ---
@@ -51,6 +51,6 @@ Your mat, and a yoga block or two — grab those before you start so they're wit
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a while; the length is where the change happens. Let the shape do the work, and come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on the sensations and your breath.

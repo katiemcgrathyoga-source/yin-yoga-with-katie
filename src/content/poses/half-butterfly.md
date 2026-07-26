@@ -17,7 +17,7 @@ cues:
   - "Sit up on a folded blanket. Stretch your right leg out in front of you and draw the left foot in so the sole rests against your right inner thigh."
   - "Let the bent left knee drop out toward the floor. If it hovers up high, tuck a cushion underneath it so it can rest."
   - "Turn your chest toward the straight right leg, then fold forward over it on an out-breath, letting your spine round gently."
-  - "Find your edge — about 80% of your capacity, a real stretch but never forcing. Rest your hands on the shin or foot, or drape your torso over a bolster laid along the straight leg."
+  - "Find your edge — about 60–80% of your capacity, a real stretch but never forcing. Rest your hands on the shin or foot, or drape your torso over a bolster laid along the straight leg."
   - "It doesn't matter if you can't reach your foot. Let the shape do the work and be still."
   - "After your time, come out slowly and change sides — the two sides will often feel like different bodies, and that's perfectly normal."
 transitions_in:

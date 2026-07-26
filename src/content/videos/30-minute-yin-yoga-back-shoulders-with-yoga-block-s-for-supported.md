@@ -31,7 +31,7 @@ faq:
   - q: "What props do I need for this class?"
     a: "Just one yoga block, mainly for the supported fish at the end. If you don't have a block, a thick book, a firm cushion or a pillow works just as well — anything that props up your shoulders and gently opens your chest. A second block or a cushion under your head is nice too, but entirely optional."
   - q: "Is this suitable if I'm not very flexible or new to Yin?"
-    a: "Yes — this is an all-levels class and Yin isn't about how far you go. Find your edge at about 80%, let the shape do the work, and take the gentler option whenever you need it. Katie guides an easier version of every pose, from sphinx up to seal and child's pose over a cushion."
+    a: "Yes — this is an all-levels class and Yin isn't about how far you go. Find your edge at about 60–80%, let the shape do the work, and take the gentler option whenever you need it. Katie guides an easier version of every pose, from sphinx up to seal and child's pose over a cushion."
   - q: "What does this class actually cover?"
     a: "We warm the spine and shoulders with child's pose and puppy, resting into crocodile, then work the back with sphinx and seal, open the shoulders with broken wing on each side, and finish with a supported fish over a block and a short neck release. A calm, restful stretch from start to finish."
 ---
@@ -50,6 +50,6 @@ Your mat and one yoga block — mainly for the supported fish at the end. No blo
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

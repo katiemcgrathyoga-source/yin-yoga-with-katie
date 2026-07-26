@@ -18,7 +18,7 @@ cues:
   - "Take hold of the outer edges of the feet, the ankles, or the backs of the thighs — whatever you can reach without straining."
   - "Stack the ankles above the knees so the shins are roughly upright, soles facing the ceiling."
   - "Let the knees draw down alongside the ribs, and keep your head and shoulders resting heavily on the floor."
-  - "Find your edge — about 80% of your capacity, a real stretch but never forcing — then be still and let the shape do the work."
+  - "Find your edge — about 60–80% of your capacity, a real stretch but never forcing — then be still and let the shape do the work."
   - "Loop a strap around each foot if the feet are hard to reach, so you can relax the arms."
 transitions_in:
   - "From lying on your back, hug both knees into the chest, then open them toward the armpits."

@@ -32,7 +32,7 @@ faq:
   - q: "Do I need any props for this bedtime class?"
     a: "Not at all — this one is designed with no props, so you can do it right on your mat or even in bed. If you'd like a little support you can sit up on a cushion, block or blanket to begin, and slide a cushion under your knees in reclined butterfly, but it's entirely optional."
   - q: "Is this suitable if I'm not very flexible?"
-    a: "Yes. Yin isn't about how far you go — it's about settling and letting the shape do the work. Find your edge at about 80%, and in every pose there's a gentler option, like moving your feet further away in reclined butterfly. Come out any time you need to."
+    a: "Yes. Yin isn't about how far you go — it's about settling and letting the shape do the work. Find your edge at about 60–80%, and in every pose there's a gentler option, like moving your feet further away in reclined butterfly. Come out any time you need to."
   - q: "Can I do this right before bed?"
     a: "That's exactly what it's for. The slow poses, long exhales and calming 4:8 breathing are all here to signal to your body and mind that it's time to unwind and prepare for sleep. Dim the lights, get cosy, and let yourself soften."
 ---
@@ -51,6 +51,6 @@ Just your mat and a warm, quiet space — you can even do this in bed. This is a
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

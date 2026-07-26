@@ -36,7 +36,7 @@ faq:
   - q: "Do I need props for this class?"
     a: "Yes — have a yoga block or two nearby. We use them to support the poses in the later 'elder years' section, like Supported Fish and Supported Bridge. If you don't have blocks, firm cushions or folded blankets work just as well."
   - q: "Is 75 minutes of Yin suitable for beginners?"
-    a: "Absolutely. It's an all-levels class, and every pose has a gentler option and a deeper one. The holds are suggestions, not rules — come to about 80% of your edge, and come out of any pose sooner if you need to."
+    a: "Absolutely. It's an all-levels class, and every pose has a gentler option and a deeper one. The holds are suggestions, not rules — come to about 60–80% of your edge, and come out of any pose sooner if you need to."
 ---
 
 ## What this Yin class is
@@ -53,6 +53,6 @@ Your mat, and a warm, quiet space where you can be still for a while. Have a yog
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a while — a couple of minutes or more — and the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on the sensations and your breath.

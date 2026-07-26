@@ -36,7 +36,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "No — all you really need is your mat. If sitting cross-legged feels hard on the hips or lower back, a cushion or yoga block under your seat makes a lovely difference, and a folded blanket under the knees is always welcome. Everything is optional, so use whatever helps you settle."
   - q: "Is this class suitable for beginners?"
-    a: "Yes. Every pose has a gentler option and a deeper one, and I talk you through both as we go — so you choose how far to travel. Remember we only ever come to about 80% of your capacity, never forcing, and you can rest or adjust at any time."
+    a: "Yes. Every pose has a gentler option and a deeper one, and I talk you through both as we go — so you choose how far to travel. Remember we only ever come to about 60–80% of your capacity, never forcing, and you can rest or adjust at any time."
   - q: "Why is there so much talk about the ocean and the breath?"
     a: "The class opens with a little reflection on the tide — how life ebbs and flows, gives and takes — and we carry that idea onto the mat. As we hold each shape, we simply watch the breath and any thoughts or sensations come and go, like waves. It's as much a practice for the mind as for the body."
 ---
@@ -55,6 +55,6 @@ Just your mat and a warm, quiet space where you can be still for a while. No pro
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real, honest stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real, honest stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a while; let gravity and your breath do the work, and come out slowly, sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on the breath — watching sensations and thoughts arrive and flow away, like waves.

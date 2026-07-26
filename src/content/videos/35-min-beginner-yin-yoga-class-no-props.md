@@ -32,7 +32,7 @@ faq:
   - q: "I'm brand new to Yin (and to yoga) — is this okay for me?"
     a: "Absolutely — this class was made with you in mind. I explain the three simple principles of Yin as we go, and every pose has a gentler option, so you can settle in at your own pace and feel completely at home."
   - q: "What if I'm not very flexible?"
-    a: "That's perfectly fine — Yin isn't about how far you fold. Bring your feet closer, bend your knees, or rest your hands wherever they land. Come to about 80% of your edge, let the shape do the work, and you'll notice things easing open in their own time."
+    a: "That's perfectly fine — Yin isn't about how far you fold. Bring your feet closer, bend your knees, or rest your hands wherever they land. Come to about 60–80% of your edge, let the shape do the work, and you'll notice things easing open in their own time."
 ---
 
 ## What this Yin class is
@@ -49,6 +49,6 @@ Just your mat and a warm, quiet space where you can be still. This is a no-props
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

@@ -19,7 +19,7 @@ cues:
   - "Let your chest sink toward the floor so the weight of your torso opens the shoulders."
   - "The higher the arms are stacked toward the collarbones, the stronger the stretch — start lower and adjust."
   - "How open the shoulders feel is partly down to your own build — everyone's shoulder joints are shaped a little differently, so let your body set the range rather than chasing a picture. This should be a soft stretch, never a sharp or pinching sensation in the joint."
-  - "Find your edge — about 80% of your capacity, a real stretch but never forcing — then let the shape do the work."
+  - "Find your edge — about 60–80% of your capacity, a real stretch but never forcing — then let the shape do the work."
   - "Swap which arm is on top halfway through, as the two arrangements feel quite different."
   - "Cushion the forehead or the chest if you need a little more comfort."
 transitions_in:

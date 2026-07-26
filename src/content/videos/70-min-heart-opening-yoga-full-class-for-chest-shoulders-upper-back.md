@@ -33,7 +33,7 @@ faq:
   - q: "Do I need yoga blocks for this class?"
     a: "Blocks are handy for the supported fish, where you rest back over them to open the chest. If you don't have any, a few thick books work just as well — and a pillow or cushion and a blanket will cover the rest of the class."
   - q: "Is this heart-opening class suitable for beginners?"
-    a: "Yes, it's all levels. The backbends and shoulder openers can feel intense, so find your edge at about 80% and take the gentler option in any pose. Read the pose notes first if you're new, and come out slowly."
+    a: "Yes, it's all levels. The backbends and shoulder openers can feel intense, so find your edge at about 60–80% and take the gentler option in any pose. Read the pose notes first if you're new, and come out slowly."
   - q: "Why might a heart-opening practice feel emotional?"
     a: "Opening through the chest and front of the body can release stored tension, and that can feel surprisingly emotional. It's completely normal — give yourself plenty of space, keep breathing, and let whatever comes up simply pass."
 ---
@@ -52,7 +52,7 @@ Your mat, and a pillow or cushion and a blanket for support. A couple of yoga bl
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining. Backbends and shoulder openers can feel intense, so ease in gently.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining. Backbends and shoulder openers can feel intense, so ease in gently.
 - **Hold for time.** Stay a few minutes and let the shape do the work. Come out sooner if you need to, and come out slowly.
 - **Be still.** Settle body and mind, and rest your attention on your breath — letting the chest soften and open with each exhale.
 </content>

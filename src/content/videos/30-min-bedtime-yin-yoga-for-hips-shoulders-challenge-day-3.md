@@ -31,7 +31,7 @@ faq:
   - q: "What does this class focus on?"
     a: "Hips and shoulders. You'll hold Dragon and a seated Easy Pose fold to open the hips and glutes, then Cow-Face arms to release the shoulders, chest and upper back, finishing with a gentle spinal twist."
   - q: "Is this suitable for beginners?"
-    a: "Yes. It's an all-levels bedtime practice, and every pose has a gentler option and a deeper one — you find your edge at about 80% and let the shape do the work."
+    a: "Yes. It's an all-levels bedtime practice, and every pose has a gentler option and a deeper one — you find your edge at about 60–80% and let the shape do the work."
 ---
 
 ## What this Yin class is
@@ -48,6 +48,6 @@ Just your mat, and somewhere warm and quiet where you can be still. A strap or b
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% — a real stretch, but never forcing or straining. Softer is perfect before bed.
+- **Find your edge.** Come to about 60–80% — a real stretch, but never forcing or straining. Softer is perfect before bed.
 - **Hold for time.** Stay a few minutes and let the shape do the work. Come out sooner if you need to.
 - **Be still.** Let the body and mind settle, and follow your breath as it slows.

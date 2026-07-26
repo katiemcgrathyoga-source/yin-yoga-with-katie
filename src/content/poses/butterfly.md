@@ -18,7 +18,7 @@ cues:
   - "Let the feet slide a comfortable distance away from your pelvis — a diamond shape rather than heels pulled in tight. The further out the feet, the more the fold reaches your back; the closer in, the more it reaches the inner thighs."
   - "Let the knees fall open toward the floor. Never press them down — let gravity do that slowly over the minutes."
   - "On an out-breath, fold forward over your feet with a gently rounding spine. Let your hands rest on the floor or your feet, and let your head hang."
-  - "Find your edge — about 80% of your capacity, a real stretch but never forcing. If your head is a long way down, rest your forehead on a bolster stacked between your feet."
+  - "Find your edge — about 60–80% of your capacity, a real stretch but never forcing. If your head is a long way down, rest your forehead on a bolster stacked between your feet."
   - "Settle in, be still, and let the shape do the work."
 transitions_in:
   - "From a simple seated position, draw the soles of the feet together and let the knees open."

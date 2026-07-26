@@ -28,7 +28,7 @@ faq:
   - q: "What props do I need for this class?"
     a: "One or two yoga blocks and a bolster. We use them to support you into caterpillar, supported bridge, fish and a reclined twist, so the props do much of the work while you soften and let go. If you don't have a bolster, a firm cushion or a couple of pillows will do nicely."
   - q: "Is this suitable if my back feels stiff or a bit sore?"
-    a: "Yes — this is a gentle, well-supported class made for exactly that stiff, tight feeling in the back and spine. Everything is propped, and every pose has a gentler option and a deeper one, so you choose how far you go. Come to about 80% of your edge, never into pain, and come out of any pose sooner if you need to."
+    a: "Yes — this is a gentle, well-supported class made for exactly that stiff, tight feeling in the back and spine. Everything is propped, and every pose has a gentler option and a deeper one, so you choose how far you go. Come to about 60–80% of your edge, never into pain, and come out of any pose sooner if you need to."
   - q: "Do I need to be flexible to follow along?"
     a: "Not at all. Yin isn't about how far you fold — the props are there to meet you where your body is. Rest your forehead on a block, add a second block under your hips, or keep a shape shallow. Held over a few minutes, the stretch does its own quiet work whatever your starting point."
 ---
@@ -47,6 +47,6 @@ A bolster and one or two yoga blocks, plus a warm, quiet space where you can be 
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

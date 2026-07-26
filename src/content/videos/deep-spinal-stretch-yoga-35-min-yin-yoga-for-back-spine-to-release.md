@@ -34,7 +34,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "Not at all — your mat is all you really need. If your hips don't quite reach your heels in child's pose, a cushion or block under your forehead or seat is lovely to have nearby, but it's completely optional. Come as you are."
   - q: "Is this suitable if I have a stiff or achy back?"
-    a: "Yin is gentle and slow, and every pose here has a softer option — bend your knees in dangling, lower down in seal, or ease off the twist. Stay at about 80% of your capacity and never push into pain. If anything feels wrong for your back, come out and rest."
+    a: "Yin is gentle and slow, and every pose here has a softer option — bend your knees in dangling, lower down in seal, or ease off the twist. Stay at about 60–80% of your capacity and never push into pain. If anything feels wrong for your back, come out and rest."
   - q: "What poses will we move through?"
     a: "We begin folded forward in child's pose, then dangle for the hamstrings and spine, open into sphinx and seal for gentle backbends, hug the knees in to release the lower back, wring things out with a reclined twist on both sides, and rest in savasana."
 ---
@@ -53,6 +53,6 @@ Just your mat and a warm, quiet space to be still. A cushion or block nearby is 
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

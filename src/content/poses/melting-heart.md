@@ -17,7 +17,7 @@ cues:
   - "Begin on hands and knees, knees under your hips. Keep the hips stacked high over the knees the whole way through — this is what protects your lower back."
   - "Walk your hands forward along the floor, letting your chest sink towards the ground and your forehead or chin come to rest."
   - "Keep your arms about shoulder-width and your elbows lifted, so the stretch pours into the shoulders and upper back rather than collapsing."
-  - "Find your edge — about 80% of your capacity, a real stretch through the chest but never forcing. A pinch across the back of the shoulders often means you've met a compression point where bone meets bone, not a stretch — walk the hands wider apart to make room, or walk them back to ease the depth."
+  - "Find your edge — about 60–80% of your capacity, a real stretch through the chest but never forcing. A pinch across the back of the shoulders often means you've met a compression point where bone meets bone, not a stretch — walk the hands wider apart to make room, or walk them back to ease the depth."
   - "For more, rest your forehead down and let the chest melt lower; for a gentler option, place a bolster under the chest to hold you."
   - "Let the shape do the work. Soften the belly, breathe wide across the back of the ribs, and be still."
 transitions_in:

@@ -28,7 +28,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "It helps to have a couple of yoga blocks and a cushion or pillow nearby — the blocks are lovely under the hands in dragon, and a cushion is nice to sit on for saddle. None of it is essential though. If you don't have props, folding your mat for extra padding under the knees works just as well. Come as you are."
   - q: "Is this suitable if my quads and hip flexors are really tight?"
-    a: "Yes — this class is made for exactly that. Every pose has a gentler starting point and a deeper option, so you choose your own edge at about 80% and let the shape do the work. Nothing is forced. Over time you'll feel these areas begin to open in their own way."
+    a: "Yes — this class is made for exactly that. Every pose has a gentler starting point and a deeper option, so you choose your own edge at about 60–80% and let the shape do the work. Nothing is forced. Over time you'll feel these areas begin to open in their own way."
   - q: "My knees feel sensitive in saddle — what should I do?"
     a: "Listen to your knees closely. Saddle can be intense, so stay upright rather than leaning back, sit on a cushion or block to ease the angle, or practise half saddle instead of full. If you feel any sharp pain, come out — discomfort in the stretch is fine, pain in the joint is a sign to back off."
 ---
@@ -47,6 +47,6 @@ A couple of yoga blocks and a cushion or pillow are handy — blocks under the h
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

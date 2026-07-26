@@ -28,7 +28,7 @@ faq:
   - q: "Do I need any props for this bedtime class?"
     a: "Not at all — you can do the whole class with just your mat. That said, a folded blanket or towel under sensitive knees is lovely in toe squat and saddle, a block or two makes squat and saddle easier to settle into, and a cushion or bolster is nice to lie back on. Everything is optional — come as you are."
   - q: "Is this suitable if I'm not very flexible?"
-    a: "Yes. Yin isn't about how far you go — find your edge at about 80%, let each shape do the work, and take the gentler option whenever you need it. Katie guides toe squat, ankle stretch and saddle in stages so you can stop wherever feels right for you tonight."
+    a: "Yes. Yin isn't about how far you go — find your edge at about 60–80%, let each shape do the work, and take the gentler option whenever you need it. Katie guides toe squat, ankle stretch and saddle in stages so you can stop wherever feels right for you tonight."
   - q: "Why practise leg poses before bed?"
     a: "After a day on your feet, releasing the legs, ankles and quads can feel wonderful, and the forward folds like dangling and butterfly have a naturally calming, quietening effect. It's a soothing way to unwind and let go before you sleep."
 ---
@@ -47,6 +47,6 @@ Just your mat and a warm, quiet space where you can be still. Props are all opti
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

@@ -18,7 +18,7 @@ cues:
   - "Bend your right knee and cross it over the straight left leg, drawing the right foot to the outside of the left hip or thigh — wherever it comfortably rests."
   - "Feel yourself even on both sit bones. Slide a cushion under either hip if you feel tipped to one side."
   - "Turn your chest toward the straight leg and fold forward over it on an out-breath, letting the spine round gently."
-  - "Find your edge — about 80% of your capacity, a real stretch but never forcing. Rest your torso or forehead on a bolster over the straight leg if the floor feels far."
+  - "Find your edge — about 60–80% of your capacity, a real stretch but never forcing. Rest your torso or forehead on a bolster over the straight leg if the floor feels far."
   - "Be still, let the shape do the work, then come out slowly and change sides."
 transitions_in:
   - "From a seated position, extend one leg and cross the opposite knee over it, then fold."

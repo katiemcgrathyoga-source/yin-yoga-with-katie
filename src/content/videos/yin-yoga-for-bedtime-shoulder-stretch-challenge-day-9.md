@@ -41,6 +41,6 @@ Just your mat, and somewhere warm and quiet where you can be still. A strap or b
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% — a real stretch, but never forcing or straining. Softer is perfect before bed.
+- **Find your edge.** Come to about 60–80% — a real stretch, but never forcing or straining. Softer is perfect before bed.
 - **Hold for time.** Stay a few minutes and let the shape do the work. Come out sooner if you need to.
 - **Be still.** Let the body and mind settle, follow your breath, and come out slowly when it's time.

@@ -1,0 +1,97 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import katieAbout from '../assets/katie-about.jpg';
+
+const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/192665473777665865/subscribe';
+---
+
+<BaseLayout
+  title="About Katie — Yin Yoga with Katie"
+  description="Hi, I'm Katie — a Yin Yoga teacher sharing free full-length classes, pose guides and guided routines. A little about how I teach, and what you'll find here."
+>
+  <article class="about">
+    <header class="about-hero">
+      <div class="about-img">
+        <Image src={katieAbout} alt="Katie in tree pose in front of Taipei 101" width={560} height={840} loading="eager" />
+      </div>
+      <div class="about-intro">
+        <p class="eyebrow">Hello</p>
+        <h1>Hi, I'm Katie.</h1>
+        <p class="about-lede">I'm a qualified Yin Yoga instructor, and I'm on a mission to help you slow down, be still, and listen. It isn't always easy to get out to a studio — so these classes meet you where you are, at home and free. I live in Taipei with my husband and our cat (my senior stretching correspondent and head assistant), and together we make simple, minimal classes to practise along with, from my life to yours. I hope they bring a few peaceful moments to your day.</p>
+      </div>
+    </header>
+
+    <div class="about-body">
+      <h2>How I found Yin</h2>
+      <p>I was teaching yoga at a gym in Canada, and one of the perks was a free membership — so I got to try all the other classes. One day I showed up to a Yin Yoga course with no idea what it was, and I fell in love straight away. I knew right then: this was it for me. I loved how much time and space there was to explore each pose — to go deep within yourself, in the silence. I found Yin profoundly relaxing, and now I want to share it with the world.</p>
+
+      <h2>How I teach</h2>
+      <p>My teaching is gentle and unhurried. We only ever aim for about 60–80% of your capacity — a real stretch, but never forcing — and hold the shapes long enough for the body to soften on its own. There's no right or wrong here, and nothing to keep up with. You're always welcome to take the lighter option, rest when you need to, and make the practice your own.</p>
+      <p>One of my core philosophies is minimal cueing — I tell you just what you need to know, and nothing more, so there's plenty of room for quiet introspection. I'm a qualified yoga instructor, trained at the Arhanta Yoga Ashram in the Netherlands.</p>
+
+      <h2>What you'll find here</h2>
+      <p>Everything on this site is free. There are <a href="/">full-length classes</a> for whatever you need — sleep, a sore back, tight hips, a busy mind — a whole <a href="/poses">pose guide</a> to learn the shapes at your own pace, and <a href="/routines">guided routines</a> that lead you gently from one pose to the next, so you can close your eyes and simply follow along. If you're not sure where to begin, my free two-hour retreat is a lovely place to start.</p>
+
+      <section class="about-cta">
+        <p class="eyebrow">A gift from me</p>
+        <h3>Start with a free two-hour retreat</h3>
+        <p class="about-cta-sub">Two slow hours of Yin, restorative yoga and Yoga Nidra — yours to keep, and to come back to any time.</p>
+        <form class="home-capture about-form" id="about-form" action={ML_ACTION} method="post" target="ml_frame_about">
+          <input type="text" name="fields[name]" placeholder="First name" aria-label="First name" />
+          <input type="email" name="fields[email]" required placeholder="Your email" aria-label="Your email" />
+          <input type="hidden" name="fields[signup_source]" value="about" />
+          <input type="hidden" name="ml-submit" value="1" />
+          <input type="hidden" name="anticsrf" value="true" />
+          <button type="submit" class="btn-cta">Send it to me →</button>
+        </form>
+        <p class="home-done" id="about-done" hidden>Check your inbox — your two-hour retreat is on its way.</p>
+        <p class="home-fine">No spam, ever. I'll only send Yin.</p>
+        <iframe name="ml_frame_about" hidden title="Sign-up" tabindex="-1" aria-hidden="true"></iframe>
+      </section>
+
+      <p class="about-signoff">Take good care of yourself,<br /><span class="about-sig">katie</span></p>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .about { max-width: 900px; margin: 0 auto; padding: 8px 24px 80px; }
+  .about-hero { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 44px; align-items: center; padding: 48px 0 12px; }
+  .about-img img { width: 100%; height: clamp(460px, 62vw, 720px); object-fit: cover; object-position: center; border-radius: 18px; display: block; }
+  .about-intro h1 { font-family: var(--display); font-weight: 500; font-size: clamp(34px, 5vw, 52px); color: var(--plum); margin: 0 0 16px; }
+  .about-lede { font-size: 18px; line-height: 1.62; color: var(--ink-soft); margin: 0; }
+  .about-body { max-width: 660px; margin: 0 auto; }
+  .about-body h2 { font-family: var(--display); font-weight: 500; font-size: 25px; color: var(--plum); margin: 36px 0 12px; }
+  .about-body p { font-size: 17px; line-height: 1.72; color: var(--ink); margin: 0 0 14px; }
+  .about-body a { color: var(--gold-solid); text-decoration: underline; text-underline-offset: 2px; }
+  .about-todo { background: repeating-linear-gradient(-45deg, rgba(188,157,154,.10), rgba(188,157,154,.10) 10px, transparent 10px, transparent 20px); border: 1px dashed var(--quartz); border-radius: 10px; padding: 14px 16px; font-size: 15px !important; color: var(--ink-soft) !important; font-style: italic; }
+  .about-todo strong { color: var(--gold-solid); font-style: normal; }
+  .about-cta { background: var(--wash); border: 1px solid var(--line); border-radius: 18px; padding: 32px; margin: 40px 0 32px; text-align: center; }
+  [data-theme="dark"] .about-cta { background: var(--paper-2); }
+  .about-cta h3 { font-family: var(--display); font-weight: 500; font-size: 24px; color: var(--plum); margin: 4px 0 8px; }
+  .about-cta-sub { font-size: 15.5px !important; color: var(--ink-soft) !important; max-width: 46ch; margin: 0 auto 18px !important; }
+  .about-form { justify-content: center; max-width: 460px; margin: 0 auto; }
+  .about-cta .eyebrow { justify-content: center; }
+  .about-signoff { font-size: 17px; color: var(--ink-soft); line-height: 1.5; margin-top: 34px; }
+  .about-sig { font-family: var(--script); font-size: 46px; color: var(--gold); line-height: 1; }
+
+  /* shared capture styles (mirrors the homepage hero) */
+  .home-capture { display: flex; gap: 8px; flex-wrap: wrap; }
+  .home-capture input { flex: 1 1 140px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); color: var(--ink); font: inherit; font-size: 15px; }
+  .home-capture .btn-cta { white-space: nowrap; }
+  .home-fine { font-size: 13px; color: var(--ink-soft); margin: 12px 0 0; }
+  .home-done { font-size: 15px; color: var(--plum); margin: 12px 0 0; }
+
+  @media (max-width: 760px) {
+    .about-hero { grid-template-columns: 1fr; gap: 24px; }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('about-form') as HTMLFormElement | null;
+  const done = document.getElementById('about-done');
+  form?.addEventListener('submit', () => {
+    window.setTimeout(() => { form.hidden = true; if (done) done.hidden = false; }, 400);
+  });
+</script>

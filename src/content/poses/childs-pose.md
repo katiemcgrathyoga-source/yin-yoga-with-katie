@@ -17,7 +17,7 @@ cues:
   - "Come to your hands and knees, then sink your hips back toward your heels."
   - "Take your knees as wide as feels good or keep them together — wide gives your belly more room, together feels more like a small parcel."
   - "Let your forehead rest on the mat, a block, or your stacked hands, and reach your arms forward, or let them trail back alongside your body."
-  - "Find your edge — about 80% of your capacity, a real stretch but never forcing. Let the shape do the work and simply be still."
+  - "Find your edge — about 60–80% of your capacity, a real stretch but never forcing. Let the shape do the work and simply be still."
   - "If your hips float far from your heels, tuck a bolster or rolled blanket between your thighs and calves to rest on."
 transitions_in:
   - "From hands and knees (Table), sit your hips back toward your heels and let your upper body fold down."

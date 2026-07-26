@@ -19,7 +19,7 @@ cues:
   - "Reach your arms overhead and take hold of one wrist, drawing gently toward the left."
   - "Cross your right ankle over the left to deepen the stretch along the outer right hip and leg."
   - "Keep both buttocks on the floor so the curve stays in the side body rather than turning into a twist."
-  - "Find your edge — about 80% of your capacity, a real stretch but never forcing — then be still and let the shape do the work."
+  - "Find your edge — about 60–80% of your capacity, a real stretch but never forcing — then be still and let the shape do the work."
   - "Tuck a cushion under the head if the neck feels strained reaching the arms overhead."
 transitions_in:
   - "From lying flat on your back, walk the feet and then the upper body over to one side into a crescent."
@@ -40,7 +40,7 @@ faq:
   - q: "What does Banana pose stretch?"
     a: "Banana mainly works the whole side body — the IT band and outer hip, the side ribs and intercostals, and the oblique muscles — stretching the gall bladder line down the side seam. Reaching the arms overhead adds a stretch through the heart and lung lines of the inner arm."
   - q: "Is Banana suitable for beginners?"
-    a: "Yes. Banana is one of the most approachable Yin poses and easy to support. Work at about 80% of your edge, keep both hips grounded, breathe, and read the cues and cautions on this page before you begin."
+    a: "Yes. Banana is one of the most approachable Yin poses and easy to support. Work at about 60–80% of your edge, keep both hips grounded, breathe, and read the cues and cautions on this page before you begin."
 related_poses: ["reclined-twist", "cat-pulling-its-tail", "corpse", "wind-relieving", "dragonfly"]
 youtube_video_id: ""
 images:

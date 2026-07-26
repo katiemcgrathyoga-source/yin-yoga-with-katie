@@ -17,7 +17,7 @@ cues:
   - "Begin lying on your belly. Press your hands into the floor slightly forward of your shoulders and straighten your arms to lift the chest."
   - "Turn the hands out a little and let the shoulders soften down, so the arch pours into the spine rather than hunching the shoulders up."
   - "Let the belly and legs stay heavy on the floor, and allow the spine to hang into the backbend rather than gripping to hold it."
-  - "Find your edge — about 80%, a real stretch in the lower back but never a forcing. If it is too strong, drop down to Sphinx on the forearms instead."
+  - "Find your edge — about 60–80%, a real stretch in the lower back but never a forcing. If it is too strong, drop down to Sphinx on the forearms instead."
   - "Keeping the legs apart deepens the low-back sensation; together spreads it more evenly along the spine."
   - "Seal is strong, so work in shorter rounds if you need to — a minute or two, rest on the belly, then come back. Let the shape do the work."
 transitions_in:

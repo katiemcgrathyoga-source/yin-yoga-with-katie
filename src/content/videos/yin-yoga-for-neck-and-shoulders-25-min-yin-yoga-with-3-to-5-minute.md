@@ -52,6 +52,6 @@ Just your mat and a warm, quiet space where you can be still. No props are requi
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real, honest stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real, honest stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a good while; stay slightly active, let the shape do the work, and come out slowly — sooner if you need to.
 - **Be still.** Let the body settle and rest your attention on your breath, sending each inhale into wherever feels like it needs it most.

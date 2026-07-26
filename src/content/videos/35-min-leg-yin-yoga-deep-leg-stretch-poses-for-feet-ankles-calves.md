@@ -33,7 +33,7 @@ faq:
   - q: "My ankles and knees feel sensitive — is this class still for me?"
     a: "Yes, and every pose here has a gentler option. Cushion the knees well, sit up on a block in toe squat, saddle and ankle stretch to take the pressure off, and try saddle one leg at a time if you need to. If you ever feel a sharp pain, that's your sign to ease back — come out slowly and rest. You're always working with your own body."
   - q: "Do I need to be flexible to do this?"
-    a: "Not at all. Yin isn't about how far you go — you come to about 80% of your stretch, let the shape do the work, and hold. Take the gentler version of any pose whenever you need it, and over time you'll notice things opening up in their own way."
+    a: "Not at all. Yin isn't about how far you go — you come to about 60–80% of your stretch, let the shape do the work, and hold. Take the gentler version of any pose whenever you need it, and over time you'll notice things opening up in their own way."
 ---
 
 ## What this Yin class is
@@ -50,6 +50,6 @@ A blanket is the main prop, since the knees rest on the mat for a few of these p
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

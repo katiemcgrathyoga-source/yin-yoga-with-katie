@@ -31,7 +31,7 @@ faq:
   - q: "Why is this class silent with minimal cues?"
     a: "The quiet is part of the practice. With only gentle guidance to move you from shape to shape, you can drop into your own rhythm and rest your attention on the breath and the sensations in your legs. It makes this a lovely one for winding down in the evening — but if you're brand new to Yin, you might like to start with a fully guided class first."
   - q: "Is this suitable if I'm not very flexible?"
-    a: "Yes — Yin isn't about how far you go. Find your edge at about 80%, let the shape do the work, and take the gentler option in any pose whenever you need it. The saddle and folds ease the quads and hamstrings gradually, so there's no rush and nothing to force."
+    a: "Yes — Yin isn't about how far you go. Find your edge at about 60–80%, let the shape do the work, and take the gentler option in any pose whenever you need it. The saddle and folds ease the quads and hamstrings gradually, so there's no rush and nothing to force."
 ---
 
 ## What this Yin class is
@@ -48,6 +48,6 @@ Just your mat and a warm, quiet space where you can be still for half an hour. T
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

@@ -25,7 +25,7 @@ faq:
   - q: "What props do I need for this class?"
     a: "Have a strap or belt to hand — it makes the shoulder stretch in cow face and the reclined hamstring stretch much easier. A couple of yoga blocks are lovely under your hands in dragon, and a block or cushion is nice to sit on for cow face, but both are optional. If you don't have them, don't worry — you'll be well guided either way."
   - q: "Is this suitable if I'm not very flexible?"
-    a: "Absolutely. Yin isn't about how far you go — you'll come to about 80% of your stretch and let the shape do the work. Every pose has a gentler option and a deeper one, and the strap gives you as much length as you need. Just find your own edge and rest there."
+    a: "Absolutely. Yin isn't about how far you go — you'll come to about 60–80% of your stretch and let the shape do the work. Every pose has a gentler option and a deeper one, and the strap gives you as much length as you need. Just find your own edge and rest there."
   - q: "Is this a good class to do right before bed?"
     a: "Yes — it's designed as an evening wind-down. The long, still holds calm the body and quiet the mind, and Katie suggests following it with a short guided relaxation to melt fully into sleep. Dim the lights, get warm, and let this be the last thing you do before bed."
 ---
@@ -44,6 +44,6 @@ A strap or belt is the main thing, with a couple of yoga blocks and a cushion ne
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

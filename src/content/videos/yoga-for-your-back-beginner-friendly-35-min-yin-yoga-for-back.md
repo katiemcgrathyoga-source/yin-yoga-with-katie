@@ -27,7 +27,7 @@ membership_cta: "Love a gentle practice like this? Inside the membership it's pa
 summary: "A 35-minute beginner-friendly Yin Yoga class for the back — gentle forward folds, a soft back bend, a lateral banana stretch and a reclined twist, held long and slow to help release everyday tension through the spine and lower back."
 faq:
   - q: "Is this class okay if I'm new to Yin?"
-    a: "Yes — this one is made with beginners in mind. We move through just a handful of simple shapes, and I offer a lighter option and a deeper one for each, so you can choose what feels right in your body. There's no rush and nothing to force. Find your edge at about 80%, and come out of any pose sooner if you need to."
+    a: "Yes — this one is made with beginners in mind. We move through just a handful of simple shapes, and I offer a lighter option and a deeper one for each, so you can choose what feels right in your body. There's no rush and nothing to force. Find your edge at about 60–80%, and come out of any pose sooner if you need to."
   - q: "Do I need any props?"
     a: "No props are required — all you really need is your mat. That said, this practice is lovely with a little support, so if you have a cushion, a folded blanket, or a block nearby, you're welcome to slide one under your forehead in child's pose or under your chest in sphinx. Use as much support as your body asks for."
   - q: "Can I do this if my back feels sore?"
@@ -48,6 +48,6 @@ Just your mat and a warm, quiet space where you can be still for half an hour. N
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch you can feel, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch you can feel, but never forcing or straining.
 - **Hold for time.** Yin poses are held a while — around three minutes here — so let the shape do the work. Come out slowly, and sooner if your body asks.
 - **Be still.** Soften your jaw and face, settle body and mind, and rest your attention on the breath — each inhale opening a little more, each exhale letting some tension go.

@@ -28,7 +28,7 @@ faq:
   - q: "Do I need any props for this class?"
     a: "No — this one is designed to be done with just your mat. Because we spend the first few minutes on our knees in frog, you might like to fold your mat over or slip something soft underneath if your knees feel sensitive, but that's the only thing to think about. Come as you are."
   - q: "Is this class suitable for beginners?"
-    a: "It's a lovely stretch, though a couple of the shapes — frog and full shoelace — go a little deeper, so I've flagged it as having some intermediate poses. Every pose has a gentler option: you can widen or narrow frog, straighten a leg in shoelace, and ease off any time. Find your edge at about 80% and let the shape do the work."
+    a: "It's a lovely stretch, though a couple of the shapes — frog and full shoelace — go a little deeper, so I've flagged it as having some intermediate poses. Every pose has a gentler option: you can widen or narrow frog, straighten a leg in shoelace, and ease off any time. Find your edge at about 60–80% and let the shape do the work."
   - q: "What does this class actually cover?"
     a: "We work the whole body: frog and thread-the-needle to open the groin and shoulders, sleeping swan for the hips, a long shoelace with eagle arms and a twist, and half-butterfly for the hamstrings and lower back — then we repeat it all on the second side and finish with some gentle cat–cow."
 ---
@@ -47,6 +47,6 @@ Just your mat and a quiet space to be still. This is a no-props class, though be
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

@@ -38,7 +38,7 @@ faq:
   - q: "How long are the poses held?"
     a: "Each shape is held around one to three minutes — the toe squat and dangling for about two minutes each. The long holds are where the deeper stretch happens, but you can always come out sooner whenever your body asks."
   - q: "Is this class suitable for beginners?"
-    a: "Yes, it's an all-levels class. Every pose has a gentler option and a deeper one, and you only ever work to about 80% of your capacity — never into pain. If you're new to Yin, read the pose notes first and go at your own pace."
+    a: "Yes, it's an all-levels class. Every pose has a gentler option and a deeper one, and you only ever work to about 60–80% of your capacity — never into pain. If you're new to Yin, read the pose notes first and go at your own pace."
 ---
 
 ## What this Yin class is
@@ -55,6 +55,6 @@ Just your mat, and a warm, quiet space where you can be still. No props are requ
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining. We won't tolerate any pain.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining. We won't tolerate any pain.
 - **Hold for time.** Stay a few minutes and let the shape do the work. Come out sooner whenever your body asks — you don't need my permission.
 - **Be still.** Settle body and mind, soften the jaw and shoulders, and rest your attention on your breath.

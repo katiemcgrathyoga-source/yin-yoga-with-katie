@@ -17,7 +17,7 @@ cues:
   - "Sit and open your legs wide into a comfortable V. Sit up onto a cushion so the pelvis can tilt forward more easily."
   - "Let your toes and knees roll up toward the ceiling rather than falling flat, so the knees stay safe."
   - "Walk your hands forward between your legs and fold from the hips, letting the spine round only gently as you settle."
-  - "Find your edge — about 80% of your capacity, a real stretch but never forcing. Rest your forearms, or your head, on a bolster and let the shape do the work."
+  - "Find your edge — about 60–80% of your capacity, a real stretch but never forcing. Rest your forearms, or your head, on a bolster and let the shape do the work."
   - "You do not need to go far — even a small fold, or leaning to one leg at a time, gives plenty. Be still and let it deepen slowly."
 transitions_in:
   - "From a seated position, open the legs wide, then walk the hands forward to fold."

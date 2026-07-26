@@ -24,7 +24,7 @@ faq:
   - q: "Do I need any props for this routine?"
     a: "No props needed — just a mat and a warm, quiet space. Keep a cushion or blanket nearby if you'd like a little extra support in any pose."
   - q: "Is this routine suitable for beginners?"
-    a: "Yes. It's an all-levels sequence — every pose has a gentler option, so work at about 80% of your edge and never force. If you're brand new, have a read of the linked pose pages first."
+    a: "Yes. It's an all-levels sequence — every pose has a gentler option, so work at about 60–80% of your edge and never force. If you're brand new, have a read of the linked pose pages first."
   - q: "When is the best time to do a full-body Yin practice?"
     a: "Any time you feel tight or wound up. It's especially lovely in the evening to unwind, but works just as well as a midday reset or a gentle weekend stretch."
 membership_cta: "Love this all-rounder? Inside the membership it lives inside a guided program, so you press play and follow a plan instead of choosing each day."

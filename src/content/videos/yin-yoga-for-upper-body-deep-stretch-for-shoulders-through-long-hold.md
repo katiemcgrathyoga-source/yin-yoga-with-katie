@@ -35,7 +35,7 @@ faq:
   - q: "What does this class actually cover?"
     a: "We warm up with child's pose and puppy pose, ease out the neck, then settle into two long shoulder openers — bow tie and broken wing — held on each side. From there we unwind the spine with a reclined twist, release the shoulders and neck, and finish resting in savasana. The focus stays on the shoulders, upper back and neck throughout."
   - q: "Is this suitable if I'm not very flexible?"
-    a: "Yes — Yin isn't about how far you reach. Find your edge at about 80%, let the shape do the work, and take the gentler option in any pose whenever you need it. With regular practice you'll notice your shoulders opening up in their own time."
+    a: "Yes — Yin isn't about how far you reach. Find your edge at about 60–80%, let the shape do the work, and take the gentler option in any pose whenever you need it. With regular practice you'll notice your shoulders opening up in their own time."
 ---
 
 ## What this Yin class is
@@ -52,6 +52,6 @@ Just your mat and a warm, quiet space where you can be still. This is a no-props
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

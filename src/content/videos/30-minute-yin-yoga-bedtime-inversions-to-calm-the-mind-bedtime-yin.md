@@ -28,7 +28,7 @@ faq:
   - q: "What does 'inversions' mean here — is it difficult?"
     a: "Not at all. An inversion simply means your hips are a little higher than your head, which has a lovely calming effect before bed. Every shape in this class is gentle and supported — puppy, dangling and supported bridge — with no headstands or anything strenuous."
   - q: "Is this suitable if I'm not very flexible or I'm a beginner?"
-    a: "Yes. Yin isn't about how far you go — find your edge at about 80%, let the props and gravity do the work, and take the gentler option in any pose. It's a calm, welcoming practice to end the day with, whatever your experience."
+    a: "Yes. Yin isn't about how far you go — find your edge at about 60–80%, let the props and gravity do the work, and take the gentler option in any pose. It's a calm, welcoming practice to end the day with, whatever your experience."
 ---
 
 ## What this Yin class is
@@ -45,6 +45,6 @@ One or two yoga blocks (or anything that lifts your hips) for supported bridge, 
 
 ## How Yin Yoga works — three simple cues
 
-- **Find your edge.** Come to about 80% of your capacity — a real stretch, but never forcing or straining.
+- **Find your edge.** Come to about 60–80% of your capacity — a real stretch, but never forcing or straining.
 - **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner if you need to.
 - **Be still.** Settle body and mind, and rest your attention on your breath — then come out slowly when it's time.

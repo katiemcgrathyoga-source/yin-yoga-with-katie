@@ -18,7 +18,7 @@ cues:
   - "Bring your hands to your lower back, fingers pointing down, and lift up out of the waist to make length before you lean back."
   - "Press the hips gently forward over the knees and begin to arch back, leading with the chest rather than dropping the head."
   - "For the gentler option, keep your hands on your lower back and stay here. For more, reach the hands back towards your heels one at a time."
-  - "Find your edge — about 80%, a real opening across the front but never straining the neck or lower back. A broad stretch across the front of the body is soft-tissue tension and safe to explore; a pinching or bone-on-bone feeling deep in the lower back is compression, a hard stop — ease off it. Let the head follow the spine only if the throat is comfortable."
+  - "Find your edge — about 60–80%, a real opening across the front but never straining the neck or lower back. A broad stretch across the front of the body is soft-tissue tension and safe to explore; a pinching or bone-on-bone feeling deep in the lower back is compression, a hard stop — ease off it. Let the head follow the spine only if the throat is comfortable."
   - "This one is more yang, so hold it briefly. Breathe steadily and come out well before you feel any strain."
 transitions_in:
   - "From kneeling upright, hands to the lower back, then arch back."
