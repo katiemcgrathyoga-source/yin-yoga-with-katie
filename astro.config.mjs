@@ -11,6 +11,7 @@ export default defineConfig({
       // (soft-launched, noindex) and Katie's private pin/board consoles.
       filter: (page) =>
         !page.includes('/runners') &&
+        !page.includes('/runner-reset') &&
         !page.includes('/sessions/') &&
         !page.includes('/blog/yoga-for-runners') &&
         !page.includes('/pins') &&

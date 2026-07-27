@@ -1,0 +1,202 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// The Runner's Reset — long-form sales page. Copy from runner-reset-copy-pack/A-sales-page.md.
+// Hidden (noindex + excluded from sitemap) until launch, matching the /runners funnel.
+
+// All buy buttons point here. TODO: paste the Gumroad/Stripe founding-sale link.
+const CHECKOUT_URL = '#checkout-placeholder';
+
+const ogImage = new URL('/og/card.png', Astro.site);
+ogImage.searchParams.set('t', 'The Runner’s Reset');
+ogImage.searchParams.set('s', 'Short follow-along Yin sessions to undo the tightness running builds up');
+---
+
+{/* Alternate H1s to A/B test against the recommended headline:
+    1. Running tightens the same chain of tissues, run after run. This is how you undo it.
+    2. The recovery half of training — finally laid out for you.
+    3. A 30-second stretch only skims the surface. Time in the shape is what reaches it. */}
+
+<BaseLayout
+  title="The Runner's Reset — Yin Yoga for Runners, by Katie"
+  description="Running quietly stiffens the tissues that keep you running well. The Runner's Reset is a library of short, follow-along Yin sessions that give that range back — ten to fifteen quiet minutes at a time."
+  image={ogImage.href}
+  noindex={true}
+>
+  <div class="wrap rr">
+    <header class="hero rr-hero">
+      <p class="eyebrow">For runners with tight hips, heavy legs and good intentions</p>
+      <h1>Stop getting tighter. Keep running — at your best.</h1>
+      <p class="rr-sub">
+        Running quietly stiffens the very tissues that keep you running well — hips, hamstrings,
+        calves, quads, lower back. The Runner's Reset is a library of short, follow-along Yin sessions
+        that give that range back, ten to fifteen quiet minutes at a time.
+      </p>
+      <a class="rr-cta" href={CHECKOUT_URL}>Join the Runner's Reset — $49 founding price →</a>
+      <p class="rr-cta-note">One-time payment · lifetime access · 30-day keep-it guarantee</p>
+    </header>
+
+    <section class="rr-sec">
+      <h2>The part of every run you skip</h2>
+      <p>You know the scene. You finish a good run — heavy legs, tight hips, that familiar pull down the back of your thigh. You mean to stretch. You check your watch instead.</p>
+      <p>It's not laziness. Nobody ever made the stretching part <em>simple</em>. So it slides — run after run — and the tightness quietly stacks up. Hips one month. Calves the next. Then one morning your stride feels short and braced, a niggle starts whispering, and you're googling "how long does it take to lose fitness."</p>
+      <p>Here's the thing worth knowing: that slow build-up isn't a character flaw, and it isn't inevitable. It's just the half of training nobody laid out for you.</p>
+    </section>
+
+    <section class="rr-sec">
+      <h2>Why running tightens you (and why a quick stretch doesn't undo it)</h2>
+      <p>Running makes you fitter by loading the same chain of tissues over and over — hips, hamstrings, glutes, calves, quads, lower back. Thousands of steps, the same shapes, every run. That repetition is what builds you up. It's also what quietly shortens and stiffens those exact tissues over weeks — especially if, like most of us, you spend the rest of the day in a chair.</p>
+      <p>And a hurried 30-second stretch barely touches it. The deeper tissue around your hips and joints doesn't respond to a quick pull; it responds to <em>time</em>. That's all Yin yoga really is: you settle into a shape and stay for a few quiet minutes — nothing forced, only ever to about 60–80% of your capacity — and let gravity and your breath do the slow work a rushed stretch can't.</p>
+      <p>Two things happen when you practise this way:</p>
+      <ul class="plain">
+        <li><strong>Your range of motion improves.</strong> Long, still holds are well suited to easing the tightness running builds up in the hips, hamstrings, calves and ankles — the mobility that lets your stride stay long and easy.</li>
+        <li><strong>Your body actually recovers.</strong> The long, quiet holds help you shift down into your rest state, so you come away calmer and less braced — the recovery half of training runners so often skip.</li>
+      </ul>
+      <p>You don't need to become flexible. You just need to stop getting tighter.</p>
+      <p class="rr-note-med"><em>A gentle note: this is general education, not medical advice. Yin helps with everyday tightness — it doesn't treat or prevent injury, and sharp or lasting pain belongs with a physio or doctor.</em></p>
+    </section>
+
+    <section class="rr-sec">
+      <h2>Who this is for</h2>
+      <ul class="plain">
+        <li>You run — for fitness, for sanity, for the long game. Parkruns to marathons, it doesn't matter.</li>
+        <li>You sit most of the day, and you can feel what that's doing to your hips.</li>
+        <li>You keep meaning to stretch, and you keep not doing it — because nothing ever told you <em>what</em>, <em>when</em>, or <em>for how long</em>.</li>
+        <li>You're not flexible. Good. Yin was made for exactly that.</li>
+      </ul>
+      <p><strong>Who it isn't for:</strong> if you're carrying an acute injury or sharp pain, see a physio first — this library will still be here when you're cleared to move. And if you're after sweaty power yoga, this is the opposite of that, on purpose.</p>
+    </section>
+
+    <section class="rr-sec">
+      <h2>What's inside The Runner's Reset</h2>
+      <p>It's a practice library, not a course you fall behind on. Two kinds of session, plus guided paths that tell you exactly which one to press play on.</p>
+
+      <h3>Target sessions — one for each place running tightens</h3>
+      <p>Short, follow-along Yin sessions, about 12–15 minutes each. Do one right after a run, while you're warm, or whenever a specific spot is grumbling.</p>
+      <ul class="plain">
+        <li><strong>Hips &amp; Hip Flexors (~12 min).</strong> Running plus sitting equals tight hips — open them first, and your whole stride frees up.</li>
+        <li><strong>Hamstrings &amp; Glutes (~14 min).</strong> Your hamstrings do the hardest braking work in every stride — give them their length back.</li>
+        <li><strong>Calves, Ankles &amp; Feet (~12 min).</strong> It all starts at your feet — stiff ankles change everything above them, and almost no runner works here.</li>
+        <li><strong>Quads &amp; Outer Hip — the "IT band" one (~14 min).</strong> You can't stretch your IT band — it's a tough band of fascia — but you <em>can</em> release the muscles that pull on it. This session does exactly that.</li>
+        <li><strong>Lower Back &amp; Spine (~13 min).</strong> Every run is impact your spine absorbs. This is how you gently undo the day's compression.</li>
+        <li><strong>The Express Full Reset (~15 min).</strong> One pose per area when you want everything and only have a quarter of an hour.</li>
+      </ul>
+
+      <h3>Full Reset sessions — the whole chain, in one practice</h3>
+      <p>Because running doesn't tighten one muscle — it tightens a chain, and a tight link pulls on the next. Around 40 minutes each, made for rest days.</p>
+      <ul class="plain">
+        <li><strong>The Full Reset (~42 min).</strong> Every area, one unhurried practice. The everyday all-rounder.</li>
+        <li><strong>The Restorative Reset (~40 min).</strong> Gentler and fully supported with props — for tired legs and low-energy days.</li>
+        <li><strong>The Silent Reset (~45 min).</strong> The same journey, held a touch longer, with minimal talking. For when you want quiet.</li>
+      </ul>
+
+      <h3>Guided paths — so you're never left guessing</h3>
+      <ul class="plain">
+        <li><strong>Start Here</strong> — a short welcome video: what Yin is, why it suits runners, how to use the library.</li>
+        <li><strong>By level</strong> — new to Yin, returning, or experienced: a path for each.</li>
+        <li><strong>By need</strong> — tight hips, after a long run, sore feet, race week, only ten minutes: a simple chooser points you to the right session.</li>
+        <li><strong>Calendar plans</strong> — load a plan straight into your calendar with reminders: <strong>The 6-Week Foundation</strong> (the gentle on-ramp), <strong>The Weekly Rhythm</strong> (a repeatable week to keep forever), and <strong>Race Prep</strong> (a taper-aware plan that eases off into race week).</li>
+      </ul>
+
+      <h3>Every session page gives you five ways in</h3>
+      <p>The follow-along video, an on-screen hold timer (so you can practise screen-free once you know the shapes), the plain-English <em>why</em> behind the session, written cues you can read, and a body map showing where it works. Whatever kind of learner you are, it's covered.</p>
+    </section>
+
+    <section class="rr-sec">
+      <h2>The bonuses — one for each classic runner problem</h2>
+      <div class="rr-bonus-wrap">
+        <table class="rr-bonus">
+          <thead>
+            <tr><th>Included free</th><th>What it solves</th><th>Worth</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>The Tight-Hip Fix</strong></td><td>a short series for the runner's number-one grumble</td><td>$29</td></tr>
+            <tr><td><strong>The Desk-Runner's Hip Release</strong></td><td>undoing what eight hours of sitting does to a runner's hips</td><td>$39</td></tr>
+            <tr><td><strong>The Race-Week Protocol</strong></td><td>exactly what to do — and leave alone — in the 7 days before a race</td><td>$19</td></tr>
+            <tr><td><strong>The Runner's Pose Library</strong></td><td>every pose with plain cues and cautions</td><td>$29</td></tr>
+            <tr><td><strong>The Never-Skip Scheduler</strong></td><td>your plan pre-loaded into your calendar, with a quiet nudge when a session's due — because showing up is what actually drives results</td><td>$19</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Priced separately, the bonuses alone come to <strong>$135</strong> — before you count the eight full sessions and the guided paths. You get all of it, for good, for less than a couple of physio sessions.</p>
+    </section>
+
+    <section class="rr-sec">
+      <h2>Who's teaching you</h2>
+      <p>I'm Katie. I've taught Yin yoga for six years, trained at the Arhanta Yoga Ashram, and shared over 300 free classes on YouTube — including the runner classes many of you found me through. My whole approach is the opposite of hype: slow, kind, and honest about what Yin can and can't do. The Runner's Reset is everything I know about the runner's body, laid out so you never have to wonder what to press play on.</p>
+    </section>
+
+    <section class="rr-sec">
+      <div class="rr-guarantee">
+        <h2>The keep-it guarantee</h2>
+        <p>Join, and practise along for 30 days. If your hips, hamstrings and calves don't feel noticeably looser — if you're not moving more easily — email me for a full refund, <strong>and keep lifetime access to the entire library anyway</strong>.</p>
+        <p>I can offer that because the risk should sit with me, not you. If Yin doesn't help your running, I haven't earned your money — it's that simple.</p>
+      </div>
+    </section>
+
+    <section class="rr-sec">
+      <div class="rr-offer">
+        <h2>The founding price (and the honest small print)</h2>
+        <p>The Runner's Reset is <strong>$49 for the first 100 runners</strong>. One payment, lifetime access — every session, every path, every bonus, and everything I add to the library later.</p>
+        <p>Once those 100 founding places are taken, the price becomes <strong>$67</strong>. That's the only deadline here, and it's a real one: I want a founding group practising, telling me what to build next, before the doors settle at full price. No countdown-timer theatre — when the hundred are gone, they're gone.</p>
+        <a class="rr-cta" href={CHECKOUT_URL}>Join the Runner's Reset — $49 founding price →</a>
+        <p class="rr-cta-note">One-time payment · lifetime access · 30-day keep-it guarantee</p>
+      </div>
+    </section>
+
+    <section class="rr-sec">
+      <h2>Questions runners ask</h2>
+      <details class="faq"><summary>"I'm not flexible. At all."</summary><p>Perfect — that's exactly who Yin is for. It isn't about how far you fold. You only ever go to about 60–80% of your capacity and let the shape soften from there. Tight runners are the whole idea.</p></details>
+      <details class="faq"><summary>"I don't have time."</summary><p>The Target sessions are ten to fifteen minutes — shorter than a proper cooldown. Do one after a run, or in the evening while you wind down. Little and often does far more than long and rare.</p></details>
+      <details class="faq"><summary>"Does stretching even help runners?"</summary><p>The quick, bouncy kind before a run? Not much — and long deep holds <em>before</em> running can actually leave you feeling loose and less powerful, which is why everything here is built for after runs and rest days. What long, still holds are genuinely good at is improving range of motion and helping your body shift into recovery. That's the lane Yin stays in — I won't promise you it cures injuries or flushes anything, because it doesn't.</p></details>
+      <details class="faq"><summary>"Is this just YouTube videos?"</summary><p>The free channel stays free, always. What the library adds is the system: runner-specific sequences for every link in the chain, guided paths so you always know what's next, hold timers, written cues, body maps, the race-week protocol, and calendar plans with reminders. It's the difference between a pile of classes and a plan.</p></details>
+      <details class="faq"><summary>"What do I need?"</summary><p>A mat, a cushion or two, maybe a belt or a block if you have one. Every pose has a gentler option — nothing requires flexibility or fancy props.</p></details>
+      <details class="faq"><summary>"What if it's not for me?"</summary><p>Then the keep-it guarantee has you: a full refund within 30 days, and you keep everything. You genuinely can't lose money here.</p></details>
+    </section>
+
+    <section class="rr-sec rr-close">
+      <h2>The quiet habit that keeps you running</h2>
+      <p>You don't need to overhaul your training. You need ten unhurried minutes, often enough, in the right shapes — and someone to lay them out for you. That's all this is.</p>
+      <p>Roll out your mat after your next run. Let the tightness go before it settles in. And keep running — at your best — for as long as running matters to you.</p>
+      <a class="rr-cta" href={CHECKOUT_URL}>Join the Runner's Reset — $49 founding price →</a>
+      <p class="rr-cta-note">One-time payment · lifetime access · first 100 runners, then $67 · 30-day keep-it guarantee</p>
+      <p class="rr-signoff">Take good care of yourself,<br /><span class="rr-sig">katie</span></p>
+      <p class="rr-note-med"><em>The Runner's Reset is general education, not medical advice. If you have sharp, nervy or lasting pain, please see a physiotherapist or doctor.</em></p>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .rr { padding-bottom: 40px; }
+  .rr-hero { text-align: center; }
+  .rr-sub { font-size: 18px; line-height: 1.6; color: var(--ink-soft); max-width: 60ch; margin: 18px auto 26px; }
+  .rr-sec { margin-top: 40px; }
+  .rr-sec h2 { font-family: var(--display); font-weight: 500; color: var(--plum); font-size: clamp(24px, 3.4vw, 30px); margin: 0 0 14px; }
+  .rr-sec h3 { font-family: var(--display); font-weight: 500; color: var(--plum); font-size: 20px; margin: 26px 0 8px; }
+  .rr-sec p { margin: 0 0 14px; line-height: 1.7; }
+  .rr-note-med { font-size: 14px; color: var(--ink-soft); }
+
+  /* Buy CTA — the site's rosewood accent, works on light + dark */
+  .rr-cta { display: inline-block; background: #89494B; color: #fff; font-weight: 600; font-size: 17px; line-height: 1.3; padding: 15px 28px; border-radius: 100px; text-decoration: none; transition: background .15s; }
+  .rr-cta:hover { background: #6E3A3C; color: #fff; }
+  .rr-cta-note { font-size: 13.5px; color: var(--ink-soft); margin: 12px 0 0; }
+
+  /* Bonus value table */
+  .rr-bonus-wrap { overflow-x: auto; margin: 6px 0 16px; }
+  .rr-bonus { width: 100%; border-collapse: collapse; font-size: 15px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .rr-bonus th { text-align: left; font-family: var(--body); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+  .rr-bonus td { padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .rr-bonus tr:last-child td { border-bottom: none; }
+  .rr-bonus td:last-child, .rr-bonus th:last-child { text-align: right; white-space: nowrap; color: var(--gold-solid); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  /* Guarantee + offer callout boxes */
+  .rr-guarantee, .rr-offer { background: var(--wash, #F0E4E2); border: 1px solid var(--line); border-radius: 18px; padding: 28px 30px; text-align: center; }
+  [data-theme="dark"] .rr-guarantee, [data-theme="dark"] .rr-offer { background: var(--paper-2); }
+  .rr-guarantee h2, .rr-offer h2 { margin-top: 0; }
+  .rr-offer .rr-cta { margin-top: 8px; }
+
+  .rr-close { text-align: center; margin-top: 48px; }
+  .rr-close .plain, .rr-close ul { text-align: left; }
+  .rr-signoff { font-size: 17px; color: var(--ink-soft); line-height: 1.5; margin-top: 30px; }
+  .rr-sig { display: block; font-family: var(--script); font-size: 46px; color: var(--gold); line-height: 1.1; margin-top: 18px; padding-top: 6px; }
+</style>

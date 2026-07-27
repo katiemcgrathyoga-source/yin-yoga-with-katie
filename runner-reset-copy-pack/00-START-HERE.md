@@ -25,7 +25,7 @@ email nurture + founding-launch sequence) for **The Runner's Reset**.
 | `10-project-status.md` | Where the launch stands (context: what's built, what's pending). |
 
 ## Key facts locked in (so nobody re-invents them)
-- **Offer:** lifetime access, one-time. **$47 for the first 100 buyers, then $97.** A
+- **Offer:** lifetime access, one-time. **$49 for the first 100 buyers, then $67.** A
   $10/mo membership folds this in later — **do not sell or mention the membership yet.**
 - **Lead magnet:** a free **"10-Minute Post-Run Reset"** follow-along class (email opt-in).
 - **Launch:** a **founding-member window** (honest scarcity — the 100 seats are real).

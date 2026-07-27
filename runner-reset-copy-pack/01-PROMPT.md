@@ -42,12 +42,12 @@ this, not vague "feel better." Sharpen (don't discard) these angles:
   • "Recovery isn't one muscle — it's the whole chain, plus the calm to let it happen."
 
 # THE OFFER (Hormozi-based — see 03-course-plan-and-offer.md + the $100M Offers book)
-  • Founding launch: lifetime access for $47 for the FIRST 100 buyers, then $97.
+  • Founding launch: lifetime access for $49 for the FIRST 100 buyers, then $67.
     One-time purchase, lifetime access.
   • A $10/mo membership will fold this in LATER — do NOT sell or mention it yet.
   • Apply the value equation (dream outcome × likelihood ÷ time × effort), stack
     and price-anchor the bonuses, and add a STRONG, SPECIFIC guarantee (propose one).
-  • Scarcity is REAL and honest: the founding cap is genuinely 100 seats at $47 —
+  • Scarcity is REAL and honest: the founding cap is genuinely 100 seats at $49 —
     use that, don't fabricate any other urgency.
 
 # THE AUDIENCE
