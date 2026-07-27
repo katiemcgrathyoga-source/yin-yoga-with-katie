@@ -27,9 +27,12 @@ FairPlay DRM is available on Bunny but is overkill for launch).
 
 - **Phase 0 — spike. ✅ DONE.** Signed Bunny delivery through a Netlify function,
   enforced (tampered/token-less URLs are refused by Bunny).
-- **Phase 1 — accounts + entitlements. (code built; needs Supabase project)**
+- **Phase 1 — accounts + entitlements. ✅ DONE.**
   Supabase magic-link login + a per-user entitlement check in the function.
-- **Phase 2** — Stripe Checkout for the course + webhook → entitlement.
+- **Phase 2 — Lemon Squeezy payments. (code built; needs an LS store)**
+  Merchant-of-Record checkout + a webhook that grants the entitlement on payment.
+  (Stripe isn't available to Taiwan-based accounts; LS is an MoR so it also
+  handles worldwide sales tax.)
 - **Phase 3** — gated player wired into the Runner's Reset session pages
   (upgrade from the Bunny embed to an `hls.js` player on the direct HLS URL with
   CDN token-auth, if we want a fully branded player).
@@ -116,6 +119,53 @@ product → sign the URL.
 That proves the real gate: only a **signed-in buyer** gets a playable URL.
 Phase 2 then automates step 7 with Stripe (a webhook writes the entitlement on
 payment, using the service-role key).
+
+---
+
+## Phase 2 — Lemon Squeezy payments (Merchant of Record)
+
+What's already built:
+
+- `netlify/functions/create-checkout.mjs` — `POST /api/checkout` creates a Lemon
+  Squeezy checkout and 303-redirects to it. Picks the **founding** variant for the
+  first `FOUNDING_LIMIT` buyers, then the **standard** variant (counts entitlements).
+  Passes `custom_data.product` through so the webhook knows what was bought.
+- `netlify/functions/lemonsqueezy-webhook.mjs` — `POST /api/ls-webhook` verifies the
+  `X-Signature` HMAC, then on a paid `order_created` gets-or-creates the buyer's
+  Supabase user by email and upserts their entitlement (idempotent).
+- The Runner's Reset buy buttons submit a `<form>` to `/api/checkout` (works
+  without JS). `/account?purchased=1` shows a "sign in to unlock" note.
+
+Buyers don't need to log in to purchase: LS collects the email, the webhook
+creates/links the account, and they sign in later with that same email.
+
+### Steps (Kevin — needs a Lemon Squeezy store, test mode)
+
+1. Create a **Lemon Squeezy** store; keep **Test mode** on for now.
+2. **Product:** create "The Runner's Reset" as a single-payment product with
+   **two variants** — **$49** (founding) and **$67** (standard). Copy each
+   **variant id** (Products → the product → each variant). Also note the **Store id**.
+3. **API key:** Settings → API → create one. **Webhook:** Settings → Webhooks →
+   add one pointing at your tunnel/host `…/api/ls-webhook`, subscribe to
+   **`order_created`**, and set a **signing secret** you choose.
+4. Fill `.env` (secrets stay local — never commit):
+   - `LEMONSQUEEZY_API_KEY=` the API key
+   - `LEMONSQUEEZY_WEBHOOK_SECRET=` the signing secret from step 3
+   - `LEMONSQUEEZY_STORE_ID=` / `LEMONSQUEEZY_VARIANT_FOUNDING=` / `LEMONSQUEEZY_VARIANT_STANDARD=`
+   - `SUPABASE_SERVICE_ROLE_KEY=` from Supabase → Settings → API (**service_role**)
+5. **Local webhook delivery:** LS must reach your machine, so expose it with a
+   tunnel (e.g. `npx localtunnel --port 8888` or ngrok) and point the LS webhook
+   URL at `https://<tunnel>/api/ls-webhook`. Restart `netlify dev`.
+6. Go to `http://localhost:8888/runner-reset`, click **Join**, pay with LS's
+   **test card** (`4242 4242 4242 4242`, any future expiry/CVC).
+7. You're redirected to `/account?purchased=1`; the webhook grants the entitlement.
+   Sign in with that email → the course unlocks; `/dev/stream-test` plays.
+
+### Going live (later)
+- Turn off LS **test mode**; recreate the webhook against the production domain
+  `https://<domain>/api/ls-webhook`.
+- Set every env var in **Netlify → Site settings → Environment variables**.
+- Add the production domain to Supabase Auth redirect URLs.
 
 > Set the same env vars in **Netlify → Site settings → Environment variables**
 > before this is used on a deploy. `.env` is gitignored and never shipped.

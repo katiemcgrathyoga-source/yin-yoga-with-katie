@@ -14,6 +14,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <div class="wrap acct">
     <h1 class="acct-h1">Your account</h1>
 
+    <p id="acct-thanks" class="acct-thanks" hidden>
+      Thank you for joining The Runner's Reset. Sign in below with the same email you
+      used at checkout to unlock it — we'll send you a one-tap link.
+    </p>
+
     {/* Shown until we know the auth state, and if Supabase isn't configured. */}
     <p id="acct-loading" class="acct-note">Loading…</p>
     <p id="acct-unconfigured" class="acct-note" hidden>Accounts aren't switched on yet. Check back soon.</p>
@@ -45,6 +50,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   const $ = (id: string) => document.getElementById(id);
   const show = (id: string, on = true) => { const el = $(id); if (el) el.hidden = !on; };
+
+  // Post-checkout thank-you (Lemon Squeezy redirect returns ?purchased=1).
+  if (new URLSearchParams(location.search).get('purchased') === '1') show('acct-thanks', true);
 
   const supabase = getSupabase();
   if (!supabase) {
@@ -113,6 +121,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .acct { padding: 44px 0 64px; max-width: 560px; }
   .acct-h1 { font-family: var(--display); font-weight: 500; font-size: clamp(30px, 6vw, 40px); color: var(--plum); margin: 0 0 8px; }
   .acct-note { color: var(--ink-soft); }
+  .acct-thanks { background: var(--paper-2); border: 1px solid var(--line); border-left: 3px solid var(--gold-solid); border-radius: 0 12px 12px 0; padding: 16px 18px; margin: 16px 0 0; color: var(--ink); line-height: 1.6; }
   .acct-card { margin: 22px 0 0; background: var(--paper-2); border: 1px solid var(--line); border-radius: 18px; padding: clamp(24px, 4vw, 34px); }
   .acct-h2 { font-family: var(--display); font-weight: 500; font-size: 22px; color: var(--plum); margin: 0 0 8px; }
   .acct-sub { color: var(--ink-soft); font-size: 15.5px; line-height: 1.6; margin: 0 0 18px; }

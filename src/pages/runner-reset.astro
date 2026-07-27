@@ -11,8 +11,8 @@ import katieHello from '../assets/katie-hello.jpg';
 // "what happens the moment you join" steps) and one bit of sticky-bar UI micro-label.
 //
 // Hidden (noindex + excluded from sitemap) until launch, matching the /runners funnel.
-// All buy buttons point at CHECKOUT_URL. TODO: paste the Gumroad/Stripe founding-sale link.
-const CHECKOUT_URL = '#checkout-placeholder';
+// The buy buttons POST to /api/checkout (Lemon Squeezy) — a plain form so it
+// works without JS. Price + entitlement logic live in the Netlify functions.
 
 // Target sessions — one card each. Pose photo = a representative shape the
 // session draws on (real /poses/*.jpg imagery, not stock). `angle` may carry
@@ -83,7 +83,7 @@ ogImage.searchParams.set('s', 'Short follow-along Yin sessions to undo the tight
           calves, quads, lower back. The Runner's Reset is a library of short, follow-along Yin sessions
           that give that range back, ten to fifteen quiet minutes at a time.
         </p>
-        <a class="rr-cta" href={CHECKOUT_URL}>Join the Runner's Reset — $49 founding price →</a>
+        <form method="POST" action="/api/checkout" class="rr-cta-form"><button type="submit" class="rr-cta">Join the Runner's Reset — $49 founding price →</button></form>
         <p class="rr-cta-note">One-time payment · lifetime access · 30-day keep-it guarantee</p>
       </div>
     </header>
@@ -242,7 +242,7 @@ ogImage.searchParams.set('s', 'Short follow-along Yin sessions to undo the tight
 
     {/* ── CTA — after the offer / bonuses ──────────────────────────────── */}
     <div class="rr-read rr-cta-row">
-      <a class="rr-cta" href={CHECKOUT_URL}>Join the Runner's Reset — $49 founding price →</a>
+      <form method="POST" action="/api/checkout" class="rr-cta-form"><button type="submit" class="rr-cta">Join the Runner's Reset — $49 founding price →</button></form>
       <p class="rr-cta-note">One-time payment · lifetime access · 30-day keep-it guarantee</p>
     </div>
 
@@ -287,7 +287,7 @@ ogImage.searchParams.set('s', 'Short follow-along Yin sessions to undo the tight
               <li>Start with the Post-Run Reset after your very next run.</li>
             </ol>
           </div>
-          <a class="rr-cta" href={CHECKOUT_URL}>Join the Runner's Reset — $49 founding price →</a>
+          <form method="POST" action="/api/checkout" class="rr-cta-form"><button type="submit" class="rr-cta">Join the Runner's Reset — $49 founding price →</button></form>
           <p class="rr-cta-note">One-time payment · lifetime access · 30-day keep-it guarantee</p>
         </div>
       </div>
@@ -314,7 +314,7 @@ ogImage.searchParams.set('s', 'Short follow-along Yin sessions to undo the tight
         <h2>The quiet habit that keeps you running</h2>
         <p>You don't need to overhaul your training. You need ten unhurried minutes, often enough, in the right shapes — and someone to lay them out for you. That's all this is.</p>
         <p>Roll out your mat after your next run. Let the tightness go before it settles in. And keep running — at your best — for as long as running matters to you.</p>
-        <a class="rr-cta" href={CHECKOUT_URL}>Join the Runner's Reset — $49 founding price →</a>
+        <form method="POST" action="/api/checkout" class="rr-cta-form"><button type="submit" class="rr-cta">Join the Runner's Reset — $49 founding price →</button></form>
         <p class="rr-cta-note">One-time payment · lifetime access · first 100 runners, then $67 · 30-day keep-it guarantee</p>
         <p class="rr-signoff">Take good care of yourself,<br /><span class="rr-sig">katie</span></p>
         <p class="rr-note-med"><em>The Runner's Reset is general education, not medical advice. If you have sharp, nervy or lasting pain, please see a physiotherapist or doctor.</em></p>
@@ -327,7 +327,7 @@ ogImage.searchParams.set('s', 'Short follow-along Yin sessions to undo the tight
   <div class="rr-sticky" id="rrSticky" hidden>
     <div class="rr-sticky-inner">
       <span class="rr-sticky-text"><strong>$49</strong> founding price</span>
-      <a class="rr-cta rr-cta-sm" href={CHECKOUT_URL}>Join →</a>
+      <form method="POST" action="/api/checkout" class="rr-cta-form"><button type="submit" class="rr-cta rr-cta-sm">Join →</button></form>
       <button class="rr-sticky-x" type="button" aria-label="Dismiss offer bar">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
@@ -388,10 +388,12 @@ ogImage.searchParams.set('s', 'Short follow-along Yin sessions to undo the tight
   .rr-sub { font-size: clamp(17px, 2.3vw, 19px); line-height: 1.62; color: var(--ink-soft); max-width: 60ch; margin: 20px auto 28px; }
 
   /* Buy CTA — the brand rosewood; fixed colours so it holds on light + dark */
+  .rr-cta-form { display: contents; }
   .rr-cta {
     display: inline-block; background: #89494B; color: #fff; font-weight: 600;
-    font-size: 17px; line-height: 1.3; padding: 15px 28px; border-radius: 100px;
-    text-decoration: none; border: none; box-shadow: 0 10px 26px -14px rgba(137,73,75,.9);
+    font-family: inherit; font-size: 17px; line-height: 1.3; padding: 15px 28px;
+    border-radius: 100px; text-decoration: none; border: none; cursor: pointer;
+    box-shadow: 0 10px 26px -14px rgba(137,73,75,.9);
     transition: background .15s ease, transform .15s ease;
   }
   .rr-cta:hover { background: #6E3A3C; color: #fff; transform: translateY(-1px); }
