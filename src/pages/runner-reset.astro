@@ -1,11 +1,60 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import katieAbout from '../assets/katie-about.jpg';
+import katieHello from '../assets/katie-hello.jpg';
 
-// The Runner's Reset — long-form sales page. Copy from runner-reset-copy-pack/A-sales-page.md.
+// The Runner's Reset — long-form sales page. Copy is LOCKED, verbatim from
+// runner-reset-copy-pack/A-sales-page.md. This file is a visual/structural
+// redesign only — no copy is rewritten, cut, reordered, or added, except the
+// two elements Kevin explicitly kept (the credibility stat strip and the
+// "what happens the moment you join" steps) and one bit of sticky-bar UI micro-label.
+//
 // Hidden (noindex + excluded from sitemap) until launch, matching the /runners funnel.
-
-// All buy buttons point here. TODO: paste the Gumroad/Stripe founding-sale link.
+// All buy buttons point at CHECKOUT_URL. TODO: paste the Gumroad/Stripe founding-sale link.
 const CHECKOUT_URL = '#checkout-placeholder';
+
+// Target sessions — one card each. Pose photo = a representative shape the
+// session draws on (real /poses/*.jpg imagery, not stock). `angle` may carry
+// <em>/<strong> from the copy, so it's rendered with set:html.
+const TARGET_SESSIONS = [
+  { name: 'Hips & Hip Flexors', time: '~12 min', pose: 'dragon',
+    angle: 'Running plus sitting equals tight hips — open them first, and your whole stride frees up.' },
+  { name: 'Hamstrings & Glutes', time: '~14 min', pose: 'caterpillar',
+    angle: 'Your hamstrings do the hardest braking work in every stride — give them their length back.' },
+  { name: 'Calves, Ankles & Feet', time: '~12 min', pose: 'toe-squat',
+    angle: 'It all starts at your feet — stiff ankles change everything above them, and almost no runner works here.' },
+  { name: 'Quads & Outer Hip — the “IT band” one', time: '~14 min', pose: 'saddle',
+    angle: 'You can’t stretch your IT band — it’s a tough band of fascia — but you <em>can</em> release the muscles that pull on it. This session does exactly that.' },
+  { name: 'Lower Back & Spine', time: '~13 min', pose: 'sphinx',
+    angle: 'Every run is impact your spine absorbs. This is how you gently undo the day’s compression.' },
+  { name: 'The Express Full Reset', time: '~15 min', pose: 'childs-pose',
+    angle: 'One pose per area when you want everything and only have a quarter of an hour.' },
+];
+
+const FULL_RESETS = [
+  { name: 'The Full Reset', time: '~42 min', pose: 'sleeping-swan',
+    angle: 'Every area, one unhurried practice. The everyday all-rounder.' },
+  { name: 'The Restorative Reset', time: '~40 min', pose: 'supported-fish',
+    angle: 'Gentler and fully supported with props — for tired legs and low-energy days.' },
+  { name: 'The Silent Reset', time: '~45 min', pose: 'corpse',
+    angle: 'The same journey, held a touch longer, with minimal talking. For when you want quiet.' },
+];
+
+const GUIDED_PATHS = [
+  { term: 'Start Here', body: 'a short welcome video: what Yin is, why it suits runners, how to use the library.' },
+  { term: 'By level', body: 'new to Yin, returning, or experienced: a path for each.' },
+  { term: 'By need', body: 'tight hips, after a long run, sore feet, race week, only ten minutes: a simple chooser points you to the right session.' },
+  { term: 'Calendar plans', body: 'load a plan straight into your calendar with reminders: <strong>The 6-Week Foundation</strong> (the gentle on-ramp), <strong>The Weekly Rhythm</strong> (a repeatable week to keep forever), and <strong>Race Prep</strong> (a taper-aware plan that eases off into race week).' },
+];
+
+const BONUSES = [
+  { name: 'The Tight-Hip Fix', solves: 'a short series for the runner’s number-one grumble', worth: '$29' },
+  { name: 'The Desk-Runner’s Hip Release', solves: 'undoing what eight hours of sitting does to a runner’s hips', worth: '$39' },
+  { name: 'The Race-Week Protocol', solves: 'exactly what to do — and leave alone — in the 7 days before a race', worth: '$19' },
+  { name: 'The Runner’s Pose Library', solves: 'every pose with plain cues and cautions', worth: '$29' },
+  { name: 'The Never-Skip Scheduler', solves: 'your plan pre-loaded into your calendar, with a quiet nudge when a session’s due — because showing up is what actually drives results', worth: '$19' },
+];
 
 const ogImage = new URL('/og/card.png', Astro.site);
 ogImage.searchParams.set('t', 'The Runner’s Reset');
@@ -23,180 +72,512 @@ ogImage.searchParams.set('s', 'Short follow-along Yin sessions to undo the tight
   image={ogImage.href}
   noindex={true}
 >
-  <div class="wrap rr">
-    <header class="hero rr-hero">
-      <p class="eyebrow">For runners with tight hips, heavy legs and good intentions</p>
-      <h1>Stop getting tighter. Keep running — at your best.</h1>
-      <p class="rr-sub">
-        Running quietly stiffens the very tissues that keep you running well — hips, hamstrings,
-        calves, quads, lower back. The Runner's Reset is a library of short, follow-along Yin sessions
-        that give that range back, ten to fifteen quiet minutes at a time.
-      </p>
-      <a class="rr-cta" href={CHECKOUT_URL}>Join the Runner's Reset — $49 founding price →</a>
-      <p class="rr-cta-note">One-time payment · lifetime access · 30-day keep-it guarantee</p>
-    </header>
-
-    <section class="rr-sec">
-      <h2>The part of every run you skip</h2>
-      <p>You know the scene. You finish a good run — heavy legs, tight hips, that familiar pull down the back of your thigh. You mean to stretch. You check your watch instead.</p>
-      <p>It's not laziness. Nobody ever made the stretching part <em>simple</em>. So it slides — run after run — and the tightness quietly stacks up. Hips one month. Calves the next. Then one morning your stride feels short and braced, a niggle starts whispering, and you're googling "how long does it take to lose fitness."</p>
-      <p>Here's the thing worth knowing: that slow build-up isn't a character flaw, and it isn't inevitable. It's just the half of training nobody laid out for you.</p>
-    </section>
-
-    <section class="rr-sec">
-      <h2>Why running tightens you (and why a quick stretch doesn't undo it)</h2>
-      <p>Running makes you fitter by loading the same chain of tissues over and over — hips, hamstrings, glutes, calves, quads, lower back. Thousands of steps, the same shapes, every run. That repetition is what builds you up. It's also what quietly shortens and stiffens those exact tissues over weeks — especially if, like most of us, you spend the rest of the day in a chair.</p>
-      <p>And a hurried 30-second stretch barely touches it. The deeper tissue around your hips and joints doesn't respond to a quick pull; it responds to <em>time</em>. That's all Yin yoga really is: you settle into a shape and stay for a few quiet minutes — nothing forced, only ever to about 60–80% of your capacity — and let gravity and your breath do the slow work a rushed stretch can't.</p>
-      <p>Two things happen when you practise this way:</p>
-      <ul class="plain">
-        <li><strong>Your range of motion improves.</strong> Long, still holds are well suited to easing the tightness running builds up in the hips, hamstrings, calves and ankles — the mobility that lets your stride stay long and easy.</li>
-        <li><strong>Your body actually recovers.</strong> The long, quiet holds help you shift down into your rest state, so you come away calmer and less braced — the recovery half of training runners so often skip.</li>
-      </ul>
-      <p>You don't need to become flexible. You just need to stop getting tighter.</p>
-      <p class="rr-note-med"><em>A gentle note: this is general education, not medical advice. Yin helps with everyday tightness — it doesn't treat or prevent injury, and sharp or lasting pain belongs with a physio or doctor.</em></p>
-    </section>
-
-    <section class="rr-sec">
-      <h2>Who this is for</h2>
-      <ul class="plain">
-        <li>You run — for fitness, for sanity, for the long game. Parkruns to marathons, it doesn't matter.</li>
-        <li>You sit most of the day, and you can feel what that's doing to your hips.</li>
-        <li>You keep meaning to stretch, and you keep not doing it — because nothing ever told you <em>what</em>, <em>when</em>, or <em>for how long</em>.</li>
-        <li>You're not flexible. Good. Yin was made for exactly that.</li>
-      </ul>
-      <p><strong>Who it isn't for:</strong> if you're carrying an acute injury or sharp pain, see a physio first — this library will still be here when you're cleared to move. And if you're after sweaty power yoga, this is the opposite of that, on purpose.</p>
-    </section>
-
-    <section class="rr-sec">
-      <h2>What's inside The Runner's Reset</h2>
-      <p>It's a practice library, not a course you fall behind on. Two kinds of session, plus guided paths that tell you exactly which one to press play on.</p>
-
-      <h3>Target sessions — one for each place running tightens</h3>
-      <p>Short, follow-along Yin sessions, about 12–15 minutes each. Do one right after a run, while you're warm, or whenever a specific spot is grumbling.</p>
-      <ul class="plain">
-        <li><strong>Hips &amp; Hip Flexors (~12 min).</strong> Running plus sitting equals tight hips — open them first, and your whole stride frees up.</li>
-        <li><strong>Hamstrings &amp; Glutes (~14 min).</strong> Your hamstrings do the hardest braking work in every stride — give them their length back.</li>
-        <li><strong>Calves, Ankles &amp; Feet (~12 min).</strong> It all starts at your feet — stiff ankles change everything above them, and almost no runner works here.</li>
-        <li><strong>Quads &amp; Outer Hip — the "IT band" one (~14 min).</strong> You can't stretch your IT band — it's a tough band of fascia — but you <em>can</em> release the muscles that pull on it. This session does exactly that.</li>
-        <li><strong>Lower Back &amp; Spine (~13 min).</strong> Every run is impact your spine absorbs. This is how you gently undo the day's compression.</li>
-        <li><strong>The Express Full Reset (~15 min).</strong> One pose per area when you want everything and only have a quarter of an hour.</li>
-      </ul>
-
-      <h3>Full Reset sessions — the whole chain, in one practice</h3>
-      <p>Because running doesn't tighten one muscle — it tightens a chain, and a tight link pulls on the next. Around 40 minutes each, made for rest days.</p>
-      <ul class="plain">
-        <li><strong>The Full Reset (~42 min).</strong> Every area, one unhurried practice. The everyday all-rounder.</li>
-        <li><strong>The Restorative Reset (~40 min).</strong> Gentler and fully supported with props — for tired legs and low-energy days.</li>
-        <li><strong>The Silent Reset (~45 min).</strong> The same journey, held a touch longer, with minimal talking. For when you want quiet.</li>
-      </ul>
-
-      <h3>Guided paths — so you're never left guessing</h3>
-      <ul class="plain">
-        <li><strong>Start Here</strong> — a short welcome video: what Yin is, why it suits runners, how to use the library.</li>
-        <li><strong>By level</strong> — new to Yin, returning, or experienced: a path for each.</li>
-        <li><strong>By need</strong> — tight hips, after a long run, sore feet, race week, only ten minutes: a simple chooser points you to the right session.</li>
-        <li><strong>Calendar plans</strong> — load a plan straight into your calendar with reminders: <strong>The 6-Week Foundation</strong> (the gentle on-ramp), <strong>The Weekly Rhythm</strong> (a repeatable week to keep forever), and <strong>Race Prep</strong> (a taper-aware plan that eases off into race week).</li>
-      </ul>
-
-      <h3>Every session page gives you five ways in</h3>
-      <p>The follow-along video, an on-screen hold timer (so you can practise screen-free once you know the shapes), the plain-English <em>why</em> behind the session, written cues you can read, and a body map showing where it works. Whatever kind of learner you are, it's covered.</p>
-    </section>
-
-    <section class="rr-sec">
-      <h2>The bonuses — one for each classic runner problem</h2>
-      <div class="rr-bonus-wrap">
-        <table class="rr-bonus">
-          <thead>
-            <tr><th>Included free</th><th>What it solves</th><th>Worth</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>The Tight-Hip Fix</strong></td><td>a short series for the runner's number-one grumble</td><td>$29</td></tr>
-            <tr><td><strong>The Desk-Runner's Hip Release</strong></td><td>undoing what eight hours of sitting does to a runner's hips</td><td>$39</td></tr>
-            <tr><td><strong>The Race-Week Protocol</strong></td><td>exactly what to do — and leave alone — in the 7 days before a race</td><td>$19</td></tr>
-            <tr><td><strong>The Runner's Pose Library</strong></td><td>every pose with plain cues and cautions</td><td>$29</td></tr>
-            <tr><td><strong>The Never-Skip Scheduler</strong></td><td>your plan pre-loaded into your calendar, with a quiet nudge when a session's due — because showing up is what actually drives results</td><td>$19</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p>Priced separately, the bonuses alone come to <strong>$135</strong> — before you count the eight full sessions and the guided paths. You get all of it, for good, for less than a couple of physio sessions.</p>
-    </section>
-
-    <section class="rr-sec">
-      <h2>Who's teaching you</h2>
-      <p>I'm Katie. I've taught Yin yoga for six years, trained at the Arhanta Yoga Ashram, and shared over 300 free classes on YouTube — including the runner classes many of you found me through. My whole approach is the opposite of hype: slow, kind, and honest about what Yin can and can't do. The Runner's Reset is everything I know about the runner's body, laid out so you never have to wonder what to press play on.</p>
-    </section>
-
-    <section class="rr-sec">
-      <div class="rr-guarantee">
-        <h2>The keep-it guarantee</h2>
-        <p>Join, and practise along for 30 days. If your hips, hamstrings and calves don't feel noticeably looser — if you're not moving more easily — email me for a full refund, <strong>and keep lifetime access to the entire library anyway</strong>.</p>
-        <p>I can offer that because the risk should sit with me, not you. If Yin doesn't help your running, I haven't earned your money — it's that simple.</p>
-      </div>
-    </section>
-
-    <section class="rr-sec">
-      <div class="rr-offer">
-        <h2>The founding price (and the honest small print)</h2>
-        <p>The Runner's Reset is <strong>$49 for the first 100 runners</strong>. One payment, lifetime access — every session, every path, every bonus, and everything I add to the library later.</p>
-        <p>Once those 100 founding places are taken, the price becomes <strong>$67</strong>. That's the only deadline here, and it's a real one: I want a founding group practising, telling me what to build next, before the doors settle at full price. No countdown-timer theatre — when the hundred are gone, they're gone.</p>
+  <div class="rr">
+    {/* ── Hero ─────────────────────────────────────────────────────────── */}
+    <header class="rr-hero" id="rrHero">
+      <div class="rr-read">
+        <p class="eyebrow">For runners with tight hips, heavy legs and good intentions</p>
+        <h1>Stop getting tighter. Keep running — at your best.</h1>
+        <p class="rr-sub">
+          Running quietly stiffens the very tissues that keep you running well — hips, hamstrings,
+          calves, quads, lower back. The Runner's Reset is a library of short, follow-along Yin sessions
+          that give that range back, ten to fifteen quiet minutes at a time.
+        </p>
         <a class="rr-cta" href={CHECKOUT_URL}>Join the Runner's Reset — $49 founding price →</a>
         <p class="rr-cta-note">One-time payment · lifetime access · 30-day keep-it guarantee</p>
       </div>
-    </section>
+    </header>
 
+    <div class="rr-band">
+      <figure class="rr-hero-img">
+        <Image src={katieHello} alt="Katie, the teacher behind The Runner's Reset" width={1040} height={585} loading="eager" fetchpriority="high" />
+      </figure>
+      <ul class="rr-stats" aria-label="About Katie">
+        <li><strong>6 years</strong><span>teaching Yin</span></li>
+        <li><strong>300+</strong><span>free classes</span></li>
+        <li><strong>12k+</strong><span>on YouTube</span></li>
+        <li><strong>Arhanta</strong><span>Ashram trained</span></li>
+      </ul>
+    </div>
+
+    {/* ── The part of every run you skip ───────────────────────────────── */}
     <section class="rr-sec">
-      <h2>Questions runners ask</h2>
-      <details class="faq"><summary>"I'm not flexible. At all."</summary><p>Perfect — that's exactly who Yin is for. It isn't about how far you fold. You only ever go to about 60–80% of your capacity and let the shape soften from there. Tight runners are the whole idea.</p></details>
-      <details class="faq"><summary>"I don't have time."</summary><p>The Target sessions are ten to fifteen minutes — shorter than a proper cooldown. Do one after a run, or in the evening while you wind down. Little and often does far more than long and rare.</p></details>
-      <details class="faq"><summary>"Does stretching even help runners?"</summary><p>The quick, bouncy kind before a run? Not much — and long deep holds <em>before</em> running can actually leave you feeling loose and less powerful, which is why everything here is built for after runs and rest days. What long, still holds are genuinely good at is improving range of motion and helping your body shift into recovery. That's the lane Yin stays in — I won't promise you it cures injuries or flushes anything, because it doesn't.</p></details>
-      <details class="faq"><summary>"Is this just YouTube videos?"</summary><p>The free channel stays free, always. What the library adds is the system: runner-specific sequences for every link in the chain, guided paths so you always know what's next, hold timers, written cues, body maps, the race-week protocol, and calendar plans with reminders. It's the difference between a pile of classes and a plan.</p></details>
-      <details class="faq"><summary>"What do I need?"</summary><p>A mat, a cushion or two, maybe a belt or a block if you have one. Every pose has a gentler option — nothing requires flexibility or fancy props.</p></details>
-      <details class="faq"><summary>"What if it's not for me?"</summary><p>Then the keep-it guarantee has you: a full refund within 30 days, and you keep everything. You genuinely can't lose money here.</p></details>
+      <div class="rr-read">
+        <h2>The part of every run you skip</h2>
+        <p>You know the scene. You finish a good run — heavy legs, tight hips, that familiar pull down the back of your thigh. You mean to stretch. You check your watch instead.</p>
+        <p>It's not laziness. Nobody ever made the stretching part <em>simple</em>. So it slides — run after run — and the tightness quietly stacks up. Hips one month. Calves the next. Then one morning your stride feels short and braced, a niggle starts whispering, and you're googling "how long does it take to lose fitness."</p>
+        <p>Here's the thing worth knowing: that slow build-up isn't a character flaw, and it isn't inevitable. It's just the half of training nobody laid out for you.</p>
+      </div>
     </section>
 
-    <section class="rr-sec rr-close">
-      <h2>The quiet habit that keeps you running</h2>
-      <p>You don't need to overhaul your training. You need ten unhurried minutes, often enough, in the right shapes — and someone to lay them out for you. That's all this is.</p>
-      <p>Roll out your mat after your next run. Let the tightness go before it settles in. And keep running — at your best — for as long as running matters to you.</p>
-      <a class="rr-cta" href={CHECKOUT_URL}>Join the Runner's Reset — $49 founding price →</a>
-      <p class="rr-cta-note">One-time payment · lifetime access · first 100 runners, then $67 · 30-day keep-it guarantee</p>
-      <p class="rr-signoff">Take good care of yourself,<br /><span class="rr-sig">katie</span></p>
-      <p class="rr-note-med"><em>The Runner's Reset is general education, not medical advice. If you have sharp, nervy or lasting pain, please see a physiotherapist or doctor.</em></p>
+    {/* ── Why running tightens you ─────────────────────────────────────── */}
+    <section class="rr-sec">
+      <div class="rr-read">
+        <h2>Why running tightens you (and why a quick stretch doesn't undo it)</h2>
+        <p>Running makes you fitter by loading the same chain of tissues over and over — hips, hamstrings, glutes, calves, quads, lower back. Thousands of steps, the same shapes, every run. That repetition is what builds you up. It's also what quietly shortens and stiffens those exact tissues over weeks — especially if, like most of us, you spend the rest of the day in a chair.</p>
+        <p>And a hurried 30-second stretch barely touches it. The deeper tissue around your hips and joints doesn't respond to a quick pull; it responds to <em>time</em>. That's all Yin yoga really is: you settle into a shape and stay for a few quiet minutes — nothing forced, only ever to about 60–80% of your capacity — and let gravity and your breath do the slow work a rushed stretch can't.</p>
+        <p>Two things happen when you practise this way:</p>
+        <ul class="plain">
+          <li><strong>Your range of motion improves.</strong> Long, still holds are well suited to easing the tightness running builds up in the hips, hamstrings, calves and ankles — the mobility that lets your stride stay long and easy.</li>
+          <li><strong>Your body actually recovers.</strong> The long, quiet holds help you shift down into your rest state, so you come away calmer and less braced — the recovery half of training runners so often skip.</li>
+        </ul>
+        <p class="rr-lead">You don't need to become flexible. You just need to stop getting tighter.</p>
+        <p class="rr-note-med"><em>A gentle note: this is general education, not medical advice. Yin helps with everyday tightness — it doesn't treat or prevent injury, and sharp or lasting pain belongs with a physio or doctor.</em></p>
+      </div>
     </section>
+
+    {/* ── Who this is for ──────────────────────────────────────────────── */}
+    <section class="rr-sec">
+      <div class="rr-band">
+        <div class="rr-who">
+          <h2>Who this is for</h2>
+          <ul class="rr-check">
+            <li>You run — for fitness, for sanity, for the long game. Parkruns to marathons, it doesn't matter.</li>
+            <li>You sit most of the day, and you can feel what that's doing to your hips.</li>
+            <li>You keep meaning to stretch, and you keep not doing it — because nothing ever told you <em>what</em>, <em>when</em>, or <em>for how long</em>.</li>
+            <li>You're not flexible. Good. Yin was made for exactly that.</li>
+          </ul>
+          <p class="rr-inset"><strong>Who it isn't for:</strong> if you're carrying an acute injury or sharp pain, see a physio first — this library will still be here when you're cleared to move. And if you're after sweaty power yoga, this is the opposite of that, on purpose.</p>
+        </div>
+      </div>
+    </section>
+
+    {/* ── What's inside ────────────────────────────────────────────────── */}
+    <section class="rr-sec">
+      <div class="rr-read">
+        <h2>What's inside The Runner's Reset</h2>
+        <p>It's a practice library, not a course you fall behind on. Two kinds of session, plus guided paths that tell you exactly which one to press play on.</p>
+        <h3 class="rr-h3">Target sessions — one for each place running tightens</h3>
+        <p>Short, follow-along Yin sessions, about 12–15 minutes each. Do one right after a run, while you're warm, or whenever a specific spot is grumbling.</p>
+      </div>
+
+      <div class="rr-band">
+        <ul class="rr-cards" aria-label="Target sessions">
+          {TARGET_SESSIONS.map((s) => (
+            <li class="rr-scard">
+              <div class="rr-scard-media">
+                <img src={`/poses/${s.pose}.jpg`} alt={`Yin shape used in the ${s.name} session`} loading="lazy" width="480" height="360" />
+              </div>
+              <div class="rr-scard-body">
+                <div class="rr-scard-head">
+                  <h4>{s.name}</h4>
+                  <span class="rr-dur">{s.time}</span>
+                </div>
+                <p set:html={s.angle}></p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="rr-read">
+        <h3 class="rr-h3">Full Reset sessions — the whole chain, in one practice</h3>
+        <p>Because running doesn't tighten one muscle — it tightens a chain, and a tight link pulls on the next. Around 40 minutes each, made for rest days.</p>
+      </div>
+
+      <div class="rr-band">
+        <ul class="rr-cards rr-cards-3" aria-label="Full Reset sessions">
+          {FULL_RESETS.map((s) => (
+            <li class="rr-scard">
+              <div class="rr-scard-media">
+                <img src={`/poses/${s.pose}.jpg`} alt={`Yin shape used in ${s.name}`} loading="lazy" width="480" height="360" />
+              </div>
+              <div class="rr-scard-body">
+                <div class="rr-scard-head">
+                  <h4>{s.name}</h4>
+                  <span class="rr-dur">{s.time}</span>
+                </div>
+                <p set:html={s.angle}></p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="rr-read">
+        <h3 class="rr-h3">Guided paths — so you're never left guessing</h3>
+      </div>
+      <div class="rr-band">
+        <ul class="rr-paths" aria-label="Guided paths">
+          {GUIDED_PATHS.map((p) => (
+            <li class="rr-path">
+              <strong class="rr-path-term">{p.term}</strong>
+              <span set:html={p.body}></span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="rr-read">
+        <h3 class="rr-h3">Every session page gives you five ways in</h3>
+        <p>The follow-along video, an on-screen hold timer (so you can practise screen-free once you know the shapes), the plain-English <em>why</em> behind the session, written cues you can read, and a body map showing where it works. Whatever kind of learner you are, it's covered.</p>
+      </div>
+      <div class="rr-band">
+        {/* PLACEHOLDER — swap for a real screenshot of a session page once the course is filmed. */}
+        <figure class="rr-ph rr-ph-wide">
+          <span class="rr-ph-label">Session page preview</span>
+          <span class="rr-ph-note">A screenshot of a real session — the video, hold timer, cues and body map — drops in here after filming.</span>
+        </figure>
+      </div>
+    </section>
+
+    {/* ── The bonuses ──────────────────────────────────────────────────── */}
+    <section class="rr-sec">
+      <div class="rr-band">
+        <h2 class="rr-band-h2">The bonuses — one for each classic runner problem</h2>
+        <ul class="rr-bonus" aria-label="Included bonuses">
+          {BONUSES.map((b) => (
+            <li class="rr-bonus-row">
+              <div class="rr-bonus-main">
+                <strong>{b.name}</strong>
+                <span>{b.solves}</span>
+              </div>
+              <span class="rr-bonus-worth"><span class="rr-bonus-worth-l">worth</span>{b.worth}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="rr-bonus-foot">Priced separately, the bonuses alone come to <strong>$135</strong> — before you count the eight full sessions and the guided paths. You get all of it, for good, for less than a couple of physio sessions.</p>
+      </div>
+    </section>
+
+    {/* ── CTA — after the offer / bonuses ──────────────────────────────── */}
+    <div class="rr-read rr-cta-row">
+      <a class="rr-cta" href={CHECKOUT_URL}>Join the Runner's Reset — $49 founding price →</a>
+      <p class="rr-cta-note">One-time payment · lifetime access · 30-day keep-it guarantee</p>
+    </div>
+
+    {/* ── Who's teaching you ───────────────────────────────────────────── */}
+    <section class="rr-sec">
+      <div class="rr-band">
+        <div class="rr-bio">
+          <Image class="rr-bio-photo" src={katieAbout} alt="Katie, a qualified Yin yoga teacher, in tree pose" width={520} height={694} loading="lazy" />
+          <div class="rr-bio-text">
+            <h2>Who's teaching you</h2>
+            <p>I'm Katie. I've taught Yin yoga for six years, trained at the Arhanta Yoga Ashram, and shared over 300 free classes on YouTube — including the runner classes many of you found me through. My whole approach is the opposite of hype: slow, kind, and honest about what Yin can and can't do. The Runner's Reset is everything I know about the runner's body, laid out so you never have to wonder what to press play on.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── The keep-it guarantee ────────────────────────────────────────── */}
+    <section class="rr-sec">
+      <div class="rr-band">
+        <div class="rr-guarantee">
+          <span class="rr-seal" aria-hidden="true"><span class="rr-seal-n">30</span><span class="rr-seal-t">day<br />keep-it</span></span>
+          <h2>The keep-it guarantee</h2>
+          <p>Join, and practise along for 30 days. If your hips, hamstrings and calves don't feel noticeably looser — if you're not moving more easily — email me for a full refund, <strong>and keep lifetime access to the entire library anyway</strong>.</p>
+          <p>I can offer that because the risk should sit with me, not you. If Yin doesn't help your running, I haven't earned your money — it's that simple.</p>
+        </div>
+      </div>
+    </section>
+
+    {/* ── The founding price ───────────────────────────────────────────── */}
+    <section class="rr-sec">
+      <div class="rr-band">
+        <div class="rr-offer">
+          <h2>The founding price (and the honest small print)</h2>
+          <p class="rr-price"><span class="rr-price-now">$49</span><span class="rr-price-meta">for the first 100 runners<br /><span class="rr-price-then">then $67</span></span></p>
+          <p>The Runner's Reset is <strong>$49 for the first 100 runners</strong>. One payment, lifetime access — every session, every path, every bonus, and everything I add to the library later.</p>
+          <p>Once those 100 founding places are taken, the price becomes <strong>$67</strong>. That's the only deadline here, and it's a real one: I want a founding group practising, telling me what to build next, before the doors settle at full price. No countdown-timer theatre — when the hundred are gone, they're gone.</p>
+          <div class="rr-next">
+            <p class="rr-next-h">What happens the moment you join</p>
+            <ol>
+              <li>Secure checkout — one payment, no subscription.</li>
+              <li>Instant access to the whole library, yours for good.</li>
+              <li>Start with the Post-Run Reset after your very next run.</li>
+            </ol>
+          </div>
+          <a class="rr-cta" href={CHECKOUT_URL}>Join the Runner's Reset — $49 founding price →</a>
+          <p class="rr-cta-note">One-time payment · lifetime access · 30-day keep-it guarantee</p>
+        </div>
+      </div>
+    </section>
+
+    {/* ── FAQ ──────────────────────────────────────────────────────────── */}
+    <section class="rr-sec">
+      <div class="rr-read">
+        <h2>Questions runners ask</h2>
+        <div class="rr-faqs">
+          <details class="faq"><summary>"I'm not flexible. At all."</summary><p>Perfect — that's exactly who Yin is for. It isn't about how far you fold. You only ever go to about 60–80% of your capacity and let the shape soften from there. Tight runners are the whole idea.</p></details>
+          <details class="faq"><summary>"I don't have time."</summary><p>The Target sessions are ten to fifteen minutes — shorter than a proper cooldown. Do one after a run, or in the evening while you wind down. Little and often does far more than long and rare.</p></details>
+          <details class="faq"><summary>"Does stretching even help runners?"</summary><p>The quick, bouncy kind before a run? Not much — and long deep holds <em>before</em> running can actually leave you feeling loose and less powerful, which is why everything here is built for after runs and rest days. What long, still holds are genuinely good at is improving range of motion and helping your body shift into recovery. That's the lane Yin stays in — I won't promise you it cures injuries or flushes anything, because it doesn't.</p></details>
+          <details class="faq"><summary>"Is this just YouTube videos?"</summary><p>The free channel stays free, always. What the library adds is the system: runner-specific sequences for every link in the chain, guided paths so you always know what's next, hold timers, written cues, body maps, the race-week protocol, and calendar plans with reminders. It's the difference between a pile of classes and a plan.</p></details>
+          <details class="faq"><summary>"What do I need?"</summary><p>A mat, a cushion or two, maybe a belt or a block if you have one. Every pose has a gentler option — nothing requires flexibility or fancy props.</p></details>
+          <details class="faq"><summary>"What if it's not for me?"</summary><p>Then the keep-it guarantee has you: a full refund within 30 days, and you keep everything. You genuinely can't lose money here.</p></details>
+        </div>
+      </div>
+    </section>
+
+    {/* ── The close ────────────────────────────────────────────────────── */}
+    <section class="rr-sec rr-close" id="rrClose">
+      <div class="rr-read">
+        <h2>The quiet habit that keeps you running</h2>
+        <p>You don't need to overhaul your training. You need ten unhurried minutes, often enough, in the right shapes — and someone to lay them out for you. That's all this is.</p>
+        <p>Roll out your mat after your next run. Let the tightness go before it settles in. And keep running — at your best — for as long as running matters to you.</p>
+        <a class="rr-cta" href={CHECKOUT_URL}>Join the Runner's Reset — $49 founding price →</a>
+        <p class="rr-cta-note">One-time payment · lifetime access · first 100 runners, then $67 · 30-day keep-it guarantee</p>
+        <p class="rr-signoff">Take good care of yourself,<br /><span class="rr-sig">katie</span></p>
+        <p class="rr-note-med"><em>The Runner's Reset is general education, not medical advice. If you have sharp, nervy or lasting pain, please see a physiotherapist or doctor.</em></p>
+      </div>
+    </section>
+  </div>
+
+  {/* Subtle sticky CTA — mobile only, appears past the hero, dismissible.
+      Hidden by default (works fully with JS off); revealed by the script below. */}
+  <div class="rr-sticky" id="rrSticky" hidden>
+    <div class="rr-sticky-inner">
+      <span class="rr-sticky-text"><strong>$49</strong> founding price</span>
+      <a class="rr-cta rr-cta-sm" href={CHECKOUT_URL}>Join →</a>
+      <button class="rr-sticky-x" type="button" aria-label="Dismiss offer bar">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
   </div>
 </BaseLayout>
 
+<script>
+  // Sticky mobile CTA — progressive enhancement. If this never runs (JS off),
+  // the bar stays [hidden] and the page works entirely on its in-flow CTAs.
+  const bar = document.getElementById('rrSticky');
+  const hero = document.getElementById('rrHero');
+  const close = document.getElementById('rrClose');
+  if (bar && hero && close && 'IntersectionObserver' in window) {
+    let pastHero = false;
+    let atEnd = false;
+    let dismissed = false;
+    try { dismissed = sessionStorage.getItem('rrStickyDismissed') === '1'; } catch (e) {}
+    const apply = () => {
+      const show = pastHero && !atEnd && !dismissed;
+      if (show) {
+        bar.hidden = false;
+        requestAnimationFrame(() => bar.classList.add('is-visible'));
+      } else {
+        bar.classList.remove('is-visible');
+        bar.hidden = true;
+      }
+    };
+    new IntersectionObserver(([e]) => {
+      pastHero = !e.isIntersecting && e.boundingClientRect.top < 0;
+      apply();
+    }, { threshold: 0 }).observe(hero);
+    new IntersectionObserver(([e]) => {
+      atEnd = e.isIntersecting;
+      apply();
+    }, { threshold: 0 }).observe(close);
+    bar.querySelector('.rr-sticky-x')?.addEventListener('click', () => {
+      dismissed = true;
+      try { sessionStorage.setItem('rrStickyDismissed', '1'); } catch (e) {}
+      apply();
+    });
+  }
+</script>
+
 <style>
-  .rr { padding-bottom: 40px; }
-  .rr-hero { text-align: center; }
-  .rr-sub { font-size: 18px; line-height: 1.6; color: var(--ink-soft); max-width: 60ch; margin: 18px auto 26px; }
-  .rr-sec { margin-top: 40px; }
-  .rr-sec h2 { font-family: var(--display); font-weight: 500; color: var(--plum); font-size: clamp(24px, 3.4vw, 30px); margin: 0 0 14px; }
-  .rr-sec h3 { font-family: var(--display); font-weight: 500; color: var(--plum); font-size: 20px; margin: 26px 0 8px; }
-  .rr-sec p { margin: 0 0 14px; line-height: 1.7; }
+  /* ── Width system ──────────────────────────────────────────────────────
+     BaseLayout puts the slot straight in <body> (no width cap), so this page
+     owns its measure: a 680px reading column, and an ~908px band for the
+     visual blocks (cards, panels, photos) so scrolling gets a gentle pulse. */
+  .rr { padding: 8px 0 72px; }
+  .rr-read { max-width: 680px; margin: 0 auto; padding: 0 22px; }
+  .rr-band { max-width: 908px; margin: 0 auto; padding: 0 22px; }
+  .rr-sec { margin-top: clamp(52px, 8vw, 84px); }
+
+  /* ── Hero ──────────────────────────────────────────────────────────── */
+  .rr-hero { text-align: center; padding: clamp(36px, 7vw, 60px) 0 0; }
+  .rr-hero h1 { text-wrap: balance; }
+  .rr-sub { font-size: clamp(17px, 2.3vw, 19px); line-height: 1.62; color: var(--ink-soft); max-width: 60ch; margin: 20px auto 28px; }
+
+  /* Buy CTA — the brand rosewood; fixed colours so it holds on light + dark */
+  .rr-cta {
+    display: inline-block; background: #89494B; color: #fff; font-weight: 600;
+    font-size: 17px; line-height: 1.3; padding: 15px 28px; border-radius: 100px;
+    text-decoration: none; border: none; box-shadow: 0 10px 26px -14px rgba(137,73,75,.9);
+    transition: background .15s ease, transform .15s ease;
+  }
+  .rr-cta:hover { background: #6E3A3C; color: #fff; transform: translateY(-1px); }
+  .rr-cta:focus-visible { outline: 2px solid var(--plum); outline-offset: 3px; }
+  .rr-cta-note { font-size: 13.5px; color: var(--ink-soft); margin: 13px 0 0; }
+  .rr-cta-row { text-align: center; margin-top: clamp(40px, 6vw, 60px); }
+
+  /* Hero image */
+  .rr-hero-img { margin: clamp(26px, 4vw, 38px) 0 0; }
+  .rr-hero-img img {
+    width: 100%; height: clamp(240px, 44vw, 460px); object-fit: cover; object-position: center 30%;
+    border-radius: 20px; display: block; border: 1px solid var(--line);
+  }
+
+  /* Credibility stats */
+  .rr-stats { list-style: none; display: flex; flex-wrap: wrap; gap: 12px; margin: 14px 0 0; padding: 0; }
+  .rr-stats li {
+    flex: 1 1 130px; background: var(--paper-2); border: 1px solid var(--line);
+    border-radius: 14px; padding: 15px 10px; text-align: center;
+  }
+  .rr-stats strong { display: block; font-family: var(--display); font-weight: 500; font-size: 23px; color: var(--plum); line-height: 1.1; }
+  .rr-stats span { display: block; font-size: 12.5px; color: var(--ink-soft); margin-top: 3px; }
+
+  /* ── Reading blocks ────────────────────────────────────────────────── */
+  .rr-sec h2 {
+    font-family: var(--display); font-weight: 500; color: var(--plum);
+    font-size: clamp(25px, 3.6vw, 32px); line-height: 1.18; letter-spacing: -0.01em;
+    margin: 0 0 16px; text-wrap: balance;
+  }
+  .rr-h3 { font-family: var(--display); font-weight: 500; color: var(--plum); font-size: clamp(19px, 2.6vw, 22px); margin: 30px 0 10px; }
+  .rr-sec p { margin: 0 0 15px; line-height: 1.72; }
+  .rr-sec .plain { margin: 6px 0 16px; }
   .rr-note-med { font-size: 14px; color: var(--ink-soft); }
 
-  /* Buy CTA — the site's rosewood accent, works on light + dark */
-  .rr-cta { display: inline-block; background: #89494B; color: #fff; font-weight: 600; font-size: 17px; line-height: 1.3; padding: 15px 28px; border-radius: 100px; text-decoration: none; transition: background .15s; }
-  .rr-cta:hover { background: #6E3A3C; color: #fff; }
-  .rr-cta-note { font-size: 13.5px; color: var(--ink-soft); margin: 12px 0 0; }
+  /* A pulled lead line — the skimmer's takeaway, no duplicated copy */
+  .rr-lead {
+    font-family: var(--display); font-weight: 500; font-size: clamp(21px, 3.2vw, 26px);
+    line-height: 1.35; color: var(--plum); margin: 22px 0 18px !important; text-wrap: balance;
+  }
 
-  /* Bonus value table */
-  .rr-bonus-wrap { overflow-x: auto; margin: 6px 0 16px; }
-  .rr-bonus { width: 100%; border-collapse: collapse; font-size: 15px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
-  .rr-bonus th { text-align: left; font-family: var(--body); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; padding: 12px 16px; border-bottom: 1px solid var(--line); }
-  .rr-bonus td { padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  .rr-bonus tr:last-child td { border-bottom: none; }
-  .rr-bonus td:last-child, .rr-bonus th:last-child { text-align: right; white-space: nowrap; color: var(--gold-solid); font-weight: 600; font-variant-numeric: tabular-nums; }
+  /* ── Who this is for (soft card) ───────────────────────────────────── */
+  .rr-who { background: var(--paper-2); border: 1px solid var(--line); border-radius: 20px; padding: clamp(24px, 4vw, 38px); }
+  .rr-who h2 { margin-top: 0; }
+  .rr-check { list-style: none; margin: 0 0 18px; padding: 0; display: flex; flex-direction: column; gap: 13px; }
+  .rr-check li { position: relative; padding-left: 34px; line-height: 1.6; }
+  .rr-check li::before {
+    /* Fixed rosewood (not a flipping token): white tick stays legible in dark too. */
+    content: ""; position: absolute; left: 0; top: 2px; width: 21px; height: 21px; border-radius: 50%;
+    background: #89494B; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 6'/%3E%3C/svg%3E");
+    background-size: 13px; background-repeat: no-repeat; background-position: center;
+  }
+  .rr-inset {
+    margin: 0 !important; padding: 16px 18px; border-left: 3px solid var(--gold-solid);
+    background: var(--paper); border-radius: 0 12px 12px 0; font-size: 15.5px; color: var(--ink-soft); line-height: 1.6;
+  }
 
-  /* Guarantee + offer callout boxes */
-  .rr-guarantee, .rr-offer { background: var(--wash, #F0E4E2); border: 1px solid var(--line); border-radius: 18px; padding: 28px 30px; text-align: center; }
-  [data-theme="dark"] .rr-guarantee, [data-theme="dark"] .rr-offer { background: var(--paper-2); }
-  .rr-guarantee h2, .rr-offer h2 { margin-top: 0; }
-  .rr-offer .rr-cta { margin-top: 8px; }
+  /* ── Session cards ─────────────────────────────────────────────────── */
+  .rr-cards { list-style: none; margin: 20px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .rr-cards-3 { grid-template-columns: repeat(3, 1fr); }
+  .rr-scard {
+    display: flex; flex-direction: column; background: var(--paper-2); border: 1px solid var(--line);
+    border-radius: 16px; overflow: hidden;
+  }
+  .rr-scard-media { background: var(--paper); }
+  .rr-scard-media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+  .rr-scard-body { padding: 15px 17px 18px; }
+  .rr-scard-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+  .rr-scard-head h4 { font-family: var(--display); font-weight: 500; font-size: 17.5px; color: var(--plum-deep); margin: 0; line-height: 1.25; }
+  .rr-dur { flex: none; font-size: 13px; color: var(--gold-solid); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .rr-scard-body p { margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); }
+  .rr-scard-body p em { color: var(--ink); font-style: italic; }
 
-  .rr-close { text-align: center; margin-top: 48px; }
-  .rr-close .plain, .rr-close ul { text-align: left; }
+  /* ── Guided paths ──────────────────────────────────────────────────── */
+  .rr-paths { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .rr-path { background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; line-height: 1.6; font-size: 15.5px; color: var(--ink-soft); }
+  .rr-path-term { display: block; font-family: var(--display); font-weight: 500; font-size: 18px; color: var(--plum); margin-bottom: 4px; }
+  .rr-path :global(strong) { color: var(--ink); font-weight: 600; }
+
+  /* ── Placeholder (course asset to come) ────────────────────────────── */
+  .rr-ph {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+    gap: 8px; border: 1.5px dashed var(--gold); border-radius: 18px; background: var(--paper-2);
+    color: var(--ink-soft); padding: 30px; margin: 20px 0 0;
+  }
+  .rr-ph-wide { aspect-ratio: 16 / 9; }
+  .rr-ph-label { font-family: var(--display); font-size: 19px; color: var(--gold-solid); }
+  .rr-ph-note { font-size: 14px; max-width: 44ch; line-height: 1.5; }
+
+  /* ── Bonus stack ───────────────────────────────────────────────────── */
+  .rr-band-h2 { font-family: var(--display); font-weight: 500; color: var(--plum); font-size: clamp(25px, 3.6vw, 32px); line-height: 1.18; letter-spacing: -0.01em; margin: 0 0 18px; text-wrap: balance; }
+  .rr-bonus { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--paper-2); }
+  .rr-bonus-row { display: flex; align-items: center; gap: 16px; padding: 16px 20px; border-top: 1px solid var(--line); }
+  .rr-bonus-row:first-child { border-top: none; }
+  .rr-bonus-main { flex: 1; }
+  .rr-bonus-main strong { display: block; font-family: var(--display); font-weight: 500; font-size: 17px; color: var(--plum-deep); }
+  .rr-bonus-main span { display: block; font-size: 14.5px; color: var(--ink-soft); line-height: 1.5; margin-top: 3px; }
+  .rr-bonus-worth { flex: none; text-align: right; font-family: var(--display); font-size: 19px; color: var(--gold-solid); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .rr-bonus-worth-l { display: block; font-family: var(--body); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; }
+  .rr-bonus-foot { margin: 18px 0 0; line-height: 1.7; }
+  .rr-bonus-foot strong { color: var(--gold-solid); }
+
+  /* ── Bio ───────────────────────────────────────────────────────────── */
+  .rr-bio { display: grid; grid-template-columns: 220px 1fr; gap: clamp(22px, 4vw, 40px); align-items: center; }
+  .rr-bio-photo { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: center 25%; border-radius: 18px; display: block; border: 1px solid var(--line); }
+  .rr-bio-text h2 { margin-top: 0; }
+  .rr-bio-text p { margin: 0; line-height: 1.72; }
+
+  /* ── Guarantee (signed promise) ────────────────────────────────────── */
+  .rr-guarantee {
+    position: relative; background: var(--paper-2); border: 1px solid var(--line);
+    border-top: 3px solid var(--gold-solid); border-radius: 18px; padding: clamp(28px, 4vw, 40px);
+  }
+  .rr-guarantee h2 { margin-top: 6px; }
+  .rr-guarantee p { line-height: 1.72; }
+  .rr-guarantee p:last-child { margin-bottom: 0; }
+  .rr-seal {
+    /* Fixed rosewood so white text keeps AA contrast in dark (where --gold-solid lightens). */
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    width: 86px; height: 86px; border-radius: 50%; background: #89494B; color: #fff;
+    text-align: center; float: right; margin: 0 0 8px 18px;
+  }
+  .rr-seal-n { font-family: var(--display); font-size: 30px; line-height: 1; }
+  .rr-seal-t { font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; line-height: 1.2; margin-top: 2px; }
+
+  /* ── Offer / price ─────────────────────────────────────────────────── */
+  .rr-offer {
+    background: var(--paper-2); border: 1px solid var(--gold-solid);
+    border-radius: 20px; padding: clamp(28px, 4vw, 42px); text-align: center;
+  }
+  .rr-offer h2 { margin-top: 0; }
+  .rr-offer > p { line-height: 1.72; text-align: left; max-width: 56ch; margin-left: auto; margin-right: auto; }
+  .rr-price { display: inline-flex; align-items: center; gap: 16px; margin: 4px 0 22px !important; text-align: left; }
+  .rr-price-now { font-family: var(--display); font-size: clamp(52px, 12vw, 72px); line-height: .9; color: var(--gold-solid); font-weight: 500; }
+  .rr-price-meta { font-size: 15px; color: var(--ink-soft); line-height: 1.35; }
+  .rr-price-then { color: var(--ink); font-weight: 600; }
+  .rr-next {
+    text-align: left; max-width: 44ch; margin: 22px auto 24px; background: var(--paper);
+    border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px;
+  }
+  .rr-next-h { font-family: var(--display); font-weight: 500; color: var(--plum); margin: 0 0 8px !important; font-size: 15.5px; }
+  .rr-next ol { margin: 0; padding-left: 20px; font-size: 15px; color: var(--ink-soft); line-height: 1.5; }
+  .rr-next li { margin: 6px 0; }
+  .rr-offer .rr-cta { margin-top: 4px; }
+
+  /* ── FAQ (reuse global .faq) ───────────────────────────────────────── */
+  .rr-faqs { margin-top: 10px; border-top: 1px solid var(--line); }
+
+  /* ── Close ─────────────────────────────────────────────────────────── */
+  .rr-close { text-align: center; }
+  .rr-close .rr-read { display: flex; flex-direction: column; align-items: center; }
+  .rr-close p { max-width: 60ch; }
   .rr-signoff { font-size: 17px; color: var(--ink-soft); line-height: 1.5; margin-top: 30px; }
-  .rr-sig { display: block; font-family: var(--script); font-size: 46px; color: var(--gold); line-height: 1.1; margin-top: 18px; padding-top: 6px; }
+  .rr-sig { display: block; font-family: var(--script); font-size: 46px; color: var(--gold); line-height: 1.1; margin-top: 14px; }
+
+  /* ── Sticky mobile CTA ─────────────────────────────────────────────── */
+  .rr-sticky {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 900;
+    background: var(--paper-2); border-top: 1px solid var(--line);
+    box-shadow: 0 -8px 24px -12px rgba(46,52,47,.35);
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+    opacity: 0; transform: translateY(8px); transition: opacity .28s ease, transform .28s ease;
+  }
+  .rr-sticky.is-visible { opacity: 1; transform: translateY(0); }
+  .rr-sticky-inner { display: flex; align-items: center; gap: 12px; max-width: 560px; margin: 0 auto; }
+  .rr-sticky-text { flex: 1; font-size: 14px; color: var(--ink-soft); line-height: 1.2; }
+  .rr-sticky-text strong { color: var(--gold-solid); font-size: 17px; font-family: var(--display); font-weight: 500; }
+  .rr-cta-sm { font-size: 15px; padding: 11px 20px; box-shadow: none; }
+  .rr-sticky-x {
+    flex: none; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line);
+    background: var(--paper); color: var(--ink-soft); display: grid; place-items: center; cursor: pointer;
+  }
+  .rr-sticky-x:hover { border-color: var(--gold-solid); color: var(--gold-solid); }
+  /* Desktop never shows the bar (in-flow CTAs are enough) */
+  @media (min-width: 720px) { .rr-sticky { display: none !important; } }
+  @media (prefers-reduced-motion: reduce) { .rr-sticky { transition: none; } .rr-cta:hover { transform: none; } }
+
+  /* ── Responsive ────────────────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .rr-cards, .rr-cards-3 { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .rr-paths { grid-template-columns: 1fr; }
+    .rr-scard-head { flex-direction: column; gap: 2px; }
+    .rr-bio { grid-template-columns: 1fr; text-align: center; }
+    .rr-bio-photo { max-width: 240px; margin: 0 auto; aspect-ratio: 4 / 5; }
+    .rr-price { flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+  }
+  @media (max-width: 400px) {
+    .rr-cards, .rr-cards-3 { grid-template-columns: 1fr; }
+  }
 </style>
