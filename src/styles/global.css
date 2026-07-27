@@ -131,9 +131,14 @@ body { overflow-x: hidden; }
   .nav.open { display: flex; }
   .nav a { padding: 13px 2px; font-size: 16px; border-top: 1px solid var(--line); }
   .nav a:first-child { border-top: none; }
-  /* on mobile the nav is a stacked dropdown — drop the pill, keep the accent colour */
-  .nav a.nav-cta { border: none; border-radius: 0; padding: 13px 2px; }
-  .nav a.nav-cta:hover, .nav a.nav-cta[aria-current="page"] { background: transparent; color: var(--gold-solid); }
+  /* Keep "Start here" a pill in the mobile menu too, so the primary action reads
+     as a button the same way it does on desktop (outlined, fills on tap). */
+  .nav a.nav-cta {
+    align-self: flex-start; margin: 12px 0 6px; padding: 9px 20px;
+    border: 1.5px solid var(--gold-solid); border-radius: 100px; line-height: 1;
+    color: var(--gold-solid); font-weight: 600;
+  }
+  .nav a.nav-cta:hover, .nav a.nav-cta[aria-current="page"] { background: var(--gold-solid); color: #fff; }
 }
 
 /* ---- Generic hero (poses, homepage, placeholders) ---- */
