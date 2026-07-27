@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Member account + magic-link sign-in (Phase 1). Private surface: noindex +
+// excluded from the sitemap. All logic is client-side against Supabase Auth;
+// the page renders both states and the script reveals the right one.
+---
+
+<BaseLayout
+  title="Your account — Yin Yoga with Katie"
+  description="Sign in to your Yin Yoga with Katie account."
+  noindex={true}
+>
+  <div class="wrap acct">
+    <h1 class="acct-h1">Your account</h1>
+
+    {/* Shown until we know the auth state, and if Supabase isn't configured. */}
+    <p id="acct-loading" class="acct-note">Loading…</p>
+    <p id="acct-unconfigured" class="acct-note" hidden>Accounts aren't switched on yet. Check back soon.</p>
+
+    {/* Signed-out: magic-link form */}
+    <section id="acct-signin" class="acct-card" hidden>
+      <h2 class="acct-h2">Sign in</h2>
+      <p class="acct-sub">Enter your email and we'll send you a one-tap sign-in link — no password to remember.</p>
+      <form id="acct-form" class="acct-form">
+        <label class="sr-only" for="acct-email">Email address</label>
+        <input id="acct-email" class="acct-input" type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+        <button class="acct-btn" type="submit">Send me a link</button>
+      </form>
+      <p id="acct-msg" class="acct-msg" role="status" aria-live="polite"></p>
+    </section>
+
+    {/* Signed-in: identity + what they own */}
+    <section id="acct-in" class="acct-card" hidden>
+      <h2 class="acct-h2">You're signed in</h2>
+      <p class="acct-sub">Signed in as <strong id="acct-who"></strong>.</p>
+      <div id="acct-ents" class="acct-ents"></div>
+      <button id="acct-out" class="acct-btn acct-btn-quiet" type="button">Sign out</button>
+    </section>
+  </div>
+</BaseLayout>
+
+<script>
+  import { getSupabase } from '../lib/supabaseBrowser';
+
+  const $ = (id: string) => document.getElementById(id);
+  const show = (id: string, on = true) => { const el = $(id); if (el) el.hidden = !on; };
+
+  const supabase = getSupabase();
+  if (!supabase) {
+    show('acct-loading', false);
+    show('acct-unconfigured', true);
+  } else {
+    const render = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      show('acct-loading', false);
+      if (!session) {
+        show('acct-in', false);
+        show('acct-signin', true);
+        return;
+      }
+      show('acct-signin', false);
+      show('acct-in', true);
+      const who = $('acct-who');
+      if (who) who.textContent = session.user.email ?? 'your account';
+
+      // RLS returns only this user's rows.
+      const { data: ents } = await supabase.from('entitlements').select('product, created_at');
+      const box = $('acct-ents');
+      if (box) {
+        if (ents && ents.length) {
+          box.innerHTML =
+            '<p class="acct-ents-h">What you own</p><ul class="acct-ents-list">' +
+            ents.map((e: any) => `<li>${labelFor(e.product)}</li>`).join('') +
+            '</ul>';
+        } else {
+          box.innerHTML = '<p class="acct-ents-empty">No purchases on this account yet.</p>';
+        }
+      }
+    };
+
+    const labelFor = (p: string) =>
+      p === 'runner-reset' ? "The Runner's Reset" : p;
+
+    // Sign-in form → send magic link back to this page.
+    $('acct-form')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = ($('acct-email') as HTMLInputElement)?.value.trim();
+      const msg = $('acct-msg');
+      if (!email) return;
+      if (msg) msg.textContent = 'Sending…';
+      const { error } = await supabase.auth.signInWithOtp({
+        email,
+        options: { emailRedirectTo: window.location.href.split('#')[0] },
+      });
+      if (msg) msg.textContent = error
+        ? `Something went wrong: ${error.message}`
+        : 'Check your inbox for the sign-in link.';
+    });
+
+    $('acct-out')?.addEventListener('click', async () => {
+      await supabase.auth.signOut();
+      render();
+    });
+
+    // Re-render on auth changes (including the magic-link redirect completing).
+    supabase.auth.onAuthStateChange(() => render());
+    render();
+  }
+</script>
+
+<style>
+  .acct { padding: 44px 0 64px; max-width: 560px; }
+  .acct-h1 { font-family: var(--display); font-weight: 500; font-size: clamp(30px, 6vw, 40px); color: var(--plum); margin: 0 0 8px; }
+  .acct-note { color: var(--ink-soft); }
+  .acct-card { margin: 22px 0 0; background: var(--paper-2); border: 1px solid var(--line); border-radius: 18px; padding: clamp(24px, 4vw, 34px); }
+  .acct-h2 { font-family: var(--display); font-weight: 500; font-size: 22px; color: var(--plum); margin: 0 0 8px; }
+  .acct-sub { color: var(--ink-soft); font-size: 15.5px; line-height: 1.6; margin: 0 0 18px; }
+  .acct-form { display: flex; flex-direction: column; gap: 12px; }
+  .acct-input { font: inherit; font-size: 16px; padding: 13px 15px; border-radius: 12px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); }
+  .acct-input:focus { border-color: var(--plum); outline: none; }
+  .acct-btn { font: inherit; font-weight: 600; font-size: 16px; padding: 13px 22px; border-radius: 12px; border: none; background: var(--plum); color: #fff; cursor: pointer; }
+  .acct-btn:hover { background: var(--plum-deep); }
+  .acct-btn-quiet { background: none; color: var(--ink-soft); border: 1px solid var(--line); margin-top: 18px; }
+  .acct-btn-quiet:hover { background: none; border-color: var(--gold-solid); color: var(--gold-solid); }
+  .acct-msg { font-size: 14px; color: var(--plum); min-height: 1.2em; margin: 14px 0 0; }
+  .acct-ents-h { font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; margin: 0 0 8px; }
+  .acct-ents-list { margin: 0; padding-left: 20px; }
+  .acct-ents-list li { margin: 4px 0; }
+  .acct-ents-empty { color: var(--ink-soft); font-size: 15px; margin: 0; }
+</style>

@@ -1,17 +1,19 @@
 import { createHash } from 'node:crypto';
+import { createClient } from '@supabase/supabase-js';
 
 /**
- * Mints a short-lived, signed Bunny Stream playback URL.
- *   GET /api/playback?v=<videoGuid>  ->  { embedUrl, expires }
+ * Mints a short-lived, signed Bunny Stream playback URL — but only for a signed-in
+ * user who actually owns the course.
+ *   GET /api/playback?v=<videoGuid>
+ *   Authorization: Bearer <supabase access token>   (from the logged-in client)
+ *   -> { embedUrl, expires }
  *
- * This is the access gate for self-hosted PAID video (The Runner's Reset, and
- * the membership later). The client never sees a permanent video URL — it asks
- * this function, which returns a token that expires, so links can't be shared.
- *
- * SPIKE STATE: there is no user auth yet. To make sure this endpoint can't be
- * abused to sign real paid content before entitlements exist, it will ONLY sign
- * video GUIDs listed in BUNNY_STREAM_ALLOW. Phase 1 replaces that allowlist with
- * a Supabase session + entitlement check (see SELF-HOSTING-VIDEO.md).
+ * Gate order:
+ *   1. The GUID must be a known course video (BUNNY_STREAM_ALLOW).
+ *   2. If Supabase is configured, the caller must present a valid session AND
+ *      hold the entitlement for this product. If Supabase is NOT configured yet,
+ *      we fall back to allowlist-only (the Phase 0 spike behaviour).
+ *   3. Then, and only then, we sign the embed URL.
  */
 export default async (req) => {
   const url = new URL(req.url);
@@ -22,20 +24,54 @@ export default async (req) => {
   const ALLOW = (process.env.BUNNY_STREAM_ALLOW || '')
     .split(',').map((s) => s.trim()).filter(Boolean);
   const TTL = Number(process.env.BUNNY_STREAM_TTL || 3600);
+  const PRODUCT = process.env.RUNNER_PRODUCT || 'runner-reset';
+
+  const SUPA_URL = process.env.PUBLIC_SUPABASE_URL;
+  const SUPA_ANON = process.env.PUBLIC_SUPABASE_ANON_KEY;
 
   if (!LIBRARY_ID || !TOKEN_KEY) {
-    return json({ error: 'Bunny Stream is not configured (set BUNNY_STREAM_LIBRARY_ID and BUNNY_STREAM_TOKEN_KEY).' }, 500);
+    return json({ error: 'Bunny Stream is not configured.' }, 500);
   }
   if (!videoId) {
     return json({ error: 'Missing video id. Call /api/playback?v=<videoGuid>.' }, 400);
   }
-  // TODO(phase 1): replace this allowlist with a real Supabase entitlement check.
+  // 1. Known course video?
   if (!ALLOW.includes(videoId)) {
-    return json({ error: 'This video is not available to you.' }, 403);
+    return json({ error: 'This video is not available.' }, 403);
   }
 
-  // Bunny "Embed View Token Authentication":
-  //   token = SHA256_hex(tokenAuthenticationKey + videoId + expires)
+  // 2. Entitlement check (skipped until Supabase is configured).
+  if (SUPA_URL && SUPA_ANON) {
+    const authz = req.headers.get('authorization') || '';
+    const jwt = authz.startsWith('Bearer ') ? authz.slice(7).trim() : '';
+    if (!jwt) {
+      return json({ error: 'Please sign in to watch.', code: 'signin' }, 401);
+    }
+    // Run as the user: getUser validates the token; the entitlements read is
+    // then constrained by row-level security to their own rows.
+    const supa = createClient(SUPA_URL, SUPA_ANON, {
+      auth: { persistSession: false, autoRefreshToken: false },
+      global: { headers: { Authorization: `Bearer ${jwt}` } },
+    });
+    const { data: userData, error: userErr } = await supa.auth.getUser(jwt);
+    if (userErr || !userData?.user) {
+      return json({ error: 'Your session has expired — sign in again.', code: 'signin' }, 401);
+    }
+    const { data: ent, error: entErr } = await supa
+      .from('entitlements')
+      .select('product')
+      .eq('user_id', userData.user.id)
+      .eq('product', PRODUCT)
+      .maybeSingle();
+    if (entErr) {
+      return json({ error: 'Could not verify your access, please try again.' }, 500);
+    }
+    if (!ent) {
+      return json({ error: "You don't have access to this course yet.", code: 'locked' }, 403);
+    }
+  }
+
+  // 3. Sign the embed URL: token = SHA256_hex(tokenKey + videoId + expires)
   const expires = Math.floor(Date.now() / 1000) + TTL;
   const token = createHash('sha256').update(TOKEN_KEY + videoId + expires).digest('hex');
   const embedUrl =

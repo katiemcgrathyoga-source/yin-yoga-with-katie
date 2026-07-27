@@ -19,6 +19,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       Paste a Bunny Stream video GUID and press Load. This calls
       <code>/api/playback</code>, which signs a short-lived embed URL. Run it with
       <code>netlify dev</code> (not <code>npm run dev</code>) so the function is live.
+      Once Supabase is on, sign in at <a href="/account">/account</a> first — the
+      harness sends your session token so the entitlement check can run.
     </p>
 
     <div class="st-row">
@@ -34,11 +36,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <script>
+  import { getSupabase } from '../../lib/supabaseBrowser';
+
   const input = document.getElementById('vid') as HTMLInputElement;
   const btn = document.getElementById('load');
   const status = document.getElementById('status');
   const frame = document.getElementById('frame');
   const player = document.getElementById('player') as HTMLIFrameElement;
+  const supabase = getSupabase();
 
   // Prefill from ?v= for quick reloads.
   const pre = new URLSearchParams(location.search).get('v');
@@ -50,7 +55,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     if (status) status.textContent = 'Requesting a signed URL…';
     if (frame) frame.hidden = true;
     try {
-      const res = await fetch(`/api/playback?v=${encodeURIComponent(v)}`);
+      // Attach the logged-in user's token so the entitlement check can run.
+      const headers: Record<string, string> = {};
+      if (supabase) {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session) headers.Authorization = `Bearer ${session.access_token}`;
+      }
+      const res = await fetch(`/api/playback?v=${encodeURIComponent(v)}`, { headers });
       const data = await res.json();
       if (!res.ok) { if (status) status.textContent = `Error ${res.status}: ${data.error || 'failed'}`; return; }
       player.src = data.embedUrl;

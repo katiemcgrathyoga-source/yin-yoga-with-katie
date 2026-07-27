@@ -13,6 +13,7 @@ export default defineConfig({
         !page.includes('/runners') &&
         !page.includes('/runner-reset') &&
         !page.includes('/dev/') &&
+        !page.includes('/account') &&
         !page.includes('/sessions/') &&
         !page.includes('/blog/yoga-for-runners') &&
         !page.includes('/pins') &&
