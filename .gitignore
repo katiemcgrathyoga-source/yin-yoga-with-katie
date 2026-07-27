@@ -45,3 +45,6 @@ desktop.ini
 /brand images/
 /blog blueprint.md
 scripts/.cache-Cabin.ttf
+
+# Local Netlify folder
+.netlify

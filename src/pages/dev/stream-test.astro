@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Hidden dev harness for the self-hosted-video spike (Bunny Stream).
+// Paste a placeholder video's GUID, hit Load: it calls /api/playback (a Netlify
+// function that mints a short-lived signed embed URL) and plays it. Proves the
+// signed-delivery gate end to end. Requires `netlify dev` (Astro's own dev
+// server does not run Netlify functions). noindex + excluded from the sitemap.
+---
+
+<BaseLayout
+  title="Stream test (dev)"
+  description="Internal harness for the self-hosted video spike."
+  noindex={true}
+>
+  <div class="wrap st">
+    <h1 class="st-h1">Stream test</h1>
+    <p class="st-note">
+      Paste a Bunny Stream video GUID and press Load. This calls
+      <code>/api/playback</code>, which signs a short-lived embed URL. Run it with
+      <code>netlify dev</code> (not <code>npm run dev</code>) so the function is live.
+    </p>
+
+    <div class="st-row">
+      <input id="vid" class="st-input" type="text" placeholder="video GUID, e.g. 8f2a…-…" autocomplete="off" spellcheck="false" />
+      <button id="load" class="st-btn" type="button">Load</button>
+    </div>
+    <p id="status" class="st-status" role="status" aria-live="polite"></p>
+
+    <div class="st-frame" id="frame" hidden>
+      <iframe id="player" title="Bunny Stream test player" allow="accelerometer; gyroscope; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const input = document.getElementById('vid') as HTMLInputElement;
+  const btn = document.getElementById('load');
+  const status = document.getElementById('status');
+  const frame = document.getElementById('frame');
+  const player = document.getElementById('player') as HTMLIFrameElement;
+
+  // Prefill from ?v= for quick reloads.
+  const pre = new URLSearchParams(location.search).get('v');
+  if (pre && input) input.value = pre;
+
+  async function load() {
+    const v = input?.value.trim();
+    if (!v) { if (status) status.textContent = 'Enter a video GUID first.'; return; }
+    if (status) status.textContent = 'Requesting a signed URL…';
+    if (frame) frame.hidden = true;
+    try {
+      const res = await fetch(`/api/playback?v=${encodeURIComponent(v)}`);
+      const data = await res.json();
+      if (!res.ok) { if (status) status.textContent = `Error ${res.status}: ${data.error || 'failed'}`; return; }
+      player.src = data.embedUrl;
+      if (frame) frame.hidden = false;
+      const when = new Date(data.expires * 1000).toLocaleTimeString();
+      if (status) status.textContent = `Playing. Token expires at ${when}.`;
+    } catch (e) {
+      if (status) status.textContent = `Request failed: ${(e as Error).message}. Are you running \`netlify dev\`?`;
+    }
+  }
+
+  btn?.addEventListener('click', load);
+  input?.addEventListener('keydown', (e) => { if ((e as KeyboardEvent).key === 'Enter') load(); });
+</script>
+
+<style>
+  .st { padding: 40px 0 60px; }
+  .st-h1 { font-family: var(--display); font-weight: 500; font-size: 34px; color: var(--plum); margin: 0 0 10px; }
+  .st-note { color: var(--ink-soft); font-size: 15px; line-height: 1.6; max-width: 62ch; }
+  .st-note code { background: var(--paper-2); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; font-size: 13px; }
+  .st-row { display: flex; gap: 10px; margin: 22px 0 0; }
+  .st-input { flex: 1; font: inherit; font-size: 15px; padding: 11px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--paper-2); color: var(--ink); }
+  .st-input:focus { border-color: var(--plum); outline: none; }
+  .st-btn { font: inherit; font-weight: 600; padding: 11px 22px; border-radius: 10px; border: none; background: var(--plum); color: #fff; cursor: pointer; }
+  .st-btn:hover { background: var(--plum-deep); }
+  .st-status { font-size: 14px; color: var(--ink-soft); min-height: 1.2em; margin: 12px 0 0; }
+  .st-frame { margin: 18px 0 0; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: #000; }
+  .st-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+</style>

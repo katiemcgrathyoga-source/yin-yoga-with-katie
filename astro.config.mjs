@@ -12,6 +12,7 @@ export default defineConfig({
       filter: (page) =>
         !page.includes('/runners') &&
         !page.includes('/runner-reset') &&
+        !page.includes('/dev/') &&
         !page.includes('/sessions/') &&
         !page.includes('/blog/yoga-for-runners') &&
         !page.includes('/pins') &&
