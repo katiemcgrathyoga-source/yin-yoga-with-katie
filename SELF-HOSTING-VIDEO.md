@@ -33,10 +33,22 @@ FairPlay DRM is available on Bunny but is overkill for launch).
   Merchant-of-Record checkout + a webhook that grants the entitlement on payment.
   (Stripe isn't available to Taiwan-based accounts; LS is an MoR so it also
   handles worldwide sales tax.)
-- **Phase 3** — gated player wired into the Runner's Reset session pages
-  (upgrade from the Bunny embed to an `hls.js` player on the direct HLS URL with
-  CDN token-auth, if we want a fully branded player).
-- **Phase 4** — Stripe subscription for the membership; fold the course in.
+- **Phase 3 — gated session pages. ✅ DONE.** `/sessions/[slug]` is now SSR
+  (`prerender = false`, `@astrojs/netlify` adapter): the server checks the
+  visitor's entitlement (from the `sb-token` cookie the browser client keeps in
+  sync) and only renders the video/timer/cues/why for owners — non-buyers receive
+  just the gate, so course material is never in their HTML. The video is signed
+  server-side (`src/lib/bunny.ts`); access check in `src/lib/access.ts`. Set a
+  session's `bunny_video_id` (+ `access: members`) to gate it. Everything else on
+  the site still prerenders static.
+- **Phase 4** — membership (recurring) in Lemon Squeezy; fold the course in.
+
+### Phase 3 go-live notes
+- The Netlify adapter runs the SSR route as a function — so **all env vars**
+  (BUNNY_*, PUBLIC_SUPABASE_*) must be set in the Netlify dashboard for it to
+  work in production, not just locally.
+- Optional later polish: swap the Bunny embed for an `hls.js` player on the
+  direct HLS URL (CDN host `vz-fea786ee-604.b-cdn.net`) for a fully branded player.
 
 ---
 

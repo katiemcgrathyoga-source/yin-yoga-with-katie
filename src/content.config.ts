@@ -218,7 +218,8 @@ const sessions = defineCollection({
     minutes: z.number().int().positive(),
     hold_label: z.string().default('2-minute holds'),
     props: z.array(z.string()).default([]),
-    youtube_video_id: z.string().default(''),   // plug in after filming
+    youtube_video_id: z.string().default(''),   // free/public classes → YouTube embed
+    bunny_video_id: z.string().default(''),      // paid self-hosted class → Bunny GUID, gated by entitlement
     why: z.string().min(1),                     // the science rationale
     angle: z.string().optional(),               // a one-line message angle
     intro: z.string().min(1),                   // short intro in Katie's voice

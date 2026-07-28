@@ -10,6 +10,7 @@ minutes: 12
 hold_label: "2-minute holds"
 props: []
 youtube_video_id: ""
+bunny_video_id: "6bebe021-7337-4be4-b1d0-17f48cb89dc3"   # PLACEHOLDER test video — swap for the real class GUID after filming
 why: >
   Running flexes the hip thousands of times, and most runners also sit at a desk
   all day — together that shortens the hip flexors. Tight hips shorten your stride,

@@ -1,10 +1,16 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import netlify from '@astrojs/netlify';
 import tailwindcss from '@tailwindcss/vite';
 
 // Real domain — used for canonical URLs, Open Graph tags, JSON-LD and the sitemap.
+// The whole site prerenders to static EXCEPT routes that opt out with
+// `export const prerender = false` (currently the gated /sessions/[slug] pages),
+// which render on-demand via the Netlify adapter so member content is never sent
+// to non-buyers.
 export default defineConfig({
   site: 'https://yinyogawithkatie.com',
+  adapter: netlify(),
   integrations: [
     sitemap({
       // Keep hidden/private surfaces out of the sitemap: the runner funnel

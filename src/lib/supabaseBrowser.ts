@@ -22,6 +22,14 @@ export function getSupabase(): SupabaseClient | null {
         detectSessionInUrl: true, // completes the magic-link redirect on return
       },
     });
+    // Bridge the session to a short-lived cookie so SSR pages (the gated
+    // /sessions routes) can read it server-side and gate before rendering.
+    client.auth.onAuthStateChange((_event, session) => {
+      const secure = location.protocol === 'https:' ? '; Secure' : '';
+      document.cookie = session?.access_token
+        ? `sb-token=${session.access_token}; Path=/; Max-Age=3600; SameSite=Lax${secure}`
+        : `sb-token=; Path=/; Max-Age=0; SameSite=Lax${secure}`;
+    });
   }
   return client;
 }

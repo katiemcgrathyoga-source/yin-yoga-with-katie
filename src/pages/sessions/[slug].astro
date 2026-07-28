@@ -1,29 +1,38 @@
 ---
+export const prerender = false; // SSR: gate member content server-side, never send it to non-buyers
+
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import RoutinePlayer from '../../components/RoutinePlayer.astro';
+import { checkAccess } from '../../lib/access';
+import { signBunnyEmbed } from '../../lib/bunny';
 
 /**
- * One reusable template for every course session (the Runner's Reset, and future
- * collections). Built for every learning style on one page: the follow-along
- * VIDEO (watch), the timed RoutinePlayer (practise screen-free once you know it),
- * the WHY (science), written CUES (read), and a body map (see). Renders from a
- * `sessions` entry; the video plugs in via `youtube_video_id` after filming.
+ * One reusable template for every course session. Rendered on demand so the
+ * paywall is REAL: for 'members' sessions we check the visitor's entitlement
+ * server-side (from the sb-token cookie) and only emit the video, timer, cues,
+ * "why" and body map when they own it. Non-buyers receive just the gate — the
+ * course material is never in the HTML they get. The video is additionally
+ * signed server-side (short-lived Bunny URL). Free/preview classes use YouTube.
  */
-export async function getStaticPaths() {
-  const sessions = await getCollection('sessions');
-  const poses = await getCollection('poses');
-  return sessions.map((session) => ({ params: { slug: session.data.slug }, props: { session, poses } }));
-}
+const { slug } = Astro.params;
+const sessions = await getCollection('sessions');
+const session = sessions.find((s) => s.data.slug === slug);
+if (!session) return new Response('Not found', { status: 404 });
 
-const { session, poses } = Astro.props;
 const d = session.data;
+const poses = await getCollection('poses');
+
+const gated = d.access === 'members';
+const access = gated
+  ? await checkAccess(Astro.cookies.get('sb-token')?.value, 'runner-reset')
+  : { signedIn: true, entitled: true };
+const unlocked = !gated || access.entitled;
 
 const titleCase = (s: string) => s.replace(/\b\w/g, (c) => c.toUpperCase());
 const humanise = (slug: string) => titleCase(slug.replace(/-/g, ' '));
 const bySlug = new Map(poses.map((p) => [p.data.slug, p.data]));
 
-// Expand steps → the flat hold list the RoutinePlayer runs (two-sided → Side 1/2).
 type Hold = { name: string; slug: string; img: string; seconds: number; note: string; sideLabel?: string };
 const holds: Hold[] = d.steps.flatMap((s) => {
   const p = bySlug.get(s.pose);
@@ -37,13 +46,11 @@ const holds: Hold[] = d.steps.flatMap((s) => {
   return s.sides === 2 ? [{ ...base, sideLabel: 'Side 1' }, { ...base, sideLabel: 'Side 2' }] : [base];
 });
 
-// A hold length as words, e.g. "2 minutes each".
 const holdWords = (secs: number, sides: number) => {
   const base = secs % 60 === 0 ? `${secs / 60} minute${secs === 60 ? '' : 's'}` : `${secs} sec`;
   return sides === 2 ? `${base} each` : base;
 };
 
-// Body map — highlight position + caption per target area.
 const MAP: Record<string, { cy: number; ry: number; label: string }> = {
   hips: { cy: 92, ry: 17, label: 'the hips and hip flexors' },
   hamstrings: { cy: 120, ry: 20, label: 'the hamstrings and glutes' },
@@ -58,6 +65,9 @@ const kindLabel: Record<string, string> = {
   'post-run': 'Post-Run Reset', 'rest-day': 'Rest-Day Deep Stretch', target: 'Target Session',
   'full-reset': 'Full Reset', 'start-here': 'Start Here',
 };
+
+// Sign the self-hosted video server-side, only for an unlocked view.
+const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_id) : null;
 ---
 
 <BaseLayout
@@ -78,113 +88,139 @@ const kindLabel: Record<string, string> = {
       </div>
     </header>
 
-    {/* 1 · PRACTISE — watch or use the timer */}
-    <section class="sp-sec">
-      <p class="sp-label"><span class="sp-num">1</span> Practise</p>
-      <div class="sp-tabs" role="tablist" aria-label="How to practise">
-        <button id="tab-watch" role="tab" aria-selected="true" aria-controls="p-watch">▶ Watch &amp; learn</button>
-        <button id="tab-timer" role="tab" aria-selected="false" aria-controls="p-timer">⏱ Practise with the timer</button>
-      </div>
-
-      <div class="sp-panel" id="p-watch" role="tabpanel" aria-labelledby="tab-watch">
-        {d.youtube_video_id ? (
-          <div class="sp-video">
-            <iframe
-              src={`https://www.youtube.com/embed/${d.youtube_video_id}`}
-              title={`${d.title} — follow-along class`}
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            />
+    {!unlocked ? (
+      /* Non-buyer: the ONLY thing rendered below the header. No course material in the HTML. */
+      <div class="sp-gate" data-signedin={access.signedIn ? '1' : ''}>
+        {access.signedIn ? (
+          <div class="sp-gate-card">
+            <h3>A member session</h3>
+            <p>Your account doesn't include The Runner's Reset yet — join once and every session unlocks, for good.</p>
+            <a class="sp-btn" href="/runner-reset">Join The Runner's Reset →</a>
+            <p class="sp-gate-alt">Wrong account? <a href="/account">Switch account</a></p>
           </div>
         ) : (
-          <div class="sp-video-slot">
-            <span class="sp-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-            <b>Follow-along video coming soon</b>
-            <span>Katie's guided class will play here — everything else on the page is ready to practise now.</span>
+          <div class="sp-gate-card">
+            <h3>Sign in to open this session</h3>
+            <p>This session is part of The Runner's Reset. Sign in with the email you joined with, and the whole session unlocks.</p>
+            <a class="sp-btn" href="/account">Sign in</a>
+            <p class="sp-gate-alt">Don't have it yet? <a href="/runner-reset">Join The Runner's Reset →</a></p>
           </div>
         )}
       </div>
-
-      <div class="sp-panel" id="p-timer" role="tabpanel" aria-labelledby="tab-timer" hidden>
-        <RoutinePlayer title={d.title} holds={holds} />
-        <p class="sp-hint">For when you know the shapes and just want to flow — screen-free, no narration. A gentle chime moves you between holds.</p>
-      </div>
-    </section>
-
-    {/* 2 · WHY + HOW + SEE + SCALE */}
-    <section class="sp-sec">
-      <p class="sp-label"><span class="sp-num">2</span> Why it helps &amp; how to practise</p>
-      <div class="sp-grid">
-        <div>
-          <div class="sp-card">
-            <h3>Why this one</h3>
-            <p class="muted">{d.why}</p>
-            {d.angle && <p class="sp-angle">“{d.angle}”</p>}
+    ) : (
+      <Fragment>
+        {/* 1 · PRACTISE — watch or use the timer */}
+        <section class="sp-sec">
+          <p class="sp-label"><span class="sp-num">1</span> Practise</p>
+          <div class="sp-tabs" role="tablist" aria-label="How to practise">
+            <button id="tab-watch" role="tab" aria-selected="true" aria-controls="p-watch">▶ Watch &amp; learn</button>
+            <button id="tab-timer" role="tab" aria-selected="false" aria-controls="p-timer">⏱ Practise with the timer</button>
           </div>
-          <div class="sp-card">
-            <h3>How to practise — the shapes</h3>
-            {d.steps.map((s, i) => {
-              const p = bySlug.get(s.pose);
-              const name = p?.name_en ?? humanise(s.pose);
-              return (
-                <div class="sp-cue">
-                  <span class="n">{i + 1}</span>
-                  <div class="body">
-                    <h4>
-                      <a href={`/poses/${s.pose}`}>{name}</a>
-                      {s.sides === 2 && <span class="side"> · each side</span>}
-                    </h4>
-                    <span class="hold">{holdWords(s.seconds, s.sides)}</span>
-                    {s.note && <p>{s.note}</p>}
-                  </div>
+
+          <div class="sp-panel" id="p-watch" role="tabpanel" aria-labelledby="tab-watch">
+            {bunnyEmbed ? (
+              <div class="sp-video">
+                <iframe src={bunnyEmbed} title={`${d.title} — follow-along class`} loading="lazy"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen />
+              </div>
+            ) : d.youtube_video_id ? (
+              <div class="sp-video">
+                <iframe src={`https://www.youtube.com/embed/${d.youtube_video_id}`} title={`${d.title} — follow-along class`} loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen />
+              </div>
+            ) : (
+              <div class="sp-video-slot">
+                <span class="sp-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+                <b>Follow-along video coming soon</b>
+                <span>Katie's guided class will play here — everything else on the page is ready to practise now.</span>
+              </div>
+            )}
+          </div>
+
+          <div class="sp-panel" id="p-timer" role="tabpanel" aria-labelledby="tab-timer" hidden>
+            <RoutinePlayer title={d.title} holds={holds} />
+            <p class="sp-hint">For when you know the shapes and just want to flow — screen-free, no narration. A gentle chime moves you between holds.</p>
+          </div>
+        </section>
+
+        {/* 2 · WHY + HOW + SEE + SCALE */}
+        <section class="sp-sec">
+          <p class="sp-label"><span class="sp-num">2</span> Why it helps &amp; how to practise</p>
+          <div class="sp-grid">
+            <div>
+              <div class="sp-card">
+                <h3>Why this one</h3>
+                <p class="muted">{d.why}</p>
+                {d.angle && <p class="sp-angle">“{d.angle}”</p>}
+              </div>
+              <div class="sp-card">
+                <h3>How to practise — the shapes</h3>
+                {d.steps.map((s, i) => {
+                  const p = bySlug.get(s.pose);
+                  const name = p?.name_en ?? humanise(s.pose);
+                  return (
+                    <div class="sp-cue">
+                      <span class="n">{i + 1}</span>
+                      <div class="body">
+                        <h4>
+                          <a href={`/poses/${s.pose}`}>{name}</a>
+                          {s.sides === 2 && <span class="side"> · each side</span>}
+                        </h4>
+                        <span class="hold">{holdWords(s.seconds, s.sides)}</span>
+                        {s.note && <p>{s.note}</p>}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div>
+              <div class="sp-card sp-map">
+                <svg viewBox="0 0 100 200" aria-hidden="true">
+                  <circle cx="50" cy="20" r="11"/>
+                  <path d="M38 34 Q50 30 62 34 L60 96 Q50 100 40 96 Z"/>
+                  <rect x="30" y="40" width="10" height="46" rx="5"/>
+                  <rect x="60" y="40" width="10" height="46" rx="5"/>
+                  <path d="M41 96 Q46 100 46 108 L44 176 Q42 182 38 176 L40 108 Q39 100 41 96Z"/>
+                  <path d="M59 96 Q54 100 54 108 L56 176 Q58 182 62 176 L60 108 Q61 100 59 96Z"/>
+                  <ellipse cx="50" cy={bm.cy} rx="24" ry={bm.ry} class="hl a"/>
+                  <ellipse cx="50" cy={bm.cy} rx="13" ry={Math.max(9, bm.ry - 8)} class="hl b"/>
+                </svg>
+                <p class="sp-mapcap"><b>Where it works:</b> {bm.label}.</p>
+              </div>
+
+              {d.scale.length > 0 && (
+                <div class="sp-card">
+                  <h3>Scale it to you</h3>
+                  {d.scale.map((l) => (
+                    <div class="sp-lvl"><span class="tag">{l.level}</span><p>{l.note}</p></div>
+                  ))}
                 </div>
-              );
-            })}
-          </div>
-        </div>
+              )}
 
-        <div>
-          <div class="sp-card sp-map">
-            <svg viewBox="0 0 100 200" aria-hidden="true">
-              <circle cx="50" cy="20" r="11"/>
-              <path d="M38 34 Q50 30 62 34 L60 96 Q50 100 40 96 Z"/>
-              <rect x="30" y="40" width="10" height="46" rx="5"/>
-              <rect x="60" y="40" width="10" height="46" rx="5"/>
-              <path d="M41 96 Q46 100 46 108 L44 176 Q42 182 38 176 L40 108 Q39 100 41 96Z"/>
-              <path d="M59 96 Q54 100 54 108 L56 176 Q58 182 62 176 L60 108 Q61 100 59 96Z"/>
-              <ellipse cx="50" cy={bm.cy} rx="24" ry={bm.ry} class="hl a"/>
-              <ellipse cx="50" cy={bm.cy} rx="13" ry={Math.max(9, bm.ry - 8)} class="hl b"/>
-            </svg>
-            <p class="sp-mapcap"><b>Where it works:</b> {bm.label}.</p>
-          </div>
-
-          {d.scale.length > 0 && (
-            <div class="sp-card">
-              <h3>Scale it to you</h3>
-              {d.scale.map((l) => (
-                <div class="sp-lvl"><span class="tag">{l.level}</span><p>{l.note}</p></div>
-              ))}
+              {d.when.length > 0 && (
+                <div class="sp-card">
+                  <h3>When to use it</h3>
+                  <ul class="sp-when">{d.when.map((w) => <li>{w}</li>)}</ul>
+                </div>
+              )}
             </div>
-          )}
+          </div>
+        </section>
 
-          {d.when.length > 0 && (
-            <div class="sp-card">
-              <h3>When to use it</h3>
-              <ul class="sp-when">{d.when.map((w) => <li>{w}</li>)}</ul>
-            </div>
-          )}
+        <div class="sp-learn">
+          <b>Why the page looks like this:</b> everyone learns differently — so every session gives you the <b>video</b> (watch &amp; follow), the <b>timer</b> (practise screen-free once you know it), the <b>why</b> (understand it), <b>written cues</b> (read it) and a <b>body map</b> (see where it works).
         </div>
-      </div>
-    </section>
-
-    <div class="sp-learn">
-      <b>Why the page looks like this:</b> everyone learns differently — so every session gives you the <b>video</b> (watch &amp; follow), the <b>timer</b> (practise screen-free once you know it), the <b>why</b> (understand it), <b>written cues</b> (read it) and a <b>body map</b> (see where it works).
-    </div>
+      </Fragment>
+    )}
   </div>
 </BaseLayout>
 
 <script>
+  import { getSupabase } from '../../lib/supabaseBrowser';
+
+  // --- Watch / Timer tabs (only present when unlocked) ---
   const tw = document.getElementById('tab-watch');
   const tt = document.getElementById('tab-timer');
   const pw = document.getElementById('p-watch');
@@ -197,6 +233,26 @@ const kindLabel: Record<string, string> = {
   }
   tw?.addEventListener('click', () => sel(true));
   tt?.addEventListener('click', () => sel(false));
+
+  // --- Cookie fallback ---
+  // The server gates on the sb-token cookie. If the gate is showing but the
+  // browser actually has a live session (e.g. the 1-hour cookie lapsed while the
+  // longer-lived local session didn't), sync the cookie and reload once so the
+  // server can render the unlocked page. The guard prevents a reload loop.
+  const gate = document.querySelector('.sp-gate');
+  if (gate) {
+    const supabase = getSupabase();
+    supabase?.auth.getSession().then(({ data: { session } }) => {
+      if (session && sessionStorage.getItem('sp-reload') !== '1') {
+        const secure = location.protocol === 'https:' ? '; Secure' : '';
+        document.cookie = `sb-token=${session.access_token}; Path=/; Max-Age=3600; SameSite=Lax${secure}`;
+        sessionStorage.setItem('sp-reload', '1');
+        location.reload();
+      }
+    });
+  } else {
+    sessionStorage.removeItem('sp-reload');
+  }
 </script>
 
 <style>
@@ -218,12 +274,22 @@ const kindLabel: Record<string, string> = {
   .sp-panel[hidden] { display: none; }
 
   .sp-video { position: relative; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); }
-  .sp-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .sp-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
   .sp-video-slot { aspect-ratio: 16/9; border-radius: 16px; border: 2px dashed rgba(137,73,75,.5); background: var(--paper-2); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; padding: 20px; color: var(--ink-soft); }
   .sp-video-slot b { color: var(--ink); font-family: var(--display); font-size: 19px; }
   .sp-play { width: 62px; height: 62px; border-radius: 50%; background: rgba(137,73,75,.16); display: flex; align-items: center; justify-content: center; }
   .sp-play svg { width: 24px; height: 24px; fill: var(--gold-solid); margin-left: 4px; }
   .sp-hint { font-size: 12.5px; color: var(--ink-soft); font-style: italic; text-align: center; margin-top: 10px; }
+
+  /* Access gate (server-rendered) */
+  .sp-gate { margin: 8px 0 40px; }
+  .sp-gate-card { background: var(--paper-2); border: 1px solid var(--line); border-radius: 16px; padding: 34px 28px; text-align: center; }
+  .sp-gate-card h3 { font-family: var(--display); font-weight: 500; font-size: 23px; color: var(--plum); margin-bottom: 8px; }
+  .sp-gate-card p { font-size: 15px; color: var(--ink-soft); max-width: 48ch; margin: 0 auto; line-height: 1.6; }
+  .sp-btn { display: inline-block; margin-top: 18px; background: #89494B; color: #fff; font-weight: 600; padding: 12px 26px; border-radius: 100px; text-decoration: none; border: none; }
+  .sp-btn:hover { background: #6E3A3C; color: #fff; }
+  .sp-gate-alt { margin-top: 14px !important; font-size: 13.5px; }
+  .sp-gate-alt a { color: var(--gold-solid); font-weight: 600; }
 
   .sp-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 24px; align-items: start; }
   @media (max-width: 760px) { .sp-grid { grid-template-columns: 1fr; } }
