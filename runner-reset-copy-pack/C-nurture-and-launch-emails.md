@@ -90,9 +90,9 @@ It's open. **The Runner's Reset** — a library of short, follow-along Yin sessi
 You already know the pattern: you finish a run tight, you mean to stretch, you don't — and it stacks up, run after run, until a niggle turns into a week off. This is the simple habit that interrupts that. Here's what's inside:
 
 - **Six Target sessions (~12–15 min)** — one for each place running tightens: hips, hamstrings and glutes, calves and feet, quads and the outer hip, lower back, plus an express everything-session.
-- **Three Full Resets (~40 min)** — the whole chain in one unhurried rest-day practice, including a fully supported restorative version and a silent one.
+- **Two Full Resets (~40 min)** — the whole chain in one unhurried rest-day practice, including a fully supported restorative version.
 - **Guided paths** — by level, by need, or as calendar plans with reminders, so you never wonder what to press play on.
-- **Five bonuses** — including the Tight-Hip Fix, the Desk-Runner's Hip Release and the Race-Week Protocol.
+- **Four bonuses** — including a guided NSDR (deep-rest yoga nidra) to melt into after any run, and 12+ ready-made runner routines.
 
 **As a founding member:**
 

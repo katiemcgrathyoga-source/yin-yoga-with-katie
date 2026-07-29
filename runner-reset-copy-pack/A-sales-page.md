@@ -67,7 +67,7 @@ It's a practice library, not a course you fall behind on. Two kinds of session, 
 
 ### Target sessions — one for each place running tightens
 
-Short, follow-along Yin sessions, about 12–15 minutes each. Do one right after a run, while you're warm, or whenever a specific spot is grumbling.
+Short, follow-along Yin sessions, about 12–15 minutes each — each shape followed by a short rebound, the still pause that lets the release settle before the next one. Do one right after a run, while you're warm, or whenever a specific spot is grumbling.
 
 - **Hips & Hip Flexors (~12 min).** Running plus sitting equals tight hips — open them first, and your whole stride frees up.
 - **Hamstrings & Glutes (~14 min).** Your hamstrings do the hardest braking work in every stride — give them their length back.
@@ -82,7 +82,6 @@ Because running doesn't tighten one muscle — it tightens a chain, and a tight 
 
 - **The Full Reset (~42 min).** Every area, one unhurried practice. The everyday all-rounder.
 - **The Restorative Reset (~40 min).** Gentler and fully supported with props — for tired legs and low-energy days.
-- **The Silent Reset (~45 min).** The same journey, held a touch longer, with minimal talking. For when you want quiet.
 
 ### Guided paths — so you're never left guessing
 
@@ -103,13 +102,12 @@ The follow-along video, an on-screen hold timer (so you can practise screen-free
 
 | Included free | What it solves | Worth |
 |---|---|---|
-| **The Tight-Hip Fix** | a short series for the runner's number-one grumble | $29 |
-| **The Desk-Runner's Hip Release** | undoing what eight hours of sitting does to a runner's hips | $39 |
-| **The Race-Week Protocol** | exactly what to do — and leave alone — in the 7 days before a race | $19 |
+| **The Deep-Rest Reset — a guided NSDR** | a lie-down Non-Sleep Deep Rest (yoga nidra) to run after any session or long run — the deep-rest practice increasingly studied for easing recovery and better sleep | $29 |
+| **12+ Runner Routines** | ready-made follow-along routines with the built-in timer (no video) — targeted, short to long, gentle to deep | $39 |
 | **The Runner's Pose Library** | every pose with plain cues and cautions | $29 |
 | **The Never-Skip Scheduler** | your plan pre-loaded into your calendar, with a quiet nudge when a session's due — because showing up is what actually drives results | $19 |
 
-Priced separately, the bonuses alone come to **$135** — before you count the eight full sessions and the guided paths. You get all of it, for good, for less than a couple of physio sessions.
+Priced separately, the bonuses alone come to **$116** — before you count the eight sessions and the guided paths. You get all of it, for good, for less than a couple of physio sessions.
 
 ---
 
@@ -150,7 +148,7 @@ The Target sessions are ten to fifteen minutes — shorter than a proper cooldow
 The quick, bouncy kind before a run? Not much — and long deep holds *before* running can actually leave you feeling loose and less powerful, which is why everything here is built for after runs and rest days. What long, still holds are genuinely good at is improving range of motion and helping your body shift into recovery. That's the lane Yin stays in — I won't promise you it cures injuries or flushes anything, because it doesn't.
 
 **"Is this just YouTube videos?"**
-The free channel stays free, always. What the library adds is the system: runner-specific sequences for every link in the chain, guided paths so you always know what's next, hold timers, written cues, body maps, the race-week protocol, and calendar plans with reminders. It's the difference between a pile of classes and a plan.
+The free channel stays free, always. What the library adds is the system: runner-specific sequences for every link in the chain, guided paths so you always know what's next, hold timers, written cues, body maps, a deep-rest NSDR, ready-made routines, and calendar plans with reminders. It's the difference between a pile of classes and a plan.
 
 **"What do I need?"**
 A mat, a cushion or two, maybe a belt or a block if you have one. Every pose has a gentler option — nothing requires flexibility or fancy props.
