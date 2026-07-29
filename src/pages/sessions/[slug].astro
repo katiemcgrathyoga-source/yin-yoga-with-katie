@@ -79,7 +79,7 @@ const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_i
 <BaseLayout
   title={d.seo_title ?? `${d.title} — Yin Yoga with Katie`}
   description={d.seo_description ?? d.intro}
-  noindex={d.access === 'members'}
+  noindex={d.access === 'members' || d.unlisted}
 >
   <div class="wrap sp">
     <header class="sp-head">
@@ -218,6 +218,15 @@ const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_i
         <div class="sp-learn">
           <b>Why the page looks like this:</b> everyone learns differently — so every session gives you the <b>video</b> (watch &amp; follow), the <b>timer</b> (practise screen-free once you know it), the <b>why</b> (understand it), <b>written cues</b> (read it) and a <b>body map</b> (see where it works).
         </div>
+
+        {d.access === 'free' && (
+          <div class="sp-upsell">
+            <p class="sp-upsell-eyebrow">A free class from The Runner's Reset</p>
+            <h3>Like how that felt? There's a whole library.</h3>
+            <p>A short session for every place running tightens — plus longer Full Resets, guided plans and a deep-rest NSDR — each one a page just like this. Founding price for the first 100 runners.</p>
+            <a class="sp-btn" href="/runner-reset">See what's inside The Runner's Reset →</a>
+          </div>
+        )}
       </Fragment>
     )}
   </div>
@@ -333,4 +342,10 @@ const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_i
 
   .sp-learn { background: rgba(188,157,154,.14); border: 1px solid rgba(188,157,154,.4); border-radius: 14px; padding: 16px 20px; font-size: 14.5px; color: var(--ink); margin: 10px 0 30px; }
   .sp-learn b { color: var(--plum-deep); }
+
+  /* Free-class upsell to the paid library */
+  .sp-upsell { text-align: center; background: var(--paper-2); border: 1px solid var(--line); border-radius: 18px; padding: clamp(28px, 4vw, 40px); margin: 0 0 40px; }
+  .sp-upsell-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-solid); margin: 0 0 8px; }
+  .sp-upsell h3 { font-family: var(--display); font-weight: 500; font-size: clamp(21px, 3vw, 26px); color: var(--plum); margin: 0 0 10px; }
+  .sp-upsell p { font-size: 15.5px; color: var(--ink-soft); max-width: 52ch; margin: 0 auto 18px; line-height: 1.6; }
 </style>

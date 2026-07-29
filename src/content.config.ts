@@ -237,6 +237,7 @@ const sessions = defineCollection({
     when: z.array(z.string()).default([]),
     access: z.enum(['free', 'members']).default('members'),
     product: z.string().default('runner-reset'), // entitlement a 'members' session requires to unlock
+    unlisted: z.boolean().default(false), // noindex + email-only (e.g. the free lead-magnet class)
     seo_title: z.string().optional(),
     seo_description: z.string().optional(),
   }),
