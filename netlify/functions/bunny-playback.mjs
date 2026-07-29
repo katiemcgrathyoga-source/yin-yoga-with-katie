@@ -42,8 +42,8 @@ export default async (req) => {
 
   // 2. Entitlement check (skipped until Supabase is configured).
   //    KEEP IN SYNC with src/lib/access.ts checkAccess() — the SSR gate is a
-  //    parallel copy (same query + same unconfigured-open policy); the esbuild/
-  //    Vite boundary prevents sharing one module.
+  //    parallel copy (same query + same fail-closed-when-unconfigured policy);
+  //    the esbuild/Vite boundary prevents sharing one module.
   if (SUPA_URL && SUPA_ANON) {
     const authz = req.headers.get('authorization') || '';
     const jwt = authz.startsWith('Bearer ') ? authz.slice(7).trim() : '';
@@ -72,6 +72,11 @@ export default async (req) => {
     if (!ent) {
       return json({ error: "You don't have access to this course yet.", code: 'locked' }, 403);
     }
+  } else if (process.env.DEV_OPEN_ACCESS !== '1') {
+    // FAIL CLOSED — access control isn't configured (e.g. a prod deploy missing
+    // the Supabase env). Deny rather than sign a URL for everyone. Local dev can
+    // opt into the ungated bypass with DEV_OPEN_ACCESS=1.
+    return json({ error: 'Access control is not configured.' }, 503);
   }
 
   // 3. Sign the embed URL: token = SHA256_hex(tokenKey + videoId + expires)

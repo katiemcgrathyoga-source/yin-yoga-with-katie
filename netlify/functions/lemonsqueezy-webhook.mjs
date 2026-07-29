@@ -37,8 +37,13 @@ export default async (req) => {
   const name = event?.meta?.event_name;
   if (name === 'order_created') {
     const attrs = event?.data?.attributes || {};
-    // Only grant on a genuinely paid order.
-    if (attrs.status !== 'paid') return new Response('ok (not paid)', { status: 200 });
+    // Grant on a paid order OR a fully-discounted comp (total 0) — the running-group
+    // 100%-off codes create $0 orders, which may not carry status 'paid'. Still
+    // exclude refunded/fraudulent. TODO: verify a real $0 order's status against a
+    // live test code before launch.
+    const isComp = Number(attrs.total) === 0;
+    const granted = attrs.status === 'paid' || (isComp && attrs.status !== 'refunded' && attrs.status !== 'fraudulent');
+    if (!granted) return new Response(`ok (status ${attrs.status})`, { status: 200 });
 
     const email = attrs.user_email;
     const product = event?.meta?.custom_data?.product || PRODUCT_DEFAULT;

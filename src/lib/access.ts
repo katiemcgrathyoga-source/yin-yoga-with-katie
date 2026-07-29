@@ -15,8 +15,10 @@ export type Access = { signedIn: boolean; entitled: boolean };
 export async function checkAccess(token: string | undefined, product: string): Promise<Access> {
   const url = process.env.PUBLIC_SUPABASE_URL;
   const anon = process.env.PUBLIC_SUPABASE_ANON_KEY;
-  // Not configured yet → dev fallback: treat as open (mirrors the functions).
-  if (!url || !anon) return { signedIn: false, entitled: true };
+  // Not configured → FAIL CLOSED (deny), so a production deploy that's missing the
+  // Supabase env can never render member content to everyone. Local dev can opt
+  // into open access with DEV_OPEN_ACCESS=1. (Mirrors bunny-playback.mjs.)
+  if (!url || !anon) return { signedIn: false, entitled: process.env.DEV_OPEN_ACCESS === '1' };
   if (!token) return { signedIn: false, entitled: false };
 
   const supa = createClient(url, anon, {
