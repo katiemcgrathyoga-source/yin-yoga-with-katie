@@ -11,7 +11,7 @@
 
 # Stop getting tighter. Keep running — at your best.
 
-**Sub:** Running quietly stiffens the very tissues that keep you running well — hips, hamstrings, calves, quads, lower back. The Runner's Reset is a library of short, follow-along Yin sessions that give that range back, ten to fifteen quiet minutes at a time.
+**Sub:** Running quietly stiffens the very tissues that keep you running well — hips, hamstrings, calves, quads, lower back. The Runner's Reset is a library of short, follow-along Yin sessions that give that range back, fifteen to twenty quiet minutes at a time.
 
 **[Join the Runner's Reset — $49 founding price →]**
 *One-time payment · lifetime access · 30-day keep-it guarantee*
@@ -67,7 +67,7 @@ It's a practice library, not a course you fall behind on. Two kinds of session, 
 
 ### Target sessions — one for each place running tightens
 
-Short, follow-along Yin sessions, about 12–15 minutes each — each shape followed by a short rebound, the still pause that lets the release settle before the next one. Do one right after a run, while you're warm, or whenever a specific spot is grumbling.
+Short, follow-along Yin sessions, about 15–20 minutes each — each shape followed by a short rebound, the still pause that lets the release settle before the next one. Do one right after a run, while you're warm, or whenever a specific spot is grumbling.
 
 - **Hips & Hip Flexors (~12 min).** Running plus sitting equals tight hips — open them first, and your whole stride frees up.
 - **Hamstrings & Glutes (~14 min).** Your hamstrings do the hardest braking work in every stride — give them their length back.
@@ -78,10 +78,10 @@ Short, follow-along Yin sessions, about 12–15 minutes each — each shape foll
 
 ### Full Reset sessions — the whole chain, in one practice
 
-Because running doesn't tighten one muscle — it tightens a chain, and a tight link pulls on the next. Around 40 minutes each, made for rest days.
+Because running doesn't tighten one muscle — it tightens a chain, and a tight link pulls on the next. Around 50 minutes each, made for rest days.
 
 - **The Full Reset (~42 min).** Every area, one unhurried practice. The everyday all-rounder.
-- **The Restorative Reset (~40 min).** Gentler and fully supported with props — for tired legs and low-energy days.
+- **The Restorative Reset (~50 min).** Gentler and fully supported with props — for tired legs and low-energy days.
 
 ### Guided paths — so you're never left guessing
 
@@ -142,7 +142,7 @@ Once those 100 founding places are taken, the price becomes **$67**. That's the 
 Perfect — that's exactly who Yin is for. It isn't about how far you fold. You only ever go to about 60–80% of your capacity and let the shape soften from there. Tight runners are the whole idea.
 
 **"I don't have time."**
-The Target sessions are ten to fifteen minutes — shorter than a proper cooldown. Do one after a run, or in the evening while you wind down. Little and often does far more than long and rare.
+The Target sessions are fifteen to twenty minutes — shorter than a proper cooldown. Do one after a run, or in the evening while you wind down. Little and often does far more than long and rare.
 
 **"Does stretching even help runners?"**
 The quick, bouncy kind before a run? Not much — and long deep holds *before* running can actually leave you feeling loose and less powerful, which is why everything here is built for after runs and rest days. What long, still holds are genuinely good at is improving range of motion and helping your body shift into recovery. That's the lane Yin stays in — I won't promise you it cures injuries or flushes anything, because it doesn't.
@@ -160,7 +160,7 @@ Then the keep-it guarantee has you: a full refund within 30 days, and you keep e
 
 ## The quiet habit that keeps you running
 
-You don't need to overhaul your training. You need ten unhurried minutes, often enough, in the right shapes — and someone to lay them out for you. That's all this is.
+You don't need to overhaul your training. You need fifteen unhurried minutes, often enough, in the right shapes — and someone to lay them out for you. That's all this is.
 
 Roll out your mat after your next run. Let the tightness go before it settles in. And keep running — at your best — for as long as running matters to you.
 

@@ -6,15 +6,15 @@ kind: "target"
 area: "full body (express)"
 body_map: "full"
 level: "all-levels"
-minutes: 15
+minutes: 19
 hold_label: "2 minute holds"
 props: []
 youtube_video_id: ""
 why: >
-  One pose per area, in fifteen minutes — for the day you want a little of everything
+  One pose per area, in under twenty minutes — for the day you want a little of everything
   but don't have forty. It touches the hips, glutes, hamstrings, side body and spine,
   so nothing gets completely neglected on a busy week.
-angle: "A little of everything, in fifteen minutes."
+angle: "A little of everything, in under twenty minutes."
 intro: >
   Short but complete. We'll move through the whole lower body once, one shape per
   area, so you come away feeling evened-out even when time is tight.
@@ -49,8 +49,8 @@ scale:
 when:
   - "A busy day when you still want to touch everything."
   - "A quick evening reset after an easy run."
-  - "When you're new and a 40-minute Full Reset feels like a lot."
+  - "When you're new and a 53-minute Full Reset feels like a lot."
 access: "members"
-seo_title: "Yin Yoga for Runners — Express Full Reset (15 min)"
-seo_description: "A short full-body Yin practice for runners: one pose per area in about fifteen minutes. Video, timer and cues."
+seo_title: "Yin Yoga for Runners — Express Full Reset (19 min)"
+seo_description: "A short full-body Yin practice for runners: one pose per area in under twenty minutes. Video, timer and cues."
 ---

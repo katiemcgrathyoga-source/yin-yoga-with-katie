@@ -301,17 +301,21 @@ const FOCUSES = [
       const OPENER = 'childs-pose', CLOSER = 'corpse';
       const openerSecs = cTime <= 10 ? 90 : 120;
       const closerSecs = cTime <= 10 ? 120 : 180;
-      let budget = cTime * 60 - closerSecs;
+      // Budget the way the player actually runs it: a lead-in, a rebound after every
+      // pose but the last, and a moment to swap sides. Counting holds alone used to
+      // make a "20 minutes" build run closer to 26.
+      const PREP = 15, REBOUND = 45, SIDE_SWITCH = 15;
+      let budget = cTime * 60 - PREP - closerSecs; // the closer is last, so no rebound follows it
       const seq: Step[] = [];
-      if (bySlug.has(OPENER)) { seq.push({ slug: OPENER, secs: openerSecs, sides: 1 }); budget -= openerSecs; }
+      if (bySlug.has(OPENER)) { seq.push({ slug: OPENER, secs: openerSecs, sides: 1 }); budget -= openerSecs + REBOUND; }
       const pool = focus.pool.filter((s) => s !== OPENER && s !== CLOSER && bySlug.has(s));
       for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
       for (const slug of pool) {
-        if (budget <= 45) break;
+        if (budget <= REBOUND + 60) break;
         const p = bySlug.get(slug)!;
         const sides = p.sides === 2 ? 2 : 1;
         const secs = Math.min(Math.max(p.secs, 120), 240);
-        const cost = secs * sides;
+        const cost = secs * sides + (sides - 1) * SIDE_SWITCH + REBOUND;
         if (cost - budget > 90) continue; // would overshoot too far — try a shorter pose
         seq.push({ slug, secs, sides });
         budget -= cost;

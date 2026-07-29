@@ -1,5 +1,12 @@
 # The Runner's Reset — Founding-Cohort Launch Emails
 
+> ⚠️ **SUPERSEDED — do not load these into MailerLite.**
+> Written when the offer was a **6-week program**. It is now a **library** of
+> follow-along sessions with guided paths, so the week-by-week framing here is
+> wrong, and the session durations are understated.
+> Use **`06b-evergreen-nurture-emails.md`** instead.
+> Kept only for the structure and the sending notes at the bottom.
+
 The sequence that sells the founding cohort to your warm runner list (the people
 who took the free Post-Run Reset). Send this once the list has built up for a few
 weeks. Katie's voice, with a launch copywriter's structure.

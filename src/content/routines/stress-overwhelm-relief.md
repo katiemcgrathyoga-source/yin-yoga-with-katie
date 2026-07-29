@@ -1,12 +1,12 @@
 ---
 title: "Stress & Overwhelm Relief"
 slug: "stress-overwhelm-relief"
-tagline: "20 minutes to come back down"
+tagline: "25 minutes to come back down"
 intent: "stress"
 hero_pose: "legs-up-the-wall"
 level: "all-levels"
-minutes: 20
-intro: "For the days that ask too much. Twenty slow minutes of grounding, well-supported shapes to help you step out of the wound-up, racing state and back toward calm. Long, quiet holds and an unhurried breath are the whole medicine here — nothing deep, nothing effortful. Dim the lights if you can, let the floor take your weight, and give yourself permission to do nothing but breathe."
+minutes: 25
+intro: "For the days that ask too much. Twenty-five slow minutes of grounding, well-supported shapes to help you step out of the wound-up, racing state and back toward calm. Long, quiet holds and an unhurried breath are the whole medicine here — nothing deep, nothing effortful. Dim the lights if you can, let the floor take your weight, and give yourself permission to do nothing but breathe."
 props: []
 steps:
   - { pose: "childs-pose",       seconds: 150, sides: 1, note: "Fold in, forehead down. A small, safe cave to arrive in." }
@@ -23,9 +23,9 @@ faq:
   - q: "When is the best time to do this?"
     a: "Any time you feel overwhelmed — a midday reset, after a hard day, or before bed. It's gentle enough to do whenever you need to come back down."
 membership_cta: "When everything feels like too much, it helps to be led. The membership's calm & reset series is a guided plan for exactly these days — press play and let it hold you."
-summary: "A grounding 20-minute Yin Yoga routine for stress and overwhelm — slow, supported shapes and a built-in hold timer to help you come back down to calm. All levels."
-seo_title: "20-Minute Yin Yoga Routine for Stress & Overwhelm — Follow Along"
-seo_description: "A calming 20-minute Yin Yoga routine for stress relief — grounding, supported poses with a built-in hold timer to quiet a racing mind. All levels, no props."
+summary: "A grounding 25-minute Yin Yoga routine for stress and overwhelm — slow, supported shapes and a built-in hold timer to help you come back down to calm. All levels."
+seo_title: "25-Minute Yin Yoga Routine for Stress & Overwhelm — Follow Along"
+seo_description: "A calming 25-minute Yin Yoga routine for stress relief — grounding, supported poses with a built-in hold timer to quiet a racing mind. All levels, no props."
 ---
 
 <!-- Curated sequence; poses referenced by slug. The routine page resolves each to

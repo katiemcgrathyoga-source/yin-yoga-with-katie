@@ -1,12 +1,12 @@
 ---
-title: "The 10-Minute Post-Run Reset"
+title: "The 15-Minute Post-Run Reset"
 slug: "post-run-reset"
 collection: "runners-reset"
 kind: "post-run"
 area: "full-body"
 body_map: "full"
 level: "all-levels"
-minutes: 10
+minutes: 15
 hold_label: "1–2 minute holds"
 props: []
 # FREE lead-magnet class — email-only (unlisted + noindex), delivered via the
@@ -24,7 +24,7 @@ why: >
   after-run habit that gives that range back before the tightness settles in: five
   long, easy shapes while you're still warm, holding each one long enough for the
   deeper tissue to let go.
-angle: "Ten quiet minutes to undo what a run tightens — while you're still warm."
+angle: "Fifteen quiet minutes to undo what a run tightens — while you're still warm."
 intro: >
   This is your free Post-Run Reset — the exact class I'd hand a runner first. Roll
   out your mat after your next run, press play, and just follow along. Nothing
@@ -56,6 +56,6 @@ when:
   - "Right after a run, while you're still warm."
   - "In the evening, to wind down."
   - "On a rest day, taken slow."
-seo_title: "The 10-Minute Post-Run Reset — Free Yin Class for Runners"
-seo_description: "A free 10-minute follow-along Yin reset for runners — five long, easy holds to undo the tightness a run builds up in your hips, hamstrings and legs."
+seo_title: "The 15-Minute Post-Run Reset — Free Yin Class for Runners"
+seo_description: "A free 15-minute follow-along Yin reset for runners — five long, easy holds to undo the tightness a run builds up in your hips, hamstrings and legs."
 ---

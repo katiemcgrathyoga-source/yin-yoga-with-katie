@@ -1,12 +1,12 @@
 ---
 title: "Lower-Back Release"
 slug: "lower-back-release"
-tagline: "20 minutes to ease a tight, tired back"
+tagline: "25 minutes to ease a tight, tired back"
 intent: "back"
 hero_pose: "happy-baby"
 level: "all-levels"
-minutes: 20
-intro: "Twenty gentle minutes for a lower back that's been sitting, standing or carrying too much. We soothe the back from every angle — a little length, a little decompression, and a release for the hips and glutes that so often pull the low back tight. Go slowly and stay well within comfort; the back likes gentleness and time, not force. If anything feels sharp or travels down a leg, ease off and check the cautions on each pose page. Come as you are."
+minutes: 25
+intro: "Twenty-five gentle minutes for a lower back that's been sitting, standing or carrying too much. We soothe the back from every angle — a little length, a little decompression, and a release for the hips and glutes that so often pull the low back tight. Go slowly and stay well within comfort; the back likes gentleness and time, not force. If anything feels sharp or travels down a leg, ease off and check the cautions on each pose page. Come as you are."
 props: []
 steps:
   - { pose: "childs-pose",    seconds: 150, sides: 1, note: "Sink the hips back and let the lower back lengthen and settle." }
@@ -24,9 +24,9 @@ faq:
   - q: "Do I need props or experience?"
     a: "No props and no experience required — it's an all-levels routine. Bend your knees generously in the forward folds and let the floor support you."
 membership_cta: "If back tension is a regular visitor, the membership has longer back-focused classes and a guided plan so you always know what to practise."
-summary: "A gentle 20-minute Yin routine to release lower-back tension — length, decompression and hip release, held slowly with a built-in hold timer. All levels."
-seo_title: "20-Minute Yin Yoga for Lower-Back Pain Relief — Follow Along"
-seo_description: "A gentle 20-minute Yin Yoga routine to ease lower-back tension and tightness, with a built-in hold timer. Soothing shapes for a tired back. All levels."
+summary: "A gentle 25-minute Yin routine to release lower-back tension — length, decompression and hip release, held slowly with a built-in hold timer. All levels."
+seo_title: "25-Minute Yin Yoga for Lower-Back Pain Relief — Follow Along"
+seo_description: "A gentle 25-minute Yin Yoga routine to ease lower-back tension and tightness, with a built-in hold timer. Soothing shapes for a tired back. All levels."
 ---
 
 <!-- Curated sequence; poses referenced by slug. The routine page resolves each to

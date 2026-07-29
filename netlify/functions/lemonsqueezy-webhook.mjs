@@ -6,8 +6,14 @@ import { createClient } from '@supabase/supabase-js';
  *   POST /api/ls-webhook
  *
  * Verifies the X-Signature HMAC, then on `order_created` (status paid):
- *   email -> get-or-create the Supabase user -> upsert entitlement (service role).
+ *   email -> get-or-create the Supabase user -> upsert entitlement (service role)
+ *   -> add the buyer to the MailerLite buyers group.
  * Idempotent (upsert), so redelivered events are safe.
+ *
+ * The MailerLite step is what stops a buyer from being sold to for another week by
+ * the runner nurture automation — that group is its exit condition. It is
+ * best-effort on purpose: a MailerLite outage must never cost someone the access
+ * they paid for, so a failure there is logged and swallowed.
  */
 export default async (req) => {
   const SECRET = process.env.LEMONSQUEEZY_WEBHOOK_SECRET;
@@ -57,10 +63,45 @@ export default async (req) => {
       .from('entitlements')
       .upsert({ user_id: userId, product, source: 'lemonsqueezy' }, { onConflict: 'user_id,product' });
     if (error) return new Response(`Grant failed: ${error.message}`, { status: 500 });
+
+    await tagBuyerInMailerLite(email);
   }
 
   return new Response('ok', { status: 200 });
 };
+
+/**
+ * Add the buyer to the MailerLite buyers group so the runner nurture automation
+ * stops selling to them. Best-effort: never throws, never blocks the grant.
+ * No-ops (with a warning) if the env vars aren't set, so the webhook keeps
+ * working in environments where MailerLite isn't configured.
+ */
+async function tagBuyerInMailerLite(email) {
+  const KEY = process.env.MAILERLITE_API_KEY;
+  const GROUP = process.env.MAILERLITE_BUYER_GROUP_ID;
+  if (!KEY || !GROUP) {
+    console.warn('MailerLite buyer tagging skipped: MAILERLITE_API_KEY / MAILERLITE_BUYER_GROUP_ID not set');
+    return;
+  }
+
+  try {
+    // Upserts the subscriber and adds the group — safe to replay for the same order.
+    const res = await fetch('https://connect.mailerlite.com/api/subscribers', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${KEY}`,
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({ email, groups: [GROUP] }),
+    });
+    if (!res.ok) {
+      console.error(`MailerLite buyer tagging failed (${res.status}): ${await res.text()}`);
+    }
+  } catch (err) {
+    console.error(`MailerLite buyer tagging errored: ${err?.message || err}`);
+  }
+}
 
 function safeEqualHex(a, b) {
   if (typeof a !== 'string' || typeof b !== 'string' || a.length !== b.length) return false;

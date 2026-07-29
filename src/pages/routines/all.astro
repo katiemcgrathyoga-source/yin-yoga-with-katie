@@ -19,9 +19,9 @@ const FOCUS = [
   { key: 'full-body', label: 'Full body', intents: ['full-body', 'beginner', 'energy', 'digestion'] },
 ];
 const TIME = [
-  { key: 'short', label: '15 min', test: (r: R) => r.data.minutes <= 15 },
-  { key: 'mid', label: '20 min', test: (r: R) => r.data.minutes > 15 && r.data.minutes <= 20 },
-  { key: 'long', label: '25–30 min', test: (r: R) => r.data.minutes > 20 },
+  { key: 'short', label: 'Under 20 min', test: (r: R) => r.data.minutes < 20 },
+  { key: 'mid', label: '20–25 min', test: (r: R) => r.data.minutes >= 20 && r.data.minutes <= 25 },
+  { key: 'long', label: '25 min+', test: (r: R) => r.data.minutes > 25 },
 ];
 const focusKeys = (r: R) => FOCUS.filter((f) => f.intents.includes(r.data.intent)).map((f) => f.key);
 const timeKeys = (r: R) => TIME.filter((t) => t.test(r)).map((t) => t.key);

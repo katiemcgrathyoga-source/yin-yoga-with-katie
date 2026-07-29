@@ -1,12 +1,18 @@
 # Deliverable C — Runner Nurture + Founding-Launch Sequence
 
-> Ten emails: four nurture, six launch. Nurture emails 1–2 are the delivery +
-> bridge from Deliverable B (listed here so the whole journey reads in order —
-> load them once, not twice). Offer, consistent everywhere:
+> **This file is the load-ready source for the `Runners — Post-Run Reset`
+> automation.** `05-lead-magnet-and-bridge-emails.md` and `06-launch-emails.md`
+> are older drafts that still sell a 6-week program — ignore them.
+>
+> Nine emails: four nurture, five sell, plus a final word. Nurture 1–2 are the
+> delivery + bridge from Deliverable B (listed here so the whole journey reads in
+> order — load them once, not twice). Offer, consistent everywhere:
 > **$49 founding for the first 100 → $67** · lifetime access, one payment ·
-> **the keep-it guarantee** (30 days, full refund, keep everything) ·
-> cart open 5 days. Merge tag `{$name|default:"there"}` · sales link
-> `RUNNER_RESET_URL`. No emoji.
+> **the keep-it guarantee** (30 days, full refund, keep everything).
+> Runs **evergreen** — no cart window. Merge tag `{$name|default:"there"}` ·
+> sales link `https://yinyogawithkatie.com/runner-reset`. **No emoji.**
+>
+> Durations here are the true runtimes (holds + rebounds), corrected 2026-07-29.
 
 ---
 
@@ -54,13 +60,19 @@ So if "I'm not flexible" has been the reason you don't stretch — it was never 
 Take good care of yourself,
 Katie
 
-*P.S. Next week I'll open something I've been building for months — a complete library for exactly this. This list hears first.*
+*P.S. I spent months building a complete library for exactly this. I'll tell you about it properly in a couple of days.*
 
 ---
 
-## Phase 2 — Founding launch (5-day cart)
+## Phase 2 — Founding sequence (evergreen)
 
-### L0 · Two days before open — the tease
+> **Runs evergreen inside the automation, not as a 5-day cart.** People join this
+> list continuously after launch, so a one-time window would sell to almost nobody.
+> The cart never closes; the only scarcity is the founding-100 count, which stays
+> true whenever someone arrives. **L0 is skipped** (see below) and L5/L6 have had
+> their "closes tonight" deadlines removed.
+
+### L0 · SKIPPED — pre-launch tease *(kept for a future timed launch only)*
 
 **Subject:** I made something for runners
 **Preview:** It opens Thursday — and this list gets first access.
@@ -85,12 +97,12 @@ Katie
 
 Hi {$name|default:"there"},
 
-It's open. **The Runner's Reset** — a library of short, follow-along Yin sessions that undo the tightness running builds up, ten to fifteen quiet minutes at a time. So you stop getting tighter, and keep running at your best.
+It's open. **The Runner's Reset** — a library of short, follow-along Yin sessions that undo the tightness running builds up, fifteen to twenty quiet minutes at a time. So you stop getting tighter, and keep running at your best.
 
 You already know the pattern: you finish a run tight, you mean to stretch, you don't — and it stacks up, run after run, until a niggle turns into a week off. This is the simple habit that interrupts that. Here's what's inside:
 
-- **Six Target sessions (~12–15 min)** — one for each place running tightens: hips, hamstrings and glutes, calves and feet, quads and the outer hip, lower back, plus an express everything-session.
-- **Two Full Resets (~40 min)** — the whole chain in one unhurried rest-day practice, including a fully supported restorative version.
+- **Six Target sessions (~15–20 min)** — one for each place running tightens: hips, hamstrings and glutes, calves and feet, quads and the outer hip, lower back, plus an express everything-session.
+- **Two Full Resets (~50 min)** — the whole chain in one unhurried rest-day practice, including a fully supported restorative version.
 - **Guided paths** — by level, by need, or as calendar plans with reminders, so you never wonder what to press play on.
 - **Four bonuses** — including a guided NSDR (deep-rest yoga nidra) to melt into after any run, and 12+ ready-made runner routines.
 
@@ -113,9 +125,9 @@ Katie
 
 Hi {$name|default:"there"},
 
-A few of you asked what a normal week with the Runner's Reset looks like. Honestly: about twenty-five minutes.
+A few of you asked what a normal week with the Runner's Reset looks like. Honestly: about an hour, and not in one go.
 
-After a run, you press play on the Target session your body's asking for — **Hips** if they're grumbling, **Hamstrings & Glutes** after a hard session, **Calves & Feet** if you've upped your mileage. Twelve-ish minutes, while you're warm. Then once a week, on a rest day, a longer **Full Reset** works the whole chain end to end.
+After a run, you press play on the Target session your body's asking for — **Hips** if they're grumbling, **Hamstrings & Glutes** after a hard session, **Calves & Feet** if you've upped your mileage. Fifteen-ish minutes, while you're warm. Then once a week, on a rest day, a longer **Full Reset** works the whole chain end to end.
 
 Why the whole chain? Because running never tightens just one thing. Tight hip flexors tip the pelvis and load the low back. Stiff ankles change everything above them. The outer hip tensions the IT band — which, by the way, you can't stretch, so that session releases what pulls on it instead. Each link affects the next, which is why there's a session for every one.
 
@@ -132,16 +144,14 @@ Katie
 
 ### L3 · Day 3 — objections, answered honestly
 
-**Subject:** "But I'm not flexible / I don't have time"
-**Preview:** The three worries runners have — answered straight.
+**Subject:** "But I don't have time"
+**Preview:** The other two worries runners have — answered straight.
 
 Hi {$name|default:"there"},
 
-The same three worries come up every time, so let me answer them honestly.
+I answered the flexibility one the other day. Here are the other two worries that come up every time, answered just as honestly.
 
-**"I'm not flexible."** Perfect — that's who Yin is for. You only ever go to about 60–80% of your capacity and let the shape soften from there. Tight runners are the whole idea, and they feel the change soonest.
-
-**"I don't have time."** The Target sessions are ten to fifteen minutes — shorter than a proper cooldown. After a run, or on the living-room floor in the evening. Little and often does far more than long and rare, and the scheduler nudges you so it actually happens.
+**"I don't have time."** The Target sessions are fifteen to twenty minutes — shorter than a proper cooldown. After a run, or on the living-room floor in the evening. Little and often does far more than long and rare, and the scheduler nudges you so it actually happens.
 
 **"What if it doesn't work for me?"** Then you pay nothing. That's the keep-it guarantee: practise along for 30 days, and if you're not moving more easily, email me — full refund, and you keep lifetime access to everything anyway. If Yin doesn't help your running, I haven't earned your money. The only way to lose here is to stay tight.
 
@@ -161,9 +171,9 @@ The saddest message I get is some version of: *"I had to stop running."*
 
 Almost never from one bad run. From months of tightness that quietly built up, changed how they moved, and turned into something that took away the thing they loved. The comeback attempts. The watching your race come and go from the sofa. Runners will tolerate almost anything except not running.
 
-I can't promise Yin prevents injury — nothing honestly can, and I won't pretend otherwise. What I can say is this: the everyday tightness where so many niggles begin *is* something you can do something about. Not with anything heroic. With ten quiet minutes, often enough, in the right shapes — the recovery half of training that runners skip because nobody ever made it simple.
+I can't promise Yin prevents injury — nothing honestly can, and I won't pretend otherwise. What I can say is this: the everyday tightness where so many niggles begin *is* something you can do something about. Not with anything heroic. With fifteen quiet minutes, often enough, in the right shapes — the recovery half of training that runners skip because nobody ever made it simple.
 
-So I made it simple. The right ten minutes, laid out for you, for as long as you run. I'd love to help you stay a runner at your best — not someone who used to run.
+So I made it simple. The right fifteen minutes, laid out for you, for as long as you run. I'd love to help you stay a runner at your best — not someone who used to run.
 
 The founding places are going; when the first 100 are taken, $49 becomes $67.
 
@@ -175,45 +185,48 @@ Katie
 ### L5 · Day 5 (morning) — honest scarcity
 
 **Subject:** Founding places — a quick honest note
-**Preview:** The $49 price ends when the first 100 are gone, or tonight.
+**Preview:** The $49 price holds until the first 100 are gone.
 
 Hi {$name|default:"there"},
 
-Just a quick, honest note — no theatre. The founding group closes tonight, and once the first 100 places are taken, the price settles at $67 for good.
+Just a quick, honest note — no theatre. The founding group is filling, and once the first 100 places are taken, the price settles at $67 for good.
 
-If you've been on the fence: you can join this morning, do one Target session after today's run, and if it's not for you, take the full refund and keep everything. That's the whole risk, and it's mine.
+If you've been on the fence: you can join today, do one Target session after your next run, and if it's not for you, take the full refund and keep everything. That's the whole risk, and it's mine.
 
 **→ [Join the Runner's Reset — $49 founding price](RUNNER_RESET_URL)**
 
 Take good care,
 Katie
 
-### L6 · Day 5 (evening) — last call
+### L6 · Two days after L5 — the last word
 
-**Subject:** Last call — the founding price ends tonight
-**Preview:** After tonight it's $67. One quiet decision.
+**Subject:** The last one from me on this
+**Preview:** Then I'll go back to just sending you Yin.
 
 Hi {$name|default:"there"},
 
 This is the last one from me about this — I promise I'll go back to just sending you Yin.
 
-The founding price closes tonight. If you run, and you'd like to keep running at your best without slowly seizing up, the Runner's Reset is the small, quiet habit that gets you there: ten minutes after a run, a longer reset once a week, a plan that's already laid out. $49 once, yours for life, a full refund if it doesn't help — and you keep it either way.
+If you run, and you'd like to keep running at your best without slowly seizing up, the Runner's Reset is the small, quiet habit that gets you there: fifteen minutes after a run, a longer reset once a week, a plan that's already laid out. $49 once while the founding places last, yours for life, a full refund if it doesn't help — and you keep it either way.
 
-**→ [Join before it closes tonight](RUNNER_RESET_URL)**
+And if it's not for you, that's genuinely fine.
+
+**→ [Join the Runner's Reset](RUNNER_RESET_URL)**
 
 Whatever you decide, thank you for being here. Keep doing your free Reset after your runs — that habit matters more than any purchase.
 
 Take good care of yourself,
 Katie
 
-*P.S. The tightness won't undo itself. Ten quiet minutes tonight is a lovely way to start.*
+*P.S. The tightness won't undo itself. Fifteen quiet minutes tonight is a lovely way to start.*
 
 ---
 
 ## Sending & segmentation notes
 
-- **Timing:** N1 day 0 · N2 day 3 · N3 day 6 · N4 day 9 · then hold subscribers in a light weekly rhythm until launch. Launch: L0 (−2 days) · L1 (open, AM) · L2 · L3 · L4 · L5 (final AM) · L6 (final PM). Expect most sales in the last 24 hours.
-- **Suppress buyers immediately** — on purchase, tag `runner-reset-buyer` and remove from the launch automation, then send the welcome/onboarding email.
-- **New signups mid-launch:** skip them to L1 with the days remaining, rather than starting nurture.
+- **Timing (evergreen, one automation):** N1 day 0 · N2 day 3 · N3 day 6 · N4 day 9 · L1 day 11 · L2 day 12 · L3 day 13 · L4 day 14 · L5 day 15 · L6 day 17. L0 is not used.
+- **Suppress buyers immediately** — on purchase, tag `runner-reset-buyer` and set that tag as an exit condition on the automation, then send the welcome/onboarding email. Without this, someone who buys from L1 gets pitched five more times.
+- **The founding-100 count is live copy.** L1–L6 all promise "$49 for the first 100, then $67". The moment you pass 100 sales those lines are untrue to everyone mid-sequence, and nothing updates them automatically. Set yourself a reminder.
+- **Session lengths are quoted in L1, L2 and L3.** If a session's runtime changes, these need updating with it — the site has a build guard for durations, the emails don't.
 - **Replies to L0's question** ("where does running tighten you most?") are gold — quote the common answers, anonymised and with permission, in future launches once real testimonials exist. Until then, no testimonials anywhere.
 - **After close:** a short "doors closed — join the waitlist" note; re-open each race season.

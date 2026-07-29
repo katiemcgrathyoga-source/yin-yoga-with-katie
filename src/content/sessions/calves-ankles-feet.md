@@ -6,7 +6,7 @@ kind: "target"
 area: "calves, ankles & feet"
 body_map: "calves"
 level: "all-levels"
-minutes: 11
+minutes: 14
 hold_label: "1–3 minute holds"
 props: []
 youtube_video_id: ""
@@ -54,5 +54,5 @@ when:
   - "First thing, to free the ankles before a day on your feet."
 access: "members"
 seo_title: "Yin Yoga for Runners — Calves, Ankles & Feet"
-seo_description: "A follow-along Yin practice for runners' calves, ankles and feet: restore the ankle and foot mobility running stiffens, in about 11 minutes."
+seo_description: "A follow-along Yin practice for runners' calves, ankles and feet: restore the ankle and foot mobility running stiffens, in about 14 minutes."
 ---

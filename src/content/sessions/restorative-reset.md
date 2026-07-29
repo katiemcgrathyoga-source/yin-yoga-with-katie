@@ -6,7 +6,7 @@ kind: "full-reset"
 area: "full body (restorative)"
 body_map: "full"
 level: "all-levels"
-minutes: 42
+minutes: 50
 hold_label: "4–5 minute holds"
 props: ["bolster", "2 blocks", "blanket"]
 youtube_video_id: ""
@@ -73,5 +73,5 @@ when:
   - "Before bed, to wind all the way down."
 access: "members"
 seo_title: "Yin Yoga for Runners — The Restorative Reset"
-seo_description: "A gentle, fully-supported Yin recovery practice for runners' tired legs and low-energy days, about 40 minutes. Video, timer and cues."
+seo_description: "A gentle, fully-supported Yin recovery practice for runners' tired legs and low-energy days, about 50 minutes. Video, timer and cues."
 ---

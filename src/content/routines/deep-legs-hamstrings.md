@@ -1,12 +1,12 @@
 ---
 title: "Deep Legs & Hamstrings"
 slug: "deep-legs-hamstrings"
-tagline: "20 minutes for tight legs, hamstrings and feet"
+tagline: "26 minutes for tight legs, hamstrings and feet"
 intent: "flexibility"
 hero_pose: "dragonfly"
 level: "intermediate"
-minutes: 20
-intro: "Twenty minutes to work slowly through the legs — the hamstrings, inner thighs, calves and even the often-forgotten feet. This is the practice for anyone chasing more flexibility, or whose legs feel tight from running, cycling or long days on your feet. Keep a soft bend in the knees in every forward fold so the stretch stays in the muscle, not the joint, and back off the moment anything feels sharp. Come as you are, and let time do the work."
+minutes: 26
+intro: "Twenty-six minutes to work slowly through the legs — the hamstrings, inner thighs, calves and even the often-forgotten feet. This is the practice for anyone chasing more flexibility, or whose legs feel tight from running, cycling or long days on your feet. Keep a soft bend in the knees in every forward fold so the stretch stays in the muscle, not the joint, and back off the moment anything feels sharp. Come as you are, and let time do the work."
 props: []
 steps:
   - { pose: "dangling",       seconds: 120, sides: 1, note: "Hang forward with soft knees and let the hamstrings and back release." }
@@ -25,9 +25,9 @@ faq:
   - q: "How often should I practise for more flexibility?"
     a: "Two or three times a week is a sustainable rhythm that builds flexibility steadily. Consistency matters far more than forcing any single stretch."
 membership_cta: "Working toward the splits or just looser legs? The membership has full leg- and hip-focused classes inside a guided plan that builds over time."
-summary: "A 20-minute Yin routine for tight legs, hamstrings, calves and feet — deep forward folds and foot stretches held slowly, with a built-in hold timer."
-seo_title: "20-Minute Yin Yoga for Hamstrings & Legs — Flexibility Routine"
-seo_description: "A 20-minute Yin Yoga routine for tight hamstrings, legs and feet, with a built-in hold timer. Deep forward folds to build flexibility. Follow along."
+summary: "A 26-minute Yin routine for tight legs, hamstrings, calves and feet — deep forward folds and foot stretches held slowly, with a built-in hold timer."
+seo_title: "26-Minute Yin Yoga for Hamstrings & Legs — Flexibility Routine"
+seo_description: "A 26-minute Yin Yoga routine for tight hamstrings, legs and feet, with a built-in hold timer. Deep forward folds to build flexibility. Follow along."
 ---
 
 <!-- Curated sequence; poses referenced by slug. The routine page resolves each to

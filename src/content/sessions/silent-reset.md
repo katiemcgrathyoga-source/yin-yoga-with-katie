@@ -6,7 +6,7 @@ kind: "full-reset"
 area: "full body (silent)"
 body_map: "full"
 level: "intermediate"
-minutes: 48
+minutes: 55
 hold_label: "4–5 minute holds"
 props: ["bolster", "2 blocks", "strap"]
 youtube_video_id: ""
@@ -69,5 +69,5 @@ when:
   - "Any time you crave stillness more than instruction."
 access: "members"
 seo_title: "Yin Yoga for Runners — The Silent Reset"
-seo_description: "A silent, minimal-cue full-body Yin practice for runners who know the shapes, about 45 minutes of deep stillness. Video, timer and cues."
+seo_description: "A silent, minimal-cue full-body Yin practice for runners who know the shapes, about 55 minutes of deep stillness. Video, timer and cues."
 ---

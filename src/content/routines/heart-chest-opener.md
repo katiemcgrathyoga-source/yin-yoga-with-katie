@@ -1,12 +1,12 @@
 ---
 title: "Heart & Chest Opener"
 slug: "heart-chest-opener"
-tagline: "20 minutes to undo the day's hunch"
+tagline: "24 minutes to undo the day's hunch"
 intent: "heart"
 hero_pose: "melting-heart"
 level: "all-levels"
-minutes: 20
-intro: "For the rounded shoulders and tight chest that a day at a desk leaves behind. Twenty minutes of gentle, supported opening across the front of the body — the chest, the shoulders, the upper back. These are softening backbends, not deep ones: you're inviting the front body to lengthen, not forcing it. Move slowly, keep the throat and jaw soft, and back off the moment the low back complains."
+minutes: 24
+intro: "For the rounded shoulders and tight chest that a day at a desk leaves behind. Twenty-four minutes of gentle, supported opening across the front of the body — the chest, the shoulders, the upper back. These are softening backbends, not deep ones: you're inviting the front body to lengthen, not forcing it. Move slowly, keep the throat and jaw soft, and back off the moment the low back complains."
 props: []
 steps:
   - { pose: "childs-pose",        seconds: 120, sides: 1, note: "Arrive and let the upper back round and soften first." }
@@ -24,9 +24,9 @@ faq:
   - q: "Do I need props for this routine?"
     a: "A bolster, cushion or rolled blanket makes the supported-fish far more restful, but it's optional — you can rest back over anything soft, or simply lie flat. Everything else needs nothing at all."
 membership_cta: "Sit all day? The membership has a guided series for the chest, shoulders and upper back — a night-by-night plan to undo the hunch, so you don't have to piece it together yourself."
-summary: "A 20-minute heart and chest opening Yin Yoga routine — gentle, supported backbends for the chest, shoulders and upper back, with a built-in hold timer. All levels."
-seo_title: "20-Minute Heart & Chest Opening Yin Yoga Routine — Follow Along"
-seo_description: "A 20-minute Yin Yoga routine to open the chest, shoulders and upper back — gentle supported backbends with a built-in hold timer to undo desk hunch. All levels."
+summary: "A 24-minute heart and chest opening Yin Yoga routine — gentle, supported backbends for the chest, shoulders and upper back, with a built-in hold timer. All levels."
+seo_title: "24-Minute Heart & Chest Opening Yin Yoga Routine — Follow Along"
+seo_description: "A 24-minute Yin Yoga routine to open the chest, shoulders and upper back — gentle supported backbends with a built-in hold timer to undo desk hunch. All levels."
 ---
 
 <!-- Curated sequence; poses referenced by slug. The routine page resolves each to

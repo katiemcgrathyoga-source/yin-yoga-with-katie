@@ -1,16 +1,16 @@
 ---
-title: "What to Do After a Run: A Simple 10-Minute Post-Run Stretch Routine"
+title: "What to Do After a Run: A Simple 15-Minute Post-Run Stretch Routine"
 slug: "post-run-stretches"
-description: "The after-run routine most runners skip. Five long, easy Yin holds — about ten quiet minutes — to undo the tightness running builds up in your hips, hamstrings and calves."
+description: "The after-run routine most runners skip. Five long, easy Yin holds — about fifteen quiet minutes — to undo the tightness running builds up in your hips, hamstrings and calves."
 published: 2026-07-28
 unlisted: true
 hero: "/poses/sleeping-swan.jpg"
 hero_focal: "50% 40%"
 hero_caption: "sleeping swan — a runner's go-to for tight hips and glutes"
-subtitle: "ten quiet minutes, while you're still warm"
+subtitle: "fifteen quiet minutes, while you're still warm"
 eyebrow_tag: "for runners"
-seo_title: "Post-Run Stretches: A Simple 10-Minute Yin Routine for Runners"
-seo_description: "What to do after a run: five long, gentle Yin holds — about ten minutes — for tight hips, hamstrings and calves. When to do them, how long to hold, and a free follow-along."
+seo_title: "Post-Run Stretches: A Simple 15-Minute Yin Routine for Runners"
+seo_description: "What to do after a run: five long, gentle Yin holds — about fifteen minutes — for tight hips, hamstrings and calves. When to do them, how long to hold, and a free follow-along."
 practise:
   routine: "deep-hips-lower-body"
   video: "NDOsdt86vcs"
@@ -32,7 +32,7 @@ You know the scene. You finish a good run — legs heavy, hips tight, that famil
 
 I get it. Nobody ever made the stretching part *simple*, so it quietly slides — run after run — and the tightness stacks up. Hips one month, calves the next. Then one morning your stride feels short and braced, and you're wondering where your easy miles went.
 
-Here's the good news: undoing it doesn't take much. Ten unhurried minutes, in the right shapes, often enough. That's genuinely most of it. Here's exactly what to do.
+Here's the good news: undoing it doesn't take much. Fifteen unhurried minutes, in the right shapes, often enough. That's genuinely most of it. Here's exactly what to do.
 
 ## Why after a run, not before
 
@@ -42,7 +42,7 @@ Before a run, your body wants to be *woken up*, not lengthened — a few minutes
 
 After a run is when the long, still holds earn their keep. You're warm, the work is done, and this is the moment to give back the range running quietly takes away — and to let your body shift down into its rest state, which is the recovery half of training most runners skip.
 
-## Why ten minutes is enough
+## Why fifteen minutes is enough
 
 This is Yin yoga, and all it really means is this: you settle into a shape and stay for a few quiet minutes — nothing forced, only ever to about **60–80% of your capacity** — and let gravity and your breath do the slow work a rushed stretch can't reach.
 
@@ -52,7 +52,7 @@ You don't need to become flexible. You just need to stop getting tighter.
 
 ## The routine
 
-Five shapes, roughly two minutes each. Move slowly between them. If you only have five minutes, do the first two — they're where runners hold the most.
+Five shapes, roughly two minutes each side. Take a slow minute between shapes — that pause is part of the practice, not a gap in it. If you only have five minutes, do the first two — they're where runners hold the most.
 
 **1. [Dragon](/poses/dragon) — for the hip flexors.** A low lunge, back knee down. Running plus sitting all day shortens the front of the hip more than anywhere else, so we open it first. Let the hips sink toward the floor and breathe. *About 1–2 minutes each side.*
 
@@ -64,7 +64,7 @@ Five shapes, roughly two minutes each. Move slowly between them. If you only hav
 
 **5. [Legs Up the Wall](/poses/legs-up-the-wall) — to finish and settle.** Exactly what it sounds like: lie down, legs resting up the wall. It eases tired, heavy legs and quietly down-shifts you into recovery. A lovely place to end. *2–3 minutes, and longer if it feels good.*
 
-That's the whole thing. Hips, glutes, hamstrings, back, and a calm finish — the chain running tightens, in about ten minutes.
+That's the whole thing. Hips, glutes, hamstrings, back, and a calm finish — the chain running tightens, in about fifteen minutes.
 
 ## Making it stick
 
@@ -74,7 +74,7 @@ The routine that helps is the one you actually do. So keep the bar low: roll out
 
 ## Want it as a follow-along?
 
-If you'd rather be talked through it than read a list, I've made a **free 10-minute Post-Run Reset** — the same idea, guided, so you can just press play after a run. You can [grab it here](/runners).
+If you'd rather be talked through it than read a list, I've made a **free 15-minute Post-Run Reset** — the same idea, guided, so you can just press play after a run. You can [grab it here](/runners).
 
 And if it clicks and you want the whole system — a short session for every place running tightens, plus guided plans — that's what [The Runner's Reset](/runner-reset) is. No rush. Start with the free class and see how your legs feel.
 

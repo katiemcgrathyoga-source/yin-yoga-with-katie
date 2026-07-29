@@ -6,7 +6,7 @@ kind: "target"
 area: "hips"
 body_map: "hips"
 level: "all-levels"
-minutes: 12
+minutes: 15
 hold_label: "2-minute holds"
 props: []
 youtube_video_id: ""
@@ -52,5 +52,5 @@ when:
   - "As the hip block inside a longer Full Reset session."
 access: "members"
 seo_title: "Yin Yoga for Runners — Hips & Hip Flexors (Post-Run)"
-seo_description: "A short follow-along Yin practice for runners: open the tight hips and hip flexors running builds up, in about 12 minutes. Video, timer and cues."
+seo_description: "A short follow-along Yin practice for runners: open the tight hips and hip flexors running builds up, in about 15 minutes. Video, timer and cues."
 ---

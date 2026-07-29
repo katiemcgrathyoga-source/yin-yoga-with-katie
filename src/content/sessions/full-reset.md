@@ -6,7 +6,7 @@ kind: "full-reset"
 area: "full body"
 body_map: "full"
 level: "all-levels"
-minutes: 44
+minutes: 53
 hold_label: "3–5 minute holds"
 props: ["bolster", "2 blocks", "strap"]
 youtube_video_id: ""
@@ -76,6 +76,6 @@ when:
   - "The day after a long run or a race."
   - "Any evening you want to properly reset, head to toe."
 access: "members"
-seo_title: "Yin Yoga for Runners — The Full Reset (40+ min)"
-seo_description: "A full-body Yin recovery practice for runners: every area, one flowing sequence, about 40 minutes. Video, timer and cues."
+seo_title: "Yin Yoga for Runners — The Full Reset (50+ min)"
+seo_description: "A full-body Yin recovery practice for runners: every area, one flowing sequence, about 53 minutes. Video, timer and cues."
 ---

@@ -6,7 +6,7 @@ kind: "target"
 area: "lower back & spine"
 body_map: "back"
 level: "all-levels"
-minutes: 12
+minutes: 16
 hold_label: "1–2 minute holds"
 props: []
 youtube_video_id: ""
@@ -53,5 +53,5 @@ when:
   - "As the spine block inside a longer Full Reset."
 access: "members"
 seo_title: "Yin Yoga for Runners — Lower Back & Spine"
-seo_description: "A follow-along Yin practice for runners' lower back and spine: gently undo the compression of every run in about 12 minutes. Video, timer and cues."
+seo_description: "A follow-along Yin practice for runners' lower back and spine: gently undo the compression of every run in about 16 minutes. Video, timer and cues."
 ---

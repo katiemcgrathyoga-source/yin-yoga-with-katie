@@ -6,7 +6,7 @@ kind: "target"
 area: "hamstrings & glutes"
 body_map: "hamstrings"
 level: "all-levels"
-minutes: 15
+minutes: 18
 hold_label: "2–3 minute holds"
 props: []
 youtube_video_id: ""
@@ -49,5 +49,5 @@ when:
   - "As the hamstring block inside a longer Full Reset."
 access: "members"
 seo_title: "Yin Yoga for Runners — Hamstrings & Glutes"
-seo_description: "A follow-along Yin practice for runners' hamstrings and glutes: ease the eccentric-loaded back of the legs in about 15 minutes. Video, timer and cues."
+seo_description: "A follow-along Yin practice for runners' hamstrings and glutes: ease the eccentric-loaded back of the legs in about 18 minutes. Video, timer and cues."
 ---

@@ -6,7 +6,7 @@ kind: "target"
 area: "quads & outer hip"
 body_map: "quads"
 level: "all-levels"
-minutes: 14
+minutes: 18
 hold_label: "2 minute holds"
 props: []
 youtube_video_id: ""
@@ -49,5 +49,5 @@ when:
   - "As the quad and lateral-line block inside a longer Full Reset."
 access: "members"
 seo_title: "Yin Yoga for Runners — Quads & Outer Hip (IT Band)"
-seo_description: "A follow-along Yin practice for runners' quads and outer hip: release the muscles behind IT-band tightness in about 14 minutes. Video, timer and cues."
+seo_description: "A follow-along Yin practice for runners' quads and outer hip: release the muscles behind IT-band tightness in about 18 minutes. Video, timer and cues."
 ---

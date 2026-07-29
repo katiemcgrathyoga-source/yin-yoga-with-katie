@@ -1,4 +1,4 @@
-# Deliverable B — Lead-Magnet Funnel · "The 10-Minute Post-Run Reset"
+# Deliverable B — Lead-Magnet Funnel · "The 15-Minute Post-Run Reset"
 
 > Opt-in page at **/runners**, the delivery email, and two bridge emails.
 > Upgrades over the existing drafts: sharper promise on the page, a concrete
@@ -12,15 +12,15 @@
 
 **Eyebrow:** For runners — free
 
-**H1:** The ten minutes after your run that keep you running.
+**H1:** The fifteen minutes after your run that keep you running.
 
-**Sub:** Pop your email in and I'll send you a free follow-along Post-Run Reset — ten quiet minutes to loosen the hips, hamstrings and calves running tightens, so the stiffness lets go before it settles in. Yours to keep, for any run, forever.
+**Sub:** Pop your email in and I'll send you a free follow-along Post-Run Reset — fifteen quiet minutes to loosen the hips, hamstrings and calves running tightens, so the stiffness lets go before it settles in. Yours to keep, for any run, forever.
 
 **Benefit bullets:**
 - A short, follow-along Yin routine — made to do right after a run, while you're warm
 - Works the three places running tightens most: hips, hamstrings and calves
 - No flexibility needed, no props, no experience — you only ever go to about 60–80% of your capacity
-- Ten minutes, whenever you like — nothing to keep up with
+- Fifteen minutes, whenever you like — nothing to keep up with
 
 **Form:** First name · Email → **Send me the Post-Run Reset →**
 
@@ -36,11 +36,11 @@
 ## 2 · Delivery email — sent immediately
 
 **Subject:** Your Post-Run Reset is here
-**Preview:** Ten quiet minutes to do after your next run.
+**Preview:** Fifteen quiet minutes to do after your next run.
 
 Hi {$name|default:"there"},
 
-Thank you for being here. As promised, here's your free Post-Run Reset — ten quiet minutes to loosen the hips, hamstrings and calves that running tightens up.
+Thank you for being here. As promised, here's your free Post-Run Reset — fifteen quiet minutes to loosen the hips, hamstrings and calves that running tightens up.
 
 **▶ [Start your Post-Run Reset](RUNNER_POSTRUN_VIDEO_URL)**
 
@@ -50,7 +50,7 @@ Three small things that help:
 - **You only ever go to about 60–80% of your capacity.** We stay a couple of quiet minutes in each shape and let gravity and your breath do the work — nothing forced, nothing to achieve.
 - **If you need to come out of anything sooner, that's completely okay.** You don't need to wait for me. Dull stretch is fine; anything sharp or nervy means ease off.
 
-Little and often does far more than long and rare. Even ten minutes after a run, a couple of times a week, adds up to legs that feel a lot happier.
+Little and often does far more than long and rare. Even fifteen minutes after a run, a couple of times a week, adds up to legs that feel a lot happier.
 
 I'll write again in a few days with a little more for runners.
 
@@ -70,13 +70,13 @@ Katie
 
 Hi {$name|default:"there"},
 
-How did the Post-Run Reset feel? If your hips or hamstrings are anything like most runners', even ten minutes makes a difference the next morning.
+How did the Post-Run Reset feel? If your hips or hamstrings are anything like most runners', even fifteen minutes makes a difference the next morning.
 
 Here's the part nobody tells runners: a hurried stretch or a foam roll only skims the surface. The tightness that nags at you sits deeper — around the hips and the joints — and it doesn't respond to a quick pull. It responds to *time*. That's all Yin really is: settling into a shape and staying a few quiet minutes, so the deeper tissue can actually let go. Not forcing — just letting gravity and your breath do the slow work.
 
 And here's the other part: running doesn't tighten one thing. It loads a whole chain — hips, hamstrings, calves, quads, lower back — and a tight link pulls on the next one. That's why it shows up somewhere new every few weeks.
 
-Your ten-minute Reset covers the essentials after any run. For the whole chain, I'm putting together something bigger — a full library of short, follow-along sessions, one for every place running tightens, with paths that tell you exactly what to press play on. The people on this list will hear first, at a founding price no one else will see.
+Your fifteen-minute Reset covers the essentials after any run. For the whole chain there's something bigger: **The Runner's Reset** — a library of short, follow-along sessions, one for every place running tightens, with paths that tell you exactly what to press play on. The people on this list get the founding price.
 
 For now: keep doing your Reset after your runs. That habit alone puts you ahead of most runners.
 
@@ -96,9 +96,9 @@ A quick thought about hips, since they're the thing runners mention most.
 
 Every stride flexes your hip — thousands of times a run. Then most of us go and sit for eight hours, which holds the hip in that same shortened position all day. Running starts the tightening; the chair quietly finishes it. Over weeks, that's the short, braced stride and the low-back grumble so many desk-bound runners know.
 
-The kind thing to do about it isn't dramatic. It's a few unhurried minutes in shapes like Dragon or Sleeping Swan — long enough for the front of the hip to genuinely soften — a few times a week. If you only have your ten-minute Reset, that's a lovely start: notice how the first hip shape feels this week compared with last.
+The kind thing to do about it isn't dramatic. It's a few unhurried minutes in shapes like Dragon or Sleeping Swan — long enough for the front of the hip to genuinely soften — a few times a week. If you only have your fifteen-minute Reset, that's a lovely start: notice how the first hip shape feels this week compared with last.
 
-The full library I mentioned — it's called **The Runner's Reset** — gives every one of those tight places its own short session, including one made specifically for runners who sit all day. It opens soon, and you'll get first access and the founding price.
+The full library I mentioned — it's called **The Runner's Reset** — gives every one of those tight places its own short session, including one made specifically for runners who sit all day. It's open now, and this list gets the founding price.
 
 Until then, take good care of yourself,
 Katie

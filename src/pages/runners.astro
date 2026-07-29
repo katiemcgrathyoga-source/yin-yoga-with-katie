@@ -4,33 +4,29 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 // Branded OG card for shares.
 const ogImage = new URL('/og/card.png', Astro.site);
 ogImage.searchParams.set('t', 'A free Post-Run Reset for runners');
-ogImage.searchParams.set('s', '10 minutes of Yin to loosen tight hips, hamstrings & calves — free');
+ogImage.searchParams.set('s', '15 minutes of Yin to loosen tight hips, hamstrings & calves — free');
 
-// MailerLite form (account 2503148). The form posts straight to MailerLite; the
-// Post-Run Reset is delivered by the welcome automation.
-//
-// TODO (Katie's side): point this at a DEDICATED "Runners" MailerLite form so
-// runner signups trigger the Post-Run Reset automation (delivery + bridge email),
-// NOT the 2-hour-retreat series. `signup_source: "runner"` is sent regardless, so
-// you can alternatively branch/segment the automation on that field on the shared
-// form. Until one of those is set up, runner signups will get the retreat email.
-const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/192665473777665865/subscribe';
+// Dedicated "Runners" MailerLite form (account 2503148). Separate from the
+// retreat form used on /free-class, so runner signups trigger the Post-Run Reset
+// automation (delivery + bridge email) and NOT the 2-hour-retreat series.
+// `signup_source: "runner"` is still sent as a custom field for reporting.
+const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/194288582398052179/subscribe';
 ---
 
 <BaseLayout
-  title="A Free 10-Minute Post-Run Reset for Runners — Yin Yoga with Katie"
-  description="Free for runners: a 10-minute follow-along Yin Post-Run Reset to loosen the tight hips, hamstrings and calves running builds up. Pop in your email and I'll send it — yours to keep."
+  title="A Free 15-Minute Post-Run Reset for Runners — Yin Yoga with Katie"
+  description="Free for runners: a 15-minute follow-along Yin Post-Run Reset to loosen the tight hips, hamstrings and calves running builds up. Pop in your email and I'll send it — yours to keep."
   image={ogImage.href}
   noindex={true}
 >
   <div class="wrap">
     <header class="hero">
       <p class="eyebrow">For runners — free</p>
-      <h1>The ten minutes after your run that keep you running.</h1>
+      <h1>The fifteen minutes after your run that keep you running.</h1>
     </header>
 
     <p class="page-intro">
-      Pop your email in and I'll send you a free follow-along Post-Run Reset — ten quiet minutes to
+      Pop your email in and I'll send you a free follow-along Post-Run Reset — fifteen quiet minutes to
       loosen the hips, hamstrings and calves running tightens, so the stiffness lets go before it
       settles in. Yours to keep, for any run, forever.
     </p>
@@ -40,7 +36,7 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
         <li>A short, follow-along Yin routine — made to do right after a run, while you're warm</li>
         <li>Works the three places running tightens most: hips, hamstrings and calves</li>
         <li>No flexibility needed, no props, no experience — you only ever go to about 60–80% of your capacity</li>
-        <li>Ten minutes, whenever you like — nothing to keep up with</li>
+        <li>Fifteen minutes, whenever you like — nothing to keep up with</li>
       </ul>
 
       <form

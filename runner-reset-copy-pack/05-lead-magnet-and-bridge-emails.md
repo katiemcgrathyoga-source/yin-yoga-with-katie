@@ -1,5 +1,10 @@
 # The Runner Funnel — Lead Magnet + Video CTA Copy
 
+> ⚠️ **SUPERSEDED — do not load these into MailerLite.**
+> Use **`B-lead-magnet-funnel.md`** (opt-in page + delivery + bridge emails) and
+> **`C-nurture-and-launch-emails.md`** (the full journey). This draft predates the
+> library offer and states the class as 10 minutes; it runs 15.
+
 The free offer that turns runner-video viewers into an owned email list — the
 warm audience the Runner's Reset later launches to. All copy in Katie's voice
 with a copywriter's spine. See also `runner-reset-session-map.md` and the

@@ -4,8 +4,10 @@
  *
  * On "Begin", it expands to a distraction-free full-screen mode: a 15-second
  * lead-in to get into the first pose, then each hold timed with a gentle chime
- * and a calm "ease out → next pose" hand-off. You can nudge any hold ±30s on the
- * fly, and at the end it generates a branded, shareable completion badge.
+ * and a calm "ease out → next pose" hand-off. Between poses it holds a 45-second
+ * rebound (15 when only swapping sides) — the still pause Yin asks for, and the
+ * reason a practice runs longer than the sum of its holds. You can nudge any hold
+ * ±30s on the fly, and at the end it generates a shareable completion badge.
  *
  * The custom element is framework-free and exposes setSequence()/beginPractice()
  * so the custom routine builder can drive it with a sequence built in the browser.
@@ -23,7 +25,8 @@ const { title, holds, shareUrl, imageUrl } = Astro.props;
   interface Hold { name: string; slug: string; img: string; seconds: number; note?: string; sideLabel?: string; }
 
   const PREP = 15;        // lead-in seconds to get into the first pose
-  const TRANSITION = 15;  // ease-out seconds between poses
+  const REBOUND = 45;     // rebound seconds between poses — the still pause Yin asks for
+  const SIDE_SWITCH = 15; // ease-out seconds when swapping to the second side
   const RING_C = 326.726; // circumference of an r=52 circle
   const SITE = 'yinyogawithkatie.com';
 
@@ -50,6 +53,7 @@ const { title, holds, shareUrl, imageUrl } = Astro.props;
     idx = 0;
     phase: 'ready' | 'prep' | 'holding' | 'transition' | 'done' = 'ready';
     paused = false;
+    transitionTotal = REBOUND; // set per transition: REBOUND between poses, SIDE_SWITCH between sides
     remaining = 0;
     endAt = 0;
     raf: number | undefined;
@@ -244,13 +248,14 @@ const { title, holds, shareUrl, imageUrl } = Astro.props;
       const cur = this.holds[this.idx];
       const next = this.holds[this.idx + 1];
       const switching = next.name === cur.name;
+      this.transitionTotal = switching ? SIDE_SWITCH : REBOUND;
       this.count.textContent = 'Ease out slowly';
       this.nameEl.textContent = switching ? 'Switch sides' : 'Next pose';
       this.note.textContent = `${next.name}${next.sideLabel ? ' · ' + next.sideLabel : ''}`;
       this.updateNextUp(this.idx);
       this.toggle.textContent = 'Pause';
       this.live.textContent = switching ? 'Switch sides.' : `Next, ${next.name}.`;
-      this.runCountdown(TRANSITION, TRANSITION, () => this.advance());
+      this.runCountdown(this.transitionTotal, this.transitionTotal, () => this.advance());
     }
 
     advance() { this.startHold(this.idx + 1); }
@@ -278,7 +283,9 @@ const { title, holds, shareUrl, imageUrl } = Astro.props;
     resume() {
       this.paused = false; this.toggle.textContent = 'Pause';
       const total =
-        this.phase === 'prep' ? PREP : this.phase === 'transition' ? TRANSITION : this.holds[this.idx].seconds;
+        this.phase === 'prep' ? PREP
+        : this.phase === 'transition' ? this.transitionTotal
+        : this.holds[this.idx].seconds;
       const done =
         this.phase === 'prep' ? () => this.startHold(this.idx)
         : this.phase === 'transition' ? () => this.advance()

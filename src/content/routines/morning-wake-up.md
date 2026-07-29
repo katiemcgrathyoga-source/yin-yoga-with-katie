@@ -1,11 +1,11 @@
 ---
 title: "Morning Wake-Up"
 slug: "morning-wake-up"
-tagline: "15 gentle minutes to meet the day"
+tagline: "21 gentle minutes to meet the day"
 intent: "energy"
 hero_pose: "sphinx"
 level: "all-levels"
-minutes: 15
+minutes: 21
 intro: "A soft, unhurried way to wake the body — gentle backbends to open the front of you, an easy twist to wring out the night, gentle hip and side-body shapes to get things moving. Because the body is cool first thing, we keep the holds a little shorter and never push. This isn't about a big stretch; it's about arriving in your body before the day begins. Come as you are."
 props: []
 steps:
@@ -22,11 +22,11 @@ faq:
   - q: "Do I need props, and is it beginner-friendly?"
     a: "No props needed, and it's suitable for all levels. Work softly, stay well within your edge, and let the practice wake you up gradually."
   - q: "How long is the routine?"
-    a: "About 15 minutes — short enough to do before the day gets going, long enough to feel more awake and open."
+    a: "About 21 minutes — short enough to do before the day gets going, long enough to feel more awake and open."
 membership_cta: "Like starting the day this way? The membership has short morning practices inside a guided plan, so you roll out of bed and press play."
-summary: "A gentle 15-minute morning Yin routine to wake the body — soft backbends, an easy twist and gentle hip openers, with a built-in hold timer."
-seo_title: "15-Minute Morning Yin Yoga Routine — Gentle Wake-Up"
-seo_description: "A gentle 15-minute morning Yin Yoga routine to wake the body without straining — soft backbends, an easy twist and light hip openers, with a built-in timer."
+summary: "A gentle 21-minute morning Yin routine to wake the body — soft backbends, an easy twist and gentle hip openers, with a built-in hold timer."
+seo_title: "21-Minute Morning Yin Yoga Routine — Gentle Wake-Up"
+seo_description: "A gentle 21-minute morning Yin Yoga routine to wake the body without straining — soft backbends, an easy twist and light hip openers, with a built-in timer."
 ---
 
 <!-- Curated sequence; poses referenced by slug. The routine page resolves each to

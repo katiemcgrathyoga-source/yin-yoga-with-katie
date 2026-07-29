@@ -1,5 +1,28 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { practiceMinutes, type DurationStep } from './lib/duration';
+
+/**
+ * Guards the hand-written `minutes` against the real runtime. `minutes` used to be
+ * "the sum of the holds", which ignored rebound time and understated every practice
+ * by a third. Now the build fails if the number on the page drifts from the timer.
+ */
+function checkMinutes(
+  data: { minutes: number; steps: DurationStep[] },
+  ctx: z.RefinementCtx,
+) {
+  const actual = practiceMinutes(data.steps);
+  if (data.minutes !== actual) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ['minutes'],
+      message:
+        `minutes is ${data.minutes} but the sequence actually runs ${actual} min ` +
+        `(holds + rebounds + side switches + lead-in). Set minutes: ${actual}, ` +
+        `or change the holds. Remember the prose and SEO copy quote this number too.`,
+    });
+  }
+}
 
 /**
  * The `poses` collection — the single source of truth for the whole directory.
@@ -138,7 +161,7 @@ const routines = defineCollection({
     intent: z.string(), // grouping label, e.g. "sleep" | "hips" | "shoulders" | "full-body"
     hero_pose: z.string().optional(), // slug of the pose to use as the card/OG image (defaults to the first step)
     level: z.enum(['all-levels', 'beginner', 'intermediate', 'advanced']),
-    minutes: z.number().int().positive(), // marketed length (matches the sum of holds)
+    minutes: z.number().int().positive(), // true runtime — verified against the sequence below
     intro: z.string().min(1), // a short paragraph in Katie's voice
     props: z.array(z.string()).default([]),
     steps: z
@@ -147,6 +170,7 @@ const routines = defineCollection({
           pose: z.string(), // slug → poses collection
           seconds: z.number().int().positive(), // hold length for this step
           sides: z.union([z.literal(1), z.literal(2)]).default(1), // 2 → player runs it left then right
+          rebound: z.number().int().positive().optional(), // override the 45s rebound after this pose (Katie: 30–60s)
           note: z.string().optional(), // short cue shown while holding
         }),
       )
@@ -156,7 +180,7 @@ const routines = defineCollection({
     summary: z.string().min(1),
     seo_title: z.string().min(1),
     seo_description: z.string().min(1),
-  }),
+  }).superRefine(checkMinutes),
 });
 
 /**
@@ -215,7 +239,7 @@ const sessions = defineCollection({
     area: z.string(),                           // e.g. "hips", "hamstrings", "full-body"
     body_map: z.enum(['hips', 'hamstrings', 'calves', 'quads', 'back', 'full']).default('full'),
     level: z.enum(['all-levels', 'beginner', 'intermediate', 'advanced']).default('all-levels'),
-    minutes: z.number().int().positive(),
+    minutes: z.number().int().positive(), // true runtime — verified against the sequence below
     hold_label: z.string().default('2-minute holds'),
     props: z.array(z.string()).default([]),
     youtube_video_id: z.string().default(''),   // free/public classes → YouTube embed
@@ -229,6 +253,7 @@ const sessions = defineCollection({
           pose: z.string(),                     // slug → poses collection
           seconds: z.number().int().positive(),
           sides: z.union([z.literal(1), z.literal(2)]).default(1),
+          rebound: z.number().int().positive().optional(), // override the 45s rebound after this pose (Katie: 30–60s)
           note: z.string().optional(),          // cue shown while holding
         }),
       )
@@ -240,7 +265,7 @@ const sessions = defineCollection({
     unlisted: z.boolean().default(false), // noindex + email-only (e.g. the free lead-magnet class)
     seo_title: z.string().optional(),
     seo_description: z.string().optional(),
-  }),
+  }).superRefine(checkMinutes),
 });
 
 export const collections = { poses, videos, routines, blog, sessions };
