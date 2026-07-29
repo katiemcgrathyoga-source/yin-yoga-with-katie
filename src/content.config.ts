@@ -236,6 +236,7 @@ const sessions = defineCollection({
     scale: z.array(z.object({ level: z.string(), note: z.string() })).default([]),
     when: z.array(z.string()).default([]),
     access: z.enum(['free', 'members']).default('members'),
+    product: z.string().default('runner-reset'), // entitlement a 'members' session requires to unlock
     seo_title: z.string().optional(),
     seo_description: z.string().optional(),
   }),

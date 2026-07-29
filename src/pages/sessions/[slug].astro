@@ -21,30 +21,36 @@ const session = sessions.find((s) => s.data.slug === slug);
 if (!session) return new Response('Not found', { status: 404 });
 
 const d = session.data;
-const poses = await getCollection('poses');
 
 const gated = d.access === 'members';
 const access = gated
-  ? await checkAccess(Astro.cookies.get('sb-token')?.value, 'runner-reset')
+  ? await checkAccess(Astro.cookies.get('sb-token')?.value, d.product)
   : { signedIn: true, entitled: true };
-const unlocked = !gated || access.entitled;
+const unlocked = access.entitled; // when !gated, access is already {entitled:true}
 
 const titleCase = (s: string) => s.replace(/\b\w/g, (c) => c.toUpperCase());
 const humanise = (slug: string) => titleCase(slug.replace(/-/g, ' '));
-const bySlug = new Map(poses.map((p) => [p.data.slug, p.data]));
 
 type Hold = { name: string; slug: string; img: string; seconds: number; note: string; sideLabel?: string };
-const holds: Hold[] = d.steps.flatMap((s) => {
-  const p = bySlug.get(s.pose);
-  const base = {
-    name: p?.name_en ?? humanise(s.pose),
-    slug: s.pose,
-    img: p?.images?.[0] ?? '',
-    seconds: s.seconds,
-    note: s.note ?? p?.cues?.[0] ?? '',
-  };
-  return s.sides === 2 ? [{ ...base, sideLabel: 'Side 1' }, { ...base, sideLabel: 'Side 2' }] : [base];
-});
+// Poses + holds feed only the unlocked view, so skip the collection read and the
+// build entirely for gated non-buyers (they render just the gate card).
+let bySlug = new Map<string, any>();
+let holds: Hold[] = [];
+if (unlocked) {
+  const poses = await getCollection('poses');
+  bySlug = new Map(poses.map((p) => [p.data.slug, p.data]));
+  holds = d.steps.flatMap((s) => {
+    const p = bySlug.get(s.pose);
+    const base = {
+      name: p?.name_en ?? humanise(s.pose),
+      slug: s.pose,
+      img: p?.images?.[0] ?? '',
+      seconds: s.seconds,
+      note: s.note ?? p?.cues?.[0] ?? '',
+    };
+    return s.sides === 2 ? [{ ...base, sideLabel: 'Side 1' }, { ...base, sideLabel: 'Side 2' }] : [base];
+  });
+}
 
 const holdWords = (secs: number, sides: number) => {
   const base = secs % 60 === 0 ? `${secs / 60} minute${secs === 60 ? '' : 's'}` : `${secs} sec`;
@@ -218,7 +224,7 @@ const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_i
 </BaseLayout>
 
 <script>
-  import { getSupabase } from '../../lib/supabaseBrowser';
+  import { getSupabase, writeSbCookie } from '../../lib/supabaseBrowser';
 
   // --- Watch / Timer tabs (only present when unlocked) ---
   const tw = document.getElementById('tab-watch');
@@ -244,8 +250,7 @@ const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_i
     const supabase = getSupabase();
     supabase?.auth.getSession().then(({ data: { session } }) => {
       if (session && sessionStorage.getItem('sp-reload') !== '1') {
-        const secure = location.protocol === 'https:' ? '; Secure' : '';
-        document.cookie = `sb-token=${session.access_token}; Path=/; Max-Age=3600; SameSite=Lax${secure}`;
+        writeSbCookie(session);
         sessionStorage.setItem('sp-reload', '1');
         location.reload();
       }

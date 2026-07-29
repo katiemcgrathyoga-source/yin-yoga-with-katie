@@ -8,6 +8,9 @@ export type Access = { signedIn: boolean; entitled: boolean };
  * user's token so row-level security limits the read to their own rows — no
  * service-role key needed. This is what makes the gate real: the SSR page calls
  * it and only renders member content when `entitled` is true.
+ *
+ * KEEP IN SYNC with the parallel gate in netlify/functions/bunny-playback.mjs
+ * (same query + same unconfigured-open policy, duplicated across the build boundary).
  */
 export async function checkAccess(token: string | undefined, product: string): Promise<Access> {
   const url = process.env.PUBLIC_SUPABASE_URL;

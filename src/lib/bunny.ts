@@ -1,8 +1,9 @@
 import { createHash } from 'node:crypto';
 
 /**
- * Server-side Bunny Stream embed signer — same token formula as the
- * /api/playback function, used by the SSR session page to embed a signed player
+ * Server-side Bunny Stream embed signer. KEEP IN SYNC with the parallel copy in
+ * netlify/functions/bunny-playback.mjs (same token formula; the esbuild/Vite
+ * boundary prevents sharing one module). Used by the SSR session page to embed a signed player
  * directly for owners (so the URL is minted server-side, never guessable).
  * Returns null when Bunny isn't configured or there's no video id.
  */

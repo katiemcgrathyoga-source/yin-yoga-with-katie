@@ -41,6 +41,9 @@ export default async (req) => {
   }
 
   // 2. Entitlement check (skipped until Supabase is configured).
+  //    KEEP IN SYNC with src/lib/access.ts checkAccess() — the SSR gate is a
+  //    parallel copy (same query + same unconfigured-open policy); the esbuild/
+  //    Vite boundary prevents sharing one module.
   if (SUPA_URL && SUPA_ANON) {
     const authz = req.headers.get('authorization') || '';
     const jwt = authz.startsWith('Bearer ') ? authz.slice(7).trim() : '';
@@ -72,6 +75,8 @@ export default async (req) => {
   }
 
   // 3. Sign the embed URL: token = SHA256_hex(tokenKey + videoId + expires)
+  //    KEEP IN SYNC with src/lib/bunny.ts signBunnyEmbed() — same formula,
+  //    duplicated across the esbuild/Vite boundary; a drift fails closed.
   const expires = Math.floor(Date.now() / 1000) + TTL;
   const token = createHash('sha256').update(TOKEN_KEY + videoId + expires).digest('hex');
   const embedUrl =

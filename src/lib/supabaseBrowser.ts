@@ -24,12 +24,18 @@ export function getSupabase(): SupabaseClient | null {
     });
     // Bridge the session to a short-lived cookie so SSR pages (the gated
     // /sessions routes) can read it server-side and gate before rendering.
-    client.auth.onAuthStateChange((_event, session) => {
-      const secure = location.protocol === 'https:' ? '; Secure' : '';
-      document.cookie = session?.access_token
-        ? `sb-token=${session.access_token}; Path=/; Max-Age=3600; SameSite=Lax${secure}`
-        : `sb-token=; Path=/; Max-Age=0; SameSite=Lax${secure}`;
-    });
+    client.auth.onAuthStateChange((_event, session) => writeSbCookie(session));
   }
   return client;
+}
+
+/**
+ * Single source of truth for the `sb-token` bridge cookie (name, TTL, flags).
+ * Written on auth changes and by the gated-session reload fallback.
+ */
+export function writeSbCookie(session: { access_token?: string } | null): void {
+  const secure = location.protocol === 'https:' ? '; Secure' : '';
+  document.cookie = session?.access_token
+    ? `sb-token=${session.access_token}; Path=/; Max-Age=3600; SameSite=Lax${secure}`
+    : `sb-token=; Path=/; Max-Age=0; SameSite=Lax${secure}`;
 }
