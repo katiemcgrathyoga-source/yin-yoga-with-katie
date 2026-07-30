@@ -1,30 +1,61 @@
 ---
 /**
- * The site-wide call to action — a single, low-friction ask: the free two-hour
- * Yin retreat. Calm, no hype — in Katie's voice.
+ * The site-wide call to action — one low-friction ask, in Katie's voice.
  *
- * Captures email INLINE (no extra click) by posting straight to MailerLite in a
- * hidden iframe, then swapping in our own thank-you — the same technique as the
- * homepage retreat band and /free-class. Every signup is tagged with `source`
- * (MailerLite custom field `signup_source`) so we can see which pages convert.
+ * TWO offers, because one message across 380 pages can't fit them all. The
+ * retreat is the default and suits nearly any visitor; a runner reading about
+ * post-run stretches is better served by the Post-Run Reset, which is both
+ * contextually matched AND the funnel with a product behind it. A runner offer
+ * on a "Yin for Sleep" page would convert nobody, so pages opt IN by tag rather
+ * than the site switching wholesale.
+ *
+ * They post to different MailerLite forms on purpose: each triggers its own
+ * automation, so a runner must not be dropped into the retreat series.
+ *
+ * Captures email INLINE (no extra click) by posting to MailerLite in a hidden
+ * iframe, then swapping in our own thank-you. Every signup carries `source`
+ * (custom field `signup_source`) so we can see which pages convert.
  */
-const ML_ACTION =
-  'https://assets.mailerlite.com/jsonp/2503148/forms/192665473777665865/subscribe';
+const OFFERS = {
+  retreat: {
+    action: 'https://assets.mailerlite.com/jsonp/2503148/forms/192665473777665865/subscribe',
+    eyebrow: 'A gift from me',
+    heading: 'Two hours to completely switch off',
+    body: "Pop your email in and I'll send you my free two-hour Yin, restorative and Yoga Nidra retreat — two slow hours to properly switch off. Yours to keep, and to come back to any time.",
+    badge: '✦ A members-only class — free for you',
+    button: 'Send me the free retreat →',
+    done: 'Check your inbox 🌙 your two-hour retreat is on its way.',
+    aria: 'Get the free two-hour retreat',
+  },
+  runners: {
+    action: 'https://assets.mailerlite.com/jsonp/2503148/forms/194288582398052179/subscribe',
+    eyebrow: 'Free for runners',
+    heading: 'The 15-Minute Post-Run Reset',
+    body: "Pop your email in and I'll send you a free follow-along Yin class for after your run — fifteen quiet minutes to loosen what running tightens, from the hips and glutes to the hamstrings and spine. Yours to keep, for any run, forever.",
+    badge: '✦ A free follow-along class, with a hold timer',
+    button: 'Send me the Post-Run Reset →',
+    done: 'Check your inbox 🌙 your Post-Run Reset is on its way.',
+    aria: 'Get the free Post-Run Reset',
+  },
+} as const;
 
 interface Props {
   eyebrow?: string;
   heading?: string;
   body?: string;
+  /** Which lead magnet to ask for. Pages opt in to 'runners' by tag. */
+  offer?: keyof typeof OFFERS;
   /** Where this signup came from, e.g. "pose", "journal", "video". */
   source?: string;
 }
+const { offer = 'retreat', source = 'site' } = Astro.props;
+const o = OFFERS[offer];
 const {
-  eyebrow = 'A gift from me',
-  heading = 'Two hours to completely switch off',
-  body =
-    "Pop your email in and I'll send you my free two-hour Yin, restorative and Yoga Nidra retreat — two slow hours to properly switch off. Yours to keep, and to come back to any time.",
-  source = 'site',
+  eyebrow = o.eyebrow,
+  heading = o.heading,
+  body = o.body,
 } = Astro.props;
+const ML_ACTION = o.action;
 
 // Unique per render so several capture cards on one page never collide.
 const uid = 'cta-' + Math.random().toString(36).slice(2, 9);
@@ -34,7 +65,7 @@ const frame = uid + '-frame';
 <section class="membership cta-block" data-cta>
   <p class="eyebrow">{eyebrow}</p>
   <h2>{heading}</h2>
-  <p class="cta-members">✦ A members-only class — free for you</p>
+  <p class="cta-members">{o.badge}</p>
   <p>{body}</p>
 
   <form
@@ -43,7 +74,7 @@ const frame = uid + '-frame';
     method="post"
     target={frame}
     data-cta-form
-    aria-label="Get the free two-hour retreat"
+    aria-label={o.aria}
   >
     <label class="sr-only" for={uid + '-name'}>First name</label>
     <input
@@ -68,12 +99,12 @@ const frame = uid + '-frame';
     <input type="hidden" name="fields[signup_source]" value={source} />
     <input type="hidden" name="ml-submit" value="1" />
     <input type="hidden" name="anticsrf" value="true" />
-    <button type="submit" class="btn-cta">Send me the free retreat →</button>
+    <button type="submit" class="btn-cta">{o.button}</button>
   </form>
 
   <p class="cta-fine" data-cta-fine>No spam, ever. Unsubscribe any time. I'll only send Yin.</p>
   <p class="cta-done" hidden role="status" data-cta-done>
-    Check your inbox 🌙 your two-hour retreat is on its way.
+    {o.done}
   </p>
 
   <iframe name={frame} class="lm-frame" title="Sign-up" tabindex="-1" aria-hidden="true"></iframe>

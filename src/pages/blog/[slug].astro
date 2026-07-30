@@ -16,6 +16,8 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const d = post.data;
+// Runner posts ask for the runner lead magnet instead of the retreat.
+const isRunner = d.eyebrow_tag === 'for runners';
 // One CTA per post: a specific program when set (the blueprint's conversion target),
 // otherwise the site-wide free-retreat email capture.
 const ctaProgram = d.cta_program ? PROGRAMS.find((p) => p.slug === d.cta_program) : undefined;
@@ -158,12 +160,19 @@ const shareLinks = {
       </aside>
     )}
 
-    <Cta
-      source="journal"
-      eyebrow="From the mat"
-      heading="Ready to actually practice?"
-      body="Reading about Yin is one thing — feeling it is another. Whenever you're ready, pop your email in and I'll send you my free two-hour Yin, restorative and Yoga Nidra retreat. Two slow hours to properly switch off, yours to keep."
-    />
+    {/* A runner post asks for the runner magnet, matched to what brought them
+        here. Everything else keeps the retreat. */}
+    {isRunner ? (
+      <Cta offer="runners" source="journal-runner"
+        eyebrow="From the mat"
+        heading="Ready to actually practice?"
+        body="Reading about it is one thing — feeling it is another. Pop your email in and I'll send you my free 15-Minute Post-Run Reset: a follow-along Yin class for after your run, with a hold timer and written cues. Yours to keep." />
+    ) : (
+      <Cta source="journal"
+        eyebrow="From the mat"
+        heading="Ready to actually practice?"
+        body="Reading about Yin is one thing — feeling it is another. Whenever you're ready, pop your email in and I'll send you my free two-hour Yin, restorative and Yoga Nidra retreat. Two slow hours to properly switch off, yours to keep." />
+    )}
 
     <div class="blog-share" data-share-url={postUrl}>
       <span class="blog-share-label">Share</span>
