@@ -3,7 +3,7 @@ title: "Yoga for Runners: The Best Yin Poses for Tight Hips, Hamstrings & Recove
 slug: "yoga-for-runners"
 description: "Why Yin Yoga is the recovery runners are missing — the best poses for tight hips, hamstrings, calves and the outer hip, when to do them, and follow-along classes to try tonight."
 published: 2026-07-19
-unlisted: true
+unlisted: false
 hero: "/poses/dragon.jpg"
 hero_focal: "56% 45%"
 hero_caption: "dragon — the deep hip-flexor opener runners need most"

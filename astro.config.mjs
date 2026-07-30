@@ -21,7 +21,6 @@ export default defineConfig({
         !page.includes('/dev/') &&
         !page.includes('/account') &&
         !page.includes('/practices') &&
-        !page.includes('/blog/yoga-for-runners') &&
         !page.includes('/pins') &&
         !page.includes('/boards'),
     }),

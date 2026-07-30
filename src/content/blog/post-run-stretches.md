@@ -3,7 +3,7 @@ title: "What to Do After a Run: A Simple 15-Minute Post-Run Stretch Routine"
 slug: "post-run-stretches"
 description: "The after-run routine most runners skip. Five long, easy Yin holds — about fifteen quiet minutes — to undo the tightness running builds up in your hips, hamstrings and calves."
 published: 2026-07-28
-unlisted: true
+unlisted: false
 hero: "/poses/sleeping-swan.jpg"
 hero_focal: "50% 40%"
 hero_caption: "sleeping swan — a runner's go-to for tight hips and glutes"
@@ -76,7 +76,7 @@ The routine that helps is the one you actually do. So keep the bar low: roll out
 
 If you'd rather be talked through it than read a list, I've made a **free 15-minute Post-Run Reset** — the same idea, guided, so you can just press play after a run. You can [grab it here](/runners).
 
-And if it clicks and you want the whole system — a short session for every place running tightens, plus guided plans — that's what [The Runner's Reset](/runner-reset) is. No rush. Start with the free class and see how your legs feel.
+And if it clicks and you want the whole system — a short practice for every place running tightens, plus guided plans — that's what [The Runner's Reset](/runner-reset) is. No rush. Start with the free class and see how your legs feel.
 
 Take good care of yourself,
 Katie
