@@ -38,17 +38,13 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19428858239
         carries Katie's face, which is what the whole channel runs on. Above the
         form, never between the form and its button. */}
     <figure class="lm-still">
-      <Image src={classStill} alt="Katie holding Sleeping Swan on her mat during the Post-Run Reset class" widths={[560, 900, 1400]} sizes="(max-width: 760px) 92vw, 720px" loading="eager" fetchpriority="high" />
+      <Image src={classStill} alt="Katie holding Sleeping Swan on her mat during the Post-Run Reset class" widths={[520, 760, 1040]} sizes="(max-width: 560px) 92vw, 520px" loading="eager" fetchpriority="high" />
     </figure>
 
+    {/* The form comes BEFORE the bullets. The headline and the still already make
+        the offer; anyone who's convinced shouldn't have to scroll past four
+        reassurances to act. The bullets stay below for anyone who isn't yet. */}
     <section class="lm">
-      <ul class="lm-points">
-        <li>A short, follow-along Yin routine — made to do right after a run, while you're warm</li>
-        <li>One long, easy hold for each place a run tightens: hips, glutes, hamstrings and spine</li>
-        <li>No flexibility needed, no props, no experience — you only ever go to about 60–80% of your capacity</li>
-        <li>Fifteen minutes, whenever you like — nothing to keep up with</li>
-      </ul>
-
       <form
         class="lm-form"
         id="lm-form"
@@ -85,6 +81,13 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19428858239
 
       <p class="lm-fine">No spam, ever. Unsubscribe any time. I'll only send Yin.</p>
 
+      <ul class="lm-points">
+        <li>A short, follow-along Yin routine — made to do right after a run, while you're warm</li>
+        <li>One long, easy hold for each place a run tightens: hips, glutes, hamstrings and spine</li>
+        <li>No flexibility needed, no props, no experience — you only ever go to about 60–80% of your capacity</li>
+        <li>Fifteen minutes, whenever you like — nothing to keep up with</li>
+      </ul>
+
       <div class="lm-success" id="lm-success" hidden role="status">
         <h2>Check your inbox</h2>
         <p>
@@ -104,11 +107,13 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19428858239
   const form = document.getElementById('lm-form') as HTMLFormElement | null;
   const success = document.getElementById('lm-success');
   const fine = document.querySelector('.lm-fine') as HTMLElement | null;
+  const points = document.querySelector('.lm-points') as HTMLElement | null;
   form?.addEventListener('submit', () => {
     // The POST goes to MailerLite in the hidden iframe; show our own thank-you.
     setTimeout(() => {
       form.hidden = true;
       if (fine) fine.hidden = true;
+      if (points) points.hidden = true; // the pitch is over once they've signed up
       if (success) success.hidden = false;
       success?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, 350);

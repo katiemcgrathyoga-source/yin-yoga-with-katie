@@ -477,9 +477,10 @@ routine-player.is-done .rp-done { display: flex; }
 
 /* lead-magnet / free-class page */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; }
-/* A frame from the class itself, above the form. Wider than the form column so it
-   reads as a window into the practice rather than another field in the stack. */
-.lm-still { max-width: 720px; margin: 26px auto 0; }
+/* A frame from the class itself, above the form. Matched to the form column so the
+   page reads as one tidy stack — and, more practically, so it doesn't push the
+   form below the fold on a laptop. */
+.lm-still { max-width: 520px; margin: 26px auto 0; }
 .lm-still img {
   display: block; width: 100%; height: auto;
   border-radius: 16px; border: 1px solid var(--line);
@@ -488,16 +489,27 @@ routine-player.is-done .rp-done { display: flex; }
 .lm { max-width: 520px; margin: 30px auto 0; }
 .lm-points { list-style: none; margin: 0 0 24px; padding: 0; display: flex; flex-direction: column; gap: 10px; }
 .lm-points li { position: relative; padding-left: 30px; font-size: 16.5px; color: var(--ink); }
+/* --plum flips to a LIGHT cream in dark mode (it doubles as a heading colour), so
+   it can't be a tick's background — a white ✓ on cream vanished. --gold-solid is
+   dark-on-light and light-on-dark, and --paper inverts with it, so the pair holds
+   contrast in both themes. */
 .lm-points li::before {
   content: "✓"; position: absolute; left: 0; top: 0; width: 20px; height: 20px; border-radius: 50%;
-  background: var(--plum); color: #fff; font-size: 12px; display: grid; place-items: center;
+  background: var(--gold-solid); color: var(--paper); font-size: 12px; font-weight: 700;
+  display: grid; place-items: center;
 }
 .lm-form { display: flex; flex-direction: column; gap: 12px; }
+/* The fields have to read AS fields. --paper-2 sits within ~10 RGB of --paper in
+   dark mode and --line is barely lighter, so a subtle fill left the inputs
+   invisible; the border does the work instead, in both themes. */
 .lm-form input[type="email"], .lm-form input[type="text"] {
-  font: inherit; font-size: 16px; padding: 14px 16px; border-radius: 12px;
-  border: 1px solid var(--line); background: var(--paper-2); color: var(--ink); width: 100%;
+  font: inherit; font-size: 16px; padding: 15px 16px; border-radius: 12px;
+  border: 1.5px solid var(--ink-soft); background: var(--paper-2); color: var(--ink); width: 100%;
 }
-.lm-form input[type="email"]:focus, .lm-form input[type="text"]:focus { border-color: var(--plum); outline: none; }
+.lm-form input::placeholder { color: var(--ink-soft); opacity: 1; }
+.lm-form input[type="email"]:focus, .lm-form input[type="text"]:focus {
+  border-color: var(--gold-solid); outline: 2px solid var(--gold-solid); outline-offset: 1px;
+}
 .lm-form .btn-cta {
   cursor: pointer; padding: 14px 20px; font-size: 16px; font-weight: 600; font-family: inherit;
   background: var(--plum); color: #fff; border: none; border-radius: 12px; width: 100%;
