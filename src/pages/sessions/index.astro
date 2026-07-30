@@ -1,0 +1,131 @@
+---
+export const prerender = false; // SSR: the session list is course material, gated like the sessions
+
+import { getCollection } from 'astro:content';
+import CourseLayout from '../../layouts/CourseLayout.astro';
+import { checkAccess } from '../../lib/access';
+
+/**
+ * The course home — every session in one place, grouped the way a runner would
+ * look for them. Gated exactly like a session page: a non-buyer gets the join
+ * card and nothing else, so the curriculum isn't sitting in the HTML for people
+ * who haven't bought it.
+ */
+const PRODUCT = 'runner-reset';
+const access = await checkAccess(Astro.cookies.get('sb-token')?.value, PRODUCT);
+const unlocked = access.entitled;
+
+const all = await getCollection('sessions');
+// Unlisted sessions are email-only (the free lead magnet) — not part of the course index.
+const sessions = unlocked ? all.filter((s) => !s.data.unlisted) : [];
+
+const GROUPS = [
+  { kind: 'start-here', title: 'Start here', blurb: 'What Yin is, why it suits runners, how to use the library.' },
+  { kind: 'target', title: 'Target sessions', blurb: 'One for each place running tightens. Do them after a run, while you are warm.' },
+  { kind: 'post-run', title: 'Post-run', blurb: 'Short resets for straight after a run.' },
+  { kind: 'full-reset', title: 'Full resets', blurb: 'The whole chain in one unhurried rest-day practice.' },
+  { kind: 'rest-day', title: 'Rest day', blurb: 'Longer, gentler practices for the days you are not running.' },
+];
+
+const grouped = GROUPS.map((g) => ({
+  ...g,
+  items: sessions.filter((s) => s.data.kind === g.kind).sort((a, b) => a.data.minutes - b.data.minutes),
+})).filter((g) => g.items.length > 0);
+---
+
+<CourseLayout
+  title="Your sessions — The Runner's Reset"
+  description="Every session in The Runner's Reset, in one place."
+  noindex={true}
+  section={unlocked ? 'Your sessions' : undefined}
+>
+  {!unlocked ? (
+    <div class="cwrap">
+      <div class="ch-gate">
+        {access.signedIn ? (
+          <Fragment>
+            <h1>A member area</h1>
+            <p>Your account doesn't include The Runner's Reset yet — join once and every session unlocks, for good.</p>
+            <a class="ch-btn" href="/runner-reset">Join The Runner's Reset →</a>
+            <p class="ch-alt">Wrong account? <a href="/account">Switch account</a></p>
+          </Fragment>
+        ) : (
+          <Fragment>
+            <h1>Sign in to open your sessions</h1>
+            <p>Sign in with the email you joined with, and the whole library unlocks.</p>
+            <a class="ch-btn" href="/account">Sign in</a>
+            <p class="ch-alt">Don't have it yet? <a href="/runner-reset">Join The Runner's Reset →</a></p>
+          </Fragment>
+        )}
+      </div>
+    </div>
+  ) : (
+    <div class="cwrap">
+      <header class="ch-head">
+        <h1>Your sessions</h1>
+        <p>Press play on whichever your body is asking for. There's no order you have to follow — though if you'd like one, start at the top.</p>
+      </header>
+
+      {grouped.map((g) => (
+        <section class="ch-sec">
+          <h2>{g.title}</h2>
+          <p class="ch-blurb">{g.blurb}</p>
+          <ul class="ch-grid">
+            {g.items.map((s) => (
+              <li>
+                <a class="ch-card" href={`/sessions/${s.data.slug}`}>
+                  <span class="ch-card-title">{s.data.title}</span>
+                  {s.data.angle && <span class="ch-card-angle" set:html={s.data.angle} />}
+                  <span class="ch-card-meta">~{s.data.minutes} min · {s.data.hold_label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+  )}
+</CourseLayout>
+
+<style>
+  .cwrap { max-width: 1040px; margin: 0 auto; padding: 34px 22px 0; }
+
+  .ch-head { margin-bottom: 36px; max-width: 620px; }
+  .ch-head h1 { font-family: var(--display); font-size: clamp(30px, 5vw, 40px); margin: 0 0 10px; }
+  .ch-head p { color: var(--ink-soft); margin: 0; }
+
+  .ch-sec { margin-bottom: 42px; }
+  .ch-sec h2 { font-family: var(--display); font-size: 22px; margin: 0 0 4px; }
+  .ch-blurb { color: var(--ink-soft); font-size: 15px; margin: 0 0 18px; max-width: 560px; }
+
+  .ch-grid {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+  }
+
+  .ch-card {
+    display: flex; flex-direction: column; gap: 7px; height: 100%;
+    padding: 18px 18px 16px; text-decoration: none;
+    background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px;
+    transition: border-color .16s ease, transform .16s ease;
+  }
+  .ch-card:hover { border-color: var(--gold-solid); transform: translateY(-2px); }
+  .ch-card-title { font-family: var(--display); font-size: 19px; color: var(--ink); }
+  .ch-card-angle { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
+  .ch-card-meta { margin-top: auto; padding-top: 6px; font-size: 13px; color: var(--ink-soft); }
+
+  .ch-gate {
+    max-width: 520px; margin: 40px auto 0; text-align: center;
+    padding: 34px 26px; background: var(--paper-2);
+    border: 1px solid var(--line); border-radius: 16px;
+  }
+  .ch-gate h1 { font-family: var(--display); font-size: 26px; margin: 0 0 10px; }
+  .ch-gate p { color: var(--ink-soft); margin: 0 0 18px; }
+  .ch-btn {
+    display: inline-block; padding: 12px 22px; border-radius: 999px;
+    background: var(--gold-solid); color: var(--paper);
+    text-decoration: none; font-size: 15px;
+  }
+  .ch-alt { font-size: 14px; margin: 16px 0 0 !important; }
+</style>

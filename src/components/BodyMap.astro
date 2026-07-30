@@ -1,0 +1,102 @@
+---
+/**
+ * "Where it works" — front and back plates with the muscle groups this session
+ * works picked out in rosewood, the rest left muted.
+ *
+ * Two views, because most of what running tightens is posterior (glutes,
+ * hamstrings, calves, lumbar) and the rest is anterior (hip flexors, quads). A
+ * single front-facing figure can't honestly show a hamstring.
+ *
+ * Every muscle group is always drawn — so you can see the chain running loads —
+ * and the ones this session works are the ones that lift. That's the difference
+ * between a diagram and a highlighted band.
+ *
+ * The artwork is a set of nine illustrated plates sharing one pair of figures:
+ * front and back in four and five highlight states. All nine are cropped to the
+ * same box and colour-matched to a single cream, so the two views sit seamlessly
+ * side by side and the figure never shifts as you move between sessions.
+ *
+ * That cream ground is carried on the panel behind the images, so the diagram
+ * reads as a mounted plate in BOTH themes rather than a bright rectangle floating
+ * on a dark card. Text inside the plate is therefore fixed, not themed.
+ *
+ * Sources live in design/bodymap-source/; regenerate the webp with the crop and
+ * colour-match step in that folder's README if the plates are ever redrawn.
+ */
+interface Props {
+  region: 'hips' | 'hamstrings' | 'quads' | 'calves' | 'back' | 'full';
+}
+const { region } = Astro.props;
+
+/** Which plate variant each session area shows, and how to say it. */
+const REGIONS: Record<Props['region'], { front: string; back: string; label: string }> = {
+  hips: { front: 'hips', back: 'base', label: 'the hips and hip flexors' },
+  quads: { front: 'quads', back: 'base', label: 'the quads and outer hip' },
+  hamstrings: { front: 'base', back: 'glutes', label: 'the hamstrings and glutes' },
+  calves: { front: 'base', back: 'calves', label: 'the calves, ankles and feet' },
+  back: { front: 'base', back: 'lumbar', label: 'the lower back and spine' },
+  full: { front: 'all', back: 'all', label: 'the whole lower body' },
+};
+
+const { front, back, label } = REGIONS[region];
+const VIEWS = [
+  { caption: 'Front', src: `/bodymap/front-${front}.webp` },
+  { caption: 'Back', src: `/bodymap/back-${back}.webp` },
+];
+---
+
+<figure class="bmap">
+  {/* One role="img" for the pair: the plates are a single diagram, and the
+      figcaption below already states the message in text. */}
+  <div class="bmap-plate" role="img" aria-label={`Diagram: this practice works ${label}`}>
+    {VIEWS.map((v) => (
+      <div class="bmap-view">
+        <img src={v.src} width="320" height="886" loading="lazy" decoding="async" alt="" />
+        <span class="bmap-view-cap">{v.caption}</span>
+      </div>
+    ))}
+  </div>
+
+  <figcaption class="bmap-cap"><b>Where it works:</b> {label}.</figcaption>
+</figure>
+
+<style>
+  .bmap { margin: 0; text-align: center; }
+
+  /* The plate is always cream, in both themes — it's a mounted illustration, not
+     a themed surface. The images carry the same cream, so there's no seam. */
+  .bmap-plate {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    max-width: 264px;
+    margin: 0 auto;
+    padding: 12px 10px 8px;
+    background: #E0DAC9;
+    border: 1px solid rgba(72, 84, 76, 0.16);
+    border-radius: 12px;
+  }
+
+  .bmap-view { flex: 1 1 0; min-width: 0; }
+  .bmap-view img { display: block; width: 100%; height: auto; }
+
+  /* Fixed colour, not a theme variable: this text sits on the cream plate in
+     dark mode too, where --ink-soft would be a pale grey and vanish. */
+  .bmap-view-cap {
+    display: block;
+    margin-top: 4px;
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #48544C;
+  }
+
+  .bmap-cap {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+  .bmap-cap b { color: var(--ink); }
+</style>

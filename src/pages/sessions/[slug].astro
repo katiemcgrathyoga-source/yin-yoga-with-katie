@@ -2,8 +2,9 @@
 export const prerender = false; // SSR: gate member content server-side, never send it to non-buyers
 
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import CourseLayout from '../../layouts/CourseLayout.astro';
 import RoutinePlayer from '../../components/RoutinePlayer.astro';
+import BodyMap from '../../components/BodyMap.astro';
 import { checkAccess } from '../../lib/access';
 import { signBunnyEmbed } from '../../lib/bunny';
 
@@ -31,7 +32,7 @@ const unlocked = access.entitled; // when !gated, access is already {entitled:tr
 const titleCase = (s: string) => s.replace(/\b\w/g, (c) => c.toUpperCase());
 const humanise = (slug: string) => titleCase(slug.replace(/-/g, ' '));
 
-type Hold = { name: string; slug: string; img: string; seconds: number; note: string; sideLabel?: string };
+type Hold = { name: string; slug: string; img: string; seconds: number; note: string; sideLabel?: string; rebound?: number };
 // Poses + holds feed only the unlocked view, so skip the collection read and the
 // build entirely for gated non-buyers (they render just the gate card).
 let bySlug = new Map<string, any>();
@@ -47,6 +48,7 @@ if (unlocked) {
       img: p?.images?.[0] ?? '',
       seconds: s.seconds,
       note: s.note ?? p?.cues?.[0] ?? '',
+      rebound: s.rebound, // per-pose rebound override, so the timer matches `minutes`
     };
     return s.sides === 2 ? [{ ...base, sideLabel: 'Side 1' }, { ...base, sideLabel: 'Side 2' }] : [base];
   });
@@ -57,16 +59,6 @@ const holdWords = (secs: number, sides: number) => {
   return sides === 2 ? `${base} each` : base;
 };
 
-const MAP: Record<string, { cy: number; ry: number; label: string }> = {
-  hips: { cy: 92, ry: 17, label: 'the hips and hip flexors' },
-  hamstrings: { cy: 120, ry: 20, label: 'the hamstrings and glutes' },
-  quads: { cy: 112, ry: 18, label: 'the quads and outer hip' },
-  calves: { cy: 158, ry: 20, label: 'the calves, ankles and feet' },
-  back: { cy: 74, ry: 16, label: 'the lower back and spine' },
-  full: { cy: 112, ry: 60, label: 'the whole lower body' },
-};
-const bm = MAP[d.body_map] ?? MAP.full;
-
 const kindLabel: Record<string, string> = {
   'post-run': 'Post-Run Reset', 'rest-day': 'Rest-Day Deep Stretch', target: 'Target Session',
   'full-reset': 'Full Reset', 'start-here': 'Start Here',
@@ -76,14 +68,15 @@ const kindLabel: Record<string, string> = {
 const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_id) : null;
 ---
 
-<BaseLayout
+<CourseLayout
   title={d.seo_title ?? `${d.title} — Yin Yoga with Katie`}
   description={d.seo_description ?? d.intro}
   noindex={d.access === 'members' || d.unlisted}
+  section={kindLabel[d.kind] ?? 'Session'}
 >
   <div class="wrap sp">
     <header class="sp-head">
-      <p class="sp-eyebrow">The Runner's Reset · {kindLabel[d.kind] ?? 'Session'}</p>
+      <p class="sp-eyebrow"><a href="/sessions">← All sessions</a></p>
       <h1>{d.title}</h1>
       <div class="sp-chips">
         <span class="sp-chip area">Area · {titleCase(d.area)}</span>
@@ -183,17 +176,7 @@ const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_i
 
             <div>
               <div class="sp-card sp-map">
-                <svg viewBox="0 0 100 200" aria-hidden="true">
-                  <circle cx="50" cy="20" r="11"/>
-                  <path d="M38 34 Q50 30 62 34 L60 96 Q50 100 40 96 Z"/>
-                  <rect x="30" y="40" width="10" height="46" rx="5"/>
-                  <rect x="60" y="40" width="10" height="46" rx="5"/>
-                  <path d="M41 96 Q46 100 46 108 L44 176 Q42 182 38 176 L40 108 Q39 100 41 96Z"/>
-                  <path d="M59 96 Q54 100 54 108 L56 176 Q58 182 62 176 L60 108 Q61 100 59 96Z"/>
-                  <ellipse cx="50" cy={bm.cy} rx="24" ry={bm.ry} class="hl a"/>
-                  <ellipse cx="50" cy={bm.cy} rx="13" ry={Math.max(9, bm.ry - 8)} class="hl b"/>
-                </svg>
-                <p class="sp-mapcap"><b>Where it works:</b> {bm.label}.</p>
+                <BodyMap region={d.body_map} />
               </div>
 
               {d.scale.length > 0 && (
@@ -230,7 +213,7 @@ const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_i
       </Fragment>
     )}
   </div>
-</BaseLayout>
+</CourseLayout>
 
 <script>
   import { getSupabase, writeSbCookie } from '../../lib/supabaseBrowser';
@@ -323,14 +306,7 @@ const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_i
   .sp-cue .hold { font-size: 12.5px; font-weight: 600; color: var(--gold-solid); }
   .sp-cue p { font-size: 14px; color: var(--ink-soft); margin-top: 3px; }
 
-  .sp-map { text-align: center; }
-  .sp-map svg { width: 116px; height: auto; }
-  .sp-map svg circle, .sp-map svg path, .sp-map svg rect { fill: var(--ink-soft); }
-  .sp-map svg .hl { stroke: none; }
-  .sp-map svg .hl.a { fill: var(--gold-solid); opacity: .26; }
-  .sp-map svg .hl.b { fill: var(--gold-solid); opacity: .45; }
-  .sp-mapcap { font-size: 13px; color: var(--ink-soft); margin-top: 8px; }
-  .sp-mapcap b { color: var(--ink); }
+  /* body map lives in components/BodyMap.astro and styles itself */
 
   .sp-lvl { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
   .sp-lvl:last-child { border-bottom: none; }

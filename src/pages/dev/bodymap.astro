@@ -1,0 +1,33 @@
+---
+import BodyMap from '../../components/BodyMap.astro';
+
+/** Dev-only: every body-map region side by side, to check the diagram at a glance. */
+const REGIONS = ['hips', 'quads', 'hamstrings', 'calves', 'back', 'full'] as const;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Body map — all regions</title>
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+    <div class="grid">
+      {REGIONS.map((r) => (
+        <div class="cell">
+          <h2>{r}</h2>
+          <BodyMap region={r} />
+        </div>
+      ))}
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  @import '../../styles/global.css';
+  body { padding: 30px; }
+  .grid { display: grid; gap: 26px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); max-width: 1100px; margin: 0 auto; }
+  .cell { padding: 18px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px; }
+  .cell h2 { font-family: var(--body); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 12px; text-align: center; }
+</style>
