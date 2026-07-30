@@ -1,7 +1,7 @@
 ---
 title: "What to Do After a Run: A Simple 15-Minute Post-Run Stretch Routine"
 slug: "post-run-stretches"
-description: "The after-run routine most runners skip. Five long, easy Yin holds — about fifteen quiet minutes — to undo the tightness running builds up in your hips, hamstrings and calves."
+description: "The after-run routine most runners skip. Four long, easy Yin holds — about fifteen quiet minutes — to undo the tightness running builds up in your hips, glutes and hamstrings."
 published: 2026-07-28
 unlisted: false
 hero: "/poses/sleeping-swan.jpg"
@@ -10,7 +10,7 @@ hero_caption: "sleeping swan — a runner's go-to for tight hips and glutes"
 subtitle: "fifteen quiet minutes, while you're still warm"
 eyebrow_tag: "for runners"
 seo_title: "Post-Run Stretches: A Simple 15-Minute Yin Routine for Runners"
-seo_description: "What to do after a run: five long, gentle Yin holds — about fifteen minutes — for tight hips, hamstrings and calves. When to do them, how long to hold, and a free follow-along."
+seo_description: "What to do after a run: four long, gentle Yin holds — about fifteen minutes — for tight hips, glutes and hamstrings. When to do them, how long to hold, and a free follow-along."
 practise:
   routine: "deep-hips-lower-body"
   video: "NDOsdt86vcs"
@@ -52,19 +52,17 @@ You don't need to become flexible. You just need to stop getting tighter.
 
 ## The routine
 
-Five shapes, roughly two minutes each side. Take a slow minute between shapes — that pause is part of the practice, not a gap in it. If you only have five minutes, do the first two — they're where runners hold the most.
+Four shapes, and that's genuinely all. Take a slow half-minute between them — that pause is part of the practice, not a gap in it. If you only have five minutes, do the first two; they're where runners hold the most.
 
-**1. [Dragon](/poses/dragon) — for the hip flexors.** A low lunge, back knee down. Running plus sitting all day shortens the front of the hip more than anywhere else, so we open it first. Let the hips sink toward the floor and breathe. *About 1–2 minutes each side.*
+**1. [Dragon](/poses/dragon) — for the hip flexors.** A low lunge, back knee down. Running plus sitting all day shortens the front of the hip more than anywhere else, so we open it first. Let the hips sink toward the floor and breathe. *Two minutes each side.*
 
-**2. [Sleeping Swan](/poses/sleeping-swan) — for the glutes and outer hip.** Front shin angled across the mat, back leg long, then fold forward over the front leg. This is the one runners tend to *feel* most. Ease in slowly. *About 2 minutes each side.*
+**2. [Sleeping Swan](/poses/sleeping-swan) — for the glutes and outer hip.** Front shin angled across the mat, back leg long, then fold forward over the front leg. This is the one runners tend to *feel* most. Ease in slowly. *Two minutes each side.*
 
-**3. [Half-Butterfly](/poses/half-butterfly) — for the hamstrings.** One leg extended, the other tucked in, and a gentle fold over the straight leg. Your hamstrings do the hardest braking work in every stride, so give them their length back — softly, no yanking. *About 2 minutes each side.*
+**3. [Caterpillar](/poses/caterpillar) — for the hamstrings and the whole back line.** Both legs long, and a slow fold over them with the back rounded and the head heavy. Your hamstrings do the hardest braking work in every stride, so give them their length back — softly, no yanking. *Two minutes.*
 
-**4. [Reclined Twist](/poses/reclined-twist) — for the lower back and spine.** On your back, draw a knee across your body and let it drop. Every run is impact your spine absorbs; this gently undoes the day's compression. *About 1–2 minutes each side.*
+**4. [Reclined Twist](/poses/reclined-twist) — for the lower back, and to settle.** On your back, draw the knees across your body and let them drop. Every run is impact your spine absorbs; this gently undoes the day's compression, and it's a lovely place to finish. *One minute each side.*
 
-**5. [Legs Up the Wall](/poses/legs-up-the-wall) — to finish and settle.** Exactly what it sounds like: lie down, legs resting up the wall. It eases tired, heavy legs and quietly down-shifts you into recovery. A lovely place to end. *2–3 minutes, and longer if it feels good.*
-
-That's the whole thing. Hips, glutes, hamstrings, back, and a calm finish — the chain running tightens, in about fifteen minutes.
+That's the whole thing. Hips, glutes, hamstrings, spine — the chain running tightens, in about fifteen minutes.
 
 ## Making it stick
 
@@ -74,7 +72,7 @@ The routine that helps is the one you actually do. So keep the bar low: roll out
 
 ## Want it as a follow-along?
 
-If you'd rather be talked through it than read a list, I've made a **free 15-minute Post-Run Reset** — the same idea, guided, so you can just press play after a run. You can [grab it here](/runners).
+If you'd rather be talked through it than read a list, I've made a **free 15-minute Post-Run Reset** — these exact four shapes, guided, so you can just press play after a run and follow along. You can [grab it here](/runners).
 
 And if it clicks and you want the whole system — a short practice for every place running tightens, plus guided plans — that's what [The Runner's Reset](/runner-reset) is. No rush. Start with the free class and see how your legs feel.
 

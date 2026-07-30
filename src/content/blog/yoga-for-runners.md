@@ -72,6 +72,12 @@ Running doesn't tighten one thing — it tightens a chain, so it's worth working
 **For the lower back** — compressed by every run:
 - [Sphinx](/poses/sphinx) and [Reclined Twist](/poses/reclined-twist) — gentle extension and rotation to undo the day's compression.
 
+### If that list feels like a lot
+
+It is a lot — which is why I'd start with four of them rather than ten. **Dragon, Sleeping Swan, Caterpillar and Reclined Twist**: one for the front of the hip, one for the glute, one for the hamstrings, one for the spine. Between them they cover the whole chain.
+
+Those four are the entire contents of my free **[15-Minute Post-Run Reset](/runners)** — guided, so you don't have to remember any of this. If you'd rather read the routine than watch it, it's written out step by step in [what to do after a run](/blog/post-run-stretches).
+
 ## When should runners do yoga?
 
 Timing matters more than most runners realize:
@@ -101,7 +107,9 @@ Pop your email in and I'll send you a free follow-along Post-Run Reset — fifte
 
 </aside>
 
-Whatever you do, be kind to the body that carries you through every mile. Roll out your mat after your next run, give it ten slow minutes, and come back to it often — that quiet habit is what keeps you running for years, not just for now.
+And if it clicks and you want the whole thing laid out — a short practice for every place running tightens, longer resets for rest days, and plans that tell you what to press play on — that's what [The Runner's Reset](/runner-reset) is. No rush at all. Start with the free class and see how your legs feel first.
+
+Whatever you do, be kind to the body that carries you through every mile. Roll out your mat after your next run, give it fifteen slow minutes, and come back to it often — that quiet habit is what keeps you running for years, not just for now.
 
 Take good care of yourself,
 Katie
