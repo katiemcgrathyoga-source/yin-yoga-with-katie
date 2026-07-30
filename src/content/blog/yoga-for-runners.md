@@ -93,9 +93,9 @@ If you'd rather just roll out your mat and follow along, here are a few of my cl
 
 <aside class="posecard" data-orient>
 
-### Your free 10-minute Post-Run Reset
+### Your free 15-minute Post-Run Reset
 
-Pop your email in and I'll send you a free follow-along Post-Run Reset — ten quiet minutes to loosen the hips, hamstrings and calves running tightens, to do right after your next run.
+Pop your email in and I'll send you a free follow-along Post-Run Reset — fifteen quiet minutes to loosen what running tightens, from the hips and glutes to the hamstrings and spine, to do right after your next run.
 
 **[Get the free Post-Run Reset →](/runners)**
 

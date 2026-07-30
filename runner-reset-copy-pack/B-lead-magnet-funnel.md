@@ -4,7 +4,9 @@
 > Upgrades over the existing drafts: sharper promise on the page, a concrete
 > "how to use it" beat in the delivery email, and a second bridge that plants
 > the library seed with the desk-runner angle. No emoji (voice guide rules).
-> Merge tag: `{$name|default:"there"}` · video link: `RUNNER_POSTRUN_VIDEO_URL`.
+> Merge tag: `{$name|default:"there"}` · class link: `https://yinyogawithkatie.com/sessions/post-run-reset`
+> (the full module page — video, timer, cues, body map. Ungated + noindex, so
+> anyone with the link gets in, but it never shows up in search or the site nav.)
 
 ---
 
@@ -14,11 +16,11 @@
 
 **H1:** The fifteen minutes after your run that keep you running.
 
-**Sub:** Pop your email in and I'll send you a free follow-along Post-Run Reset — fifteen quiet minutes to loosen the hips, hamstrings and calves running tightens, so the stiffness lets go before it settles in. Yours to keep, for any run, forever.
+**Sub:** Pop your email in and I'll send you a free follow-along Post-Run Reset — fifteen quiet minutes to loosen what running tightens — hips, glutes, hamstrings and spine — so the stiffness lets go before it settles in. Yours to keep, for any run, forever.
 
 **Benefit bullets:**
 - A short, follow-along Yin routine — made to do right after a run, while you're warm
-- Works the three places running tightens most: hips, hamstrings and calves
+- One long, easy hold for each place a run tightens: hips, glutes, hamstrings and spine
 - No flexibility needed, no props, no experience — you only ever go to about 60–80% of your capacity
 - Fifteen minutes, whenever you like — nothing to keep up with
 
@@ -40,12 +42,13 @@
 
 Hi {$name|default:"there"},
 
-Thank you for being here. As promised, here's your free Post-Run Reset — fifteen quiet minutes to loosen the hips, hamstrings and calves that running tightens up.
+Thank you for being here. As promised, here's your free Post-Run Reset — fifteen quiet minutes to loosen what running tightens up, from the hips and glutes to the hamstrings and spine.
 
-**▶ [Start your Post-Run Reset](RUNNER_POSTRUN_VIDEO_URL)**
+**▶ [Start your Post-Run Reset](https://yinyogawithkatie.com/sessions/post-run-reset)**
 
 Three small things that help:
 
+- **Give yourself a little over twenty minutes.** The practice itself is fifteen — the video is a touch longer because I talk you through each shape as we go.
 - **The best time is right after a run**, while everything's still warm — but any time is a good time.
 - **You only ever go to about 60–80% of your capacity.** We stay a couple of quiet minutes in each shape and let gravity and your breath do the work — nothing forced, nothing to achieve.
 - **If you need to come out of anything sooner, that's completely okay.** You don't need to wait for me. Dull stretch is fine; anything sharp or nervy means ease off.

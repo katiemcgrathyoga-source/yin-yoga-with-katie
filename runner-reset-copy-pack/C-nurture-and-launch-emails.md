@@ -4,7 +4,7 @@
 > automation.** `05-lead-magnet-and-bridge-emails.md` and `06-launch-emails.md`
 > are older drafts that still sell a 6-week program — ignore them.
 >
-> Nine emails: four nurture, five sell, plus a final word. Nurture 1–2 are the
+> Ten emails, numbered 1–10 to match the automation. Emails 1–2 are the
 > delivery + bridge from Deliverable B (listed here so the whole journey reads in
 > order — load them once, not twice). Offer, consistent everywhere:
 > **$49 founding for the first 100 → $67** · lifetime access, one payment ·
@@ -18,13 +18,13 @@
 
 ## Phase 1 — Nurture (starts at opt-in)
 
-### N1 · Day 0 — Deliver the free class
+### Email 1 · Day 0 — deliver the free class
 *Use the delivery email from Deliverable B, section 2.*
 
-### N2 · Day 3 — The mechanism
+### Email 2 · Day 3 — the mechanism
 *Use bridge email 1 from Deliverable B, section 3.*
 
-### N3 · Day 6 — A quick win
+### Email 3 · Day 6 — a quick win
 
 **Subject:** Try this tonight (two minutes, on your bed)
 **Preview:** The smallest useful thing I can teach a runner.
@@ -42,7 +42,7 @@ If you've been doing your Post-Run Reset, you've already felt it. If you haven't
 Take good care of yourself,
 Katie
 
-### N4 · Day 9 — The objection
+### Email 4 · Day 9 — the flexibility objection
 
 **Subject:** "I'm the least flexible person I know"
 **Preview:** Good. You're exactly who Yin is for.
@@ -69,10 +69,10 @@ Katie
 > **Runs evergreen inside the automation, not as a 5-day cart.** People join this
 > list continuously after launch, so a one-time window would sell to almost nobody.
 > The cart never closes; the only scarcity is the founding-100 count, which stays
-> true whenever someone arrives. **L0 is skipped** (see below) and L5/L6 have had
+> true whenever someone arrives. **The pre-launch tease is skipped** (see below) and emails 9 and 10 have had
 > their "closes tonight" deadlines removed.
 
-### L0 · SKIPPED — pre-launch tease *(kept for a future timed launch only)*
+### (unused) · pre-launch tease — kept only for a future timed launch
 
 **Subject:** I made something for runners
 **Preview:** It opens Thursday — and this list gets first access.
@@ -90,7 +90,7 @@ One question while I finish up: **where does running tighten you up the most?** 
 Take good care of yourself,
 Katie
 
-### L1 · Day 1 (morning) — cart opens
+### Email 5 · Day 11 — the library is open
 
 **Subject:** The Runner's Reset is open
 **Preview:** $49 lifetime access for the first 100 runners — details inside.
@@ -101,7 +101,7 @@ It's open. **The Runner's Reset** — a library of short, follow-along Yin sessi
 
 You already know the pattern: you finish a run tight, you mean to stretch, you don't — and it stacks up, run after run, until a niggle turns into a week off. This is the simple habit that interrupts that. Here's what's inside:
 
-- **Six Target sessions (~15–20 min)** — one for each place running tightens: hips, hamstrings and glutes, calves and feet, quads and the outer hip, lower back, plus an express everything-session.
+- **Five Target sessions (~14–18 min)** — one for each place running tightens: hips, hamstrings and glutes, calves and feet, quads and the outer hip, lower back.
 - **Two Full Resets (~50 min)** — the whole chain in one unhurried rest-day practice, including a fully supported restorative version.
 - **Guided paths** — by level, by need, or as calendar plans with reminders, so you never wonder what to press play on.
 - **Four bonuses** — including a guided NSDR (deep-rest yoga nidra) to melt into after any run, and 12+ ready-made runner routines.
@@ -111,14 +111,14 @@ You already know the pattern: you finish a run tight, you mean to stretch, you d
 - **$49, once, for lifetime access** — everything above, plus whatever I add later. After the first 100 runners, it becomes $67.
 - **The keep-it guarantee:** practise along for 30 days, and if you're not moving more easily, email me for a full refund — and keep the whole library anyway. The risk is mine, not yours.
 
-**→ [Join the Runner's Reset — $49 founding price](RUNNER_RESET_URL)**
+**→ [Join the Runner's Reset — $49 founding price](https://yinyogawithkatie.com/runner-reset)**
 
 I'd love to have you in the founding group.
 
 Take good care of yourself,
 Katie
 
-### L2 · Day 2 — what's inside, and why it's built this way
+### Email 6 · Day 12 — what's inside, and why it's built this way
 
 **Subject:** What you'd actually press play on
 **Preview:** A walk through the library — and the chain it works.
@@ -137,12 +137,12 @@ You don't need to be flexible. You just need to stop getting tighter.
 
 The founding price — $49 for lifetime access — holds until the first 100 places go, then it's $67.
 
-**→ [Join the Runner's Reset](RUNNER_RESET_URL)**
+**→ [Join the Runner's Reset](https://yinyogawithkatie.com/runner-reset)**
 
 Take good care,
 Katie
 
-### L3 · Day 3 — objections, answered honestly
+### Email 7 · Day 13 — objections, answered honestly
 
 **Subject:** "But I don't have time"
 **Preview:** The other two worries runners have — answered straight.
@@ -155,12 +155,12 @@ I answered the flexibility one the other day. Here are the other two worries tha
 
 **"What if it doesn't work for me?"** Then you pay nothing. That's the keep-it guarantee: practise along for 30 days, and if you're not moving more easily, email me — full refund, and you keep lifetime access to everything anyway. If Yin doesn't help your running, I haven't earned your money. The only way to lose here is to stay tight.
 
-**→ [Join the Runner's Reset — $49 founding](RUNNER_RESET_URL)**
+**→ [Join the Runner's Reset — $49 founding](https://yinyogawithkatie.com/runner-reset)**
 
 Take good care of yourself,
 Katie
 
-### L4 · Day 4 — the real stakes
+### Email 8 · Day 14 — the real stakes
 
 **Subject:** The message I never want to get from you
 **Preview:** The honest reason I built this.
@@ -177,12 +177,12 @@ So I made it simple. The right fifteen minutes, laid out for you, for as long as
 
 The founding places are going; when the first 100 are taken, $49 becomes $67.
 
-**→ [Join the Runner's Reset](RUNNER_RESET_URL)**
+**→ [Join the Runner's Reset](https://yinyogawithkatie.com/runner-reset)**
 
 Take good care of yourself,
 Katie
 
-### L5 · Day 5 (morning) — honest scarcity
+### Email 9 · Day 15 — honest scarcity
 
 **Subject:** Founding places — a quick honest note
 **Preview:** The $49 price holds until the first 100 are gone.
@@ -193,12 +193,12 @@ Just a quick, honest note — no theatre. The founding group is filling, and onc
 
 If you've been on the fence: you can join today, do one Target session after your next run, and if it's not for you, take the full refund and keep everything. That's the whole risk, and it's mine.
 
-**→ [Join the Runner's Reset — $49 founding price](RUNNER_RESET_URL)**
+**→ [Join the Runner's Reset — $49 founding price](https://yinyogawithkatie.com/runner-reset)**
 
 Take good care,
 Katie
 
-### L6 · Two days after L5 — the last word
+### Email 10 · Day 17 — the last word
 
 **Subject:** The last one from me on this
 **Preview:** Then I'll go back to just sending you Yin.
@@ -211,7 +211,7 @@ If you run, and you'd like to keep running at your best without slowly seizing u
 
 And if it's not for you, that's genuinely fine.
 
-**→ [Join the Runner's Reset](RUNNER_RESET_URL)**
+**→ [Join the Runner's Reset](https://yinyogawithkatie.com/runner-reset)**
 
 Whatever you decide, thank you for being here. Keep doing your free Reset after your runs — that habit matters more than any purchase.
 
@@ -224,9 +224,9 @@ Katie
 
 ## Sending & segmentation notes
 
-- **Timing (evergreen, one automation):** N1 day 0 · N2 day 3 · N3 day 6 · N4 day 9 · L1 day 11 · L2 day 12 · L3 day 13 · L4 day 14 · L5 day 15 · L6 day 17. L0 is not used.
+- **Timing (evergreen, one automation):** 1 day 0 · 2 day 3 · 3 day 6 · 4 day 9 · 5 day 11 · 6 day 12 · 7 day 13 · 8 day 14 · 9 day 15 · 10 day 17. The pre-launch tease is not used.
 - **Suppress buyers immediately** — on purchase, tag `runner-reset-buyer` and set that tag as an exit condition on the automation, then send the welcome/onboarding email. Without this, someone who buys from L1 gets pitched five more times.
-- **The founding-100 count is live copy.** L1–L6 all promise "$49 for the first 100, then $67". The moment you pass 100 sales those lines are untrue to everyone mid-sequence, and nothing updates them automatically. Set yourself a reminder.
-- **Session lengths are quoted in L1, L2 and L3.** If a session's runtime changes, these need updating with it — the site has a build guard for durations, the emails don't.
+- **The founding-100 count is live copy.** Emails 5–10 all promise "$49 for the first 100, then $67". The moment you pass 100 sales those lines are untrue to everyone mid-sequence, and nothing updates them automatically. Set yourself a reminder.
+- **Session lengths are quoted in emails 5, 6 and 7.** If a session's runtime changes, these need updating with it — the site has a build guard for durations, the emails don't.
 - **Replies to L0's question** ("where does running tighten you most?") are gold — quote the common answers, anonymised and with permission, in future launches once real testimonials exist. Until then, no testimonials anywhere.
 - **After close:** a short "doors closed — join the waitlist" note; re-open each race season.

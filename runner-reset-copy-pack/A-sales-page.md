@@ -74,7 +74,6 @@ Short, follow-along Yin sessions, about 15–20 minutes each — each shape foll
 - **Calves, Ankles & Feet (~12 min).** It all starts at your feet — stiff ankles change everything above them, and almost no runner works here.
 - **Quads & Outer Hip — the "IT band" one (~14 min).** You can't stretch your IT band — it's a tough band of fascia — but you *can* release the muscles that pull on it. This session does exactly that.
 - **Lower Back & Spine (~13 min).** Every run is impact your spine absorbs. This is how you gently undo the day's compression.
-- **The Express Full Reset (~15 min).** One pose per area when you want everything and only have a quarter of an hour.
 
 ### Full Reset sessions — the whole chain, in one practice
 

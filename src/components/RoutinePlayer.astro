@@ -12,7 +12,7 @@
  * The custom element is framework-free and exposes setSequence()/beginPractice()
  * so the custom routine builder can drive it with a sequence built in the browser.
  */
-interface Hold { name: string; slug: string; img: string; seconds: number; note?: string; sideLabel?: string; }
+interface Hold { name: string; slug: string; img: string; seconds: number; note?: string; sideLabel?: string; rebound?: number; }
 interface Props { title: string; holds: Hold[]; shareUrl?: string; imageUrl?: string; }
 const { title, holds, shareUrl, imageUrl } = Astro.props;
 ---
@@ -22,7 +22,7 @@ const { title, holds, shareUrl, imageUrl } = Astro.props;
 </routine-player>
 
 <script>
-  interface Hold { name: string; slug: string; img: string; seconds: number; note?: string; sideLabel?: string; }
+  interface Hold { name: string; slug: string; img: string; seconds: number; note?: string; sideLabel?: string; rebound?: number; }
 
   const PREP = 15;        // lead-in seconds to get into the first pose
   const REBOUND = 45;     // rebound seconds between poses — the still pause Yin asks for
@@ -248,7 +248,10 @@ const { title, holds, shareUrl, imageUrl } = Astro.props;
       const cur = this.holds[this.idx];
       const next = this.holds[this.idx + 1];
       const switching = next.name === cur.name;
-      this.transitionTotal = switching ? SIDE_SWITCH : REBOUND;
+      // A pose can override the rebound that FOLLOWS it (Katie's 30-60s range).
+      // Must stay in step with practiceSeconds() in lib/duration.ts, or the number
+      // on the page drifts from what the timer actually runs.
+      this.transitionTotal = switching ? SIDE_SWITCH : (cur.rebound ?? REBOUND);
       this.count.textContent = 'Ease out slowly';
       this.nameEl.textContent = switching ? 'Switch sides' : 'Next pose';
       this.note.textContent = `${next.name}${next.sideLabel ? ' · ' + next.sideLabel : ''}`;
