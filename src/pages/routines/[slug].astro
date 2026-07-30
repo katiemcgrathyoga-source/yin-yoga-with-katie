@@ -1,12 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
+import { publicRoutines } from '../../lib/routines';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import RoutinePlayer from '../../components/RoutinePlayer.astro';
 import Cta from '../../components/Cta.astro';
 import { journalPinUrl } from '../../lib/journalPin';
 
 export async function getStaticPaths() {
-  const routines = await getCollection('routines');
+  const routines = publicRoutines(await getCollection('routines'));
   const poses = await getCollection('poses');
   return routines.map((routine) => ({
     params: { slug: routine.data.slug },

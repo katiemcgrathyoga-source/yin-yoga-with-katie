@@ -110,7 +110,7 @@ where email = 'you@example.com'
 on conflict (user_id, product) do nothing;
 ```
 
-Reload `/sessions`. The whole course opens.
+Reload `/practices`. The whole course opens.
 
 ---
 

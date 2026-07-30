@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { publicRoutines } from '../lib/routines';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 // Katie's private pinning console (noindex, unlisted), organized by content item.
@@ -109,7 +110,7 @@ const poseCards = poses.map((pose) => {
 
 // --- Routines → numbered list + photo hook over the lead pose -----------------
 const poseBy = new Map((await getCollection('poses')).map((p) => [p.data.slug, p.data]));
-const routines = (await getCollection('routines')).sort((a, b) => a.data.minutes - b.data.minutes);
+const routines = publicRoutines(await getCollection('routines')).sort((a, b) => a.data.minutes - b.data.minutes);
 const routineCards = routines.map((r) => {
   const d = r.data;
   const url = new URL(`/routines/${d.slug}/`, site).href;

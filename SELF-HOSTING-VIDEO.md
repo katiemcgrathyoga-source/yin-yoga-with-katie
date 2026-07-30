@@ -33,7 +33,7 @@ FairPlay DRM is available on Bunny but is overkill for launch).
   Merchant-of-Record checkout + a webhook that grants the entitlement on payment.
   (Stripe isn't available to Taiwan-based accounts; LS is an MoR so it also
   handles worldwide sales tax.)
-- **Phase 3 — gated session pages. ✅ DONE.** `/sessions/[slug]` is now SSR
+- **Phase 3 — gated session pages. ✅ DONE.** `/practices/[slug]` is now SSR
   (`prerender = false`, `@astrojs/netlify` adapter): the server checks the
   visitor's entitlement (from the `sb-token` cookie the browser client keeps in
   sync) and only renders the video/timer/cues/why for owners — non-buyers receive

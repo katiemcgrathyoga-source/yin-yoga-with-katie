@@ -23,7 +23,7 @@ export function getSupabase(): SupabaseClient | null {
       },
     });
     // Bridge the session to a short-lived cookie so SSR pages (the gated
-    // /sessions routes) can read it server-side and gate before rendering.
+    // /practices routes) can read it server-side and gate before rendering.
     client.auth.onAuthStateChange((_event, session) => writeSbCookie(session));
   }
   return client;

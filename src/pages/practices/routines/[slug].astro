@@ -1,0 +1,185 @@
+---
+export const prerender = false; // SSR: a bonus routine is paid content, gated server-side
+
+import { getCollection } from 'astro:content';
+import CourseLayout from '../../../layouts/CourseLayout.astro';
+import CourseGate from '../../../components/CourseGate.astro';
+import RoutinePlayer from '../../../components/RoutinePlayer.astro';
+import { checkAccess } from '../../../lib/access';
+import { courseRoutines } from '../../../lib/routines';
+
+/**
+ * A bonus routine, inside the course.
+ *
+ * Deliberately leaner than the public /routines/[slug] page: no FAQ, no
+ * membership pitch, no SEO furniture. Someone here has already bought and is
+ * about to get on the mat, so the page is the intro, the timer and the written
+ * shapes — nothing to scroll past.
+ *
+ * Course routines are excluded from the public route's getStaticPaths, so this
+ * is the only page they have, and it never renders the sequence to a non-buyer.
+ */
+const PRODUCT = 'runner-reset';
+const { slug } = Astro.params;
+
+const routine = courseRoutines(await getCollection('routines'), PRODUCT).find((r) => r.data.slug === slug);
+if (!routine) return new Response('Not found', { status: 404 });
+
+const d = routine.data;
+const access = await checkAccess(Astro.cookies.get('sb-token')?.value, PRODUCT);
+const unlocked = access.entitled;
+
+const titleCase = (s: string) => s.replace(/\b\w/g, (c) => c.toUpperCase());
+const humanise = (s: string) => titleCase(s.replace(/-/g, ' '));
+
+type Hold = { name: string; slug: string; img: string; seconds: number; note: string; sideLabel?: string; rebound?: number };
+let holds: Hold[] = [];
+let bySlug = new Map<string, any>();
+
+if (unlocked) {
+  const poses = await getCollection('poses');
+  bySlug = new Map(poses.map((p) => [p.data.slug, p.data]));
+  holds = d.steps.flatMap((s) => {
+    const p = bySlug.get(s.pose);
+    const base = {
+      name: p?.name_en ?? humanise(s.pose),
+      slug: s.pose,
+      img: p?.images?.[0] ?? `/poses/${s.pose}.jpg`,
+      seconds: s.seconds,
+      note: s.note ?? p?.cues?.[0] ?? '',
+      rebound: s.rebound,
+    };
+    return s.sides === 2 ? [{ ...base, sideLabel: 'Side 1' }, { ...base, sideLabel: 'Side 2' }] : [base];
+  });
+}
+
+const holdWords = (secs: number, sides: number) => {
+  const base = secs % 60 === 0 ? `${secs / 60} minute${secs === 60 ? '' : 's'}` : `${secs} sec`;
+  return sides === 2 ? `${base} each` : base;
+};
+---
+
+<CourseLayout
+  title={`${d.title} — The Runner's Reset`}
+  description={d.summary}
+  noindex={true}
+  section={unlocked ? 'Routine' : undefined}
+>
+  {!unlocked ? (
+    <div class="cwrap"><CourseGate signedIn={access.signedIn} thing="this routine" /></div>
+  ) : (
+    <div class="cwrap cr">
+      <header class="cr-head">
+        <p class="cr-eyebrow"><a href="/practices/routines">← All routines</a></p>
+        <h1>{d.title}</h1>
+        {d.tagline && <p class="cr-tagline">{d.tagline}</p>}
+        <div class="cr-chips">
+          <span class="cr-chip">~{d.minutes} min</span>
+          <span class="cr-chip">{titleCase(d.level.replace(/-/g, ' '))}</span>
+          <span class="cr-chip">{d.props.length ? d.props.join(', ') : 'No props needed'}</span>
+          <span class="cr-chip">{d.steps.length} shapes</span>
+        </div>
+      </header>
+
+      <p class="cr-intro">{d.intro}</p>
+
+      <RoutinePlayer title={d.title} holds={holds} />
+      <p class="cr-hint">A gentle chime moves you between holds, and the screen dims so you can leave it on the mat.</p>
+
+      <section class="cr-sec">
+        <h2>The shapes</h2>
+        {d.steps.map((s, i) => {
+          const p = bySlug.get(s.pose);
+          return (
+            <div class="cr-cue">
+              <span class="n">{i + 1}</span>
+              <div class="body">
+                <h3>
+                  <a href={`/poses/${s.pose}`}>{p?.name_en ?? humanise(s.pose)}</a>
+                  {s.sides === 2 && <span class="side"> · each side</span>}
+                </h3>
+                <span class="hold">{holdWords(s.seconds, s.sides)}</span>
+                {s.note && <p>{s.note}</p>}
+              </div>
+            </div>
+          );
+        })}
+      </section>
+
+      <div class="cr-done" data-slug={d.slug} data-title={d.title} data-minutes={d.minutes}>
+        <span class="cr-done-txt" id="cr-done-txt">Finished this one?</span>
+        <button class="cr-done-btn" id="cr-done-btn" type="button">Mark as done</button>
+      </div>
+    </div>
+  )}
+</CourseLayout>
+
+<script>
+  import { logPractice, didToday } from '../../../lib/practiceLog';
+
+  const done = document.querySelector('.cr-done') as HTMLElement | null;
+  if (done) {
+    const slug = done.dataset.slug!;
+    const title = done.dataset.title!;
+    const minutes = Number(done.dataset.minutes || 0);
+    const btn = document.getElementById('cr-done-btn') as HTMLButtonElement;
+    const txt = document.getElementById('cr-done-txt') as HTMLElement;
+
+    const paint = () => {
+      if (!didToday(slug)) return;
+      txt.textContent = 'Logged for today.';
+      btn.textContent = 'Done';
+      btn.disabled = true;
+    };
+
+    btn.addEventListener('click', () => { logPractice({ slug, title, minutes }); paint(); });
+    document.addEventListener('routine-complete', () => { logPractice({ slug, title, minutes }); paint(); });
+    paint();
+  }
+</script>
+
+<style>
+  .cwrap { max-width: 1040px; margin: 0 auto; padding: 34px 22px 0; }
+  .cr { max-width: 760px; }
+
+  .cr-head { margin-bottom: 20px; }
+  .cr-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; margin: 0 0 10px; }
+  .cr-eyebrow a { color: var(--gold-solid); text-decoration: none; }
+  .cr-head h1 { font-family: var(--display); font-size: clamp(28px, 4.6vw, 38px); margin: 0; }
+  .cr-tagline { font-family: var(--display); font-style: italic; font-size: 17px; color: var(--plum-deep); margin: 8px 0 0; }
+  .cr-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .cr-chip {
+    font-size: 12.5px; font-weight: 600; color: var(--ink);
+    background: var(--paper-2); border: 1px solid var(--line);
+    border-radius: 100px; padding: 6px 13px;
+  }
+
+  .cr-intro { font-size: 16.5px; line-height: 1.75; color: var(--ink-soft); margin: 0 0 26px; }
+  .cr-hint { font-size: 12.5px; color: var(--ink-soft); font-style: italic; text-align: center; margin: 10px 0 0; }
+
+  .cr-sec { padding: 34px 0 6px; }
+  .cr-sec h2 { font-family: var(--display); font-size: 22px; margin: 0 0 6px; }
+
+  .cr-cue { display: flex; gap: 14px; padding: 15px 0; border-bottom: 1px solid var(--line); }
+  .cr-cue:last-child { border-bottom: none; }
+  .cr-cue .n { font-family: var(--display); color: var(--gold); font-size: 20px; width: 22px; flex: none; }
+  .cr-cue h3 { font-size: 16.5px; margin: 0; }
+  .cr-cue h3 a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--gold); }
+  .cr-cue h3 .side { font-weight: 400; color: var(--ink-soft); font-size: 13px; }
+  .cr-cue .hold { font-size: 12.5px; font-weight: 600; color: var(--gold-solid); }
+  .cr-cue p { font-size: 14.5px; color: var(--ink-soft); margin-top: 4px; }
+
+  .cr-done {
+    display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;
+    padding: 16px 20px; margin: 30px 0 40px;
+    background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px;
+  }
+  .cr-done-txt { font-size: 15px; color: var(--ink-soft); }
+  .cr-done-btn {
+    font: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer;
+    padding: 9px 20px; border-radius: 100px;
+    background: transparent; color: var(--gold-solid); border: 1px solid var(--gold-solid);
+  }
+  .cr-done-btn:hover:not(:disabled) { background: var(--gold-solid); color: var(--paper); }
+  .cr-done-btn:disabled { cursor: default; opacity: .55; border-color: var(--line); color: var(--ink-soft); }
+</style>

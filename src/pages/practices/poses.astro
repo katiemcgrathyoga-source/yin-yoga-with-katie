@@ -1,0 +1,231 @@
+---
+export const prerender = false; // SSR: gated like the rest of the course
+
+import { getCollection } from 'astro:content';
+import CourseLayout from '../../layouts/CourseLayout.astro';
+import CourseGate from '../../components/CourseGate.astro';
+import { checkAccess } from '../../lib/access';
+import { courseRoutines } from '../../lib/routines';
+
+/**
+ * The Runner's Pose Library — one of the bonuses.
+ *
+ * DERIVED, not hand-listed: every pose used by a practice or a course routine,
+ * read from their steps. That's what makes it a runner's library rather than the
+ * public directory, and it can't drift — adding a shape to a sequence adds it
+ * here.
+ *
+ * Filterable by area and difficulty, because the real use is "I want a deep
+ * hamstring stretch and nothing else". Filtering is client-side over the full
+ * list: it's a few dozen cards, so a round trip per click would be slower and
+ * lose the no-JS fallback of simply seeing everything.
+ *
+ * Each pose links to its full public guide. The curation is the bonus, not a
+ * second copy of the content.
+ */
+const PRODUCT = 'runner-reset';
+const access = await checkAccess(Astro.cookies.get('sb-token')?.value, PRODUCT);
+const unlocked = access.entitled;
+
+/** Filter buckets, matched against a pose's own target_areas. A pose can sit in
+ *  several — Dragonfly is honestly both hamstrings and hips. */
+const AREAS: { key: string; label: string; match: string[] }[] = [
+  { key: 'hips', label: 'Hips & groin', match: ['hips', 'hip flexors', 'groin', 'inner thighs', 'inner groin'] },
+  { key: 'glutes', label: 'Glutes & outer hip', match: ['glutes', 'outer hips', 'outer hip', 'IT band'] },
+  { key: 'hamstrings', label: 'Hamstrings', match: ['hamstrings'] },
+  { key: 'quads', label: 'Quads', match: ['quadriceps', 'front of thighs'] },
+  { key: 'calves', label: 'Calves & feet', match: ['calves', 'ankles', 'feet', 'toes', 'shins'] },
+  { key: 'back', label: 'Lower back & spine', match: ['lower back', 'spine', 'sacrum'] },
+  { key: 'upper', label: 'Shoulders & chest', match: ['shoulders', 'upper back', 'chest', 'neck', 'pectorals', 'side body', 'obliques'] },
+];
+const LEVELS = [
+  { key: 'beginner', label: 'Beginner' },
+  { key: 'intermediate', label: 'Intermediate' },
+  { key: 'advanced', label: 'Advanced' },
+];
+
+type Entry = {
+  slug: string; name: string; img: string; hold: string;
+  level: string; areas: string[]; used: string[];
+};
+let entries: Entry[] = [];
+
+if (unlocked) {
+  const [practices, routines, poses] = await Promise.all([
+    getCollection('practices'),
+    getCollection('routines'),
+    getCollection('poses'),
+  ]);
+
+  // Where each pose shows up — practices first, then the bonus routines.
+  const usedIn = new Map<string, Set<string>>();
+  const record = (poseSlug: string, title: string) => {
+    if (!usedIn.has(poseSlug)) usedIn.set(poseSlug, new Set());
+    usedIn.get(poseSlug)!.add(title);
+  };
+  for (const p of practices) for (const s of p.data.steps) record(s.pose, p.data.title);
+  for (const r of courseRoutines(routines, PRODUCT)) for (const s of r.data.steps) record(s.pose, r.data.title);
+
+  const titleCase = (v: string) => v.replace(/\b\w/g, (c) => c.toUpperCase());
+  entries = poses
+    .filter((p) => usedIn.has(p.data.slug))
+    .map((p) => {
+      const targets = (p.data.target_areas ?? []).map((t: string) => t.toLowerCase());
+      return {
+        slug: p.data.slug,
+        name: p.data.name_en,
+        img: p.data.images?.[0] ?? `/poses/${p.data.slug}.jpg`,
+        hold: p.data.hold_time,
+        level: p.data.accessibility,
+        areas: AREAS.filter((a) => a.match.some((m) => targets.includes(m.toLowerCase()))).map((a) => a.key),
+        used: [...usedIn.get(p.data.slug)!].sort(),
+      };
+    })
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  // Surfaces a bucket that matches nothing rather than shipping a dead filter.
+  const orphans = AREAS.filter((a) => !entries.some((e) => e.areas.includes(a.key))).map((a) => a.key);
+  if (orphans.length) console.warn('[pose library] area filters matching no pose:', orphans.join(', '));
+}
+---
+
+<CourseLayout
+  title="The Runner's Pose Library — The Runner's Reset"
+  description="Every pose your practices use, filterable by area and difficulty."
+  noindex={true}
+  section={unlocked ? 'Pose library' : undefined}
+>
+  {!unlocked ? (
+    <div class="cwrap"><CourseGate signedIn={access.signedIn} thing="the pose library" /></div>
+  ) : (
+    <div class="cwrap">
+      <header class="pl-head">
+        <h1>The Runner's Pose Library</h1>
+        <p>
+          The {entries.length} shapes your practices and routines actually use — not the whole Yin canon.
+          Filter down to what you want and hold it on its own: each pose opens its full guide, with how
+          to get in, what it should feel like, and when to skip it.
+        </p>
+      </header>
+
+      <div class="pl-filters">
+        <fieldset>
+          <legend>Area</legend>
+          <div class="pl-chips" data-group="area">
+            <button class="pl-chip is-on" type="button" data-val="all">All</button>
+            {AREAS.map((a) => <button class="pl-chip" type="button" data-val={a.key}>{a.label}</button>)}
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Difficulty</legend>
+          <div class="pl-chips" data-group="level">
+            <button class="pl-chip is-on" type="button" data-val="all">All</button>
+            {LEVELS.map((l) => <button class="pl-chip" type="button" data-val={l.key}>{l.label}</button>)}
+          </div>
+        </fieldset>
+      </div>
+
+      <p class="pl-count" id="pl-count" role="status">{entries.length} poses</p>
+
+      <ul class="pl-grid" id="pl-grid">
+        {entries.map((p) => (
+          <li data-areas={p.areas.join(' ')} data-level={p.level}>
+            <a class="pl-card" href={`/poses/${p.slug}`}>
+              <img src={p.img} alt={p.name} loading="lazy" width="480" height="360" />
+              <div class="pl-body">
+                <span class="pl-name">{p.name}</span>
+                <span class="pl-meta">{p.hold} · {p.level}</span>
+                <span class="pl-in">In: {p.used.join(' · ')}</span>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <p class="pl-empty" id="pl-empty" hidden>Nothing matches both of those. Try widening one.</p>
+    </div>
+  )}
+</CourseLayout>
+
+<script>
+  const grid = document.getElementById('pl-grid');
+  if (grid) {
+    const items = Array.from(grid.children) as HTMLElement[];
+    const count = document.getElementById('pl-count') as HTMLElement;
+    const empty = document.getElementById('pl-empty') as HTMLElement;
+    const state: Record<string, string> = { area: 'all', level: 'all' };
+
+    const apply = () => {
+      let shown = 0;
+      for (const li of items) {
+        const okArea = state.area === 'all' || (li.dataset.areas ?? '').split(' ').includes(state.area);
+        const okLevel = state.level === 'all' || li.dataset.level === state.level;
+        const show = okArea && okLevel;
+        li.hidden = !show;
+        if (show) shown++;
+      }
+      count.textContent = `${shown} pose${shown === 1 ? '' : 's'}`;
+      empty.hidden = shown > 0;
+    };
+
+    for (const group of Array.from(document.querySelectorAll<HTMLElement>('.pl-chips'))) {
+      const key = group.dataset.group!;
+      group.addEventListener('click', (e) => {
+        const btn = (e.target as HTMLElement).closest('.pl-chip') as HTMLElement | null;
+        if (!btn) return;
+        state[key] = btn.dataset.val!;
+        for (const b of Array.from(group.querySelectorAll('.pl-chip'))) b.classList.toggle('is-on', b === btn);
+        apply();
+      });
+    }
+  }
+</script>
+
+<style>
+  .cwrap { max-width: 1040px; margin: 0 auto; padding: 34px 22px 0; }
+
+  .pl-head { margin-bottom: 24px; max-width: 640px; }
+  .pl-head h1 { font-family: var(--display); font-size: clamp(30px, 5vw, 40px); margin: 0 0 10px; }
+  .pl-head p { color: var(--ink-soft); margin: 0; line-height: 1.7; }
+
+  .pl-filters { display: flex; flex-direction: column; gap: 14px; margin-bottom: 16px; }
+  .pl-filters fieldset { border: none; margin: 0; padding: 0; }
+  .pl-filters legend {
+    font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--plum-deep); padding: 0; margin-bottom: 8px;
+  }
+  .pl-chips { display: flex; gap: 7px; flex-wrap: wrap; }
+  .pl-chip {
+    font: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer;
+    padding: 7px 14px; border-radius: 100px;
+    background: var(--paper-2); border: 1px solid var(--line); color: var(--ink-soft);
+  }
+  .pl-chip:hover { color: var(--ink); border-color: var(--gold-solid); }
+  .pl-chip.is-on { background: var(--plum); border-color: var(--plum); color: var(--paper); }
+  .pl-chip:focus-visible { outline: 2px solid var(--gold-solid); outline-offset: 2px; }
+
+  .pl-count { font-size: 13px; color: var(--ink-soft); margin: 0 0 16px; font-variant-numeric: tabular-nums; }
+
+  .pl-grid {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(232px, 1fr));
+  }
+  .pl-grid li[hidden] { display: none; }
+
+  .pl-card {
+    display: flex; flex-direction: column; height: 100%;
+    text-decoration: none; overflow: hidden;
+    background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px;
+    transition: border-color .16s ease, transform .16s ease;
+  }
+  .pl-card:hover { border-color: var(--gold-solid); transform: translateY(-2px); }
+  .pl-card img { width: 100%; height: 152px; object-fit: cover; display: block; }
+
+  .pl-body { display: flex; flex-direction: column; gap: 5px; padding: 14px 16px 16px; }
+  .pl-name { font-family: var(--display); font-size: 18px; color: var(--ink); }
+  .pl-meta { font-size: 12.5px; font-weight: 600; color: var(--gold-solid); text-transform: capitalize; }
+  .pl-in { font-size: 12.5px; color: var(--ink-soft); line-height: 1.45; }
+
+  .pl-empty { margin: 26px 0; color: var(--ink-soft); }
+</style>

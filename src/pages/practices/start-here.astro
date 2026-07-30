@@ -1,5 +1,5 @@
 ---
-export const prerender = false; // SSR: orientation is course material, gated like the sessions
+export const prerender = false; // SSR: orientation is course material, gated like the practices
 
 import CourseLayout from '../../layouts/CourseLayout.astro';
 import CourseGate from '../../components/CourseGate.astro';
@@ -8,7 +8,7 @@ import { checkAccess } from '../../lib/access';
 /**
  * Orientation — the page a new member lands on once.
  *
- * Split deliberately from /sessions: this answers "what is this and how do I
+ * Split deliberately from /practices: this answers "what is this and how do I
  * use it", which you read once; the index answers "what do I press play on
  * today", which you come back to. Mixing them makes the daily page heavy.
  *
@@ -24,19 +24,19 @@ const LEVELS = [
   {
     term: 'New to Yin',
     body: 'Start with <strong>Hips &amp; Hip Flexors</strong> after your next run. Do only that one, twice a week, for two weeks. Two shapes will feel like plenty at first — that is the practice working, not you doing it wrong.',
-    href: '/sessions/hips-hip-flexors',
+    href: '/practices/hips-hip-flexors',
     cta: 'Hips & Hip Flexors',
   },
   {
     term: 'Returning to it',
-    body: 'You know the shapes. Rotate the five Target sessions across a fortnight, matching each to the run you have just done, then add one <strong>Full Reset</strong> on a rest day.',
-    href: '/sessions/full-reset',
+    body: 'You know the shapes. Rotate the five short practices across a fortnight, matching each to the run you have just done, then add one <strong>Full Reset</strong> on a rest day.',
+    href: '/practices/full-reset',
     cta: 'The Full Reset',
   },
   {
     term: 'Experienced',
-    body: 'Go straight to <strong>The Full Reset</strong> weekly and use the Target sessions to patch whatever your training block is loading most. Add a minute to any hold that asks for it.',
-    href: '/sessions/restorative-reset',
+    body: 'Go straight to <strong>The Full Reset</strong> weekly and use the short practices to patch whatever your training block is loading most. Add a minute to any hold that asks for it.',
+    href: '/practices/restorative-reset',
     cta: 'The Restorative Reset',
   },
 ];
@@ -75,15 +75,15 @@ const LEVELS = [
         <h2>How the library is built</h2>
         <dl class="sh-defs">
           <div>
-            <dt>Target sessions</dt>
+            <dt>Short practices</dt>
             <dd>One for each place running tightens — hips, hamstrings and glutes, calves and feet, quads and outer hip, lower back. Around fifteen minutes. Do one right after a run while you are still warm.</dd>
           </div>
           <div>
-            <dt>Full Resets</dt>
+            <dt>Long practices</dt>
             <dd>The whole chain in one unhurried practice, around fifty minutes. Made for rest days, when there is no run to recover from and time to spend.</dd>
           </div>
           <div>
-            <dt>Every session page, five ways in</dt>
+            <dt>Every practice page, five ways in</dt>
             <dd>The follow-along video, an on-screen timer for once you know the shapes, the plain-English why, written cues, and a body map showing where it works. Use whichever suits how you learn.</dd>
           </div>
         </dl>
@@ -103,11 +103,11 @@ const LEVELS = [
 
       <section class="sh-sec">
         <h2>The only rule</h2>
-        <p>Little and often beats long and rare, every time. Two fifteen-minute sessions a week will do more for your running than one heroic hour a month. If a week goes by and you do none, nothing is lost — pick it up after your next run.</p>
+        <p>Little and often beats long and rare, every time. Two fifteen-minute practices a week will do more for your running than one heroic hour a month. If a week goes by and you do none, nothing is lost — pick it up after your next run.</p>
         <p class="sh-note">A gentle note: this is general education, not medical advice. Yin helps with everyday tightness. It does not treat or prevent injury, and sharp or lasting pain belongs with a physio or doctor.</p>
       </section>
 
-      <p class="sh-next"><a href="/sessions">See all your sessions →</a></p>
+      <p class="sh-next"><a href="/practices">See all your practices →</a></p>
     </div>
   )}
 </CourseLayout>

@@ -9,19 +9,19 @@ import { checkAccess } from '../../lib/access';
 import { signBunnyEmbed } from '../../lib/bunny';
 
 /**
- * One reusable template for every course session. Rendered on demand so the
- * paywall is REAL: for 'members' sessions we check the visitor's entitlement
+ * One reusable template for every course practice. Rendered on demand so the
+ * paywall is REAL: for 'members' practices we check the visitor's entitlement
  * server-side (from the sb-token cookie) and only emit the video, timer, cues,
  * "why" and body map when they own it. Non-buyers receive just the gate — the
  * course material is never in the HTML they get. The video is additionally
  * signed server-side (short-lived Bunny URL). Free/preview classes use YouTube.
  */
 const { slug } = Astro.params;
-const sessions = await getCollection('sessions');
-const session = sessions.find((s) => s.data.slug === slug);
-if (!session) return new Response('Not found', { status: 404 });
+const practices = await getCollection('practices');
+const practice = practices.find((p) => p.data.slug === slug);
+if (!practice) return new Response('Not found', { status: 404 });
 
-const d = session.data;
+const d = practice.data;
 
 const gated = d.access === 'members';
 const access = gated
@@ -60,7 +60,7 @@ const holdWords = (secs: number, sides: number) => {
 };
 
 const kindLabel: Record<string, string> = {
-  'post-run': 'Post-Run Reset', 'rest-day': 'Rest-Day Deep Stretch', target: 'Target Session',
+  'post-run': 'Post-Run Reset', 'rest-day': 'Rest-Day Deep Stretch', target: 'Short Practice',
   'full-reset': 'Full Reset', 'start-here': 'Start Here',
 };
 
@@ -72,11 +72,11 @@ const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_i
   title={d.seo_title ?? `${d.title} — Yin Yoga with Katie`}
   description={d.seo_description ?? d.intro}
   noindex={d.access === 'members' || d.unlisted}
-  section={kindLabel[d.kind] ?? 'Session'}
+  section={kindLabel[d.kind] ?? 'Practice'}
 >
   <div class="wrap sp">
     <header class="sp-head">
-      <p class="sp-eyebrow"><a href="/sessions">← All sessions</a></p>
+      <p class="sp-eyebrow"><a href="/practices">← All practices</a></p>
       <h1>{d.title}</h1>
       <div class="sp-chips">
         <span class="sp-chip area">Area · {titleCase(d.area)}</span>
@@ -92,15 +92,15 @@ const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_i
       <div class="sp-gate" data-signedin={access.signedIn ? '1' : ''}>
         {access.signedIn ? (
           <div class="sp-gate-card">
-            <h3>A member session</h3>
-            <p>Your account doesn't include The Runner's Reset yet — join once and every session unlocks, for good.</p>
+            <h3>A member practice</h3>
+            <p>Your account doesn't include The Runner's Reset yet — join once and every practice unlocks, for good.</p>
             <a class="sp-btn" href="/runner-reset">Join The Runner's Reset →</a>
             <p class="sp-gate-alt">Wrong account? <a href="/account">Switch account</a></p>
           </div>
         ) : (
           <div class="sp-gate-card">
-            <h3>Sign in to open this session</h3>
-            <p>This session is part of The Runner's Reset. Sign in with the email you joined with, and the whole session unlocks.</p>
+            <h3>Sign in to open this practice</h3>
+            <p>This practice is part of The Runner's Reset. Sign in with the email you joined with, and the whole practice unlocks.</p>
             <a class="sp-btn" href="/account">Sign in</a>
             <p class="sp-gate-alt">Don't have it yet? <a href="/runner-reset">Join The Runner's Reset →</a></p>
           </div>
@@ -198,15 +198,20 @@ const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_i
           </div>
         </section>
 
+        <div class="sp-done" data-slug={d.slug} data-title={d.title} data-minutes={d.minutes}>
+          <span class="sp-done-txt" id="sp-done-txt">Finished this one?</span>
+          <button class="sp-done-btn" id="sp-done-btn" type="button">Mark as done</button>
+        </div>
+
         <div class="sp-learn">
-          <b>Why the page looks like this:</b> everyone learns differently — so every session gives you the <b>video</b> (watch &amp; follow), the <b>timer</b> (practice screen-free once you know it), the <b>why</b> (understand it), <b>written cues</b> (read it) and a <b>body map</b> (see where it works).
+          <b>Why the page looks like this:</b> everyone learns differently — so every practice gives you the <b>video</b> (watch &amp; follow), the <b>timer</b> (practice screen-free once you know it), the <b>why</b> (understand it), <b>written cues</b> (read it) and a <b>body map</b> (see where it works).
         </div>
 
         {d.access === 'free' && (
           <div class="sp-upsell">
             <p class="sp-upsell-eyebrow">A free class from The Runner's Reset</p>
             <h3>Like how that felt? There's a whole library.</h3>
-            <p>A short session for every place running tightens — plus longer Full Resets, guided plans and a deep-rest NSDR — each one a page just like this. Founding price for the first 100 runners.</p>
+            <p>A short practice for every place running tightens — plus longer Full Resets, guided plans and a deep-rest NSDR — each one a page just like this. Founding price for the first 100 runners.</p>
             <a class="sp-btn" href="/runner-reset">See what's inside The Runner's Reset →</a>
           </div>
         )}
@@ -217,6 +222,31 @@ const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_i
 
 <script>
   import { getSupabase, writeSbCookie } from '../../lib/supabaseBrowser';
+  import { logPractice, didToday } from '../../lib/practiceLog';
+
+  // --- Practice log (only present when unlocked) ---
+  const done = document.querySelector('.sp-done') as HTMLElement | null;
+  if (done) {
+    const slug = done.dataset.slug!;
+    const title = done.dataset.title!;
+    const minutes = Number(done.dataset.minutes || 0);
+    const btn = document.getElementById('sp-done-btn') as HTMLButtonElement;
+    const txt = document.getElementById('sp-done-txt') as HTMLElement;
+
+    const paint = () => {
+      if (!didToday(slug)) return;
+      txt.textContent = 'Logged for today.';
+      btn.textContent = 'Done';
+      btn.disabled = true;
+      done.classList.add('is-done');
+    };
+
+    btn.addEventListener('click', () => { logPractice({ slug, title, minutes }); paint(); });
+    // Finishing the timer counts on its own — logPractice ignores the second of
+    // two on the same day, so tapping the button afterwards is harmless.
+    document.addEventListener('routine-complete', () => { logPractice({ slug, title, minutes }); paint(); });
+    paint();
+  }
 
   // --- Watch / Timer tabs (only present when unlocked) ---
   const tw = document.getElementById('tab-watch');
@@ -315,6 +345,22 @@ const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_i
 
   .sp-when { margin: 0; padding-left: 18px; }
   .sp-when li { margin: 7px 0; color: var(--ink-soft); font-size: 14.5px; }
+
+  /* Practice log — quiet by design; it records, it doesn't congratulate. */
+  .sp-done {
+    display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;
+    padding: 16px 20px; margin: 0 0 22px;
+    background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px;
+  }
+  .sp-done.is-done { border-color: rgba(137,73,75,.4); }
+  .sp-done-txt { font-size: 15px; color: var(--ink-soft); }
+  .sp-done-btn {
+    font: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer;
+    padding: 9px 20px; border-radius: 100px;
+    background: transparent; color: var(--gold-solid); border: 1px solid var(--gold-solid);
+  }
+  .sp-done-btn:hover:not(:disabled) { background: var(--gold-solid); color: var(--paper); }
+  .sp-done-btn:disabled { cursor: default; opacity: .55; border-color: var(--line); color: var(--ink-soft); }
 
   .sp-learn { background: rgba(188,157,154,.14); border: 1px solid rgba(188,157,154,.4); border-radius: 14px; padding: 16px 20px; font-size: 14.5px; color: var(--ink); margin: 10px 0 30px; }
   .sp-learn b { color: var(--plum-deep); }

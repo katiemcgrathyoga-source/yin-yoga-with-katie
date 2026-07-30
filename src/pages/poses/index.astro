@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { publicRoutines } from '../../lib/routines';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 // Poses are the reference layer beneath the video library. This is their browsable
@@ -13,7 +14,7 @@ for (const v of await getCollection('videos')) {
   for (const s of v.data.poses_featured) bump(s);
   for (const c of v.data.chapters) if (c.pose) bump(c.pose);
 }
-for (const r of await getCollection('routines')) for (const st of r.data.steps) bump(st.pose);
+for (const r of publicRoutines(await getCollection('routines'))) for (const st of r.data.steps) bump(st.pose);
 
 const poses = (await getCollection('poses')).sort(
   (a, b) =>

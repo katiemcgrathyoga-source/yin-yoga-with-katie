@@ -1,8 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
+import { publicRoutines } from '../../lib/routines';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const routines = (await getCollection('routines')).sort((a, b) => a.data.minutes - b.data.minutes);
+const routines = publicRoutines(await getCollection('routines')).sort((a, b) => a.data.minutes - b.data.minutes);
 const poses = await getCollection('poses');
 const bySlug = new Map(poses.map((p) => [p.data.slug, p.data]));
 const humanise = (s: string) => s.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());

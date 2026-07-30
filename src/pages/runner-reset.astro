@@ -14,8 +14,8 @@ import katieHello from '../assets/katie-hello.jpg';
 // The buy buttons POST to /api/checkout (Lemon Squeezy) — a plain form so it
 // works without JS. Price + entitlement logic live in the Netlify functions.
 
-// Target sessions — one card each. Pose photo = a representative shape the
-// session draws on (real /poses/*.jpg imagery, not stock). `angle` may carry
+// Short practices — one card each. Pose photo = a representative shape the
+// practice draws on (real /poses/*.jpg imagery, not stock). `angle` may carry
 // <em>/<strong> from the copy, so it's rendered with set:html.
 const TARGET_SESSIONS = [
   { name: 'Hips & Hip Flexors', time: '~15 min', pose: 'dragon',
@@ -25,7 +25,7 @@ const TARGET_SESSIONS = [
   { name: 'Calves, Ankles & Feet', time: '~14 min', pose: 'toe-squat',
     angle: 'It all starts at your feet — stiff ankles change everything above them, and almost no runner works here.' },
   { name: 'Quads & Outer Hip — the “IT band” one', time: '~18 min', pose: 'saddle',
-    angle: 'You can’t stretch your IT band — it’s a tough band of fascia — but you <em>can</em> release the muscles that pull on it. This session does exactly that.' },
+    angle: 'You can’t stretch your IT band — it’s a tough band of fascia — but you <em>can</em> release the muscles that pull on it. This practice does exactly that.' },
   { name: 'Lower Back & Spine', time: '~16 min', pose: 'sphinx',
     angle: 'Every run is impact your spine absorbs. This is how you gently undo the day’s compression.' },
 ];
@@ -40,20 +40,20 @@ const FULL_RESETS = [
 const GUIDED_PATHS = [
   { term: 'Start Here', body: 'a short welcome video: what Yin is, why it suits runners, how to use the library.' },
   { term: 'By level', body: 'new to Yin, returning, or experienced: a path for each.' },
-  { term: 'By need', body: 'tight hips, after a long run, sore feet, race week, only fifteen minutes: a simple chooser points you to the right session.' },
+  { term: 'By need', body: 'tight hips, after a long run, sore feet, race week, only fifteen minutes: a simple chooser points you to the right practice.' },
   { term: 'Calendar plans', body: 'load a plan straight into your calendar with reminders: <strong>The 6-Week Foundation</strong> (the gentle on-ramp), <strong>The Weekly Rhythm</strong> (a repeatable week to keep forever), and <strong>Race Prep</strong> (a taper-aware plan that eases off into race week).' },
 ];
 
 const BONUSES = [
-  { name: 'The Deep-Rest Reset — a guided NSDR', solves: 'a lie-down Non-Sleep Deep Rest (yoga nidra) to run after any session or long run — the deep-rest practice increasingly studied for easing recovery and better sleep', worth: '$29' },
+  { name: 'The Deep-Rest Reset — a guided NSDR', solves: 'a lie-down Non-Sleep Deep Rest (yoga nidra) to run after any practice or long run — the deep-rest practice increasingly studied for easing recovery and better sleep', worth: '$29' },
   { name: '12+ Runner Routines', solves: 'ready-made follow-along routines with the built-in timer (no video) — targeted, short to long, gentle to deep, one for every runner’s need', worth: '$39' },
   { name: 'The Runner’s Pose Library', solves: 'every pose with plain cues and cautions', worth: '$29' },
-  { name: 'The Never-Skip Scheduler', solves: 'your plan pre-loaded into your calendar, with a quiet nudge when a session’s due — because showing up is what actually drives results', worth: '$19' },
+  { name: 'The Never-Skip Scheduler', solves: 'your plan pre-loaded into your calendar, with a quiet nudge when a practice is due — because showing up is what actually drives results', worth: '$19' },
 ];
 
 const ogImage = new URL('/og/card.png', Astro.site);
 ogImage.searchParams.set('t', 'The Runner’s Reset');
-ogImage.searchParams.set('s', 'Short follow-along Yin sessions to undo the tightness running builds up');
+ogImage.searchParams.set('s', 'Short follow-along Yin practices to undo the tightness running builds up');
 ---
 
 {/* Alternate H1s to A/B test against the recommended headline:
@@ -63,7 +63,7 @@ ogImage.searchParams.set('s', 'Short follow-along Yin sessions to undo the tight
 
 <BaseLayout
   title="The Runner's Reset — Yin Yoga for Runners, by Katie"
-  description="Running quietly stiffens the tissues that keep you running well. The Runner's Reset is a library of short, follow-along Yin sessions that give that range back — fifteen to twenty quiet minutes at a time."
+  description="Running quietly stiffens the tissues that keep you running well. The Runner's Reset is a library of short, follow-along Yin practices that give that range back — fifteen to twenty quiet minutes at a time."
   image={ogImage.href}
   noindex={true}
 >
@@ -75,7 +75,7 @@ ogImage.searchParams.set('s', 'Short follow-along Yin sessions to undo the tight
         <h1>Stop getting tighter. Keep running — at your best.</h1>
         <p class="rr-sub">
           Running quietly stiffens the very tissues that keep you running well — hips, hamstrings,
-          calves, quads, lower back. The Runner's Reset is a library of short, follow-along Yin sessions
+          calves, quads, lower back. The Runner's Reset is a library of short, follow-along Yin practices
           that give that range back, fifteen to twenty quiet minutes at a time.
         </p>
         <form method="POST" action="/api/checkout" class="rr-cta-form"><button type="submit" class="rr-cta">Join the Runner's Reset — $49 founding price →</button></form>
@@ -141,17 +141,17 @@ ogImage.searchParams.set('s', 'Short follow-along Yin sessions to undo the tight
     <section class="rr-sec">
       <div class="rr-read">
         <h2>What's inside The Runner's Reset</h2>
-        <p>It's a practice library, not a course you fall behind on. Two kinds of session, plus guided paths that tell you exactly which one to press play on.</p>
-        <h3 class="rr-h3">Target sessions — one for each place running tightens</h3>
-        <p>Short, follow-along Yin sessions, about 14–18 minutes each — each shape followed by a short rebound, the still pause that lets the release settle before the next one. Do one right after a run, while you're warm, or whenever a specific spot is grumbling.</p>
+        <p>It's a practice library, not a course you fall behind on. Two kinds of practice, plus guided paths that tell you exactly which one to press play on.</p>
+        <h3 class="rr-h3">Short practices — one for each place running tightens</h3>
+        <p>Short, follow-along Yin practices, about 14–18 minutes each — each shape followed by a short rebound, the still pause that lets the release settle before the next one. Do one right after a run, while you're warm, or whenever a specific spot is grumbling.</p>
       </div>
 
       <div class="rr-band">
-        <ul class="rr-cards" aria-label="Target sessions">
+        <ul class="rr-cards" aria-label="Short practices">
           {TARGET_SESSIONS.map((s) => (
             <li class="rr-scard">
               <div class="rr-scard-media">
-                <img src={`/poses/${s.pose}.jpg`} alt={`Yin shape used in the ${s.name} session`} loading="lazy" width="480" height="360" />
+                <img src={`/poses/${s.pose}.jpg`} alt={`Yin shape used in the ${s.name} practice`} loading="lazy" width="480" height="360" />
               </div>
               <div class="rr-scard-body">
                 <div class="rr-scard-head">
@@ -166,12 +166,12 @@ ogImage.searchParams.set('s', 'Short follow-along Yin sessions to undo the tight
       </div>
 
       <div class="rr-read">
-        <h3 class="rr-h3">Full Reset sessions — the whole chain, in one practice</h3>
+        <h3 class="rr-h3">Long practices — the whole chain, in one sitting</h3>
         <p>Because running doesn't tighten one muscle — it tightens a chain, and a tight link pulls on the next. Around 50 minutes each, made for rest days.</p>
       </div>
 
       <div class="rr-band">
-        <ul class="rr-cards rr-cards-3" aria-label="Full Reset sessions">
+        <ul class="rr-cards rr-cards-3" aria-label="Long practices">
           {FULL_RESETS.map((s) => (
             <li class="rr-scard">
               <div class="rr-scard-media">
@@ -204,14 +204,14 @@ ogImage.searchParams.set('s', 'Short follow-along Yin sessions to undo the tight
       </div>
 
       <div class="rr-read">
-        <h3 class="rr-h3">Every session page gives you five ways in</h3>
-        <p>The follow-along video, an on-screen hold timer (so you can practice screen-free once you know the shapes), the plain-English <em>why</em> behind the session, written cues you can read, and a body map showing where it works. Whatever kind of learner you are, it's covered.</p>
+        <h3 class="rr-h3">Every practice page gives you five ways in</h3>
+        <p>The follow-along video, an on-screen hold timer (so you can practice screen-free once you know the shapes), the plain-English <em>why</em> behind the practice, written cues you can read, and a body map showing where it works. Whatever kind of learner you are, it's covered.</p>
       </div>
       <div class="rr-band">
-        {/* PLACEHOLDER — swap for a real screenshot of a session page once the course is filmed. */}
+        {/* PLACEHOLDER — swap for a real screenshot of a practice page once the course is filmed. */}
         <figure class="rr-ph rr-ph-wide">
-          <span class="rr-ph-label">Session page preview</span>
-          <span class="rr-ph-note">A screenshot of a real session — the video, hold timer, cues and body map — drops in here after filming.</span>
+          <span class="rr-ph-label">Practice page preview</span>
+          <span class="rr-ph-note">A screenshot of a real practice — the video, hold timer, cues and body map — drops in here after filming.</span>
         </figure>
       </div>
     </section>
@@ -231,7 +231,7 @@ ogImage.searchParams.set('s', 'Short follow-along Yin sessions to undo the tight
             </li>
           ))}
         </ul>
-        <p class="rr-bonus-foot">Priced separately, the bonuses alone come to <strong>$116</strong> — before you count the seven sessions and the guided paths. You get all of it, for good, for less than a couple of physio sessions.</p>
+        <p class="rr-bonus-foot">Priced separately, the bonuses alone come to <strong>$116</strong> — before you count the seven practices and the guided paths. You get all of it, for good, for less than a couple of physio sessions.</p>
       </div>
     </section>
 
@@ -272,7 +272,7 @@ ogImage.searchParams.set('s', 'Short follow-along Yin sessions to undo the tight
         <div class="rr-offer">
           <h2>The founding price (and the honest small print)</h2>
           <p class="rr-price"><span class="rr-price-now">$49</span><span class="rr-price-meta">for the first 100 runners<br /><span class="rr-price-then">then $67</span></span></p>
-          <p>The Runner's Reset is <strong>$49 for the first 100 runners</strong>. One payment, lifetime access — every session, every path, every bonus, and everything I add to the library later.</p>
+          <p>The Runner's Reset is <strong>$49 for the first 100 runners</strong>. One payment, lifetime access — every practice, every path, every bonus, and everything I add to the library later.</p>
           <p>Once those 100 founding places are taken, the price becomes <strong>$67</strong>. That's the only deadline here, and it's a real one: I want a founding group practicing, telling me what to build next, before the doors settle at full price. No countdown-timer theater — when the hundred are gone, they're gone.</p>
           <div class="rr-next">
             <p class="rr-next-h">What happens the moment you join</p>
@@ -294,7 +294,7 @@ ogImage.searchParams.set('s', 'Short follow-along Yin sessions to undo the tight
         <h2>Questions runners ask</h2>
         <div class="rr-faqs">
           <details class="faq"><summary>"I'm not flexible. At all."</summary><p>Perfect — that's exactly who Yin is for. It isn't about how far you fold. You only ever go to about 60–80% of your capacity and let the shape soften from there. Tight runners are the whole idea.</p></details>
-          <details class="faq"><summary>"I don't have time."</summary><p>The Target sessions are under twenty minutes — shorter than a proper cooldown. Do one after a run, or in the evening while you wind down. Little and often does far more than long and rare.</p></details>
+          <details class="faq"><summary>"I don't have time."</summary><p>The short practices are under twenty minutes — shorter than a proper cooldown. Do one after a run, or in the evening while you wind down. Little and often does far more than long and rare.</p></details>
           <details class="faq"><summary>"Does stretching even help runners?"</summary><p>The quick, bouncy kind before a run? Not much — and long deep holds <em>before</em> running can actually leave you feeling loose and less powerful, which is why everything here is built for after runs and rest days. What long, still holds are genuinely good at is improving range of motion and helping your body shift into recovery. That's the lane Yin stays in — I won't promise you it cures injuries or flushes anything, because it doesn't.</p></details>
           <details class="faq"><summary>"Is this just YouTube videos?"</summary><p>The free channel stays free, always. What the library adds is the system: runner-specific sequences for every link in the chain, guided paths so you always know what's next, hold timers, written cues, body maps, a deep-rest NSDR, ready-made routines, and calendar plans with reminders. It's the difference between a pile of classes and a plan.</p></details>
           <details class="faq"><summary>"What do I need?"</summary><p>A mat, a cushion or two, maybe a belt or a block if you have one. Every pose has a gentler option — nothing requires flexibility or fancy props.</p></details>
@@ -445,7 +445,7 @@ ogImage.searchParams.set('s', 'Short follow-along Yin sessions to undo the tight
     background: var(--paper); border-radius: 0 12px 12px 0; font-size: 15.5px; color: var(--ink-soft); line-height: 1.6;
   }
 
-  /* ── Session cards ─────────────────────────────────────────────────── */
+  /* ── Practice cards ─────────────────────────────────────────────────── */
   .rr-cards { list-style: none; margin: 20px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .rr-cards-3 { grid-template-columns: repeat(3, 1fr); }
   .rr-scard {

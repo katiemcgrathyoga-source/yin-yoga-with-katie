@@ -1,0 +1,18 @@
+---
+export const prerender = false;
+
+/**
+ * /sessions/* → /practices/* — permanent.
+ *
+ * The course shipped at /sessions and the free class link went into the
+ * MailerLite delivery email, so the old paths have to keep working; a subscriber
+ * whose email predates the rename must still land on their class.
+ *
+ * A route rather than a `redirects` entry in astro.config: a spread pattern
+ * there needs getStaticPaths to enumerate, which a redirect has no way to
+ * provide. This matches the bare /sessions too, since a spread param can be
+ * empty.
+ */
+const rest = Astro.params.rest;
+return Astro.redirect(rest ? `/practices/${rest}` : '/practices', 301);
+---

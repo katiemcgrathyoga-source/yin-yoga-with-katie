@@ -323,6 +323,10 @@ const { title, holds, shareUrl, imageUrl } = Astro.props;
       this.prog.style.strokeDashoffset = '0';
       this.dots.forEach((d) => { d.classList.add('is-done'); d.classList.remove('is-current'); });
       this.live.textContent = 'Practice complete. Rest as long as you like.';
+      // The player doesn't know what it's part of, so it announces rather than
+      // records — whichever page hosts it knows its own slug and length and
+      // decides whether the completion is worth logging.
+      this.dispatchEvent(new CustomEvent('routine-complete', { bubbles: true }));
       await this.drawBadge();
     }
 

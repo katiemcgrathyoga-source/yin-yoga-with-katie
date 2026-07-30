@@ -160,6 +160,11 @@ const routines = defineCollection({
     tagline: z.string().optional(),
     intent: z.string(), // grouping label, e.g. "sleep" | "hips" | "shoulders" | "full-body"
     hero_pose: z.string().optional(), // slug of the pose to use as the card/OG image (defaults to the first step)
+    // Set when a routine belongs to a paid course rather than the public library.
+    // The public /routines pages filter these OUT and the course page filters them
+    // IN, so a bonus routine can never leak onto the free site by being forgotten.
+    course: z.string().optional(), // e.g. "runner-reset"
+    area: z.string().optional(), // body area for course filtering, e.g. "hamstrings"
     level: z.enum(['all-levels', 'beginner', 'intermediate', 'advanced']),
     minutes: z.number().int().positive(), // true runtime — verified against the sequence below
     intro: z.string().min(1), // a short paragraph in Katie's voice
@@ -222,15 +227,18 @@ const blog = defineCollection({
 });
 
 /**
- * The `sessions` collection — course practices (e.g. the Runner's Reset). A
- * session is a routine PLUS a teaching layer: a follow-along video, the "why"
- * (science), level modifications and an access flag. Each session page shows the
- * video, the timed RoutinePlayer, the science, written cues and a body map — one
- * page for every learning style. `access` gates it for the future membership;
- * `youtube_video_id` is left blank until the class is filmed.
+ * The `practices` collection — the taught classes inside a course (currently
+ * The Runner's Reset). A practice is a routine PLUS a teaching layer: a
+ * follow-along video, the "why" (science), level modifications and an access
+ * flag. Each page shows the video, the timed RoutinePlayer, the science,
+ * written cues and a body map — one page for every learning style. `access`
+ * gates it; `youtube_video_id` is blank until the class is filmed.
+ *
+ * Distinct from `routines`, which are timer-only and have no video or teaching
+ * layer — the difference is a filmed class, not the length of the sequence.
  */
-const sessions = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/sessions' }),
+const practices = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/practices' }),
   schema: z.object({
     title: z.string().min(1),
     slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'slug must be lowercase kebab-case'),
@@ -242,6 +250,10 @@ const sessions = defineCollection({
     minutes: z.number().int().positive(), // true runtime — verified against the sequence below
     hold_label: z.string().default('2-minute holds'),
     props: z.array(z.string()).default([]),
+    // Card thumbnail on the practices index. A pose photo stands in until the
+    // class is filmed and a real still can replace it; falls back to the first
+    // pose in the sequence, so a new practice always has an image.
+    hero_pose: z.string().optional(),
     youtube_video_id: z.string().default(''),   // free/public classes → YouTube embed
     bunny_video_id: z.string().default(''),      // paid self-hosted class → Bunny GUID, gated by entitlement
     why: z.string().min(1),                     // the science rationale
@@ -268,4 +280,4 @@ const sessions = defineCollection({
   }).superRefine(checkMinutes),
 });
 
-export const collections = { poses, videos, routines, blog, sessions };
+export const collections = { poses, videos, routines, blog, practices };

@@ -4,7 +4,7 @@
 > Upgrades over the existing drafts: sharper promise on the page, a concrete
 > "how to use it" beat in the delivery email, and a second bridge that plants
 > the library seed with the desk-runner angle. No emoji (voice guide rules).
-> Merge tag: `{$name|default:"there"}` · class link: `https://yinyogawithkatie.com/sessions/post-run-reset`
+> Merge tag: `{$name|default:"there"}` · class link: `https://yinyogawithkatie.com/practices/post-run-reset`
 > (the full module page — video, timer, cues, body map. Ungated + noindex, so
 > anyone with the link gets in, but it never shows up in search or the site nav.)
 
@@ -44,7 +44,7 @@ Hi {$name|default:"there"},
 
 Thank you for being here. As promised, here's your free Post-Run Reset — fifteen quiet minutes to loosen what running tightens up, from the hips and glutes to the hamstrings and spine.
 
-**▶ [Start your Post-Run Reset](https://yinyogawithkatie.com/sessions/post-run-reset)**
+**▶ [Start your Post-Run Reset](https://yinyogawithkatie.com/practices/post-run-reset)**
 
 Three small things that help:
 
@@ -79,7 +79,7 @@ Here's the part nobody tells runners: a hurried stretch or a foam roll only skim
 
 And here's the other part: running doesn't tighten one thing. It loads a whole chain — hips, hamstrings, calves, quads, lower back — and a tight link pulls on the next one. That's why it shows up somewhere new every few weeks.
 
-Your fifteen-minute Reset covers the essentials after any run. For the whole chain there's something bigger: **The Runner's Reset** — a library of short, follow-along sessions, one for every place running tightens, with paths that tell you exactly what to press play on. The people on this list get the founding price.
+Your fifteen-minute Reset covers the essentials after any run. For the whole chain there's something bigger: **The Runner's Reset** — a library of short, follow-along practices, one for every place running tightens, with paths that tell you exactly what to press play on. The people on this list get the founding price.
 
 For now: keep doing your Reset after your runs. That habit alone puts you ahead of most runners.
 
@@ -101,7 +101,7 @@ Every stride flexes your hip — thousands of times a run. Then most of us go an
 
 The kind thing to do about it isn't dramatic. It's a few unhurried minutes in shapes like Dragon or Sleeping Swan — long enough for the front of the hip to genuinely soften — a few times a week. If you only have your fifteen-minute Reset, that's a lovely start: notice how the first hip shape feels this week compared with last.
 
-The full library I mentioned — it's called **The Runner's Reset** — gives every one of those tight places its own short session, including one made specifically for runners who sit all day. It's open now, and this list gets the founding price.
+The full library I mentioned — it's called **The Runner's Reset** — gives every one of those tight places its own short practice, including one made specifically for runners who sit all day. It's open now, and this list gets the founding price.
 
 Until then, take good care of yourself,
 Katie

@@ -11,7 +11,7 @@
 
 # Stop getting tighter. Keep running — at your best.
 
-**Sub:** Running quietly stiffens the very tissues that keep you running well — hips, hamstrings, calves, quads, lower back. The Runner's Reset is a library of short, follow-along Yin sessions that give that range back, fifteen to twenty quiet minutes at a time.
+**Sub:** Running quietly stiffens the very tissues that keep you running well — hips, hamstrings, calves, quads, lower back. The Runner's Reset is a library of short, follow-along Yin practices that give that range back, fifteen to twenty quiet minutes at a time.
 
 **[Join the Runner's Reset — $49 founding price →]**
 *One-time payment · lifetime access · 30-day keep-it guarantee*
@@ -63,19 +63,19 @@ You don't need to become flexible. You just need to stop getting tighter.
 
 ## What's inside The Runner's Reset
 
-It's a practice library, not a course you fall behind on. Two kinds of session, plus guided paths that tell you exactly which one to press play on.
+It's a practice library, not a course you fall behind on. Two kinds of practice, plus guided paths that tell you exactly which one to press play on.
 
-### Target sessions — one for each place running tightens
+### Short practices — one for each place running tightens
 
-Short, follow-along Yin sessions, about 15–20 minutes each — each shape followed by a short rebound, the still pause that lets the release settle before the next one. Do one right after a run, while you're warm, or whenever a specific spot is grumbling.
+Short, follow-along Yin practices, about 15–20 minutes each — each shape followed by a short rebound, the still pause that lets the release settle before the next one. Do one right after a run, while you're warm, or whenever a specific spot is grumbling.
 
 - **Hips & Hip Flexors (~12 min).** Running plus sitting equals tight hips — open them first, and your whole stride frees up.
 - **Hamstrings & Glutes (~14 min).** Your hamstrings do the hardest braking work in every stride — give them their length back.
 - **Calves, Ankles & Feet (~12 min).** It all starts at your feet — stiff ankles change everything above them, and almost no runner works here.
-- **Quads & Outer Hip — the "IT band" one (~14 min).** You can't stretch your IT band — it's a tough band of fascia — but you *can* release the muscles that pull on it. This session does exactly that.
+- **Quads & Outer Hip — the "IT band" one (~14 min).** You can't stretch your IT band — it's a tough band of fascia — but you *can* release the muscles that pull on it. This practice does exactly that.
 - **Lower Back & Spine (~13 min).** Every run is impact your spine absorbs. This is how you gently undo the day's compression.
 
-### Full Reset sessions — the whole chain, in one practice
+### Long practices — the whole chain, in one sitting
 
 Because running doesn't tighten one muscle — it tightens a chain, and a tight link pulls on the next. Around 50 minutes each, made for rest days.
 
@@ -86,12 +86,12 @@ Because running doesn't tighten one muscle — it tightens a chain, and a tight 
 
 - **Start Here** — a short welcome video: what Yin is, why it suits runners, how to use the library.
 - **By level** — new to Yin, returning, or experienced: a path for each.
-- **By need** — tight hips, after a long run, sore feet, race week, only ten minutes: a simple chooser points you to the right session.
+- **By need** — tight hips, after a long run, sore feet, race week, only ten minutes: a simple chooser points you to the right practice.
 - **Calendar plans** — load a plan straight into your calendar with reminders: **The 6-Week Foundation** (the gentle on-ramp), **The Weekly Rhythm** (a repeatable week to keep forever), and **Race Prep** (a taper-aware plan that eases off into race week).
 
-### Every session page gives you five ways in
+### Every practice page gives you five ways in
 
-The follow-along video, an on-screen hold timer (so you can practice screen-free once you know the shapes), the plain-English *why* behind the session, written cues you can read, and a body map showing where it works. Whatever kind of learner you are, it's covered.
+The follow-along video, an on-screen hold timer (so you can practice screen-free once you know the shapes), the plain-English *why* behind the practice, written cues you can read, and a body map showing where it works. Whatever kind of learner you are, it's covered.
 
 ---
 
@@ -101,12 +101,12 @@ The follow-along video, an on-screen hold timer (so you can practice screen-free
 
 | Included free | What it solves | Worth |
 |---|---|---|
-| **The Deep-Rest Reset — a guided NSDR** | a lie-down Non-Sleep Deep Rest (yoga nidra) to run after any session or long run — the deep-rest practice increasingly studied for easing recovery and better sleep | $29 |
+| **The Deep-Rest Reset — a guided NSDR** | a lie-down Non-Sleep Deep Rest (yoga nidra) to run after any practice or long run — the deep-rest practice increasingly studied for easing recovery and better sleep | $29 |
 | **12+ Runner Routines** | ready-made follow-along routines with the built-in timer (no video) — targeted, short to long, gentle to deep | $39 |
 | **The Runner's Pose Library** | every pose with plain cues and cautions | $29 |
-| **The Never-Skip Scheduler** | your plan pre-loaded into your calendar, with a quiet nudge when a session's due — because showing up is what actually drives results | $19 |
+| **The Never-Skip Scheduler** | your plan pre-loaded into your calendar, with a quiet nudge when a practice is due — because showing up is what actually drives results | $19 |
 
-Priced separately, the bonuses alone come to **$116** — before you count the eight sessions and the guided paths. You get all of it, for good, for less than a couple of physio sessions.
+Priced separately, the bonuses alone come to **$116** — before you count the seven practices and the guided paths. You get all of it, for good, for less than a couple of physio sessions.
 
 ---
 
@@ -126,7 +126,7 @@ I can offer that because the risk should sit with me, not you. If Yin doesn't he
 
 ## The founding price (and the honest small print)
 
-The Runner's Reset is **$49 for the first 100 runners**. One payment, lifetime access — every session, every path, every bonus, and everything I add to the library later.
+The Runner's Reset is **$49 for the first 100 runners**. One payment, lifetime access — every practice, every path, every bonus, and everything I add to the library later.
 
 Once those 100 founding places are taken, the price becomes **$67**. That's the only deadline here, and it's a real one: I want a founding group practicing, telling me what to build next, before the doors settle at full price. No countdown-timer theater — when the hundred are gone, they're gone.
 
@@ -141,7 +141,7 @@ Once those 100 founding places are taken, the price becomes **$67**. That's the 
 Perfect — that's exactly who Yin is for. It isn't about how far you fold. You only ever go to about 60–80% of your capacity and let the shape soften from there. Tight runners are the whole idea.
 
 **"I don't have time."**
-The Target sessions are fifteen to twenty minutes — shorter than a proper cooldown. Do one after a run, or in the evening while you wind down. Little and often does far more than long and rare.
+The short practices are under twenty minutes — shorter than a proper cooldown. Do one after a run, or in the evening while you wind down. Little and often does far more than long and rare.
 
 **"Does stretching even help runners?"**
 The quick, bouncy kind before a run? Not much — and long deep holds *before* running can actually leave you feeling loose and less powerful, which is why everything here is built for after runs and rest days. What long, still holds are genuinely good at is improving range of motion and helping your body shift into recovery. That's the lane Yin stays in — I won't promise you it cures injuries or flushes anything, because it doesn't.

@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // Real domain — used for canonical URLs, Open Graph tags, JSON-LD and the sitemap.
 // The whole site prerenders to static EXCEPT routes that opt out with
-// `export const prerender = false` (currently the gated /sessions/[slug] pages),
+// `export const prerender = false` (currently the gated /practices/[slug] pages),
 // which render on-demand via the Netlify adapter so member content is never sent
 // to non-buyers.
 export default defineConfig({
@@ -20,7 +20,7 @@ export default defineConfig({
         !page.includes('/runner-reset') &&
         !page.includes('/dev/') &&
         !page.includes('/account') &&
-        !page.includes('/sessions/') &&
+        !page.includes('/practices') &&
         !page.includes('/blog/yoga-for-runners') &&
         !page.includes('/pins') &&
         !page.includes('/boards'),

@@ -1,0 +1,108 @@
+---
+/**
+ * "Where you've got to" — a quiet record of what you've practiced.
+ *
+ * Rendered empty and filled by the client from localStorage, because the log
+ * never reaches the server. That means it must degrade gracefully: with no
+ * script, or an empty log, it hides itself rather than showing zeros, since a
+ * row of noughts is the exact discouragement this is meant to avoid.
+ *
+ * No streaks — see the note in lib/practiceLog.ts.
+ */
+---
+
+<section class="pp" id="practice-progress" hidden>
+  <div class="pp-head">
+    <h2>Where you've got to</h2>
+    <button class="pp-clear" id="pp-clear" type="button">Clear</button>
+  </div>
+
+  <div class="pp-body">
+    <div class="pp-figures">
+      <div class="pp-fig">
+        <span class="pp-n" id="pp-week">0</span>
+        <span class="pp-k">this week</span>
+      </div>
+      <div class="pp-fig">
+        <span class="pp-n" id="pp-month">0</span>
+        <span class="pp-k">this month</span>
+      </div>
+      <div class="pp-fig">
+        <span class="pp-n" id="pp-mins">0</span>
+        <span class="pp-k">minutes, 30 days</span>
+      </div>
+    </div>
+
+    <div class="pp-rhythm">
+      <div class="pp-grid" id="pp-grid" aria-hidden="true"></div>
+      <p class="pp-cap" id="pp-cap"></p>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { stats, recentDays, readLog } from '../lib/practiceLog';
+
+  const root = document.getElementById('practice-progress');
+  if (root) {
+    const render = () => {
+      if (!readLog().length) { root.hidden = true; return; }
+      root.hidden = false;
+
+      const s = stats();
+      (document.getElementById('pp-week') as HTMLElement).textContent = String(s.week);
+      (document.getElementById('pp-month') as HTMLElement).textContent = String(s.month);
+      (document.getElementById('pp-mins') as HTMLElement).textContent = String(s.monthMinutes);
+
+      const grid = document.getElementById('pp-grid') as HTMLElement;
+      grid.innerHTML = recentDays(28)
+        .map((d) => `<span class="pp-dot${d.count ? ' on' : ''}"></span>`)
+        .join('');
+
+      // Warm, never scolding — the copy has to hold up on a week you did nothing.
+      const cap = document.getElementById('pp-cap') as HTMLElement;
+      cap.textContent = s.week === 0
+        ? 'The last four weeks. Whenever you come back is the right time.'
+        : s.week === 1
+          ? 'The last four weeks. One practice this week — that counts.'
+          : `The last four weeks. ${s.week} practices this week.`;
+    };
+
+    document.getElementById('pp-clear')?.addEventListener('click', () => {
+      if (!confirm('Clear your practice log? This only affects this browser.')) return;
+      try { localStorage.removeItem('yywk-practice-log'); } catch {}
+      render();
+    });
+
+    render();
+  }
+</script>
+
+<style>
+  .pp {
+    background: var(--paper-2); border: 1px solid var(--line);
+    border-radius: 16px; padding: 20px 22px; margin-bottom: 34px;
+  }
+  .pp[hidden] { display: none; }
+
+  .pp-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+  .pp-head h2 { font-family: var(--display); font-size: 19px; margin: 0; }
+  .pp-clear {
+    font: inherit; font-size: 12.5px; color: var(--ink-soft);
+    background: none; border: none; cursor: pointer; padding: 2px 4px;
+  }
+  .pp-clear:hover { color: var(--ink); text-decoration: underline; }
+
+  .pp-body { display: flex; gap: 28px; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; }
+
+  .pp-figures { display: flex; gap: 26px; }
+  .pp-fig { display: flex; flex-direction: column; gap: 1px; }
+  .pp-n { font-family: var(--display); font-size: 30px; line-height: 1; color: var(--plum); font-variant-numeric: tabular-nums; }
+  .pp-k { font-size: 11.5px; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; }
+
+  .pp-rhythm { display: flex; flex-direction: column; gap: 8px; }
+  .pp-grid { display: grid; grid-template-columns: repeat(14, 1fr); gap: 4px; max-width: 232px; }
+  .pp-dot { width: 12px; height: 12px; border-radius: 3px; background: var(--line); }
+  .pp-dot.on { background: var(--gold-solid); }
+  .pp-cap { font-size: 12.5px; color: var(--ink-soft); margin: 0; }
+</style>

@@ -79,7 +79,7 @@ Katie
 
 Hi {$name|default:"there"},
 
-A quick heads-up. For months I've been building the thing I kept wishing existed for runners: not a random class here and there, but a proper library — one short session for every place running tightens, longer full-body practices for rest days, and paths that tell you exactly what to press play on and when.
+A quick heads-up. For months I've been building the thing I kept wishing existed for runners: not a random class here and there, but a proper library — one short practice for every place running tightens, longer full-body practices for rest days, and paths that tell you exactly what to press play on and when.
 
 It's called **The Runner's Reset**, and it opens in two days.
 
@@ -97,12 +97,12 @@ Katie
 
 Hi {$name|default:"there"},
 
-It's open. **The Runner's Reset** — a library of short, follow-along Yin sessions that undo the tightness running builds up, fifteen to twenty quiet minutes at a time. So you stop getting tighter, and keep running at your best.
+It's open. **The Runner's Reset** — a library of short, follow-along Yin practices that undo the tightness running builds up, fifteen to twenty quiet minutes at a time. So you stop getting tighter, and keep running at your best.
 
 You already know the pattern: you finish a run tight, you mean to stretch, you don't — and it stacks up, run after run, until a niggle turns into a week off. This is the simple habit that interrupts that. Here's what's inside:
 
-- **Five Target sessions (~14–18 min)** — one for each place running tightens: hips, hamstrings and glutes, calves and feet, quads and the outer hip, lower back.
-- **Two Full Resets (~50 min)** — the whole chain in one unhurried rest-day practice, including a fully supported restorative version.
+- **Five short practices (~14–18 min)** — one for each place running tightens: hips, hamstrings and glutes, calves and feet, quads and the outer hip, lower back.
+- **Two long practices (~50 min)** — the whole chain in one unhurried rest-day practice, including a fully supported restorative version.
 - **Guided paths** — by level, by need, or as calendar plans with reminders, so you never wonder what to press play on.
 - **Four bonuses** — including a guided NSDR (deep-rest yoga nidra) to melt into after any run, and 12+ ready-made runner routines.
 
@@ -127,11 +127,11 @@ Hi {$name|default:"there"},
 
 A few of you asked what a normal week with the Runner's Reset looks like. Honestly: about an hour, and not in one go.
 
-After a run, you press play on the Target session your body's asking for — **Hips** if they're grumbling, **Hamstrings & Glutes** after a hard session, **Calves & Feet** if you've upped your mileage. Fifteen-ish minutes, while you're warm. Then once a week, on a rest day, a longer **Full Reset** works the whole chain end to end.
+After a run, you press play on the short practice your body's asking for — **Hips** if they're grumbling, **Hamstrings & Glutes** after a hard session, **Calves & Feet** if you've upped your mileage. Fifteen-ish minutes, while you're warm. Then once a week, on a rest day, a longer **Full Reset** works the whole chain end to end.
 
-Why the whole chain? Because running never tightens just one thing. Tight hip flexors tip the pelvis and load the low back. Stiff ankles change everything above them. The outer hip tensions the IT band — which, by the way, you can't stretch, so that session releases what pulls on it instead. Each link affects the next, which is why there's a session for every one.
+Why the whole chain? Because running never tightens just one thing. Tight hip flexors tip the pelvis and load the low back. Stiff ankles change everything above them. The outer hip tensions the IT band — which, by the way, you can't stretch, so that practice releases what pulls on it instead. Each link affects the next, which is why there's a practice for every one.
 
-And if you'd rather not think at all, the guided paths decide for you — including the **6-Week Foundation** plan that loads straight into your calendar with a quiet nudge when a session's due.
+And if you'd rather not think at all, the guided paths decide for you — including the **6-Week Foundation** plan that loads straight into your calendar with a quiet nudge when a practice is due.
 
 You don't need to be flexible. You just need to stop getting tighter.
 
@@ -151,7 +151,7 @@ Hi {$name|default:"there"},
 
 I answered the flexibility one the other day. Here are the other two worries that come up every time, answered just as honestly.
 
-**"I don't have time."** The Target sessions are fifteen to twenty minutes — shorter than a proper cooldown. After a run, or on the living-room floor in the evening. Little and often does far more than long and rare, and the scheduler nudges you so it actually happens.
+**"I don't have time."** The short practices are under twenty minutes — shorter than a proper cooldown. After a run, or on the living-room floor in the evening. Little and often does far more than long and rare, and the scheduler nudges you so it actually happens.
 
 **"What if it doesn't work for me?"** Then you pay nothing. That's the keep-it guarantee: practice along for 30 days, and if you're not moving more easily, email me — full refund, and you keep lifetime access to everything anyway. If Yin doesn't help your running, I haven't earned your money. The only way to lose here is to stay tight.
 
@@ -191,7 +191,7 @@ Hi {$name|default:"there"},
 
 Just a quick, honest note — no theater. The founding group is filling, and once the first 100 places are taken, the price settles at $67 for good.
 
-If you've been on the fence: you can join today, do one Target session after your next run, and if it's not for you, take the full refund and keep everything. That's the whole risk, and it's mine.
+If you've been on the fence: you can join today, do one short practice after your next run, and if it's not for you, take the full refund and keep everything. That's the whole risk, and it's mine.
 
 **→ [Join the Runner's Reset — $49 founding price](https://yinyogawithkatie.com/runner-reset)**
 
