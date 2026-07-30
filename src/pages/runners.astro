@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import classStill from '../assets/post-run-reset-still.jpg';
 
 // Branded OG card for shares.
 const ogImage = new URL('/og/card.png', Astro.site);
@@ -30,6 +32,14 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19428858239
       loosen what running tightens — hips, glutes, hamstrings and spine — so the
       stiffness lets go before it settles in. Yours to keep, for any run, forever.
     </p>
+
+    {/* One image, and it's a frame from the actual class rather than a stock shot
+        or a product screenshot: it previews exactly what the email delivers and
+        carries Katie's face, which is what the whole channel runs on. Above the
+        form, never between the form and its button. */}
+    <figure class="lm-still">
+      <Image src={classStill} alt="Katie holding Sleeping Swan on her mat during the Post-Run Reset class" widths={[560, 900, 1400]} sizes="(max-width: 760px) 92vw, 720px" loading="eager" fetchpriority="high" />
+    </figure>
 
     <section class="lm">
       <ul class="lm-points">

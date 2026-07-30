@@ -477,6 +477,14 @@ routine-player.is-done .rp-done { display: flex; }
 
 /* lead-magnet / free-class page */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; }
+/* A frame from the class itself, above the form. Wider than the form column so it
+   reads as a window into the practice rather than another field in the stack. */
+.lm-still { max-width: 720px; margin: 26px auto 0; }
+.lm-still img {
+  display: block; width: 100%; height: auto;
+  border-radius: 16px; border: 1px solid var(--line);
+}
+
 .lm { max-width: 520px; margin: 30px auto 0; }
 .lm-points { list-style: none; margin: 0 0 24px; padding: 0; display: flex; flex-direction: column; gap: 10px; }
 .lm-points li { position: relative; padding-left: 30px; font-size: 16.5px; color: var(--ink); }

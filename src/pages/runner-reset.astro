@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import katieAbout from '../assets/katie-about.jpg';
 import katieHello from '../assets/katie-hello.jpg';
+import practicePreview from '../assets/practice-page-preview.jpg';
 
 // The Runner's Reset — long-form sales page. Copy is LOCKED, verbatim from
 // runner-reset-copy-pack/A-sales-page.md. This file is a visual/structural
@@ -210,10 +211,12 @@ ogImage.searchParams.set('s', 'Short follow-along Yin practices to undo the tigh
         <p>The follow-along video, an on-screen hold timer (so you can practice screen-free once you know the shapes), the plain-English <em>why</em> behind the practice, written cues you can read, and a body map showing where it works. Whatever kind of learner you are, it's covered.</p>
       </div>
       <div class="rr-band">
-        {/* PLACEHOLDER — swap for a real screenshot of a practice page once the course is filmed. */}
-        <figure class="rr-ph rr-ph-wide">
-          <span class="rr-ph-label">Practice page preview</span>
-          <span class="rr-ph-note">A screenshot of a real practice — the video, hold timer, cues and body map — drops in here after filming.</span>
+        {/* A real practice page, not a mockup. The tab row is why this shot and not
+            another: it shows the timer exists alongside the video in one image,
+            which is the thing no competitor's screenshot has. */}
+        <figure class="rr-shot">
+          <Image src={practicePreview} alt="A practice page in The Runner's Reset, showing the follow-along video and the tab to switch to the hold timer" widths={[560, 900, 1026]} sizes="(max-width: 900px) 92vw, 860px" loading="lazy" />
+          <figcaption>A real practice page — the follow-along video, and one tap to the hold timer.</figcaption>
         </figure>
       </div>
     </section>
@@ -469,15 +472,16 @@ ogImage.searchParams.set('s', 'Short follow-along Yin practices to undo the tigh
   .rr-path-term { display: block; font-family: var(--display); font-weight: 500; font-size: 18px; color: var(--plum); margin-bottom: 4px; }
   .rr-path :global(strong) { color: var(--ink); font-weight: 600; }
 
-  /* ── Placeholder (course asset to come) ────────────────────────────── */
-  .rr-ph {
-    display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
-    gap: 8px; border: 1.5px dashed var(--gold); border-radius: 18px; background: var(--paper-2);
-    color: var(--ink-soft); padding: 30px; margin: 20px 0 0;
+  /* ── Product screenshot ────────────────────────────────────────────── */
+  .rr-shot { max-width: 860px; margin: 20px auto 0; }
+  .rr-shot :global(img) {
+    display: block; width: 100%; height: auto;
+    border-radius: 18px; border: 1px solid var(--line);
   }
-  .rr-ph-wide { aspect-ratio: 16 / 9; }
-  .rr-ph-label { font-family: var(--display); font-size: 19px; color: var(--gold-solid); }
-  .rr-ph-note { font-size: 14px; max-width: 44ch; line-height: 1.5; }
+  .rr-shot figcaption {
+    margin-top: 12px; text-align: center;
+    font-size: 14px; color: var(--ink-soft); line-height: 1.5;
+  }
 
   /* ── Bonus stack ───────────────────────────────────────────────────── */
   .rr-band-h2 { font-family: var(--display); font-weight: 500; color: var(--plum); font-size: clamp(25px, 3.6vw, 32px); line-height: 1.18; letter-spacing: -0.01em; margin: 0 0 18px; text-wrap: balance; }

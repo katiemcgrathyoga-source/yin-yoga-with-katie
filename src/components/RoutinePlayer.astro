@@ -50,6 +50,11 @@ const { title, holds, shareUrl, imageUrl } = Astro.props;
 
   class RoutinePlayer extends HTMLElement {
     holds: Hold[] = [];
+    // A two-sided pose expands into two holds, so the hold index is NOT the pose
+    // number. Counting holds told a four-shape class it was on "Pose 3 of 7",
+    // contradicting the written cues on the same page.
+    poseNums: number[] = [];
+    poseTotal = 0;
     idx = 0;
     phase: 'ready' | 'prep' | 'holding' | 'transition' | 'done' = 'ready';
     paused = false;
@@ -64,6 +69,7 @@ const { title, holds, shareUrl, imageUrl } = Astro.props;
     connectedCallback() {
       try { this.holds = JSON.parse(this.querySelector('.rp-data')?.textContent || '[]'); } catch { this.holds = []; }
       if (!this.holds.length) return;
+      this.indexPoses();
       this.build();
     }
     disconnectedCallback() { this.stopTick(); this.releaseWake(); this.unlockScroll(); }
@@ -165,7 +171,19 @@ const { title, holds, shareUrl, imageUrl } = Astro.props;
       this.dataset.title = title;
       this.dataset.shareUrl = shareUrl;
       this.holds = holds;
+      this.indexPoses();
       this.build();
+    }
+
+    /** Numbers the holds by POSE — sides 1 and 2 of a shape share a number. */
+    indexPoses() {
+      let n = 0;
+      let prev: string | null = null;
+      this.poseNums = this.holds.map((h) => {
+        if (h.name !== prev) { n++; prev = h.name; }
+        return n;
+      });
+      this.poseTotal = n;
     }
 
     fmt(s: number) { s = Math.max(0, Math.round(s)); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; }
@@ -180,7 +198,7 @@ const { title, holds, shareUrl, imageUrl } = Astro.props;
     showHold(i: number, running: boolean) {
       const h = this.holds[i];
       this.photo.src = h.img; this.photo.alt = `${h.name} yin yoga pose`;
-      this.count.textContent = `Pose ${i + 1} of ${this.holds.length}${h.sideLabel ? ' · ' + h.sideLabel : ''}`;
+      this.count.textContent = `Pose ${this.poseNums[i]} of ${this.poseTotal}${h.sideLabel ? ' · ' + h.sideLabel : ''}`;
       this.nameEl.textContent = h.name;
       this.note.textContent = h.note || '';
       this.remaining = h.seconds;
