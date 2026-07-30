@@ -17,7 +17,7 @@ import katieHello from '../assets/katie-hello.jpg';
 // Short practices — one card each. Pose photo = a representative shape the
 // practice draws on (real /poses/*.jpg imagery, not stock). `angle` may carry
 // <em>/<strong> from the copy, so it's rendered with set:html.
-const TARGET_SESSIONS = [
+const SHORT_PRACTICES = [
   { name: 'Hips & Hip Flexors', time: '~15 min', pose: 'dragon',
     angle: 'Running plus sitting equals tight hips — open them first, and your whole stride frees up.' },
   { name: 'Hamstrings & Glutes', time: '~18 min', pose: 'caterpillar',
@@ -28,6 +28,8 @@ const TARGET_SESSIONS = [
     angle: 'You can’t stretch your IT band — it’s a tough band of fascia — but you <em>can</em> release the muscles that pull on it. This practice does exactly that.' },
   { name: 'Lower Back & Spine', time: '~16 min', pose: 'sphinx',
     angle: 'Every run is impact your spine absorbs. This is how you gently undo the day’s compression.' },
+  { name: 'The Express Reset', time: '~15 min', pose: 'caterpillar',
+    angle: 'A little of everything in a quarter of an hour — the one you’ll actually do on a busy week. It’s also the free class, and it earns its place in here.' },
 ];
 
 const FULL_RESETS = [
@@ -148,7 +150,7 @@ ogImage.searchParams.set('s', 'Short follow-along Yin practices to undo the tigh
 
       <div class="rr-band">
         <ul class="rr-cards" aria-label="Short practices">
-          {TARGET_SESSIONS.map((s) => (
+          {SHORT_PRACTICES.map((s) => (
             <li class="rr-scard">
               <div class="rr-scard-media">
                 <img src={`/poses/${s.pose}.jpg`} alt={`Yin shape used in the ${s.name} practice`} loading="lazy" width="480" height="360" />
@@ -231,7 +233,7 @@ ogImage.searchParams.set('s', 'Short follow-along Yin practices to undo the tigh
             </li>
           ))}
         </ul>
-        <p class="rr-bonus-foot">Priced separately, the bonuses alone come to <strong>$116</strong> — before you count the seven practices and the guided paths. You get all of it, for good, for less than a couple of physio sessions.</p>
+        <p class="rr-bonus-foot">Priced separately, the bonuses alone come to <strong>$116</strong> — before you count the eight practices and the guided paths. You get all of it, for good, for less than a couple of physio sessions.</p>
       </div>
     </section>
 

@@ -101,7 +101,7 @@ It's open. **The Runner's Reset** — a library of short, follow-along Yin pract
 
 You already know the pattern: you finish a run tight, you mean to stretch, you don't — and it stacks up, run after run, until a niggle turns into a week off. This is the simple habit that interrupts that. Here's what's inside:
 
-- **Five short practices (~14–18 min)** — one for each place running tightens: hips, hamstrings and glutes, calves and feet, quads and the outer hip, lower back.
+- **Six short practices (~14–18 min)** — one for each place running tightens: hips, hamstrings and glutes, calves and feet, quads and the outer hip, lower back — plus an Express Reset that touches everything.
 - **Two long practices (~50 min)** — the whole chain in one unhurried rest-day practice, including a fully supported restorative version.
 - **Guided paths** — by level, by need, or as calendar plans with reminders, so you never wonder what to press play on.
 - **Four bonuses** — including a guided NSDR (deep-rest yoga nidra) to melt into after any run, and 12+ ready-made runner routines.

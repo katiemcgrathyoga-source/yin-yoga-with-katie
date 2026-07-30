@@ -74,6 +74,7 @@ Short, follow-along Yin practices, about 15–20 minutes each — each shape fol
 - **Calves, Ankles & Feet (~12 min).** It all starts at your feet — stiff ankles change everything above them, and almost no runner works here.
 - **Quads & Outer Hip — the "IT band" one (~14 min).** You can't stretch your IT band — it's a tough band of fascia — but you *can* release the muscles that pull on it. This practice does exactly that.
 - **Lower Back & Spine (~13 min).** Every run is impact your spine absorbs. This is how you gently undo the day's compression.
+- **The Express Reset (~15 min).** A little of everything in a quarter of an hour — the one you'll actually do on a busy week. It's also the free class, and it earns its place in here.
 
 ### Long practices — the whole chain, in one sitting
 
@@ -106,7 +107,7 @@ The follow-along video, an on-screen hold timer (so you can practice screen-free
 | **The Runner's Pose Library** | every pose with plain cues and cautions | $29 |
 | **The Never-Skip Scheduler** | your plan pre-loaded into your calendar, with a quiet nudge when a practice is due — because showing up is what actually drives results | $19 |
 
-Priced separately, the bonuses alone come to **$116** — before you count the seven practices and the guided paths. You get all of it, for good, for less than a couple of physio sessions.
+Priced separately, the bonuses alone come to **$116** — before you count the eight practices and the guided paths. You get all of it, for good, for less than a couple of physio sessions.
 
 ---
 

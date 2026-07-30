@@ -63,7 +63,15 @@ if (unlocked) {
     if (!usedIn.has(poseSlug)) usedIn.set(poseSlug, new Set());
     usedIn.get(poseSlug)!.add(title);
   };
-  for (const p of practices) for (const s of p.data.steps) record(s.pose, p.data.title);
+
+  // One recording can be listed twice under different names (the free class is
+  // also in the course as The Express Reset). Credit only the entry a member
+  // navigates by, or every shared pose reads "In: A · B" for what is one class.
+  const aliased = new Set(practices.map((p) => p.data.same_class_as).filter(Boolean) as string[]);
+  for (const p of practices) {
+    if (aliased.has(p.data.slug)) continue;
+    for (const s of p.data.steps) record(s.pose, p.data.title);
+  }
   for (const r of courseRoutines(routines, PRODUCT)) for (const s of r.data.steps) record(s.pose, r.data.title);
 
   const titleCase = (v: string) => v.replace(/\b\w/g, (c) => c.toUpperCase());

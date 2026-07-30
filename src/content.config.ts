@@ -254,6 +254,15 @@ const practices = defineCollection({
     // class is filmed and a real still can replace it; falls back to the first
     // pose in the sequence, so a new practice always has an image.
     hero_pose: z.string().optional(),
+    // Slug of another practice that is the SAME recording under a different
+    // name — currently the free lead magnet, which is also listed in the course.
+    // Two entries rather than one because the framing genuinely differs (a
+    // stranger who needs the upsell vs a buyer who doesn't). Recorded here so
+    // the pose library can avoid listing one class twice, and so the pairing is
+    // discoverable instead of folklore. Cross-entry equality can't be checked in
+    // a per-entry schema, so keeping the sequences in step is on the author —
+    // each file's `minutes` is still verified independently.
+    same_class_as: z.string().optional(),
     youtube_video_id: z.string().default(''),   // free/public classes → YouTube embed
     bunny_video_id: z.string().default(''),      // paid self-hosted class → Bunny GUID, gated by entitlement
     why: z.string().min(1),                     // the science rationale

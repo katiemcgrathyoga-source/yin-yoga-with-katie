@@ -14,11 +14,15 @@ props: []
 # cues, why, body map, scale) with no gate, plus an upsell to the paid library,
 # so it reads exactly like being inside the course.
 #
-# This is the Express Full Reset class, given away as the lead magnet. The steps
-# below MUST stay in step with the video — the timer and the written cues are the
-# same practice the video teaches. Two different numbers, both correct: the
-# PRACTICE is the 15 min the timer runs; the VIDEO runs ~22 min because Katie
-# talks you through each shape. Copy that says "press play" should quote ~22.
+# The steps below MUST stay in step with the video — the timer and the written
+# cues are the same practice the video teaches. Two different numbers, both
+# correct: the PRACTICE is the 15 min the timer runs; the VIDEO runs ~22 min
+# because Katie talks you through each shape. Copy that says "press play"
+# should quote ~22.
+#
+# SHARED CLASS: express-reset.md is the same recording, listed inside the course
+# under a course name and without the upsell. If you change the sequence or swap
+# the video here, change it there too — see `same_class_as` in that file.
 #
 # Katie holds a 30s rebound in this class rather than the 45s default, so each
 # step carries an explicit `rebound: 30`. That override is honoured by both the
@@ -31,7 +35,7 @@ why: >
   Four shapes, one for each place a run tightens — the front of the hip, the glute,
   the hamstring, the spine. That's why this one exists: the whole chain in a single
   short practice, so nothing gets skipped on the days you'd otherwise skip everything.
-  The area sessions go deeper into one spot; this is the one to reach for when you
+  The area practices go deeper into one spot; this is the one to reach for when you
   don't want to choose. Use it right after a run while you're still warm and the
   tissue gives most easily — and on a heavy training week, when the honest choice is
   a short practice or none at all.
