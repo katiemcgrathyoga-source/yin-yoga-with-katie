@@ -78,7 +78,11 @@ const ogImage = journalPinUrl(Astro.site, {
   excerpt: 'full-length classes, pose guides and guided routines — free, and a two-hour retreat to begin.',
 });
 
+// Retreat form — still used by the closing capture at the foot of the page.
 const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/192665473777665865/subscribe';
+// Runners form — the hero capture. A different MailerLite form because it has to
+// trigger the Post-Run Reset automation, not the retreat series.
+const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/194288582398052179/subscribe';
 ---
 
 <BaseLayout
@@ -91,17 +95,24 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
     <div class="home-hero-copy">
       <p class="eyebrow">Free yin yoga with Katie</p>
       <h1>Gentle Yin Yoga to help you slow down, stretch deeply, and rest.</h1>
-      <p class="home-lede">Full-length yin, restorative and yoga nidra classes — free, and yours to keep. New here? Begin with my free two-hour retreat, and I'll show you around from there.</p>
-      <form class="home-capture" id="hero-form" action={ML_ACTION} method="post" target="ml_frame_hero">
+      <p class="home-lede">Full-length yin, restorative and yoga nidra classes — free, and yours to keep.</p>
+      {/* The hero capture is the RUNNERS offer, not the retreat: it's the funnel with
+          a live automation and a product behind it. The H1 above stays general on
+          purpose — it's the page's main signal for "yin yoga", and a runner headline
+          there would cost the broad traffic that feeds everything else. Non-runners
+          get an explicit out immediately below, and the retreat still has its own
+          capture at the foot of the page. */}
+      <p class="home-offer"><strong>Run?</strong> Start with my free <strong>15-Minute Post-Run Reset</strong> — fifteen quiet minutes to undo what a run tightens, yours to keep.</p>
+      <form class="home-capture" id="hero-form" action={ML_RUNNERS} method="post" target="ml_frame_hero">
         <input type="text" name="fields[name]" placeholder="First name" aria-label="First name" />
         <input type="email" name="fields[email]" required placeholder="Your email" aria-label="Your email" />
-        <input type="hidden" name="fields[signup_source]" value="home-hero" />
+        <input type="hidden" name="fields[signup_source]" value="home-hero-runner" />
         <input type="hidden" name="ml-submit" value="1" />
         <input type="hidden" name="anticsrf" value="true" />
-        <button type="submit" class="btn-cta">Send me the retreat →</button>
+        <button type="submit" class="btn-cta">Send me the Post-Run Reset →</button>
       </form>
-      <p class="home-done" id="hero-done" hidden>Check your inbox — your two-hour retreat is on its way.</p>
-      <p class="home-fine">No spam, ever. I'll only send Yin. — Katie</p>
+      <p class="home-done" id="hero-done" hidden>Check your inbox — your Post-Run Reset is on its way.</p>
+      <p class="home-fine">Not a runner? <a href="/free-class">Start with the free two-hour retreat instead →</a></p>
       <iframe name="ml_frame_hero" hidden title="Sign-up" tabindex="-1" aria-hidden="true"></iframe>
     </div>
     <div class="home-hero-img">
@@ -269,7 +280,15 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
   .home-capture input { flex: 1 1 140px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); color: var(--ink); font: inherit; font-size: 15px; }
   .home-capture .btn-cta { background: #89494B; color: #fff; font-weight: 600; font-size: 15px; padding: 13px 26px; border-radius: 100px; border: none; cursor: pointer; white-space: nowrap; transition: background .15s; }
   .home-capture .btn-cta:hover { background: #6E3A3C; color: #fff; }
+  /* The runner offer, set apart from the general lede so the hero reads as two
+     beats: what the site is, then the one thing to take right now. */
+  .home-offer {
+    font-size: 16.5px; line-height: 1.6; color: var(--ink); max-width: 52ch;
+    margin: 0 0 18px; padding-left: 14px; border-left: 3px solid var(--gold-solid);
+  }
+  .home-offer strong { color: var(--plum-deep); }
   .home-fine { font-size: 13px; color: var(--ink-soft); margin: 12px 0 0; }
+  .home-fine a { color: var(--gold-solid); font-weight: 600; }
   .home-done { font-size: 15px; color: var(--plum); margin: 12px 0 0; }
   .home-hero-img img { width: 100%; height: 440px; object-fit: cover; object-position: center 40%; border-radius: 18px; display: block; }
 

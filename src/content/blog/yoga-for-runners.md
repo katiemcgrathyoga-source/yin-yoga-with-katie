@@ -86,10 +86,10 @@ Little and often does far more than long and rare.
 
 If you'd rather just roll out your mat and follow along, here are a few of my classes runners come back to most:
 
-- [Pre-Run Yoga (10 minutes)](https://youtu.be/bVgxI-STIwk) — a gentle warm-up to move more freely from the first step.
-- [After-Running Yoga (10 minutes)](https://youtu.be/qz08T3uWn00) — a short post-run reset.
-- [Deep Stretch Yoga for Runners (30 minutes)](https://youtu.be/NDOsdt86vcs) — a fuller recovery-day practice.
-- [Runner's Yoga to Boost Recovery (35 minutes)](https://youtu.be/hJrs4w8tiJY) — for stiff, sore legs after a hard session.
+- [Pre-Run Yoga (10 minutes)](/videos/pre-run-yoga-10-min-warm-up-before-running) — a gentle warm-up to move more freely from the first step.
+- [After-Running Yoga (10 minutes)](/videos/after-running-yoga-10-min-post-run-stretches) — a short post-run reset.
+- [Deep Stretch Yoga for Runners (30 minutes)](/videos/deep-stretch-yoga-for-runners-30-min-recovery-day) — a fuller recovery-day practice.
+- [Runner's Yoga to Boost Recovery (35 minutes)](/videos/runners-yoga-to-boost-recovery-35-min-rest-day-yin) — for stiff, sore legs after a hard session.
 
 <aside class="posecard" data-orient>
 
