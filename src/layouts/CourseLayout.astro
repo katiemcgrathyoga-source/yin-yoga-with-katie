@@ -27,12 +27,29 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const chrome = SITE.courseChrome;
 
 const path = Astro.url.pathname;
-const nav = [
-  { href: '/sessions', label: 'Sessions', match: (p: string) => p.startsWith('/sessions') },
-  { href: '/routines', label: 'Routines', match: (p: string) => p.startsWith('/routines') },
-  { href: '/poses', label: 'Poses', match: (p: string) => p.startsWith('/poses') },
-  { href: '/account', label: 'Account', match: (p: string) => p.startsWith('/account') },
+// Routines and Poses point at the COURSE versions, not the public library. The
+// offer sells "The Runner's Pose Library" and "Runner Routines" as bonuses, so
+// landing a buyer on the same pages a stranger sees would make them not bonuses.
+//
+// Order matters below: every course page lives under /sessions, so Sessions is
+// matched last and only claims what the more specific entries didn't.
+// Routines and Poses point at the COURSE versions, not the public library. The
+// offer sells "The Runner's Pose Library" and "Runner Routines" as bonuses, so
+// landing a buyer on the same pages a stranger sees would make them not bonuses.
+//
+// Every course page lives under /sessions, so Sessions can't match on prefix
+// alone — it would light up on all of them. It claims the index and the
+// individual session pages; the named sections claim themselves.
+const SECTIONS = ['/sessions/start-here', '/sessions/routines', '/sessions/poses'];
+type NavItem = { href: string; label: string; match?: (p: string) => boolean };
+const NAV: NavItem[] = [
+  { href: '/sessions/start-here', label: 'Start here' },
+  { href: '/sessions', label: 'Sessions', match: (p) => p.startsWith('/sessions') && !SECTIONS.some((s) => p.startsWith(s)) },
+  { href: '/sessions/routines', label: 'Routines' },
+  { href: '/sessions/poses', label: 'Poses' },
+  { href: '/account', label: 'Account' },
 ];
+const nav = NAV.map((i) => ({ ...i, match: i.match ?? ((p: string) => p.startsWith(i.href)) }));
 ---
 
 <!doctype html>

@@ -1,0 +1,54 @@
+---
+/**
+ * The paywall card, shared by every course page.
+ *
+ * Course pages render this INSTEAD of their content when the visitor isn't
+ * entitled — never alongside it. The material must not reach the HTML of
+ * someone who hasn't bought, so callers branch before rendering, rather than
+ * hiding content with CSS.
+ *
+ * Two states, because they need different asks: a signed-in visitor without
+ * the product needs to buy, a signed-out one probably already owns it and
+ * just needs to sign in.
+ */
+interface Props {
+  signedIn: boolean;
+  /** What they're trying to open, e.g. "your sessions" — completes "Sign in to open …". */
+  thing?: string;
+}
+const { signedIn, thing = 'this' } = Astro.props;
+---
+
+<div class="cgate">
+  {signedIn ? (
+    <Fragment>
+      <h1>A member area</h1>
+      <p>Your account doesn't include The Runner's Reset yet — join once and every session unlocks, for good.</p>
+      <a class="cgate-btn" href="/runner-reset">Join The Runner's Reset →</a>
+      <p class="cgate-alt">Wrong account? <a href="/account">Switch account</a></p>
+    </Fragment>
+  ) : (
+    <Fragment>
+      <h1>Sign in to open {thing}</h1>
+      <p>Sign in with the email you joined with, and the whole library unlocks.</p>
+      <a class="cgate-btn" href="/account">Sign in</a>
+      <p class="cgate-alt">Don't have it yet? <a href="/runner-reset">Join The Runner's Reset →</a></p>
+    </Fragment>
+  )}
+</div>
+
+<style>
+  .cgate {
+    max-width: 520px; margin: 40px auto 0; text-align: center;
+    padding: 34px 26px; background: var(--paper-2);
+    border: 1px solid var(--line); border-radius: 16px;
+  }
+  .cgate h1 { font-family: var(--display); font-size: 26px; margin: 0 0 10px; }
+  .cgate p { color: var(--ink-soft); margin: 0 0 18px; }
+  .cgate-btn {
+    display: inline-block; padding: 12px 22px; border-radius: 999px;
+    background: var(--gold-solid); color: var(--paper);
+    text-decoration: none; font-size: 15px;
+  }
+  .cgate-alt { font-size: 14px; margin: 16px 0 0 !important; }
+</style>

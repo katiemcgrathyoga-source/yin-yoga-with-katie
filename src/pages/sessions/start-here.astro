@@ -1,0 +1,152 @@
+---
+export const prerender = false; // SSR: orientation is course material, gated like the sessions
+
+import CourseLayout from '../../layouts/CourseLayout.astro';
+import CourseGate from '../../components/CourseGate.astro';
+import { checkAccess } from '../../lib/access';
+
+/**
+ * Orientation — the page a new member lands on once.
+ *
+ * Split deliberately from /sessions: this answers "what is this and how do I
+ * use it", which you read once; the index answers "what do I press play on
+ * today", which you come back to. Mixing them makes the daily page heavy.
+ *
+ * The welcome video is the only thing here waiting on filming. Everything else
+ * is written, so the page is useful the moment someone joins.
+ */
+const PRODUCT = 'runner-reset';
+const access = await checkAccess(Astro.cookies.get('sb-token')?.value, PRODUCT);
+const unlocked = access.entitled;
+
+/** A first fortnight that builds the habit before it builds the range. */
+const LEVELS = [
+  {
+    term: 'New to Yin',
+    body: 'Start with <strong>Hips &amp; Hip Flexors</strong> after your next run. Do only that one, twice a week, for two weeks. Two shapes will feel like plenty at first — that is the practice working, not you doing it wrong.',
+    href: '/sessions/hips-hip-flexors',
+    cta: 'Hips & Hip Flexors',
+  },
+  {
+    term: 'Returning to it',
+    body: 'You know the shapes. Rotate the five Target sessions across a fortnight, matching each to the run you have just done, then add one <strong>Full Reset</strong> on a rest day.',
+    href: '/sessions/full-reset',
+    cta: 'The Full Reset',
+  },
+  {
+    term: 'Experienced',
+    body: 'Go straight to <strong>The Full Reset</strong> weekly and use the Target sessions to patch whatever your training block is loading most. Add a minute to any hold that asks for it.',
+    href: '/sessions/restorative-reset',
+    cta: 'The Restorative Reset',
+  },
+];
+---
+
+<CourseLayout
+  title="Start here — The Runner's Reset"
+  description="What Yin is, why it suits runners, and how to use the library."
+  noindex={true}
+  section={unlocked ? 'Start here' : undefined}
+>
+  {!unlocked ? (
+    <div class="cwrap"><CourseGate signedIn={access.signedIn} thing="the library" /></div>
+  ) : (
+    <div class="cwrap sh">
+      <header class="sh-head">
+        <h1>Start here</h1>
+        <p>Five minutes of reading and you will know exactly what to press play on. There is no order you have to follow and nothing to fall behind on.</p>
+      </header>
+
+      {/* PLACEHOLDER — swap for the welcome video once it is filmed. */}
+      <div class="sh-video-slot">
+        <span class="sh-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+        <b>Welcome video coming soon</b>
+        <span>A short hello from Katie will play here. Everything you need to begin is written below.</span>
+      </div>
+
+      <section class="sh-sec">
+        <h2>What Yin actually is</h2>
+        <p>You settle into a shape and stay for a few quiet minutes. That is it. Nothing is forced, you only ever go to about 60&ndash;80% of your capacity, and you let gravity and your breath do the slow work.</p>
+        <p>It matters for runners because the tightness that nags at you sits deeper than a quick stretch reaches. A thirty-second pull skims the surface. The deeper tissue around the hips and joints responds to <em>time</em> — which is the one thing a rushed cooldown never gives it.</p>
+        <p>You do not need to become flexible. You need to stop getting tighter.</p>
+      </section>
+
+      <section class="sh-sec">
+        <h2>How the library is built</h2>
+        <dl class="sh-defs">
+          <div>
+            <dt>Target sessions</dt>
+            <dd>One for each place running tightens — hips, hamstrings and glutes, calves and feet, quads and outer hip, lower back. Around fifteen minutes. Do one right after a run while you are still warm.</dd>
+          </div>
+          <div>
+            <dt>Full Resets</dt>
+            <dd>The whole chain in one unhurried practice, around fifty minutes. Made for rest days, when there is no run to recover from and time to spend.</dd>
+          </div>
+          <div>
+            <dt>Every session page, five ways in</dt>
+            <dd>The follow-along video, an on-screen timer for once you know the shapes, the plain-English why, written cues, and a body map showing where it works. Use whichever suits how you learn.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="sh-sec">
+        <h2>Where to begin</h2>
+        <p class="sh-lead">Pick the row that sounds like you. If two do, take the gentler one.</p>
+        {LEVELS.map((l) => (
+          <div class="sh-level">
+            <span class="sh-level-term">{l.term}</span>
+            <p set:html={l.body} />
+            <a class="sh-level-cta" href={l.href}>{l.cta} →</a>
+          </div>
+        ))}
+      </section>
+
+      <section class="sh-sec">
+        <h2>The only rule</h2>
+        <p>Little and often beats long and rare, every time. Two fifteen-minute sessions a week will do more for your running than one heroic hour a month. If a week goes by and you do none, nothing is lost — pick it up after your next run.</p>
+        <p class="sh-note">A gentle note: this is general education, not medical advice. Yin helps with everyday tightness. It does not treat or prevent injury, and sharp or lasting pain belongs with a physio or doctor.</p>
+      </section>
+
+      <p class="sh-next"><a href="/sessions">See all your sessions →</a></p>
+    </div>
+  )}
+</CourseLayout>
+
+<style>
+  .cwrap { max-width: 1040px; margin: 0 auto; padding: 34px 22px 0; }
+  .sh { max-width: 760px; }
+
+  .sh-head { margin-bottom: 28px; }
+  .sh-head h1 { font-family: var(--display); font-size: clamp(30px, 5vw, 40px); margin: 0 0 10px; }
+  .sh-head p { color: var(--ink-soft); margin: 0; max-width: 56ch; }
+
+  .sh-video-slot {
+    aspect-ratio: 16/9; border-radius: 16px; border: 2px dashed rgba(137,73,75,.5);
+    background: var(--paper-2); display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 8px; text-align: center; padding: 20px; color: var(--ink-soft);
+  }
+  .sh-video-slot b { color: var(--ink); font-family: var(--display); font-size: 19px; }
+  .sh-play { width: 62px; height: 62px; border-radius: 50%; background: rgba(137,73,75,.16); display: flex; align-items: center; justify-content: center; }
+  .sh-play svg { width: 24px; height: 24px; fill: var(--gold-solid); margin-left: 4px; }
+
+  .sh-sec { padding: 30px 0 6px; }
+  .sh-sec h2 { font-family: var(--display); font-size: clamp(21px, 3vw, 25px); margin: 0 0 12px; }
+  .sh-sec p { line-height: 1.7; margin: 0 0 14px; }
+  .sh-lead { color: var(--ink-soft); }
+
+  .sh-defs { margin: 0; }
+  .sh-defs > div { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .sh-defs > div:last-child { border-bottom: none; }
+  .sh-defs dt { font-family: var(--display); font-size: 18px; color: var(--plum); margin-bottom: 4px; }
+  .sh-defs dd { margin: 0; color: var(--ink-soft); line-height: 1.65; }
+
+  .sh-level { background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; margin-bottom: 14px; }
+  .sh-level-term { display: block; font-family: var(--display); font-size: 18px; color: var(--plum); margin-bottom: 6px; }
+  .sh-level p { color: var(--ink-soft); font-size: 15px; margin: 0 0 10px; }
+  .sh-level-cta { font-size: 14.5px; font-weight: 600; color: var(--gold-solid); text-decoration: none; }
+  .sh-level-cta:hover { text-decoration: underline; }
+
+  .sh-note { font-size: 13.5px; color: var(--ink-soft); font-style: italic; }
+  .sh-next { margin: 26px 0 0; }
+  .sh-next a { font-weight: 600; color: var(--gold-solid); text-decoration: none; }
+</style>

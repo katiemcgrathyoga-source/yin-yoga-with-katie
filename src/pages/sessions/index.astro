@@ -3,6 +3,7 @@ export const prerender = false; // SSR: the session list is course material, gat
 
 import { getCollection } from 'astro:content';
 import CourseLayout from '../../layouts/CourseLayout.astro';
+import CourseGate from '../../components/CourseGate.astro';
 import { checkAccess } from '../../lib/access';
 
 /**
@@ -31,6 +32,25 @@ const grouped = GROUPS.map((g) => ({
   ...g,
   items: sessions.filter((s) => s.data.kind === g.kind).sort((a, b) => a.data.minutes - b.data.minutes),
 })).filter((g) => g.items.length > 0);
+
+/**
+ * "By need" — the chooser, phrased the way a runner actually arrives: with a
+ * complaint or a gap in the day, not a session name. This is the promise the
+ * whole offer rests on ("never wonder what to press play on"), so it sits above
+ * the library rather than inside it.
+ */
+const BY_NEED = [
+  { need: 'My hips are tight', to: 'hips-hip-flexors' },
+  { need: 'Heavy legs after a long run', to: 'hamstrings-glutes' },
+  { need: 'Sore feet or stiff ankles', to: 'calves-ankles-feet' },
+  { need: 'That outer-thigh ache', to: 'quads-outer-hip' },
+  { need: 'My low back is grumbling', to: 'lower-back-spine' },
+  { need: "It's race week", to: 'restorative-reset' },
+  { need: 'A rest day, and time to spend', to: 'full-reset' },
+  { need: "I'm new to all this", to: 'hips-hip-flexors' },
+];
+const bySlug = new Map(sessions.map((s) => [s.data.slug, s.data]));
+const needs = BY_NEED.map((n) => ({ ...n, session: bySlug.get(n.to) })).filter((n) => n.session);
 ---
 
 <CourseLayout
@@ -40,31 +60,33 @@ const grouped = GROUPS.map((g) => ({
   section={unlocked ? 'Your sessions' : undefined}
 >
   {!unlocked ? (
-    <div class="cwrap">
-      <div class="ch-gate">
-        {access.signedIn ? (
-          <Fragment>
-            <h1>A member area</h1>
-            <p>Your account doesn't include The Runner's Reset yet — join once and every session unlocks, for good.</p>
-            <a class="ch-btn" href="/runner-reset">Join The Runner's Reset →</a>
-            <p class="ch-alt">Wrong account? <a href="/account">Switch account</a></p>
-          </Fragment>
-        ) : (
-          <Fragment>
-            <h1>Sign in to open your sessions</h1>
-            <p>Sign in with the email you joined with, and the whole library unlocks.</p>
-            <a class="ch-btn" href="/account">Sign in</a>
-            <p class="ch-alt">Don't have it yet? <a href="/runner-reset">Join The Runner's Reset →</a></p>
-          </Fragment>
-        )}
-      </div>
-    </div>
+    <div class="cwrap"><CourseGate signedIn={access.signedIn} thing="your sessions" /></div>
   ) : (
     <div class="cwrap">
       <header class="ch-head">
         <h1>Your sessions</h1>
         <p>Press play on whichever your body is asking for. There's no order you have to follow — though if you'd like one, start at the top.</p>
       </header>
+
+      <a class="ch-orient" href="/sessions/start-here">
+        <span class="ch-orient-term">New here? Start here</span>
+        <span class="ch-orient-body">What Yin is, why it suits runners, and a first fortnight laid out for you. Five minutes of reading.</span>
+      </a>
+
+      <section class="ch-sec">
+        <h2>What do you need today?</h2>
+        <p class="ch-blurb">Pick the one that sounds like you. This is the whole point — you shouldn't have to decide.</p>
+        <ul class="ch-needs">
+          {needs.map((n) => (
+            <li>
+              <a href={`/sessions/${n.to}`}>
+                <span class="ch-need">{n.need}</span>
+                <span class="ch-need-to">{n.session!.title} · ~{n.session!.minutes} min</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       {grouped.map((g) => (
         <section class="ch-sec">
@@ -83,6 +105,18 @@ const grouped = GROUPS.map((g) => ({
           </ul>
         </section>
       ))}
+
+      {/* PLACEHOLDER — the calendar plans are sold on /runner-reset but not built.
+          Shown rather than hidden so a member knows it's coming, not missing. */}
+      <section class="ch-sec">
+        <h2>Calendar plans</h2>
+        <p class="ch-blurb">A plan loaded straight into your calendar, with a quiet nudge when a session's due.</p>
+        <div class="ch-soon">
+          <b>In the works</b>
+          <span>The <strong>6-Week Foundation</strong>, <strong>The Weekly Rhythm</strong> and <strong>Race Prep</strong> will land here. Until then, Start here has a first fortnight you can follow as-is.</span>
+          <a href="/sessions/start-here">Open Start here →</a>
+        </div>
+      </section>
     </div>
   )}
 </CourseLayout>
@@ -115,17 +149,41 @@ const grouped = GROUPS.map((g) => ({
   .ch-card-angle { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
   .ch-card-meta { margin-top: auto; padding-top: 6px; font-size: 13px; color: var(--ink-soft); }
 
-  .ch-gate {
-    max-width: 520px; margin: 40px auto 0; text-align: center;
-    padding: 34px 26px; background: var(--paper-2);
-    border: 1px solid var(--line); border-radius: 16px;
+  /* Orientation banner — one-time reading, so it sits above the daily chooser. */
+  .ch-orient {
+    display: block; text-decoration: none; margin-bottom: 34px;
+    padding: 18px 22px; border-radius: 14px;
+    background: rgba(188, 157, 154, .16); border: 1px solid rgba(188, 157, 154, .42);
+    transition: border-color .16s ease;
   }
-  .ch-gate h1 { font-family: var(--display); font-size: 26px; margin: 0 0 10px; }
-  .ch-gate p { color: var(--ink-soft); margin: 0 0 18px; }
-  .ch-btn {
-    display: inline-block; padding: 12px 22px; border-radius: 999px;
-    background: var(--gold-solid); color: var(--paper);
-    text-decoration: none; font-size: 15px;
+  .ch-orient:hover { border-color: var(--gold-solid); }
+  .ch-orient-term { display: block; font-family: var(--display); font-size: 19px; color: var(--plum); margin-bottom: 4px; }
+  .ch-orient-body { display: block; font-size: 14.5px; color: var(--ink-soft); line-height: 1.55; }
+
+  /* By need — phrased as complaints, answered with a session. */
+  .ch-needs {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(238px, 1fr));
   }
-  .ch-alt { font-size: 14px; margin: 16px 0 0 !important; }
+  .ch-needs a {
+    display: flex; flex-direction: column; gap: 3px; height: 100%;
+    padding: 13px 16px; text-decoration: none;
+    background: var(--paper-2); border: 1px solid var(--line); border-radius: 12px;
+    transition: border-color .16s ease;
+  }
+  .ch-needs a:hover { border-color: var(--gold-solid); }
+  .ch-need { font-size: 15px; color: var(--ink); }
+  .ch-need-to { font-size: 12.5px; font-weight: 600; color: var(--gold-solid); }
+
+  /* Not-yet-built, stated plainly rather than hidden. */
+  .ch-soon {
+    display: flex; flex-direction: column; gap: 7px; align-items: flex-start;
+    padding: 20px 22px; border-radius: 14px;
+    background: var(--paper-2); border: 1px dashed rgba(137, 73, 75, .45);
+  }
+  .ch-soon b { font-family: var(--display); font-weight: 500; font-size: 18px; color: var(--plum); }
+  .ch-soon span { font-size: 14.5px; color: var(--ink-soft); line-height: 1.6; }
+  .ch-soon a { font-size: 14.5px; font-weight: 600; color: var(--gold-solid); text-decoration: none; }
+  .ch-soon a:hover { text-decoration: underline; }
 </style>

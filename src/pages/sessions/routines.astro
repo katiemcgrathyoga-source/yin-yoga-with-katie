@@ -1,0 +1,134 @@
+---
+export const prerender = false; // SSR: gated like the rest of the course
+
+import { getCollection } from 'astro:content';
+import CourseLayout from '../../layouts/CourseLayout.astro';
+import CourseGate from '../../components/CourseGate.astro';
+import { checkAccess } from '../../lib/access';
+
+/**
+ * Runner Routines — one of the bonuses.
+ *
+ * Timer-only practices (no video) that sit alongside the sessions. The library
+ * itself is shared with the public site; what makes this the runner's version
+ * is WHY each one is here — every routine carries a line placing it in a
+ * runner's week, which the public /routines index doesn't and shouldn't.
+ *
+ * Ordered short to long, because the honest question on a training day is
+ * "how much time do I have", not "what's it called".
+ */
+const PRODUCT = 'runner-reset';
+const access = await checkAccess(Astro.cookies.get('sb-token')?.value, PRODUCT);
+const unlocked = access.entitled;
+
+/** Why a runner would reach for each one. Keyed by routine slug. */
+const RUNNER_NOTES: Record<string, string> = {
+  'gentle-beginner-yin': 'Brand new to Yin, or coming back after a long gap. Start here before anything deeper.',
+  'shoulders-neck-desk-relief': 'The desk half of the problem. Running tightens your hips; eight hours in a chair finishes the job, and it travels up.',
+  'morning-wake-up': 'Before an easy morning run — gentle enough that it won\'t leave your legs feeling loose and flat.',
+  'heart-chest-opener': 'Opens the chest and front of the shoulders, which close down over the miles. Easier posture, easier breathing.',
+  'bedtime-wind-down': 'After an evening run, when you\'re wired and need to come down before sleep.',
+  'lower-back-release': 'When the low back is grumbling after a long run or a hard session on the road.',
+  'stress-overwhelm-relief': 'Race week, taper madness, or any week the training is not the hardest thing you\'re carrying.',
+  'deep-legs-hamstrings': 'Heavy, tired legs the day after a long run. The one you\'ll come back to most.',
+  'yin-for-digestion': 'For the gut, which takes a beating on long efforts. Gentle twists and folds on an easy day.',
+  'full-body-reset': 'A rest-day all-rounder when you want to touch everything and have the time to do it.',
+  'deep-hips-lower-body': 'When the hips are the problem — the deepest hip work here, for a day off.',
+};
+
+let routines: { slug: string; title: string; tagline: string; minutes: number; level: string; pose: string; note: string }[] = [];
+
+if (unlocked) {
+  const all = await getCollection('routines');
+  routines = all
+    .filter((r) => RUNNER_NOTES[r.data.slug])
+    .map((r) => ({
+      slug: r.data.slug,
+      title: r.data.title,
+      tagline: r.data.tagline,
+      minutes: r.data.minutes,
+      level: r.data.level,
+      pose: r.data.hero_pose,
+      note: RUNNER_NOTES[r.data.slug],
+    }))
+    .sort((a, b) => a.minutes - b.minutes);
+}
+---
+
+<CourseLayout
+  title="Runner Routines — The Runner's Reset"
+  description="Timer-led routines with a place in a runner's week."
+  noindex={true}
+  section={unlocked ? 'Routines' : undefined}
+>
+  {!unlocked ? (
+    <div class="cwrap"><CourseGate signedIn={access.signedIn} thing="your routines" /></div>
+  ) : (
+    <div class="cwrap">
+      <header class="rt-head">
+        <h1>Runner Routines</h1>
+        <p>
+          Follow-along practices led by the timer rather than a video — for when you know the shapes
+          and would rather have quiet than narration. Each one below says where it fits in a runner's
+          week. Shortest first.
+        </p>
+      </header>
+
+      <ul class="rt-list">
+        {routines.map((r) => (
+          <li>
+            <a class="rt-card" href={`/routines/${r.slug}`}>
+              <img src={`/poses/${r.pose}.jpg`} alt="" loading="lazy" width="480" height="360" />
+              <div class="rt-body">
+                <div class="rt-top">
+                  <span class="rt-title">{r.title}</span>
+                  <span class="rt-time">~{r.minutes} min</span>
+                </div>
+                <span class="rt-tagline">{r.tagline}</span>
+                <span class="rt-note">{r.note}</span>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <div class="rt-build">
+        <h2>Or build your own</h2>
+        <p>Pick the shapes, set the holds, and the timer runs it — useful when you want something no ready-made routine covers.</p>
+        <a class="rt-build-cta" href="/routines/builder">Open the routine builder →</a>
+      </div>
+    </div>
+  )}
+</CourseLayout>
+
+<style>
+  .cwrap { max-width: 1040px; margin: 0 auto; padding: 34px 22px 0; }
+
+  .rt-head { margin-bottom: 28px; max-width: 640px; }
+  .rt-head h1 { font-family: var(--display); font-size: clamp(30px, 5vw, 40px); margin: 0 0 10px; }
+  .rt-head p { color: var(--ink-soft); margin: 0; line-height: 1.7; }
+
+  .rt-list { list-style: none; margin: 0 0 40px; padding: 0; display: grid; gap: 14px; }
+
+  .rt-card {
+    display: flex; gap: 16px; align-items: stretch; text-decoration: none; overflow: hidden;
+    background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px;
+    transition: border-color .16s ease, transform .16s ease;
+  }
+  .rt-card:hover { border-color: var(--gold-solid); transform: translateY(-2px); }
+  .rt-card img { width: 132px; flex: none; object-fit: cover; display: block; }
+  @media (max-width: 560px) { .rt-card img { display: none; } }
+
+  .rt-body { display: flex; flex-direction: column; gap: 5px; padding: 15px 18px 16px; }
+  .rt-top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .rt-title { font-family: var(--display); font-size: 19px; color: var(--ink); }
+  .rt-time { font-size: 12.5px; font-weight: 600; color: var(--gold-solid); font-variant-numeric: tabular-nums; }
+  .rt-tagline { font-size: 14px; color: var(--ink-soft); }
+  .rt-note { font-size: 14px; color: var(--ink); line-height: 1.55; }
+
+  .rt-build { background: var(--paper-2); border: 1px solid var(--line); border-radius: 16px; padding: 24px 26px; margin-bottom: 40px; }
+  .rt-build h2 { font-family: var(--display); font-size: 21px; margin: 0 0 8px; }
+  .rt-build p { color: var(--ink-soft); margin: 0 0 14px; font-size: 15px; }
+  .rt-build-cta { font-weight: 600; color: var(--gold-solid); text-decoration: none; }
+  .rt-build-cta:hover { text-decoration: underline; }
+</style>
