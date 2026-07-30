@@ -25,7 +25,7 @@ chapters:
 seo_title: "Yin Yoga With Blocks & Bolster — Full-Body Props Yin"
 seo_description: "A 40-minute full-body Yin Yoga class with a bolster and blocks — supported, deeply relaxing shapes held long and slow to stretch the whole body. All levels."
 membership_cta: "Love a supported, deeply relaxing practice like this? Inside the membership it lives as part of a guided Full-Body program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."
-summary: "A 40-minute full-body Yin class practised with a bolster and blocks — supported, deeply relaxing shapes held long and slow to stretch the whole body. All levels."
+summary: "A 40-minute full-body Yin class practiced with a bolster and blocks — supported, deeply relaxing shapes held long and slow to stretch the whole body. All levels."
 faq:
   - q: "What props do I need for this class?"
     a: "A bolster and/or blocks. You can use both together, or just one — and if you only have a single block, you can make the whole routine work with that. Have a cushion or folded blanket nearby too, in case you'd like a little extra height or padding."
@@ -37,7 +37,7 @@ faq:
 
 ## What this Yin class is
 
-A supported, deeply relaxing forty minutes of Yin, practised with a bolster and blocks. You'll drape and settle over your props so each shape holds you — letting your muscles switch off and your body sink in. We move gently through the whole body: a grounding seated saddle, a supported forward fold, a shoulder release, a hip opener, and a heart-opening supported fish to finish. It's stretchy, quiet and restful. Come as you are — every pose has a gentler option and a deeper one.
+A supported, deeply relaxing forty minutes of Yin, practiced with a bolster and blocks. You'll drape and settle over your props so each shape holds you — letting your muscles switch off and your body sink in. We move gently through the whole body: a grounding seated saddle, a supported forward fold, a shoulder release, a hip opener, and a heart-opening supported fish to finish. It's stretchy, quiet and restful. Come as you are — every pose has a gentler option and a deeper one.
 
 ## Who this class is for
 

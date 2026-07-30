@@ -42,7 +42,7 @@ A low-to-the-ground 40-minute Yin class to stretch and release the lower back an
 
 ## Who this class is for
 
-Anyone carrying tension in the low back or tight hamstrings, and anyone who wants a slow, grounding practice to unwind. It suits all levels — whether you're brand new to Yin or well practised — and it's a gentle way to end a busy day.
+Anyone carrying tension in the low back or tight hamstrings, and anyone who wants a slow, grounding practice to unwind. It suits all levels — whether you're brand new to Yin or well practiced — and it's a gentle way to end a busy day.
 
 ## What you need
 

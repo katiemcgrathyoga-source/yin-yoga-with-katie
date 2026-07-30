@@ -66,7 +66,7 @@ P.S. Keep this email so you can find your retreat whenever you need it.
 
 ---
 
-## Email 2 — day 2 · a proper hello + how to practise
+## Email 2 — day 2 · a proper hello + how to practice
 
 **Subject:** There's no right or wrong here
 **Preview:** A few gentle things that help when you're starting Yin.
@@ -138,7 +138,7 @@ Whenever you'd like more, everything I make is free and waiting for you:
 
 I truly love Yin, and I love getting to share it with you. If you'd ever like to
 help me keep it free for everyone, becoming a member is the kindest way to support
-the channel — but there's never any pressure. Practising with me is more than
+the channel — but there's never any pressure. Practicing with me is more than
 enough.
 
 I'll see you again soon on the mat.

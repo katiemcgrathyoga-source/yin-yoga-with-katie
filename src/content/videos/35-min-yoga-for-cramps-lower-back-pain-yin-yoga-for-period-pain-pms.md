@@ -42,7 +42,7 @@ A gentle 35-minute Yin class to help you feel more comfortable when you're carry
 
 ## Who this class is for
 
-This class is designed with comfort in mind during your period, PMS, or when digestive or lower-back cramping is around — but it's lovely any time you want to slow down and release the low back. Every pose has a gentler and a deeper option, so it works whether you're brand new to Yin or well practised.
+This class is designed with comfort in mind during your period, PMS, or when digestive or lower-back cramping is around — but it's lovely any time you want to slow down and release the low back. Every pose has a gentler and a deeper option, so it works whether you're brand new to Yin or well practiced.
 
 ## What you need
 

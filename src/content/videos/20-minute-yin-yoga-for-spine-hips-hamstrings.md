@@ -13,7 +13,7 @@ props: ["block", "cushion", "blanket"]
 poses_featured: ["dragonfly", "caterpillar", "butterfly"]
 chapters:
   - { time: "0:00",   seconds: 0,    title: "Welcome · Insect Yin" }
-  - { time: "0:42",   seconds: 42,   title: "Hips · Dragonfly (both sides & centre)", poses: ["dragonfly"] }
+  - { time: "0:42",   seconds: 42,   title: "Hips · Dragonfly (both sides & center)", poses: ["dragonfly"] }
   - { time: "12:20",  seconds: 740,  title: "Spine · Caterpillar",                     poses: ["caterpillar"] }
   - { time: "17:40",  seconds: 1060, title: "Hips · Reclined Butterfly",               poses: ["butterfly"] }
   - { time: "22:07",  seconds: 1327, title: "Close · Like & subscribe" }

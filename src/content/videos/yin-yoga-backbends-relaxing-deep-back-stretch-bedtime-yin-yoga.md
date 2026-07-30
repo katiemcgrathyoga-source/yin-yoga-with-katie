@@ -38,7 +38,7 @@ Day 18 of the Bedtime Yin Yoga Challenge — a gentle sequence of supported back
 
 ## Who this class is for
 
-Anyone wanting to unwind at the end of the day with slow, supported backbends — whether you're brand new to Yin or well practised. It's especially lovely before bed, when a calm, open chest and a released spine help the whole body let go.
+Anyone wanting to unwind at the end of the day with slow, supported backbends — whether you're brand new to Yin or well practiced. It's especially lovely before bed, when a calm, open chest and a released spine help the whole body let go.
 
 ## What you need
 

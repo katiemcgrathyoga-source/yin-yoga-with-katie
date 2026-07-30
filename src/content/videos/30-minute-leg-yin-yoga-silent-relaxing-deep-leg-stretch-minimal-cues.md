@@ -36,7 +36,7 @@ faq:
 
 ## What this Yin class is
 
-A calming 30-minute Yin class for the legs, practised in near silence with only minimal cues — so you can settle in and let your breath lead the way. We open at the feet with a toe squat, ease the quads in saddle, then work slowly through the calves and hamstrings in a half-shoelace fold before opening the hips and glutes in sleeping swan and folded deer, first on one side and then the other. From there we soften into a reclined butterfly and finish with cat pulling its tail. The quiet and the slow, deep holds make this a beautiful way to wind down.
+A calming 30-minute Yin class for the legs, practiced in near silence with only minimal cues — so you can settle in and let your breath lead the way. We open at the feet with a toe squat, ease the quads in saddle, then work slowly through the calves and hamstrings in a half-shoelace fold before opening the hips and glutes in sleeping swan and folded deer, first on one side and then the other. From there we soften into a reclined butterfly and finish with cat pulling its tail. The quiet and the slow, deep holds make this a beautiful way to wind down.
 
 ## Who this class is for
 

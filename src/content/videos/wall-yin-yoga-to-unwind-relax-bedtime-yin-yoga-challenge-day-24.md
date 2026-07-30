@@ -29,7 +29,7 @@ faq:
     a: "A clear stretch of wall you can get your legs up against, and a bolster, cushion or a few folded blankets to slide under your hips. That extra support makes legs-up-the-wall far more comfortable, so it's well worth setting up before we begin."
   - q: "Is wall Yin suitable if I'm a beginner or not very flexible?"
     a: "Absolutely. The wall does most of the work for you here, so you can simply rest your legs against it and let gravity open the body. Find your edge at about 60–80%, take the gentler option whenever you like, and never force a shape — everything is held gently and slowly."
-  - q: "Why practise Yin at the wall before bed?"
+  - q: "Why practice Yin at the wall before bed?"
     a: "Resting your legs up the wall is wonderfully calming — it helps the blood flow back out of tired feet and legs, eases the hips, and settles the nervous system so the body is ready for sleep. It's a lovely, low-effort way to end the day."
 ---
 

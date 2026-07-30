@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Katie's private pinning console (noindex, unlisted), organised by content item.
+// Katie's private pinning console (noindex, unlisted), organized by content item.
 // Uses the new feed-first pin templates (photo hook · numbered list · benefit),
 // rendered on-brand at 1000×1500 by /pin/card.png. See /boards for the same pins
 // re-sorted by destination board.
@@ -99,7 +99,7 @@ const poseCards = poses.map((pose) => {
     // Lying poses read best in the clean landscape band (light only — band-dark dropped).
     pins.push(mkPin('photo band (light)', pinUrl({ tpl: 'band', t: d.name_en, s: 'a yin yoga pose', img: photo, tone: 'light' }), d.name_en, d.seo_description, url));
   } else {
-    // Upright/seated poses: square photo-led in both colourways.
+    // Upright/seated poses: square photo-led in both colorways.
     pins.push(mkPin('photo (light)', pinUrl({ tpl: 'photo', t: d.name_en, s: 'a yin yoga pose', img: photo, tone: 'light' }), d.name_en, d.seo_description, url));
     pins.push(mkPin('photo (dark)', pinUrl({ tpl: 'photo', t: d.name_en, s: 'a yin yoga pose', img: photo, tone: 'dark' }), d.name_en, d.seo_description, url));
   }
@@ -147,7 +147,7 @@ const routineCards = routines.map((r) => {
 
 const sections = [
   { heading: 'Journal', lead: 'Each post as a photo-hook pin plus the four Journal Pin variants (arch · oat-frame · split · card) — two dark grounds, two light. Add a pin_quote to a post to unlock its blush/sage quote pins. Space the variants a few days apart as fresh pins to the same URL.', cards: postCards },
-  { heading: 'Poses', lead: 'Upright poses in both colourways (photo light + dark) plus a photo-hook; lying poses in the clean landscape band plus a photo-hook. Board: Yin Yoga Poses.', cards: poseCards },
+  { heading: 'Poses', lead: 'Upright poses in both colorways (photo light + dark) plus a photo-hook; lying poses in the clean landscape band plus a photo-hook. Board: Yin Yoga Poses.', cards: poseCards },
   { heading: 'Routines', lead: 'The numbered sequence pin in light + dark, a text-forward numbered list, and up to four photo-hooks — each over a different pose from the sequence. Board: Yin Yoga Routines.', cards: routineCards },
 ];
 ---
@@ -157,7 +157,7 @@ const sections = [
     <h1>Pin console</h1>
     <p class="pins-lead">
       Every journal post, pose and routine, rendered on-brand at 1000×1500 — now with light and dark
-      colourways of each template, so there are 4–5 variations to choose from. <strong>Save</strong> pins
+      colorways of each template, so there are 4–5 variations to choose from. <strong>Save</strong> pins
       immediately; <strong>Copy</strong> grabs the image, title, description and link for Pinterest’s scheduler
       or Buffer. Pin 2–3 variants per item, spaced a day or two apart (fresh pins to the same URL lift reach) —
       and lead with the photo-hook and numbered styles.

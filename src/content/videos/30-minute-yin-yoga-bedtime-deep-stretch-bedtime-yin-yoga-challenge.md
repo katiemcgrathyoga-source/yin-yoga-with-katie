@@ -19,7 +19,7 @@ chapters:
   - { time: "37:40",  seconds: 2260, title: "Corpse Pose / Savasana & close", poses: ["corpse"] }
 seo_title: "30-Minute Bedtime Yin Yoga — Deep Stretch for Sleep | All Levels"
 seo_description: "A calming 39-minute bedtime Yin Yoga class — dragon, cow face, reclined hamstring and gentle twists held long and slow to help you unwind and drift to sleep."
-summary: "A deeply relaxing 39-minute bedtime Yin class — dragon, cow face and gentle reclined twists to stretch out the whole body and ease you towards sleep."
+summary: "A deeply relaxing 39-minute bedtime Yin class — dragon, cow face and gentle reclined twists to stretch out the whole body and ease you toward sleep."
 membership_cta: "This class lives inside the membership's Sleep program — a night-by-night path that helps you fall asleep faster and sleep through. Press play and let it carry you."
 faq:
   - q: "What props do I need for this class?"
@@ -36,7 +36,7 @@ Day 16 of the Bedtime Yin Challenge — a full-body deep stretch to help you rel
 
 ## Who this class is for
 
-Anyone who wants to unwind at the end of the day and sleep a little easier. It suits all levels — whether you're brand new to Yin or well practised — because every pose offers a gentler shape and a deeper one. It's a lovely way to close the day, on its own or as part of the 30-day bedtime challenge.
+Anyone who wants to unwind at the end of the day and sleep a little easier. It suits all levels — whether you're brand new to Yin or well practiced — because every pose offers a gentler shape and a deeper one. It's a lovely way to close the day, on its own or as part of the 30-day bedtime challenge.
 
 ## What you need
 

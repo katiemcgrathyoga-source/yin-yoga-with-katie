@@ -19,9 +19,9 @@ chapters:
   - { time: "24:34",  seconds: 1474, title: "Hips · Happy Baby",      poses: ["happy-baby"] }
   - { time: "30:40",  seconds: 1840, title: "Corpse Pose / Savasana & close", poses: ["corpse"] }
 seo_title: "30-Minute Inner Child Grounding Yin Yoga — Bedtime, Day 15"
-seo_description: "A grounding 30-minute bedtime Yin Yoga class — child's pose, butterfly, saddle and happy baby held long and slow to calm your body and settle you towards sleep."
+seo_description: "A grounding 30-minute bedtime Yin Yoga class — child's pose, butterfly, saddle and happy baby held long and slow to calm your body and settle you toward sleep."
 membership_cta: "This grounding practice lives inside the membership's Sleep program — a night-by-night path that helps you switch off and drift away instead of hunting for a video each evening. Press play and let it carry you to bed."
-summary: "A gentle, grounding 30-minute bedtime Yin class inspired by the way children sit and settle on the floor — held long and slow to soothe you towards sleep."
+summary: "A gentle, grounding 30-minute bedtime Yin class inspired by the way children sit and settle on the floor — held long and slow to soothe you toward sleep."
 faq:
   - q: "What props do I need for this class?"
     a: "Just something to sit on — a cushion, a yoga block or a bolster — so your hips are a little higher than your knees in butterfly and saddle. It's optional, but it makes the seated poses much kinder. Otherwise all you need is your mat and somewhere warm and quiet to be still."

@@ -30,7 +30,7 @@ membership_cta: "Love a gentle practice like this? Inside the membership it's pa
 summary: "A slow 40-minute Yin Yoga class for a sore, tired back — reclined twists, a soft supported back bend and a gentle spinal release to help ease everyday back tension. No props needed, and every pose has a lighter option, so it's lovely for all levels."
 faq:
   - q: "Will this help with my sore back?"
-    a: "This is a gentle practice meant for an everyday tired or achy back — the kind of soreness that comes from sitting too long, a busy week, or overdoing it in the garden. The slow holds may help ease that surface tension and leave your back feeling a little more open. It isn't a treatment, though. If your pain is sharp, ongoing, or travels down a leg, please pause and check in with a health professional before practising."
+    a: "This is a gentle practice meant for an everyday tired or achy back — the kind of soreness that comes from sitting too long, a busy week, or overdoing it in the garden. The slow holds may help ease that surface tension and leave your back feeling a little more open. It isn't a treatment, though. If your pain is sharp, ongoing, or travels down a leg, please pause and check in with a health professional before practicing."
   - q: "Do I need any props?"
     a: "No — all you really need is your mat and a warm, quiet spot. If you'd like a little extra comfort, keep a cushion or folded blanket nearby to tuck under your knees or head, but nothing is required. Come as you are."
   - q: "I'm new to Yin — is this a good place to start?"

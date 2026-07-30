@@ -44,7 +44,7 @@ A gentle 41-minute Yin practice — filmed outdoors in a beautiful Taipei park �
 
 ## Who this class is for
 
-Anyone who wants to unwind, quiet a busy mind and give the whole body a slow, full stretch. It suits all levels — whether you're brand new to Yin or well practised — and it's especially lovely at the end of a long day. New to this? Follow the shapes at your own pace and take the gentler option whenever you need it.
+Anyone who wants to unwind, quiet a busy mind and give the whole body a slow, full stretch. It suits all levels — whether you're brand new to Yin or well practiced — and it's especially lovely at the end of a long day. New to this? Follow the shapes at your own pace and take the gentler option whenever you need it.
 
 ## What you need
 

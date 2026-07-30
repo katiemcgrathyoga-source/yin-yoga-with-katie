@@ -60,7 +60,7 @@ There's no right or wrong here, and you don't have to pick a side forever. Liste
 
 ## Can you combine them?
 
-Absolutely — and many of my favourite practices do. A class might open with some Yin to release the hips and hamstrings, then melt into a few fully-supported Restorative shapes to finish, and close with a little Yoga Nidra (a guided, lying-down deep relaxation). You get the mobility *and* the deep rest in one slow, unhurried practice.
+Absolutely — and many of my favorite practices do. A class might open with some Yin to release the hips and hamstrings, then melt into a few fully-supported Restorative shapes to finish, and close with a little Yoga Nidra (a guided, lying-down deep relaxation). You get the mobility *and* the deep rest in one slow, unhurried practice.
 
 A few shapes live happily in both worlds — you'll meet them in either kind of class:
 
@@ -73,7 +73,7 @@ A few shapes live happily in both worlds — you'll meet them in either kind of 
 
 The best way to understand the difference is to feel it. If you'd like to experience Yin and Restorative flowing into one another — with a little Yoga Nidra to finish — my free two-hour retreat is exactly that: a slow, guided journey through all three, designed to calm your nervous system and melt off a busy week. It's normally a members-only class, and it's yours to keep.
 
-However you practise, be gentle with yourself. Some days you need to stretch, and some days you just need to be held — and it's a quiet kind of wisdom to know the difference.
+However you practice, be gentle with yourself. Some days you need to stretch, and some days you just need to be held — and it's a quiet kind of wisdom to know the difference.
 
 Take good care of yourself,
 Katie

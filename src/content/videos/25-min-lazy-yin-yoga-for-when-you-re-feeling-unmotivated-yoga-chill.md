@@ -39,7 +39,7 @@ A soft, cosy Yin class for the days when your energy and motivation are low. We 
 
 ## Who this class is for
 
-Anyone feeling lazy, tired or unmotivated who still wants to give their body a little care. It's perfect for beginners and for anyone who wants a calming, low-effort practise to unwind with — at the end of a long day, before bed, or any time you need a gentle reset.
+Anyone feeling lazy, tired or unmotivated who still wants to give their body a little care. It's perfect for beginners and for anyone who wants a calming, low-effort practice to unwind with — at the end of a long day, before bed, or any time you need a gentle reset.
 
 ## What you need
 

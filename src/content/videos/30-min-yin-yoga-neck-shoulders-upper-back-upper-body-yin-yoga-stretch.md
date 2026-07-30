@@ -40,7 +40,7 @@ A soft, 30-minute Yin practice devoted entirely to the upper body — the neck, 
 
 ## Who this class is for
 
-Anyone whose shoulders creep up towards their ears by the end of the day — desk workers, phone-scrollers, stress-carriers. It's a lovely reset whether you're brand new to Yin or well practised, and at half an hour it slots easily into a busy day.
+Anyone whose shoulders creep up toward their ears by the end of the day — desk workers, phone-scrollers, stress-carriers. It's a lovely reset whether you're brand new to Yin or well practiced, and at half an hour it slots easily into a busy day.
 
 ## What you need
 

@@ -30,7 +30,7 @@ faq:
   - q: "Is this suitable if my quads and hip flexors are really tight?"
     a: "Yes — this class is made for exactly that. Every pose has a gentler starting point and a deeper option, so you choose your own edge at about 60–80% and let the shape do the work. Nothing is forced. Over time you'll feel these areas begin to open in their own way."
   - q: "My knees feel sensitive in saddle — what should I do?"
-    a: "Listen to your knees closely. Saddle can be intense, so stay upright rather than leaning back, sit on a cushion or block to ease the angle, or practise half saddle instead of full. If you feel any sharp pain, come out — discomfort in the stretch is fine, pain in the joint is a sign to back off."
+    a: "Listen to your knees closely. Saddle can be intense, so stay upright rather than leaning back, sit on a cushion or block to ease the angle, or practice half saddle instead of full. If you feel any sharp pain, come out — discomfort in the stretch is fine, pain in the joint is a sign to back off."
 ---
 
 ## What this Yin class is

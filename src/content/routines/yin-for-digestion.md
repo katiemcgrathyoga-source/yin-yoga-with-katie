@@ -6,7 +6,7 @@ intent: "digestion"
 hero_pose: "caterpillar"
 level: "all-levels"
 minutes: 31
-intro: "Thirty-one slow minutes to nourish the middle of you. Forward folds and gentle compression massage the belly, and long, patient twists wring through the abdomen to help everything move. In Chinese medicine these shapes work the Stomach, Spleen and Liver lines that run through the torso. Practise on a fairly empty stomach — an hour or two after eating is ideal — and let each twist be slow and easy. Come as you are."
+intro: "Thirty-one slow minutes to nourish the middle of you. Forward folds and gentle compression massage the belly, and long, patient twists wring through the abdomen to help everything move. In Chinese medicine these shapes work the Stomach, Spleen and Liver lines that run through the torso. Practice on a fairly empty stomach — an hour or two after eating is ideal — and let each twist be slow and easy. Come as you are."
 props: []
 steps:
   - { pose: "childs-pose",          seconds: 150, sides: 1, note: "Let the thighs gently press the belly — a soft compression to begin." }
@@ -19,7 +19,7 @@ steps:
 faq:
   - q: "Can yoga help with digestion?"
     a: "Gentle twists and forward folds massage and compress the belly, which many people find helps things feel like they're moving. It's a soothing, low-effort way to support your digestion — not a medical treatment."
-  - q: "When should I practise this routine?"
+  - q: "When should I practice this routine?"
     a: "On a fairly empty stomach — an hour or two after eating is ideal, rather than straight after a big meal. Keep the twists slow and gentle."
   - q: "How often can I do it?"
     a: "As often as you like — it's gentle enough for daily practice, and a calming one to return to whenever you feel sluggish or heavy."

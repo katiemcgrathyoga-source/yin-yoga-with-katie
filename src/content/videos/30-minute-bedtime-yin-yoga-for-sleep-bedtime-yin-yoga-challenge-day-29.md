@@ -50,7 +50,7 @@ faq:
 
 ## What this Yin class is
 
-This is a slow, soothing bedtime practice designed to melt away the day and prepare you for sleep. We begin with a long, restful child's pose, open gently through the hamstrings and spine in half-butterfly and caterpillar, then soften the hips and lower back in happy baby before settling into stillness. Every hold is unhurried, the breathing is calm, and the whole class carries you towards that grounded, sleepy state.
+This is a slow, soothing bedtime practice designed to melt away the day and prepare you for sleep. We begin with a long, restful child's pose, open gently through the hamstrings and spine in half-butterfly and caterpillar, then soften the hips and lower back in happy baby before settling into stillness. Every hold is unhurried, the breathing is calm, and the whole class carries you toward that grounded, sleepy state.
 
 ## Who this class is for
 

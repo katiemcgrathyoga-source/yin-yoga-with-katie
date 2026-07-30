@@ -31,7 +31,7 @@ faq:
   - q: "Do I need any experience with Yin Yoga?"
     a: "Not at all. This is an all-levels class, and the bolster takes much of your weight so nothing feels forced. Find your edge at about 60–80%, let the shape do the work, and come out slowly. Read the pose notes above first if you're brand new."
   - q: "Can I still do this if I've missed earlier days of the challenge?"
-    a: "Absolutely. Although this is Day 14, each class stands on its own — you're so welcome to practise at your own pace and drop in whenever suits you. Come as you are."
+    a: "Absolutely. Although this is Day 14, each class stands on its own — you're so welcome to practice at your own pace and drop in whenever suits you. Come as you are."
 ---
 
 ## What this Yin class is

@@ -42,7 +42,7 @@ A gentle 30-minute journey of soft, supported backbends to open the chest and sh
 
 ## Who this class is for
 
-Anyone who wants to counter the effects of sitting, driving or working with their head down, and would love to open up through the chest and shoulders. It suits all levels — the backbends stay gentle and every pose offers a way to soften or deepen — so come as you are, whether you're new to Yin or well practised.
+Anyone who wants to counter the effects of sitting, driving or working with their head down, and would love to open up through the chest and shoulders. It suits all levels — the backbends stay gentle and every pose offers a way to soften or deepen — so come as you are, whether you're new to Yin or well practiced.
 
 ## What you need
 

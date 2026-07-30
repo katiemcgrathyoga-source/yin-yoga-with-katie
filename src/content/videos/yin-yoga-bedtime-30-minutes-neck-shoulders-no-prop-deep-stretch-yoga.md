@@ -35,11 +35,11 @@ faq:
 
 ## What this Yin class is
 
-A gentle 30-minute bedtime Yin class that focuses on releasing tension from the neck and shoulders — the places we so often hold the stress of the day. We begin seated with calming box breathing, ease into some soft neck stretches, then settle into child's pose, thread the needle, eagle arms and cow face arms, before unwinding the spine with cat-cow and a simple seated twist. It's slow, quiet and beginner-friendly — the perfect way to let go and drift towards sleep.
+A gentle 30-minute bedtime Yin class that focuses on releasing tension from the neck and shoulders — the places we so often hold the stress of the day. We begin seated with calming box breathing, ease into some soft neck stretches, then settle into child's pose, thread the needle, eagle arms and cow face arms, before unwinding the spine with cat-cow and a simple seated twist. It's slow, quiet and beginner-friendly — the perfect way to let go and drift toward sleep.
 
 ## Who this class is for
 
-Anyone carrying tightness in their neck and shoulders who wants to unwind before bed, whether you're brand new to Yin or well practised. It's especially lovely at the end of a long day at a desk, and it's calm and simple enough to follow even when you're tired. New to this? Just move at your own pace and take the gentler option whenever you need it.
+Anyone carrying tightness in their neck and shoulders who wants to unwind before bed, whether you're brand new to Yin or well practiced. It's especially lovely at the end of a long day at a desk, and it's calm and simple enough to follow even when you're tired. New to this? Just move at your own pace and take the gentler option whenever you need it.
 
 ## What you need
 

@@ -20,7 +20,7 @@ chapters:
   - { time: "30:00",  seconds: 1800, title: "Knees-to-chest & Corpse Pose", poses: ["wind-relieving", "corpse"] }
 seo_title: "Bedtime Yin Yoga To Go Inward & Relax — 30 Min, All Levels"
 seo_description: "A calming 30-minute bedtime Yin class to go inward and unwind — sleeping swan, puppy, reclined twists and a long rest to soften you into sleep. All levels."
-membership_cta: "This gentle bedtime class lives inside the membership's Sleep program — a night-by-night path that helps you switch off, fall asleep faster and stay asleep. Press play and let it carry you towards rest."
+membership_cta: "This gentle bedtime class lives inside the membership's Sleep program — a night-by-night path that helps you switch off, fall asleep faster and stay asleep. Press play and let it carry you toward rest."
 summary: "A calming 30-minute bedtime Yin class to go inward and retreat — soft hip openers, a heart-melting puppy pose and long reclined twists to unwind before sleep."
 faq:
   - q: "Do I need a bolster for this class?"
@@ -28,7 +28,7 @@ faq:
   - q: "Is this suitable if I'm not very flexible?"
     a: "Absolutely. Yin isn't about how far you go — you come to about 60–80% of your stretch and let the shape do the work. Every pose here has a gentler option, from resting on your props in sleeping swan to bending your elbows in puppy, so you can always find a version that feels right for your body."
   - q: "Can I really do this right before bed?"
-    a: "Yes — that's exactly what it's designed for. The whole class winds down towards stillness, and Katie invites you to stay resting in corpse pose for as long as you like at the end, or drift straight into her 10-minute guided relaxation. It's made to soften you into sleep."
+    a: "Yes — that's exactly what it's designed for. The whole class winds down toward stillness, and Katie invites you to stay resting in corpse pose for as long as you like at the end, or drift straight into her 10-minute guided relaxation. It's made to soften you into sleep."
 ---
 
 ## What this Yin class is
@@ -37,7 +37,7 @@ Day 23 of the Bedtime Yin Challenge is all about going inward and retreating —
 
 ## Who this class is for
 
-Anyone who wants to unwind and stretch gently at the end of the day, whether you're brand new to Yin or well practised. It's especially lovely if your mind tends to race at bedtime — the long holds and calm cues give you somewhere soft to land. Follow along at your own pace and take the gentler option whenever you need it.
+Anyone who wants to unwind and stretch gently at the end of the day, whether you're brand new to Yin or well practiced. It's especially lovely if your mind tends to race at bedtime — the long holds and calm cues give you somewhere soft to land. Follow along at your own pace and take the gentler option whenever you need it.
 
 ## What you need
 

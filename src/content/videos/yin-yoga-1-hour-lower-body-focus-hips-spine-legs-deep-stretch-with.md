@@ -33,7 +33,7 @@ faq:
   - q: "What does this 1-hour Yin class focus on?"
     a: "The lower body — mainly the hips, legs and spine. The poses release tension through those areas and, over time, build a little more flexibility, while the long holds also help you unwind and relax."
   - q: "Do I need any props?"
-    a: "Just a yoga block or two is handy — a block under the hips in Child's Pose or under the back in Supported Fish makes the shapes kinder. A cushion works just as well, and you can practise without props if you prefer."
+    a: "Just a yoga block or two is handy — a block under the hips in Child's Pose or under the back in Supported Fish makes the shapes kinder. A cushion works just as well, and you can practice without props if you prefer."
   - q: "How long is each pose held?"
     a: "Yin poses here are held for at least a couple of minutes each, with the hip poses repeated on both sides. The hold times are only suggestions — listen to your body and come out of any pose sooner if you need to."
 ---

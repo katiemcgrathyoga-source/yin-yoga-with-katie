@@ -200,8 +200,8 @@ const blog = defineCollection({
     // the /blog listing and RSS. Used to soft-launch a post before it's public.
     unlisted: z.boolean().default(false),
     hero: z.string().optional(), // optional lead image (path under /public)
-    // object-position for cropping the hero (keeps the head/heart centred, esp. in the
-    // portrait featured-card crop). e.g. "74% 55%". Defaults to centred when absent.
+    // object-position for cropping the hero (keeps the head/heart centered, esp. in the
+    // portrait featured-card crop). e.g. "74% 55%". Defaults to centered when absent.
     hero_focal: z.string().optional(),
     hero_caption: z.string().optional(), // italic caption under the hero image
     subtitle: z.string().optional(), // short italic line under the H1
@@ -211,7 +211,7 @@ const blog = defineCollection({
     cta_program: z.string().optional(), // slug of the program to CTA to (else the free-retreat CTA)
     // FAQ block → rendered on the post + emitted as FAQPage schema (rich results).
     faq: z.array(z.object({ q: z.string().min(1), a: z.string().min(1) })).default([]),
-    // "Practise along" block: a routine slug (its page has the built-in timer) + an
+    // "Practice along" block: a routine slug (its page has the built-in timer) + an
     // optional full-class YouTube id to embed.
     practise: z
       .object({ routine: z.string(), video: z.string().optional(), video_label: z.string().optional() })

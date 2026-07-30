@@ -44,7 +44,7 @@ seo_title: "30-Min Neck & Shoulder Yin Yoga for Sleep | Bedtime Day 20"
 seo_description: "A gentle 30-minute bedtime Yin Yoga class for the neck, shoulders and chest — eagle and cow-face arms, seated swan and soft neck releases to help you unwind before sleep."
 faq:
   - q: "Do I need any props for this class?"
-    a: "A strap or belt is handy for the cow-face arms, but it's optional — if you don't have one, simply reach your hands towards each other instead. A cushion or block to sit on can make the seated poses more comfortable, but nothing is essential."
+    a: "A strap or belt is handy for the cow-face arms, but it's optional — if you don't have one, simply reach your hands toward each other instead. A cushion or block to sit on can make the seated poses more comfortable, but nothing is essential."
   - q: "Is this suitable if I'm not very flexible?"
     a: "Absolutely. Every pose has a gentler option — you can hold opposite shoulders instead of binding the arms, sit up on a cushion, and keep your legs simply crossed. You're always invited to work at whatever depth feels comfortable for your body tonight."
   - q: "Can I do this if my hips feel tired after 20 days of practice?"
@@ -61,7 +61,7 @@ This class is for anyone carrying tightness in the neck and shoulders, especiall
 
 ## What you need
 
-A strap or belt is useful for cow-face arms, but it's entirely optional — you can reach your hands towards each other instead. A cushion or block to sit on can make the seated poses more comfortable. Beyond that, all you need is your mat and a quiet space. Every pose has a gentler option and a deeper one, so you can always find the version that suits you tonight.
+A strap or belt is useful for cow-face arms, but it's entirely optional — you can reach your hands toward each other instead. A cushion or block to sit on can make the seated poses more comfortable. Beyond that, all you need is your mat and a quiet space. Every pose has a gentler option and a deeper one, so you can always find the version that suits you tonight.
 
 ## How Yin Yoga works — three simple cues
 

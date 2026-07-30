@@ -33,7 +33,7 @@ cautions:
   - "If you have injured toes or acute foot problems, skip this one or lighten the load by keeping weight in your hands."
 faq:
   - q: "What does Toe Squat stretch?"
-    a: "Toe Squat gives a strong, direct stretch to the soles of the feet and the undersides of the toes — areas that rarely get any attention — while opening the toe joints. Because all six lower-body meridian lines begin or end in the toes, it's a favourite for waking the feet up."
+    a: "Toe Squat gives a strong, direct stretch to the soles of the feet and the undersides of the toes — areas that rarely get any attention — while opening the toe joints. Because all six lower-body meridian lines begin or end in the toes, it's a favorite for waking the feet up."
   - q: "How long do you hold Toe Squat in Yin Yoga?"
     a: "Keep it short — often 30 seconds to 2 minutes. Toe Squat gets intense quickly, so let intensity, not the clock, be your guide, and come out at the first sign of cramp. You can always return to it later in your practice."
   - q: "Why is Toe Squat so intense, and is that normal?"
@@ -45,7 +45,7 @@ youtube_video_id: ""
 images:
   - "/poses/toe-squat.jpg"
 seo_title: "Toe Squat in Yin Yoga: Benefits & How-To"
-seo_description: "Toe Squat gives a strong Yin Yoga stretch to the soles of the feet and toes. Learn how to practise it safely, kept short, with props and cautions."
+seo_description: "Toe Squat gives a strong Yin Yoga stretch to the soles of the feet and toes. Learn how to practice it safely, kept short, with props and cautions."
 ---
 
 <!-- Original copy in Katie's voice, grounded in Bernie Clark, The Complete Guide to

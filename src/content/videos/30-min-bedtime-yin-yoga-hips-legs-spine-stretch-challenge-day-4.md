@@ -18,7 +18,7 @@ chapters:
   - { time: "0:00",   seconds: 0,    title: "Welcome to Day 4" }
   - { time: "0:17",   seconds: 17,   title: "Hips · Dragonfly (fold over left leg)",  pose: "dragonfly" }
   - { time: "5:15",   seconds: 315,  title: "Hips · Dragonfly (fold over right leg)", pose: "dragonfly" }
-  - { time: "8:55",   seconds: 535,  title: "Hips · Dragonfly (centre fold)",         pose: "dragonfly" }
+  - { time: "8:55",   seconds: 535,  title: "Hips · Dragonfly (center fold)",         pose: "dragonfly" }
   - { time: "13:24",  seconds: 804,  title: "Back · Reclined Windshield Wipers" }
   - { time: "15:26",  seconds: 926,  title: "Back · Air-Releasing (knees to chest)", poses: ["wind-relieving"] }
   - { time: "18:33",  seconds: 1113, title: "Spine · Banana (right side)",            pose: "banana" }
@@ -30,7 +30,7 @@ membership_cta: "This is Day 4 of the Bedtime Challenge. Inside the membership, 
 summary: "A calming 30-minute bedtime Yin practice for the hips, legs and spine — slow, deep holds to release the day's tension and settle you toward sleep. Day 4 of the Bedtime Challenge."
 faq:
   - q: "Can I do this class right before bed?"
-    a: "Yes — that's exactly what it's for. Practise in dim light as the last thing you do before sleep, and let the slow holds wind you down. If you'd like a little more, follow it with the guided relaxation and drift straight off."
+    a: "Yes — that's exactly what it's for. Practice in dim light as the last thing you do before sleep, and let the slow holds wind you down. If you'd like a little more, follow it with the guided relaxation and drift straight off."
   - q: "Do I need any props for this class?"
     a: "No props are required. If your hips feel tight, sitting up on a cushion or a block for the dragonfly can make the forward folds easier and kinder. A blanket nearby is lovely for warmth as you settle."
   - q: "I'm new to Yin — is this suitable for beginners?"

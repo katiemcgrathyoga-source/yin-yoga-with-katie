@@ -42,7 +42,7 @@ An hour of gentle, guided Yin — class two of the Create Peaceful Moments serie
 
 ## Who this class is for
 
-Anyone who wants a full hour to unwind and stretch out, with a calm voice to guide you the whole way through. It's lovely after a busy day or at the end of the week, and it works whether you're brand new to Yin or well practised. New to this? Follow the shapes at your own pace and take the gentler option whenever you need it.
+Anyone who wants a full hour to unwind and stretch out, with a calm voice to guide you the whole way through. It's lovely after a busy day or at the end of the week, and it works whether you're brand new to Yin or well practiced. New to this? Follow the shapes at your own pace and take the gentler option whenever you need it.
 
 ## What you need
 

@@ -74,7 +74,7 @@ Running doesn't tighten one thing — it tightens a chain, so it's worth working
 
 ## When should runners do yoga?
 
-Timing matters more than most runners realise:
+Timing matters more than most runners realize:
 
 - **After a run** is the sweet spot — you're warm, and the tightness releases before it settles in. Even ten quiet minutes counts.
 - **On rest days**, a longer session resets the whole lower body.

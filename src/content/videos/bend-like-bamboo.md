@@ -48,7 +48,7 @@ summary: "A 90-minute full-body Yin practice for flexibility — shoulders, back
 
 This is a full-body flexibility class, held the Yin way: long, slow, and unhurried. Over about ninety minutes you'll work gently through the shoulders, upper back, hips, quads, hamstrings and spine — and by the end you'll feel lighter, looser, and more open. Nothing here is forced. Flexibility in Yin comes from staying, not straining, so the more often you return to this practice, the more it gives back.
 
-It's become the most-practised class on the channel, and there's a reason people keep it running on the TV: once you settle in, it carries you.
+It's become the most-practiced class on the channel, and there's a reason people keep it running on the TV: once you settle in, it carries you.
 
 ## Who it's for
 
@@ -68,6 +68,6 @@ This class gently teaches the three principles the whole practice rests on:
 
 <!-- Blog copy is original, written in Katie's teaching voice and grounded in her own
 transcript for this class. The pose rundown renders from the `chapters` frontmatter as
-the interactive "What you'll practise" list; the closing safety note renders as the
+the interactive "What you'll practice" list; the closing safety note renders as the
 site-wide gentle-reminder block. Pose mechanics/cautions cross-referenced with Bernie
 Clark, The Complete Guide to Yin Yoga. No therapeutic claims. -->

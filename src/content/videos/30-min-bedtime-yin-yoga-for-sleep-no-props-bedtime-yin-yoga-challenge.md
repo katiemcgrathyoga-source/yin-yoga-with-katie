@@ -38,7 +38,7 @@ A gentle 30-minute bedtime Yin practice — the final day of the Bedtime Yin Cha
 
 ## Who this class is for
 
-Anyone looking for a calm, grounding way to end the day and prepare for sleep. It's lovely whether you're brand new to Yin or well practised, and the slow pace makes it easy to follow in low light before bed. If you've been moving through the challenge with Katie, this is a beautiful one to finish on.
+Anyone looking for a calm, grounding way to end the day and prepare for sleep. It's lovely whether you're brand new to Yin or well practiced, and the slow pace makes it easy to follow in low light before bed. If you've been moving through the challenge with Katie, this is a beautiful one to finish on.
 
 ## What you need
 

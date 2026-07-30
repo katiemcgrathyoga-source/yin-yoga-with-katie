@@ -10,9 +10,9 @@ import { journalPinUrl } from '../../lib/journalPin';
  * collection and emits a static page per file, keyed by each pose's `slug`.
  * Add a Markdown file to src/content/poses/ and a new page appears — no code.
  *
- * Page order is by reader intent: recognise the pose (photo) → save it →
+ * Page order is by reader intent: recognize the pose (photo) → save it →
  * the scannable facts (At a glance) → how to do it → why → cautions →
- * transitions → FAQ → practise it in context (routines/classes) → related →
+ * transitions → FAQ → practice it in context (routines/classes) → related →
  * the one email ask. No hold timer here — timing belongs on the routine player.
  */
 export async function getStaticPaths() {
@@ -103,7 +103,7 @@ const faqLd = d.faq.length
 const poseUrl = new URL(`/poses/${d.slug}/`, Astro.site).href;
 const poseSave = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(poseUrl)}&media=${encodeURIComponent(journalPin)}&description=${encodeURIComponent(d.seo_description)}`;
 
-const hasPractise = hasVideo || featuredRoutines.length > 0 || featuredClasses.length > 0;
+const hasPractice = hasVideo || featuredRoutines.length > 0 || featuredClasses.length > 0;
 ---
 
 <BaseLayout
@@ -195,7 +195,7 @@ const hasPractise = hasVideo || featuredRoutines.length > 0 || featuredClasses.l
     </section>
 
     <section>
-      <h2>Why practise it</h2>
+      <h2>Why practice it</h2>
       <ul class="plain">
         {d.benefits.map((b) => <li>{b}</li>)}
       </ul>
@@ -254,10 +254,10 @@ const hasPractise = hasVideo || featuredRoutines.length > 0 || featuredClasses.l
       )
     }
 
-    {/* Practise it in context — the next step, kept low and short. */}
-    {hasPractise && (
+    {/* Practice it in context — the next step, kept low and short. */}
+    {hasPractice && (
       <section class="pose-practise">
-        <h2>Practise it</h2>
+        <h2>Practice it</h2>
 
         {hasVideo && (
           <div class="video-embed">

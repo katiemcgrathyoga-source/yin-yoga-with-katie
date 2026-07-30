@@ -26,7 +26,7 @@ membership_cta: "Love a gentle practice like this? Inside the membership it's pa
 summary: "A 36 min Yin Yoga class for flexible shoulders and a supple upper back. Five poses move the shoulder joint in every direction, held long and slow to help release tight, stiff shoulders. A strap is handy but optional — suitable for all levels."
 faq:
   - q: "Do I need a strap for this shoulder class?"
-    a: "It's handy but not essential. We use a strap for the cow-face arms near the end, so your hands have something to hold if they don't quite meet behind your back. If you don't have one, don't worry — you can simply reach your hands towards each other instead. A yoga block or cushion is also nice to have for resting your forehead early on."
+    a: "It's handy but not essential. We use a strap for the cow-face arms near the end, so your hands have something to hold if they don't quite meet behind your back. If you don't have one, don't worry — you can simply reach your hands toward each other instead. A yoga block or cushion is also nice to have for resting your forehead early on."
   - q: "Is this class okay if my shoulders feel really tight?"
     a: "Yes — that's exactly who it's for. Every pose has a lighter option, and I'll remind you to come to about 60 to 80 percent rather than forcing. If your hands or arms start to tingle in the first pose, simply bend your elbows to ease off. You choose how deep to go, and tight shoulders are welcome just as they are."
   - q: "How long are the poses held?"
@@ -43,7 +43,7 @@ Anyone carrying tension across the shoulders and upper back — after long days 
 
 ## What you need
 
-Your mat, and a strap if you have one — we use it for the cow-face arms near the end, though you can reach your hands towards each other instead. A yoga block or cushion is nice for resting your forehead in the opening poses, and folding the front of your mat gives the knees a little extra padding. None of it is essential, so work with whatever you have nearby.
+Your mat, and a strap if you have one — we use it for the cow-face arms near the end, though you can reach your hands toward each other instead. A yoga block or cushion is nice for resting your forehead in the opening poses, and folding the front of your mat gives the knees a little extra padding. None of it is essential, so work with whatever you have nearby.
 
 ## How Yin Yoga works — three simple cues
 

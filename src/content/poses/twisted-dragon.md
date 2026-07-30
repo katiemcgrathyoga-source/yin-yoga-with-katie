@@ -21,7 +21,7 @@ cues:
   - "As the knee opens, let your chest rotate to the right and open toward the sky. Let your gaze follow, over the right shoulder, only as far as the neck is happy."
   - "Keep the front knee stacked over the ankle even as it presses outward — never let it push past the toes."
   - "Find your edge — about 60–80% of your capacity, a real stretch through the outer hip but never forcing. Let the hips stay heavy and low."
-  - "Be still, and let the shape do the work. Come back to centre slowly, then change sides."
+  - "Be still, and let the shape do the work. Come back to center slowly, then change sides."
 transitions_in:
   - "From Dragon — press the front knee open and rotate the torso"
   - "From tabletop — step one foot forward and turn into the twist"

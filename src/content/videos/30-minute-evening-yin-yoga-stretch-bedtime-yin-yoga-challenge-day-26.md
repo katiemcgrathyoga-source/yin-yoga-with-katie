@@ -35,7 +35,7 @@ chapters:
     seconds: 1839
     title: "Rest & Close"
 membership_cta: "This class lives inside the membership's Sleep program — a night-by-night path that helps you fall asleep faster and sleep through. Press play and let it carry you."
-summary: "A slow 30-minute evening Yin practice to unwind the hips, spine and shoulders and settle you gently towards sleep."
+summary: "A slow 30-minute evening Yin practice to unwind the hips, spine and shoulders and settle you gently toward sleep."
 seo_title: "30-Minute Evening Yin Yoga for Sleep | Bedtime Challenge Day 26"
 seo_description: "A calming 30-minute bedtime Yin Yoga class with easy-pose folds, gentle twists, Dragon and Thread the Needle to unwind your body and help you drift off to sleep."
 faq:
@@ -49,7 +49,7 @@ faq:
 
 ## What this Yin class is
 
-This is a slow, soothing evening practice — Day 26 of the Bedtime Yin Yoga Challenge — made to help you let go of the day and drift towards sleep. You'll settle into long, still holds: an easy cross-legged fold and gentle seated twist, Dragon pose to open the front of the hips, and Thread the Needle to release the shoulders, each softened by a return to Child's Pose. It's less about stretching hard and more about quietly unwinding, breath by breath.
+This is a slow, soothing evening practice — Day 26 of the Bedtime Yin Yoga Challenge — made to help you let go of the day and drift toward sleep. You'll settle into long, still holds: an easy cross-legged fold and gentle seated twist, Dragon pose to open the front of the hips, and Thread the Needle to release the shoulders, each softened by a return to Child's Pose. It's less about stretching hard and more about quietly unwinding, breath by breath.
 
 ## Who this class is for
 

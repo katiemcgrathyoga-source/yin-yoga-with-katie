@@ -20,7 +20,7 @@ faq:
     a: "A slow, gentle practice like this helps shift you out of go-go-go mode and into rest, which makes it easier to fall asleep. Keeping the lights low and the holds soft is part of the effect."
   - q: "Can I do this routine in bed?"
     a: "The floor or a mat is ideal for the earlier shapes, but you can absolutely move to your bed for the reclined poses and simply drift off from the last one. No props required."
-  - q: "How long before bed should I practise?"
+  - q: "How long before bed should I practice?"
     a: "Right before bed is perfect — it's designed as the last thing you do before sleep. Twenty-five quiet minutes to let the day go."
 membership_cta: "Struggle to switch off at night? The membership's Sleep program is a guided night-by-night plan — press play and let it carry you toward rest."
 summary: "A gentle 25-minute bedtime Yin routine — soft, supported shapes to downshift the nervous system and melt toward sleep, with a built-in hold timer."

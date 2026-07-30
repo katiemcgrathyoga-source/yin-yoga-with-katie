@@ -39,7 +39,7 @@ Running makes you fitter by loading the same chain of tissues over and over — 
 
 And a hurried 30-second stretch barely touches it. The deeper tissue around your hips and joints doesn't respond to a quick pull; it responds to *time*. That's all Yin yoga really is: you settle into a shape and stay for a few quiet minutes — nothing forced, only ever to about 60–80% of your capacity — and let gravity and your breath do the slow work a rushed stretch can't.
 
-Two things happen when you practise this way:
+Two things happen when you practice this way:
 
 - **Your range of motion improves.** Long, still holds are well suited to easing the tightness running builds up in the hips, hamstrings, calves and ankles — the mobility that lets your stride stay long and easy.
 - **Your body actually recovers.** The long, quiet holds help you shift down into your rest state, so you come away calmer and less braced — the recovery half of training runners so often skip.
@@ -91,7 +91,7 @@ Because running doesn't tighten one muscle — it tightens a chain, and a tight 
 
 ### Every session page gives you five ways in
 
-The follow-along video, an on-screen hold timer (so you can practise screen-free once you know the shapes), the plain-English *why* behind the session, written cues you can read, and a body map showing where it works. Whatever kind of learner you are, it's covered.
+The follow-along video, an on-screen hold timer (so you can practice screen-free once you know the shapes), the plain-English *why* behind the session, written cues you can read, and a body map showing where it works. Whatever kind of learner you are, it's covered.
 
 ---
 
@@ -118,7 +118,7 @@ I'm Katie. I've taught Yin yoga for six years, trained at the Arhanta Yoga Ashra
 
 ## The keep-it guarantee
 
-Join, and practise along for 30 days. If your hips, hamstrings and calves don't feel noticeably looser — if you're not moving more easily — email me for a full refund, **and keep lifetime access to the entire library anyway**.
+Join, and practice along for 30 days. If your hips, hamstrings and calves don't feel noticeably looser — if you're not moving more easily — email me for a full refund, **and keep lifetime access to the entire library anyway**.
 
 I can offer that because the risk should sit with me, not you. If Yin doesn't help your running, I haven't earned your money — it's that simple.
 
@@ -128,7 +128,7 @@ I can offer that because the risk should sit with me, not you. If Yin doesn't he
 
 The Runner's Reset is **$49 for the first 100 runners**. One payment, lifetime access — every session, every path, every bonus, and everything I add to the library later.
 
-Once those 100 founding places are taken, the price becomes **$67**. That's the only deadline here, and it's a real one: I want a founding group practising, telling me what to build next, before the doors settle at full price. No countdown-timer theatre — when the hundred are gone, they're gone.
+Once those 100 founding places are taken, the price becomes **$67**. That's the only deadline here, and it's a real one: I want a founding group practicing, telling me what to build next, before the doors settle at full price. No countdown-timer theater — when the hundred are gone, they're gone.
 
 **[Join the Runner's Reset — $49 founding price →]**
 *One-time payment · lifetime access · 30-day keep-it guarantee*

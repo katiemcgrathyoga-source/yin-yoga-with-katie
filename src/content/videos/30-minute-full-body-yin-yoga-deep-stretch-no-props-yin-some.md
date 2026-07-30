@@ -39,7 +39,7 @@ A 30-minute full-body Yin stretch that you can roll out anywhere, no props neede
 
 ## Who this class is for
 
-Anyone who wants a proper full-body stretch in half an hour, with a calm voice guiding you the whole way. A couple of the shapes go a little deeper, so it suits you if you've practised a little Yin before — but every pose has a gentler option, so you're welcome to take it at your own pace and back off whenever you need to.
+Anyone who wants a proper full-body stretch in half an hour, with a calm voice guiding you the whole way. A couple of the shapes go a little deeper, so it suits you if you've practiced a little Yin before — but every pose has a gentler option, so you're welcome to take it at your own pace and back off whenever you need to.
 
 ## What you need
 

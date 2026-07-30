@@ -51,8 +51,8 @@ const jsonLd = {
   mainEntityOfPage: new URL(`/blog/${d.slug}`, Astro.site).href,
 };
 
-// "Practise along" routine (its page carries the built-in timer) + optional class.
-const practiseRoutine = d.practise
+// "Practice along" routine (its page carries the built-in timer) + optional class.
+const practiceRoutine = d.practise
   ? (await getCollection('routines')).find((r) => r.data.slug === d.practise!.routine)?.data
   : undefined;
 
@@ -113,13 +113,13 @@ const shareLinks = {
       <Content />
     </div>
 
-    {practiseRoutine && (
+    {practiceRoutine && (
       <aside class="practise-block">
-        <p class="eyebrow">Practise along</p>
-        <h2>{practiseRoutine.title}</h2>
-        <p class="practise-meta">{practiseRoutine.minutes}-minute follow-along · with a built-in timer</p>
-        <p>{practiseRoutine.summary}</p>
-        <a class="btn-cta" href={`/routines/${practiseRoutine.slug}`}>Open the routine →</a>
+        <p class="eyebrow">Practice along</p>
+        <h2>{practiceRoutine.title}</h2>
+        <p class="practise-meta">{practiceRoutine.minutes}-minute follow-along · with a built-in timer</p>
+        <p>{practiceRoutine.summary}</p>
+        <a class="btn-cta" href={`/routines/${practiceRoutine.slug}`}>Open the routine →</a>
         {d.practise?.video && (
           <div class="practise-video">
             <p class="practise-video-label">{d.practise.video_label ? `Or follow the full class — ${d.practise.video_label}:` : 'Or follow the full class:'}</p>
@@ -151,7 +151,7 @@ const shareLinks = {
 
     {ctaProgram && (
       <aside class="blog-cta">
-        <p class="eyebrow">Practise this</p>
+        <p class="eyebrow">Practice this</p>
         <h2>{ctaProgram.title}</h2>
         <p>{ctaProgram.outcome} {ctaProgram.blurb}</p>
         <a class="btn-cta" href={`/programs/${ctaProgram.slug}`}>Start the program →</a>
@@ -161,7 +161,7 @@ const shareLinks = {
     <Cta
       source="journal"
       eyebrow="From the mat"
-      heading="Ready to actually practise?"
+      heading="Ready to actually practice?"
       body="Reading about Yin is one thing — feeling it is another. Whenever you're ready, pop your email in and I'll send you my free two-hour Yin, restorative and Yoga Nidra retreat. Two slow hours to properly switch off, yours to keep."
     />
 

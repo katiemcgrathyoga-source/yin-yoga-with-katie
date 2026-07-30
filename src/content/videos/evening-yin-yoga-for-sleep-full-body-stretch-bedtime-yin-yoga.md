@@ -69,9 +69,9 @@ faq:
     a: "Just a mat and a little floor space. A cushion or yoga block under your hips makes the seated poses like dragonfly more comfortable, and a blanket is lovely if you'd like to stay cosy while you rest — but none of it is essential."
   - q: "Is this suitable if I'm not very flexible?"
     a: "Absolutely. Yin isn't about how far you fold — it's about finding a gentle edge and letting your body soften over time. Bend your knees, sit up on a cushion and only go to around 60–80% of your capacity. Every pose has a gentler option."
-  - q: "Can I practise this right before bed?"
-    a: "Yes — that's exactly what it's designed for. This is a calming, back-and-spine focused evening practice to help you unwind, and you're warmly invited to stay in corpse pose for as long as you like at the end to drift towards sleep."
-summary: "A soothing 35-minute evening Yin class that stretches the whole body and quiets the back and spine, so you can let go of the day and drift towards sleep."
+  - q: "Can I practice this right before bed?"
+    a: "Yes — that's exactly what it's designed for. This is a calming, back-and-spine focused evening practice to help you unwind, and you're warmly invited to stay in corpse pose for as long as you like at the end to drift toward sleep."
+summary: "A soothing 35-minute evening Yin class that stretches the whole body and quiets the back and spine, so you can let go of the day and drift toward sleep."
 seo_title: "Evening Yin Yoga for Sleep — Full-Body Stretch (35 min) | Day 25"
 seo_description: "A calming 35-minute evening Yin Yoga for sleep: gentle full-body stretches — dragonfly, eagle arms, sphinx and cat pulling its tail — to unwind before bed."
 ---

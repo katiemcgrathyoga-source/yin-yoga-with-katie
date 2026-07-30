@@ -29,7 +29,7 @@ faq:
     a: "Not at all — you can do the whole class with just your mat. That said, a folded blanket or towel under sensitive knees is lovely in toe squat and saddle, a block or two makes squat and saddle easier to settle into, and a cushion or bolster is nice to lie back on. Everything is optional — come as you are."
   - q: "Is this suitable if I'm not very flexible?"
     a: "Yes. Yin isn't about how far you go — find your edge at about 60–80%, let each shape do the work, and take the gentler option whenever you need it. Katie guides toe squat, ankle stretch and saddle in stages so you can stop wherever feels right for you tonight."
-  - q: "Why practise leg poses before bed?"
+  - q: "Why practice leg poses before bed?"
     a: "After a day on your feet, releasing the legs, ankles and quads can feel wonderful, and the forward folds like dangling and butterfly have a naturally calming, quietening effect. It's a soothing way to unwind and let go before you sleep."
 ---
 
@@ -39,7 +39,7 @@ A gentle 30-minute evening Yin practice — Day 11 of the Bedtime Yin Challenge 
 
 ## Who this class is for
 
-Anyone who wants to unwind and stretch out tired legs at the end of the day, whether you're brand new to Yin or well practised. It's a lovely way to close the day, and every pose is offered in stages so you can find the version that suits you tonight.
+Anyone who wants to unwind and stretch out tired legs at the end of the day, whether you're brand new to Yin or well practiced. It's a lovely way to close the day, and every pose is offered in stages so you can find the version that suits you tonight.
 
 ## What you need
 

@@ -17,7 +17,7 @@ cues:
   - "Sit up on the edge of a folded blanket or cushion so your hips are lifted a little higher than your knees — this takes strain off the lower back."
   - "Stretch both legs out in front of you. Let the feet relax and fall open however they like."
   - "On an out-breath, walk your hands forward and let your spine round gently. In Yin we allow the back to curl — you are folding from the whole spine, not just hinging at the hips."
-  - "Find your edge — about 60–80% of your capacity, a real stretch but never forcing. Then stop travelling forward and let the shape do the work. A broad pull along the backs of the legs and up the spine is soft-tissue tension and safe to soften into; anything sharp, pinching or electric is a signal to ease back, not push through."
+  - "Find your edge — about 60–80% of your capacity, a real stretch but never forcing. Then stop traveling forward and let the shape do the work. A broad pull along the backs of the legs and up the spine is soft-tissue tension and safe to soften into; anything sharp, pinching or electric is a signal to ease back, not push through."
   - "Rest your hands wherever they land — on your shins, your feet, or the floor. If your head hangs a long way from your legs, slide a bolster onto your thighs and let your forehead melt down onto it."
   - "Soften your neck, your jaw, your shoulders. Be still, and let each breath carry you a fraction deeper."
 transitions_in:

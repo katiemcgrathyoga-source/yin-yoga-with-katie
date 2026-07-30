@@ -39,11 +39,11 @@ faq:
 
 ## What this Yin class is
 
-A gentle 30-minute Yin practice made for the end of the day, to help you release the day and get ready for sleep. We begin sitting comfortably with some soft neck and shoulder stretches and a little eagle-arm opening, then settle into calming 4:8 breathing to quieten the mind. From there we lie back for a long reclined butterfly, a big knees-to-chest hug, and a slow two-knee reclined twist, before melting into corpse pose and a closing rest. No props, no rush — just a soothing wind-down towards sleep.
+A gentle 30-minute Yin practice made for the end of the day, to help you release the day and get ready for sleep. We begin sitting comfortably with some soft neck and shoulder stretches and a little eagle-arm opening, then settle into calming 4:8 breathing to quieten the mind. From there we lie back for a long reclined butterfly, a big knees-to-chest hug, and a slow two-knee reclined twist, before melting into corpse pose and a closing rest. No props, no rush — just a soothing wind-down toward sleep.
 
 ## Who this class is for
 
-Anyone who wants a calm, no-props practice to unwind before bed, whether you're brand new to Yin or well practised. It's especially lovely if your mind is busy at night or you carry tension in your neck and shoulders. If you're new to this, simply follow the shapes at your own pace and take the gentler option whenever you need it.
+Anyone who wants a calm, no-props practice to unwind before bed, whether you're brand new to Yin or well practiced. It's especially lovely if your mind is busy at night or you carry tension in your neck and shoulders. If you're new to this, simply follow the shapes at your own pace and take the gentler option whenever you need it.
 
 ## What you need
 

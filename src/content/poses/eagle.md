@@ -46,7 +46,7 @@ youtube_video_id: ""
 images:
   - "/poses/eagle.jpg"
 seo_title: "Eagle Arms in Yin Yoga: Benefits & How-To"
-seo_description: "Eagle arms spread the upper back and open the shoulders in Yin Yoga. Learn how to practise this seated pose safely, with cues, props and cautions."
+seo_description: "Eagle arms spread the upper back and open the shoulders in Yin Yoga. Learn how to practice this seated pose safely, with cues, props and cautions."
 ---
 
 <!-- Original copy in Katie's voice. Eagle-arm (Garudasana) biomechanics grounded in

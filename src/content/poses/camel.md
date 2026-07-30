@@ -17,7 +17,7 @@ cues:
   - "Kneel with your knees hip-width apart, shins and the tops of the feet on the floor. Pad the knees with a folded blanket if they feel tender."
   - "Bring your hands to your lower back, fingers pointing down, and lift up out of the waist to make length before you lean back."
   - "Press the hips gently forward over the knees and begin to arch back, leading with the chest rather than dropping the head."
-  - "For the gentler option, keep your hands on your lower back and stay here. For more, reach the hands back towards your heels one at a time."
+  - "For the gentler option, keep your hands on your lower back and stay here. For more, reach the hands back toward your heels one at a time."
   - "Find your edge — about 60–80%, a real opening across the front but never straining the neck or lower back. A broad stretch across the front of the body is soft-tissue tension and safe to explore; a pinching or bone-on-bone feeling deep in the lower back is compression, a hard stop — ease off it. Let the head follow the spine only if the throat is comfortable."
   - "This one is more yang, so hold it briefly. Breathe steadily and come out well before you feel any strain."
 transitions_in:
@@ -29,7 +29,7 @@ counterposes:
   - "A quiet seated rest with a soft, neutral spine before the next shape"
 cautions:
   - "This is the most active pose in this set and the one most likely to strain the lower back — lift and lengthen up out of the waist before you lean back, and spread the arch through the whole spine rather than collapsing into one lumbar crunch. How far you can backbend depends on the shape of your own spine, so let your bones set the limit."
-  - "Protect the neck: let the head drop back only if it feels easy, otherwise keep the chin gently towards the chest."
+  - "Protect the neck: let the head drop back only if it feels easy, otherwise keep the chin gently toward the chest."
   - "Approach cautiously with lower-back, neck or knee injuries, and with high or low blood pressure. Come out at once if you feel dizzy or lightheaded."
   - "Pad tender knees, and skip the pose if kneeling with the tops of the feet down is painful."
 faq:

@@ -20,7 +20,7 @@ faq:
     a: "Completely — it's designed for a first practice. Every shape is simple and well-supported, with an easier option, so you can't get it wrong. Just find a gentle edge, soften, and stay."
   - q: "Do I need any props or flexibility?"
     a: "Neither. A mat or bit of carpet is enough, and Yin doesn't ask for flexibility — you're working with gravity and time, not reaching for a deep stretch. A cushion to sit on is nice but optional."
-  - q: "How often should a beginner practise?"
+  - q: "How often should a beginner practice?"
     a: "A few gentle sessions a week is a lovely, realistic rhythm to let the shapes and the stillness become familiar. Little and often does far more than long and rare."
 membership_cta: "Just starting out? The membership's beginner path walks you gently from your very first practice onward — a guided plan so you always know what to do next."
 summary: "A gentle 19-minute beginner Yin Yoga routine — simple, well-supported shapes with an easier option in every pose, and a built-in hold timer. No props, no experience needed."

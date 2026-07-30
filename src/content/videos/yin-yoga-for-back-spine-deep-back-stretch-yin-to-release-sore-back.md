@@ -33,7 +33,7 @@ membership_cta: "Love a gentle practice like this? Inside the membership it's pa
 summary: "A 40-minute Yin Yoga class for a tired, sore back — long, slow holds for the back, spine and hips that may help ease everyday tension. Gentle, calming and suitable for all levels, with only an optional cushion."
 faq:
   - q: "Is this class good for a sore back?"
-    a: "It's made for exactly that feeling — a tired, achy back that just wants some space. We move slowly through gentle shapes for the back, spine and hips, held long enough to let everyday tension start to unwind. That said, if your pain is sharp, ongoing, or travels down a leg, please check in with a health professional before practising — this is meant as a soft release, not a treatment."
+    a: "It's made for exactly that feeling — a tired, achy back that just wants some space. We move slowly through gentle shapes for the back, spine and hips, held long enough to let everyday tension start to unwind. That said, if your pain is sharp, ongoing, or travels down a leg, please check in with a health professional before practicing — this is meant as a soft release, not a treatment."
   - q: "Do I need any props for this class?"
     a: "Not really — your mat is enough. A cushion or folded blanket is lovely to have nearby if you'd like to sit up on it in the seated poses, or to tuck under your knees in the twist, but nothing is required. Use whatever helps you feel supported and stay at your own comfortable edge."
   - q: "What's snail pose, and what if it doesn't feel right for me?"

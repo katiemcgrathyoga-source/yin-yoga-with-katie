@@ -11,7 +11,7 @@ props: ["bolster", "blanket", "eye pillow"]
 benefits:
   - "Invites total rest, letting the body settle completely after your practice."
   - "Calms and settles the nervous system, shifting you toward the quiet, restorative part of your system."
-  - "Gives the body time to integrate the effects of everything you have practised — this is where the work lands."
+  - "Gives the body time to integrate the effects of everything you have practiced — this is where the work lands."
   - "Helps release held tension in the muscles as you let the floor take all your weight."
 cues:
   - "Lie flat on your back and let yourself be fully supported by the floor. There is nothing to hold or reach for here."
@@ -33,7 +33,7 @@ cautions:
   - "It is easy to drift toward sleep; that is fine, though a gentle return to the breath keeps you present."
 faq:
   - q: "How long do you hold Corpse Pose in Yin Yoga?"
-    a: "Around 5–10 minutes is typical. Because a Yin practice doesn't work the muscles hard, a slightly shorter rest — roughly 5 to 8 percent of your total practice time — is often enough. If you're practising alone, a soft timer lets you stay relaxed without worrying about drifting off."
+    a: "Around 5–10 minutes is typical. Because a Yin practice doesn't work the muscles hard, a slightly shorter rest — roughly 5 to 8 percent of your total practice time — is often enough. If you're practicing alone, a soft timer lets you stay relaxed without worrying about drifting off."
   - q: "Why is Corpse Pose (Savasana) important?"
     a: "It's the final rest that closes your practice. Lying completely still gives the body and nervous system time to absorb everything you've done, and many people find it deeply settling. Skipping it means missing the part of the practice where all the work quietly lands."
   - q: "How do you do Corpse Pose?"

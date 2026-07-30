@@ -28,12 +28,13 @@ bunny_video_id: ""
 access: "free"
 unlisted: true
 why: >
-  A run loads the same chain of tissues over and over — hips, hamstrings, calves,
-  quads, lower back — and quietly shortens them, run after run. This is the simple
-  after-run habit that gives that range back before the tightness settles in: one
-  long, easy shape for each area while you're still warm, held long enough for the
-  deeper tissue to let go. Hips, glutes, hamstrings and spine — nothing running
-  loads gets neglected, and it's over in about fifteen minutes.
+  Four shapes, one for each place a run tightens — the front of the hip, the glute,
+  the hamstring, the spine. That's why this one exists: the whole chain in a single
+  short practice, so nothing gets skipped on the days you'd otherwise skip everything.
+  The area sessions go deeper into one spot; this is the one to reach for when you
+  don't want to choose. Use it right after a run while you're still warm and the
+  tissue gives most easily — and on a heavy training week, when the honest choice is
+  a short practice or none at all.
 angle: "Fifteen quiet minutes to undo what a run tightens — while you're still warm."
 intro: >
   This is your free Post-Run Reset — the exact class I'd hand a runner first. One

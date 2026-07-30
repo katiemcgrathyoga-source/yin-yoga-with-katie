@@ -38,7 +38,7 @@ This is a full-body Yin Yoga class — ninety minutes of slow, deep stretches an
 
 ## Who this class is for
 
-Everyone is welcome, whatever your experience. New to Yin? You're in the right place. Been practising a while? There's room to go deeper. If you sit a lot, feel tight, or simply want a long, calming stretch, this class meets you where you are.
+Everyone is welcome, whatever your experience. New to Yin? You're in the right place. Been practicing a while? There's room to go deeper. If you sit a lot, feel tight, or simply want a long, calming stretch, this class meets you where you are.
 
 ## What you need
 
@@ -52,5 +52,5 @@ Just your mat. If you have a firm cushion or pillow and a blanket nearby, keep t
 
 <!-- Body written in Katie's teaching voice, grounded in the class transcript
 (data/transcripts/A7GAH88wdHk.srt). The pose rundown renders from `chapters` as the
-interactive "What you'll practise" list; the closing safety note is the site-wide
+interactive "What you'll practice" list; the closing safety note is the site-wide
 gentle-reminder block. -->

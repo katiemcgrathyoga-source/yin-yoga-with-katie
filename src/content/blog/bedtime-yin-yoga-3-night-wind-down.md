@@ -23,7 +23,7 @@ faq:
   - q: "What time should I do my bedtime wind-down?"
     a: "The hour or so before bed is ideal. Dim the lights, put your phone in another room, and let the practice be the bridge between your day and sleep."
   - q: "Do I need props for a bedtime practice?"
-    a: "No — a cushion or two and a blanket to keep warm are nice, but nothing's required. You can practise right on your bed and drift straight off afterwards."
+    a: "No — a cushion or two and a blanket to keep warm are nice, but nothing's required. You can practice right on your bed and drift straight off afterwards."
 ---
 
 If your mind is still racing when your head hits the pillow, a short, slow Yin practice in the hour before bed can be a lovely way to change gears. Yin Yoga asks almost nothing of you — you settle into a handful of floor-based shapes, hold each one for a few quiet minutes, and let gravity do the work. The long holds and slow, unhurried breathing gently invite the body out of "doing" mode and toward its rest state.
@@ -32,7 +32,7 @@ This is a **three-night wind-down** — the first three evenings of my Bedtime Y
 
 ## How do you use Yin Yoga before bed?
 
-Keep it simple and comfortable: practise in loose, warm clothes, dim the lights, and have a cushion or folded blanket nearby to sit or rest on. Nothing here is a stretch you push into — you're looking for a mild, tolerable sensation you can breathe with, then stillness. If a shape is too much, come out sooner or take the gentler option. Little and often does more than long and rare.
+Keep it simple and comfortable: practice in loose, warm clothes, dim the lights, and have a cushion or folded blanket nearby to sit or rest on. Nothing here is a stretch you push into — you're looking for a mild, tolerable sensation you can breathe with, then stillness. If a shape is too much, come out sooner or take the gentler option. Little and often does more than long and rare.
 
 ## Night 1 — settle and soften
 
@@ -74,7 +74,7 @@ By the third evening you're releasing the two places most of us hold tension. **
 
 ## What if I want to keep going?
 
-Three nights is enough to feel the difference — most people notice they get to bed a little more settled. If you'd like to carry it on, the whole thing is laid out for you as a guided path below, so you never have to decide what to practise. Come back to any night whenever the day has been a lot.
+Three nights is enough to feel the difference — most people notice they get to bed a little more settled. If you'd like to carry it on, the whole thing is laid out for you as a guided path below, so you never have to decide what to practice. Come back to any night whenever the day has been a lot.
 
 And if there's one shape you'd like to explore a little more deeply, this is a lovely one to end on:
 

@@ -17,12 +17,12 @@ practise:
   video_label: "30-Min Yin Yoga for Sleep"
 faq:
   - q: "Can I do Yin Yoga in bed?"
-    a: "Yes — and it's one of the loveliest ways to practise before sleep. Soft, reclined shapes like a gentle twist, butterfly or a simple forward fold work beautifully on a mattress. Keep to the calm, lying-down poses rather than anything deep or balancing, and let yourself drift straight into sleep afterwards."
-  - q: "How long before bed should I practise?"
+    a: "Yes — and it's one of the loveliest ways to practice before sleep. Soft, reclined shapes like a gentle twist, butterfly or a simple forward fold work beautifully on a mattress. Keep to the calm, lying-down poses rather than anything deep or balancing, and let yourself drift straight into sleep afterwards."
+  - q: "How long before bed should I practice?"
     a: "The hour or so before bed is the sweet spot. Dim the lights, put your phone in another room, and let the practice be the bridge between your day and sleep. Even ten quiet minutes counts — little and often does far more than long and rare."
   - q: "Do I need props for bedtime Yin?"
-    a: "Not at all. A cushion or two and a blanket to keep warm are nice, but nothing is required — you can practise right on your bed. Come as you are, in whatever's comfortable."
-  - q: "What if my mind won't switch off while I practise?"
+    a: "Not at all. A cushion or two and a blanket to keep warm are nice, but nothing is required — you can practice right on your bed. Come as you are, in whatever's comfortable."
+  - q: "What if my mind won't switch off while I practice?"
     a: "That's completely normal — it doesn't mean it isn't working. As soon as you notice you're thinking, just gently come back to the feeling of your breath. You're not trying to empty your mind, only to give it something soft to rest on."
   - q: "Is Yin or Restorative Yoga better for sleep?"
     a: "Both are wonderful before bed, and many bedtime practices blend the two. Reach for Restorative if you're truly depleted and just need to be held; reach for Yin if you'd also like a gentle stretch. If you're curious, I wrote more on the difference in the journal."
@@ -38,9 +38,9 @@ Two things make it so effective in the evening. First, the **long, still holds**
 
 None of this is forceful. You're not stretching hard or working up a sweat — you're settling, softening, and letting gravity carry the weight of the day off your shoulders.
 
-## When should you practise Yin for sleep?
+## When should you practice Yin for sleep?
 
-The sweet spot is the **hour or so before bed**. Dim the lights, put your phone in another room (or at least face-down and silent), and get warm — a jumper and socks, a blanket nearby. You can practise right on your bed, or on the floor beside it so you can crawl straight under the covers afterwards. Loose, comfortable clothes, a cushion or two, and you're ready. Little and often does far more than long and rare, so even ten quiet minutes counts.
+The sweet spot is the **hour or so before bed**. Dim the lights, put your phone in another room (or at least face-down and silent), and get warm — a jumper and socks, a blanket nearby. You can practice right on your bed, or on the floor beside it so you can crawl straight under the covers afterwards. Loose, comfortable clothes, a cushion or two, and you're ready. Little and often does far more than long and rare, so even ten quiet minutes counts.
 
 ## The best Yin Yoga poses for sleep
 
@@ -84,11 +84,11 @@ If you'd rather be guided than remember a sequence, press play on one of these �
 </aside>
 </div>
 
-Prefer to practise without a screen narrating every second? The **[20-minute Bedtime Wind-Down routine](/routines/bedtime-wind-down)** times each hold for you and chimes softly when it's time to move on — you settle in, close your eyes, and let the timing take care of itself. Want a little more structure over several nights? The **[3-night bedtime wind-down](/blog/bedtime-yin-yoga-3-night-wind-down)** walks you through three evenings in order, or [browse all the routines](/routines) by time and mood.
+Prefer to practice without a screen narrating every second? The **[20-minute Bedtime Wind-Down routine](/routines/bedtime-wind-down)** times each hold for you and chimes softly when it's time to move on — you settle in, close your eyes, and let the timing take care of itself. Want a little more structure over several nights? The **[3-night bedtime wind-down](/blog/bedtime-yin-yoga-3-night-wind-down)** walks you through three evenings in order, or [browse all the routines](/routines) by time and mood.
 
 ## How long before bed, and how often?
 
-Practise **in the hour before you want to be asleep** — closer to bedtime is better, since the whole point is to carry the calm straight into sleep. As for how often: a few evenings a week is plenty to feel a difference, and nightly is lovely if it becomes a ritual you look forward to rather than another task. The consistency matters more than the length. If you only manage Legs Up the Wall and a few slow breaths, that's a complete practice.
+Practice **in the hour before you want to be asleep** — closer to bedtime is better, since the whole point is to carry the calm straight into sleep. As for how often: a few evenings a week is plenty to feel a difference, and nightly is lovely if it becomes a ritual you look forward to rather than another task. The consistency matters more than the length. If you only manage Legs Up the Wall and a few slow breaths, that's a complete practice.
 
 *This is a gentle movement practice, not medical advice. If you have ongoing sleep difficulties, or you're pregnant or managing a back, hip or eye/pressure concern, take the gentler option and check with your doctor — especially before inversions like Legs Up the Wall.*
 

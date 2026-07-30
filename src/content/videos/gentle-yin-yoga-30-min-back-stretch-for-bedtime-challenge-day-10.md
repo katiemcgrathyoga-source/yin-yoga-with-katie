@@ -29,7 +29,7 @@ faq:
   - q: "Is this suitable if my back feels stiff or I'm a beginner?"
     a: "Yes — it's a gentle, all-levels practice made to ease a tight back after a long day. Every shape has a softer option: you can slide the elbows further forward in sphinx, keep a bend in your arms in the side bend, and let the twist stay small. Find your 60–80% and let the pose do the work."
   - q: "Why do we finish with a reclined twist before bed?"
-    a: "A slow twist gently unwinds the spine and invites the whole body to settle, which makes it a lovely way to end the day. We hold each side for a few quiet minutes so you can soften, breathe, and feel yourself drifting towards rest."
+    a: "A slow twist gently unwinds the spine and invites the whole body to settle, which makes it a lovely way to end the day. We hold each side for a few quiet minutes so you can soften, breathe, and feel yourself drifting toward rest."
 ---
 
 ## What this Yin class is
@@ -38,7 +38,7 @@ Day 10 of the Bedtime Yin Yoga Challenge — a gentle 30 minutes for the back an
 
 ## Who this class is for
 
-Anyone with a tight or tired back who wants to unwind before sleep — it's perfect for beginners and just as lovely if you're well practised. If you've been sitting or standing all day, this is a kind way to let the spine release. Follow the shapes at your own pace and take the gentler option whenever you need it.
+Anyone with a tight or tired back who wants to unwind before sleep — it's perfect for beginners and just as lovely if you're well practiced. If you've been sitting or standing all day, this is a kind way to let the spine release. Follow the shapes at your own pace and take the gentler option whenever you need it.
 
 ## What you need
 

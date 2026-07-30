@@ -30,7 +30,7 @@ faq:
   - q: "What props do I need for this class?"
     a: "A yoga block or two, and a bolster if you have one. A firm cushion or a couple of folded blankets work just as well — I'll show you exactly where to place everything as we go, so the shapes hold you rather than the other way round."
   - q: "Is this reclined class suitable for beginners?"
-    a: "Yes. Because we stay fully reclined and let the props do the work, this is one of the gentlest ways to practise Yin. Come as you are — every pose has a gentler option and a deeper one, so you choose what feels right tonight."
+    a: "Yes. Because we stay fully reclined and let the props do the work, this is one of the gentlest ways to practice Yin. Come as you are — every pose has a gentler option and a deeper one, so you choose what feels right tonight."
   - q: "When is the best time to do this practice?"
     a: "Right before bed, in dim light and something warm. It's designed to wind you down, so it's lovely as the last thing you do before sleep — follow it with a Yoga Nidra or guided relaxation if you'd like to sink even deeper."
 ---

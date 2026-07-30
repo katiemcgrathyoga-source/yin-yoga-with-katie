@@ -37,7 +37,7 @@ faq:
   - q: "How long do you hold Ankle Stretch in Yin Yoga?"
     a: "Most people hold Ankle Stretch for 1–3 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
   - q: "What's the difference between Ankle Stretch and Toe Squat?"
-    a: "They are opposites, which is why they pair so well. Ankle Stretch keeps the toes untucked to lengthen the fronts of the ankles and the tops of the feet, while Toe Squat tucks the toes under to stretch the soles of the feet and the toes. Practising both balances the front and back of the ankle."
+    a: "They are opposites, which is why they pair so well. Ankle Stretch keeps the toes untucked to lengthen the fronts of the ankles and the tops of the feet, while Toe Squat tucks the toes under to stretch the soles of the feet and the toes. Practicing both balances the front and back of the ankle."
   - q: "Is Ankle Stretch safe for the knees?"
     a: "Go gently. The shape asks the knees to fold fully as you sit back, which not every knee enjoys. Keep the knees comfortable throughout, pad behind them or under the ankles with a rolled blanket, and ease off at once if you feel anything sharp — a hard, bone-on-bone sensation in the joint is your cue to stop, not to push."
   - q: "What does Ankle Stretch stretch?"
@@ -47,7 +47,7 @@ youtube_video_id: ""
 images:
   - "/poses/ankle-stretch.jpg"
 seo_title: "Ankle Stretch in Yin Yoga: Benefits & How-To"
-seo_description: "Ankle Stretch opens the fronts of the ankles and shins in Yin Yoga, the counter to Toe Squat. Learn how to practise it safely, with props and cautions."
+seo_description: "Ankle Stretch opens the fronts of the ankles and shins in Yin Yoga, the counter to Toe Squat. Learn how to practice it safely, with props and cautions."
 ---
 
 <!-- Original copy in Katie's voice, grounded in Bernie Clark, The Complete Guide to

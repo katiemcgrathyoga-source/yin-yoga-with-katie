@@ -20,7 +20,7 @@ faq:
     a: "About 19 minutes, with no props required — just a mat. It's short enough to slot into a work break."
   - q: "How often can I do it?"
     a: "Daily is completely fine. A few minutes of shoulder release most days tends to help far more than one long session a week."
-membership_cta: "If desk tension is your thing, the membership has longer shoulder-focused classes and a guided plan so you never have to think about what to practise."
+membership_cta: "If desk tension is your thing, the membership has longer shoulder-focused classes and a guided plan so you never have to think about what to practice."
 summary: "A 19-minute Yin routine for the shoulders, neck and upper back — open the chest and unstick tight shoulders after a day at the desk."
 seo_title: "19-Minute Yin Yoga for Shoulders & Neck — Desk Relief Routine"
 seo_description: "A short 19-minute Yin Yoga routine for tight shoulders, neck and upper back, with a built-in hold timer. Perfect desk relief you can follow along. All levels."

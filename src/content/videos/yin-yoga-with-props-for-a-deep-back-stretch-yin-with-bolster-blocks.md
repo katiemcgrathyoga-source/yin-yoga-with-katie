@@ -39,7 +39,7 @@ A calm, fully-supported Yin class for the back and spine, using a bolster and on
 
 ## Who this class is for
 
-Anyone whose back and spine feel tight, stiff or tired and wants a slow, gentle way to unwind them. Because everything is supported by props, it's welcoming whether you're new to Yin or well practised. It's especially lovely at the end of a long day or a desk-bound week.
+Anyone whose back and spine feel tight, stiff or tired and wants a slow, gentle way to unwind them. Because everything is supported by props, it's welcoming whether you're new to Yin or well practiced. It's especially lovely at the end of a long day or a desk-bound week.
 
 ## What you need
 

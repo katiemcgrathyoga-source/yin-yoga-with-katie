@@ -46,7 +46,7 @@ A gentle 35 minutes made for the days when the heart feels heavy. We begin seate
 
 ## Who this class is for
 
-Anyone who wants a soft, comforting practice to move through when they're feeling tender, low or simply in need of some gentleness. It suits all levels, whether you're brand new to Yin or well practised — nothing here is strong or strenuous. If you'd like company and a calm voice to guide you, this is for you.
+Anyone who wants a soft, comforting practice to move through when they're feeling tender, low or simply in need of some gentleness. It suits all levels, whether you're brand new to Yin or well practiced — nothing here is strong or strenuous. If you'd like company and a calm voice to guide you, this is for you.
 
 ## What you need
 

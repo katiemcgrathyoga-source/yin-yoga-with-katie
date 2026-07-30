@@ -24,7 +24,7 @@ cues:
 transitions_in:
   - "From lying flat on your back, walk the feet and then the upper body over to one side into a crescent."
 transitions_out:
-  - "Come out slowly — uncross the ankles, walk yourself back to centre, and rest flat before curving to the other side."
+  - "Come out slowly — uncross the ankles, walk yourself back to center, and rest flat before curving to the other side."
 counterposes:
   - "Lie flat and still for a few breaths to let both sides feel even again."
   - "A gentle knees-to-chest hug to release the lower back."

@@ -20,7 +20,7 @@ faq:
     a: "Yes — it's one of the gentlest ways to start. You don't need any flexibility or experience; you simply settle into a few floor-based shapes and let gravity do the work. Tight, stiff bodies are exactly who Yin is for."
   - q: "How is Yin Yoga different from regular yoga?"
     a: "Most yoga flows from pose to pose and builds strength. Yin is the opposite — slow and still. You hold each shape for a few quiet minutes and let it soften you, rather than working or sweating."
-  - q: "How often should a beginner practise Yin Yoga?"
+  - q: "How often should a beginner practice Yin Yoga?"
     a: "Even once or twice a week makes a difference. Little and often does far more than long and rare, so start small and let it become something you look forward to."
   - q: "Do I need to be flexible to start?"
     a: "Not at all — quite the opposite. You only ever go to about the point your body's happy with, and let it soften from there. There's no right or wrong shape."
@@ -51,7 +51,7 @@ Very little. A mat or a bit of carpet, warm clothes you can be still in, and a q
 
 ## The three cues that make Yin work
 
-Almost everything in Yin comes down to three simple ideas. Keep these in mind and you already know how to practise:
+Almost everything in Yin comes down to three simple ideas. Keep these in mind and you already know how to practice:
 
 1. **Find your edge.** Come to about 60–80% of your capacity — a real, honest stretch, but never forcing or straining. Yin should feel like *a lot of something gentle*, not a little of something sharp.
 2. **Hold for time.** Yin poses are held a couple of minutes or more; the length is where the change happens. Come out sooner whenever you need to.
@@ -94,9 +94,9 @@ Two easy ways in, both free. Press play on a beginner class and follow along fro
 </aside>
 </div>
 
-Or, if you'd rather practise without a screen narrating every second, a [self-guided routine](/routines) counts each hold for you and chimes softly when it's time to move on.
+Or, if you'd rather practice without a screen narrating every second, a [self-guided routine](/routines) counts each hold for you and chimes softly when it's time to move on.
 
-Practise in the hour before bed if you can — dim the lights, get warm, and let it be the slow end to your day.
+Practice in the hour before bed if you can — dim the lights, get warm, and let it be the slow end to your day.
 
 *A gentle note: Yin isn't medical advice. Move slowly, take the easier option in any shape, and if you're pregnant or have a back, hip or knee concern, check with your doctor before you begin.*
 

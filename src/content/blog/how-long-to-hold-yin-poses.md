@@ -68,7 +68,7 @@ When you do come out, do it slowly, and rest for a few breaths in a simple count
 
 ## The easiest way to time your holds
 
-You don't have to watch a clock. Every pose page on this site has a **built-in hold timer**, and if you'd rather practise a whole sequence without a screen narrating every second, a **[self-guided routine](/routines)** counts each hold for you and rings a soft bell when it's time to move on. You settle in, close your eyes, and let the timing take care of itself.
+You don't have to watch a clock. Every pose page on this site has a **built-in hold timer**, and if you'd rather practice a whole sequence without a screen narrating every second, a **[self-guided routine](/routines)** counts each hold for you and rings a soft bell when it's time to move on. You settle in, close your eyes, and let the timing take care of itself.
 
 *This is a gentle movement practice, not medical advice. Ease off in any shape that doesn't feel right, and check with your doctor if you have a joint or back concern.*
 

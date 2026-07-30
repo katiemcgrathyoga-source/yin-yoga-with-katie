@@ -23,7 +23,7 @@ chapters:
   - { time: "31:13",  seconds: 1873, title: "Closing meditation" }
 seo_title: "Silent Yin Yoga — 30-min Full-Body Deep Stretch, Minimum Cues"
 seo_description: "A 30-minute silent Yin Yoga class with minimum cues — child's pose, melting heart, sleeping swan and shoelace with eagle arms, each held three quiet minutes."
-membership_cta: "Loved practising in the quiet? Inside the membership, this class is part of a guided Full-Body program — so instead of choosing a video each day, you follow the plan and move through your week feeling looser and lighter."
+membership_cta: "Loved practicing in the quiet? Inside the membership, this class is part of a guided Full-Body program — so instead of choosing a video each day, you follow the plan and move through your week feeling looser and lighter."
 summary: "A 30-minute silent, full-body Yin class with minimum cues — settle into child's pose, melting heart, sleeping swan and shoelace, each held in stillness."
 faq:
   - q: "What props do I need for this class?"
@@ -40,7 +40,7 @@ A 30-minute silent, full-body Yin class where the talking falls away and the sti
 
 ## Who this class is for
 
-Anyone who already knows their way around a few Yin poses and would love to practise in peaceful quiet rather than with constant cueing. It's a beautiful reset after a busy day or at the end of the week. New to Yin? You're very welcome to follow along — just take your time and lean on the gentler option in every pose.
+Anyone who already knows their way around a few Yin poses and would love to practice in peaceful quiet rather than with constant cueing. It's a beautiful reset after a busy day or at the end of the week. New to Yin? You're very welcome to follow along — just take your time and lean on the gentler option in every pose.
 
 ## What you need
 

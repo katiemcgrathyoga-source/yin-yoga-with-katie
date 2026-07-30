@@ -34,7 +34,7 @@ membership_cta: "Inside the membership, this class is part of a guided Full-Body
 summary: "A guided 70-minute Yin class for digestion and detox — gentle twists, folds and compression to nourish the belly, held long and slow. All levels."
 faq:
   - q: "How does this class support digestion?"
-    a: "The poses work around the centre of the body — twisting, folding and gently compressing the belly — which massages the digestive organs and supports the liver, gallbladder, kidney and bladder lines. It's a lovely practice when your digestion needs a little TLC."
+    a: "The poses work around the center of the body — twisting, folding and gently compressing the belly — which massages the digestive organs and supports the liver, gallbladder, kidney and bladder lines. It's a lovely practice when your digestion needs a little TLC."
   - q: "Do I need any props?"
     a: "A blanket and a cushion or a yoga block to sit on. We use them to lift the hips in the seated folds and twists, like Shoelace, which makes the shapes much kinder on the knees and lower back. A cushion works just as well if you don't have a block."
   - q: "Is this suitable for beginners?"
@@ -43,7 +43,7 @@ faq:
 
 ## What this Yin class is
 
-Seventy minutes of Yin to give your digestion some TLC. The shapes here work around the centre of the body — gently twisting, folding and compressing the belly to stimulate the digestive organs, with poses that also support the liver, gallbladder, kidneys and bladder lines. This is a guided class, so I talk you into each shape and tell you how long we'll stay, then leave you plenty of quiet to settle. Come as you are — every pose has a gentler option and a deeper one.
+Seventy minutes of Yin to give your digestion some TLC. The shapes here work around the center of the body — gently twisting, folding and compressing the belly to stimulate the digestive organs, with poses that also support the liver, gallbladder, kidneys and bladder lines. This is a guided class, so I talk you into each shape and tell you how long we'll stay, then leave you plenty of quiet to settle. Come as you are — every pose has a gentler option and a deeper one.
 
 ## Who this class is for
 

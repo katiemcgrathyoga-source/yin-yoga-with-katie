@@ -31,7 +31,7 @@ faq:
   - q: "What props do I need for this class?"
     a: "Just one bolster — that's the star of this class. Every pose is done lying down with the bolster supporting you, so if you don't have one a firm cushion or a couple of folded blankets will do the same job. A blanket over you for warmth is lovely too, since we stay still for a while."
   - q: "Why is this class silent with minimal cues?"
-    a: "Once you're settled into each shape I step back and let you rest in stillness, with only a few gentle words to guide you in and out. It gives your mind space to soften and your nervous system time to downshift — perfect if you find lots of talking distracting, or if you're winding down towards sleep."
+    a: "Once you're settled into each shape I step back and let you rest in stillness, with only a few gentle words to guide you in and out. It gives your mind space to soften and your nervous system time to downshift — perfect if you find lots of talking distracting, or if you're winding down toward sleep."
   - q: "Is this suitable if I'm not very flexible or brand new to Yin?"
     a: "Absolutely. The whole class is fully reclined and supported by the bolster, so there's no deep stretching or effort required — find your edge at about 60–80% and let the props hold you. It's one of the gentlest ways to start Yin, and just as welcome after a long day whatever your experience."
 ---

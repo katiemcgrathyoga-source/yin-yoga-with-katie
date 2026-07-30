@@ -29,7 +29,7 @@ faq:
   - q: "Is this suitable if I'm not very flexible?"
     a: "Yes. Every pose has a gentler version and a deeper one, and twisting especially is about staying at your appropriate edge — around 60–80% — rather than going as far as you can. As Katie says, as long as you can feel a little twist in your spine, you're doing it just right."
   - q: "Why an evening class of twists before bed?"
-    a: "Gentle twists feel really soothing for the spine and help release the tension of the day, and this slow, still practice is designed to calm your mind and ease you towards a restful night. It's a beautiful way to unwind before you sleep."
+    a: "Gentle twists feel really soothing for the spine and help release the tension of the day, and this slow, still practice is designed to calm your mind and ease you toward a restful night. It's a beautiful way to unwind before you sleep."
 ---
 
 ## What this Yin class is
@@ -38,7 +38,7 @@ Welcome to Day 12 of the Bedtime Yin Yoga Challenge — a gentle 30-minute eveni
 
 ## Who this class is for
 
-Anyone wanting to unwind and let go of the day before bed, whether you're brand new to Yin or well practised. It's especially lovely if you carry tension in your back, or if your mind tends to race at night and you'd like something calming to guide you down. Follow the shapes at your own pace and take the gentler option whenever you need it.
+Anyone wanting to unwind and let go of the day before bed, whether you're brand new to Yin or well practiced. It's especially lovely if you carry tension in your back, or if your mind tends to race at night and you'd like something calming to guide you down. Follow the shapes at your own pace and take the gentler option whenever you need it.
 
 ## What you need
 

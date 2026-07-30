@@ -29,7 +29,7 @@ faq:
   - q: "What props do I need for this class?"
     a: "A bolster, or a couple of yoga blocks — or both, if you have them. Don't worry if you only have one or the other; a firm cushion or a few folded blankets work just as well. I'll show you exactly where to place everything as we go, so the props hold you rather than the other way round."
   - q: "Is this class suitable for beginners?"
-    a: "Yes. Resting over a bolster makes these deep shapes feel comforting rather than effortful, so it's a lovely, forgiving way to practise Yin. Come as you are — every pose has a gentler option and a deeper one, so you choose what feels right tonight."
+    a: "Yes. Resting over a bolster makes these deep shapes feel comforting rather than effortful, so it's a lovely, forgiving way to practice Yin. Come as you are — every pose has a gentler option and a deeper one, so you choose what feels right tonight."
   - q: "When is the best time to do this practice?"
     a: "Right before bed, in dim light and something warm. It's designed to wind you down, so it's lovely as the last thing you do before sleep — let the props carry you and follow your breath as it slows."
 ---

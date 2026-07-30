@@ -22,7 +22,7 @@ faq:
     a: "Many of them are — gentle, slow and beginner-friendly. You can filter by focus and length to find a shorter, softer practice to start with."
 ---
 
-For a long time now, everything I make has lived on YouTube. I love YouTube — it's where we found each other — but it was never built for the way people actually *practise* Yin. You'd come looking for "something for my hips before bed," and end up scrolling past thumbnails, half-remembering which class was the good one, talking yourself out of rolling out the mat at all.
+For a long time now, everything I make has lived on YouTube. I love YouTube — it's where we found each other — but it was never built for the way people actually *practice* Yin. You'd come looking for "something for my hips before bed," and end up scrolling past thumbnails, half-remembering which class was the good one, talking yourself out of rolling out the mat at all.
 
 So I made something better. This whole site is a proper home for the practice — free, no login, nothing to buy. Just the calmest, clearest way I could imagine to find the right practice and actually do it. Here's what's waiting for you.
 

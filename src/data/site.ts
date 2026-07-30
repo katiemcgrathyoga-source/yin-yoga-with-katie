@@ -8,7 +8,7 @@ export const SITE = {
   // rather than another page of the public site. Flip this one value to switch:
   //   'focused'  — deep sage bar, tight chrome, minimal footer. A practice mode.
   //   'familiar' — Katie's normal palette; only the nav and footer differ.
-  // Everything else (colours, type, components) is shared either way.
+  // Everything else (colors, type, components) is shared either way.
   courseChrome: 'focused' as 'focused' | 'familiar',
 
   // "Buy me a coffee" / tip link, shown in the footer. Paste your full URL here

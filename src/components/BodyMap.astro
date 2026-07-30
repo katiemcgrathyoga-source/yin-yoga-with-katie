@@ -13,7 +13,7 @@
  *
  * The artwork is a set of nine illustrated plates sharing one pair of figures:
  * front and back in four and five highlight states. All nine are cropped to the
- * same box and colour-matched to a single cream, so the two views sit seamlessly
+ * same box and color-matched to a single cream, so the two views sit seamlessly
  * side by side and the figure never shifts as you move between sessions.
  *
  * That cream ground is carried on the panel behind the images, so the diagram
@@ -21,7 +21,7 @@
  * on a dark card. Text inside the plate is therefore fixed, not themed.
  *
  * Sources live in design/bodymap-source/; regenerate the webp with the crop and
- * colour-match step in that folder's README if the plates are ever redrawn.
+ * color-match step in that folder's README if the plates are ever redrawn.
  */
 interface Props {
   region: 'hips' | 'hamstrings' | 'quads' | 'calves' | 'back' | 'full';
@@ -80,8 +80,8 @@ const VIEWS = [
   .bmap-view { flex: 1 1 0; min-width: 0; }
   .bmap-view img { display: block; width: 100%; height: auto; }
 
-  /* Fixed colour, not a theme variable: this text sits on the cream plate in
-     dark mode too, where --ink-soft would be a pale grey and vanish. */
+  /* Fixed color, not a theme variable: this text sits on the cream plate in
+     dark mode too, where --ink-soft would be a pale gray and vanish. */
   .bmap-view-cap {
     display: block;
     margin-top: 4px;

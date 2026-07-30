@@ -12,10 +12,10 @@ benefits:
   - "Opens the chest, shoulders and the whole upper back — the front-body space that closes down over a day of desks, phones and driving."
   - "Creates a deep bend through the upper and middle spine while the lower back stays comfortable, so it suits people who find deeper backbends too strong."
   - "Stimulates the Heart and Lung lines through the arms and chest, the Stomach and Spleen lines across the front body, and the Urinary Bladder line along the spine."
-  - "A quietly emotional shape — melting the heart towards the floor can feel like a soft, honest opening. Come as you are and let it."
+  - "A quietly emotional shape — melting the heart toward the floor can feel like a soft, honest opening. Come as you are and let it."
 cues:
   - "Begin on hands and knees, knees under your hips. Keep the hips stacked high over the knees the whole way through — this is what protects your lower back."
-  - "Walk your hands forward along the floor, letting your chest sink towards the ground and your forehead or chin come to rest."
+  - "Walk your hands forward along the floor, letting your chest sink toward the ground and your forehead or chin come to rest."
   - "Keep your arms about shoulder-width and your elbows lifted, so the stretch pours into the shoulders and upper back rather than collapsing."
   - "Find your edge — about 60–80% of your capacity, a real stretch through the chest but never forcing. A pinch across the back of the shoulders often means you've met a compression point where bone meets bone, not a stretch — walk the hands wider apart to make room, or walk them back to ease the depth."
   - "For more, rest your forehead down and let the chest melt lower; for a gentler option, place a bolster under the chest to hold you."
@@ -47,7 +47,7 @@ youtube_video_id: ""
 images:
   - "/poses/melting-heart.jpg"
 seo_title: "Melting Heart Pose in Yin Yoga: Benefits & How-To"
-seo_description: "Melting Heart is a yin shoulder and chest opener that melts the upper back towards the floor. Learn the cues, hold time, props and cautions."
+seo_description: "Melting Heart is a yin shoulder and chest opener that melts the upper back toward the floor. Learn the cues, hold time, props and cautions."
 ---
 
 <!-- Original copy in Katie's voice, grounded in Bernie Clark, The Complete Guide to

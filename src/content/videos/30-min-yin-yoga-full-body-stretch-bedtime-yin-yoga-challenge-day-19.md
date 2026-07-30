@@ -37,7 +37,7 @@ Day 19 of the Bedtime Yin Challenge — a gentle 30-minute full-body stretch to 
 
 ## Who this class is for
 
-Anyone who'd like to relax, stretch and quiet the mind before bed. It's a lovely evening wind-down whether you're brand new to Yin or well practised, and it fits beautifully into the 30-day bedtime challenge. New to this? Simply follow the shapes at your own pace and take the gentler option whenever you need it.
+Anyone who'd like to relax, stretch and quiet the mind before bed. It's a lovely evening wind-down whether you're brand new to Yin or well practiced, and it fits beautifully into the 30-day bedtime challenge. New to this? Simply follow the shapes at your own pace and take the gentler option whenever you need it.
 
 ## What you need
 

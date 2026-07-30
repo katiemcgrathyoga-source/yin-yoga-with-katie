@@ -44,7 +44,7 @@ A gentle, guided half-hour of Yin to show your upper body some love. We begin so
 
 ## Who this class is for
 
-Anyone carrying tension across their shoulders, upper back or neck — whether from a desk, a phone or a long day — and anyone who simply wants to slow down and stretch. It suits you whether you're brand new to Yin or well practised; just follow the shapes at your own pace and take the gentler option whenever you need it.
+Anyone carrying tension across their shoulders, upper back or neck — whether from a desk, a phone or a long day — and anyone who simply wants to slow down and stretch. It suits you whether you're brand new to Yin or well practiced; just follow the shapes at your own pace and take the gentler option whenever you need it.
 
 ## What you need
 

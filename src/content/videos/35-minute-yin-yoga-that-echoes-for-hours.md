@@ -41,11 +41,11 @@ faq:
 
 ## What this Yin class is
 
-A calm, 35-minute journey built around the echo — that resonant rebound you feel the moment you release a Yin pose and stay still. We warm the spine with sphinx, resting into crocodile to feel the echo, then deepen with seal before melting the heart towards the mat. From there we open the hips and hamstrings in half butterfly on each side, unwind through reclined twists, and settle into a long corpse pose so the whole practice can be absorbed. The shapes are simple; the stillness after each one is where the magic happens.
+A calm, 35-minute journey built around the echo — that resonant rebound you feel the moment you release a Yin pose and stay still. We warm the spine with sphinx, resting into crocodile to feel the echo, then deepen with seal before melting the heart toward the mat. From there we open the hips and hamstrings in half butterfly on each side, unwind through reclined twists, and settle into a long corpse pose so the whole practice can be absorbed. The shapes are simple; the stillness after each one is where the magic happens.
 
 ## Who this class is for
 
-Anyone who wants to slow right down and feel a practice keep working long after it ends — whether you're brand new to Yin or well practised. The gentle backbends are welcoming, and every pose has a softer and a deeper option, so you can meet your body wherever it is today. It's especially lovely in the evening or any time you need to release tension and restore.
+Anyone who wants to slow right down and feel a practice keep working long after it ends — whether you're brand new to Yin or well practiced. The gentle backbends are welcoming, and every pose has a softer and a deeper option, so you can meet your body wherever it is today. It's especially lovely in the evening or any time you need to release tension and restore.
 
 ## What you need
 

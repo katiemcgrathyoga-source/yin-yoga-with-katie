@@ -38,11 +38,11 @@ A soothing 30-minute reclined Yin practice — Day 13 of the Bedtime Yin Yoga Ch
 
 ## Who this class is for
 
-Anyone who wants to unwind and release tension before bed, whether you're brand new to Yin or well practised. It's especially lovely if your hips, back or shoulders feel tight after a busy day. New to this? Just follow the shapes at your own pace and take the gentler option whenever you need it.
+Anyone who wants to unwind and release tension before bed, whether you're brand new to Yin or well practiced. It's especially lovely if your hips, back or shoulders feel tight after a busy day. New to this? Just follow the shapes at your own pace and take the gentler option whenever you need it.
 
 ## What you need
 
-Only your mat — or your bed, if that's where you'd like to practise. This is a no-props class, though a bolster tucked under your hips or along your spine can add a little extra support if you have one. Keep the lights low, get cosy, and remember every pose has a gentler option and a deeper one.
+Only your mat — or your bed, if that's where you'd like to practice. This is a no-props class, though a bolster tucked under your hips or along your spine can add a little extra support if you have one. Keep the lights low, get cosy, and remember every pose has a gentler option and a deeper one.
 
 ## How Yin Yoga works — three simple cues
 

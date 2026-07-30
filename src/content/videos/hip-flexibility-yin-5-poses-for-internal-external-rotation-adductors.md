@@ -42,7 +42,7 @@ A 45-minute Yin practice for hip flexibility, working the whole hip a little at 
 
 ## Who this class is for
 
-Anyone who wants more ease and openness through the hips — whether they feel tight from sitting, from other movement, or just from a long day. It suits all levels: newer to Yin, follow the lighter options and read the pose notes below first; more practised, take the invitation to go a little deeper when your body offers it. If a pose ever feels like too much, there's always a gentler way in, and coming back out is just as encouraged.
+Anyone who wants more ease and openness through the hips — whether they feel tight from sitting, from other movement, or just from a long day. It suits all levels: newer to Yin, follow the lighter options and read the pose notes below first; more practiced, take the invitation to go a little deeper when your body offers it. If a pose ever feels like too much, there's always a gentler way in, and coming back out is just as encouraged.
 
 ## What you need
 

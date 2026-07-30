@@ -42,7 +42,7 @@ An hour of deep, full-body stretching with long three-minute holds to help you u
 
 ## Who this class is for
 
-Anyone who wants a proper hour to stretch out and switch off, guided the whole way through. A few of the shapes are a touch more intermediate, so it suits you if you've practised a little Yin before — though there's always a gentler option, and you're welcome to take it. Lovely after a long day or a busy week.
+Anyone who wants a proper hour to stretch out and switch off, guided the whole way through. A few of the shapes are a touch more intermediate, so it suits you if you've practiced a little Yin before — though there's always a gentler option, and you're welcome to take it. Lovely after a long day or a busy week.
 
 ## What you need
 

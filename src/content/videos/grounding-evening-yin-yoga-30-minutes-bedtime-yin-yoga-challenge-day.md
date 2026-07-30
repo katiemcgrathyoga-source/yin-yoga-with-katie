@@ -49,7 +49,7 @@ faq:
 
 ## What this Yin class is
 
-This is a slow, grounding evening practice designed to help you let go of the day and drop into rest. We move through just a handful of long, quiet holds — Child's Pose, Squat, Dangling and Deer Pose — each one inviting your energy to sink down and out into the earth. The whole class builds towards a feeling of being cleaner, calmer and lighter, ready for sleep.
+This is a slow, grounding evening practice designed to help you let go of the day and drop into rest. We move through just a handful of long, quiet holds — Child's Pose, Squat, Dangling and Deer Pose — each one inviting your energy to sink down and out into the earth. The whole class builds toward a feeling of being cleaner, calmer and lighter, ready for sleep.
 
 ## Who this class is for
 

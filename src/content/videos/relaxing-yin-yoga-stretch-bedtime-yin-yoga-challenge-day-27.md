@@ -22,12 +22,12 @@ chapters:
 seo_title: "Relaxing Bedtime Yin Yoga Stretch — 35 min, Lower Body"
 seo_description: "A calming 35-minute bedtime Yin class for the lower body: child's pose, dangling, folded deer, supported bridge and a starfish fish to unwind before sleep."
 membership_cta: "This class lives inside the membership's Sleep program — a night-by-night path that helps you fall asleep faster and sleep through. Press play and let it carry you to bed."
-summary: "A relaxing 35-minute bedtime Yin class — a slow lower-body stretch to help you unwind, settle your nervous system and drift towards sleep."
+summary: "A relaxing 35-minute bedtime Yin class — a slow lower-body stretch to help you unwind, settle your nervous system and drift toward sleep."
 faq:
   - q: "What props do I need for this class?"
     a: "One yoga block, and ideally a second, will make everything more comfortable — we use them under the hips in child's pose and deer, under the back in supported bridge, and behind the shoulder blades for the starfish. A cushion works just as well if you don't have blocks, or for resting your head. Have them within easy reach before you begin."
   - q: "Is this a good class to do right before bed?"
-    a: "Yes — it's Day 27 of the Bedtime Yin challenge, designed to be done in the evening. The poses are slow, grounding and lower-body focused, and we finish lying supported over a block so you can melt into stillness. It's a lovely way to let go of the day and ease your body towards sleep."
+    a: "Yes — it's Day 27 of the Bedtime Yin challenge, designed to be done in the evening. The poses are slow, grounding and lower-body focused, and we finish lying supported over a block so you can melt into stillness. It's a lovely way to let go of the day and ease your body toward sleep."
   - q: "Can I follow along if I'm not very flexible?"
     a: "Absolutely. Yin is never about how far you go — find your edge at about 60–80% and let the shape do the work. Every pose here has a gentler option: keep your knees bent in dangling, rest onto a block in deer, and adjust the height of your bridge. Take whatever version feels kind to your body tonight."
 ---
@@ -38,7 +38,7 @@ A calm, lower-body Yin practice for the evening — Day 27 of the Bedtime Yin ch
 
 ## Who this class is for
 
-Anyone who wants to stretch out and switch off before bed, whether you're brand new to Yin or well practised. It's especially lovely if you carry tension in your hips and lower back after a long day. Follow the shapes at your own pace and take the gentler option whenever you need it.
+Anyone who wants to stretch out and switch off before bed, whether you're brand new to Yin or well practiced. It's especially lovely if you carry tension in your hips and lower back after a long day. Follow the shapes at your own pace and take the gentler option whenever you need it.
 
 ## What you need
 

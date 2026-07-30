@@ -28,7 +28,7 @@ membership_cta: "Love a deep practice like this? Inside the membership it's part
 summary: "A 40-minute Yin Yoga class of gentle backbends and front-body openers — a slow, deep stretch for the chest, shoulders, belly and quads. No props needed, all levels."
 faq:
   - q: "Do I need any props for this class?"
-    a: "No — you can practise this with just your mat. That said, it's always nice to have a cushion or a couple of yoga blocks nearby if you have them, especially to sit or lean on in Saddle or to rest your forehead in Puppy. Nothing is required, but a little extra padding is always welcome."
+    a: "No — you can practice this with just your mat. That said, it's always nice to have a cushion or a couple of yoga blocks nearby if you have them, especially to sit or lean on in Saddle or to rest your forehead in Puppy. Nothing is required, but a little extra padding is always welcome."
   - q: "Are backbends okay if my back feels sensitive?"
     a: "These are gentle, supported openers rather than deep or forceful backbends. Every pose has a lighter version — you can slide your elbows further forward in Sphinx, keep your hands wide in Puppy, or stay upright in Saddle rather than leaning back. Find about 60–80% of your edge, never a sharp pinch, and come out slowly whenever you need to."
   - q: "Which parts of the body does this stretch?"

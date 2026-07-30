@@ -37,7 +37,7 @@ Thirty focused minutes to open the hips and hamstrings and build a little more f
 
 ## Who this class is for
 
-Anyone wanting to feel looser through the hips and hamstrings, whether you're brand new to Yin or well practised. The longer holds ask for a little patience, so it's lovely when you've got half an hour to slow right down. New to this? Follow the shapes at your own pace and take the gentler option whenever you need it.
+Anyone wanting to feel looser through the hips and hamstrings, whether you're brand new to Yin or well practiced. The longer holds ask for a little patience, so it's lovely when you've got half an hour to slow right down. New to this? Follow the shapes at your own pace and take the gentler option whenever you need it.
 
 ## What you need
 

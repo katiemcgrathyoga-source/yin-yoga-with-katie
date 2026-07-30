@@ -40,7 +40,7 @@ A slow, gentle 20-minute Yin practice to ease you into the day. We settle in wit
 
 ## Who this class is for
 
-Anyone who likes to start the morning slowly and gently, whether you're brand new to Yin or well practised. It's a lovely first thing to do before the day gets going, and it works even when your body feels stiff and sleepy. Follow the shapes at your own pace and take the gentler option whenever you need it.
+Anyone who likes to start the morning slowly and gently, whether you're brand new to Yin or well practiced. It's a lovely first thing to do before the day gets going, and it works even when your body feels stiff and sleepy. Follow the shapes at your own pace and take the gentler option whenever you need it.
 
 ## What you need
 

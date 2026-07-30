@@ -52,7 +52,7 @@ Anyone who wants to switch off at the end of the day — whether you're brand ne
 
 Just your mat. If your hips feel tight, keep a cushion or a yoga block nearby to sit on — otherwise you're fine as you are. Dim the lights and give yourself somewhere warm and quiet to settle.
 
-## How to practise before bed
+## How to practice before bed
 
 There's nothing to force here. Come to your first edge in each pose — enough that you can feel it, never enough to strain — and then be still and let it be. You don't have to do any fancy breath work; just notice yourself breathing in, and notice yourself breathing out. And if your mind starts thinking, that's completely normal — don't worry, just gently close the door on the thought and come back to your body.
 
@@ -64,6 +64,6 @@ Take good care of yourself. Good night.
 
 <!-- Enriched from Katie's own transcript and captions for this class (voice-matched,
 original copy). The pose rundown renders from the `chapters` frontmatter as the
-interactive "What you'll practise" list; the closing safety note renders as the
+interactive "What you'll practice" list; the closing safety note renders as the
 site-wide gentle-reminder block. Chapter times derived from the SRT. Pose mechanics
 cross-referenced with Bernie Clark, The Complete Guide to Yin Yoga. No therapeutic claims. -->

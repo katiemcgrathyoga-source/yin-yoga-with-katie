@@ -39,11 +39,11 @@ faq:
   - q: "How long do you hold Butterfly in Yin Yoga?"
     a: "Most people hold Butterfly for 3–5 minutes. The long, still hold is what makes it Yin — settle in, soften, and let the shape do the work. Come out a little sooner if you ever need to."
   - q: "What's the difference between Butterfly and Dragonfly?"
-    a: "In Butterfly the soles of the feet come together in a diamond shape, so the stretch centres on the inner thighs and lower back. In Dragonfly (a wide straddle) the legs are spread straight apart, which reaches further into the hamstrings and inner-leg lines. Butterfly is the gentler, more grounding of the two."
+    a: "In Butterfly the soles of the feet come together in a diamond shape, so the stretch centers on the inner thighs and lower back. In Dragonfly (a wide straddle) the legs are spread straight apart, which reaches further into the hamstrings and inner-leg lines. Butterfly is the gentler, more grounding of the two."
   - q: "Is Butterfly safe for the lower back?"
     a: "For most people, yes — the gently rounding spine is part of the pose. If you have disc issues or sciatica, sit up higher on a cushion so the hips tip forward, keep the fold shallow and the back longer, or try the reclining version. Take the feet further from the pelvis if you feel any pinching at the front of the hips."
   - q: "What does Butterfly stretch?"
-    a: "Butterfly mainly opens the inner thighs, groin and hips while the forward fold lengthens the whole back line. Sliding the feet further out draws more of the stretch into the back; drawing them closer in emphasises the inner thighs."
+    a: "Butterfly mainly opens the inner thighs, groin and hips while the forward fold lengthens the whole back line. Sliding the feet further out draws more of the stretch into the back; drawing them closer in emphasizes the inner thighs."
 related_poses: ["half-butterfly", "dragonfly", "caterpillar", "frog", "easy-pose"]
 youtube_video_id: ""
 images:

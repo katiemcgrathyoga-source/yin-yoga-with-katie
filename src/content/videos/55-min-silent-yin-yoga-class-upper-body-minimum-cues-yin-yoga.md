@@ -34,7 +34,7 @@ faq:
   - q: "Do I need props for this class?"
     a: "No props are required — just your mat will do. That said, this class opens the chest and shoulders quite deeply, so a cushion, block or bolster nearby is lovely to pad the knees, support the pelvis or rest the chest and head on. A folded blanket and a strap are handy too if you have them. Everything is optional — come as you are."
   - q: "What does 'silent' and 'minimal cues' mean?"
-    a: "It means Katie gives you just enough guidance to settle into each pose, then leaves you in quiet to hold it and feel your breath. It's a peaceful, meditative way to practise. If you're brand new to Yin you may prefer a fully guided class first, but every pose here has a gentler option so you can always ease back."
+    a: "It means Katie gives you just enough guidance to settle into each pose, then leaves you in quiet to hold it and feel your breath. It's a peaceful, meditative way to practice. If you're brand new to Yin you may prefer a fully guided class first, but every pose here has a gentler option so you can always ease back."
   - q: "Is this suitable if my shoulders feel tight?"
     a: "Yes — tight shoulders are exactly what this class is for. Find your edge at about 60–80%, let the shape do the work, and take the gentler option whenever you need it. In broken wing you set your own intensity by shifting your weight slowly, so you stay completely in control."
 ---

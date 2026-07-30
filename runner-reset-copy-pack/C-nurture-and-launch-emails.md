@@ -109,7 +109,7 @@ You already know the pattern: you finish a run tight, you mean to stretch, you d
 **As a founding member:**
 
 - **$49, once, for lifetime access** — everything above, plus whatever I add later. After the first 100 runners, it becomes $67.
-- **The keep-it guarantee:** practise along for 30 days, and if you're not moving more easily, email me for a full refund — and keep the whole library anyway. The risk is mine, not yours.
+- **The keep-it guarantee:** practice along for 30 days, and if you're not moving more easily, email me for a full refund — and keep the whole library anyway. The risk is mine, not yours.
 
 **→ [Join the Runner's Reset — $49 founding price](https://yinyogawithkatie.com/runner-reset)**
 
@@ -153,7 +153,7 @@ I answered the flexibility one the other day. Here are the other two worries tha
 
 **"I don't have time."** The Target sessions are fifteen to twenty minutes — shorter than a proper cooldown. After a run, or on the living-room floor in the evening. Little and often does far more than long and rare, and the scheduler nudges you so it actually happens.
 
-**"What if it doesn't work for me?"** Then you pay nothing. That's the keep-it guarantee: practise along for 30 days, and if you're not moving more easily, email me — full refund, and you keep lifetime access to everything anyway. If Yin doesn't help your running, I haven't earned your money. The only way to lose here is to stay tight.
+**"What if it doesn't work for me?"** Then you pay nothing. That's the keep-it guarantee: practice along for 30 days, and if you're not moving more easily, email me — full refund, and you keep lifetime access to everything anyway. If Yin doesn't help your running, I haven't earned your money. The only way to lose here is to stay tight.
 
 **→ [Join the Runner's Reset — $49 founding](https://yinyogawithkatie.com/runner-reset)**
 
@@ -189,7 +189,7 @@ Katie
 
 Hi {$name|default:"there"},
 
-Just a quick, honest note — no theatre. The founding group is filling, and once the first 100 places are taken, the price settles at $67 for good.
+Just a quick, honest note — no theater. The founding group is filling, and once the first 100 places are taken, the price settles at $67 for good.
 
 If you've been on the fence: you can join today, do one Target session after your next run, and if it's not for you, take the full refund and keep everything. That's the whole risk, and it's mine.
 

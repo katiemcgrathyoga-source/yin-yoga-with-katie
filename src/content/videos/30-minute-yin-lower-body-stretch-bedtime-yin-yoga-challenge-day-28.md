@@ -21,7 +21,7 @@ chapters:
 seo_title: "30-Minute Bedtime Yin for the Lower Body — Legs & Hips"
 seo_description: "A calming 30-minute bedtime Yin class for the legs and hips — shoelace, caterpillar and reclined butterfly held long and slow to help you unwind before sleep."
 summary: "A calming 30-minute lower-body Yin class for the legs and hips — shoelace, caterpillar and reclined butterfly held long and slow to help you unwind before bed."
-membership_cta: "This bedtime class is part of the membership's Sleep programme — a night-by-night path that helps you drift off faster and sleep more deeply. Press play and let it carry you towards rest."
+membership_cta: "This bedtime class is part of the membership's Sleep program — a night-by-night path that helps you drift off faster and sleep more deeply. Press play and let it carry you toward rest."
 faq:
   - q: "Do I need any props for this bedtime class?"
     a: "Nothing is essential, but a cushion or a yoga block to sit on makes the seated poses much kinder on the hips — it helps your pelvis tip forward and your seat bones settle. If you have a block or two, they're lovely to rest your forehead on as you fold. Come as you are and use what you have."
@@ -33,11 +33,11 @@ faq:
 
 ## What this Yin class is
 
-A calm, slow 30 minutes to unwind the lower body before bed. We work through the hips and legs with a long shoelace fold and gentle twist on each side, an intermission in caterpillar to stretch the spine and hamstrings, and a soft reclined butterfly to open the hips, before resting in corpse pose. It's Day 28 of the Bedtime Yin Challenge, and it's designed to help you release the day and drift towards sleep.
+A calm, slow 30 minutes to unwind the lower body before bed. We work through the hips and legs with a long shoelace fold and gentle twist on each side, an intermission in caterpillar to stretch the spine and hamstrings, and a soft reclined butterfly to open the hips, before resting in corpse pose. It's Day 28 of the Bedtime Yin Challenge, and it's designed to help you release the day and drift toward sleep.
 
 ## Who this class is for
 
-Anyone who wants to stretch out tired legs and hips and quieten the mind at the end of the day. It's a lovely wind-down whether you're new to Yin or well practised, and it asks nothing of you but to settle and breathe. If you're brand new, just follow the shapes at your own pace and take the gentler option whenever you need it.
+Anyone who wants to stretch out tired legs and hips and quieten the mind at the end of the day. It's a lovely wind-down whether you're new to Yin or well practiced, and it asks nothing of you but to settle and breathe. If you're brand new, just follow the shapes at your own pace and take the gentler option whenever you need it.
 
 ## What you need
 

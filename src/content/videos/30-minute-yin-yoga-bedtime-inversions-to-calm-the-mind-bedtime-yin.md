@@ -37,7 +37,7 @@ A gentle 30-minute bedtime practice from Day 17 of the Bedtime Yin challenge, bu
 
 ## Who this class is for
 
-Anyone who wants to switch off at the end of the day and drift towards a deeper night's sleep. It's calm, well supported and beginner-friendly, so it suits you whether you're brand new to Yin or well practised. Lovely as the last thing you do before climbing into bed.
+Anyone who wants to switch off at the end of the day and drift toward a deeper night's sleep. It's calm, well supported and beginner-friendly, so it suits you whether you're brand new to Yin or well practiced. Lovely as the last thing you do before climbing into bed.
 
 ## What you need
 

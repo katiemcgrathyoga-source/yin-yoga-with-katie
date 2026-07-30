@@ -22,7 +22,7 @@ cues:
   - "Soften your jaw, and let each exhale carry you a touch deeper into the floor."
 transitions_in:
   - "From lying on your back — draw both knees in"
-  - "From Reclined Twist or Happy Baby — return to centre and hug the knees in"
+  - "From Reclined Twist or Happy Baby — return to center and hug the knees in"
 transitions_out:
   - "Release the feet slowly back to the floor, one at a time."
   - "Or extend into Corpse Pose to rest."
@@ -32,7 +32,7 @@ counterposes:
 cautions:
   - "Knees: if hugging the shins compresses the knee joint, hold behind the thighs instead."
   - "A pinch at the front of the hip, where the thigh meets the pelvis, is the bones meeting — not tightness you can stretch through. Simply take the knees a little wider, out toward the ribs, to move around it. There's no need to keep the knees glued together."
-  - "Pregnancy: take the knees wide apart, out toward the ribs, so there's no pressure on the belly — or skip in favour of a side-lying rest."
+  - "Pregnancy: take the knees wide apart, out toward the ribs, so there's no pressure on the belly — or skip in favor of a side-lying rest."
   - "Recent abdominal surgery: approach gently or avoid, since the pose presses the thighs into the abdomen."
 faq:
   - q: "What is Wind-Relieving pose good for?"

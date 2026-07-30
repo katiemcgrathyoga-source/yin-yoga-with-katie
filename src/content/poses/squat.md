@@ -46,7 +46,7 @@ youtube_video_id: ""
 images:
   - "/poses/squat.jpg"
 seo_title: "Squat Pose in Yin Yoga: Benefits & How-To"
-seo_description: "The Yin Squat sinks the hips low to open the hips, groin and ankles and ease the lower back. Learn how to practise it, with props and cautions."
+seo_description: "The Yin Squat sinks the hips low to open the hips, groin and ankles and ease the lower back. Learn how to practice it, with props and cautions."
 ---
 
 <!-- Original copy in Katie's voice, grounded in Bernie Clark, The Complete Guide to

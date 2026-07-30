@@ -76,7 +76,7 @@ CLAIMS DISCIPLINE (critical — legal + trust):
     supports," and pair any health statement with a gentle "not medical advice —
     see a professional for pain" note.
 
-# DELIVERABLES (write all three, clearly labelled)
+# DELIVERABLES (write all three, clearly labeled)
 A. SALES PAGE — full long-form, section by section: a mechanism-led headline + 2–3
    alternates; an opening that names the runner's real problem and agitates gently;
    the mechanism/why-Yin; who it's for; what's inside (Targets, Full Resets, paths,

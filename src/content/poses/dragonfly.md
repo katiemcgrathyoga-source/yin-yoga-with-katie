@@ -50,7 +50,7 @@ youtube_video_id: ""
 images:
   - "/poses/dragonfly.jpg"
 seo_title: "Dragonfly Pose in Yin Yoga: Benefits & How-To"
-seo_description: "Dragonfly is a wide-legged seated Yin Yoga fold that opens the hamstrings, inner thighs and back line. Learn how to practise it safely, with props and cautions."
+seo_description: "Dragonfly is a wide-legged seated Yin Yoga fold that opens the hamstrings, inner thighs and back line. Learn how to practice it safely, with props and cautions."
 ---
 
 <!-- Original copy in Katie's voice, grounded in Bernie Clark, The Complete Guide to

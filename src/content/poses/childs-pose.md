@@ -47,7 +47,7 @@ youtube_video_id: ""
 images:
   - "/poses/childs-pose.jpg"
 seo_title: "Child's Pose in Yin Yoga: Benefits & How-To"
-seo_description: "Child's Pose is a grounding Yin Yoga rest that gently opens the lower back and hips. Learn how to practise it, plus cues, props and cautions."
+seo_description: "Child's Pose is a grounding Yin Yoga rest that gently opens the lower back and hips. Learn how to practice it, plus cues, props and cautions."
 ---
 
 <!-- Original copy in Katie's voice, grounded in Bernie Clark, The Complete Guide to

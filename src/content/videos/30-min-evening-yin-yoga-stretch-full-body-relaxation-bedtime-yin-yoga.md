@@ -40,7 +40,7 @@ A calm, 30-minute evening Yin class — Day 21 of the bedtime challenge — to g
 
 ## Who this class is for
 
-Anyone looking to relax, release the day and prepare the body for sleep. It's an evening practice with a gentle, encouraging voice to guide you the whole way, and it works whether you're brand new to Yin or well practised. New to this? Simply follow the shapes at your own pace and take the gentler option whenever you need it.
+Anyone looking to relax, release the day and prepare the body for sleep. It's an evening practice with a gentle, encouraging voice to guide you the whole way, and it works whether you're brand new to Yin or well practiced. New to this? Simply follow the shapes at your own pace and take the gentler option whenever you need it.
 
 ## What you need
 

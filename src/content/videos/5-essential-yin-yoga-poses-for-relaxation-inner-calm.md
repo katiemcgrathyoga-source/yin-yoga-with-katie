@@ -61,7 +61,7 @@ faq:
     a: "No props are needed at all. Everything is done on the mat with your own body, so you can simply press play and follow along. If you like, keep a cushion or blanket nearby for extra comfort under your knees or forehead."
   - q: "Is this suitable if I'm a complete beginner or not very flexible?"
     a: "Absolutely. This is a beginner-friendly class and flexibility isn't required. Every pose has a gentler option and a slightly deeper one, so you choose what feels right. Come to about 60–80% of your capacity — a real stretch, never a strain."
-  - q: "What's the best time of day to practise this?"
+  - q: "What's the best time of day to practice this?"
     a: "It's lovely any time you want to slow down, but it's especially soothing in the evening to help you unwind before bed. The whole class is designed to calm your mind and relax your body, so give yourself permission to move slowly and rest."
 ---
 

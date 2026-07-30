@@ -31,7 +31,7 @@ faq:
   - q: "Do I need any props?"
     a: "No props are required — all you really need is your mat. That said, this practice is lovely with a little support, so if you have a cushion, a folded blanket, or a block nearby, you're welcome to slide one under your forehead in child's pose or under your chest in sphinx. Use as much support as your body asks for."
   - q: "Can I do this if my back feels sore?"
-    a: "These are gentle, well-supported shapes that may help ease the everyday tension and stiffness many of us carry in the back — think of it as unwinding, not treating. Please stay soft and never push into pain. If your pain is sharp, ongoing, or travels down a leg, it's best to check in with a health professional before practising."
+    a: "These are gentle, well-supported shapes that may help ease the everyday tension and stiffness many of us carry in the back — think of it as unwinding, not treating. Please stay soft and never push into pain. If your pain is sharp, ongoing, or travels down a leg, it's best to check in with a health professional before practicing."
 ---
 
 ## What this Yin class is
@@ -40,7 +40,7 @@ A gentle 35-minute Yin practice for your back — a beginner-friendly way to loo
 
 ## Who this class is for
 
-Anyone whose back feels tight or a bit stiff and who'd love an unhurried, low-pressure way to unwind it — especially if you're new to Yin. It's a calm choice after a long day at a desk, or any time you want to give your back some gentle attention. If your back is sore, keep everything soft and stay well within your comfort; and if any pain is sharp, ongoing, or travels down a leg, please see a health professional before you practise.
+Anyone whose back feels tight or a bit stiff and who'd love an unhurried, low-pressure way to unwind it — especially if you're new to Yin. It's a calm choice after a long day at a desk, or any time you want to give your back some gentle attention. If your back is sore, keep everything soft and stay well within your comfort; and if any pain is sharp, ongoing, or travels down a leg, please see a health professional before you practice.
 
 ## What you need
 

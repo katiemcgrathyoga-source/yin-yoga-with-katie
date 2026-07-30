@@ -29,16 +29,16 @@ membership_cta: "Inside the membership, this class anchors the Reset program —
 summary: "A calming 45-minute Yin class to reset the nervous system and ease stress — gentle breathwork, supported bridge and fish, caterpillar and legs up the wall, held long and slow. All levels."
 faq:
   - q: "Can Yin Yoga really reset the nervous system?"
-    a: "The slow, supported shapes and the breathing exercise in this class are designed to calm and soothe the nervous system. Poses like supported bridge and legs up the wall gently encourage blood towards the head and let gravity do the work, which quietens the mind and settles the body — a lovely way to shift out of a busy, wound-up day."
+    a: "The slow, supported shapes and the breathing exercise in this class are designed to calm and soothe the nervous system. Poses like supported bridge and legs up the wall gently encourage blood toward the head and let gravity do the work, which quietens the mind and settles the body — a lovely way to shift out of a busy, wound-up day."
   - q: "What props do I need for this class?"
-    a: "A couple of yoga blocks (or some nice thick books) and a blanket or scarf to soften them, so the supported poses stay cosy. You'll also want a little clear wall space nearby for legs up the wall towards the end. No blocks? A firm cushion works — and every pose has a gentler option and a deeper one."
+    a: "A couple of yoga blocks (or some nice thick books) and a blanket or scarf to soften them, so the supported poses stay cosy. You'll also want a little clear wall space nearby for legs up the wall toward the end. No blocks? A firm cushion works — and every pose has a gentler option and a deeper one."
   - q: "Is this a good practice before bed or when I feel anxious?"
     a: "Yes. It's a calming, restful class that soothes the mind and body, so it works beautifully in the evening to help you wind down, or any time you feel stress or anxiety rising. The alternate nostril breathing near the start is something you can return to on its own whenever you need to settle."
 ---
 
 ## What this Yin class is
 
-A gentle 45 minutes of Yin to calm your nervous system and let stress drain away. We open with a simple breathing exercise — alternate nostril breathing — to quieten the mind, then move through a small handful of soft, supported shapes: supported bridge and supported fish over blocks, a long caterpillar fold, and legs up the wall. Several of these poses gently encourage blood towards the head, which has a wonderfully calming effect. There's nothing to force here — you settle in, let gravity and your breath do the work, and be still. Come as you are — every pose has a gentler option and a deeper one.
+A gentle 45 minutes of Yin to calm your nervous system and let stress drain away. We open with a simple breathing exercise — alternate nostril breathing — to quieten the mind, then move through a small handful of soft, supported shapes: supported bridge and supported fish over blocks, a long caterpillar fold, and legs up the wall. Several of these poses gently encourage blood toward the head, which has a wonderfully calming effect. There's nothing to force here — you settle in, let gravity and your breath do the work, and be still. Come as you are — every pose has a gentler option and a deeper one.
 
 ## Who this class is for
 

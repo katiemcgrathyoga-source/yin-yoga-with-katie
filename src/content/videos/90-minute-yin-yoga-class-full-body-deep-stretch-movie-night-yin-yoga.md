@@ -34,7 +34,7 @@ summary: "A 90-minute full-body Yin class with a playful movie-night theme — l
 
 ## What this Yin class is
 
-A full ninety minutes of Yin, with a gentle twist of imagination. As we practise, we let our awareness settle in as though we're taking a seat in a movie theatre — and the body becomes the show. Moving slowly through each long, deep stretch, you simply watch: the sensations, the breath, the quiet. It's a full-body deep stretch and a lovely way to build body awareness and let the day's distractions fade. Come as you are — every pose has a gentler option and a deeper one.
+A full ninety minutes of Yin, with a gentle twist of imagination. As we practice, we let our awareness settle in as though we're taking a seat in a movie theater — and the body becomes the show. Moving slowly through each long, deep stretch, you simply watch: the sensations, the breath, the quiet. It's a full-body deep stretch and a lovely way to build body awareness and let the day's distractions fade. Come as you are — every pose has a gentler option and a deeper one.
 
 ## Who this class is for
 

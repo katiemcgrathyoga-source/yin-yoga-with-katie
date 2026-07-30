@@ -31,12 +31,12 @@ faq:
   - q: "What props do I need?"
     a: "Have a couple of yoga blocks and a strap nearby. Blocks support your hands in Dragon and give you a seat in Squat, and the strap helps with the Cow-Face arm bind. None of it is essential — every pose has a gentler option — but it makes the deeper holds far kinder."
   - q: "Where does \"We can do hard things\" come from?"
-    a: "It's a phrase from the book Untamed by Glennon Doyle. On the mat we practise ignoring the voice that wants to give up, and that quiet strength tends to travel with you off the mat and into everyday life."
+    a: "It's a phrase from the book Untamed by Glennon Doyle. On the mat we practice ignoring the voice that wants to give up, and that quiet strength tends to travel with you off the mat and into everyday life."
 ---
 
 ## What this Yin class is
 
-Fifty minutes of Yin chosen to challenge you — and to remind you that you can do hard things. Because Yin holds poses for a long time, it can get uncomfortable, and a voice in your head starts saying *I can't do this, let's give up.* On the mat we practise ignoring that voice. I've picked poses from the deeper end of Yin — Dragon, Cow-Face arms, Squat and Dangling — shapes that build a little endurance and stamina, held long enough to test your resolve. The strength you find here has a way of following you off the mat. Come as you are — every pose has a gentler option and a deeper one.
+Fifty minutes of Yin chosen to challenge you — and to remind you that you can do hard things. Because Yin holds poses for a long time, it can get uncomfortable, and a voice in your head starts saying *I can't do this, let's give up.* On the mat we practice ignoring that voice. I've picked poses from the deeper end of Yin — Dragon, Cow-Face arms, Squat and Dangling — shapes that build a little endurance and stamina, held long enough to test your resolve. The strength you find here has a way of following you off the mat. Come as you are — every pose has a gentler option and a deeper one.
 
 ## Who this class is for
 

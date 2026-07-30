@@ -108,12 +108,12 @@ const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_i
       </div>
     ) : (
       <Fragment>
-        {/* 1 · PRACTISE — watch or use the timer */}
+        {/* 1 · PRACTICE — watch or use the timer */}
         <section class="sp-sec">
-          <p class="sp-label"><span class="sp-num">1</span> Practise</p>
-          <div class="sp-tabs" role="tablist" aria-label="How to practise">
+          <p class="sp-label"><span class="sp-num">1</span> Practice</p>
+          <div class="sp-tabs" role="tablist" aria-label="How to practice">
             <button id="tab-watch" role="tab" aria-selected="true" aria-controls="p-watch">▶ Watch &amp; learn</button>
-            <button id="tab-timer" role="tab" aria-selected="false" aria-controls="p-timer">⏱ Practise with the timer</button>
+            <button id="tab-timer" role="tab" aria-selected="false" aria-controls="p-timer">⏱ Practice with the timer</button>
           </div>
 
           <div class="sp-panel" id="p-watch" role="tabpanel" aria-labelledby="tab-watch">
@@ -131,7 +131,7 @@ const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_i
               <div class="sp-video-slot">
                 <span class="sp-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
                 <b>Follow-along video coming soon</b>
-                <span>Katie's guided class will play here — everything else on the page is ready to practise now.</span>
+                <span>Katie's guided class will play here — everything else on the page is ready to practice now.</span>
               </div>
             )}
           </div>
@@ -144,7 +144,7 @@ const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_i
 
         {/* 2 · WHY + HOW + SEE + SCALE */}
         <section class="sp-sec">
-          <p class="sp-label"><span class="sp-num">2</span> Why it helps &amp; how to practise</p>
+          <p class="sp-label"><span class="sp-num">2</span> Why it helps &amp; how to practice</p>
           <div class="sp-grid">
             <div>
               <div class="sp-card">
@@ -153,7 +153,7 @@ const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_i
                 {d.angle && <p class="sp-angle">“{d.angle}”</p>}
               </div>
               <div class="sp-card">
-                <h3>How to practise — the shapes</h3>
+                <h3>How to practice — the shapes</h3>
                 {d.steps.map((s, i) => {
                   const p = bySlug.get(s.pose);
                   const name = p?.name_en ?? humanise(s.pose);
@@ -199,7 +199,7 @@ const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_i
         </section>
 
         <div class="sp-learn">
-          <b>Why the page looks like this:</b> everyone learns differently — so every session gives you the <b>video</b> (watch &amp; follow), the <b>timer</b> (practise screen-free once you know it), the <b>why</b> (understand it), <b>written cues</b> (read it) and a <b>body map</b> (see where it works).
+          <b>Why the page looks like this:</b> everyone learns differently — so every session gives you the <b>video</b> (watch &amp; follow), the <b>timer</b> (practice screen-free once you know it), the <b>why</b> (understand it), <b>written cues</b> (read it) and a <b>body map</b> (see where it works).
         </div>
 
         {d.access === 'free' && (

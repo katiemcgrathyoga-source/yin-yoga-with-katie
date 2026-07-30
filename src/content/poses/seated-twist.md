@@ -19,12 +19,12 @@ cues:
   - "Breathe in and grow tall through the crown of your head; breathe out and turn gently toward the right, starting the twist low in the belly and letting it travel up the spine."
   - "Let your gaze follow last, turning the head only as far as the neck is happy to go."
   - "This is a Yin hold, so find a soft, sustainable edge — about 60–80% — and then stop working and simply breathe there."
-  - "With each exhale, feel the spine lengthen a fraction and the twist deepen on its own. Slowly unwind, pause in the centre, then turn to the other side."
+  - "With each exhale, feel the spine lengthen a fraction and the twist deepen on its own. Slowly unwind, pause in the center, then turn to the other side."
 transitions_in:
   - "From Easy Pose or any comfortable seat"
   - "From Shoelace or Caterpillar — sit tall and turn"
 transitions_out:
-  - "Unwind slowly back to centre and sit for a breath before the second side."
+  - "Unwind slowly back to center and sit for a breath before the second side."
   - "Fold forward gently over the legs, or lie down for a Reclined Twist."
 counterposes:
   - "A forward fold such as Caterpillar to neutralise the spine"

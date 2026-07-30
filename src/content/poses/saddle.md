@@ -17,7 +17,7 @@ cues:
   - "Begin kneeling with your feet alongside your hips, not underneath you, so you are sitting between your heels. If sitting down is already too much for the knees or ankles, this is your pose — stay upright."
   - "Only if that is comfortable, begin to lean back onto your hands, then your forearms, letting the front of the thighs stretch."
   - "For the gentler option, rest back onto a bolster or a stack of blocks that meets your spine — let the prop hold you rather than reaching for the floor."
-  - "For the deepest option, and only if the knees and back are happy, lower all the way down so the back rests on the floor. Never force towards it."
+  - "For the deepest option, and only if the knees and back are happy, lower all the way down so the back rests on the floor. Never force toward it."
   - "Find your edge — about 60–80%, a strong stretch through the thighs but never sharp pain in the knees. Back off the moment the knees protest."
   - "One knee at a time can be lifted to ease out, or keep the legs closer if wide is too much. Let the shape do the work and be still."
 transitions_in:

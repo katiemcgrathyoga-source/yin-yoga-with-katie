@@ -43,7 +43,7 @@ A 45-minute full-body deep stretch in the style of Yin — where we hold each po
 
 ## Who this class is for
 
-Anyone craving a proper, unhurried stretch through the whole body — after a long day, on a stiff morning, or any time you want to feel loose and settled again. It suits every level, so whether you're brand new to Yin or well practised, you can follow along and find your own depth. New to Yin? Read the pose notes below first, then move at your own pace.
+Anyone craving a proper, unhurried stretch through the whole body — after a long day, on a stiff morning, or any time you want to feel loose and settled again. It suits every level, so whether you're brand new to Yin or well practiced, you can follow along and find your own depth. New to Yin? Read the pose notes below first, then move at your own pace.
 
 ## What you need
 

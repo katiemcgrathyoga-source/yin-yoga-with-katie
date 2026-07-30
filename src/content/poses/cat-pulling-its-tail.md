@@ -25,9 +25,9 @@ cues:
 transitions_in:
   - "From a Reclined Twist with knees dropped to one side, extend the bottom leg long and reach the top hand back for the bottom foot."
 transitions_out:
-  - "Come out slowly — release the foot, draw the knees back to centre, and rest on your back before changing sides."
+  - "Come out slowly — release the foot, draw the knees back to center, and rest on your back before changing sides."
 counterposes:
-  - "Lie on your back with knees bent and let the spine and hips re-centre."
+  - "Lie on your back with knees bent and let the spine and hips re-center."
   - "A gentle knees-to-chest hug to settle the lower back."
 cautions:
   - "Ease off if you have disc trouble — keep the twist gentle and let a cushion under the knee take the strain rather than deepening the rotation."

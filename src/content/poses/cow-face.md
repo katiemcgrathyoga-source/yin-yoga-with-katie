@@ -52,7 +52,7 @@ youtube_video_id: ""
 images:
   - "/poses/cow-face.jpg"
 seo_title: "Cow-Face Pose in Yin Yoga: Benefits & How-To"
-seo_description: "Cow-Face opens the shoulders and outer hips in Yin Yoga through an arm bind and stacked legs. Learn how to practise it safely, with props and cautions."
+seo_description: "Cow-Face opens the shoulders and outer hips in Yin Yoga through an arm bind and stacked legs. Learn how to practice it safely, with props and cautions."
 ---
 
 <!-- Original copy in Katie's voice, grounded in Bernie Clark, The Complete Guide to

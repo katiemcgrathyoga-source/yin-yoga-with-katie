@@ -22,7 +22,7 @@ cues:
 transitions_in:
   - "From lying on your belly, prop up onto the forearms."
 transitions_out:
-  - "Come out slowly: lower the chest to the floor and turn the head to one side to rest. Sliding one knee up towards the hip can ease the lower back."
+  - "Come out slowly: lower the chest to the floor and turn the head to one side to rest. Sliding one knee up toward the hip can ease the lower back."
 counterposes:
   - "Child's Pose, moved into slowly"
   - "A few gentle, breath-paced rounds of arching and rounding the back (not your deepest)"

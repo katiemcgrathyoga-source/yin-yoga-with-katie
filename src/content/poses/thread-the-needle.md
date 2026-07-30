@@ -27,7 +27,7 @@ transitions_out:
   - "Come out slowly — press the top hand into the floor, unthread the arm, and return to all fours or rest back in Child's Pose."
 counterposes:
   - "Child's Pose for a few breaths to neutralise the spine."
-  - "A slow round-and-arch of the spine on all fours to re-centre before the second side."
+  - "A slow round-and-arch of the spine on all fours to re-center before the second side."
 cautions:
   - "Protect the neck — rest on the shoulder and take the weight there, never crank or grind the head into the mat."
   - "If you feel any pinching in the neck, lift the head onto a cushion so the neck can lengthen."
@@ -39,7 +39,7 @@ faq:
   - q: "How long do you hold Thread the Needle in Yin Yoga?"
     a: "Most people hold Thread the Needle for 2–4 minutes per side. Rest the weight into the shoulder, let the head grow heavy, and come out a little sooner if you ever need to."
   - q: "Is Thread the Needle good for shoulder and upper-back tension?"
-    a: "It's a favourite for exactly that. Threading the arm under the body opens across the upper back and the back of the shoulder, areas that tighten from sitting and screen time. Many people find their shoulders feel more spacious afterwards. Keep it gentle if you have a shoulder injury."
+    a: "It's a favorite for exactly that. Threading the arm under the body opens across the upper back and the back of the shoulder, areas that tighten from sitting and screen time. Many people find their shoulders feel more spacious afterwards. Keep it gentle if you have a shoulder injury."
   - q: "Is Thread the Needle safe for the neck?"
     a: "Yes, as long as you rest on the shoulder and take the weight there — never crank or grind the head into the mat. If you feel any pinching, lift the head onto a cushion so the neck can lengthen, and keep the twist shallow if you have disc trouble."
 related_poses: ["melting-heart", "childs-pose", "bow-tie", "broken-wing", "cow-face"]

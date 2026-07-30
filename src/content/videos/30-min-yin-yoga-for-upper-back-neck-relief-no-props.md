@@ -23,7 +23,7 @@ chapters:
   - { time: "30:00",  seconds: 1800, title: "Like & subscribe" }
 seo_title: "30-Min Yin Yoga for Upper Back & Neck — No Props, Beginner-Friendly"
 seo_description: "A 30-minute no-props Yin class for the upper back and neck — eagle arms, gentle twists, melting heart and bow tie to release tension and soften stiff shoulders."
-membership_cta: "If tight shoulders and a stiff neck creep back through the week, this class lives inside the membership as part of a guided program — press play each day and become someone whose upper back stays open and easy, without deciding what to practise."
+membership_cta: "If tight shoulders and a stiff neck creep back through the week, this class lives inside the membership as part of a guided program — press play each day and become someone whose upper back stays open and easy, without deciding what to practice."
 summary: "A gentle 30-minute no-props Yin class for the upper back and neck — eagle arms, twists, melting heart and bow tie to melt away stiffness and stress."
 faq:
   - q: "Do I really need no props for this class?"
@@ -40,7 +40,7 @@ A slow, soothing half-hour to unwind the upper back and neck — no props, nowhe
 
 ## Who this class is for
 
-Anyone carrying tension in their upper back, shoulders or neck — especially after long days at a desk or on a screen. It's beginner-friendly and gently paced, so it works whether this is your first Yin class or you've been practising for years. New to Yin? Follow the shapes at your own speed and take the softer option whenever you need it.
+Anyone carrying tension in their upper back, shoulders or neck — especially after long days at a desk or on a screen. It's beginner-friendly and gently paced, so it works whether this is your first Yin class or you've been practicing for years. New to Yin? Follow the shapes at your own speed and take the softer option whenever you need it.
 
 ## What you need
 

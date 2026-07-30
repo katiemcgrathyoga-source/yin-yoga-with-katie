@@ -42,7 +42,7 @@ A 35-minute Yin journey up the whole leg, from the tips of the toes to the outsi
 
 ## Who this class is for
 
-Anyone who wants to give their legs some real, slow attention — walkers, runners, sitters and desk-dwellers alike. It's a wonderful way to unwind tight feet, ankles, quads and hips, whether you're new to Yin or well practised. Follow the shapes at your own pace and take the gentler option whenever you need it.
+Anyone who wants to give their legs some real, slow attention — walkers, runners, sitters and desk-dwellers alike. It's a wonderful way to unwind tight feet, ankles, quads and hips, whether you're new to Yin or well practiced. Follow the shapes at your own pace and take the gentler option whenever you need it.
 
 ## What you need
 

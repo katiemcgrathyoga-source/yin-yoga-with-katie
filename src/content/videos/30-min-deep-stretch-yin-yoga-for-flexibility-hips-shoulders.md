@@ -39,7 +39,7 @@ A 30-minute deep-stretch Yin practice to build flexibility through the hips and 
 
 ## Who this class is for
 
-Anyone wanting to feel looser and more open through the hips and shoulders, whether you're new to Yin or well practised. It's a wonderful reset for tight shoulders and stiff hips, and every pose comes with a gentler option, so you can take it exactly as far as feels right for your body today.
+Anyone wanting to feel looser and more open through the hips and shoulders, whether you're new to Yin or well practiced. It's a wonderful reset for tight shoulders and stiff hips, and every pose comes with a gentler option, so you can take it exactly as far as feels right for your body today.
 
 ## What you need
 

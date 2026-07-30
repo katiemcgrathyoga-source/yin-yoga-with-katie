@@ -33,7 +33,7 @@ faq:
   - q: "Is this suitable for beginners?"
     a: "Yes. Every pose has a lighter option and a deeper one, so you choose how far to go. If the cow-face arms feel tight, walk your hands further apart on the strap; if a shape feels too intense, bring in a cushion or block. Come to about 60–80% and let time do the rest."
   - q: "Will this help with the stiffness from sitting all day?"
-    a: "It's a lovely one for that. So much of the day rounds us forward over a desk or phone, and these poses gently open the chest and the fronts of the shoulders, and invite a little length back into the spine. It won't fix anything overnight, but practised regularly it can leave the upper body feeling more open and at ease."
+    a: "It's a lovely one for that. So much of the day rounds us forward over a desk or phone, and these poses gently open the chest and the fronts of the shoulders, and invite a little length back into the spine. It won't fix anything overnight, but practiced regularly it can leave the upper body feeling more open and at ease."
 ---
 
 ## What this Yin class is
