@@ -48,3 +48,12 @@ scripts/.cache-Cabin.ttf
 
 # Local Netlify folder
 .netlify
+
+# raw + intermediate video. Class masters run to gigabytes and the review
+# renders to hundreds of megabytes; both are local working files, never source.
+/raw_videos/
+/edit-review/
+*.mp4
+# rnnoise model for the audio-cleaning pass — a downloadable binary asset,
+# not project source.
+/sh.rnnn
