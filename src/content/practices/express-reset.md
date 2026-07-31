@@ -19,8 +19,13 @@ hero_pose: "caterpillar"
 # records the link so it's findable rather than folklore. The duration guard
 # still checks each file's `minutes` independently.
 same_class_as: "post-run-reset"
+# BOTH are set, deliberately. The template prefers Bunny, so a member gets the
+# clean player with no YouTube branding or suggested videos; the YouTube id stays
+# as a fallback, so if the BUNNY_* env vars ever go missing in Netlify this page
+# degrades to the working embed instead of "video coming soon". The FREE page
+# (post-run-reset.md) keeps YouTube only.
 youtube_video_id: "M30w2mi9XpE"
-bunny_video_id: ""
+bunny_video_id: "ee8dab90-961a-4cd2-910d-ba6f12037009"
 access: "members"
 why: >
   Every other short practice here picks one place and goes deep. This is the one

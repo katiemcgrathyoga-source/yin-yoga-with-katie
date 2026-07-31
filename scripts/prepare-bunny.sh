@@ -46,7 +46,10 @@ echo "$MAP" | while IFS= read -r line; do
   echo ">> $slug  <-  $file"
   # lanczos for the 4K->1080p downscale (sharper than bilinear on fine detail
   # like the mat weave); bt709 tags carried through so the grade doesn't shift.
-  ffmpeg -hide_banner -loglevel error -stats -y -i "$in" \
+  # -nostdin is load-bearing: ffmpeg reads stdin by default, and inside a
+  # `while read` loop it swallows the remaining lines, so the loop silently ends
+  # after the first encode and exits 0 as if it had done everything.
+  ffmpeg -nostdin -hide_banner -loglevel error -stats -y -i "$in" \
     -vf "scale=-2:1080:flags=lanczos" \
     -c:v libx264 -crf 20 -preset medium -pix_fmt yuv420p \
     -color_primaries bt709 -color_trc bt709 -colorspace bt709 \

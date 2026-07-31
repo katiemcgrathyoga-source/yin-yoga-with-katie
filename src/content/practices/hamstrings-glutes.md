@@ -10,6 +10,9 @@ minutes: 18
 hold_label: "1–3 minute holds"
 props: ["strap"]
 youtube_video_id: ""
+# Self-hosted on Bunny: paid classes never go on YouTube, and the page signs a
+# short-lived embed server-side so the URL cannot be shared out.
+bunny_video_id: "5789a5a2-5ee5-4d60-80a6-aaca1434331a"
 why: >
   Your hamstrings do the hard eccentric braking in every stride, and they're one of
   the most commonly strained muscles in runners. When the glutes are tight or

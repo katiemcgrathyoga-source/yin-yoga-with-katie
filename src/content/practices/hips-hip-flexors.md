@@ -10,10 +10,9 @@ minutes: 19
 hold_label: "1–3 minute holds"
 props: []
 youtube_video_id: ""
-# Real class filmed and awaiting its Bunny GUID. Left blank rather than pointing
-# at the Phase 0 spike clip: an entitled account would otherwise have played a
-# test video, and "coming soon" is the more honest fallback.
-bunny_video_id: ""
+# Self-hosted on Bunny: paid classes never go on YouTube, and the page signs a
+# short-lived embed server-side so the URL cannot be shared out.
+bunny_video_id: "c5d156a4-9906-4811-9dc7-ca67dff2e5a3"
 why: >
   Running flexes the hip thousands of times, and most runners also sit at a desk
   all day — together that shortens the hip flexors. Tight hips shorten your stride,
