@@ -18,7 +18,9 @@ why: >
 angle: "Your hamstrings do the hardest work in every stride — give them their length back."
 intro: >
   A slow release for the whole back of the legs and the glutes. Fold gently, let the
-  breath soften you, and give the hamstrings the unhurried time they never get.
+  breath soften you, and give the hamstrings the unhurried time they never get. Have
+  a strap or a belt within reach for the last shape, and give yourself a little over
+  twenty minutes for the video — I talk you through each hold as we go.
 steps:
   - pose: "caterpillar"
     seconds: 180

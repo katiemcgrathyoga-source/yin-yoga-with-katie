@@ -57,3 +57,7 @@ scripts/.cache-Cabin.ttf
 # rnnoise model for the audio-cleaning pass — a downloadable binary asset,
 # not project source.
 /sh.rnnn
+
+# Delivery encodes headed for Bunny Stream — build output from the ProRes
+# masters on D:, never source. Regenerate with scripts/prepare-bunny.sh.
+/processed_videos/

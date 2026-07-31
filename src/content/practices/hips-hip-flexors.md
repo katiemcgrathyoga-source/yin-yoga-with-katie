@@ -23,8 +23,9 @@ why: >
 angle: "Running plus sitting equals tight hips — open them first, and your whole stride frees up."
 intro: >
   A short one for right after a run, while you're still warm. We'll open the front
-  of the hips, release the glutes for balance, and finish with a gentle twist.
-  Nothing forced — just settle in and let the holds do the work.
+  of the hips, release the glutes for balance, twist, and then rest properly at the
+  end. Nothing forced — just settle in and let the holds do the work. Give yourself
+  about twenty-five minutes for the video; I talk you through each hold as we go.
 steps:
   - pose: "sphinx"
     seconds: 120
