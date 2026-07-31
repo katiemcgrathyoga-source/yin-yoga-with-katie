@@ -10,7 +10,10 @@ minutes: 15
 hold_label: "2-minute holds"
 props: []
 youtube_video_id: ""
-bunny_video_id: "6bebe021-7337-4be4-b1d0-17f48cb89dc3"   # PLACEHOLDER test video — swap for the real class GUID after filming
+# Real class filmed and awaiting its Bunny GUID. Left blank rather than pointing
+# at the Phase 0 spike clip: an entitled account would otherwise have played a
+# test video, and "coming soon" is the more honest fallback.
+bunny_video_id: ""
 why: >
   Running flexes the hip thousands of times, and most runners also sit at a desk
   all day — together that shortens the hip flexors. Tight hips shorten your stride,
