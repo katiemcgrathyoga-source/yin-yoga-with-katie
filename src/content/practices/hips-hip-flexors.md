@@ -6,8 +6,8 @@ kind: "target"
 area: "hips"
 body_map: "hips"
 level: "all-levels"
-minutes: 15
-hold_label: "2-minute holds"
+minutes: 19
+hold_label: "1–3 minute holds"
 props: []
 youtube_video_id: ""
 # Real class filmed and awaiting its Bunny GUID. Left blank rather than pointing
@@ -41,7 +41,11 @@ steps:
   - pose: "reclined-twist"
     seconds: 60
     sides: 2
-    note: "On your back, drop the knees to one side. A gentle wring-out to finish and settle."
+    note: "On your back, drop the knees to one side. A gentle wring-out after all that opening."
+  - pose: "corpse"
+    seconds: 180
+    sides: 1
+    note: "Flat on your back, everything heavy. The hips have just done a lot — this is where it settles in."
 scale:
   - level: "New"
     note: "More support, less depth. Cushion under the back knee in Dragon; stay tall in Sleeping Swan rather than folding. Two minutes is plenty — come out sooner if you need to."
@@ -55,5 +59,5 @@ when:
   - "As the hip block inside a longer Full Reset session."
 access: "members"
 seo_title: "Yin Yoga for Runners — Hips & Hip Flexors (Post-Run)"
-seo_description: "A short follow-along Yin practice for runners: open the tight hips and hip flexors running builds up, in about 15 minutes. Video, timer and cues."
+seo_description: "A short follow-along Yin practice for runners: open the tight hips and hip flexors running builds up, in about 19 minutes. Video, timer and cues."
 ---

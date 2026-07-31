@@ -7,8 +7,8 @@ area: "hamstrings & glutes"
 body_map: "hamstrings"
 level: "all-levels"
 minutes: 18
-hold_label: "2–3 minute holds"
-props: []
+hold_label: "1–3 minute holds"
+props: ["strap"]
 youtube_video_id: ""
 why: >
   Your hamstrings do the hard eccentric braking in every stride, and they're one of
@@ -28,10 +28,10 @@ steps:
     seconds: 180
     sides: 2
     note: "One leg out, one folded in. Fold over the straight leg to reach that hamstring on its own."
-  - pose: "sleeping-swan"
+  - pose: "reclined-swan"
     seconds: 120
     sides: 2
-    note: "Front shin across the mat, fold forward. Releases the glute and deep outer hip."
+    note: "On your back, ankle crossed over the opposite thigh, drawing the legs in. The glute and outer hip, with none of the weight through the front knee."
   - pose: "reclined-hamstring"
     seconds: 60
     sides: 2
