@@ -62,7 +62,9 @@ Until then, take good care of yourself.
 Katie
 *Yin Yoga with Katie*
 
-*P.S. Keep this email so your Reset is easy to find after any run.*
+*P.S. One question, and I read every answer: **where does running tighten you up most** — hips, hamstrings, calves? Just hit reply and tell me. It genuinely shapes what I make next.*
+
+*P.P.S. If this landed in your Promotions tab, dragging it across to Primary means the next one finds you properly.*
 
 ---
 
