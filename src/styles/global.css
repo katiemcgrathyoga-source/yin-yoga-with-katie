@@ -206,7 +206,7 @@ h1 {
   font-size: 13.5px; padding: 5px 13px; border: 1px solid var(--line); border-radius: 100px;
   background: var(--paper-2); color: var(--ink-soft);
 }
-.pill.strong { background: var(--plum); color: #fff; border-color: var(--plum); }
+.pill.strong { background: var(--plum); color: var(--paper); border-color: var(--plum); }
 .watch {
   display: inline-flex; align-items: center; gap: 9px; margin-top: 24px;
   background: var(--gold-solid); color: #fff; font-weight: 600; font-size: 15.5px;
@@ -377,8 +377,8 @@ routine-player.is-done .rp-done { display: flex; }
 .rp-soc[data-net="pinterest"]:hover { background: #BD081C; }
 .rp-soc[data-net="whatsapp"]:hover { background: #25D366; }
 .rp-soc[data-net="email"]:hover { background: var(--plum); }
-.rp-soc-native { background: var(--plum); color: #fff; border-color: var(--plum); }
-.rp-soc-native:hover { background: var(--plum-deep); color: #fff; }
+.rp-soc-native { background: var(--plum); color: var(--paper); border-color: var(--plum); }
+.rp-soc-native:hover { background: var(--plum-deep); color: var(--paper); }
 .rp-done-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 .rp-download, .rp-again {
   font: inherit; font-size: 14px; padding: 10px 18px; border-radius: 999px; cursor: pointer;
@@ -395,7 +395,7 @@ routine-player.is-done .rp-done { display: flex; }
 .pb-compose-label { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); flex: 0 0 44px; padding-top: 8px; }
 .pb-compose .chips { flex: 1; }
 .pb-compose .chip { background: #fff; }
-.pb-compose .chip.active { background: var(--plum); color: #fff; border-color: var(--plum); }
+.pb-compose .chip.active { background: var(--plum); color: var(--paper); border-color: var(--plum); }
 .pb-compose-go { margin-top: 6px; cursor: pointer; }
 .pb-compose-go:disabled { opacity: .5; cursor: default; }
 .pb-compose-note { font-size: 13px; color: var(--ink-soft); margin: 12px 0 0; }
@@ -435,7 +435,7 @@ routine-player.is-done .rp-done { display: flex; }
 .pb-row-ctl button:hover { border-color: var(--plum); color: var(--plum); }
 .pb-sec { font-size: 13px; min-width: 46px; text-align: center; color: var(--ink); font-variant-numeric: tabular-nums; }
 .pb-sides { color: var(--ink-soft); }
-.pb-sides.on { background: var(--plum); color: #fff; border-color: var(--plum); }
+.pb-sides.on { background: var(--plum); color: var(--paper); border-color: var(--plum); }
 .pb-del:hover { border-color: var(--gold-solid) !important; color: var(--gold-solid) !important; }
 .pb-empty { color: var(--ink-soft); font-size: 15px; margin: 14px 0; }
 .pb-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
@@ -512,7 +512,7 @@ routine-player.is-done .rp-done { display: flex; }
 }
 .lm-form .btn-cta {
   cursor: pointer; padding: 14px 20px; font-size: 16px; font-weight: 600; font-family: inherit;
-  background: var(--plum); color: #fff; border: none; border-radius: 12px; width: 100%;
+  background: var(--plum); color: var(--paper); border: none; border-radius: 12px; width: 100%;
 }
 .lm-form .btn-cta:hover { background: var(--plum-deep); }
 .lm-fine { text-align: center; font-size: 13px; color: var(--ink-soft); margin: 14px 0 0; }
@@ -750,8 +750,8 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
   font-size: 15.5px; line-height: 1; cursor: pointer; text-decoration: none;
   border: 1px solid var(--plum);
 }
-.btn-primary { background: var(--plum); color: #fff; border-color: var(--plum); }
-.btn-primary:hover { background: var(--plum-deep); border-color: var(--plum-deep); color: #fff; }
+.btn-primary { background: var(--plum); color: var(--paper); border-color: var(--plum); }
+.btn-primary:hover { background: var(--plum-deep); border-color: var(--plum-deep); color: var(--paper); }
 .btn-secondary { background: transparent; color: var(--plum-deep); }
 .btn-secondary:hover { background: rgba(72,84,76,.08); border-color: var(--plum); }
 
@@ -768,7 +768,7 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
   color: var(--ink); transition: background .12s ease, color .12s ease, border-color .12s ease;
 }
 .chip:hover { border-color: var(--plum); }
-.chip.active { background: var(--plum); color: #fff; border-color: var(--plum); }
+.chip.active { background: var(--plum); color: var(--paper); border-color: var(--plum); }
 .filter-meta { display: flex; align-items: center; gap: 14px; min-height: 20px; flex-wrap: wrap; }
 .chip-clear { background: transparent; color: var(--plum-deep); border-style: dashed; }
 .chip-clear:hover { background: rgba(72,84,76,.08); }
@@ -1171,7 +1171,7 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .lib-pager { display: flex; justify-content: center; align-items: center; gap: 6px; margin: 34px 0 0; flex-wrap: wrap; }
 .lib-page { min-width: 38px; height: 38px; padding: 0 10px; border: 1px solid var(--line); border-radius: 9px; background: #fff; color: var(--plum); font: inherit; font-size: 14px; cursor: pointer; }
 .lib-page:hover:not(:disabled):not(.is-current) { border-color: var(--plum); }
-.lib-page.is-current { background: var(--plum); color: #fff; border-color: var(--plum); }
+.lib-page.is-current { background: var(--plum); color: var(--paper); border-color: var(--plum); }
 .lib-page:disabled { opacity: .4; cursor: default; }
 .lib-ellip { color: var(--ink-soft); padding: 0 2px; }
 
@@ -1345,7 +1345,7 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .footer-coffee:hover { background: var(--gold-solid); color: #fff; opacity: .9; }
 .site-footer-social { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 22px 0 0; }
 .site-footer-social a { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; color: var(--plum); border: 1px solid var(--line); background: transparent; transition: color .15s, background .15s, border-color .15s; }
-.site-footer-social a:hover { color: #fff; background: var(--plum); border-color: var(--plum); }
+.site-footer-social a:hover { color: var(--paper); background: var(--plum); border-color: var(--plum); }
 .site-footer-copy { font-size: 12px; color: var(--ink-soft); margin: 20px 0 0; }
 
 /* members-only pill (video page) */
@@ -1362,7 +1362,7 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
   color: var(--ink); background: var(--paper-2); font-weight: 500;
 }
 .cal-tab:hover { border-color: var(--plum); color: var(--ink); }
-.cal-tab.active { background: var(--plum); color: #fff; border-color: var(--plum); }
+.cal-tab.active { background: var(--plum); color: var(--paper); border-color: var(--plum); }
 
 /* ---- Monthly calendar builder ---- */
 .cb { margin-top: 22px; }
@@ -1385,7 +1385,7 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .cb-cell.is-active { border-color: var(--plum); box-shadow: 0 0 0 1px var(--plum); background: var(--paper); }
 .cb-cell.is-past { opacity: .4; cursor: default; background: transparent; }
 .cb-cell.is-past:hover { border-color: var(--line); }
-.cb-count { position: absolute; right: 5px; bottom: 4px; min-width: 17px; height: 17px; border-radius: 999px; background: var(--plum); color: #fff; font-size: 11px; font-weight: 600; display: grid; place-items: center; }
+.cb-count { position: absolute; right: 5px; bottom: 4px; min-width: 17px; height: 17px; border-radius: 999px; background: var(--plum); color: var(--paper); font-size: 11px; font-weight: 600; display: grid; place-items: center; }
 .cb-count:empty { display: none; }
 @media (max-width: 460px) { .cb-cell { padding: 4px 5px; border-radius: 8px; } .cb-num { font-size: 12px; } }
 .cb-programs { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
@@ -1420,7 +1420,7 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
   border: 1px solid var(--line); background: var(--paper); color: var(--ink); width: 100%;
 }
 .cal-signup input:focus { border-color: var(--plum); outline: none; }
-.cal-signup .btn-cta { cursor: pointer; padding: 13px 18px; font-size: 15.5px; font-weight: 600; font-family: inherit; background: var(--plum); color: #fff; border: none; border-radius: 11px; }
+.cal-signup .btn-cta { cursor: pointer; padding: 13px 18px; font-size: 15.5px; font-weight: 600; font-family: inherit; background: var(--plum); color: var(--paper); border: none; border-radius: 11px; }
 .cal-signup .btn-cta:hover { background: var(--plum-deep); }
 .cal-fine { font-size: 12.5px; color: var(--ink-soft); margin: 12px 0 0; }
 .cal-success p { margin: 0; font-size: 16px; color: var(--plum-deep); }
@@ -1437,7 +1437,7 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .mw-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px 2px; max-width: 230px; }
 .mw-dl { font-size: 10.5px; letter-spacing: .03em; text-transform: uppercase; color: var(--ink-soft); text-align: center; }
 .mw-day { text-align: center; font-size: 13px; color: var(--ink); padding: 4px 0; border-radius: 50%; font-variant-numeric: tabular-nums; }
-.mw-day.is-today { background: var(--plum); color: #fff; font-weight: 600; }
+.mw-day.is-today { background: var(--plum); color: var(--paper); font-weight: 600; }
 .mw-class { display: flex; align-items: center; gap: 14px; border: none; }
 .mw-thumb { position: relative; flex: none; width: 132px; line-height: 0; }
 .mw-thumb img { width: 132px; height: 74px; object-fit: cover; border-radius: 9px; }
@@ -1478,7 +1478,7 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .cw-gcal { font-size: 12.5px; padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line); color: var(--plum-deep); background: var(--paper); white-space: nowrap; }
 .cw-gcal:hover { border-color: var(--plum); color: var(--plum); }
 .cw-msg { font-size: 14px; color: var(--plum); min-height: 1.2em; margin: 10px 0 0; text-align: center; }
-.day-chip.active { background: var(--plum); color: #fff; border-color: var(--plum); }
+.day-chip.active { background: var(--plum); color: var(--paper); border-color: var(--plum); }
 .cat-addall { cursor: pointer; }
 .cat-addall b { font-weight: 600; }
 
@@ -1544,7 +1544,7 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .cb-sticky {
   position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 40; display: none;
   align-items: center; justify-content: space-between; gap: 12px; padding: 13px 20px;
-  border: none; border-radius: 100px; background: var(--plum); color: #fff;
+  border: none; border-radius: 100px; background: var(--plum); color: var(--paper);
   font-family: var(--body); font-size: 14px; font-weight: 600; text-align: left;
   box-shadow: 0 6px 22px rgba(46,52,47,.28); cursor: pointer;
 }
@@ -1564,7 +1564,7 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .cat-title:hover { color: var(--plum-deep); }
 .cat-meta { display: block; font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; }
 .cat-add {
-  flex: 0 0 auto; padding: 9px 16px; border: 1px solid var(--plum); background: var(--plum); color: #fff;
+  flex: 0 0 auto; padding: 9px 16px; border: 1px solid var(--plum); background: var(--plum); color: var(--paper);
   border-radius: 100px; font-family: var(--body); font-weight: 600; font-size: 13.5px; cursor: pointer;
 }
 .cat-add:hover { background: var(--plum-deep); border-color: var(--plum-deep); }
@@ -1614,7 +1614,15 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 [data-theme="dark"] .pg-class-n,
 [data-theme="dark"] .rt3-chips .chip,
 [data-theme="dark"] .lib-filters .chip { border-color: #6a6154; }
-/* --plum is now light → plum-backed buttons need dark text */
+/* --plum is now light → plum-backed buttons need dark text.
+   THE LIST BELOW IS LEGACY AND SHOULD NOT BE EXTENDED. It was a hand-maintained
+   allowlist, and it drifted: nine components were added over time without being
+   added here, so they shipped white-on-cream in dark mode — including the
+   /account sign-in button, which was effectively unreadable.
+   The fix is to pair the tokens instead: `background: var(--plum)` with
+   `color: var(--paper)`. Both invert together, so it is correct in both themes
+   with nothing to remember. These rules now resolve to the same value as
+   var(--paper) in dark, so they are harmless no-ops kept only to avoid churn. */
 [data-theme="dark"] .btn-primary, [data-theme="dark"] .btn-primary:hover,
 [data-theme="dark"] .pill.strong,
 [data-theme="dark"] .chip.active,
