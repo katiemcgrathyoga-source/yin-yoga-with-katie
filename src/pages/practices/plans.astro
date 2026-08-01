@@ -1,0 +1,296 @@
+---
+export const prerender = false; // SSR: gated like the rest of the course
+
+import { getCollection } from 'astro:content';
+import CourseLayout from '../../layouts/CourseLayout.astro';
+import CourseGate from '../../components/CourseGate.astro';
+import { checkAccess } from '../../lib/access';
+import { courseRoutines } from '../../lib/routines';
+import { PLANS, type PlanRef } from '../../data/plans';
+
+/**
+ * Calendar plans — the "Never-Skip Scheduler".
+ *
+ * Plans reference the library by `kind:slug`; this resolves them to real titles,
+ * durations and URLs at build time. A dead reference THROWS rather than quietly
+ * scheduling nothing — a plan silently missing a session is worse than a failed
+ * build, because nobody would notice until a member's calendar was wrong.
+ *
+ * The .ics is generated in the browser from data already on the page, so a
+ * download costs no function invocation.
+ */
+const PRODUCT = 'runner-reset';
+const access = await checkAccess(Astro.cookies.get('sb-token')?.value, PRODUCT);
+const unlocked = access.entitled;
+
+type Resolved = { title: string; minutes: number; url: string };
+let library = new Map<PlanRef, Resolved>();
+
+const [practices, routines] = await Promise.all([
+  getCollection('practices'),
+  getCollection('routines'),
+]);
+for (const p of practices) {
+  library.set(`practice:${p.data.slug}`, {
+    title: p.data.title,
+    minutes: p.data.minutes,
+    url: `/practices/${p.data.slug}`,
+  });
+}
+for (const r of courseRoutines(routines, PRODUCT)) {
+  library.set(`routine:${r.data.slug}`, {
+    title: r.data.title,
+    minutes: r.data.minutes,
+    url: `/practices/routines/${r.data.slug}`,
+  });
+}
+
+// Validate every reference up front, listing ALL failures rather than the first.
+const dead: string[] = [];
+for (const plan of PLANS) {
+  if (plan.schedule.type !== 'dated') continue;
+  for (const item of plan.schedule.items) {
+    if (!library.has(item.ref)) dead.push(`${plan.slug} → ${item.ref}`);
+  }
+}
+if (dead.length) {
+  throw new Error(
+    `Calendar plans reference ${dead.length} thing(s) that don't exist:\n  ${dead.join('\n  ')}`,
+  );
+}
+
+/** Everything the client needs to build an .ics, per plan. */
+const payload = PLANS.map((plan) => ({
+  slug: plan.slug,
+  title: plan.title,
+  anchor: plan.anchor,
+  schedule:
+    plan.schedule.type === 'dated'
+      ? {
+          type: 'dated' as const,
+          items: plan.schedule.items.map((i) => ({
+            day: i.day,
+            note: i.note,
+            ...library.get(i.ref)!,
+          })),
+        }
+      : { type: 'weekly' as const, slots: plan.schedule.slots },
+}));
+
+/** Group a dated plan into weeks for display. Race plans count backwards, so
+ *  week 1 is the furthest out. */
+function weeksOf(plan: (typeof PLANS)[number]) {
+  if (plan.schedule.type !== 'dated') return [];
+  const days = plan.schedule.items.map((i) => i.day);
+  const first = Math.min(...days);
+  const out: { label: string; items: typeof plan.schedule.items }[] = [];
+  for (let w = 0; w < plan.schedule.weeks + 1; w++) {
+    const lo = first + w * 7;
+    const items = plan.schedule.items.filter((i) => i.day >= lo && i.day < lo + 7);
+    if (!items.length) continue;
+    const label =
+      plan.anchor === 'race'
+        ? lo >= 0
+          ? 'After the race'
+          : lo >= -7
+            ? 'Race week'
+            : `${Math.ceil(-lo / 7)} weeks out`
+        : `Week ${w + 1}`;
+    out.push({ label, items });
+  }
+  return out;
+}
+
+const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+---
+
+<CourseLayout
+  title="Calendar plans — The Runner's Reset"
+  description="Load a plan straight into your calendar, with a quiet nudge when a practice is due."
+  noindex={true}
+  section={unlocked ? 'Calendar plans' : undefined}
+>
+  {!unlocked ? (
+    <div class="cwrap"><CourseGate signedIn={access.signedIn} thing="your calendar plans" /></div>
+  ) : (
+    <div class="cwrap cp">
+      <header class="cp-head">
+        <h1>Calendar plans</h1>
+        <p>
+          Pick a plan, choose a date, and it drops into whatever calendar you already use — with a
+          quiet nudge when a practice is due. Showing up is the part that actually works, and this is
+          the bit that makes showing up automatic.
+        </p>
+      </header>
+
+      {PLANS.map((plan) => (
+        <section class="cp-plan" data-plan={plan.slug}>
+          <h2>{plan.title}</h2>
+          <p class="cp-tagline">{plan.tagline}</p>
+          <p class="cp-blurb">{plan.blurb}</p>
+
+          {plan.schedule.type === 'weekly' ? (
+            <ul class="cp-slots">
+              {plan.schedule.slots.map((s) => (
+                <li>
+                  <span class="cp-slot-day">{DAY_NAMES[s.weekday]}</span>
+                  <span class="cp-slot-label">{s.label}</span>
+                  <span class="cp-slot-note">{s.note}</span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div class="cp-weeks">
+              {weeksOf(plan).map((w) => (
+                <div class="cp-week">
+                  <span class="cp-week-label">{w.label}</span>
+                  <ul>
+                    {w.items.map((i) => (
+                      <li>
+                        <a href={library.get(i.ref)!.url}>{library.get(i.ref)!.title}</a>
+                        <span class="cp-min">{library.get(i.ref)!.minutes} min</span>
+                        <span class="cp-note">{i.note}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div class="cp-form">
+            <label>
+              <span>{plan.anchorLabel}</span>
+              <input type="date" data-field="date" />
+            </label>
+            <label>
+              <span>What time suits you?</span>
+              <input type="time" data-field="time" value="18:00" />
+            </label>
+            <button type="button" data-add>Add to my calendar</button>
+            <p class="cp-msg" data-msg role="status"></p>
+          </div>
+        </section>
+      ))}
+
+      <p class="cp-foot">
+        The file works with Apple Calendar, Google Calendar, Outlook and anything else that speaks
+        iCalendar. Reminders are set for thirty minutes before — change or clear them in your
+        calendar once they're in, they're yours now.
+      </p>
+    </div>
+  )}
+</CourseLayout>
+
+<script define:vars={{ payload }}>
+  window.__plans = payload;
+</script>
+
+<script>
+  import { buildIcs, downloadIcs, type IcsEvent } from '../../lib/ics';
+
+  const plans = (window as any).__plans as any[];
+  if (plans) {
+    for (const section of Array.from(document.querySelectorAll<HTMLElement>('[data-plan]'))) {
+      const plan = plans.find((p) => p.slug === section.dataset.plan);
+      if (!plan) continue;
+      const dateEl = section.querySelector<HTMLInputElement>('[data-field="date"]')!;
+      const timeEl = section.querySelector<HTMLInputElement>('[data-field="time"]')!;
+      const msg = section.querySelector<HTMLElement>('[data-msg]')!;
+
+      section.querySelector('[data-add]')!.addEventListener('click', () => {
+        if (!dateEl.value) {
+          msg.textContent = 'Pick a date first.';
+          return;
+        }
+        const [y, m, d] = dateEl.value.split('-').map(Number);
+        const [hh, mm] = (timeEl.value || '18:00').split(':').map(Number);
+        // Constructed in local parts so the event lands at the chosen wall-clock
+        // time, matching the floating times the .ics writes.
+        const anchor = new Date(y, m - 1, d, hh, mm, 0);
+        const origin = location.origin;
+        const events: IcsEvent[] = [];
+
+        if (plan.schedule.type === 'dated') {
+          plan.schedule.items.forEach((i: any, n: number) => {
+            const when = new Date(anchor);
+            when.setDate(when.getDate() + i.day);
+            events.push({
+              uid: `${plan.slug}-${n}-${when.getTime()}@yinyogawithkatie.com`,
+              start: when,
+              durationMinutes: i.minutes,
+              summary: `Yin: ${i.title}`,
+              description: `${i.note}\n\n${origin}${i.url}`,
+              url: `${origin}${i.url}`,
+              reminderMinutes: 30,
+            });
+          });
+        } else {
+          plan.schedule.slots.forEach((s: any, n: number) => {
+            const when = new Date(anchor);
+            // Forward to the first matching weekday on or after the chosen date.
+            when.setDate(when.getDate() + ((s.weekday - when.getDay() + 7) % 7));
+            events.push({
+              uid: `${plan.slug}-${n}-${when.getTime()}@yinyogawithkatie.com`,
+              start: when,
+              durationMinutes: 30,
+              summary: `Yin: ${s.label}`,
+              description: `${s.note}\n\n${origin}/practices`,
+              url: `${origin}/practices`,
+              rrule: 'FREQ=WEEKLY',
+              reminderMinutes: 30,
+            });
+          });
+        }
+
+        downloadIcs(`${plan.slug}.ics`, buildIcs(`${plan.title} — Yin Yoga with Katie`, events));
+        msg.textContent = `Downloaded ${events.length} ${events.length === 1 ? 'entry' : 'entries'}. Open the file to add them.`;
+      });
+    }
+  }
+</script>
+
+<style>
+  .cwrap { max-width: 1040px; margin: 0 auto; padding: 34px 22px 0; }
+  .cp { max-width: 800px; }
+
+  .cp-head { margin-bottom: 34px; }
+  .cp-head h1 { font-family: var(--display); font-size: clamp(30px, 5vw, 40px); margin: 0 0 10px; }
+  .cp-head p { color: var(--ink-soft); margin: 0; line-height: 1.7; }
+
+  .cp-plan { background: var(--paper-2); border: 1px solid var(--line); border-radius: 18px; padding: 26px 28px; margin-bottom: 26px; }
+  .cp-plan h2 { font-family: var(--display); font-size: 24px; margin: 0 0 4px; }
+  .cp-tagline { font-family: var(--display); font-style: italic; color: var(--plum-deep); margin: 0 0 12px; }
+  .cp-blurb { color: var(--ink-soft); line-height: 1.7; margin: 0 0 22px; }
+
+  .cp-weeks { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
+  .cp-week-label { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-solid); margin-bottom: 6px; }
+  .cp-week ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .cp-week li { padding-left: 14px; border-left: 2px solid var(--line); }
+  .cp-week li a { font-weight: 600; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--gold); }
+  .cp-min { font-size: 12.5px; color: var(--gold-solid); font-weight: 600; margin-left: 8px; font-variant-numeric: tabular-nums; }
+  .cp-note { display: block; font-size: 14px; color: var(--ink-soft); line-height: 1.5; margin-top: 2px; }
+
+  .cp-slots { list-style: none; margin: 0 0 24px; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .cp-slots li { padding-left: 14px; border-left: 2px solid var(--line); }
+  .cp-slot-day { font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-solid); }
+  .cp-slot-label { display: block; font-family: var(--display); font-size: 18px; color: var(--ink); }
+  .cp-slot-note { display: block; font-size: 14px; color: var(--ink-soft); line-height: 1.5; margin-top: 2px; }
+
+  .cp-form { display: flex; gap: 14px; align-items: flex-end; flex-wrap: wrap; padding-top: 20px; border-top: 1px solid var(--line); }
+  .cp-form label { display: flex; flex-direction: column; gap: 5px; font-size: 13px; color: var(--ink-soft); font-weight: 600; }
+  .cp-form input {
+    font: inherit; font-size: 15px; padding: 10px 12px; border-radius: 10px;
+    border: 1.5px solid var(--ink-soft); background: var(--paper); color: var(--ink);
+  }
+  .cp-form input:focus { outline: 2px solid var(--gold-solid); outline-offset: 1px; border-color: var(--gold-solid); }
+  .cp-form button {
+    font: inherit; font-size: 15px; font-weight: 600; cursor: pointer;
+    padding: 12px 24px; border-radius: 100px; border: none;
+    background: var(--gold-solid); color: var(--paper);
+  }
+  .cp-form button:hover { background: var(--plum-deep); }
+  .cp-msg { flex-basis: 100%; margin: 4px 0 0; font-size: 13.5px; color: var(--ink-soft); }
+
+  .cp-foot { font-size: 14px; color: var(--ink-soft); line-height: 1.6; margin: 0 0 40px; }
+</style>

@@ -94,15 +94,13 @@ const GROUPS = [
         </section>
       ))}
 
-      {/* PLACEHOLDER — the calendar plans are sold on /runner-reset but not built.
-          Shown rather than hidden so a member knows it's coming, not missing. */}
       <section class="ch-sec">
         <h2>Calendar plans</h2>
         <p class="ch-blurb">A plan loaded straight into your calendar, with a quiet nudge when a practice is due.</p>
-        <div class="ch-soon">
-          <b>In the works</b>
-          <span>The <strong>6-Week Foundation</strong>, <strong>The Weekly Rhythm</strong> and <strong>Race Prep</strong> will land here. Until then, Start here has a first fortnight you can follow as-is.</span>
-          <a href="/practices/start-here">Open Start here →</a>
+        <div class="ch-soon is-ready">
+          <b>Three plans, ready to import</b>
+          <span>The <strong>6-Week Foundation</strong> for a gentle on-ramp, <strong>The Weekly Rhythm</strong> to hold three slots forever, and <strong>Race Prep</strong> that counts backwards from race day and tapers for you.</span>
+          <a href="/practices/plans">Open the calendar plans →</a>
         </div>
       </section>
     </div>
@@ -150,11 +148,12 @@ const GROUPS = [
   .ch-card-angle { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
   .ch-card-meta { margin-top: auto; padding-top: 6px; font-size: 13px; color: var(--ink-soft); }
 
-  /* Not-yet-built, stated plainly rather than hidden. */
+  /* Was a "coming soon" card; now the entry to the plans. Solid border rather
+     than dashed, because dashed reads as a placeholder. */
   .ch-soon {
     display: flex; flex-direction: column; gap: 7px; align-items: flex-start;
     padding: 20px 22px; border-radius: 14px;
-    background: var(--paper-2); border: 1px dashed rgba(137, 73, 75, .45);
+    background: var(--paper-2); border: 1px solid rgba(137, 73, 75, .32);
   }
   .ch-soon b { font-family: var(--display); font-weight: 500; font-size: 18px; color: var(--plum); }
   .ch-soon span { font-size: 14.5px; color: var(--ink-soft); line-height: 1.6; }
