@@ -57,8 +57,13 @@ const GROUPS = [
   ) : (
     <div class="cwrap">
       <header class="ch-head">
-        <h1>Your practices</h1>
-        <p>Press play on whichever your body is asking for. There's no order you have to follow, and nothing to fall behind on.</p>
+        {/* The H1 names the PRODUCT, not the section. Someone arriving here has
+            just bought something called The Runner's Reset and needs to know
+            they're in it — "Your practices" answered a question nobody asked.
+            The nav below still says Practices, because within the course that
+            word distinguishes filmed classes from Routines and Poses. */}
+        <h1>The Runner's Reset</h1>
+        <p>Everything you own, in one place. Press play on whichever your body is asking for — there's no order you have to follow, and nothing to fall behind on.</p>
       </header>
 
       <PracticeProgress />
