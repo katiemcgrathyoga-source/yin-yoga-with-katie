@@ -163,6 +163,11 @@ const nav = [
         <a href="/blog">Journal</a>
         <a href="/about">About</a>
         <a href="/free-class">Free class</a>
+        {/* The only signposted route back for someone who has bought something.
+            Static rather than a signed-in-only header link, because that would
+            mean shipping an auth check to ~700 prerendered pages to serve the
+            handful of people who need it. */}
+        <a href="/account">Account</a>
       </nav>
       <nav class="site-footer-social" aria-label="Katie on social media">
         {SITE.socials.substack && (

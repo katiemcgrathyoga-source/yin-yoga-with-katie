@@ -77,18 +77,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       const box = $('acct-ents');
       if (box) {
         if (ents && ents.length) {
+          // Every owned product is a LINK to the thing itself, plus a primary
+          // button straight into it. Listing what someone owns as plain text
+          // leaves a paying member signed in, told they own it, and with no way
+          // to open it — which is exactly what this page used to do.
           box.innerHTML =
             '<p class="acct-ents-h">What you own</p><ul class="acct-ents-list">' +
-            ents.map((e: any) => `<li>${labelFor(e.product)}</li>`).join('') +
-            '</ul>';
+            ents.map((e: any) => `<li><a href="${homeFor(e.product)}">${labelFor(e.product)}</a></li>`).join('') +
+            '</ul>' +
+            `<a class="acct-open" href="${homeFor(ents[0].product)}">Open ${labelFor(ents[0].product)} →</a>`;
         } else {
-          box.innerHTML = '<p class="acct-ents-empty">No purchases on this account yet.</p>';
+          box.innerHTML =
+            '<p class="acct-ents-empty">No purchases on this account yet.</p>' +
+            '<a class="acct-browse" href="/runner-reset">See what\'s inside The Runner\'s Reset →</a>';
         }
       }
     };
 
     const labelFor = (p: string) =>
       p === 'runner-reset' ? "The Runner's Reset" : p;
+
+    /** Where a product actually lives. Keep in step with the practices collection. */
+    const homeFor = (p: string) => (p === 'runner-reset' ? '/practices' : '/');
 
     // Sign-in form → send magic link back to this page.
     $('acct-form')?.addEventListener('submit', async (e) => {
@@ -136,5 +146,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .acct-ents-h { font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; margin: 0 0 8px; }
   .acct-ents-list { margin: 0; padding-left: 20px; }
   .acct-ents-list li { margin: 4px 0; }
+  .acct-ents-list li a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--gold-solid); }
+  .acct-ents-list li a:hover { color: var(--gold-solid); }
   .acct-ents-empty { color: var(--ink-soft); font-size: 15px; margin: 0; }
+  /* The primary action of this page for anyone who owns something: get in. */
+  .acct-open {
+    display: inline-block; margin-top: 18px; padding: 13px 26px; border-radius: 100px;
+    background: var(--gold-solid); color: var(--paper);
+    font-weight: 600; font-size: 15.5px; text-decoration: none;
+  }
+  .acct-open:hover { background: var(--plum-deep); color: var(--paper); }
+  .acct-browse { display: inline-block; margin-top: 14px; font-weight: 600; font-size: 15px; color: var(--gold-solid); text-decoration: none; }
+  .acct-browse:hover { text-decoration: underline; }
 </style>
