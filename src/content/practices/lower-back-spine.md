@@ -10,6 +10,7 @@ minutes: 16
 hold_label: "1–2 minute holds"
 props: []
 youtube_video_id: ""
+bunny_video_id: "1574a135-1461-4b56-87ec-0e6f5aa98e80"
 why: >
   Every run is repeated impact your spine absorbs, and the tight hip flexors running
   builds pull the pelvis forward, loading the lower back even more. Gentle movement in

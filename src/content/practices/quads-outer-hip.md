@@ -10,6 +10,7 @@ minutes: 18
 hold_label: "2 minute holds"
 props: []
 youtube_video_id: ""
+bunny_video_id: "6ba2fe9d-2867-4b75-91e7-0429bd9c6e2a"
 why: >
   Quads work overtime absorbing load, especially downhill. And "IT band syndrome" is
   one of the most common runner injuries — but the band itself is tough fascia you

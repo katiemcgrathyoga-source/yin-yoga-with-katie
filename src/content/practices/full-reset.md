@@ -10,6 +10,7 @@ minutes: 53
 hold_label: "3–5 minute holds"
 props: ["bolster", "2 blocks", "strap"]
 youtube_video_id: ""
+bunny_video_id: "d6d8e1bd-0399-4350-aa46-dcbaf1049f14"
 why: >
   Running loads a chain, not single muscles — a limit in one link (say the ankle)
   shows up somewhere else (the knee, the hip). The Full Reset walks the whole chain,
