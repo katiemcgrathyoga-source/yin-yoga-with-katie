@@ -4,6 +4,14 @@ Two templates and the SMTP setup behind them. These are the only emails Supabase
 sends for this site — magic-link sign-in is the entire auth system, so if they
 don't arrive, a paying member cannot watch anything they bought.
 
+## Do the SMTP first — the templates are locked until you do
+
+Supabase will not let you edit a template's subject or body while you are on its
+built-in sender. The editor shows "Set up custom SMTP to edit templates" and the
+fields are read-only. It is an anti-abuse measure, and it means the order is:
+
+**Resend → DNS → Supabase SMTP → then paste these templates.**
+
 ## Where each one goes
 
 Supabase → **Authentication → Email Templates**
@@ -54,16 +62,22 @@ It returns DKIM and SPF records to publish.
 
 ### 2 · DNS
 
-Wherever the domain's DNS lives — Netlify DNS if the site's nameservers point
-there, otherwise the registrar.
+DNS is on **Cloudflare** — nameservers `gannon.ns.cloudflare.com` and
+`raina.ns.cloudflare.com`. Add the records under the `yinyogawithkatie.com` zone,
+naming them relative to it (`send.notifications`, `resend._domainkey.notifications`).
+
+> **Cloudflare gotcha:** any CNAME Resend asks for must be set to **DNS only**
+> (grey cloud), not Proxied. A proxied CNAME breaks verification. TXT and MX
+> records are never proxied, so they need no attention.
 
 > **The one that bites:** a domain may have only **one** SPF record. Because the
 > sender here is a *subdomain*, it gets its own SPF and there's no clash with
 > MailerLite's on the root — which is a second reason to use one.
 >
 > If you later add Resend to the **root** domain as well, merge the include into
-> the existing record rather than adding a second:
-> `v=spf1 include:_spf.mlsend.com include:amazonses.com ~all`
+> the existing record rather than adding a second. The root currently reads
+> `v=spf1 a mx include:_spf.mlsend.com ~all`, so it would become
+> `v=spf1 a mx include:_spf.mlsend.com include:amazonses.com ~all`
 > Two SPF records is a hard fail — worse than having none.
 
 DKIM uses a unique selector per provider, so those never collide.
