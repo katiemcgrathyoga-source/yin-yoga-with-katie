@@ -1,0 +1,66 @@
+<!--
+  Supabase → Authentication → Email Templates → "Confirm signup"
+  Subject:  Confirm your email
+
+  EASY TO MISS: signInWithOtp sends THIS template, not "Magic Link", whenever the
+  address has never signed in before. Template only the Magic Link one and every
+  first-time visitor — including every new buyer — gets Supabase's unbranded
+  default on their very first contact with the product.
+
+  Same email-HTML constraints as magic-link.html: tables, inline styles, no web
+  fonts, no images. Copy differs because the moment differs: this person has just
+  arrived and doesn't yet know the link is the whole login.
+-->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F9F1EA;margin:0;padding:32px 12px;">
+  <tr>
+    <td align="center">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:520px;background-color:#FDF8F2;border:1px solid #E4DACF;border-radius:16px;">
+        <tr>
+          <td style="padding:36px 34px 8px;">
+            <p style="margin:0 0 26px;font-family:Georgia,'Times New Roman',serif;font-size:15px;letter-spacing:0.02em;color:#48544C;">
+              Yin Yoga with Katie
+            </p>
+
+            <h1 style="margin:0 0 16px;font-family:Georgia,'Times New Roman',serif;font-weight:normal;font-size:26px;line-height:1.25;color:#2E342F;">
+              Welcome — let's get you in
+            </h1>
+
+            <p style="margin:0 0 26px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#2E342F;">
+              Tap below to confirm your email and open your account. There's no password
+              to set — from now on I'll just send you a link like this one whenever you
+              want to sign in.
+            </p>
+
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 26px;">
+              <tr>
+                <td bgcolor="#89494B" style="border-radius:100px;">
+                  <a href="{{ .ConfirmationURL }}"
+                     style="display:inline-block;padding:15px 32px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16px;font-weight:600;color:#F9F1EA;text-decoration:none;border-radius:100px;">
+                    Confirm and sign in
+                  </a>
+                </td>
+              </tr>
+            </table>
+
+            <p style="margin:0 0 26px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;color:#6E756F;">
+              If the button doesn't work, copy this into your browser:<br />
+              <a href="{{ .ConfirmationURL }}" style="color:#89494B;word-break:break-all;">{{ .ConfirmationURL }}</a>
+            </p>
+
+            <p style="margin:0 0 8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;color:#6E756F;">
+              The link works once and expires after an hour. If you didn't sign up,
+              you can safely ignore this — no account will be created.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:20px 34px 32px;border-top:1px solid #E4DACF;">
+            <p style="margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;color:#6E756F;">
+              Take good care of yourself,<br />Katie
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

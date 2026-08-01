@@ -13,9 +13,9 @@ Steps 1 and 2 are probably done. The live site gates because those same values
 are **not set in Netlify**, and you personally gate because you have no
 entitlement row yet.
 
-So the likely path is: **step 3** (copy the values into Netlify) → **step 4**
-(sign in) → **step 5** (grant yourself). Skim 1 and 2 to confirm the table
-exists; don't redo them.
+**As of 1 Aug 2026 this is done** — Netlify has the Supabase, Bunny, Lemon
+Squeezy and MailerLite variables, and the site builds with them. What follows is
+kept as the reference for rebuilding the setup, not a to-do list.
 
 ## Previewing locally
 
@@ -111,12 +111,29 @@ Two commands to tell them apart, neither needing a login:
 # runtime vars — expect: {"error":"Missing video id..."}
 curl -s https://yinyogawithkatie.com/api/playback
 
-# build-time vars — expect a hit; nothing means the bundle predates them
-curl -s https://yinyogawithkatie.com/account \
-  | grep -oE '/_astro/[A-Za-z0-9._-]+\.js' | sort -u \
-  | while read -r f; do curl -s "https://yinyogawithkatie.com$f"; done \
-  | grep -c "supabase\.co"
+# build-time vars — prints LIVE if the deployed bundle carries the Supabase URL.
+#
+# Two traps this walks around, both of which produced a confident false
+# "not configured" against a build that was perfectly fine:
+#   1. /account 308-redirects to /account/ — without -L you scan an empty body.
+#   2. The client is code-split. The page's entry chunk only IMPORTS the chunk
+#      that actually contains the URL, so scanning the entry alone finds nothing.
+h=$(curl -sL https://yinyogawithkatie.com/account/)
+for f in $(echo "$h" | grep -oE '/_astro/[A-Za-z0-9._-]+\.js' | sort -u); do
+  b=$(curl -sL "https://yinyogawithkatie.com$f")
+  echo "$b" | grep -q 'supabase\.co' && echo LIVE
+  for c in $(echo "$b" | grep -oE '"\./[A-Za-z0-9._-]+\.js"' | tr -d '"' | sed 's|^\./||'); do
+    curl -sL "https://yinyogawithkatie.com/_astro/$c" | grep -q 'supabase\.co' && echo LIVE
+  done
+done | head -1
 ```
+
+## Auth emails and SMTP
+
+Supabase's built-in mailer is rate-limited to a handful an hour, and every member
+needs a magic link to watch anything they've paid for — so it can't stay on the
+shared service. Setup, plus the two branded templates, are in
+[supabase-email-templates/](supabase-email-templates/README.md).
 
 ## 4 · Sign in once
 
