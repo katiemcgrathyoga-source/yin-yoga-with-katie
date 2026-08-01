@@ -91,7 +91,32 @@ In Netlify: Site configuration → Environment variables.
 > the Netlify function environment — never in `.env` committed anywhere, never in
 > anything prefixed `PUBLIC_`, which Astro inlines into the browser bundle.
 
-Redeploy after adding them. Env changes don't apply to an existing build.
+**Then trigger a deploy** — Deploys → Trigger deploy → Deploy site. Adding a
+variable does not cause a build, and the two groups behave differently:
+
+| Prefix | Read | Live when |
+|---|---|---|
+| `PUBLIC_*` | **build time** — Vite inlines them into the browser bundle | only in a build that ran *after* you added them |
+| everything else | **runtime** — `process.env` inside the function | the next deploy, whenever that happens |
+
+So `BUNNY_STREAM_*` can start working on a deploy triggered by an unrelated
+push, while `PUBLIC_SUPABASE_*` sit there doing nothing until a genuine rebuild.
+The failure looks identical to a missing variable — `/account` still says
+"Accounts aren't switched on yet" — which sends you hunting for a config bug
+that is really a stale build.
+
+Two commands to tell them apart, neither needing a login:
+
+```bash
+# runtime vars — expect: {"error":"Missing video id..."}
+curl -s https://yinyogawithkatie.com/api/playback
+
+# build-time vars — expect a hit; nothing means the bundle predates them
+curl -s https://yinyogawithkatie.com/account \
+  | grep -oE '/_astro/[A-Za-z0-9._-]+\.js' | sort -u \
+  | while read -r f; do curl -s "https://yinyogawithkatie.com$f"; done \
+  | grep -c "supabase\.co"
+```
 
 ## 4 · Sign in once
 
