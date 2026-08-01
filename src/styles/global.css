@@ -235,8 +235,10 @@ h1 {
 .pose-photo.is-placeholder img { max-width: 300px; margin: 0 auto; padding: 24px; background: var(--paper-2); }
 .pose-photo.is-placeholder figcaption { margin-top: 10px; text-align: center; font-size: 13px; letter-spacing: .04em; color: var(--ink-soft); font-style: italic; }
 
-/* hold timer (pose pages + future routine player) */
+/* hold timer — pose pages; the routine player has its own .rp-* chrome */
 .timer-section { text-align: center; }
+.timer-section > h2 { margin-bottom: 4px; }
+.pt-lede { margin: 0 auto 20px; max-width: 44ch; font-size: 15px; color: var(--ink-soft); }
 .pt { display: flex; flex-direction: column; align-items: center; gap: 18px; }
 .pt-ring-wrap { position: relative; width: 220px; height: 220px; }
 .pt-ring { width: 100%; height: 100%; transform: rotate(-90deg); }
@@ -306,6 +308,15 @@ routine-player.is-focus .rp-bar { display: flex; }
   border: 1px solid var(--line); background: none; color: var(--ink-soft);
 }
 .rp-exit:hover { border-color: var(--gold-solid); color: var(--gold-solid); }
+.rp-bar-right { display: flex; align-items: center; gap: 8px; }
+.rp-sound {
+  width: 34px; height: 34px; padding: 0; border-radius: 50%; cursor: pointer;
+  display: inline-grid; place-items: center;
+  border: 1px solid var(--line); background: none; color: var(--ink-soft);
+}
+.rp-sound:hover { border-color: var(--gold-solid); color: var(--gold-solid); }
+.rp-sound svg { width: 17px; height: 17px; fill: currentColor; }
+.rp-sound[aria-pressed="false"] { color: var(--gold-solid); border-color: var(--gold-solid); }
 
 .rp-stage { position: relative; width: 100%; max-width: 480px; text-align: center; }
 .rp-photo {
@@ -313,7 +324,20 @@ routine-player.is-focus .rp-bar { display: flex; }
   border-radius: 14px; border: 1px solid var(--line); background: var(--paper);
   transition: opacity .3s ease;
 }
-routine-player.is-transition .rp-photo, routine-player.is-done .rp-photo { opacity: .35; }
+/* The rebound photo is the NEXT pose, so it stays fully lit — you're meant to be
+   reading it. Only the finished state dims. */
+routine-player.is-done .rp-photo { opacity: .35; }
+
+/* Marks the photo as a preview during the rebound, so nobody reads it as the
+   shape they should currently be holding. */
+.rp-coming {
+  position: absolute; top: 12px; left: 12px; z-index: 1;
+  font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  padding: 5px 11px; border-radius: 999px;
+  background: var(--plum); color: var(--paper);
+  opacity: 0; transition: opacity .25s ease; pointer-events: none;
+}
+routine-player.is-transition .rp-coming { opacity: 1; }
 .rp-overlay { margin-top: 14px; }
 .rp-count { margin: 0; font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
 .rp-name { margin: 4px 0 2px; font-family: var(--display); font-weight: 500; font-size: 24px; color: var(--plum-deep); line-height: 1.15; }

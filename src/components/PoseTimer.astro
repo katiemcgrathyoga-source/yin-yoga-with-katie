@@ -21,14 +21,17 @@ const { seconds, holdLabel } = Astro.props;
 <pose-timer data-seconds={seconds} data-hold-label={holdLabel ?? ''}></pose-timer>
 
 <script>
+  import { chime } from '../lib/chime';
+
   class PoseTimer extends HTMLElement {
     target = 180;
     remaining = 180;
     running = false;
     endAt = 0;
     tick: number | undefined;
-    audio: AudioContext | null = null;
     wakeLock: any = null;
+    /** Which of the final three seconds have already ticked in this run. */
+    ticked = new Set<number>();
 
     connectedCallback() {
       this.target = Math.max(5, parseInt(this.dataset.seconds || '180', 10) || 180);
@@ -113,6 +116,7 @@ const { seconds, holdLabel } = Astro.props;
       this.ensureAudio();
       this.requestWake();
       this.running = true;
+      this.ticked.clear();
       this.endAt = performance.now() + this.remaining * 1000;
       this.tick = window.setInterval(() => this.step(), 200);
       this.live.textContent = `Timer started, ${this.fmt(this.remaining)} remaining.`;
@@ -127,6 +131,10 @@ const { seconds, holdLabel } = Astro.props;
         this.complete();
         return;
       }
+      // Three soft ticks into the bell. The fired-set is needed because a 200ms
+      // poll can land twice inside the same second.
+      const sec = Math.ceil(this.remaining);
+      if (sec <= 3 && !this.ticked.has(sec)) { this.ticked.add(sec); chime.tick(); }
       this.render();
     }
 
@@ -151,7 +159,7 @@ const { seconds, holdLabel } = Astro.props;
 
     complete() {
       this.stop();
-      this.chime();
+      chime.bell();
       this.live.textContent = 'Hold complete. Come out slowly.';
       const hint = this.querySelector('.pt-hint') as HTMLElement;
       if (hint) hint.textContent = 'complete';
@@ -159,30 +167,10 @@ const { seconds, holdLabel } = Astro.props;
       setTimeout(() => this.classList.remove('is-done'), 2400);
     }
 
-    // --- gentle two-note bell, no breath pacing --------------------------------
-    ensureAudio() {
-      try {
-        if (!this.audio) this.audio = new (window.AudioContext || (window as any).webkitAudioContext)();
-        if (this.audio.state === 'suspended') this.audio.resume();
-      } catch { /* audio unavailable — the timer still works silently */ }
-    }
-    chime() {
-      const ctx = this.audio;
-      if (!ctx) return;
-      const now = ctx.currentTime;
-      [ [880, 0], [587.33, 0.5] ].forEach(([freq, at]) => {
-        const o = ctx.createOscillator();
-        const g = ctx.createGain();
-        o.type = 'sine';
-        o.frequency.value = freq;
-        g.gain.setValueAtTime(0.0001, now + at);
-        g.gain.exponentialRampToValueAtTime(0.32, now + at + 0.04);
-        g.gain.exponentialRampToValueAtTime(0.0001, now + at + 1.8);
-        o.connect(g).connect(ctx.destination);
-        o.start(now + at);
-        o.stop(now + at + 1.7);
-      });
-    }
+    // --- sound ------------------------------------------------------------------
+    /** Shared with the routine player, so a hold sounds the same wherever you
+     *  time it — including the member's mute preference. */
+    ensureAudio() { chime.prime(); }
 
     // --- best-effort screen wake lock during a hold ----------------------------
     async requestWake() {

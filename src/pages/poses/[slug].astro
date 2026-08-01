@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import { publicRoutines } from '../../lib/routines';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Cta from '../../components/Cta.astro';
+import PoseTimer from '../../components/PoseTimer.astro';
 import { videoHeadline } from '../../lib/video';
 import { journalPinUrl } from '../../lib/journalPin';
 
@@ -14,7 +15,9 @@ import { journalPinUrl } from '../../lib/journalPin';
  * Page order is by reader intent: recognize the pose (photo) → save it →
  * the scannable facts (At a glance) → how to do it → why → cautions →
  * transitions → FAQ → practice it in context (routines/classes) → related →
- * the one email ask. No hold timer here — timing belongs on the routine player.
+ * the one email ask. The hold timer sits under "At a glance": course members
+ * follow a pose link out of a practice to work on one shape on its own, and
+ * without a timer here that journey dead-ends at a photo.
  */
 export async function getStaticPaths() {
   const poses = await getCollection('poses');
@@ -186,6 +189,19 @@ const hasPractice = hasVideo || featuredRoutines.length > 0 || featuredClasses.l
         }
       </dl>
     </section>
+
+    {/* Time this one hold. Sits right under the "Hold" row it acts on, so the
+        suggested range and the thing that counts it are read together. */}
+    {d.hold_seconds && (
+      <section class="timer-section">
+        <h2>Time your hold</h2>
+        <p class="pt-lede">
+          Three soft ticks and a bell when you're done, so you can close your eyes and stop
+          watching the clock.
+        </p>
+        <PoseTimer seconds={d.hold_seconds} holdLabel={d.hold_time} />
+      </section>
+    )}
 
     {/* How to do it — the core "how", the main thing people came to read. */}
     <section>
