@@ -44,12 +44,26 @@ const BOARDS = [
   { key: 'poses', name: 'Yin Yoga Poses', blurb: 'Every pose in the library — evergreen search traffic; pin a handful a week.' },
   { key: 'flexibility', name: 'Yin Yoga for Flexibility', blurb: 'Deep stretches — hamstrings, hips, quads, side body.' },
   { key: 'runners', name: 'Yin Yoga for Runners', blurb: 'Recovery, mobility and follow-along Yin for runners — tight hips, hamstrings, calves and the IT band.' },
+  { key: 'desk', name: 'Yoga for Desk Workers | Neck, Shoulders & Posture', blurb: 'Groundwork for the desk-worker course. Neck, shoulders, upper back, chest and the hip flexors sitting shortens. Pin steadily from now so the board has authority before the course launches — the runners board was built the same way.' },
   { key: 'hips', name: 'Yoga for Hips', blurb: 'Hip, groin and glute openers.' },
   { key: 'back', name: 'Yoga for Back & Spine', blurb: 'Lower back, spine, shoulders and neck.' },
   { key: 'routines', name: 'Yin Yoga Routines', blurb: 'Full timed sequences — the numbered “save this” pins.' },
   { key: 'nidra', name: 'Yoga Nidra & Deep Rest', blurb: 'Deep rest — savasana, legs up the wall, and the most calming practices.' },
 ] as const;
 type BoardKey = (typeof BOARDS)[number]['key'];
+
+// The public routines that belong in front of a desk worker. "Upper Body for
+// Runners" is deliberately absent despite being about shoulders — the wrong shop.
+// Only one of these was BUILT for this audience; the rest are borrowed, which is
+// the honest state of the library until the desk course is filmed.
+const DESK_ROUTINES = new Set([
+  'shoulders-neck-desk-relief',
+  'heart-chest-opener',
+  'lower-back-release',
+  'stress-overwhelm-relief',
+  'full-body-reset',
+  'morning-wake-up',
+]);
 
 type Entry = { title: string; kind: string; img: string; save: string; clip: string };
 const byBoard = Object.fromEntries(BOARDS.map((b) => [b.key, [] as Entry[]])) as Record<BoardKey, Entry[]>;
@@ -84,6 +98,11 @@ for (const pose of poses) {
   if (/(corpse|savasana|legs-up-the-wall|reclined|banana|child|caterpillar|butterfly|melting-heart|half-butterfly|snail|supported|sphinx|seal)/.test(d.slug)) keys.push('sleep');
   if (/(corpse|savasana|legs-up-the-wall|reclined-twist|snail|supported)/.test(d.slug) || /nervous system/.test(areas)) keys.push('nidra');
   if (/\b(hip|hips|hip flexor|hip flexors|hamstring|hamstrings|glute|glutes|quadriceps|quads?|calf|calves|ankle|ankles|foot|feet|it band|groin|outer hip|outer hips|inner thigh|inner thighs|lower back|side body|shin|shins)\b/.test(areas)) keys.push('runners');
+  // Desk work is an UPPER-body problem plus one lower-body one: the hip flexors
+  // shorten from hours of sitting. Deliberately does NOT match "lower back" or
+  // "spine" on their own — 25 and 19 poses carry those, which would make this a
+  // dumping ground rather than a board someone follows.
+  if (/\b(shoulder|shoulders|neck|upper back|chest|pectorals|throat|hip flexor|hip flexors)\b/.test(areas)) keys.push('desk');
   add([...new Set(keys)] as BoardKey[], e);
 }
 
@@ -114,6 +133,10 @@ for (const r of routines) {
   if (/hamstring|leg|legs|flexib|hip|splits/.test(t)) keys.push('flexibility');
   if (/stress|overwhelm|calm|wind.?down|bedtime|deep rest|relax/.test(t)) keys.push('nidra');
   if (/hip|hamstring|leg|legs|glute|calf|quad|back|flexib|lower body|deep stretch|recovery|runner/.test(t)) keys.push('runners');
+  // Named rather than matched. Every other board can afford a loose regex, but
+  // this one is seeding a course, so a wrong pin costs more than a missing one —
+  // and matching on "twist" alone dragged in Digestion and Morning Wake-Up.
+  if (DESK_ROUTINES.has(d.slug)) keys.push('desk');
   add([...new Set(keys)] as BoardKey[], e);
 }
 
@@ -129,6 +152,7 @@ const postBoards = (slug: string, title: string): BoardKey[] => {
   if (/hold|pose|poses/.test(t)) keys.push('poses');
   if (/routine|home|library|class/.test(t)) keys.push('routines');
   if (/runner|running/.test(t)) keys.push('runners');
+  if (/desk|office|neck|shoulder|posture|screen|sitting|hunch|laptop|work/.test(t)) keys.push('desk');
   return keys.length ? ([...new Set(keys)] as BoardKey[]) : ['poses'];
 };
 const posts = (await getCollection('blog'))

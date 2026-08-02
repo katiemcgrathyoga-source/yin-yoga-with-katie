@@ -12,15 +12,22 @@ import { defineConfig } from 'astro/config';
  * Read straight off the frontmatter rather than kept as a hand-written list, so
  * enriching a class removes it from here automatically.
  */
-const skeletonVideoPaths = new Set(
-  fs.readdirSync('./src/content/videos')
+const noindexPaths = (dir, prefix, isHidden) =>
+  fs.readdirSync(dir)
     .filter((f) => f.endsWith('.md'))
-    .map((f) => fs.readFileSync(`./src/content/videos/${f}`, 'utf8'))
-    .filter((src) => /^enriched:\s*false\s*$/m.test(src))
+    .map((f) => fs.readFileSync(`${dir}/${f}`, 'utf8'))
+    .filter(isHidden)
     .map((src) => src.match(/^slug:\s*"([^"]+)"/m)?.[1])
     .filter(Boolean)
-    .map((slug) => `/videos/${slug}`),
-);
+    .map((slug) => `${prefix}/${slug}`);
+
+const hiddenPaths = new Set([
+  ...noindexPaths('./src/content/videos', '/videos', (src) => /^enriched:\s*false\s*$/m.test(src)),
+  // Same contradiction, different collection: an unlisted post is a soft launch —
+  // it renders at its URL for review but sets noindex and stays out of the listing
+  // and RSS. Submitting it to Google undoes the point of the flag.
+  ...noindexPaths('./src/content/blog', '/blog', (src) => /^unlisted:\s*true\s*$/m.test(src)),
+]);
 import sitemap from '@astrojs/sitemap';
 import netlify from '@astrojs/netlify';
 import tailwindcss from '@tailwindcss/vite';
@@ -49,8 +56,9 @@ export default defineConfig({
         // Whole sections, matched as path segments so a slug can't collide.
         if (path === '/dev' || path.startsWith('/dev/')) return false;
         if (path === '/practices' || path.startsWith('/practices/')) return false;
-        // Unwritten video pages are noindex; don't ask Google to crawl them.
-        if (skeletonVideoPaths.has(path)) return false;
+        // Anything that renders noindex — unwritten video pages, soft-launched
+        // posts — must not be submitted to Google as well.
+        if (hiddenPaths.has(path)) return false;
         return true;
       },
     }),
