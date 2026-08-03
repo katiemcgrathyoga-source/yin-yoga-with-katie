@@ -31,6 +31,9 @@ const block = (angles) =>
         `  - audience: ${q(a.audience)}`,
         `    headline: ${q(a.headline)}`,
         `    proof: ${q(a.proof)}`,
+        // Optional pair for the Before → after template; the schema requires
+        // both or neither.
+        ...(a.before ? [`    before: ${q(a.before)}`, `    after: ${q(a.after)}`] : []),
       ]),
     )
     .join('\n');

@@ -50,6 +50,8 @@ pin_angles:
   - audience: "if you sit all day"
     headline: "Undo a day of shoulders rolled in"
     proof: "Hips high, chest low. Three to five minutes."
+    before: "Shoulders up high"
+    after: "Shoulders that drop"
   - audience: "for stiff shoulders"
     headline: "The stretch a phone makes necessary"
     proof: "Arms long, forehead down. Three minutes."

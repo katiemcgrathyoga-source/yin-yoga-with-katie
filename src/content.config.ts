@@ -50,20 +50,38 @@ function checkMinutes(
 const pinAngles = (max = 2) =>
   z
     .array(
-      z.object({
-        audience: z.enum(PIN_AUDIENCES),
-        headline: z
-          .string()
-          .min(1)
-          .max(
-            PIN_LIMITS.headline,
-            `pin headline must be ${PIN_LIMITS.headline} characters or fewer — rewrite it shorter, never shrink the type`,
-          ),
-        proof: z
-          .string()
-          .min(1)
-          .max(PIN_LIMITS.proof, `pin proof must be ${PIN_LIMITS.proof} characters or fewer`),
-      }),
+      z
+        .object({
+          audience: z.enum(PIN_AUDIENCES),
+          headline: z
+            .string()
+            .min(1)
+            .max(
+              PIN_LIMITS.headline,
+              `pin headline must be ${PIN_LIMITS.headline} characters or fewer — rewrite it shorter, never shrink the type`,
+            ),
+          proof: z
+            .string()
+            .min(1)
+            .max(PIN_LIMITS.proof, `pin proof must be ${PIN_LIMITS.proof} characters or fewer`),
+
+          /**
+           * Optional state pair, for the Before → after template.
+           *
+           * Both states set in the same face at the same size, so the only thing
+           * that changes is the colour — which is what keeps it out of gimmick
+           * territory. That only holds if both lines break the same way, and at
+           * 108px nineteen characters is one line. A two-line "before" against a
+           * one-line "after" kills the device, so the limit is hard and both are
+           * required together.
+           */
+          before: z.string().min(1).max(PIN_LIMITS.state).optional(),
+          after: z.string().min(1).max(PIN_LIMITS.state).optional(),
+        })
+        .refine((a) => Boolean(a.before) === Boolean(a.after), {
+          message: 'before and after go together — an angle needs both state lines or neither',
+          path: ['before'],
+        }),
     )
     .max(max, `at most ${max} pin angle${max === 1 ? '' : 's'} here — beyond that the calendar surfaces the same page too often`)
     .default([]);

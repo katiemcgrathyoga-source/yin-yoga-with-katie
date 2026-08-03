@@ -52,6 +52,8 @@ pin_angles:
   - audience: "for restless nights"
     headline: "The last two minutes of your day"
     proof: "Knees to one side. Let the spine unwind."
+    before: "Today, still in me"
+    after: "Today, put down"
   - audience: "for a stiff back"
     headline: "Unwind a spine that sat all day"
     proof: "Two to five minutes a side, lying down."

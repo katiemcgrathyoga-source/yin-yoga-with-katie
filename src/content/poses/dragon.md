@@ -59,6 +59,8 @@ pin_angles:
   - audience: "for runners"
     headline: "The hip that shortens your stride"
     proof: "Three minutes a side. Tonight, not next week."
+    before: "Stiff from mile one"
+    after: "Loose by the end"
   - audience: "if you sit all day"
     headline: "The hip flexor a chair keeps short"
     proof: "Sink low, two minutes a side. Pad the knee."

@@ -52,6 +52,8 @@ pin_angles:
   - audience: "if you sit all day"
     headline: "The hips a chair keeps folded shut"
     proof: "Three to five minutes. Knees stay where they land."
+    before: "Hips stuck at 3pm"
+    after: "Hips open by 7"
   - audience: "for beginners"
     headline: "The first yin pose worth learning"
     proof: "Three minutes, feet together, back soft."

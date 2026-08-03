@@ -55,6 +55,8 @@ pin_angles:
   - audience: "for a stiff back"
     headline: "The gentlest backbend there is"
     proof: "Forearms down, three minutes. Never pinchy."
+    before: "A back that's flat"
+    after: "A back with a curve"
 seo_title: "Sphinx Pose: Benefits, How-To & Hold Time"
 seo_description: "Sphinx is a gentle yin backbend on the forearms that restores the lower-back curve. Learn the cues, hold time, props and the cautions that matter."
 ---

@@ -52,6 +52,8 @@ pin_angles:
   - audience: "for runners"
     headline: "The whole back of your legs, at once"
     proof: "Round the back, bend the knees. Three minutes."
+    before: "Hamstrings, welded"
+    after: "Hamstrings, softer"
   - audience: "for a stiff back"
     headline: "Let your head hang for three minutes"
     proof: "Nothing to reach for. Gravity does the folding."

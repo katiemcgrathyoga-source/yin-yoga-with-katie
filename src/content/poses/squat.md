@@ -49,6 +49,8 @@ pin_angles:
   - audience: "for tight hips"
     headline: "The position we stopped using"
     proof: "Sink low for two minutes. Heels on a blanket."
+    before: "Hips that stay high"
+    after: "Hips that sink low"
   - audience: "for runners"
     headline: "Hips and ankles in one shape"
     proof: "One to three minutes low. Hold something."

@@ -9,6 +9,16 @@
 #                                 every template including List and Split
 #   proof     ≤ 54 characters
 #
+# THE OPTIONAL STATE PAIR (before / after)
+# Some angles also carry two state lines, which unlocks the Before → after
+# template. Both are set in the same face at the same size — only the colour
+# changes — so both must fit on one line or the device stops reading. That is
+# 19 characters at 108px, and the schema enforces both-or-neither.
+#
+# Only a minority of angles have them, and should: it needs a complaint the
+# reader recognises at once and an opposite they can feel. "Hips stuck at 3pm
+# → Hips open by 7" works; most poses have no such pair worth writing.
+#
 # THE FIVE FORMULAS these were written against
 #   1  the exact moment      "The hip you notice at mile four"
 #   2  the time contrast     "Two minutes to undo eight hours"
@@ -85,6 +95,8 @@ butterfly:
     - audience: "if you sit all day"
       headline: "The hips a chair keeps folded shut"
       proof: "Three to five minutes. Knees stay where they land."
+      before: "Hips stuck at 3pm"
+      after: "Hips open by 7"
     - audience: "for beginners"
       headline: "The first yin pose worth learning"
       proof: "Three minutes, feet together, back soft."
@@ -112,6 +124,8 @@ caterpillar:
     - audience: "for runners"
       headline: "The whole back of your legs, at once"
       proof: "Round the back, bend the knees. Three minutes."
+      before: "Hamstrings, welded"
+      after: "Hamstrings, softer"
     - audience: "for a stiff back"
       headline: "Let your head hang for three minutes"
       proof: "Nothing to reach for. Gravity does the folding."
@@ -133,6 +147,8 @@ corpse:
     - audience: "when you're wound up"
       headline: "Doing nothing, on purpose"
       proof: "Five to ten minutes. Set a timer and stop."
+      before: "A mind still racing"
+      after: "A mind that settles"
 
 cow-face:
   pin_angles:
@@ -175,6 +191,8 @@ dragon:
     - audience: "for runners"
       headline: "The hip that shortens your stride"
       proof: "Three minutes a side. Tonight, not next week."
+      before: "Stiff from mile one"
+      after: "Loose by the end"
     - audience: "if you sit all day"
       headline: "The hip flexor a chair keeps short"
       proof: "Sink low, two minutes a side. Pad the knee."
@@ -247,6 +265,8 @@ legs-up-the-wall:
     - audience: "for tired legs"
       headline: "The recovery pose that asks nothing"
       proof: "Five minutes up a wall. No flexibility needed."
+      before: "Legs like concrete"
+      after: "Legs you can run on"
     - audience: "for restless nights"
       headline: "Fifteen minutes and the day drains out"
       proof: "Legs up the wall. Nothing to hold, nothing to do."
@@ -256,6 +276,8 @@ melting-heart:
     - audience: "if you sit all day"
       headline: "Undo a day of shoulders rolled in"
       proof: "Hips high, chest low. Three to five minutes."
+      before: "Shoulders up high"
+      after: "Shoulders that drop"
     - audience: "for stiff shoulders"
       headline: "The stretch a phone makes necessary"
       proof: "Arms long, forehead down. Three minutes."
@@ -292,6 +314,8 @@ reclined-twist:
     - audience: "for restless nights"
       headline: "The last two minutes of your day"
       proof: "Knees to one side. Let the spine unwind."
+      before: "Today, still in me"
+      after: "Today, put down"
     - audience: "for a stiff back"
       headline: "Unwind a spine that sat all day"
       proof: "Two to five minutes a side, lying down."
@@ -337,6 +361,8 @@ sleeping-swan:
     - audience: "for runners"
       headline: "The hip you notice at mile four"
       proof: "Three minutes a side. Gravity does it, not you."
+      before: "Hips locked up"
+      after: "Hips that let go"
     - audience: "for tight hips"
       headline: "The hip opener everything builds to"
       proof: "One to five minutes a side. Fold forward."
@@ -349,12 +375,16 @@ sphinx:
     - audience: "for a stiff back"
       headline: "The gentlest backbend there is"
       proof: "Forearms down, three minutes. Never pinchy."
+      before: "A back that's flat"
+      after: "A back with a curve"
 
 squat:
   pin_angles:
     - audience: "for tight hips"
       headline: "The position we stopped using"
       proof: "Sink low for two minutes. Heels on a blanket."
+      before: "Hips that stay high"
+      after: "Hips that sink low"
     - audience: "for runners"
       headline: "Hips and ankles in one shape"
       proof: "One to three minutes low. Hold something."
@@ -373,6 +403,8 @@ supported-fish:
     - audience: "if you sit all day"
       headline: "Breathe properly again in five minutes"
       proof: "Lie back over a block. The prop opens you."
+      before: "A chest that's shut"
+      after: "A chest that opens"
     - audience: "when you're wound up"
       headline: "The shape that makes breathing easier"
       proof: "Three to five minutes, fully supported."
@@ -394,6 +426,8 @@ thread-the-needle:
     - audience: "for stiff shoulders"
       headline: "A twist that never loads your back"
       proof: "Two to four minutes a side. Never crank the neck."
+      before: "A knot by lunchtime"
+      after: "Shoulders that give"
 
 toe-squat:
   pin_angles:

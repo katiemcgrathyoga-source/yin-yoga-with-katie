@@ -26,6 +26,8 @@ pin_angles:
   - audience: "if you sit all day"
     headline: "Nineteen minutes to undo a desk day"
     proof: "Chest open, shoulders unstuck, neck soft."
+    before: "Shoulders at 5pm"
+    after: "Shoulders at 6"
   - audience: "for stiff shoulders"
     headline: "Five poses for shoulders that won't drop"
     proof: "Nineteen minutes, and nothing to buy."

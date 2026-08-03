@@ -29,6 +29,8 @@ pin_angles:
   - audience: "for a stiff back"
     headline: "Twenty-five minutes for a tired back"
     proof: "Length, decompression, and the hips behind it."
+    before: "A back that aches"
+    after: "A back that eases"
   - audience: "if you sit all day"
     headline: "The back a chair leaves aching"
     proof: "Gentle, all-levels, twenty-five minutes."

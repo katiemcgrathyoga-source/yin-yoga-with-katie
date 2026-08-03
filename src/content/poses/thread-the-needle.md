@@ -53,6 +53,8 @@ pin_angles:
   - audience: "for stiff shoulders"
     headline: "A twist that never loads your back"
     proof: "Two to four minutes a side. Never crank the neck."
+    before: "A knot by lunchtime"
+    after: "Shoulders that give"
 seo_title: "Thread the Needle in Yin Yoga: Benefits & How-To"
 seo_description: "Thread the Needle is a gentle yin twist that opens the upper back and shoulders. Cues, hold times and neck-safe cautions to keep it kind."
 ---

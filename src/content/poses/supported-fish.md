@@ -49,6 +49,8 @@ pin_angles:
   - audience: "if you sit all day"
     headline: "Breathe properly again in five minutes"
     proof: "Lie back over a block. The prop opens you."
+    before: "A chest that's shut"
+    after: "A chest that opens"
   - audience: "when you're wound up"
     headline: "The shape that makes breathing easier"
     proof: "Three to five minutes, fully supported."

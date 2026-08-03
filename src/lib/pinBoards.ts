@@ -45,5 +45,7 @@ export const boardFor = (audience: PinAudience): string => PIN_BOARDS[audience];
  *   audience  22 — also the board key
  *   headline  40 — List and Split are the tightest; Hook would allow 46
  *   proof     54 — the Split card is the tightest proof slot
+ *   state     19 — one line at 108px on Before → after. Both state lines must
+ *                  break the same way, so this one is measured, not chosen.
  */
-export const PIN_LIMITS = { audience: 22, headline: 40, proof: 54 } as const;
+export const PIN_LIMITS = { audience: 22, headline: 40, proof: 54, state: 19 } as const;

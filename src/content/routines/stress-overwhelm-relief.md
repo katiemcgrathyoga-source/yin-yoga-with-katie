@@ -28,6 +28,8 @@ pin_angles:
   - audience: "when you're wound up"
     headline: "Twenty-five minutes to come back down"
     proof: "Slow, supported shapes and a timer that waits."
+    before: "Wound up by six"
+    after: "Down by half past"
   - audience: "for restless nights"
     headline: "For the days that got away from you"
     proof: "Grounding, all-levels, nothing to achieve."

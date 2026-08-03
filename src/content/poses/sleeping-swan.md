@@ -60,6 +60,8 @@ pin_angles:
   - audience: "for runners"
     headline: "The hip you notice at mile four"
     proof: "Three minutes a side. Gravity does it, not you."
+    before: "Hips locked up"
+    after: "Hips that let go"
   - audience: "for tight hips"
     headline: "The hip opener everything builds to"
     proof: "One to five minutes a side. Fold forward."

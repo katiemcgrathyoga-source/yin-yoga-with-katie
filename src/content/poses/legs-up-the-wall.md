@@ -52,6 +52,8 @@ pin_angles:
   - audience: "for tired legs"
     headline: "The recovery pose that asks nothing"
     proof: "Five minutes up a wall. No flexibility needed."
+    before: "Legs like concrete"
+    after: "Legs you can run on"
   - audience: "for restless nights"
     headline: "Fifteen minutes and the day drains out"
     proof: "Legs up the wall. Nothing to hold, nothing to do."

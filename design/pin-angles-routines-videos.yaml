@@ -24,6 +24,8 @@ routines:
       - audience: for restless nights
         headline: Twenty-five minutes toward sleep
         proof: Soft, supported shapes. Nothing to hold.
+        before: "Wide awake at 11"
+        after: "Asleep by half past"
       - audience: when you're wound up
         headline: The day, put down in twenty-five
         proof: Gentle shapes and a timer that counts for you.
@@ -40,6 +42,8 @@ routines:
       - audience: for runners
         headline: Legs that move again, in eight poses
         proof: Twenty-six minutes, the evening after a run.
+        before: "Legs that feel used"
+        after: "Legs ready again"
       - audience: for tight hips
         headline: Twenty-six minutes on the back line
         proof: Hamstrings, calves, inner thighs and feet.
@@ -72,6 +76,8 @@ routines:
       - audience: for a stiff back
         headline: Twenty-five minutes for a tired back
         proof: Length, decompression, and the hips behind it.
+        before: "A back that aches"
+        after: "A back that eases"
       - audience: if you sit all day
         headline: The back a chair leaves aching
         proof: Gentle, all-levels, twenty-five minutes.
@@ -88,6 +94,8 @@ routines:
       - audience: if you sit all day
         headline: Nineteen minutes to undo a desk day
         proof: Chest open, shoulders unstuck, neck soft.
+        before: "Shoulders at 5pm"
+        after: "Shoulders at 6"
       - audience: for stiff shoulders
         headline: Five poses for shoulders that won't drop
         proof: Nineteen minutes, and nothing to buy.
@@ -96,6 +104,8 @@ routines:
       - audience: when you're wound up
         headline: Twenty-five minutes to come back down
         proof: Slow, supported shapes and a timer that waits.
+        before: "Wound up by six"
+        after: "Down by half past"
       - audience: for restless nights
         headline: For the days that got away from you
         proof: Grounding, all-levels, nothing to achieve.

@@ -118,6 +118,10 @@ export async function buildPinInventory(): Promise<Pin[]> {
       const templates = img ? ['window'] : ['card'];
       if (img && fits('hook', d.slug)) templates.push('hook');
       if (img && fits('split', d.slug)) templates.push('split');
+      // Before → after only where the angle carries a state pair. Most don't:
+      // it needs a complaint the reader recognises instantly and an opposite
+      // they can feel, which is a narrower set than it sounds.
+      if (img && angle.before && angle.after) templates.push('states');
 
       for (const template of templates) {
         for (const tone of ['light', 'dark'] as PinTone[]) {
@@ -129,6 +133,7 @@ export async function buildPinInventory(): Promise<Pin[]> {
             image: cardUrl({
               tpl: template, tone,
               t: angle.headline, s: angle.audience, sub: angle.proof,
+              b: angle.before, a: angle.after,
               id: template === 'split' ? d.hold_time : `${d.name_en} · a yin yoga pose`,
               pose: template === 'split' ? d.name_en : undefined,
               img: template === 'card' ? undefined : img,
@@ -154,7 +159,9 @@ export async function buildPinInventory(): Promise<Pin[]> {
         img: photoOf(s.pose),
       };
     });
-    const hero = d.hero_pose ? photoOf(d.hero_pose) : undefined;
+    // Not every routine names a hero pose; its first shape stands in fairly,
+    // and it means no routine has to fall back to a text-only pin.
+    const hero = photoOf(d.hero_pose ?? d.steps[0]?.pose ?? '');
 
     for (const [i, angle] of d.pin_angles.entries()) {
       const audience = angle.audience as PinAudience;
@@ -169,6 +176,8 @@ export async function buildPinInventory(): Promise<Pin[]> {
       // The pose list is the routine's own strongest creative, and the hero
       // photo covers the rest. No need for a text card as well.
       const templates = ['poselist', ...(hero ? ['window'] : ['card'])];
+      if (hero && angle.before && angle.after) templates.push('states');
+
       for (const template of templates) {
         for (const tone of ['light', 'dark'] as PinTone[]) {
           add({
@@ -179,9 +188,10 @@ export async function buildPinInventory(): Promise<Pin[]> {
             image: cardUrl({
               tpl: template, tone,
               t: angle.headline, s: angle.audience, sub: angle.proof,
+              b: angle.before, a: angle.after,
               id: `a ${d.minutes}-minute routine`,
               items: template === 'poselist' ? JSON.stringify(items) : undefined,
-              img: template === 'window' ? hero : undefined,
+              img: template === 'card' ? undefined : hero,
             }),
           });
         }

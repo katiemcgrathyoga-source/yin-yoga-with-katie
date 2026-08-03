@@ -51,6 +51,8 @@ pin_angles:
   - audience: "when you're wound up"
     headline: "Doing nothing, on purpose"
     proof: "Five to ten minutes. Set a timer and stop."
+    before: "A mind still racing"
+    after: "A mind that settles"
 seo_title: "Corpse Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Corpse Pose is the final rest in Yin Yoga, calming the nervous system and letting your practice settle. Learn how to rest well, with props and cautions."
 ---

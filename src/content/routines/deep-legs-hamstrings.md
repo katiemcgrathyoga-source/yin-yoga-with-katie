@@ -30,6 +30,8 @@ pin_angles:
   - audience: "for runners"
     headline: "Legs that move again, in eight poses"
     proof: "Twenty-six minutes, the evening after a run."
+    before: "Legs that feel used"
+    after: "Legs ready again"
   - audience: "for tight hips"
     headline: "Twenty-six minutes on the back line"
     proof: "Hamstrings, calves, inner thighs and feet."

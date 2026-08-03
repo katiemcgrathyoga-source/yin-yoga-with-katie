@@ -28,6 +28,8 @@ pin_angles:
   - audience: "for restless nights"
     headline: "Twenty-five minutes toward sleep"
     proof: "Soft, supported shapes. Nothing to hold."
+    before: "Wide awake at 11"
+    after: "Asleep by half past"
   - audience: "when you're wound up"
     headline: "The day, put down in twenty-five"
     proof: "Gentle shapes and a timer that counts for you."

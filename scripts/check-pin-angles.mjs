@@ -85,6 +85,17 @@ for (const [slug, list] of Object.entries(angles)) {
         );
       }
     }
+    // The optional state pair. Both or neither, and both inside the one-line
+    // limit — a two-line "before" against a one-line "after" kills the device.
+    if (Boolean(a?.before) !== Boolean(a?.after)) {
+      errors.push(`${where}: has only one state line — before and after go together`);
+    }
+    for (const field of ['before', 'after']) {
+      const value = a?.[field];
+      if (typeof value === 'string' && value.length > LIMITS.state) {
+        errors.push(`${where}: ${field} is ${value.length}/${LIMITS.state} — "${value}"`);
+      }
+    }
     if (a?.audience && !PIN_BOARDS[a.audience]) {
       errors.push(`${where}: "${a.audience}" is not a known audience — add it to src/lib/pinBoards.ts first`);
     } else if (a?.audience) {
