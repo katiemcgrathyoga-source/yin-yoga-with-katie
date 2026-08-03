@@ -34,6 +34,10 @@ chapters:
     poses: ["corpse"]
 membership_cta: "Inside the membership, this class is part of a guided Full-Body program — so instead of choosing a video each day, you follow the plan and move through your week feeling looser, calmer and more at home in your body."
 summary: "A gentle 34-minute Yin class for total beginners — no props needed, just four calming shapes to soften your hips, spine and mind."
+pin_angles:
+  - audience: "for beginners"
+    headline: "Thirty minutes, first time"
+    proof: "No props. Every shape explained."
 seo_title: "Yin Yoga for Beginners (30 Minutes, No Props) | Yin with Katie"
 seo_description: "A calming 34-minute Yin Yoga class for beginners with no props. Gentle hip openers, a soft backbend and reclined twists to stretch, relax and quiet the mind."
 faq:

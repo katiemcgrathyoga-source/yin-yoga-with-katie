@@ -24,6 +24,10 @@ chapters:
   - { time: "36:29",  seconds: 2189, title: "Spine · Caterpillar & Seated Twist", poses: ["caterpillar", "seated-twist"] }
   - { time: "41:00",  seconds: 2460, title: "Corpse Pose / Savasana", poses: ["corpse"] }
   - { time: "44:04",  seconds: 2644, title: "Close · Like & subscribe" }
+pin_angles:
+  - audience: "for a stiff back"
+    headline: "Forty-five minutes, hips and low back"
+    proof: "Free on YouTube. Nothing to set up."
 seo_title: "Grounding Yin Yoga for Hips & Lower Back — 45 min, No Props"
 seo_description: "A grounding 45-minute Yin Yoga class for the hips and lower back — no props needed. Dragon, sleeping swan, shoelace, squat and dangling, held long and slow. All levels."
 summary: "A grounding 45-minute no-props Yin class for the hips and lower back — dragon, sleeping swan, shoelace and squat, held long and slow to help you settle and let go."

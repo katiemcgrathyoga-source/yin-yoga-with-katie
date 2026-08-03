@@ -23,6 +23,10 @@ chapters:
   - { time: "20:30",  seconds: 1230, title: "Spine · Side-Body Stretch" }
   - { time: "21:50",  seconds: 1310, title: "Twist · Windshield Wipers",                      pose: "reclined-twist" }
   - { time: "23:30",  seconds: 1410, title: "Breath · Closing Meditation" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Twenty-five minutes, no props, bed"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "25-Min Bedtime Yin Yoga for Sleep — No Props"
 seo_description: "A calming 25-minute bedtime Yin Yoga class for sleep — box breathing and slow, no-props stretches to release the day and ease you toward rest. All levels."
 membership_cta: "This class lives inside the membership's Sleep program — a night-by-night path that helps you fall asleep faster and sleep through. Press play and let it carry you."

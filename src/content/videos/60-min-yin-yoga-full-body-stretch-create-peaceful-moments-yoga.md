@@ -24,6 +24,10 @@ chapters:
   - { time: "34:00",  seconds: 2040, title: "Hips · Squat", pose: "squat" }
   - { time: "39:00",  seconds: 2340, title: "Shoulders · Thread the Needle (each side)", pose: "thread-the-needle" }
   - { time: "53:30",  seconds: 3210, title: "Corpse Pose / Savasana", poses: ["corpse"] }
+pin_angles:
+  - audience: "when you're wound up"
+    headline: "An hour to come back to yourself"
+    proof: "Follow along on YouTube. No props needed."
 seo_title: "60-Min Full-Body Yin Yoga — Create Peaceful Moments"
 seo_description: "A calming 60-minute full-body Yin Yoga class with box breathing and long, supported holds using a block or two — stretch deeply and create peaceful moments. All levels."
 membership_cta: "Love a calming hour like this? Inside the membership it lives as part of a guided Full-Body program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

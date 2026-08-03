@@ -23,6 +23,10 @@ chapters:
   - { time: "17:45",  seconds: 1065, title: "Twist · Cat Pulling Its Tail (side 1)",     pose: "cat-pulling-its-tail" }
   - { time: "22:33",  seconds: 1353, title: "Twist · Cat Pulling Its Tail (side 2)",     pose: "cat-pulling-its-tail" }
   - { time: "26:15",  seconds: 1575, title: "Breath · Corpse", poses: ["corpse"] }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Half an hour, then sleep"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "30-Min Bedtime Yin Yoga — Full-Body Stretch for Sleep"
 seo_description: "A gentle 30-minute bedtime Yin Yoga class — slow full-body stretches to release the day's tension and settle you toward sleep. Day 5 of the Bedtime Challenge."
 membership_cta: "This is Day 5 of the Bedtime Challenge. Inside the membership, the full challenge lives as a guided Sleep program — press play each night and let it carry you off. Become someone who falls asleep faster and sleeps through."

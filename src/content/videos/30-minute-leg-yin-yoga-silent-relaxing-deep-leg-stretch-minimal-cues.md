@@ -21,6 +21,10 @@ chapters:
   - { time: "19:24",  seconds: 1164, title: "Groin · Reclined Butterfly",                    poses: ["butterfly"] }
   - { time: "25:25",  seconds: 1525, title: "Hips · Cat Pulling Its Tail",                   poses: ["cat-pulling-its-tail"] }
   - { time: "30:30",  seconds: 1830, title: "Close · Like & subscribe" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Thirty silent minutes on the legs"
+    proof: "Free on YouTube. Nothing to set up."
 seo_title: "30-Minute Leg Yin Yoga — Silent, No Props Deep Leg Stretch"
 seo_description: "A silent 30-minute Yin Yoga class for the legs — deep, slow stretches for quads, hamstrings and hips with minimal cues and no props. Calming, all levels."
 membership_cta: "Inside the membership, this silent leg class anchors the Reset program — a guided way to downshift at the end of the day so you feel calmer and sleep more easily."

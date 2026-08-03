@@ -20,6 +20,10 @@ chapters:
   - { time: "6:26",   seconds: 386,  title: "Hips · Sleeping Swan (side 1)",          pose: "sleeping-swan" }
   - { time: "11:25",  seconds: 685,  title: "Hips · Sleeping Swan (side 2)",          pose: "sleeping-swan" }
   - { time: "17:00",  seconds: 1020, title: "Twist · Reclined Twist (each side)",     pose: "reclined-twist" }
+pin_angles:
+  - audience: "for a stiff back"
+    headline: "Twenty-five minutes on hips and glutes"
+    proof: "Follow along on YouTube. No props needed."
 seo_title: "Yin Yoga for Tight Hips & Glutes — 23-Min Deep Stretch"
 seo_description: "A 23-minute Yin Yoga class for tight hips and glutes — deep, slow-held stretches to release the glutes, ease the lower back and build flexibility. All levels."
 membership_cta: "Love releasing your hips like this? Inside the membership this class is part of the Hips & Lower Back program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the day loose and easy."

@@ -45,6 +45,13 @@ related_poses: ["supported-fish", "sphinx", "seal", "camel", "corpse"]
 youtube_video_id: ""
 images:
   - "/poses/supported-bridge.jpg"
+pin_angles:
+  - audience: "for restless nights"
+    headline: "A backbend you can fall asleep in"
+    proof: "Block under the hips. The prop does the work."
+  - audience: "for a stiff back"
+    headline: "Five minutes with the hips held up"
+    proof: "Passive, propped, nothing to hold."
 seo_title: "Supported Bridge Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Supported Bridge is a passive yin backbend with a block under the sacrum, a gentle mild inversion. Learn the cues, hold time, props and cautions."
 ---

@@ -22,6 +22,10 @@ chapters:
   - { time: "14:09",  seconds: 849,  title: "Back · Knee Hugs" }
   - { time: "18:37",  seconds: 1117, title: "Shoulders · Supported Fish",  pose: "supported-fish" }
   - { time: "24:39",  seconds: 1479, title: "Twist · Reclined Twist",      pose: "reclined-twist" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Thirty reclined minutes before bed"
+    proof: "Props take the weight. You just lie there."
 seo_title: "Reclined Bedtime Yin Yoga with Props for Sleep — Day 7"
 seo_description: "A calming 30-minute fully-reclined Yin Yoga class with a bolster and blocks to release tension and ease you toward sleep. Day 7 of the Bedtime Challenge."
 membership_cta: "This is Day 7 of the Bedtime Challenge. Inside the membership, the full challenge lives as a guided Sleep program — press play each night and let the props hold you while you drift off. Become someone who falls asleep faster and sleeps through."

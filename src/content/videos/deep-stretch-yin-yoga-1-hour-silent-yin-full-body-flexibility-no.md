@@ -24,6 +24,10 @@ chapters:
   - { time: "36:00",  seconds: 2160, title: "Spine · Reclined Twist (each side)", pose: "reclined-twist" }
   - { time: "44:50",  seconds: 2690, title: "Side body · Banana",              pose: "banana" }
   - { time: "51:30",  seconds: 3090, title: "Corpse Pose / Savasana",           pose: "corpse" }
+pin_angles:
+  - audience: "when you're wound up"
+    headline: "An hour of silence and long holds"
+    proof: "Free on YouTube. Nothing to set up."
 seo_title: "Deep Stretch Yin Yoga — 1-Hour Silent Full-Body, No Props"
 seo_description: "A silent 1-hour Yin Yoga class for deep full-body flexibility — long, slow holds with minimal cues and no props. Calming and suitable for all levels."
 membership_cta: "Love a deep, quiet full-body stretch like this? Inside the membership it lives as part of a guided Full-Body program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

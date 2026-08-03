@@ -20,6 +20,10 @@ chapters:
   - { time: "6:00",  seconds: 360,  title: "Sides of shoulders · Bow Tie to Broken Wing (each side)", poses: ["bow-tie", "broken-wing", "crocodile"] }
   - { time: "22:30", seconds: 1350, title: "Whole shoulder · Eagle Arms to Cow-Face Arms (each side)", poses: ["eagle", "cow-face"] }
   - { time: "34:00", seconds: 2040, title: "Rest · Corpse Pose when you're ready", poses: ["corpse"] }
+pin_angles:
+  - audience: "for stiff shoulders"
+    headline: "Five poses for stuck shoulders"
+    proof: "Thirty-six minutes, upper back and chest."
 seo_title: "Yin Yoga For Shoulders & Upper Back — 36 min, All Levels"
 seo_description: "A 36 min Yin Yoga class for flexible shoulders and a supple upper back — five long-held poses that move the shoulder joint in every direction. Strap optional, all levels."
 membership_cta: "Love a gentle practice like this? Inside the membership it's part of a guided Shoulders program — press play and follow the plan instead of choosing a class each day, and let the week leave you feeling looser and lighter."

@@ -30,6 +30,10 @@ chapters:
   - { time: "8:55", seconds: 535, title: "Windshield Wipers" }
 membership_cta: "Inside the membership, the longer Yin classes go deeper into these same places — held long enough for the tissue a ten-minute cool-down only skims."
 summary: "A 10-minute post-run yoga cool-down: Downward Dog, Lizard, Pigeon and Half-Shoelace on both sides, in the window while you're still warm."
+pin_angles:
+  - audience: "for runners"
+    headline: "Press play the night after a run"
+    proof: "Eleven minutes, follow along, then sleep."
 seo_title: "After Running Yoga: A 10-Minute Post-Run Stretch Routine"
 seo_description: "A 10-minute yoga cool-down to do straight after running: Lizard, Pigeon and Half-Shoelace for tight hips, glutes and hamstrings while you're still warm."
 ---

@@ -20,6 +20,10 @@ chapters:
   - { time: "19:40", seconds: 1180, title: "Hips · Wall Swan (figure-four)", poses: ["reclined-swan"] }
   - { time: "26:30", seconds: 1590, title: "Groin · Wall Butterfly", poses: ["butterfly"] }
   - { time: "31:00", seconds: 1860, title: "Rest & goodnight" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Thirty minutes against a wall"
+    proof: "The wall holds the shape. You unwind."
 seo_title: "Wall Yin Yoga to Unwind & Relax — 33 min Bedtime Yin"
 seo_description: "A calming 33-minute wall Yin Yoga class for bedtime — legs up the wall, dragonfly, happy baby and butterfly to unwind your hips and settle you into sleep."
 membership_cta: "This gentle wall practice lives inside the membership's Sleep program — a night-by-night path that helps you switch off, fall asleep faster and rest more deeply. Press play and let the wall do the work."

@@ -23,6 +23,10 @@ chapters:
   - { time: "43:30",  seconds: 2610, title: "Back · Cat Pulling Its Tail",             poses: ["cat-pulling-its-tail"] }
   - { time: "53:45",  seconds: 3225, title: "Corpse Pose / Savasana",                  poses: ["corpse"] }
   - { time: "58:47",  seconds: 3527, title: "Closing · Like & subscribe" }
+pin_angles:
+  - audience: "for stiff shoulders"
+    headline: "An hour once yin stops feeling new"
+    proof: "Intermediate. Deeper shapes, longer holds."
 seo_title: "Deep Stretch Full-Body Yin Yoga — 60 Min, Intermediate"
 seo_description: "A 60-minute intermediate Yin Yoga class with long 3-minute holds — a deep full-body stretch through shoulders, hips, hamstrings and back to unwind and release."
 membership_cta: "Inside the membership, this class is part of a guided Full-Body program — so instead of choosing a video each day, you follow the plan and move through your week feeling looser and lighter."

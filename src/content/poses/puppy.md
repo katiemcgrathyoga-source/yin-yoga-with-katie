@@ -45,6 +45,13 @@ related_poses: ["melting-heart", "childs-pose", "sphinx", "cat-pulling-its-tail"
 youtube_video_id: ""
 images:
   - "/brand/pose-placeholder.png"
+pin_angles:
+  - audience: "if you sit all day"
+    headline: "A gentler way to open the chest"
+    proof: "Hips over knees, chest melting. Two minutes."
+  - audience: "for beginners"
+    headline: "Melting Heart, with training wheels"
+    proof: "One to four minutes. Lower back stays easy."
 seo_title: "Puppy Pose (Anahatasana) in Yin Yoga: Benefits & How-To"
 seo_description: "Puppy Pose is a gentle yin heart-opener for the shoulders, chest and upper back — the softer cousin of Melting Heart. Learn the cues, benefits and hold time."
 ---

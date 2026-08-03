@@ -22,6 +22,10 @@ chapters:
   - { time: "16:40",  seconds: 1000, title: "Lower back · Air-Releasing Pose" }
   - { time: "20:00",  seconds: 1200, title: "Rest · Corpse Pose",               pose: "corpse" }
   - { time: "23:00",  seconds: 1380, title: "Breath · Closing meditation" }
+pin_angles:
+  - audience: "for tight hips"
+    headline: "Twenty-five minutes, never done yin"
+    proof: "Every pose explained. Nothing assumed."
 seo_title: "25-Minute Yin Yoga for Complete Beginners"
 seo_description: "A gentle 25-minute Yin Yoga class for complete beginners — a few simple full-body poses held two minutes each, with easy step-by-step cues. No experience needed."
 membership_cta: "New to Yin and want a little more guidance? Inside the membership this class is part of a guided beginner-friendly program — so instead of choosing a video each day, you follow the plan and move through your week feeling looser and lighter."

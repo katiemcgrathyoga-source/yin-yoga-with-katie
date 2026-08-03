@@ -23,6 +23,10 @@ chapters:
   - { time: "28:40",  seconds: 1720, title: "Spine · Seated Twist", poses: ["seated-twist"] }
   - { time: "30:00",  seconds: 1800, title: "Closing meditation" }
   - { time: "31:00",  seconds: 1860, title: "Like, subscribe or join" }
+pin_angles:
+  - audience: "for stiff shoulders"
+    headline: "Thirty minutes of long backbends"
+    proof: "For a spine that only ever rounds forward."
 seo_title: "30-Minute Yin Yoga Backbends — Spinal Flexibility & Open Shoulders"
 seo_description: "A gentle 30-minute Yin Yoga backbend class to open the chest and shoulders and free up the spine. Supported fish, sphinx, broken wing, puppy and seal. All levels."
 membership_cta: "Inside the membership, this class is part of a guided Full-Body program — so instead of choosing a video each day, you follow the plan and move through your week feeling looser and lighter."

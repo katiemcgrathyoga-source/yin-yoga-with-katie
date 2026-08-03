@@ -45,6 +45,13 @@ related_poses: ["cow-face", "thread-the-needle", "broken-wing", "melting-heart",
 youtube_video_id: ""
 images:
   - "/poses/eagle.jpg"
+pin_angles:
+  - audience: "if you sit all day"
+    headline: "Spread the upper back in one minute"
+    proof: "Wrap the arms, lift the elbows. A minute a side."
+  - audience: "for stiff shoulders"
+    headline: "The gap between your shoulder blades"
+    proof: "One to three minutes a side, sitting up."
 seo_title: "Eagle Arms in Yin Yoga: Benefits & How-To"
 seo_description: "Eagle arms spread the upper back and open the shoulders in Yin Yoga. Learn how to practice this seated pose safely, with cues, props and cautions."
 ---

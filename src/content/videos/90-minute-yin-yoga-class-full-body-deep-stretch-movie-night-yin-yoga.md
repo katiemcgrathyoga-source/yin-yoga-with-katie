@@ -26,6 +26,10 @@ chapters:
   - { time: "1:12:30",  seconds: 4350, title: "Feet · Toe Squat & Ankle Stretch", poses: ["toe-squat", "ankle-stretch"] }
   - { time: "1:17:11",  seconds: 4631, title: "Twist · Reclined Twist (each side)",                pose: "reclined-twist" }
   - { time: "1:25:37",  seconds: 5137, title: "Corpse Pose / Savasana", poses: ["corpse"] }
+pin_angles:
+  - audience: "for a full-body reset"
+    headline: "Ninety minutes you can put a film on for"
+    proof: "Long holds. Nothing to concentrate on."
 seo_title: "Movie Night Yin: 90-Min Full-Body Deep Stretch Yin Yoga"
 seo_description: "A 90-minute full-body Yin Yoga class with a playful movie-night theme — long, deep stretches to build body awareness and let distraction fade. All levels."
 membership_cta: "Love a long, full-body stretch like this? Inside the membership it lives as part of a guided Full-Body program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

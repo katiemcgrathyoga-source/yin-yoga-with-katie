@@ -21,6 +21,10 @@ chapters:
   - { time: "21:43",  seconds: 1303, title: "Hips · Reclined Twist (figure-4)", poses: ["reclined-twist"] }
   - { time: "25:25",  seconds: 1525, title: "Big Stretch" }
   - { time: "26:00",  seconds: 1560, title: "Rest · Constructive Rest" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Thirty minutes to take it down"
+    proof: "For a system stuck in the on position."
 seo_title: "30-Min Nervous System Reset — Gentle Yin Yoga"
 seo_description: "A gentle 30-minute Yin Yoga nervous system reset to release the psoas, open the chest and downshift into calm. Beginner-friendly, perfect for evening wind-down."
 membership_cta: "Inside the membership, this class anchors the Reset program — a guided way to downshift at the end of the day so you feel calmer and sleep more easily."

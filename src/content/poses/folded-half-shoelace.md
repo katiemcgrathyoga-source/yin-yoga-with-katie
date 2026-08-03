@@ -48,6 +48,13 @@ related_poses: ["shoelace", "half-butterfly", "sleeping-swan", "swan", "caterpil
 youtube_video_id: ""
 images:
   - "/poses/folded-half-shoelace.jpg"
+pin_angles:
+  - audience: "for runners"
+    headline: "Outer hip and hamstring in one fold"
+    proof: "Three minutes a side. Kinder than Shoelace."
+  - audience: "for tight hips"
+    headline: "The glute that sitting turns to stone"
+    proof: "Bottom leg straight — easier on the knees."
 seo_title: "Folded Half Shoelace Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Folded Half Shoelace is a knee-friendly Yin Yoga fold blending an outer-hip and glute stretch with a hamstring and back-line release, one side at a time."
 ---

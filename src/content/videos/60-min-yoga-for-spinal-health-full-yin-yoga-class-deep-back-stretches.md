@@ -26,6 +26,10 @@ chapters:
   - { time: "43:10",  seconds: 2590, title: "Hips · Squat",                             pose: "squat" }
   - { time: "48:00",  seconds: 2880, title: "Twist · Reclined Twist (each side)",       pose: "reclined-twist" }
   - { time: "57:00",  seconds: 3420, title: "Corpse Pose / Savasana", poses: ["corpse"] }
+pin_angles:
+  - audience: "for a full-body reset"
+    headline: "An hour for the length of your spine"
+    proof: "Follow along on YouTube. No props needed."
 seo_title: "60-Min Yin Yoga for Spinal Health & Deep Back Stretches"
 seo_description: "A calming 60-minute full-body Yin Yoga class for spinal health — deep back stretches held long and slow, from caterpillar to sphinx to a gentle twist. All levels."
 membership_cta: "This is Class 2 of the weekly series. Inside the membership, the whole series lives as a guided program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

@@ -33,6 +33,10 @@ chapters:
   - { time: "1:27:50",  seconds: 5270, title: "Corpse Pose / Savasana (5 min)", poses: ["corpse"] }
 
 # ── SEO ──
+pin_angles:
+  - audience: "for a full-body reset"
+    headline: "The longest class on the channel"
+    proof: "Ninety-four minutes, if you have them."
 seo_title: "Bend Like Bamboo: 90-Min Full-Body Yin Yoga for Flexibility"
 seo_description: "A 90-minute full-body Yin class to stretch shoulders, back, hips and legs. Held long and slow, with a gentle and a deeper option in every pose. All levels."
 # thumbnail: "/videos/bend-like-bamboo.webp"   # optional — omit to auto-derive from youtube_id

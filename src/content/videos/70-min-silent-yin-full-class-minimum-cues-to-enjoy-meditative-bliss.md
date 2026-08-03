@@ -27,6 +27,10 @@ chapters:
   - { time: "48:00",   seconds: 2880, title: "Shoulders · Melting Heart",   pose: "melting-heart" }
   - { time: "55:00",   seconds: 3300, title: "Twist · Reclined Twist (each side)", pose: "reclined-twist" }
   - { time: "1:03:00", seconds: 3780, title: "Corpse Pose / Savasana", poses: ["corpse"] }
+pin_angles:
+  - audience: "when you're wound up"
+    headline: "Seventy minutes of near silence"
+    proof: "Free on YouTube. Nothing to set up."
 seo_title: "70-min Silent Yin Yoga — Full-Body Meditative Class"
 seo_description: "A 70-minute silent Yin Yoga class — a full-body stretch held long and slow with minimal cues, for meditative bliss. Calming and suitable for all levels."
 membership_cta: "Love a long, quiet practice like this? Inside the membership it lives as part of a guided Full-Body program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

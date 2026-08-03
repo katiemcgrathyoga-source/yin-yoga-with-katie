@@ -21,6 +21,10 @@ chapters:
   - { time: "7:30",   seconds: 450,  title: "Hips · Half-Shoelace Fold & Twist (side 1)",     pose: "folded-half-shoelace" }
   - { time: "13:56",  seconds: 836,  title: "Hips · Half-Shoelace Fold & Twist (side 2)",     pose: "folded-half-shoelace" }
   - { time: "20:28",  seconds: 1228, title: "Shoulders · Neck & Shoulder Stretches" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Twenty-five minutes before bed"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "Bedtime Yin Deep Stretch for Sleep — Full-Body, Day 6"
 seo_description: "A deep-stretch evening Yin Yoga class for bedtime — slow full-body holds to release tension and settle you toward sleep. Day 6 of the Bedtime Challenge."
 membership_cta: "This is Day 6 of the Bedtime Challenge. Inside the membership, the full challenge lives as a guided Sleep program — press play each night and drift off. Become someone who falls asleep faster and sleeps through."

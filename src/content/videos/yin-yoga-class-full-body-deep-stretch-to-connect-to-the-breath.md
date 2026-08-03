@@ -28,6 +28,10 @@ chapters:
   - { time: "47:39",  seconds: 2859, title: "Lower back · Wind-Relieving Pose", pose: "wind-relieving" }
   - { time: "48:59",  seconds: 2939, title: "Corpse Pose / Savasana", pose: "corpse" }
   - { time: "52:30",  seconds: 3150, title: "Goodbye & thank you" }
+pin_angles:
+  - audience: "when you're wound up"
+    headline: "Fifty-three minutes with the breath"
+    proof: "Follow along on YouTube. No props needed."
 seo_title: "53-Min Full-Body Yin Yoga — Deep Stretch to Connect to the Breath, All Levels"
 seo_description: "A 53-minute full-body Yin Yoga class filmed at the beach — slow, deep-held stretches for the hips, spine and shoulders to help you slow down, settle, and follow the ebb and flow of your breath. All levels, no props needed."
 membership_cta: "Love a deep, meditative practice like this? Inside the membership it's part of a guided Full-Body program — press play and follow the plan instead of choosing a class each day, and let the week leave you feeling looser and lighter."

@@ -45,6 +45,13 @@ related_poses: ["reclined-twist", "cat-pulling-its-tail", "corpse", "wind-reliev
 youtube_video_id: ""
 images:
   - "/poses/banana.jpg"
+pin_angles:
+  - audience: "for runners"
+    headline: "The side of you that running forgets"
+    proof: "Three minutes each side, lying down. No effort."
+  - audience: "for restless nights"
+    headline: "A long stretch you can do in bed"
+    proof: "Three minutes a side before the light goes off."
 seo_title: "Banana Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Banana is a gentle yin side-body stretch that opens the ribs and outer hips. Cues, hold times and simple cautions to keep the hips grounded."
 ---

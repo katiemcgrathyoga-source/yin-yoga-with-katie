@@ -26,6 +26,13 @@ faq:
     a: "Two or three times a week is a realistic, effective rhythm. Hips are stubborn and respond to consistency and time far more than to forcing."
 membership_cta: "Hips are the heart of Yin. Inside the membership there's a whole guided hip series — press play and follow the plan rather than piecing it together yourself."
 summary: "A 37-minute deep-hips Yin routine — inner thighs, outer hips, hip flexors and hamstrings, opened slowly with a built-in hold timer."
+pin_angles:
+  - audience: "for tight hips"
+    headline: "Thirty-seven minutes of hip opening"
+    proof: "Inner thighs, outer hips, flexors, hamstrings."
+  - audience: "for runners"
+    headline: "The hips a week of running tightens"
+    proof: "Thirty-seven slow minutes, with a hold timer."
 seo_title: "37-Minute Deep Hips Yin Yoga Routine — Practice Along"
 seo_description: "A 37-minute Yin Yoga routine for tight hips and lower body — inner thighs, outer hips, hip flexors and hamstrings — with a built-in hold timer. Follow along."
 ---

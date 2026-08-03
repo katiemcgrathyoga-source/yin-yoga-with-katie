@@ -25,6 +25,10 @@ chapters:
   - { time: "50:24",    seconds: 3024, title: "Twist · Reclined Twist (each side)",            pose: "reclined-twist" }
   - { time: "57:12",    seconds: 3432, title: "Corpse Pose / Savasana",                        pose: "corpse" }
   - { time: "1:08:51",  seconds: 4131, title: "Goodbye · See you next week" }
+pin_angles:
+  - audience: "for stiff shoulders"
+    headline: "Seventy minutes on the front of you"
+    proof: "Chest, shoulders, upper back, neck."
 seo_title: "70-Min Heart-Opening Yin Yoga — Chest, Shoulders, Back"
 seo_description: "A 70-minute Yin Yoga class to open the chest, shoulders and upper back — gentle backbends and shoulder stretches held long and slow to release tension. All levels."
 membership_cta: "Inside the membership, this class is part of a guided Full-Body program — so instead of choosing a video each day, you follow the plan and move through your week feeling looser and lighter."

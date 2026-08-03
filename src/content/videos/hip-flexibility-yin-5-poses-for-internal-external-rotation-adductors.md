@@ -23,6 +23,10 @@ chapters:
   - { time: "33:40",  seconds: 2020, title: "Abductors · Squat", pose: "squat" }
   - { time: "38:00",  seconds: 2280, title: "Internal & external rotation · Deer (each side)", pose: "deer" }
   - { time: "43:00",  seconds: 2580, title: "Rest & close" }
+pin_angles:
+  - audience: "for tight hips"
+    headline: "Five poses for hips that will not open"
+    proof: "Both rotations and the adductors."
 seo_title: "Hip Flexibility Yin — 45 min Yin Yoga for the Hips, All Levels"
 seo_description: "A 45 min Yin Yoga class for hip flexibility — 5 long-held poses for internal and external rotation, adductors, abductors, hip flexors and quads. All levels; a block or cushion is handy."
 membership_cta: "Love a deep practice like this? Inside the membership it's part of a guided Hips program — press play and follow the plan instead of choosing a class each day, and let the week leave you feeling looser and lighter."

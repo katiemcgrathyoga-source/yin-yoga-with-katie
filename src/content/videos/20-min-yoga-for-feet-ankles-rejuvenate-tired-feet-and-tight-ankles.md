@@ -20,6 +20,10 @@ chapters:
   - { time: "8:00",  seconds: 480,  title: "Feet · Toe stretches & ankle rotations" }
   - { time: "9:40",  seconds: 580,  title: "Feet · Foot massage" }
   - { time: "18:00", seconds: 1080, title: "Close · Quiet seated meditation" }
+pin_angles:
+  - audience: "to start the day"
+    headline: "Twenty minutes for tired feet"
+    proof: "The part of you that never gets stretched."
 seo_title: "20-min Yoga for Feet & Ankles — Rejuvenate Tired Feet | Yin-Style Stretch"
 seo_description: "A gentle 20-minute yoga class for tired feet and tight ankles — toe squat, ankle stretch and a soothing foot massage. All levels, follow along at home."
 membership_cta: "If your feet carry you through long days, imagine giving them this kind of care each week — inside the membership you follow a guided plan instead of hunting for a video, and move through your week feeling looser and lighter from the ground up."

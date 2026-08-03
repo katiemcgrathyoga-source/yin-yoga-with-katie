@@ -37,6 +37,10 @@ chapters:
     poses: ["corpse"]
 membership_cta: "This class lives inside the membership's Sleep program — a night-by-night path that helps you fall asleep faster and sleep through. Press play and let it carry you."
 summary: "A slow, soothing 30-minute Yin practice to unwind body and mind before bed and drift into deeper sleep."
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Half an hour toward sleep"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "30-Minute Bedtime Yin Yoga For Sleep — Day 29 | Yin Yoga with Katie"
 seo_description: "A calming 30-minute bedtime Yin Yoga class for sleep: long-held child's pose, half-butterfly, caterpillar and happy baby to help you unwind and rest deeply."
 faq:

@@ -32,6 +32,10 @@ faq:
     a: "Around two minutes or so, sometimes a little longer, and the deeper hip shapes are done on each side. In Yin the length of the hold is where the change happens — but my times are only suggestions, so come out sooner whenever you need to."
   - q: "Is an hour too much if I'm new to Yin?"
     a: "Not at all. It's an all-levels class and we move slowly, so newer to Yin is completely fine. Take the gentler option in any pose, rest whenever you like, and let the shape do the work rather than pushing."
+pin_angles:
+  - audience: "for tight hips"
+    headline: "An hour, no props, nothing to buy"
+    proof: "Free on YouTube. Nothing to set up."
 seo_title: "60-Min Yin Yoga — No Props Full-Body Stretch"
 seo_description: "A one-hour no-props Yin Yoga class — breath, meditation and long, slow holds for a full-body stretch that leaves you looser and calmer. All levels."
 membership_cta: "Inside the membership, this class is part of a guided Full-Body program — so instead of choosing a video each day, you follow the plan and move through your week feeling looser and lighter."

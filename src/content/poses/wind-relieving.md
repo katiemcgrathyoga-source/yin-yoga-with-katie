@@ -47,6 +47,13 @@ related_poses: ["happy-baby", "banana", "reclined-twist", "corpse"]
 youtube_video_id: ""
 images:
   - "/brand/pose-placeholder.png"
+pin_angles:
+  - audience: "for a stiff back"
+    headline: "Knees in, and the lower back lets go"
+    proof: "One to three minutes. Rock gently if it helps."
+  - audience: "for restless nights"
+    headline: "The reset between everything else"
+    proof: "Draw the knees in. A minute is enough."
 seo_title: "Wind-Relieving Pose (Apanasana): Knees-to-Chest in Yin Yoga"
 seo_description: "Wind-Relieving Pose (knees to chest / Apanasana) is a gentle yin release for the lower back and belly. Learn the cues, benefits, hold time and cautions."
 ---

@@ -48,6 +48,13 @@ related_poses: ["half-butterfly", "dragonfly", "caterpillar", "frog", "easy-pose
 youtube_video_id: ""
 images:
   - "/poses/butterfly.jpg"
+pin_angles:
+  - audience: "if you sit all day"
+    headline: "The hips a chair keeps folded shut"
+    proof: "Three to five minutes. Knees stay where they land."
+  - audience: "for beginners"
+    headline: "The first yin pose worth learning"
+    proof: "Three minutes, feet together, back soft."
 seo_title: "Butterfly Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Butterfly is a grounding Yin Yoga forward fold with soles together that opens the inner thighs and hips while lengthening the back line and calming the mind."
 ---

@@ -18,6 +18,10 @@ chapters:
   - { time: "13:40",  seconds: 820,  title: "Quads · Saddle",         poses: ["saddle"] }
   - { time: "24:34",  seconds: 1474, title: "Hips · Happy Baby",      poses: ["happy-baby"] }
   - { time: "30:40",  seconds: 1840, title: "Corpse Pose / Savasana & close", poses: ["corpse"] }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Thirty grounding minutes at night"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "30-Minute Inner Child Grounding Yin Yoga — Bedtime, Day 15"
 seo_description: "A grounding 30-minute bedtime Yin Yoga class — child's pose, butterfly, saddle and happy baby held long and slow to calm your body and settle you toward sleep."
 membership_cta: "This grounding practice lives inside the membership's Sleep program — a night-by-night path that helps you switch off and drift away instead of hunting for a video each evening. Press play and let it carry you to bed."

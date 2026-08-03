@@ -22,6 +22,10 @@ chapters:
   - { time: "18:00",  seconds: 1080, title: "Back & neck · Child's Pose",                         pose: "childs-pose" }
   - { time: "24:00",  seconds: 1440, title: "Hips & spine · Reclined Hamstring & Twist (each side)", poses: ["reclined-hamstring", "reclined-twist"] }
   - { time: "36:48",  seconds: 2208, title: "Corpse Pose / Savasana",                             pose: "corpse" }
+pin_angles:
+  - audience: "to start the day"
+    headline: "Forty lazy minutes, on purpose"
+    proof: "For when you cannot face a real class."
 seo_title: "40-Min Lazy Yin Yoga to Unwind & Relax — No Props, All Levels"
 seo_description: "A gentle 40-minute lazy Yin Yoga class for when you're tired or unmotivated — slow, low-effort holds for the hips, spine, and hamstrings to help you unwind and relax. No props, all levels."
 membership_cta: "Love a gentle practice like this? Inside the membership it's part of a guided Unwind program — press play and follow the plan instead of choosing a class each day, and let the week leave you feeling looser and lighter."

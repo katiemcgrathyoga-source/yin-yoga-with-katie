@@ -36,6 +36,10 @@ chapters:
     title: "Close · Like & subscribe"
 membership_cta: "This class lives inside the membership's Sleep program — a night-by-night path that helps you fall asleep faster and sleep through. Press play and let it carry you."
 summary: "A slow, grounding 30-minute evening Yin practice to unwind the body and settle the mind before bed."
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Thirty grounding minutes"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "Grounding Evening Yin Yoga (30 Min) — Bedtime Yin for Sleep"
 seo_description: "A calming 30-minute evening Yin Yoga class to help you unwind before bed. Child's Pose, Squat, Dangling and Deer Pose to ground your energy and quiet the mind."
 faq:

@@ -45,6 +45,13 @@ related_poses: ["supported-bridge", "camel", "melting-heart", "reclined-twist", 
 youtube_video_id: ""
 images:
   - "/poses/supported-fish.jpg"
+pin_angles:
+  - audience: "if you sit all day"
+    headline: "Breathe properly again in five minutes"
+    proof: "Lie back over a block. The prop opens you."
+  - audience: "when you're wound up"
+    headline: "The shape that makes breathing easier"
+    proof: "Three to five minutes, fully supported."
 seo_title: "Supported Fish Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Supported Fish is a passive yin heart and lung opener over a bolster or block. Learn the cues, hold time, prop heights and the cautions that matter."
 ---

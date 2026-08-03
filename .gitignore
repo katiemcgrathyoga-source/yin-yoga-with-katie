@@ -61,3 +61,6 @@ scripts/.cache-Cabin.ttf
 # Delivery encodes headed for Bunny Stream — build output from the ProRes
 # masters on D:, never source. Regenerate with scripts/prepare-bunny.sh.
 /processed_videos/
+
+# Generated pin previews — reproduce with scripts/preview-pins.mjs
+design/pin-preview/

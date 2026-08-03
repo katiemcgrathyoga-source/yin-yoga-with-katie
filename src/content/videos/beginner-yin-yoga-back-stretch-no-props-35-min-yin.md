@@ -21,6 +21,10 @@ chapters:
   - { time: "19:00", seconds: 1140, title: "Hamstrings · Caterpillar", poses: ["caterpillar"] }
   - { time: "26:00", seconds: 1560, title: "Spine · Reclined Twist", poses: ["reclined-twist"] }
   - { time: "35:00", seconds: 2100, title: "Thank you & close" }
+pin_angles:
+  - audience: "for beginners"
+    headline: "A back class if yin is new to you"
+    proof: "Thirty-five minutes, no props, explained."
 seo_title: "Beginner Yin Yoga Back Stretch — 35 min, No Props"
 seo_description: "A gentle 35-minute beginner Yin Yoga class for the back and spine — no props needed. Soothe stiffness and aches with child's pose, butterfly, caterpillar and a twist."
 membership_cta: "Inside the membership, this class is part of a guided Full-Body program — so instead of choosing a video each day, you follow the plan and move through your week feeling looser and lighter."

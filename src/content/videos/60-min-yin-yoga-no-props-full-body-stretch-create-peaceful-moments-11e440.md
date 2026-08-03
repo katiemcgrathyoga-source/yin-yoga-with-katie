@@ -26,6 +26,10 @@ chapters:
   - { time: "39:30",  seconds: 2370, title: "Shoulders · Eagle Arms (each side)",        pose: "eagle" }
   - { time: "46:50",  seconds: 2810, title: "Twist · Reclined Twist (each side)",        pose: "reclined-twist" }
   - { time: "54:00",  seconds: 3240, title: "Corpse Pose / Savasana", poses: ["corpse"] }
+pin_angles:
+  - audience: "when you're wound up"
+    headline: "Sixty minutes on the floor"
+    proof: "Free on YouTube. Nothing to set up."
 seo_title: "60-Min Full-Body Yin Yoga — No Props, All Levels"
 seo_description: "A 60-minute full-body Yin Yoga class with no props — breath work, gentle spinal twists and long, calming holds to release tension and find some peace. All levels."
 membership_cta: "Love a full hour of quiet like this? Inside the membership it lives as part of a guided Full-Body program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

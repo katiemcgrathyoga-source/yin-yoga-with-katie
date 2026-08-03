@@ -23,6 +23,10 @@ chapters:
   - { time: "28:20",  seconds: 1700, title: "Corpse Pose / Savasana", poses: ["corpse"] }
   - { time: "28:50",  seconds: 1730, title: "Neck · Neck stretches" }
   - { time: "29:30",  seconds: 1770, title: "Like & Subscribe" }
+pin_angles:
+  - audience: "for stiff shoulders"
+    headline: "Thirty minutes over a block"
+    proof: "Back and shoulders, propped open."
 seo_title: "30-Minute Yin Yoga for Back & Shoulders — With a Block, All Levels"
 seo_description: "A guided 30-minute Yin Yoga class for the back and shoulders — child's pose, puppy, sphinx, broken wing and a supported fish with a block to open the chest."
 membership_cta: "Inside the membership, this class is part of a guided Full-Body program — so instead of choosing a video each day, you follow the plan and move through your week feeling looser and lighter."

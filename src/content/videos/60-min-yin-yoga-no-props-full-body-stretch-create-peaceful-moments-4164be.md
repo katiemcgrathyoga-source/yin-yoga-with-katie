@@ -25,6 +25,10 @@ chapters:
   - { time: "47:20",  seconds: 2840, title: "Spine · Downward Dog & Cat-Cow" }
   - { time: "50:30",  seconds: 3030, title: "Shoulders · Melting Heart",                  pose: "melting-heart" }
   - { time: "53:40",  seconds: 3220, title: "Corpse Pose / Savasana", poses: ["corpse"] }
+pin_angles:
+  - audience: "when you're wound up"
+    headline: "Sixty minutes, nothing required"
+    proof: "Free on YouTube. Nothing to set up."
 seo_title: "60-Minute Yin Yoga — Full-Body Stretch, No Props"
 seo_description: "A 60-minute Yin Yoga class with breathwork and long, slow holds — a full-body stretch, no props, to unwind and create peaceful moments. All levels."
 membership_cta: "Love a calming hour like this? Inside the membership it lives as part of a guided Full-Body program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

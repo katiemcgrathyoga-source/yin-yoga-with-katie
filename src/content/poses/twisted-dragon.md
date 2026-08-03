@@ -49,6 +49,13 @@ related_poses: ["dragon", "cat-pulling-its-tail", "reclined-twist", "swan"]
 youtube_video_id: ""
 images:
   - "/poses/twisted-dragon.jpg"
+pin_angles:
+  - audience: "for runners"
+    headline: "The lunge with the outer hip added"
+    proof: "Thread the shoulder across. Two minutes a side."
+  - audience: "for tight hips"
+    headline: "Hip flexor and outer hip together"
+    proof: "From the low lunge, rotate. Two to five minutes."
 seo_title: "Twisted Dragon Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Twisted Dragon adds an outer-hip and IT-band opening plus a spinal twist to the Dragon lunge. Learn the cues, benefits, hold time and key knee cautions."
 ---

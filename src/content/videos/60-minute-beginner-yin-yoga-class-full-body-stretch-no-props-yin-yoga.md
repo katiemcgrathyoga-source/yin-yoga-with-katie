@@ -26,6 +26,10 @@ chapters:
   - { time: "40:22",   seconds: 2422, title: "Hips · Dragon, Swan & Shoelace (side 2)", poses: ["dragon", "swan", "shoelace"] }
   - { time: "51:30",   seconds: 3090, title: "Twist · Reclined Twist (each side)",         pose: "reclined-twist" }
   - { time: "1:00:00", seconds: 3600, title: "Corpse Pose / Savasana", poses: ["corpse"] }
+pin_angles:
+  - audience: "for tight hips"
+    headline: "A first full hour of yin"
+    proof: "No props. Every pose talked through."
 seo_title: "60-Min Beginner Yin Yoga — Full-Body Stretch, No Props"
 seo_description: "A 60-minute beginner Yin Yoga class — a full-body stretch with gentle 3-minute holds and no props. Calm, clear cues for beginners new to Yin."
 membership_cta: "New to Yin and love this pace? Inside the membership, this class is part of a beginner-friendly Full-Body program — so instead of choosing a video each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

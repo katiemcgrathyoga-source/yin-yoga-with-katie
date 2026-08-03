@@ -27,6 +27,10 @@ chapters:
   - { time: "28:30",  seconds: 1710, title: "Cat-Cow to Downward Dog" }
   - { time: "32:00",  seconds: 1920, title: "Closing meditation" }
   - { time: "33:00",  seconds: 1980, title: "Like & subscribe" }
+pin_angles:
+  - audience: "for stiff shoulders"
+    headline: "For a week that hurt"
+    proof: "Thirty-five gentle minutes. No pushing."
 seo_title: "Yoga for a Broken Heart — 35 min Gentle Heart-Opening Yin"
 seo_description: "A gentle 35-minute Yin Yoga class to comfort the heart — soft breathing, reclined butterfly, child's pose and melting heart to open the chest and settle the mind."
 membership_cta: "If a slow, tender practice like this is what you reach for, the membership gathers classes like it into a guided program — so you can press play and follow the plan through the week instead of choosing a video each day."

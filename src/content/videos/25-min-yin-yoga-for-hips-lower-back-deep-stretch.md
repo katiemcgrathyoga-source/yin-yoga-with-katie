@@ -22,6 +22,10 @@ chapters:
   - { time: "17:00", seconds: 1020, title: "Lower back · Sphinx",                          pose: "sphinx" }
   - { time: "20:00", seconds: 1200, title: "Lower back · Crocodile & Child's Pose",        poses: ["crocodile", "childs-pose"] }
   - { time: "24:00", seconds: 1440, title: "Closing rest & thank you" }
+pin_angles:
+  - audience: "for a stiff back"
+    headline: "Twenty-six minutes, hips and back"
+    proof: "Follow along on YouTube. No props needed."
 seo_title: "25-Minute Yin Yoga for Hips & Lower Back — Deep Stretch, All Levels"
 seo_description: "A 25-minute Yin Yoga deep stretch for tight hips and lower back — folded butterfly, half-butterfly, sleeping swan, sphinx and child's pose held long and slow. No props needed, suitable for all levels."
 membership_cta: "Love a deep practice like this? Inside the membership it's part of a guided Hips & Lower Back program — press play and follow the plan instead of choosing a class each day, and let the week leave you feeling looser and lighter."

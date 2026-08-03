@@ -50,6 +50,13 @@ related_poses: ["shoelace", "folded-half-shoelace", "swan", "sleeping-swan", "bu
 youtube_video_id: ""
 images:
   - "/poses/deer.jpg"
+pin_angles:
+  - audience: "for tight hips"
+    headline: "Both hips open, and kind to the knees"
+    proof: "One to three minutes a side, seated."
+  - audience: "for beginners"
+    headline: "The hip opener that won't hurt"
+    proof: "Knees stay comfortable. Two minutes a side."
 seo_title: "Deer Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Deer is a knee-friendly Yin Yoga pose with shins front and back that gently opens both hips through internal and external rotation, upright or folding forward."
 ---

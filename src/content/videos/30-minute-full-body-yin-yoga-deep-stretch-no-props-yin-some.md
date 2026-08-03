@@ -20,6 +20,10 @@ chapters:
   - { time: "15:45",  seconds: 945,  title: "Second side · Frog through to Half-Butterfly", poses: ["frog", "thread-the-needle", "sleeping-swan", "shoelace", "eagle", "seated-twist", "half-butterfly"] }
   - { time: "30:00",  seconds: 1800, title: "Spine · Cat–Cow to finish" }
   - { time: "31:40",  seconds: 1900, title: "Close · Like & subscribe" }
+pin_angles:
+  - audience: "for tight hips"
+    headline: "Thirty minutes on a bare floor"
+    proof: "Free on YouTube. Nothing to set up."
 seo_title: "30-Minute Full-Body Yin Yoga Deep Stretch — No Props"
 seo_description: "A 30-minute no-props Yin Yoga class for a full-body deep stretch — frog, sleeping swan, shoelace with eagle arms and a twist, and half-butterfly. Some intermediate poses."
 membership_cta: "Inside the membership, this class is part of a guided Full-Body program — so instead of choosing a video each day, you follow the plan and move through your week feeling looser and lighter."

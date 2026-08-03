@@ -72,6 +72,10 @@ faq:
   - q: "Can I practice this right before bed?"
     a: "Yes — that's exactly what it's designed for. This is a calming, back-and-spine focused evening practice to help you unwind, and you're warmly invited to stay in corpse pose for as long as you like at the end to drift toward sleep."
 summary: "A soothing 35-minute evening Yin class that stretches the whole body and quiets the back and spine, so you can let go of the day and drift toward sleep."
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Thirty-five minutes toward sleep"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "Evening Yin Yoga for Sleep — Full-Body Stretch (35 min) | Day 25"
 seo_description: "A calming 35-minute evening Yin Yoga for sleep: gentle full-body stretches — dragonfly, eagle arms, sphinx and cat pulling its tail — to unwind before bed."
 ---

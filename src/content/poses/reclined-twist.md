@@ -48,6 +48,13 @@ related_poses: ["cat-pulling-its-tail", "banana", "happy-baby", "corpse", "recli
 youtube_video_id: ""
 images:
   - "/poses/reclined-twist.jpg"
+pin_angles:
+  - audience: "for restless nights"
+    headline: "The last two minutes of your day"
+    proof: "Knees to one side. Let the spine unwind."
+  - audience: "for a stiff back"
+    headline: "Unwind a spine that sat all day"
+    proof: "Two to five minutes a side, lying down."
 seo_title: "Reclined Twist in Yin Yoga: Benefits & How-To"
 seo_description: "Reclined Twist is a calming yin wind-down pose that releases the spine, lower back and outer hip. Cues, hold times and gentle disc-safe cautions."
 ---

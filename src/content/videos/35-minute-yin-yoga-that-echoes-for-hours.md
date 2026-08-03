@@ -26,6 +26,10 @@ chapters:
   - { time: "30:12",  seconds: 1812, title: "Lower back · Windshield wipers & knees to chest", poses: ["wind-relieving"] }
   - { time: "31:37",  seconds: 1897, title: "Corpse Pose / Savasana", poses: ["corpse"] }
   - { time: "35:08",  seconds: 2108, title: "Closing · Come slowly back" }
+pin_angles:
+  - audience: "for a stiff back"
+    headline: "The class you still feel at bedtime"
+    proof: "Thirty-six minutes. It stays with you."
 seo_title: "35-Minute Yin Yoga That Echoes for Hours — All Levels"
 seo_description: "A calming 35-minute Yin Yoga class exploring the echo, or rebound — long-held sphinx, seal, melting heart, half butterfly and twists to release tension and restore."
 summary: "A soothing 35-minute Yin class built around the echo, or rebound — long, still holds of sphinx, seal, melting heart, half butterfly and twists that keep resonating long after you finish."

@@ -23,6 +23,10 @@ chapters:
   - { time: "18:20", seconds: 1100, title: "Back · Supported Bridge on blocks",       pose: "supported-bridge" }
   - { time: "23:00", seconds: 1380, title: "Corpse Pose / Savasana",                  pose: "corpse" }
   - { time: "25:25", seconds: 1525, title: "Closing · thank yourself" }
+pin_angles:
+  - audience: "for stiff shoulders"
+    headline: "Twenty-six minutes on your posture"
+    proof: "Chest, shoulders and upper back."
 seo_title: "Yin Yoga for Posture & Flexibility — 25 min Chest & Shoulder Opener"
 seo_description: "A 25-minute Yin Yoga class to gently open the chest and shoulders and ease the effects of sitting. Long, slow holds for flexibility, all levels — a strap and a block or two are handy."
 membership_cta: "Love a gentle practice like this? Inside the membership it's part of a guided Shoulders & Chest program — press play and follow the plan instead of choosing a class each day, and let the week leave you feeling looser and lighter."

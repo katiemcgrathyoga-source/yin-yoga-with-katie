@@ -18,6 +18,10 @@ chapters:
   - { time: "13:30",  seconds: 810,  title: "Hips · Shoelace, fold & twist (other side)", poses: ["shoelace", "folded-half-shoelace", "seated-twist"] }
   - { time: "21:30",  seconds: 1290, title: "Hips · Reclined Butterfly", poses: ["butterfly"] }
   - { time: "28:17",  seconds: 1697, title: "Corpse Pose / Savasana & close", poses: ["corpse"] }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Lower body, then lights out"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "30-Minute Bedtime Yin for the Lower Body — Legs & Hips"
 seo_description: "A calming 30-minute bedtime Yin class for the legs and hips — shoelace, caterpillar and reclined butterfly held long and slow to help you unwind before sleep."
 summary: "A calming 30-minute lower-body Yin class for the legs and hips — shoelace, caterpillar and reclined butterfly held long and slow to help you unwind before bed."

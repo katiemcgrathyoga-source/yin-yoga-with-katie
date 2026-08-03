@@ -17,6 +17,10 @@ chapters:
   - { time: "5:00",   seconds: 300,  title: "Hips · Reclined Butterfly", poses: ["butterfly"] }
   - { time: "9:50",   seconds: 590,  title: "Hips · Reclined Swan to Reclined Twist (both sides)", poses: ["reclined-swan", "reclined-twist"] }
   - { time: "25:00",  seconds: 1500, title: "Corpse Pose / Savasana", poses: ["corpse"] }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Hips before bed, no props"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "Yin Yoga Bedtime 30 Minutes for Hips — No Props, Beginner"
 seo_description: "A calming 30-minute bedtime Yin Yoga class for the hips — no props needed. Reclined butterfly, swan and twist held long and slow to unwind before sleep."
 summary: "A gentle 30-minute bedtime Yin class for the hips — no props, held long and slow to help you unwind and drift off to sleep."

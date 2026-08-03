@@ -21,6 +21,10 @@ chapters:
   - { time: "21:06",  seconds: 1266, title: "Upper back · Bow tie (both sides)", poses: ["bow-tie"] }
   - { time: "28:00",  seconds: 1680, title: "Spine · Child's pose", poses: ["childs-pose"] }
   - { time: "30:00",  seconds: 1800, title: "Like & subscribe" }
+pin_angles:
+  - audience: "for stiff shoulders"
+    headline: "Thirty minutes for a stiff neck"
+    proof: "Upper back and neck. No props."
 seo_title: "30-Min Yin Yoga for Upper Back & Neck — No Props, Beginner-Friendly"
 seo_description: "A 30-minute no-props Yin class for the upper back and neck — eagle arms, gentle twists, melting heart and bow tie to release tension and soften stiff shoulders."
 membership_cta: "If tight shoulders and a stiff neck creep back through the week, this class lives inside the membership as part of a guided program — press play each day and become someone whose upper back stays open and easy, without deciding what to practice."

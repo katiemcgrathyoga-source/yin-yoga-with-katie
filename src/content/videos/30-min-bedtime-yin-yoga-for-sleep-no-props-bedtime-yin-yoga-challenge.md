@@ -19,6 +19,10 @@ chapters:
   - { time: "13:50",  seconds: 830,  title: "Shoulders · Broken Wing to Child's Pose", poses: ["broken-wing", "childs-pose"] }
   - { time: "18:00",  seconds: 1080, title: "Second side · Shoelace, Sleeping Swan, Crocodile, Broken Wing, Child's Pose", poses: ["shoelace", "sleeping-swan", "crocodile", "broken-wing", "childs-pose"] }
   - { time: "31:31",  seconds: 1891, title: "Like & subscribe" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Thirty minutes, no props, then bed"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "30-Min Bedtime Yin Yoga for Sleep — No Props, All Levels"
 seo_description: "A calming 30-minute no-props bedtime Yin class to unwind before sleep — shoelace, sleeping swan, crocodile and broken wing, held long and slow. All levels."
 summary: "A calming 30-minute no-props bedtime Yin class — shoelace, sleeping swan, crocodile and broken wing, held long and slow to help you unwind before sleep."

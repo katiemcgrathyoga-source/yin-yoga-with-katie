@@ -46,6 +46,28 @@ async function loadImage(src) {
 // photohook = full-bleed 2:3, reuse the square focal to keep the subject framed).
 const MAIN_FRAME = { photo: 'square', band: 'band', text: 'band', step: 'band', photohook: 'square' };
 
+/* ── The benefit-led set (v2) ───────────────────────────────────────────────
+   These read /poses/pin/, where scripts/gen-pin-crops.mjs has already centred
+   Katie horizontally. So the horizontal focal is always 50% and only the
+   vertical varies — by template, not by photo, which is the whole point of
+   recomposing once upstream. */
+const V2_FOCAL = {
+  hook: '50% 50%',     // full-bleed 2:3 — crops width; vertical is moot
+  split: '50% 50%',    // arch, portrait — same
+  video: '50% 48%',    // 1.16:1 — crops width
+  window: '50% 52%',   // 1.52:1 — crops height, so this one matters
+  offer: '50% 48%',    // 1.39:1 band under the card
+  states: '50% 52%',   // fills what the type leaves
+  poselist: '50% 45%', // 96×70 thumbnails
+};
+const isV2 = (tpl) => tpl in V2_FOCAL;
+/** Prefer the subject-centred crop, fall back to the original if it isn't there. */
+const loadPinImage = async (path) => {
+  if (!path) return null;
+  const centred = path.replace(/^\/poses\//, '/poses/pin/');
+  return (await loadImage(centred)) ?? (await loadImage(path));
+};
+
 /**
  * On-the-fly branded Pinterest pin (1000×1500, 2:3), matching the Claude Design system.
  *   /pin/card.png?tpl=photo|band|text|list|quote|numbered|step|ritual|checklist
@@ -65,21 +87,46 @@ export default async (req) => {
   let items = [];
   try { const raw = p.get('items'); if (raw) items = JSON.parse(raw); } catch { items = []; }
 
-  // Main photo (for photo/band/text/step templates).
+  // Benefit-led copy layers (v2). The older templates ignore these.
+  const identifier = (p.get('id') || '').slice(0, 60);
+  const poseName = (p.get('pose') || '').slice(0, 40);
+  const duration = (p.get('dur') || '').slice(0, 12);
+  const offer = (p.get('offer') || '').slice(0, 60);
+  const cta = (p.get('cta') || '').slice(0, 30);
+  const before = (p.get('b') || '').slice(0, 40);
+  const after = (p.get('a') || '').slice(0, 40);
+
+  // Main photo. v2 templates take the subject-centred crop and a fixed vertical
+  // focal; the older ones keep the per-photo focal registry above.
   const imgPath = p.get('img') || '';
   const frame = MAIN_FRAME[tpl];
-  const img = frame ? await loadImage(imgPath) : null;
-  const focal = tpl === 'photohook' ? hookFocal(imgPath) : frame ? focalFor(imgPath, frame) : 'center';
+  let img = null;
+  let focal = 'center';
+  if (isV2(tpl)) {
+    img = tpl === 'card' ? null : await loadPinImage(imgPath);
+    focal = V2_FOCAL[tpl];
+  } else if (frame) {
+    img = await loadImage(imgPath);
+    focal = tpl === 'photohook' ? hookFocal(imgPath) : focalFor(imgPath, frame);
+  }
 
-  // Numbered / list templates: each row can carry a landscape pose thumbnail (200×144).
+  // Row thumbnails: the old numbered/list pair, and the v2 pose list.
   if ((tpl === 'numbered' || tpl === 'list') && Array.isArray(items)) {
     items = await Promise.all(
       items.map(async (it) => (it && it.img ? { ...it, thumb: await loadImage(it.img), focal: focalFor(it.img, 'square') } : it)),
     );
   }
+  if (tpl === 'poselist' && Array.isArray(items) && items.length <= 6) {
+    items = await Promise.all(
+      items.map(async (it) => (it && it.img ? { ...it, thumb: await loadPinImage(it.img), focal: V2_FOCAL.poselist } : it)),
+    );
+  }
 
   try {
-    const png = await renderPin({ tpl, title, eyebrow, subline, img, focal, quote, items, footer, tone });
+    const png = await renderPin({
+      tpl, title, eyebrow, subline, img, focal, quote, items, footer, tone,
+      identifier, poseName, duration, offer, cta, before, after,
+    });
     return new Response(png, {
       headers: {
         'content-type': 'image/png',

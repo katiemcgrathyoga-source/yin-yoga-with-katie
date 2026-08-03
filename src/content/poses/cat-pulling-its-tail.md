@@ -46,6 +46,13 @@ related_poses: ["reclined-twist", "twisted-dragon", "saddle", "dragon", "recline
 youtube_video_id: ""
 images:
   - "/poses/cat-pulling-its-tail.jpg"
+pin_angles:
+  - audience: "for runners"
+    headline: "A twist that reaches the quad too"
+    proof: "Two to five minutes a side, lying down."
+  - audience: "for restless nights"
+    headline: "The last shape before you sleep"
+    proof: "Two minutes a side and the back lets go."
 seo_title: "Cat Pulling Its Tail in Yin Yoga: Benefits & How-To"
 seo_description: "Cat Pulling Its Tail is a reclined twist variation that adds a quad and hip-flexor stretch. Cues, hold times and gentle disc-safe cautions."
 ---

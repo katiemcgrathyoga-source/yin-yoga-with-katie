@@ -24,6 +24,13 @@ faq:
     a: "A few gentle sessions a week is a lovely, realistic rhythm to let the shapes and the stillness become familiar. Little and often does far more than long and rare."
 membership_cta: "Just starting out? The membership's beginner path walks you gently from your very first practice onward — a guided plan so you always know what to do next."
 summary: "A gentle 19-minute beginner Yin Yoga routine — simple, well-supported shapes with an easier option in every pose, and a built-in hold timer. No props, no experience needed."
+pin_angles:
+  - audience: "for beginners"
+    headline: "Nineteen minutes, and no experience"
+    proof: "An easier option in every single pose."
+  - audience: "for a full-body reset"
+    headline: "The practice to start with"
+    proof: "Simple shapes, well supported, nothing forced."
 seo_title: "Gentle 19-Minute Beginner Yin Yoga Routine — Follow Along"
 seo_description: "A gentle 19-minute Yin Yoga routine for complete beginners — simple, supported poses with a built-in hold timer. No props or flexibility needed. All levels."
 ---

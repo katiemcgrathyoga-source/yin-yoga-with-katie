@@ -21,6 +21,10 @@ chapters:
   - { time: "15:20",  seconds: 920,  title: "Side body · Banana Pose (each side)",         pose: "banana" }
   - { time: "23:41",  seconds: 1421, title: "Spine · Reclined Twist (each side)",          pose: "reclined-twist" }
   - { time: "33:11",  seconds: 1991, title: "Corpse Pose / Savasana",                      pose: "corpse" }
+pin_angles:
+  - audience: "for beginners"
+    headline: "A back class for total beginners"
+    proof: "Thirty-seven minutes, nothing assumed."
 seo_title: "Yin Yoga for Your Back — 35-min Beginner Back Release"
 seo_description: "A gentle 35-minute beginner Yin Yoga class for your back — long, slow holds through child's pose, sphinx, banana and a reclined twist to help ease everyday tension in the spine and lower back. All levels welcome."
 membership_cta: "Love a gentle practice like this? Inside the membership it's part of a guided Back program — press play and follow the plan instead of choosing a class each day, and let the week leave you feeling looser and lighter."

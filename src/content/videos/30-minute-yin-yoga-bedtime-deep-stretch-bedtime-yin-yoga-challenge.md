@@ -17,6 +17,10 @@ chapters:
   - { time: "11:20",  seconds: 680,  title: "Shoulders & Hips · Cow Face", poses: ["cow-face"] }
   - { time: "23:00",  seconds: 1380, title: "Hamstrings & Hips · Reclined hamstring, twist & cat pulling its tail", poses: ["reclined-twist", "cat-pulling-its-tail"] }
   - { time: "37:40",  seconds: 2260, title: "Corpse Pose / Savasana & close", poses: ["corpse"] }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Thirty-nine minutes before bed"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "30-Minute Bedtime Yin Yoga — Deep Stretch for Sleep | All Levels"
 seo_description: "A calming 39-minute bedtime Yin Yoga class — dragon, cow face, reclined hamstring and gentle twists held long and slow to help you unwind and drift to sleep."
 summary: "A deeply relaxing 39-minute bedtime Yin class — dragon, cow face and gentle reclined twists to stretch out the whole body and ease you toward sleep."

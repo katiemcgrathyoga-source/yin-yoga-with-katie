@@ -40,6 +40,10 @@ chapters:
     poses: ["crocodile", "corpse"]
 membership_cta: "This class lives inside the membership's Sleep program — a night-by-night path that helps you soften tight shoulders and drift off more easily. Press play and let it carry you to bed."
 summary: "A calming 30-minute bedtime Yin class to release the neck, shoulders and chest before sleep."
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Neck and shoulders, then sleep"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "30-Min Neck & Shoulder Yin Yoga for Sleep | Bedtime Day 20"
 seo_description: "A gentle 30-minute bedtime Yin Yoga class for the neck, shoulders and chest — eagle and cow-face arms, seated swan and soft neck releases to help you unwind before sleep."
 faq:

@@ -49,6 +49,13 @@ related_poses: ["sleeping-swan", "reclined-swan", "dragon", "shoelace", "childs-
 youtube_video_id: ""
 images:
   - "/poses/swan.jpg"
+pin_angles:
+  - audience: "for runners"
+    headline: "Hip and quad, with the chest lifted"
+    proof: "One to five minutes a side, chest up."
+  - audience: "for tight hips"
+    headline: "Sleeping Swan, with your chest open"
+    proof: "Stay lifted. Fold forward when you're ready."
 seo_title: "Swan Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Swan is an upright yin hip opener and gentle backbend — the lifted precursor to Sleeping Swan. Learn the cues, benefits, hold time and key knee cautions."
 ---

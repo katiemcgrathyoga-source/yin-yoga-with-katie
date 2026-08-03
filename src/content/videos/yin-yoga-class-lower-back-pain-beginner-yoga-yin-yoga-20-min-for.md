@@ -21,6 +21,10 @@ chapters:
   - { time: "16:00",  seconds: 960,  title: "Spine · Dangling", poses: ["dangling"] }
   - { time: "19:00",  seconds: 1140, title: "Hips · Squat", poses: ["squat"] }
   - { time: "20:30",  seconds: 1230, title: "Closing · Three quiet breaths" }
+pin_angles:
+  - audience: "for beginners"
+    headline: "Twenty minutes for a sore low back"
+    proof: "Gentle and beginner-friendly. Nothing deep."
 seo_title: "Yin Yoga for Lower Back — 20 min Beginner Class"
 seo_description: "A gentle 20-minute beginner Yin Yoga class for the lower back — child's pose, sphinx, happy baby, a reclined twist, dangling and squat to stretch and release."
 summary: "A gentle 20-minute beginner Yin class to stretch and soften the lower back, from child's pose through to a soothing squat."

@@ -33,6 +33,10 @@ chapters:
   - { time: "27:36", seconds: 1656, title: "Seated rest" }
 membership_cta: "Inside the membership, recovery-day classes like this sit inside a guided plan — so a rest day doesn't begin with deciding what to press play on."
 summary: "A 30-minute deep-stretch class for runners with stiff, sore legs: two-minute holds through the hips, hip flexors, quads and the back line, for a recovery day."
+pin_angles:
+  - audience: "for runners"
+    headline: "Twenty-nine minutes on a rest day"
+    proof: "Hips, hamstrings and quads. For runners."
 seo_title: "Deep Stretch Yoga for Runners: A 30-Minute Recovery Day Class"
 seo_description: "A 30-minute deep stretch class for runners with stiff, sore legs. Two-minute holds through hips, quads and hamstrings — for a recovery day or after a run."
 ---

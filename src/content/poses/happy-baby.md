@@ -44,6 +44,13 @@ related_poses: ["butterfly", "frog", "dragonfly", "reclined-swan", "reclined-twi
 youtube_video_id: ""
 images:
   - "/poses/happy-baby.jpg"
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Two minutes of this, in bed"
+    proof: "Hold the feet, rock a little. Nothing to force."
+  - audience: "for a stiff back"
+    headline: "Rock the lower back loose"
+    proof: "Knees wide, tailbone heavy. Two to five minutes."
 seo_title: "Happy Baby in Yin Yoga: Benefits & How-To"
 seo_description: "Happy Baby is a gentle yin opener for the inner groin and lower back. Cues, hold times and cautions to keep the head and shoulders grounded."
 ---

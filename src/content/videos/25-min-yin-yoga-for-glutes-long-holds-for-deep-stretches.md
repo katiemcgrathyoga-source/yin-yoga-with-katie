@@ -21,6 +21,10 @@ chapters:
   - { time: "17:20",  seconds: 1040, title: "Glutes · Reclined Twist (each side)", pose: "reclined-twist" }
   - { time: "23:30",  seconds: 1410, title: "Knees to chest & final rest", poses: ["wind-relieving", "corpse"] }
   - { time: "25:00",  seconds: 1500, title: "Closing" }
+pin_angles:
+  - audience: "for tight hips"
+    headline: "Twenty-six minutes on the glutes"
+    proof: "Long holds. The muscle sitting shortens."
 seo_title: "25-Minute Yin Yoga for Glutes — Deep Hip Stretches, All Levels"
 seo_description: "A 25-minute Yin Yoga class for the glutes and hips — long, slow holds in Swan, Shoelace and Reclined Twist to help release deep tension. All levels, minimal props."
 membership_cta: "Love a deep practice like this? Inside the membership it's part of a guided Hips program — press play and follow the plan instead of choosing a class each day, and let the week leave you feeling looser and lighter."

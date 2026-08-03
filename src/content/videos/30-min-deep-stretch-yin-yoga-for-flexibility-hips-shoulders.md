@@ -20,6 +20,10 @@ chapters:
   - { time: "26:00",  seconds: 1560, title: "Hips · Happy Baby", poses: ["happy-baby"] }
   - { time: "28:00",  seconds: 1680, title: "Corpse Pose / Savasana", poses: ["corpse"] }
   - { time: "30:30",  seconds: 1830, title: "Close · Like & subscribe" }
+pin_angles:
+  - audience: "for stiff shoulders"
+    headline: "Hips and shoulders, thirty minutes"
+    proof: "The two places everything collects."
 seo_title: "30-min Deep Stretch Yin Yoga for Flexibility — Hips & Shoulders"
 seo_description: "A 30-minute Yin Yoga class for flexibility in the hips and shoulders — long, slow holds in child's pose, puppy, shoelace with cow face and eagle arms. All levels."
 membership_cta: "Inside the membership, this class is part of the Hips & Lower Back program — follow it and become someone who moves through the day loose and easy."

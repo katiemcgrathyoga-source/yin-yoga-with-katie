@@ -51,6 +51,13 @@ related_poses: ["shoelace", "eagle", "broken-wing", "thread-the-needle", "meltin
 youtube_video_id: ""
 images:
   - "/poses/cow-face.jpg"
+pin_angles:
+  - audience: "if you sit all day"
+    headline: "Shoulders and hips in one shape"
+    proof: "Two minutes a side. Use a strap for the arms."
+  - audience: "for tight hips"
+    headline: "The outer hip a chair keeps short"
+    proof: "Knee over knee, two to four minutes a side."
 seo_title: "Cow-Face Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Cow-Face opens the shoulders and outer hips in Yin Yoga through an arm bind and stacked legs. Learn how to practice it safely, with props and cautions."
 ---

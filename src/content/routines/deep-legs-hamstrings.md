@@ -26,6 +26,13 @@ faq:
     a: "Two or three times a week is a sustainable rhythm that builds flexibility steadily. Consistency matters far more than forcing any single stretch."
 membership_cta: "Working toward the splits or just looser legs? The membership has full leg- and hip-focused classes inside a guided plan that builds over time."
 summary: "A 26-minute Yin routine for tight legs, hamstrings, calves and feet — deep forward folds and foot stretches held slowly, with a built-in hold timer."
+pin_angles:
+  - audience: "for runners"
+    headline: "Legs that move again, in eight poses"
+    proof: "Twenty-six minutes, the evening after a run."
+  - audience: "for tight hips"
+    headline: "Twenty-six minutes on the back line"
+    proof: "Hamstrings, calves, inner thighs and feet."
 seo_title: "26-Minute Yin Yoga for Hamstrings & Legs — Flexibility Routine"
 seo_description: "A 26-minute Yin Yoga routine for tight hamstrings, legs and feet, with a built-in hold timer. Deep forward folds to build flexibility. Follow along."
 ---

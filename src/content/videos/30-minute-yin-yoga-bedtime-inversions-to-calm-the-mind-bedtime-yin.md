@@ -18,6 +18,10 @@ chapters:
   - { time: "15:00", seconds: 900,  title: "Spine · Supported Bridge", poses: ["supported-bridge"] }
   - { time: "22:00", seconds: 1320, title: "Lower back · Windshield wipers to knees-to-chest & rest", poses: ["wind-relieving", "corpse"] }
   - { time: "25:00", seconds: 1500, title: "Like & subscribe" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Legs up, mind down, then sleep"
+    proof: "Twenty-six minutes of gentle inversions."
 seo_title: "30-Minute Bedtime Yin Yoga — Inversions to Calm the Mind"
 seo_description: "A gentle 30-minute bedtime Yin Yoga class of calming inversions — puppy, dangling and supported bridge — to quiet the mind and unwind before sleep. All levels."
 summary: "A gentle 30-minute bedtime Yin class of calming inversions — puppy, dangling and supported bridge — to quiet the mind and settle you before sleep."

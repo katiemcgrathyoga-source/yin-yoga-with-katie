@@ -36,6 +36,10 @@ chapters:
     title: "Rest & Close"
 membership_cta: "This class lives inside the membership's Sleep program — a night-by-night path that helps you fall asleep faster and sleep through. Press play and let it carry you."
 summary: "A slow 30-minute evening Yin practice to unwind the hips, spine and shoulders and settle you gently toward sleep."
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Thirty-one minutes before sleep"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "30-Minute Evening Yin Yoga for Sleep | Bedtime Challenge Day 26"
 seo_description: "A calming 30-minute bedtime Yin Yoga class with easy-pose folds, gentle twists, Dragon and Thread the Needle to unwind your body and help you drift off to sleep."
 faq:

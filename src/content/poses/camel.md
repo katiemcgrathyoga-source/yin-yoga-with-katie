@@ -45,6 +45,13 @@ related_poses: ["saddle", "seal", "sphinx", "melting-heart", "supported-fish"]
 youtube_video_id: ""
 images:
   - "/poses/camel.jpg"
+pin_angles:
+  - audience: "if you sit all day"
+    headline: "Two minutes to undo eight hours"
+    proof: "One long hold for the whole front of you."
+  - audience: "when you're wound up"
+    headline: "The pose that opens what you protect"
+    proof: "Thirty seconds is enough the first time."
 seo_title: "Camel Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Camel is a kneeling backbend that opens the chest, belly and thighs. Learn the cues, short hold time, props and the cautions for neck and back."
 ---

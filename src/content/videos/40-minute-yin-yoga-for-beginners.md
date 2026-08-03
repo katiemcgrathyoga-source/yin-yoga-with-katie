@@ -28,6 +28,10 @@ chapters:
   - { time: "37:00",  seconds: 2220, title: "Waking up gently" }
   - { time: "37:52",  seconds: 2272, title: "Closing meditation" }
   - { time: "38:38",  seconds: 2318, title: "Thank you & goodbye" }
+pin_angles:
+  - audience: "for beginners"
+    headline: "Forty minutes, and you are new"
+    proof: "Every pose explained. Nothing assumed."
 seo_title: "40-Minute Yin Yoga for Beginners — No Props, Full-Body"
 seo_description: "A gentle 40-minute Yin Yoga class for beginners — no props, held one to two minutes a pose. A calm full-body stretch to release tension and learn the basics of Yin."
 membership_cta: "Inside the membership, this class is part of a guided Full-Body program — so instead of choosing a video each day, you follow the plan and move through your week feeling looser and lighter."

@@ -43,6 +43,10 @@ chapters:
     title: "Like & subscribe"
 membership_cta: "Inside the membership, this class is part of the Hips & Lower Back program — follow it and become someone who moves through the day with loose, open hips and easy hamstrings."
 summary: "A deep, slow 30-minute Yin class holding shoelace and dangling for 3–5 minutes each to open tight glutes and hamstrings."
+pin_angles:
+  - audience: "for tight hips"
+    headline: "Glutes and hamstrings, held long"
+    proof: "Twenty-eight minutes, three to five each."
 seo_title: "30-min Yin Yoga for Glutes & Hamstrings | Deep 3–5 Minute Holds"
 seo_description: "A calming 30-minute Yin Yoga class for tight glutes and hamstrings, holding shoelace and dangling for 3–5 minutes each. Cushions, a block and a blanket help you settle in."
 faq:

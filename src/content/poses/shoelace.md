@@ -52,6 +52,13 @@ related_poses: ["folded-half-shoelace", "deer", "swan", "sleeping-swan", "cow-fa
 youtube_video_id: ""
 images:
   - "/poses/shoelace.jpg"
+pin_angles:
+  - audience: "for runners"
+    headline: "The outer hip that pulls on your knee"
+    proof: "Knees stacked, fold forward. Three minutes."
+  - audience: "for tight hips"
+    headline: "The deepest outer-hip stretch in yin"
+    proof: "Sit on a cushion if the hips are tight."
 seo_title: "Shoelace Pose: Benefits, How-To & Hold Time"
 seo_description: "Shoelace is a Yin Yoga pose with knees stacked and an optional forward fold, giving a deep outer-hip and glute opening to release tension from long sitting."
 ---

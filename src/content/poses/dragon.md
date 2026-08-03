@@ -55,6 +55,13 @@ related_poses: ["twisted-dragon", "swan", "saddle", "deer", "childs-pose"]
 youtube_video_id: ""
 images:
   - "/poses/dragon.jpg"
+pin_angles:
+  - audience: "for runners"
+    headline: "The hip that shortens your stride"
+    proof: "Three minutes a side. Tonight, not next week."
+  - audience: "if you sit all day"
+    headline: "The hip flexor a chair keeps short"
+    proof: "Sink low, two minutes a side. Pad the knee."
 seo_title: "Dragon Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Dragon is a deep yin lunge that opens the hip flexors and groin. Learn the cues, benefits, hold time, props and the key knee cautions for this base pose."
 ---

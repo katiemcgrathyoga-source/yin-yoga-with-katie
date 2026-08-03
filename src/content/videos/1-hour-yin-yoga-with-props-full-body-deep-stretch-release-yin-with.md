@@ -24,6 +24,10 @@ chapters:
   - { time: "28:30",  seconds: 1710, title: "Hips · Reclined Butterfly (on a bolster)", pose: "butterfly" }
   - { time: "35:00",  seconds: 2100, title: "Twist · Cat Pulling Its Tail (each side)", pose: "cat-pulling-its-tail" }
   - { time: "48:00",  seconds: 2880, title: "Corpse Pose / Savasana", poses: ["corpse"] }
+pin_angles:
+  - audience: "when you're wound up"
+    headline: "An hour where the props do the work"
+    proof: "Follow along on YouTube. Props optional."
 seo_title: "1-Hour Yin Yoga with Props — Bolster & Blocks Full-Body Stretch"
 seo_description: "A restful 1-hour Yin Yoga class with a bolster and blocks — supported, deep full-body stretches held long and slow so your body can truly let go. All levels."
 membership_cta: "Love a supported, restful practice? Inside the membership it lives as part of a guided program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

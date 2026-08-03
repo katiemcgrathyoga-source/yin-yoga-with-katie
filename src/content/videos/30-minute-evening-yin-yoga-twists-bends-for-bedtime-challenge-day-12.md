@@ -19,6 +19,10 @@ chapters:
   - { time: "14:50", seconds: 890,  title: "Hips · Dragon & Shoelace (second side)", poses: ["dragon", "twisted-dragon", "childs-pose", "shoelace"] }
   - { time: "27:04", seconds: 1624, title: "Spine · Two-knee reclined twist", poses: ["reclined-twist"] }
   - { time: "32:39", seconds: 1959, title: "Like & Subscribe" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Twists and bends before sleep"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "30-Minute Evening Yin Yoga — Twists & Bends for Bedtime"
 seo_description: "A calming 34-minute evening Yin Yoga class of gentle twists and bends — dragon, shoelace and reclined twists held long and slow to unwind your spine for sleep."
 membership_cta: "This class lives inside the membership's Sleep program — a night-by-night path that helps you fall asleep faster and sleep through. Press play and let it carry you into bedtime."

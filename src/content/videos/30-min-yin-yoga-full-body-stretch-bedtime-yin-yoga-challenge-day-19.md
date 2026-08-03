@@ -18,6 +18,10 @@ chapters:
   - { time: "12:00",  seconds: 720,  title: "Shoulders · Thread-the-Needle & Child's Pose", poses: ["thread-the-needle", "childs-pose"] }
   - { time: "24:00",  seconds: 1440, title: "Spine · Reclined Twist",                 poses: ["reclined-twist"] }
   - { time: "32:40",  seconds: 1960, title: "Like & Subscribe!" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Everything, then sleep"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "30-Min Bedtime Yin Yoga — Full-Body Stretch for Sleep"
 seo_description: "A calming 30-minute full-body Yin Yoga class to unwind before bed — half-butterfly, thread-the-needle, child's pose and a reclined twist. All levels, no props."
 membership_cta: "This class lives inside the membership's Sleep program — a night-by-night path that helps you fall asleep faster and sleep through. Press play and let it carry you."

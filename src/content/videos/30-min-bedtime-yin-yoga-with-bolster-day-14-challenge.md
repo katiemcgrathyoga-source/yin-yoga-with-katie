@@ -21,6 +21,10 @@ chapters:
   - { time: "17:40",  seconds: 1060, title: "Hips · Reclined Butterfly on the bolster",         pose: "butterfly" }
   - { time: "22:55",  seconds: 1375, title: "Hips · Spider-Man over the bolster (both sides)" }
   - { time: "33:13",  seconds: 1993, title: "Corpse · Supported Rest" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Thirty minutes over a bolster"
+    proof: "The prop holds you. You let go."
 seo_title: "Bedtime Bolster Yin Yoga for Sleep — 30-Min Wind-Down"
 seo_description: "A soothing 30-minute bedtime Yin Yoga class using a bolster to release tension and settle you toward sleep. Day 14 of the Bedtime Challenge. All levels."
 membership_cta: "This is Day 14 of the Bedtime Challenge. Inside the membership, the full challenge lives as a guided Sleep program — press play each night and let the bolster carry you into sleep. Become someone who falls asleep faster and sleeps through."

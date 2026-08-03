@@ -1,0 +1,194 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { buildPinInventory } from '../lib/pinInventory';
+import { planDays, saveUrl, PINS_PER_DAY } from '../lib/pinSchedule';
+
+/**
+ * The pinning plan. Open it, save two pins, close it.
+ *
+ * Everything on this page is decided already — which pin, which board, which
+ * description. That is the whole point: the friction in pinning was never the
+ * design, it was having to choose twice a day. /pins stays as the browse-
+ * everything view for when something specific is needed.
+ *
+ * Private and noindex, like /pins.
+ */
+const DAYS = 14;
+
+const inventory = await buildPinInventory();
+const today = new Date();
+const days = planDays(inventory, today, DAYS);
+
+const byKind = inventory.reduce<Record<string, number>>((acc, p) => {
+  acc[p.kind] = (acc[p.kind] ?? 0) + 1;
+  return acc;
+}, {});
+// How long the plan can run before any pin comes round a second time.
+const runway = Math.floor(inventory.length / PINS_PER_DAY);
+
+const fmtDay = (d: Date) =>
+  d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+const isToday = (d: Date) => d.toDateString() === today.toDateString();
+---
+
+<BaseLayout title="Pin calendar" description="The daily pinning plan" noindex={true}>
+  <div class="pc">
+    <header class="pc-head">
+      <p class="pc-eyebrow">Pinterest · private</p>
+      <h1>Pin calendar</h1>
+      <p class="pc-lede">
+        Two pins a day, already chosen. Save them, tick them off, close the tab.
+      </p>
+      <p class="pc-stats">
+        <strong>{inventory.length}</strong> pins in the library ·
+        {byKind.pose ?? 0} pose · {byKind.routine ?? 0} routine ·
+        {byKind.video ?? 0} video · {byKind.journal ?? 0} journal ·
+        {byKind.offer ?? 0} offer — about <strong>{runway} days</strong> before
+        anything repeats
+      </p>
+      <p class="pc-note">
+        Nothing is stored on a server. “Done” lives in this browser, so tick as you go.
+      </p>
+    </header>
+
+    {days.map((day) => (
+      <section class={`pc-day${isToday(day.date) ? ' is-today' : ''}`}>
+        <div class="pc-day-head">
+          <h2>{isToday(day.date) ? 'Today' : fmtDay(day.date)}</h2>
+          <span class="pc-day-date">{isToday(day.date) ? fmtDay(day.date) : ''}</span>
+        </div>
+
+        {day.pins.map((pin) => (
+          <article class="pc-pin" data-pin={pin.id}>
+            <a class="pc-shot" href={pin.image} target="_blank" rel="noopener">
+              <img src={pin.image} alt="" loading="lazy" width="1000" height="1500" />
+            </a>
+            <div class="pc-meta">
+              <div class="pc-row">
+                <span class="pc-board">{pin.board}</span>
+                <span class="pc-kind">{pin.template} · {pin.tone}</span>
+              </div>
+              <h3>{pin.label}</h3>
+              <p class="pc-dest">{pin.url.replace('https://', '')}</p>
+              <p class="pc-desc" data-desc={pin.description}>{pin.description}</p>
+              <div class="pc-actions">
+                <a class="pc-btn pc-btn-go" href={saveUrl(pin)} target="_blank" rel="noopener">
+                  Save to Pinterest
+                </a>
+                <button class="pc-btn" type="button" data-copy>Copy description</button>
+                <button class="pc-btn pc-tick" type="button" data-done>Mark done</button>
+              </div>
+            </div>
+          </article>
+        ))}
+      </section>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .pc { max-width: 62rem; margin: 0 auto; padding: 2rem 1rem 5rem; }
+  .pc-head { margin-bottom: 2.5rem; }
+  .pc-eyebrow {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent); margin: 0 0 0.5rem;
+  }
+  .pc-head h1 { margin: 0 0 0.5rem; }
+  .pc-lede { font-size: 1.05rem; color: var(--muted); margin: 0 0 1rem; }
+  .pc-stats, .pc-note { font-size: 0.85rem; color: var(--muted); margin: 0 0 0.35rem; }
+  .pc-note { color: var(--muted); opacity: 0.8; }
+
+  .pc-day { margin-bottom: 2.5rem; }
+  .pc-day-head {
+    display: flex; align-items: baseline; gap: 0.75rem;
+    padding-bottom: 0.6rem; margin-bottom: 1rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .pc-day-head h2 { margin: 0; font-size: 1.35rem; }
+  .pc-day-date { font-size: 0.85rem; color: var(--muted); }
+  .pc-day.is-today .pc-day-head { border-bottom-color: var(--accent); }
+
+  .pc-pin {
+    display: flex; gap: 1.25rem; padding: 1rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .pc-pin:last-child { border-bottom: 0; }
+  .pc-pin.is-done { opacity: 0.45; }
+
+  .pc-shot { flex: 0 0 108px; display: block; }
+  .pc-shot img {
+    width: 108px; height: 162px; object-fit: cover; display: block;
+    border-radius: 4px; background: var(--img-bg, #f0e7dc);
+  }
+
+  .pc-meta { flex: 1; min-width: 0; }
+  .pc-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem; }
+  .pc-board {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.22rem 0.6rem; border-radius: 999px;
+    background: var(--head); color: var(--pg);
+  }
+  .pc-kind { font-size: 0.72rem; color: var(--muted); }
+  .pc-meta h3 { margin: 0 0 0.2rem; font-size: 1.05rem; }
+  .pc-dest { font-size: 0.75rem; color: var(--muted); margin: 0 0 0.5rem; word-break: break-all; }
+  .pc-desc {
+    font-size: 0.82rem; line-height: 1.5; color: var(--muted); margin: 0 0 0.7rem;
+    padding-left: 0.7rem; border-left: 2px solid var(--line);
+  }
+
+  .pc-actions { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+  .pc-btn {
+    font: inherit; font-size: 0.78rem; font-weight: 600;
+    padding: 0.4rem 0.85rem; border-radius: 999px;
+    border: 1px solid var(--line); background: transparent; color: var(--ink);
+    cursor: pointer; text-decoration: none; display: inline-block;
+  }
+  .pc-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .pc-btn-go { background: var(--accent); border-color: var(--accent); color: var(--pg); }
+  .pc-btn-go:hover { opacity: 0.9; color: var(--pg); }
+  .pc-pin.is-done .pc-tick { background: var(--head); border-color: var(--head); color: var(--pg); }
+
+  @media (max-width: 34rem) {
+    .pc-pin { flex-direction: column; }
+    .pc-shot { flex: none; }
+  }
+</style>
+
+<script>
+  // Done-state lives in this browser only — there is no account behind this page,
+  // and a pin ticked on the phone doesn't need to know about the laptop.
+  const KEY = 'pincalendar:done';
+  const done = new Set<string>(JSON.parse(localStorage.getItem(KEY) ?? '[]'));
+  const save = () => localStorage.setItem(KEY, JSON.stringify([...done]));
+
+  for (const el of document.querySelectorAll<HTMLElement>('[data-pin]')) {
+    const id = el.dataset.pin!;
+    if (done.has(id)) el.classList.add('is-done');
+
+    el.querySelector('[data-done]')?.addEventListener('click', () => {
+      if (done.has(id)) done.delete(id);
+      else done.add(id);
+      el.classList.toggle('is-done', done.has(id));
+      save();
+    });
+
+    el.querySelector('[data-copy]')?.addEventListener('click', async (event) => {
+      const button = event.currentTarget as HTMLButtonElement;
+      const text = el.querySelector<HTMLElement>('[data-desc]')?.dataset.desc ?? '';
+      try {
+        await navigator.clipboard.writeText(text);
+        button.textContent = 'Copied';
+      } catch {
+        button.textContent = "Couldn't copy";
+      }
+      setTimeout(() => { button.textContent = 'Copy description'; }, 1600);
+    });
+
+    // Saving to Pinterest is the point of the row, so tick it automatically.
+    el.querySelector('.pc-btn-go')?.addEventListener('click', () => {
+      done.add(id);
+      el.classList.add('is-done');
+      save();
+    });
+  }
+</script>

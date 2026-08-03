@@ -48,6 +48,13 @@ related_poses: ["caterpillar", "butterfly", "dragonfly", "shoelace", "folded-hal
 youtube_video_id: ""
 images:
   - "/poses/half-butterfly.jpg"
+pin_angles:
+  - audience: "for beginners"
+    headline: "A hamstring stretch you can't fail"
+    proof: "Round the back. Tight hamstrings are fine here."
+  - audience: "for runners"
+    headline: "One leg long, three minutes"
+    proof: "Fold over the straight leg. Micro-bend the knee."
 seo_title: "Half Butterfly Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Half Butterfly is a one-legged Yin Yoga forward fold that stretches the hamstring, back line and inner thigh, opening each side of the body at its own pace."
 ---

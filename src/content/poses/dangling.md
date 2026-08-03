@@ -52,6 +52,13 @@ related_poses: ["squat", "caterpillar", "half-butterfly", "dragonfly", "childs-p
 youtube_video_id: ""
 images:
   - "/poses/dangling.jpg"
+pin_angles:
+  - audience: "for runners"
+    headline: "Hang for two minutes after your run"
+    proof: "Soft knees. Your upper body does the work."
+  - audience: "for a stiff back"
+    headline: "The fastest way to unload a spine"
+    proof: "One to three minutes hanging forward."
 seo_title: "Dangling Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Dangling is a standing Yin Yoga forward fold where the upper body hangs like a ragdoll, using gravity to decompress the spine and stretch the whole back line."
 ---

@@ -21,6 +21,10 @@ chapters:
   - { time: "18:20",  seconds: 1100, title: "Spine · Seated Twist (both sides)", poses: ["seated-twist"] }
   - { time: "20:00",  seconds: 1200, title: "Closing meditation" }
   - { time: "20:42",  seconds: 1242, title: "Like & subscribe" }
+pin_angles:
+  - audience: "to start the day"
+    headline: "Twenty minutes before the day starts"
+    proof: "Slow and calming. Not a wake-up workout."
 seo_title: "20-min Morning Yin Yoga Without Props — Wake Up Gently"
 seo_description: "A calming 20-minute morning Yin Yoga stretch with no props — child's pose, dragon, puppy and a gentle twist to wake the body slowly and ease overnight tension."
 membership_cta: "If a slow start suits you, the membership gives you a whole shelf of full-length morning Yin — so instead of hunting for a class each day, you press play and let the plan wake you up gently."

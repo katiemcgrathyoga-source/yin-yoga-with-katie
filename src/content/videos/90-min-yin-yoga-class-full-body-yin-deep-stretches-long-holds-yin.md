@@ -26,6 +26,10 @@ chapters:
   - { time: "1:02:55",  seconds: 3775, title: "Hips · Shoelace (5 min each side)",              pose: "shoelace" }
   - { time: "1:12:35",  seconds: 4355, title: "Side Body · Bananasana (5 min each side)",       pose: "banana" }
   - { time: "1:21:48",  seconds: 4908, title: "Corpse Pose / Savasana (7 min)", poses: ["corpse"] }
+pin_angles:
+  - audience: "for a full-body reset"
+    headline: "Ninety minutes, head to toe"
+    proof: "Press play and follow along. Nothing to plan."
 seo_title: "90-Minute Full-Body Yin Yoga — Deep Stretch & Long Holds"
 seo_description: "A calming 90-minute full-body Yin Yoga class — deep stretches and long, quiet holds from melting heart to sleeping swan. A gentle and a deeper option in every pose. All levels, no props required."
 membership_cta: "This is Class 1 of the weekly series. Inside the membership, the whole series lives as a guided Full-Body program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

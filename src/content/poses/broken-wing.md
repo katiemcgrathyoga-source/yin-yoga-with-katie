@@ -45,6 +45,13 @@ related_poses: ["bow-tie", "thread-the-needle", "melting-heart", "sphinx", "supp
 youtube_video_id: ""
 images:
   - "/poses/broken-wing.jpg"
+pin_angles:
+  - audience: "if you sit all day"
+    headline: "The chest a keyboard keeps closed"
+    proof: "Two to four minutes a side, face down."
+  - audience: "for stiff shoulders"
+    headline: "The shoulder front nobody stretches"
+    proof: "Two minutes a side. Ease off if it tingles."
 seo_title: "Broken Wing in Yin Yoga: Benefits & How-To"
 seo_description: "Broken Wing is a strong yin chest and shoulder opener that stretches the pecs. Cues, hold times and important shoulder and nerve cautions."
 ---

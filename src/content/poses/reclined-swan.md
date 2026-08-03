@@ -49,6 +49,13 @@ related_poses: ["sleeping-swan", "swan", "reclined-twist", "happy-baby", "thread
 youtube_video_id: ""
 images:
   - "/poses/reclined-swan.jpg"
+pin_angles:
+  - audience: "for runners"
+    headline: "Figure four, flat on your back"
+    proof: "Two to five minutes a side. The gentlest glute."
+  - audience: "if you sit all day"
+    headline: "The glute that sitting switches off"
+    proof: "Ankle over knee, draw in. Two minutes a side."
 seo_title: "Reclined Swan Pose in Yin Yoga (Eye of the Needle): Benefits & How-To"
 seo_description: "Reclined Swan, or Eye of the Needle, is a gentle figure-four hip opener done on the back — kind to the knees. Learn the cues, benefits, hold time and cautions."
 ---

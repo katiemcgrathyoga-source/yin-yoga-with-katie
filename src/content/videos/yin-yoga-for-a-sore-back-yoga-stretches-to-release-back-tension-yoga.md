@@ -24,6 +24,10 @@ chapters:
   - { time: "25:10", seconds: 1510, title: "Back · Seal, with Crocodile to rest", poses: ["seal", "crocodile"] }
   - { time: "27:29", seconds: 1649, title: "Spine · Cat Pulling Its Tail (each side)", pose: "cat-pulling-its-tail" }
   - { time: "35:05", seconds: 2105, title: "Corpse Pose / Savasana", pose: "corpse" }
+pin_angles:
+  - audience: "for a stiff back"
+    headline: "Thirty-nine minutes for a sore back"
+    proof: "Slow and gentle. Ease off if it is sharp."
 seo_title: "Yin Yoga for a Sore Back — 40 min to Release Back Tension, No Props"
 seo_description: "A gentle 40-minute Yin Yoga class for a tired, sore back — slow twists, a soft back bend and a spinal release to help ease everyday back tension. No props, all levels."
 membership_cta: "Love a gentle practice like this? Inside the membership it's part of a guided Back program — press play and follow the plan instead of choosing a class each day, and let the week leave you feeling looser and lighter."

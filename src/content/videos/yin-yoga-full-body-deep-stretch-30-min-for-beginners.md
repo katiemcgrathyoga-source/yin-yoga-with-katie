@@ -21,6 +21,10 @@ chapters:
   - { time: "20:00", seconds: 1200, title: "Chest & lungs · Supported Fish",                pose: "supported-fish" }
   - { time: "24:56", seconds: 1496, title: "Spine & back · Reclined Twist (each side)",      pose: "reclined-twist" }
   - { time: "29:08", seconds: 1748, title: "Final Rest · Corpse Pose",                       pose: "corpse" }
+pin_angles:
+  - audience: "for beginners"
+    headline: "Thirty minutes, everything, explained"
+    proof: "A first full-body class. No props."
 seo_title: "Yin Yoga Full Body Deep Stretch — 30 Min for Beginners"
 seo_description: "A gentle 30-minute full-body Yin Yoga class for beginners — four long, unhurried holds for the hips, hamstrings, chest and spine. All levels, just a block or cushion."
 membership_cta: "Love a gentle practice like this? Inside the membership it's part of a guided Full-Body program — press play and follow the plan instead of choosing a class each day, and let the week leave you feeling looser and lighter."

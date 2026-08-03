@@ -28,6 +28,10 @@ chapters:
   - { time: "1:00:00",  seconds: 3600, title: "Twist · Reclined Twist (each side)",  pose: "reclined-twist" }
   - { time: "1:06:00",  seconds: 3960, title: "Corpse Pose / Savasana", poses: ["corpse"] }
   - { time: "1:13:00",  seconds: 4380, title: "Close · Goodbye" }
+pin_angles:
+  - audience: "for a full-body reset"
+    headline: "Seventy minutes for a heavy middle"
+    proof: "Folds and twists, held long and slow."
 seo_title: "70-Min Yin Yoga for Digestion & Detox — Full Class"
 seo_description: "A guided 70-minute Yin Yoga class for digestion and detox — gentle twists, folds and compression to nourish the belly, held long and slow. All levels."
 membership_cta: "Inside the membership, this class is part of a guided Full-Body program — so instead of choosing a video each day, you follow the plan and move through your week feeling looser and lighter."

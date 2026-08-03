@@ -24,6 +24,10 @@ chapters:
   - { time: "18:18",  seconds: 1098, title: "Upper body · Bow Tie / Pretzel Arms (each side)", pose: "bow-tie" }
   - { time: "25:00",  seconds: 1500, title: "Settle · Closing meditation" }
   - { time: "27:12",  seconds: 1632, title: "Try this series next" }
+pin_angles:
+  - audience: "for stiff shoulders"
+    headline: "Twenty-nine minutes, neck and up"
+    proof: "Where a screen leaves everything tight."
 seo_title: "Yin Yoga for Neck, Shoulders & Upper Back — 30-Minute Deep Stretch"
 seo_description: "A 30-minute Yin Yoga class for the neck, shoulders and upper back — a slow, deep stretch to release upper-body tension. Gentle, unhurried and suitable for all levels."
 membership_cta: "Love a deep practice like this? Inside the membership it's part of a guided Shoulders program — press play and follow the plan instead of choosing a class each day, and let the week leave you feeling looser and lighter."

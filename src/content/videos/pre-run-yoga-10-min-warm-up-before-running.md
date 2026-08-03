@@ -31,6 +31,10 @@ chapters:
   - { time: "9:49", seconds: 589, title: "Standing backbend, hands to heart" }
 membership_cta: "Inside the membership, the longer Yin classes pick up where a warm-up leaves off — the slow, still work that gives back the range running quietly takes."
 summary: "A 10-minute dynamic yoga warm-up to do before you run: Tiger pose, hip circles, lunges and the Warrior sequence, to wake the hips and glutes up rather than stretch them long."
+pin_angles:
+  - audience: "for runners"
+    headline: "Eleven minutes before you head out"
+    proof: "A warm-up, not a stretch. For runners."
 seo_title: "Pre-Run Yoga: A 10-Minute Warm-Up Before Running"
 seo_description: "A 10-minute dynamic yoga warm-up for runners: Tiger pose, hip circles, lunges and Warriors to wake up the hips, glutes and hamstrings before you head out."
 ---

@@ -25,6 +25,13 @@ faq:
     a: "A bolster, cushion or rolled blanket makes the supported-fish far more restful, but it's optional — you can rest back over anything soft, or simply lie flat. Everything else needs nothing at all."
 membership_cta: "Sit all day? The membership has a guided series for the chest, shoulders and upper back — a night-by-night plan to undo the hunch, so you don't have to piece it together yourself."
 summary: "A 24-minute heart and chest opening Yin Yoga routine — gentle, supported backbends for the chest, shoulders and upper back, with a built-in hold timer. All levels."
+pin_angles:
+  - audience: "if you sit all day"
+    headline: "Twenty-four minutes to undo the hunch"
+    proof: "Supported backbends for chest and upper back."
+  - audience: "for stiff shoulders"
+    headline: "Open a chest that closed at nine"
+    proof: "Gentle, propped, twenty-four minutes."
 seo_title: "24-Minute Heart & Chest Opening Yin Yoga Routine — Follow Along"
 seo_description: "A 24-minute Yin Yoga routine to open the chest, shoulders and upper back — gentle supported backbends with a built-in hold timer to undo desk hunch. All levels."
 ---

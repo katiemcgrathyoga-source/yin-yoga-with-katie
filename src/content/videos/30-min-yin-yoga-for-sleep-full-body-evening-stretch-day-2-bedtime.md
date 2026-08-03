@@ -20,6 +20,10 @@ chapters:
   - { time: "6:30",   seconds: 390,  title: "Spine · Caterpillar",                           pose: "caterpillar" }
   - { time: "12:20",  seconds: 740,  title: "Hips · Reclined Swan & Twist (right side)", poses: ["reclined-swan", "reclined-twist"] }
   - { time: "21:20",  seconds: 1280, title: "Hips · Reclined Swan & Twist (left side)", poses: ["reclined-swan", "reclined-twist"] }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Thirty minutes and then bed"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "30-Min Bedtime Yin Yoga for Sleep — Evening Full-Body Stretch"
 seo_description: "A gentle 30-minute evening Yin Yoga class to help you sleep — slow full-body stretches to release the day's tension and calm the mind before bed. Day 2 of the Bedtime Challenge."
 membership_cta: "This is Day 2 of the Bedtime Challenge. Inside the membership, the full challenge lives as a guided Sleep program — press play each night and drift off. Become someone who falls asleep faster and sleeps through."

@@ -48,6 +48,13 @@ related_poses: ["half-butterfly", "butterfly", "dragonfly", "dangling", "recline
 youtube_video_id: ""
 images:
   - "/poses/caterpillar.jpg"
+pin_angles:
+  - audience: "for runners"
+    headline: "The whole back of your legs, at once"
+    proof: "Round the back, bend the knees. Three minutes."
+  - audience: "for a stiff back"
+    headline: "Let your head hang for three minutes"
+    proof: "Nothing to reach for. Gravity does the folding."
 seo_title: "Caterpillar Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Caterpillar is a seated Yin Yoga forward fold that gently stretches the whole back line and spine to release the lower back and calm the mind."
 ---

@@ -46,6 +46,13 @@ related_poses: ["broken-wing", "thread-the-needle", "melting-heart", "supported-
 youtube_video_id: ""
 images:
   - "/poses/bow-tie.jpg"
+pin_angles:
+  - audience: "if you sit all day"
+    headline: "Shoulders that won't come down"
+    proof: "Your own weight opens them. Three minutes."
+  - audience: "for stiff shoulders"
+    headline: "The knot between your shoulder blades"
+    proof: "Three to five minutes. Nothing to hold."
 seo_title: "Bow Tie in Yin Yoga: Benefits & How-To"
 seo_description: "Bow Tie is a reclined yin shoulder opener that uses body weight to release the shoulders and upper back. Cues, hold times and safe cautions."
 ---

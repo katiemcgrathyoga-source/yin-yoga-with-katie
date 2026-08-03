@@ -49,6 +49,13 @@ related_poses: ["butterfly", "caterpillar", "half-butterfly", "frog", "squat"]
 youtube_video_id: ""
 images:
   - "/poses/dragonfly.jpg"
+pin_angles:
+  - audience: "for tight hips"
+    headline: "Inner thighs and hamstrings at once"
+    proof: "Legs wide, fold from the hips. Four minutes."
+  - audience: "for runners"
+    headline: "The adductors runners never stretch"
+    proof: "Three to five minutes. Sit on a cushion."
 seo_title: "Dragonfly Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Dragonfly is a wide-legged seated Yin Yoga fold that opens the hamstrings, inner thighs and back line. Learn how to practice it safely, with props and cautions."
 ---

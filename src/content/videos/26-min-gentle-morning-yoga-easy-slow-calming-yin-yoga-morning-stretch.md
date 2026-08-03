@@ -24,6 +24,10 @@ chapters:
   - { time: "20:45", seconds: 1245, title: "Neck · Gentle neck stretches" }
   - { time: "22:00", seconds: 1320, title: "Hips · Easy Pose forward fold (each side)", pose: "easy-pose" }
   - { time: "24:45", seconds: 1485, title: "Closing meditation & a few quiet breaths" }
+pin_angles:
+  - audience: "to start the day"
+    headline: "Twenty-six slow minutes to begin"
+    proof: "Gentle. Nothing energetic about it."
 seo_title: "26-Min Gentle Morning Yin Yoga — Easy Full-Body Stretch, No Props, All Levels"
 seo_description: "A slow, gentle 26-minute morning Yin Yoga class to wake up the spine, hips and shoulders. Easy, calming stretches with no props needed — a soft way to start the day for all levels."
 membership_cta: "Love a gentle practice like this? Inside the membership it's part of a guided Morning program — press play and follow the plan instead of choosing a class each day, and let the week leave you feeling looser and lighter."

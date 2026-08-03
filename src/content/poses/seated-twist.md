@@ -47,6 +47,13 @@ related_poses: ["easy-pose", "reclined-twist", "twisted-dragon", "cat-pulling-it
 youtube_video_id: ""
 images:
   - "/brand/pose-placeholder.png"
+pin_angles:
+  - audience: "if you sit all day"
+    headline: "A twist you can do at your desk"
+    proof: "One to three minutes a side, sitting up tall."
+  - audience: "for beginners"
+    headline: "The easiest twist in yin"
+    proof: "Sit up, turn, breathe. A minute a side."
 seo_title: "Seated Twist (Seated Spinal Twist) in Yin Yoga: Benefits & How-To"
 seo_description: "A gentle seated spinal twist in Yin Yoga to ease the back, ribs and shoulders. Learn the cues, benefits, hold time, props and cautions."
 ---

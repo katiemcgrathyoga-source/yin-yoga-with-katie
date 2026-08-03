@@ -18,6 +18,10 @@ chapters:
   - { time: "14:00", seconds: 840,  title: "Hips · Squat", poses: ["squat"] }
   - { time: "21:00", seconds: 1260, title: "Hamstrings · Dangling", poses: ["dangling"] }
   - { time: "28:00", seconds: 1680, title: "Please like & subscribe" }
+pin_angles:
+  - audience: "for a stiff back"
+    headline: "Thirty minutes on hips and hamstrings"
+    proof: "Follow along on YouTube. No props needed."
 seo_title: "30-min Yin Yoga for Flexibility — Hips & Hamstrings, All Levels"
 seo_description: "A 30-minute Yin Yoga class to open the hips and hamstrings and build flexibility — half shoelace, a long squat and dangling forward fold, held slow. All levels."
 summary: "A 30-minute Yin class for the hips and hamstrings — half shoelace, squat and dangling, held long and slow to build flexibility. All levels."

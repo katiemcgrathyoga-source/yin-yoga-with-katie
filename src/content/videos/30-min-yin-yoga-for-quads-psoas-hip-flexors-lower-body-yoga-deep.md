@@ -20,6 +20,10 @@ chapters:
   - { time: "21:00", seconds: 1260, title: "Quads · Full Saddle", poses: ["saddle"] }
   - { time: "27:00", seconds: 1620, title: "Corpse Pose / Savasana", poses: ["corpse"] }
   - { time: "30:00", seconds: 1800, title: "Please like, subscribe & join" }
+pin_angles:
+  - audience: "for tight hips"
+    headline: "Quads, psoas and hip flexors"
+    proof: "The front of the hip, thirty minutes."
 seo_title: "30-min Yin Yoga for Quads, Psoas & Hip Flexors — Deep Lower-Body Stretch"
 seo_description: "A 30-minute Yin Yoga class to deeply open the quads, psoas and hip flexors — dragon, half and full saddle, and reclined butterfly, held long and slow. All levels."
 membership_cta: "If your hips and thighs are always tight from sitting, this class is part of the Hips & Lower Back program inside the membership — follow the plan instead of picking a video, and become someone who moves through the day loose and easy."

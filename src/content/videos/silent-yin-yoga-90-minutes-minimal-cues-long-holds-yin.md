@@ -28,6 +28,10 @@ chapters:
   - { time: "1:08:00",  seconds: 4080, title: "Chest · Supported Fish",                     pose: "supported-fish" }
   - { time: "1:16:00",  seconds: 4560, title: "Side body · Banana",                         pose: "banana" }
   - { time: "1:23:00",  seconds: 4980, title: "Corpse Pose / Savasana",                     pose: "corpse" }
+pin_angles:
+  - audience: "when you're wound up"
+    headline: "Ninety minutes, almost no talking"
+    proof: "Minimal cues. Long holds. Nothing to follow."
 seo_title: "90-Minute Silent Yin Yoga — Full-Body Long Holds, Minimal Cues"
 seo_description: "A silent 90-minute Yin Yoga class — a deep full-body stretch held long and slow with minimal cues, just the pose name and the time. Meditative and calming. All levels."
 membership_cta: "Love a long, quiet practice like this? Inside the membership it lives inside a guided program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

@@ -48,6 +48,13 @@ related_poses: ["corpse", "happy-baby", "reclined-twist", "supported-bridge", "r
 youtube_video_id: ""
 images:
   - "/poses/legs-up-the-wall.jpg"
+pin_angles:
+  - audience: "for tired legs"
+    headline: "The recovery pose that asks nothing"
+    proof: "Five minutes up a wall. No flexibility needed."
+  - audience: "for restless nights"
+    headline: "Fifteen minutes and the day drains out"
+    proof: "Legs up the wall. Nothing to hold, nothing to do."
 seo_title: "Legs Up the Wall in Yin Yoga: Benefits & How-To"
 seo_description: "Legs Up the Wall is a deeply restorative Yin shape that calms the nervous system and eases tired legs. Learn the cues, hold time, benefits and cautions."
 ---

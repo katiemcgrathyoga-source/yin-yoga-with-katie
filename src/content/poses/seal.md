@@ -50,6 +50,13 @@ related_poses: ["sphinx", "melting-heart", "saddle", "childs-pose", "supported-b
 youtube_video_id: ""
 images:
   - "/poses/seal.jpg"
+pin_angles:
+  - audience: "for a stiff back"
+    headline: "The backbend a desk day earns you"
+    proof: "Arms straight, three minutes. Ease off if pinchy."
+  - audience: "if you sit all day"
+    headline: "Undo the flat back a chair gives you"
+    proof: "Three to five minutes on straight arms."
 seo_title: "Seal Pose: Benefits, How-To & Hold Time"
 seo_description: "Seal is a deeper yin backbend with straight arms that tones the lower-back curve. Learn the cues, hold time, props and the cautions that matter."
 ---

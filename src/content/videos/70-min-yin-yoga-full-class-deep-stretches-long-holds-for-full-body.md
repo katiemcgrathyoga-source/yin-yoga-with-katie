@@ -25,6 +25,10 @@ chapters:
   - { time: "39:00",   seconds: 2340, title: "Shoulders · Eagle Arms & face yoga", pose: "eagle" }
   - { time: "51:20",   seconds: 3080, title: "Twist · Twisted Roots (each side)", pose: "reclined-twist" }
   - { time: "1:00:00", seconds: 3600, title: "Corpse Pose / Savasana", poses: ["corpse"] }
+pin_angles:
+  - audience: "for tight hips"
+    headline: "Seventy minutes of long holds"
+    proof: "Press play and follow along. Nothing to plan."
 seo_title: "70-Min Yin Yoga Full Class — Deep Stretch, Long Holds"
 seo_description: "A 70-minute full-body Yin Yoga class with deep stretches and long, slow holds — from toe squat to twists — to release the whole body. All levels."
 membership_cta: "Love a long, head-to-toe practice like this? Inside the membership it lives as part of a guided Full-Body program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

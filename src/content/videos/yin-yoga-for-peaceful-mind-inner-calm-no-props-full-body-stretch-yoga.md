@@ -25,6 +25,10 @@ chapters:
   - { time: "33:33",  seconds: 2013, title: "Hips · Reclined Swan to Twist", poses: ["reclined-swan", "reclined-twist"] }
   - { time: "38:00",  seconds: 2280, title: "Corpse Pose / Savasana", poses: ["corpse"] }
   - { time: "40:00",  seconds: 2400, title: "Closing · Rest & return" }
+pin_angles:
+  - audience: "when you're wound up"
+    headline: "Forty minutes for a loud head"
+    proof: "Free on YouTube. Nothing to set up."
 seo_title: "Yin Yoga for Peaceful Mind & Inner Calm — No Props, All Levels"
 seo_description: "A calming 41-minute no-props Yin Yoga class to quiet a busy mind and stretch the whole body — butterfly, sphinx, dragon-free holds and a slow reclined twist. All levels."
 summary: "A calming 41-minute no-props Yin class to quiet a busy mind and gently stretch the whole body, from a filmed practice in a Taipei park."

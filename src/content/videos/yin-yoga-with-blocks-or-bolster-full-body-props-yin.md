@@ -22,6 +22,10 @@ chapters:
   - { time: "18:50",  seconds: 1130, title: "Hips · Sleeping Swan with Cat-Cow",     pose: "sleeping-swan" }
   - { time: "30:00",  seconds: 1800, title: "Shoulders · Supported Fish",            pose: "supported-fish" }
   - { time: "35:00",  seconds: 2100, title: "Corpse Pose / Savasana", poses: ["corpse"] }
+pin_angles:
+  - audience: "when you're wound up"
+    headline: "Forty minutes propped up"
+    proof: "Blocks or a bolster do most of the holding."
 seo_title: "Yin Yoga With Blocks & Bolster — Full-Body Props Yin"
 seo_description: "A 40-minute full-body Yin Yoga class with a bolster and blocks — supported, deeply relaxing shapes held long and slow to stretch the whole body. All levels."
 membership_cta: "Love a supported, deeply relaxing practice like this? Inside the membership it lives as part of a guided Full-Body program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

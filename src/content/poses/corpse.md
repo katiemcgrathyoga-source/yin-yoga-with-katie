@@ -44,6 +44,13 @@ related_poses: ["childs-pose", "legs-up-the-wall", "supported-bridge", "reclined
 youtube_video_id: ""
 images:
   - "/poses/corpse.jpg"
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Five minutes flat before you sleep"
+    proof: "No shape to hold. This is the part that works."
+  - audience: "when you're wound up"
+    headline: "Doing nothing, on purpose"
+    proof: "Five to ten minutes. Set a timer and stop."
 seo_title: "Corpse Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Corpse Pose is the final rest in Yin Yoga, calming the nervous system and letting your practice settle. Learn how to rest well, with props and cautions."
 ---

@@ -26,6 +26,10 @@ chapters:
   - { time: "39:39",  seconds: 2379, title: "Chest · Reclined Butterfly",         poses: ["butterfly"] }
   - { time: "42:00",  seconds: 2520, title: "Spine · Reclined Twist",             poses: ["reclined-twist"] }
   - { time: "47:51",  seconds: 2871, title: "Corpse Pose / Savasana",             poses: ["corpse"] }
+pin_angles:
+  - audience: "for stiff shoulders"
+    headline: "Fifty-five minutes above the waist"
+    proof: "Shoulders, chest, neck and spine."
 seo_title: "55-min Silent Upper-Body Yin Yoga — Shoulders, Upper Back & Chest"
 seo_description: "A mostly silent, minimal-cues 55-minute Yin Yoga class for the shoulders, upper back and chest. Held long and slow to open the heart space. All levels."
 membership_cta: "Love a quiet class like this? Inside the membership this one is part of a guided Full-Body program — so instead of choosing a video each day, you press play and follow the plan, moving through your week feeling looser and lighter across the shoulders and chest."

@@ -19,6 +19,10 @@ chapters:
   - { time: "24:50",  seconds: 1490, title: "Hips · Supported Bridge", poses: ["supported-bridge"] }
   - { time: "31:10",  seconds: 1870, title: "Chest · Supported Starfish (Fish)", poses: ["supported-fish"] }
   - { time: "33:55",  seconds: 2035, title: "Like & Subscribe" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Thirty-five slow minutes at night"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "Relaxing Bedtime Yin Yoga Stretch — 35 min, Lower Body"
 seo_description: "A calming 35-minute bedtime Yin class for the lower body: child's pose, dangling, folded deer, supported bridge and a starfish fish to unwind before sleep."
 membership_cta: "This class lives inside the membership's Sleep program — a night-by-night path that helps you fall asleep faster and sleep through. Press play and let it carry you to bed."

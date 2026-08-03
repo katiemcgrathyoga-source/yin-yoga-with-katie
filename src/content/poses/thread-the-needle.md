@@ -46,6 +46,13 @@ related_poses: ["melting-heart", "childs-pose", "bow-tie", "broken-wing", "cow-f
 youtube_video_id: ""
 images:
   - "/poses/thread-the-needle.jpg"
+pin_angles:
+  - audience: "if you sit all day"
+    headline: "Where desk tension actually gathers"
+    proof: "Thread the arm through, rest on the shoulder."
+  - audience: "for stiff shoulders"
+    headline: "A twist that never loads your back"
+    proof: "Two to four minutes a side. Never crank the neck."
 seo_title: "Thread the Needle in Yin Yoga: Benefits & How-To"
 seo_description: "Thread the Needle is a gentle yin twist that opens the upper back and shoulders. Cues, hold times and neck-safe cautions to keep it kind."
 ---

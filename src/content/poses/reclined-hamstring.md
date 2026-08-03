@@ -47,6 +47,13 @@ related_poses: ["banana", "caterpillar", "legs-up-the-wall", "happy-baby"]
 youtube_video_id: ""
 images:
   - "/brand/pose-placeholder.png"
+pin_angles:
+  - audience: "for runners"
+    headline: "Hamstrings, without sitting up"
+    proof: "Two to four minutes a side. Use a strap."
+  - audience: "for beginners"
+    headline: "The easiest hamstring stretch there is"
+    proof: "On your back. The floor takes all the weight."
 seo_title: "Reclined Hamstring Stretch in Yin Yoga: Benefits & How-To"
 seo_description: "A supported, lying-down yin hamstring stretch using a strap — releases the hamstrings and calves while the lower back rests. Cues, benefits, hold time, cautions."
 ---

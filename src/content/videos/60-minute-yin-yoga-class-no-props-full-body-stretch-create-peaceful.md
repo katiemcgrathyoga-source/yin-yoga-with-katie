@@ -23,6 +23,10 @@ chapters:
   - { time: "46:00",  seconds: 2760, title: "Spine · Caterpillar",                      pose: "caterpillar" }
   - { time: "51:00",  seconds: 3060, title: "Neck · Neck & shoulder stretches" }
   - { time: "54:00",  seconds: 3240, title: "Corpse Pose / Savasana", poses: ["corpse"] }
+pin_angles:
+  - audience: "when you're wound up"
+    headline: "An hour to put the week down"
+    proof: "Follow along on YouTube. No props needed."
 seo_title: "60-Minute Full-Body Yin Yoga — No Props, All Levels"
 seo_description: "A guided 60-minute Yin Yoga class with no props — a full-body stretch held long and slow to release tension and create some peaceful moments. All levels."
 membership_cta: "Love an hour like this? Inside the membership this class is part of a guided Full-Body program — so instead of choosing a video each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

@@ -23,6 +23,10 @@ chapters:
   - { time: "17:40", seconds: 1060, title: "Side body · Banana Pose (each side)", pose: "banana" }
   - { time: "23:40", seconds: 1420, title: "Spine · Reclined Twist (each side)", pose: "reclined-twist" }
   - { time: "30:00", seconds: 1800, title: "Corpse Pose / Savasana", pose: "corpse" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Thirty-four minutes toward sleep"
+    proof: "Hips, glutes and the low back."
 seo_title: "33-Min Yin Yoga for Sleep — Gentle Bedtime Stretch, All Levels"
 seo_description: "A gentle 33-minute Yin Yoga class for sleep — slow, floor-based holds for the hips, lower back, side body and spine to help you unwind before bed. All levels, no props needed."
 membership_cta: "Love a gentle practice like this? Inside the membership it's part of a guided Sleep program — press play and follow the plan instead of choosing a class each day, and let the week leave you feeling calmer and more rested."

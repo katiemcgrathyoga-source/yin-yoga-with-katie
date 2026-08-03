@@ -17,6 +17,10 @@ chapters:
   - { time: "12:20",  seconds: 740,  title: "Spine · Caterpillar",                     poses: ["caterpillar"] }
   - { time: "17:40",  seconds: 1060, title: "Hips · Reclined Butterfly",               poses: ["butterfly"] }
   - { time: "22:07",  seconds: 1327, title: "Close · Like & subscribe" }
+pin_angles:
+  - audience: "for a stiff back"
+    headline: "Twenty minutes, three tight places"
+    proof: "Spine, hips and hamstrings."
 seo_title: "20-Minute Yin Yoga For Spine, Hips & Hamstrings — All Levels"
 seo_description: "A 20-minute insect-inspired Yin class working the spine, hips and hamstrings through dragonfly, caterpillar and reclined butterfly. Held long and slow, all levels."
 membership_cta: "Inside the membership, this class is part of the Hips & Lower Back program — follow it and become someone who moves through the day loose and easy."

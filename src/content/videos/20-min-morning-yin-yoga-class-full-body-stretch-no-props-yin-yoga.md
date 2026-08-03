@@ -24,6 +24,10 @@ chapters:
   - { time: "17:00", seconds: 1020, title: "Neck & shoulders · Gentle neck stretches" }
   - { time: "19:00", seconds: 1140, title: "Spine · Seated Twist (each side)", pose: "seated-twist" }
   - { time: "20:10", seconds: 1210, title: "Closing meditation" }
+pin_angles:
+  - audience: "for stiff shoulders"
+    headline: "Twenty-three minutes to start"
+    proof: "Full body, no props, before the day."
 seo_title: "20-Minute Morning Yin Yoga — Full-Body Stretch, No Props"
 seo_description: "A gentle 20-minute morning Yin Yoga class — a full-body stretch to wake up slowly with no props. Reclined hip openers, shoulder and neck release, and a soft twist to close, suitable for all levels."
 membership_cta: "Love a gentle practice like this? Inside the membership it's part of a guided Full-Body program — press play and follow the plan instead of choosing a class each day, and let the week leave you feeling looser and lighter."

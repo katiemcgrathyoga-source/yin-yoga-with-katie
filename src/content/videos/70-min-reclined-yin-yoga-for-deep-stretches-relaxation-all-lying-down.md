@@ -23,6 +23,10 @@ chapters:
   - { time: "37:00",    seconds: 2220, title: "Side body · Banana Pose (each side)",       pose: "banana" }
   - { time: "47:40",    seconds: 2860, title: "Hamstrings · Reclined Hamstring Stretch", poses: ["reclined-hamstring"] }
   - { time: "1:01:40",  seconds: 3700, title: "Corpse Pose / Savasana", poses: ["corpse"] }
+pin_angles:
+  - audience: "when you're wound up"
+    headline: "Seventy minutes without getting up"
+    proof: "Every shape is lying down. Really."
 seo_title: "70-Min Reclined Yin Yoga — Deep Stretch, All Lying Down"
 seo_description: "A deeply relaxing 70-minute reclined Yin Yoga class — every pose lying down, held long and slow, for deep stretch and total relaxation. All levels."
 membership_cta: "Love unwinding fully like this? Inside the membership, gentle classes like this one anchor a guided Reset program — press play and let your nervous system settle. Become someone who ends the day calm, not wired."

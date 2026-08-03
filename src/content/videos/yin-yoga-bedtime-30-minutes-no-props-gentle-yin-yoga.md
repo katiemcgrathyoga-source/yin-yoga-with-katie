@@ -21,6 +21,10 @@ chapters:
   - { time: "10:38", seconds: 638,  title: "Spine · Child's Pose to Cat-Cow", pose: "childs-pose" }
   - { time: "17:47", seconds: 1067, title: "Spine · Shoelace twist & side bend (each side)", pose: "shoelace" }
   - { time: "28:00", seconds: 1680, title: "Lower back · Knees to chest to Corpse Pose", poses: ["wind-relieving", "corpse"] }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "A gentle back class before bed"
+    proof: "Thirty-two minutes, no props."
 seo_title: "Bedtime Yin Yoga for the Back — 30 min, No Props, All Levels"
 seo_description: "A gentle 30-minute bedtime Yin Yoga class for the back — no props, all levels. Simple, unhurried holds to help ease a stiff or sore back and quiet your mind before sleep."
 membership_cta: "Love a gentle practice like this? Inside the membership it's part of a guided Sleep program — press play and follow the plan instead of choosing a class each day, and let the week leave you feeling looser and lighter."

@@ -25,6 +25,13 @@ faq:
     a: "No props and no experience required — it's an all-levels routine. Bend your knees generously in the forward folds and let the floor support you."
 membership_cta: "If back tension is a regular visitor, the membership has longer back-focused classes and a guided plan so you always know what to practice."
 summary: "A gentle 25-minute Yin routine to release lower-back tension — length, decompression and hip release, held slowly with a built-in hold timer. All levels."
+pin_angles:
+  - audience: "for a stiff back"
+    headline: "Twenty-five minutes for a tired back"
+    proof: "Length, decompression, and the hips behind it."
+  - audience: "if you sit all day"
+    headline: "The back a chair leaves aching"
+    proof: "Gentle, all-levels, twenty-five minutes."
 seo_title: "25-Minute Yin Yoga for Lower-Back Pain Relief — Follow Along"
 seo_description: "A gentle 25-minute Yin Yoga routine to ease lower-back tension and tightness, with a built-in hold timer. Soothing shapes for a tired back. All levels."
 ---

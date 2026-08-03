@@ -21,6 +21,10 @@ chapters:
   - { time: "16:00", seconds: 960,  title: "Shoulders · Eagle Arms",                   poses: ["eagle"] }
   - { time: "26:00", seconds: 1560, title: "Neck · Gentle neck stretches" }
   - { time: "30:20", seconds: 1820, title: "Like & subscribe" }
+pin_angles:
+  - audience: "for stiff shoulders"
+    headline: "Neck, shoulders and upper back"
+    proof: "Thirty minutes where the day collects."
 seo_title: "30-min Yin Yoga for Neck, Shoulders & Upper Back — All Levels"
 seo_description: "A calming 30-minute Yin Yoga class for the neck, shoulders and upper back — long, gentle holds to release tension and open the upper body. No props, all levels."
 membership_cta: "Carry a lot of tension in your neck and shoulders? Inside the membership this class is part of a guided program, so instead of choosing a video each day you follow the plan — and become someone whose upper body feels lighter and looser through the week."

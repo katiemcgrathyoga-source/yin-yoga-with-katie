@@ -26,6 +26,10 @@ chapters:
   - { time: "23:30",  seconds: 1410, title: "Spine · Reclined Twist (both sides)", poses: ["reclined-twist"] }
   - { time: "30:17",  seconds: 1817, title: "Corpse Pose / Savasana", poses: ["corpse"] }
   - { time: "34:26",  seconds: 2066, title: "Goodbye and thank you" }
+pin_angles:
+  - audience: "for a stiff back"
+    headline: "Thirty-five minutes on the spine"
+    proof: "Length first, then release."
 seo_title: "Deep Spinal Stretch Yin Yoga — 35 min for Back & Spine"
 seo_description: "A calming 35-minute Yin Yoga class for your back and spine — long, gentle holds through child's pose, dangling, sphinx, seal and a reclined twist to release tension."
 membership_cta: "Inside the membership, this class is part of a guided Full-Body program — so instead of choosing a video each day, you follow the plan and move through your week feeling looser and lighter in your back."

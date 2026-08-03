@@ -25,6 +25,10 @@ chapters:
   - { time: "27:37",  seconds: 1657, title: "Corpse Pose / Savasana", poses: ["corpse"] }
   - { time: "29:10",  seconds: 1750, title: "Breath · Closing meditation" }
   - { time: "30:20",  seconds: 1820, title: "Like & subscribe" }
+pin_angles:
+  - audience: "for stiff shoulders"
+    headline: "Thirty-one minutes on the shoulders"
+    proof: "Long holds where the tension sits."
 seo_title: "Yin Yoga for Upper Body — Deep Shoulder Stretch, 31 min"
 seo_description: "A guided 31-minute Yin Yoga class for the upper body — long, slow holds in bow tie and broken wing to deeply open the shoulders, upper back and neck. All levels."
 membership_cta: "Love how open your shoulders feel after this? Inside the membership this class is part of a guided program — so instead of choosing a video each day, you press play and follow the plan, and become someone who carries less tension through their week."

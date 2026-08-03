@@ -25,6 +25,10 @@ chapters:
   - { time: "24:24", seconds: 1464, title: "Rest · Angle Pose (seated forward wrap)" }
   - { time: "26:39", seconds: 1599, title: "Neck · Closing neck stretches" }
   - { time: "28:08", seconds: 1688, title: "Goodbye and thank you" }
+pin_angles:
+  - audience: "for stiff shoulders"
+    headline: "Neck and shoulders, long holds"
+    proof: "Twenty-nine minutes, three to five each."
 seo_title: "Yin Yoga for Neck and Shoulders — 25 min, All Levels, No Props"
 seo_description: "A 25-minute Yin Yoga class for the neck and shoulders, held long and slow to release tension and soften stress. Gentle, quiet, and suitable for all levels — no props needed."
 membership_cta: "Love a gentle practice like this? Inside the membership it's part of a guided Neck and Shoulders program — press play and follow the plan instead of choosing a class each day, and let the week leave you feeling looser and lighter."

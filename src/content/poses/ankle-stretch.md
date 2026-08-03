@@ -46,6 +46,13 @@ related_poses: ["toe-squat", "saddle", "squat", "dangling", "childs-pose"]
 youtube_video_id: ""
 images:
   - "/poses/ankle-stretch.jpg"
+pin_angles:
+  - audience: "for runners"
+    headline: "The ankles your shoes never let move"
+    proof: "One to three minutes, kneeling. Pad the shins."
+  - audience: "for beginners"
+    headline: "Feet that ache by the end of the day"
+    proof: "One to three minutes on the tops of your feet."
 seo_title: "Ankle Stretch in Yin Yoga: Benefits & How-To"
 seo_description: "Ankle Stretch opens the fronts of the ankles and shins in Yin Yoga, the counter to Toe Squat. Learn how to practice it safely, with props and cautions."
 ---

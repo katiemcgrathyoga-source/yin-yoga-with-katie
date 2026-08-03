@@ -19,6 +19,10 @@ chapters:
   - { time: "19:00",  seconds: 1140, title: "Spine · Seated Twist",             poses: ["seated-twist"] }
   - { time: "23:23",  seconds: 1403, title: "Chest · Supported Fish",           poses: ["supported-fish"] }
   - { time: "31:11",  seconds: 1871, title: "Like & Subscribe" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Gentle backbends before bed"
+    proof: "Thirty minutes. Nothing deep or sharp."
 seo_title: "Yin Yoga Backbends — Relaxing Deep Back Stretch for Bedtime"
 seo_description: "A calming 33-minute Yin Yoga backbend class for bedtime — sphinx, seal, saddle and supported fish to release the spine and open the heart and lungs. All levels."
 summary: "A gentle 33-minute Yin backbend class for bedtime — releasing the spine and opening the heart and lungs through sphinx, seal, saddle and supported fish."

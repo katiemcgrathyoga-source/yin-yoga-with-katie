@@ -23,6 +23,10 @@ chapters:
   - { time: "23:00",  seconds: 1380, title: "Shoulders · Angel Pose" }
   - { time: "25:00",  seconds: 1500, title: "Hips · Shoelace with Eagle Arms & Twist (each side)", poses: ["shoelace", "eagle", "reclined-twist"] }
   - { time: "37:27",  seconds: 2247, title: "Corpse Pose / Savasana", poses: ["corpse"] }
+pin_angles:
+  - audience: "when you're wound up"
+    headline: "Forty minutes without the talking"
+    proof: "Free on YouTube. Nothing to set up."
 seo_title: "Silent Yin Yoga — 42-Min Full-Body Stretch, No Props"
 seo_description: "A silent 42-minute Yin Yoga class from Taipei — a full-body stretch held long and slow with minimal cues and no props. No extra talking. All levels."
 membership_cta: "Inside the membership, this class is part of a guided Full-Body program — so instead of choosing a video each day, you follow the plan and move through your week feeling looser and lighter."

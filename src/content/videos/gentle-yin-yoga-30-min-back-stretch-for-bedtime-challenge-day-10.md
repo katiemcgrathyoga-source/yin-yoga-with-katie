@@ -19,6 +19,10 @@ chapters:
   - { time: "15:00", seconds: 900,  title: "Spine · Cat-Cow" }
   - { time: "18:30", seconds: 1110, title: "Spine · Reclined Twist",              poses: ["reclined-twist"] }
   - { time: "27:30", seconds: 1650, title: "Like & subscribe" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "A back stretch before sleep"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "Gentle Bedtime Yin Yoga — 30-Min Back & Spine Stretch"
 seo_description: "A gentle 30-minute Yin Yoga class for the back and spine before bed — sphinx, seal, side bends and a reclined twist to ease stiffness and settle you for sleep."
 membership_cta: "This class lives inside the membership's Sleep program — a night-by-night path that helps you fall asleep faster and sleep through. Press play and let it carry you."

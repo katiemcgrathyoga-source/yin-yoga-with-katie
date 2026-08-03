@@ -46,6 +46,13 @@ related_poses: ["puppy", "sphinx", "seal", "camel", "saddle"]
 youtube_video_id: ""
 images:
   - "/poses/melting-heart.jpg"
+pin_angles:
+  - audience: "if you sit all day"
+    headline: "Undo a day of shoulders rolled in"
+    proof: "Hips high, chest low. Three to five minutes."
+  - audience: "for stiff shoulders"
+    headline: "The stretch a phone makes necessary"
+    proof: "Arms long, forehead down. Three minutes."
 seo_title: "Melting Heart Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Melting Heart is a yin shoulder and chest opener that melts the upper back toward the floor. Learn the cues, hold time, props and cautions."
 ---

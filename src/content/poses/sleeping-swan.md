@@ -56,6 +56,13 @@ related_poses: ["swan", "reclined-swan", "shoelace", "dragon", "childs-pose"]
 youtube_video_id: ""
 images:
   - "/poses/sleeping-swan.jpg"
+pin_angles:
+  - audience: "for runners"
+    headline: "The hip you notice at mile four"
+    proof: "Three minutes a side. Gravity does it, not you."
+  - audience: "for tight hips"
+    headline: "The hip opener everything builds to"
+    proof: "One to five minutes a side. Fold forward."
 seo_title: "Sleeping Swan Pose: Benefits, How-To & Hold Time"
 seo_description: "Sleeping Swan is a deep, gravity-led yin hip opener and the yin form of Pigeon. Learn the cues, benefits, hold time, props and the key knee cautions."
 ---

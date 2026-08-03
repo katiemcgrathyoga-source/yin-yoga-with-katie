@@ -48,6 +48,13 @@ related_poses: ["seal", "melting-heart", "saddle", "childs-pose", "supported-bri
 youtube_video_id: ""
 images:
   - "/poses/sphinx.jpg"
+pin_angles:
+  - audience: "if you sit all day"
+    headline: "Your back was never meant to be flat"
+    proof: "Five minutes on your forearms puts it back."
+  - audience: "for a stiff back"
+    headline: "The gentlest backbend there is"
+    proof: "Forearms down, three minutes. Never pinchy."
 seo_title: "Sphinx Pose: Benefits, How-To & Hold Time"
 seo_description: "Sphinx is a gentle yin backbend on the forearms that restores the lower-back curve. Learn the cues, hold time, props and the cautions that matter."
 ---

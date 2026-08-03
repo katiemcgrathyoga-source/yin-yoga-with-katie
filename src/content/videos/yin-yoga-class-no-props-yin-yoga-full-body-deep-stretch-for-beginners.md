@@ -23,6 +23,10 @@ chapters:
   - { time: "32:00",  seconds: 1920, title: "Spine · Supine Twist",          poses: ["reclined-twist"] }
   - { time: "40:00",  seconds: 2400, title: "Corpse Pose / Savasana",        poses: ["corpse"] }
   - { time: "45:18",  seconds: 2718, title: "Ending the practice" }
+pin_angles:
+  - audience: "for beginners"
+    headline: "Forty-eight minutes, no experience"
+    proof: "A full class, explained the whole way."
 seo_title: "Yin Yoga No Props — Full-Body Deep Stretch for Beginners"
 seo_description: "A gentle 48-minute no-props Yin Yoga class for beginners — a full-body deep stretch held long and slow through child's pose, half butterfly, sphinx and twists."
 summary: "A gentle 48-minute no-props Yin class for beginners — a full-body deep stretch held long and slow, with an easier option offered in every pose."

@@ -27,6 +27,10 @@ chapters:
   - { time: "34:00",  seconds: 2040, title: "Lower back · Wind-Relieving or Happy Baby", poses: ["wind-relieving", "happy-baby"] }
   - { time: "36:00",  seconds: 2160, title: "Corpse Pose / Savasana", pose: "corpse" }
   - { time: "38:00",  seconds: 2280, title: "Close · a few breaths & a bow" }
+pin_angles:
+  - audience: "for a stiff back"
+    headline: "Forty minutes to release a back"
+    proof: "Spine and hips, held long and slow."
 seo_title: "Yin Yoga for a Sore Back — 40-Minute Deep Back & Spine Stretch"
 seo_description: "A gentle 40-minute Yin Yoga class for a tired, sore back — slow, long-held poses for the back, spine and hips that may help ease everyday tension. All levels, minimal props."
 membership_cta: "Love a gentle practice like this? Inside the membership it's part of a guided Back & Spine program — press play and follow the plan instead of choosing a class each day, and let the week leave you feeling looser and lighter."

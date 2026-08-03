@@ -46,6 +46,13 @@ related_poses: ["corpse", "sphinx", "childs-pose", "seal"]
 youtube_video_id: ""
 images:
   - "/brand/pose-placeholder.png"
+pin_angles:
+  - audience: "for a stiff back"
+    headline: "Lie face down and let the back go"
+    proof: "One to five minutes. There is nothing to do."
+  - audience: "for restless nights"
+    headline: "The rest that isn't sleep"
+    proof: "Face down, arms folded, five quiet minutes."
 seo_title: "Crocodile Pose (Makarasana) in Yin Yoga: Benefits & How-To"
 seo_description: "Crocodile is a passive, face-down yin resting pose that decompresses the lower back and calms the breath. Learn the cues, benefits, hold time and cautions."
 ---

@@ -24,6 +24,10 @@ chapters:
   - { time: "33:30", seconds: 2010, title: "Seated close" }
 membership_cta: "Inside the membership, rest-day Yin like this sits inside a guided plan — so the recovery half of training stops being the part you keep meaning to do."
 summary: "A 35-minute rest-day Yin class for runners with three-minute holds: Butterfly, Dragon, Sleeping Swan and Shoelace. Made for a rest day or a few hours after a run, not straight after one."
+pin_angles:
+  - audience: "for runners"
+    headline: "Thirty-five minutes on a rest day"
+    proof: "The recovery most runners skip."
 seo_title: "Runner's Yoga to Boost Recovery: 35-Minute Rest Day Yin"
 seo_description: "A 35-minute Yin class for runners on a rest day: Butterfly, Dragon, Sleeping Swan and Shoelace with three-minute holds. For cool muscles, not straight after a run."
 ---

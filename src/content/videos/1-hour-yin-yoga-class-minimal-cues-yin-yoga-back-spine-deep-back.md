@@ -24,6 +24,10 @@ chapters:
   - { time: "33:50",  seconds: 2030, title: "Back · Child's Pose",                  pose: "childs-pose" }
   - { time: "41:00",  seconds: 2460, title: "Twist · Reclined Twist (each side)",   pose: "reclined-twist" }
   - { time: "51:00",  seconds: 3060, title: "Corpse Pose / Savasana", poses: ["corpse"] }
+pin_angles:
+  - audience: "for a stiff back"
+    headline: "An hour for the back and spine"
+    proof: "Free on YouTube. Nothing to set up."
 seo_title: "1-Hour Yin Yoga — Back & Spine Deep Stretch, Minimal Cues"
 seo_description: "A silent, minimal-cues 1-hour Yin Yoga class for the back and spine — long, slow holds to release tension and care for your spinal health. All levels."
 membership_cta: "Inside the membership, this class is part of a guided program for the back and spine — so instead of choosing a video each day, you follow the plan and move through your week feeling looser and lighter."

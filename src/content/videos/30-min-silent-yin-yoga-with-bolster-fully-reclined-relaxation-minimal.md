@@ -23,6 +23,10 @@ chapters:
   - { time: "24:55",  seconds: 1495, title: "Chest · Supported Fish over the bolster",     poses: ["supported-fish"] }
   - { time: "29:52",  seconds: 1792, title: "Corpse Pose / Savasana",                      poses: ["corpse"] }
   - { time: "31:38",  seconds: 1898, title: "Close · Like & subscribe" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Thirty minutes, reclined and silent"
+    proof: "A bolster and no talking."
 seo_title: "30-Min Silent Yin Yoga with Bolster — Fully Reclined Relaxation"
 seo_description: "A 30-minute silent, fully reclined Yin Yoga class with a bolster and minimal cues. Melt into deep relaxation and calm your nervous system. All levels, bedtime-friendly."
 membership_cta: "Inside the membership, this class anchors the Reset program — a guided way to downshift at the end of the day so you feel calmer and sleep more easily."

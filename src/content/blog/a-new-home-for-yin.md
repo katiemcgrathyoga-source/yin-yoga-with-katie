@@ -5,6 +5,14 @@ description: "After years of classes scattered across YouTube, there's finally o
 published: 2026-07-12
 subtitle: "one calm place for the practice"
 eyebrow_tag: "a new home"
+pin_quote: "One calm place to find the practice you need."
+pin_angles:
+  - audience: "for beginners"
+    headline: "Every class, finally in one place"
+    proof: "Free, and sorted by what you actually need."
+  - audience: "for a full-body reset"
+    headline: "No more scrolling for a class"
+    proof: "The whole library, sorted. Nothing to pay."
 seo_title: "A New Home for Yin — Introducing the Yin Yoga with Katie Library"
 seo_description: "A calm, filterable home for every Yin Yoga class — with a pose library, guided programs, a practice calendar, and a free two-hour retreat to begin."
 practise:

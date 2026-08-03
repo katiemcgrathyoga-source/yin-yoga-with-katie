@@ -21,6 +21,10 @@ chapters:
   - { time: "17:20",  seconds: 1040, title: "Shoulders · Shoelace with Eagle Arms", poses: ["shoelace", "eagle"] }
   - { time: "21:10",  seconds: 1270, title: "Hips · Sleeping Swan, Shoelace & Eagle Arms (second side)", poses: ["sleeping-swan", "shoelace", "eagle"] }
   - { time: "31:13",  seconds: 1873, title: "Closing meditation" }
+pin_angles:
+  - audience: "when you're wound up"
+    headline: "Thirty minutes, minimum cues"
+    proof: "Free on YouTube. Nothing to set up."
 seo_title: "Silent Yin Yoga — 30-min Full-Body Deep Stretch, Minimum Cues"
 seo_description: "A 30-minute silent Yin Yoga class with minimum cues — child's pose, melting heart, sleeping swan and shoelace with eagle arms, each held three quiet minutes."
 membership_cta: "Loved practicing in the quiet? Inside the membership, this class is part of a guided Full-Body program — so instead of choosing a video each day, you follow the plan and move through your week feeling looser and lighter."

@@ -44,6 +44,13 @@ related_poses: ["ankle-stretch", "childs-pose", "squat", "saddle"]
 youtube_video_id: ""
 images:
   - "/poses/toe-squat.jpg"
+pin_angles:
+  - audience: "for runners"
+    headline: "The feet you land on, every stride"
+    proof: "Thirty seconds is enough. Build up slowly."
+  - audience: "for beginners"
+    headline: "The stretch nobody gives their feet"
+    proof: "Tuck the toes, sit back. Keep it short."
 seo_title: "Toe Squat in Yin Yoga: Benefits & How-To"
 seo_description: "Toe Squat gives a strong Yin Yoga stretch to the soles of the feet and toes. Learn how to practice it safely, kept short, with props and cautions."
 ---

@@ -19,6 +19,10 @@ chapters:
   - { time: "17:26",  seconds: 1046, title: "Hips · Reclined Swan to Twist (left)", poses: ["reclined-swan", "reclined-twist"] }
   - { time: "26:26",  seconds: 1586, title: "Side body · Banana Pose (right)", poses: ["banana"] }
   - { time: "29:57",  seconds: 1797, title: "Corpse Pose · Rest & close" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Thirty reclined minutes at bedtime"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "30-Minute Evening Yin Yoga — Reclined Bedtime Stretch, All Levels"
 seo_description: "A soothing 30-minute reclined Yin class for bedtime — reclined swan, gentle twists and banana pose to unwind hips, back and shoulders. No props, all levels."
 membership_cta: "Loved winding down like this? Inside the membership this class is part of a night-by-night Sleep program — so instead of choosing a video each evening, you press play and follow the plan into deeper, easier sleep."

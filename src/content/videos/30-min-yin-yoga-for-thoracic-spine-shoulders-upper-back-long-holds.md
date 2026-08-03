@@ -22,6 +22,10 @@ chapters:
   - { time: "15:20",  seconds: 920,  title: "Twist · Broken Wing (each side)",        pose: "broken-wing" }
   - { time: "24:00",  seconds: 1440, title: "Spine · Supported Bridge",               pose: "supported-bridge" }
   - { time: "28:00",  seconds: 1680, title: "Corpse Pose / Savasana",                 pose: "corpse" }
+pin_angles:
+  - audience: "for stiff shoulders"
+    headline: "Thirty minutes on the upper back"
+    proof: "The bit between the shoulder blades."
 seo_title: "30-Min Yin Yoga for Thoracic Spine, Shoulders & Upper Back"
 seo_description: "A 30-minute Yin Yoga class of gentle stretches and twists for the thoracic spine, shoulders and upper back — held long and slow to release tension. All levels."
 membership_cta: "Carry your tension in your shoulders and upper back? Inside the membership this class lives as part of a guided program — so instead of choosing a video each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."

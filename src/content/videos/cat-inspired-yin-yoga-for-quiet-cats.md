@@ -22,6 +22,10 @@ chapters:
   - { time: "18:25",  seconds: 1105, title: "Spine · gentle Cat-Cow to free the back" }
   - { time: "21:50",  seconds: 1310, title: "Spine · Cat Pulling Its Tail (each side)", pose: "cat-pulling-its-tail" }
   - { time: "32:32",  seconds: 1952, title: "Corpse Pose / Savasana", pose: "corpse" }
+pin_angles:
+  - audience: "for stiff shoulders"
+    headline: "Thirty-eight minutes, cat-inspired"
+    proof: "Spine and shoulders, slow and curious."
 seo_title: "Cat-Inspired Yin Yoga — 38-Minute Gentle Back and Shoulder Practice, All Levels"
 seo_description: "A playful 38-minute cat-themed Yin Yoga class — gentle, held-long shapes for the back, spine, and shoulders, with a quiet, settling feel. All levels, no props needed."
 membership_cta: "Love a gentle practice like this? Inside the membership it's part of a guided Back and Shoulders program — press play and follow the plan instead of choosing a class each day, and let the week leave you feeling looser and lighter."

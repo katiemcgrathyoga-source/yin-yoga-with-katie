@@ -19,6 +19,10 @@ chapters:
   - { time: "1:31", seconds: 91,  title: "Guided body scan · softening from feet to head" }
   - { time: "5:06", seconds: 306, title: "Rest in stillness" }
   - { time: "8:02", seconds: 482, title: "Gently coming back" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Ten minutes between you and sleep"
+    proof: "Lie down. Nothing to hold, nothing to do."
 seo_title: "10-Min Guided Relaxation — Savasana / Corpse Pose After Yoga"
 seo_description: "A calming 10-minute guided relaxation in Corpse Pose (Savasana) — a soft body scan to release tension, settle your nervous system, and finish your Yin practice."
 membership_cta: "This guided relaxation lives inside the membership's Sleep program — a night-by-night path that helps you fall asleep faster and sleep through. Press play and let it carry you."

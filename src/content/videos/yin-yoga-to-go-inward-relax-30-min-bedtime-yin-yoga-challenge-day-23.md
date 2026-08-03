@@ -18,6 +18,10 @@ chapters:
   - { time: "17:00",  seconds: 1020, title: "Chest · Puppy (Anahatasana)", poses: ["puppy"] }
   - { time: "21:31",  seconds: 1291, title: "Spine · Reclined Twist (both sides)", poses: ["reclined-twist"] }
   - { time: "30:00",  seconds: 1800, title: "Knees-to-chest & Corpse Pose", poses: ["wind-relieving", "corpse"] }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Thirty minutes of going inward"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "Bedtime Yin Yoga To Go Inward & Relax — 30 Min, All Levels"
 seo_description: "A calming 30-minute bedtime Yin class to go inward and unwind — sleeping swan, puppy, reclined twists and a long rest to soften you into sleep. All levels."
 membership_cta: "This gentle bedtime class lives inside the membership's Sleep program — a night-by-night path that helps you switch off, fall asleep faster and stay asleep. Press play and let it carry you toward rest."

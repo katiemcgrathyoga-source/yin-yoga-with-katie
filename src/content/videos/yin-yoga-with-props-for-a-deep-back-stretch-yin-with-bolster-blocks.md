@@ -20,6 +20,10 @@ chapters:
   - { time: "26:00", seconds: 1560, title: "Spine · Reclined Twist, both sides",     poses: ["reclined-twist"] }
   - { time: "35:00", seconds: 2100, title: "Corpse Pose / Savasana",                 poses: ["corpse"] }
   - { time: "39:00", seconds: 2340, title: "Closing · Like & subscribe" }
+pin_angles:
+  - audience: "for a stiff back"
+    headline: "Forty propped minutes for the back"
+    proof: "Bolster and blocks hold the shape for you."
 seo_title: "Yin Yoga with Props for a Deep Back Stretch — 40 min Bolster & Blocks"
 seo_description: "A 40-minute props Yin Yoga class for the back and spine, using a bolster and blocks. Caterpillar, supported bridge, fish and a reclined twist held long and slow."
 membership_cta: "If this eased your back, inside the membership this class is part of a guided Full-Body program — so instead of choosing a video each day, you press play and follow the plan, and move through your week feeling looser and lighter."

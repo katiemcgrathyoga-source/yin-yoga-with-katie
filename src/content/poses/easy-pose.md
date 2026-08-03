@@ -44,6 +44,13 @@ related_poses: ["shoelace", "butterfly", "cow-face", "childs-pose", "corpse"]
 youtube_video_id: ""
 images:
   - "/poses/easy-pose.jpg"
+pin_angles:
+  - audience: "for beginners"
+    headline: "Where every yin practice starts"
+    proof: "Sit cross-legged. Sit on something if you need."
+  - audience: "when you're wound up"
+    headline: "Two minutes of sitting still"
+    proof: "No stretch to chase. Just breathe and stay."
 seo_title: "Easy Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Easy Pose is a simple cross-legged Yin Yoga seat for breathing and meditation that gently opens the hips. Learn how to sit well, with props and cautions."
 ---

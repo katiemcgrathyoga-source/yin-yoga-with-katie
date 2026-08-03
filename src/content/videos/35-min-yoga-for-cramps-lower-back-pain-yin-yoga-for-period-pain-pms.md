@@ -23,6 +23,10 @@ chapters:
   - { time: "31:40",  seconds: 1900, title: "Corpse Pose / Savasana",            poses: ["corpse"] }
   - { time: "34:50",  seconds: 2090, title: "Closing meditation" }
   - { time: "35:30",  seconds: 2130, title: "Like & subscribe" }
+pin_angles:
+  - audience: "for a stiff back"
+    headline: "Thirty-five minutes for cramps"
+    proof: "Gentle hips and low back. Nothing deep."
 seo_title: "35-min Yin Yoga for Cramps & Lower Back Pain — All Levels"
 seo_description: "A gentle 35-minute Yin Yoga class for cramps and lower back — sphinx, child's pose, folded butterfly, squat, dangling and a reclined twist. No props, all levels."
 membership_cta: "Inside the membership, this class is part of the Hips & Lower Back program — follow the plan instead of picking a video each day, and become someone who moves through the day loose and easy."

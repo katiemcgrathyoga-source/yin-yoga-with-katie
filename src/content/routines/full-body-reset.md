@@ -29,6 +29,13 @@ faq:
     a: "Any time you feel tight or wound up. It's especially lovely in the evening to unwind, but works just as well as a midday reset or a gentle weekend stretch."
 membership_cta: "Love this all-rounder? Inside the membership it lives inside a guided program, so you press play and follow a plan instead of choosing each day."
 summary: "A balanced 37-minute full-body Yin sequence — back, shoulders, hips and spine, held long and slow to leave you loose and calm."
+pin_angles:
+  - audience: "for a full-body reset"
+    headline: "Thirty-seven minutes, head to toe"
+    proof: "Back, shoulders, hips and spine, held long."
+  - audience: "for beginners"
+    headline: "One practice when nothing feels good"
+    proof: "Balanced, all-levels, with the timer built in."
 seo_title: "37-Minute Full-Body Yin Yoga Routine — Practice Along"
 seo_description: "A balanced 37-minute full-body Yin Yoga routine you can follow with a built-in hold timer — back, shoulders, hips and spine, held long and slow. All levels."
 ---

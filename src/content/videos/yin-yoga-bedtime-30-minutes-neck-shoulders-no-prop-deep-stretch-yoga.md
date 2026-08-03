@@ -20,6 +20,10 @@ chapters:
   - { time: "29:30",  seconds: 1770, title: "Spine · Cat-Cow" }
   - { time: "32:24",  seconds: 1944, title: "Spine · Seated twist", poses: ["seated-twist"] }
   - { time: "34:00",  seconds: 2040, title: "Close · Rest & goodnight" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Neck and shoulders, no props, night"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "Bedtime Yin Yoga for Neck & Shoulders — 35 min, No Props"
 seo_description: "A calming 35-minute bedtime Yin Yoga class for the neck and shoulders. No props, beginner-friendly, and held long and slow to melt away tension before sleep."
 membership_cta: "This class lives inside the membership's Sleep program — a night-by-night path that helps you fall asleep faster and sleep through. Press play and let it carry you."

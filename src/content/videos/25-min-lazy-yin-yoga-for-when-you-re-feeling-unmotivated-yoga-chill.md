@@ -20,6 +20,10 @@ chapters:
   - { time: "14:00", seconds: 840,  title: "Spine · Reclined Twist",         poses: ["reclined-twist"] }
   - { time: "20:20", seconds: 1220, title: "Corpse Pose / Savasana",         poses: ["corpse"] }
   - { time: "25:00", seconds: 1500, title: "Closing · Like, subscribe & join" }
+pin_angles:
+  - audience: "for beginners"
+    headline: "For the days you cannot be bothered"
+    proof: "Twenty-five minutes. Lazy on purpose."
 seo_title: "25-min Lazy Yin Yoga for When You're Unmotivated — Gentle & Chill"
 seo_description: "A cosy 25-minute lazy Yin Yoga class for low-energy days — gentle floor poses held long and slow to release tension and calm the mind. Beginner-friendly."
 membership_cta: "Even lazy days count. Inside the membership, gentle classes like this are part of a guided Full-Body program — so instead of choosing a video each day, you press play and follow the plan, moving through your week feeling looser and lighter."

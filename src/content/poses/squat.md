@@ -45,6 +45,13 @@ related_poses: ["dangling", "butterfly", "dragon", "toe-squat", "ankle-stretch"]
 youtube_video_id: ""
 images:
   - "/poses/squat.jpg"
+pin_angles:
+  - audience: "for tight hips"
+    headline: "The position we stopped using"
+    proof: "Sink low for two minutes. Heels on a blanket."
+  - audience: "for runners"
+    headline: "Hips and ankles in one shape"
+    proof: "One to three minutes low. Hold something."
 seo_title: "Squat Pose in Yin Yoga: Benefits & How-To"
 seo_description: "The Yin Squat sinks the hips low to open the hips, groin and ankles and ease the lower back. Learn how to practice it, with props and cautions."
 ---

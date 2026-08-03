@@ -54,6 +54,10 @@ chapters:
     title: "Closing"
 membership_cta: "Inside the membership, this class anchors the Reset program — a guided way to downshift at the end of the day so you feel calmer and sleep more easily."
 summary: "A gentle, beginner-friendly Yin class of five deeply relaxing poses to quiet the mind and settle the nervous system — no props needed."
+pin_angles:
+  - audience: "for tight hips"
+    headline: "Five poses, forty-one minutes"
+    proof: "If you only ever learn five, these."
 seo_title: "5 Essential Yin Yoga Poses for Relaxation & Inner Calm — 41 min"
 seo_description: "A calming 41-minute beginner Yin Yoga class with five relaxing poses — Sphinx, Crocodile, Child's, Swan and Corpse — to quiet the mind. No props needed."
 faq:

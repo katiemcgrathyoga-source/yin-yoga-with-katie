@@ -46,6 +46,13 @@ related_poses: ["corpse", "caterpillar", "saddle", "frog", "puppy"]
 youtube_video_id: ""
 images:
   - "/poses/childs-pose.jpg"
+pin_angles:
+  - audience: "when you're wound up"
+    headline: "The pose for when it's all too much"
+    proof: "Two minutes, forehead down. Nothing else asked."
+  - audience: "for beginners"
+    headline: "The one pose you already know"
+    proof: "Hold it five minutes and it becomes yin."
 seo_title: "Child's Pose in Yin Yoga: Benefits & How-To"
 seo_description: "Child's Pose is a grounding Yin Yoga rest that gently opens the lower back and hips. Learn how to practice it, plus cues, props and cautions."
 ---

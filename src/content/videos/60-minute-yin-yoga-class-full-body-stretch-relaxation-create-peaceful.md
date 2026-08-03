@@ -32,6 +32,10 @@ chapters:
   - { time: "46:33",  seconds: 2793, title: "Hips · Dragon & Twisted Dragon (side 2)", poses: ["dragon", "twisted-dragon"] }
   - { time: "51:22",  seconds: 3082, title: "Legs · Reclined wind-down" }
   - { time: "54:39",  seconds: 3279, title: "Corpse Pose / Savasana", poses: ["corpse"] }
+pin_angles:
+  - audience: "when you're wound up"
+    headline: "An hour to soften everything"
+    proof: "Follow along on YouTube. No props needed."
 seo_title: "60-Minute Yin Yoga — Full-Body Stretch & Relaxation"
 seo_description: "A calming 60-minute Yin Yoga class for a full-body stretch and deep relaxation — breathwork, gentle twists and long-held poses. All levels, two blocks."
 membership_cta: "Inside the membership, this class anchors the Reset program — a guided way to downshift at the end of the day so you feel calmer and sleep more easily. Instead of choosing a class each night, you press play and follow the plan."

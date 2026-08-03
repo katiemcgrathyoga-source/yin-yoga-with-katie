@@ -23,6 +23,10 @@ chapters:
   - { time: "27:51",  seconds: 1671, title: "Spine · Reclined Twist, both sides",  poses: ["reclined-twist"] }
   - { time: "34:02",  seconds: 2042, title: "Corpse Pose / Savasana",              poses: ["corpse"] }
   - { time: "35:46",  seconds: 2146, title: "Closing breaths" }
+pin_angles:
+  - audience: "for a stiff back"
+    headline: "Forty minutes on the lower back"
+    proof: "And the hamstrings that pull on it."
 seo_title: "40-min Yin Yoga for Lower Back & Hamstrings — All Levels"
 seo_description: "A 40-minute Yin Yoga class for the lower back and hamstrings — Sphinx, a standing forward fold and long reclined hamstring holds to stretch and release. All levels."
 membership_cta: "Inside the membership, this class is part of the Hips & Lower Back program — follow it and become someone who moves through the day loose and easy."

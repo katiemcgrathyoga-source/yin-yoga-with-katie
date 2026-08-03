@@ -49,6 +49,13 @@ related_poses: ["sphinx", "seal", "camel", "dragon", "caterpillar", "supported-b
 youtube_video_id: ""
 images:
   - "/poses/saddle.jpg"
+pin_angles:
+  - audience: "for runners"
+    headline: "The quads that running keeps short"
+    proof: "Lean back slowly. One minute is plenty at first."
+  - audience: "for a stiff back"
+    headline: "Put the curve back in your lower back"
+    proof: "Prop under the back. Come out slowly."
 seo_title: "Saddle Pose: Benefits, How-To & Hold Time"
 seo_description: "Saddle is a deep yin reclining backbend over the heels, opening the thighs and lower back. Learn the cues, hold time, props and the vital knee cautions."
 ---

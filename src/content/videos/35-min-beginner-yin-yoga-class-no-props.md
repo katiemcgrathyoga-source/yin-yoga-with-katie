@@ -22,6 +22,10 @@ chapters:
   - { time: "25:00", seconds: 1500, title: "Spine · Reclined Twist",          poses: ["reclined-twist"] }
   - { time: "32:42", seconds: 1962, title: "Corpse Pose / Savasana",          poses: ["corpse"] }
   - { time: "34:40", seconds: 2080, title: "Closing · Thank you" }
+pin_angles:
+  - audience: "for beginners"
+    headline: "Thirty-five minutes, nothing needed"
+    proof: "A first class. No props, no experience."
 seo_title: "35-Minute Beginner Yin Yoga — No Props, Full-Body Stretch"
 seo_description: "A gentle 35-minute beginner Yin Yoga class with no props. Move slowly through butterfly, straddle, sphinx and a reclined twist for a calming full-body stretch."
 membership_cta: "New to Yin and want a little more? Inside the membership this class is part of a guided Beginner program — so instead of picking a video each day, you press play and follow the plan, and settle into the habit one calm session at a time."

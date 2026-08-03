@@ -22,6 +22,10 @@ chapters:
   - { time: "15:00",  seconds: 900,  title: "Quads · Saddle", pose: "saddle" }
   - { time: "23:35",  seconds: 1415, title: "Full front body · Banana (each side)", pose: "banana" }
   - { time: "35:25",  seconds: 2125, title: "Corpse Pose / Savasana", pose: "corpse" }
+pin_angles:
+  - audience: "for stiff shoulders"
+    headline: "Forty minutes on the front of you"
+    proof: "Chest, shoulders, quads and belly."
 seo_title: "40-Min Yin Yoga Front-Body Openers & Backbends — Chest, Shoulders & Quads"
 seo_description: "A 40-minute Yin Yoga class of gentle backbends and front-body openers — a deep stretch for the chest, shoulders, belly and quads. No props needed and suitable for all levels."
 membership_cta: "Love a deep practice like this? Inside the membership it's part of a guided Full-Body program — press play and follow the plan instead of choosing a class each day, and let the week leave you feeling looser and lighter."

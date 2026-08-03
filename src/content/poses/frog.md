@@ -45,6 +45,13 @@ related_poses: ["butterfly", "dragonfly", "childs-pose", "sleeping-swan", "squat
 youtube_video_id: ""
 images:
   - "/poses/frog.jpg"
+pin_angles:
+  - audience: "for tight hips"
+    headline: "The deepest groin opener in yin"
+    proof: "Three minutes. Come out slowly, always."
+  - audience: "for runners"
+    headline: "The inner thigh a run never reaches"
+    proof: "Knees wide and padded. Three to five minutes."
 seo_title: "Frog Pose in Yin Yoga: Benefits, How-To & Cautions"
 seo_description: "Frog Pose is a deep yin groin and inner-thigh opener. Learn the Tadpole and Full Frog variations, cues, hold time, props and cautions."
 ---

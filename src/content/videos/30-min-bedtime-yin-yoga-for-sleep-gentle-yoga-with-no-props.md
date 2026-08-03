@@ -24,6 +24,10 @@ chapters:
   - { time: "25:00",  seconds: 1500, title: "Corpse Pose / Savasana", poses: ["corpse"] }
   - { time: "28:30",  seconds: 1710, title: "Closing meditation" }
   - { time: "29:00",  seconds: 1740, title: "Like & subscribe" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Thirty gentle minutes, no props"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "30-min Bedtime Yin Yoga for Sleep — No Props, All Levels"
 seo_description: "A gentle 30-minute bedtime Yin Yoga class with no props — soothing neck and shoulder stretches, calming 4:8 breathing, reclined butterfly and a slow twist to help you unwind and sleep."
 membership_cta: "This class lives inside the membership's Sleep program — a night-by-night path that helps you unwind at bedtime and rest more deeply. Press play and let it carry you off to sleep."

@@ -24,6 +24,10 @@ chapters:
   - { time: "15:30",  seconds: 930,  title: "Hips · Happy Baby", pose: "happy-baby" }
   - { time: "20:40",  seconds: 1240, title: "Corpse Pose / Savasana", pose: "corpse" }
   - { time: "23:55",  seconds: 1435, title: "Coming slowly back to a seat" }
+pin_angles:
+  - audience: "for a stiff back"
+    headline: "Twenty-six minutes on tight hips"
+    proof: "Follow along on YouTube. No props needed."
 seo_title: "Deep Hip Stretch Yin Yoga — 25 min to Open Tight Hips, All Levels"
 seo_description: "A 25-minute Yin Yoga class to open tight hips and ease into more hip flexibility. Long, slow holds in tadpole, frog, swan and happy baby — all levels, props welcome."
 membership_cta: "Love a deep practice like this? Inside the membership it's part of a guided Hips & Lower Back program — press play and follow the plan instead of choosing a class each day, and let the week leave you feeling looser and lighter."

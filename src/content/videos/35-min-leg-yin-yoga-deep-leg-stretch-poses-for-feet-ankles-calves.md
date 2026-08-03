@@ -23,6 +23,10 @@ chapters:
   - { time: "26:00", seconds: 1560, title: "IT Band · Banana (both sides)",    poses: ["banana"] }
   - { time: "32:40", seconds: 1960, title: "Corpse Pose / Savasana",           poses: ["corpse"] }
   - { time: "36:00", seconds: 2160, title: "Close · Like & subscribe" }
+pin_angles:
+  - audience: "to start the day"
+    headline: "Thirty-five minutes below the knee"
+    proof: "Feet, ankles and calves. Rarely stretched."
 seo_title: "35-min Leg Yin Yoga — Deep Leg Stretch for Feet, Ankles, Calves & Quads"
 seo_description: "A guided 35-minute Yin Yoga class for the legs — toe squat, ankle stretch, dangling, squat, saddle and banana held long and slow, from the toes to the IT band. All levels."
 membership_cta: "Inside the membership, this class is part of a guided Full-Body program — so instead of choosing a video each day, you follow the plan and move through your week feeling looser and lighter in the legs."

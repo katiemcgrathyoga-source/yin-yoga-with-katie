@@ -20,6 +20,10 @@ chapters:
   - { time: "18:14",  seconds: 1094, title: "Quads · Saddle",             poses: ["saddle"] }
   - { time: "24:28",  seconds: 1468, title: "Hips · Butterfly",           poses: ["butterfly"] }
   - { time: "27:27",  seconds: 1647, title: "Rest & close" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Legs, then bed"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "30-Minute Evening Yin Yoga for Legs — Bedtime Stretch, All Levels"
 seo_description: "A calming 30-minute evening Yin class for tired legs and feet — toe squat, ankle stretch, squat, dangling, saddle and butterfly to help you unwind before bed."
 membership_cta: "Love winding down like this? Inside the membership this class lives in a night-by-night Sleep program, so instead of choosing a video you simply press play and follow the plan — and drift off feeling looser and lighter."

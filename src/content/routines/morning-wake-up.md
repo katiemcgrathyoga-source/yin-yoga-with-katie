@@ -25,6 +25,13 @@ faq:
     a: "About 21 minutes — short enough to do before the day gets going, long enough to feel more awake and open."
 membership_cta: "Like starting the day this way? The membership has short morning practices inside a guided plan, so you roll out of bed and press play."
 summary: "A gentle 21-minute morning Yin routine to wake the body — soft backbends, an easy twist and gentle hip openers, with a built-in hold timer."
+pin_angles:
+  - audience: "to start the day"
+    headline: "Twenty-one minutes before anything else"
+    proof: "Soft backbends, an easy twist, gentle hips."
+  - audience: "for beginners"
+    headline: "A gentle way into the morning"
+    proof: "Nothing strenuous. Twenty-one slow minutes."
 seo_title: "21-Minute Morning Yin Yoga Routine — Gentle Wake-Up"
 seo_description: "A gentle 21-minute morning Yin Yoga routine to wake the body without straining — soft backbends, an easy twist and light hip openers, with a built-in timer."
 ---

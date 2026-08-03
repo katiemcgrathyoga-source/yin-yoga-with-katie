@@ -21,6 +21,10 @@ chapters:
   - { time: "16:50", seconds: 1010, title: "Spine · Sphinx & Seal", poses: ["sphinx", "seal"] }
   - { time: "27:50", seconds: 1670, title: "Spine · Child's Pose with side bends", poses: ["childs-pose"] }
   - { time: "31:40", seconds: 1900, title: "Like & subscribe" }
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Half an hour before lights out"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "30-min Evening Yin Yoga — Full-Body Bedtime Stretch, All Levels"
 seo_description: "A calming 30-minute evening Yin Yoga class to unwind before bed: butterfly, shoelace, sphinx, seal and child's pose held long and slow. All levels."
 membership_cta: "This class lives inside the membership's Sleep program — a night-by-night path that helps you fall asleep faster and sleep through. Press play and let it carry you."

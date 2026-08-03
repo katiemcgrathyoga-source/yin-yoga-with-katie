@@ -1,12 +1,14 @@
 import satori from 'satori';
 import { Resvg } from '@resvg/resvg-js';
 import { CABIN_SEMIBOLD } from './fonts.mjs';
+import { CABIN_400 } from './journalfonts.mjs';
 import { CORMORANT, AURELLIE } from './pinfonts.mjs';
 
 // Cormorant Garamond (light display serif) for titles, Cabin for eyebrows/wordmark,
 // Aurellie Calestion for the signed "katie" signature only.
 const FONTS = [
   { name: 'Serif', data: Buffer.from(CORMORANT, 'base64'), weight: 500, style: 'normal' },
+  { name: 'Cabin', data: CABIN_400, weight: 400, style: 'normal' },
   { name: 'Cabin', data: CABIN_SEMIBOLD, weight: 600, style: 'normal' },
   { name: 'Script', data: Buffer.from(AURELLIE, 'base64'), weight: 400, style: 'normal' },
 ];
@@ -254,9 +256,240 @@ function benefitCard({ title, eyebrow: eb }) {
   ]);
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   The benefit-led set (v2). Eight templates that lead with the reader's reason
+   rather than the pose name. Spec, character limits and the five headline
+   formulas: design/pin-system.html.
+
+   Two things every one of them assumes:
+     - copy is already within limits. Satori cannot shrink type to fit, so the
+       schema (`pin_angles`) fails the build rather than letting a headline run
+       off the canvas here.
+     - the photo is subject-centred. scripts/gen-pin-crops.mjs recomposes each
+       pose around Katie once, into /poses/pin/, so these only set a vertical
+       focal and can trust the horizontal.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+const CARD_DARK = '#3F4B45';
+const SCRIM = 'rgba(38,44,39,';
+
+// The v2 token set. Kept separate from pal() so the older templates are untouched.
+const pal2 = (tone) =>
+  tone === 'dark'
+    ? { g: SAGE, i: OAT, acc: QUARTZ, ln: 'rgba(249,241,234,0.24)', soft: 'rgba(249,241,234,0.74)', card: CARD_DARK, pill: OAT, pi: SAGE }
+    : { g: OAT, i: SAGE, acc: ROSEWOOD, ln: LINE, soft: MUTED, card: CARD, pill: SAGE, pi: OAT };
+
+// Satori has no text-transform, so caps are applied in JS, and no em units, so
+// tracking is resolved to px at the call site.
+const caps = (t) => (t || '').toUpperCase();
+const eye = (text, color, size = 30, track = 0.26) =>
+  box({ fontFamily: 'Cabin', fontWeight: 600, fontSize: `${size}px`, letterSpacing: `${(size * track).toFixed(1)}px`, color }, caps(text));
+const hl = (text, color, size, extra = {}) =>
+  box({ fontFamily: 'Serif', fontSize: `${size}px`, lineHeight: 1.03, letterSpacing: '-1px', color, ...extra }, text);
+const sub = (text, color, size = 34) =>
+  box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: `${size}px`, lineHeight: 1.35, color }, text);
+const wordmark2 = (color, opacity = 0.8) =>
+  box({ fontFamily: 'Cabin', fontWeight: 600, fontSize: '23px', letterSpacing: '4.6px', color, opacity }, 'yinyogawithkatie.com');
+const idLine = (text, color) => box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: '26px', color }, text);
+// Identifier and wordmark on one rule. Baseline-aligned so the two sizes sit together.
+const footRow = (id, p, { border = true, mark = p.i, markOpacity = 0.8 } = {}) =>
+  box(
+    {
+      alignItems: 'baseline', justifyContent: 'space-between', gap: '20px',
+      ...(border ? { paddingTop: '26px', borderTop: `1px solid ${p.ln}` } : {}),
+    },
+    [idLine(id || '', p.acc), wordmark2(mark, markOpacity)],
+  );
+const spacer = () => box({ flexGrow: 1 });
+const cover = (w, h, img, focal, style = {}) =>
+  img
+    ? { type: 'img', props: { src: img, style: { width: `${w}px`, height: `${h}px`, objectFit: 'cover', objectPosition: focal || '50% 52%', ...style } } }
+    : box({ width: `${w}px`, height: `${h}px`, backgroundColor: LINE, ...style });
+
+// 01 Benefit hook — full-bleed photograph, long scrim, headline over it.
+function tplHook({ headline, audience, proof, identifier, img, focal }) {
+  return box({ width: '100%', height: '100%', position: 'relative', backgroundColor: SAGE }, [
+    cover(1000, 1500, img, focal, { position: 'absolute', top: '0', left: '0' }),
+    box({
+      position: 'absolute', top: '0', left: '0', width: '1000px', height: '1500px',
+      backgroundImage: `linear-gradient(to top, ${SCRIM}0.94) 0%, ${SCRIM}0.80) 26%, ${SCRIM}0.28) 50%, ${SCRIM}0) 68%)`,
+    }),
+    box({ position: 'absolute', left: '72px', right: '72px', bottom: '64px', flexDirection: 'column', gap: '28px' }, [
+      eye(audience, '#E6D2CF'),
+      hl(headline, CARD, 112),
+      sub(proof, 'rgba(249,241,234,0.88)'),
+      box({ alignItems: 'baseline', justifyContent: 'space-between', gap: '20px', paddingTop: '24px', borderTop: '1px solid rgba(249,241,234,0.4)' }, [
+        idLine(identifier || '', 'rgba(249,241,234,0.8)'),
+        wordmark2(OAT, 1),
+      ]),
+    ]),
+  ]);
+}
+
+// 02 Benefit card — no photograph. The most legible pin in the set at 236px.
+function tplCard({ headline, audience, proof, identifier, tone }) {
+  const p = pal2(tone);
+  return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: p.g, padding: '66px' }, [
+    box({ flexGrow: 1, flexDirection: 'column', justifyContent: 'center', gap: '38px', border: `1px solid ${p.ln}`, padding: '76px 62px 62px' }, [
+      eye(audience, p.acc),
+      hl(headline, p.i, 146, { lineHeight: 0.99 }),
+      sub(proof, p.soft, 36),
+      box({ alignItems: 'flex-end', justifyContent: 'space-between', gap: '20px', paddingTop: '34px', borderTop: `1px solid ${p.ln}` }, [
+        idLine(identifier || '', p.acc),
+        box({ fontFamily: 'Script', fontSize: '74px', lineHeight: 1, color: p.acc }, 'katie'),
+      ]),
+    ]),
+  ]);
+}
+
+// 03 Problem → poses — the save-this workhorse. Over six rows it goes dense and
+// drops the thumbnails and notes; type never shrinks.
+function tplPoseList({ headline, audience, proof, identifier, items = [], tone }) {
+  const p = pal2(tone);
+  const dense = items.length > 6;
+  const rows = items.map((it, i) =>
+    box({ alignItems: 'center', gap: '26px', padding: `${dense ? 13 : 24}px 0`, borderBottom: `1px solid ${p.ln}` }, [
+      box({ fontFamily: 'Serif', fontSize: '46px', color: p.acc, width: '46px', flexShrink: 0 }, String(i + 1)),
+      ...(!dense && it.thumb ? [cover(96, 70, it.thumb, it.focal, { borderRadius: '6px', flexShrink: 0 })] : []),
+      box({ flexGrow: 1, flexDirection: 'column', gap: '2px' }, [
+        box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: '36px', color: p.i }, it.name || ''),
+        ...(it.note && !dense ? [box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: '24px', color: p.soft }, it.note)] : []),
+      ]),
+      box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: '26px', color: p.soft, flexShrink: 0 }, it.hold || ''),
+    ]),
+  );
+  return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: p.g, padding: '72px 66px 62px' }, [
+    eye(audience, p.acc),
+    hl(headline, p.i, 96, { marginTop: '18px', marginBottom: '20px' }),
+    sub(proof, p.soft),
+    box({ flexGrow: 1, flexDirection: 'column', justifyContent: 'center', marginTop: '34px' }, rows),
+    footRow(identifier, p),
+  ]);
+}
+
+// 04 Split — headline block above, arched photograph below. Compact poses only:
+// the arch is close to square, so a wide pose loses its ends.
+function tplSplit({ headline, audience, proof, poseName, identifier, img, focal, tone }) {
+  const p = pal2(tone);
+  return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: p.g, padding: '70px 66px 0' }, [
+    eye(audience, p.acc),
+    hl(headline, p.i, 104, { marginTop: '24px', marginBottom: '22px' }),
+    sub(proof, p.soft),
+    box({ flexGrow: 1, position: 'relative', marginTop: '34px', marginLeft: '-66px', marginRight: '-66px', overflow: 'hidden' }, [
+      cover(1000, 1500, img, focal, { position: 'absolute', top: '0', left: '0', height: '100%', borderRadius: '500px 500px 0 0' }),
+      box({ position: 'absolute', left: '0', right: '0', bottom: '0', height: '280px', backgroundImage: `linear-gradient(to top, ${SCRIM}0.82) 0%, ${SCRIM}0) 100%)` }),
+      box({ position: 'absolute', left: '66px', bottom: '56px', flexDirection: 'column', gap: '4px' }, [
+        box({ fontFamily: 'Serif', fontSize: '46px', color: CARD }, poseName || ''),
+        box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: '24px', color: 'rgba(249,241,234,0.88)' }, identifier || ''),
+      ]),
+      box({ position: 'absolute', right: '66px', bottom: '56px' }, [wordmark2(OAT, 1)]),
+    ]),
+  ]);
+}
+
+// 05 Offer — the only template that asks for something. It reads as an
+// invitation because the offer sits in the brand's own card, not a badge.
+function tplOffer({ headline, audience, proof, offer, cta, identifier, img, focal, tone }) {
+  const p = pal2(tone);
+  return box({ width: '100%', height: '100%', position: 'relative', backgroundColor: p.g }, [
+    cover(1000, 720, img, focal),
+    box({ position: 'absolute', top: '56px', left: '64px', backgroundColor: p.pill, color: p.pi, fontFamily: 'Cabin', fontWeight: 600, fontSize: '26px', letterSpacing: '6.2px', padding: '14px 30px 11px', borderRadius: '999px' }, caps(audience)),
+    box({ position: 'absolute', left: '64px', right: '64px', top: '604px', flexDirection: 'column', gap: '26px', backgroundColor: p.card, border: `1px solid ${p.ln}`, padding: '56px 54px' }, [
+      hl(headline, p.i, 104, { lineHeight: 1 }),
+      sub(proof, p.soft),
+      box({ padding: '20px 0', borderTop: `1px solid ${p.ln}`, borderBottom: `1px solid ${p.ln}`, fontFamily: 'Cabin', fontWeight: 400, fontSize: '28px', color: p.acc }, offer || ''),
+      box({ alignSelf: 'flex-start', backgroundColor: p.acc, color: CARD, fontFamily: 'Cabin', fontWeight: 600, fontSize: '28px', letterSpacing: '1.7px', padding: '18px 38px 15px', borderRadius: '999px' }, cta || ''),
+    ]),
+    // The destination URL stands in for the wordmark here — printing both would
+    // put the domain on the pin twice.
+    box({ position: 'absolute', left: '64px', right: '64px', bottom: '52px' }, [
+      box({ fontFamily: 'Cabin', fontWeight: 600, fontSize: '25px', letterSpacing: '4.6px', color: p.i, opacity: 0.85 }, identifier || 'yinyogawithkatie.com'),
+    ]),
+  ]);
+}
+
+// 06 Before → after — same face, same size, only the colour changes. Both state
+// lines must break the same way or the device stops reading.
+function tplStates({ audience, before, after, proof, identifier, img, focal, tone }) {
+  const p = pal2(tone);
+  return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: p.g, padding: '76px 66px 0' }, [
+    eye(audience, p.acc),
+    box({ marginTop: '34px' }, [hl(before, p.soft, 108, { lineHeight: 1.02 })]),
+    // A drawn dot, not an arrow glyph: Cabin has no ↓ and Satori renders a
+    // missing glyph as nothing at all rather than tofu, so it fails silently.
+    box({ alignItems: 'center', gap: '20px', marginTop: '34px', marginBottom: '34px' }, [
+      box({ flexGrow: 1, height: '1px', backgroundColor: p.ln }),
+      box({ width: '11px', height: '11px', borderRadius: '999px', backgroundColor: p.acc, flexShrink: 0 }),
+      box({ flexGrow: 1, height: '1px', backgroundColor: p.ln }),
+    ]),
+    hl(after, p.i, 108, { lineHeight: 1.02 }),
+    box({ marginTop: '40px' }, [sub(proof, p.soft)]),
+    box({ marginTop: '26px', marginBottom: '34px' }, [footRow(identifier, p)]),
+    // The photo takes whatever the type leaves, so there is never a gap above it.
+    box({ flexGrow: 1, marginLeft: '-66px', marginRight: '-66px', overflow: 'hidden' }, [
+      cover(1000, 1500, img, focal, { height: '100%' }),
+    ]),
+  ]);
+}
+
+// 07 Watch with me — the pin whose job is a click to YouTube, not a save.
+function tplVideo({ headline, audience, proof, identifier, duration, img, focal, tone }) {
+  const p = pal2(tone);
+  return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: p.g }, [
+    box({ position: 'relative', flexShrink: 0 }, [
+      cover(1000, 860, img, focal),
+      box({ position: 'absolute', left: '0', right: '0', bottom: '0', height: '220px', backgroundImage: `linear-gradient(to top, ${SCRIM}0.8) 0%, ${SCRIM}0) 100%)` }),
+      box({ position: 'absolute', top: '52px', right: '56px', backgroundColor: 'rgba(38,44,39,0.86)', color: OAT, fontFamily: 'Cabin', fontWeight: 600, fontSize: '26px', letterSpacing: '2.6px', padding: '13px 26px 11px', borderRadius: '999px' }, duration || ''),
+      box({ position: 'absolute', left: '56px', bottom: '44px' }, [eye(audience, CARD, 28, 0.24)]),
+    ]),
+    box({ flexGrow: 1, flexDirection: 'column', gap: '24px', padding: '52px 66px 56px' }, [
+      hl(headline, p.i, 104),
+      sub(proof, p.soft),
+      spacer(),
+      footRow(identifier, p),
+    ]),
+  ]);
+}
+
+// 08 Window — the one photo template that takes any pose without a crop
+// decision. Lying and reclined poses live here.
+function tplWindow({ headline, audience, proof, identifier, img, focal, tone }) {
+  const p = pal2(tone);
+  return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: p.g }, [
+    box({ flexDirection: 'column', gap: '28px', padding: '70px 66px 46px' }, [
+      box({ alignSelf: 'flex-start', backgroundColor: p.pill, color: p.pi, fontFamily: 'Cabin', fontWeight: 600, fontSize: '27px', letterSpacing: '6.5px', padding: '15px 32px 12px', borderRadius: '999px' }, caps(audience)),
+      hl(headline, p.i, 92),
+    ]),
+    cover(1000, 660, img, focal, { borderTop: `1px solid ${p.ln}`, borderBottom: `1px solid ${p.ln}` }),
+    box({ flexGrow: 1, flexDirection: 'column', justifyContent: 'space-between', gap: '28px', padding: '44px 66px 60px' }, [
+      sub(proof, p.soft),
+      footRow(identifier, p),
+    ]),
+  ]);
+}
+
+/** Rasterise one finished tree at 1000×1500. */
+async function png(tree) {
+  const svg = await satori(tree, { width: 1000, height: 1500, fonts: FONTS });
+  return new Resvg(svg, { fitTo: { mode: 'width', value: 1000 } }).render().asPng();
+}
+
 /** Render a 1000×1500 (2:3) Pinterest pin to a PNG Buffer. */
-export async function renderPin({ tpl, title, eyebrow: eb, subline, img, focal, quote, items, footer, tone }) {
+export async function renderPin({ tpl, title, eyebrow: eb, subline, img, focal, quote, items, footer, tone, poseName, identifier, duration, offer, cta, before, after }) {
   let tree;
+  // The v2 set reads the same params under benefit-led names: title is the
+  // headline, eyebrow the audience tag, subline the proof.
+  const v2 = { headline: title, audience: eb, proof: subline, identifier, img, focal, tone };
+  switch (tpl) {
+    case 'hook': return png(tplHook(v2));
+    case 'card': return png(tplCard(v2));
+    case 'poselist': return png(tplPoseList({ ...v2, items }));
+    case 'split': return png(tplSplit({ ...v2, poseName }));
+    case 'offer': return png(tplOffer({ ...v2, offer, cta }));
+    case 'states': return png(tplStates({ ...v2, before, after }));
+    case 'video': return png(tplVideo({ ...v2, duration }));
+    case 'window': return png(tplWindow(v2));
+  }
   switch (tpl) {
     case 'photohook': tree = photoHook({ title, eyebrow: eb, subline, img, focal }); break;
     case 'numberlist': tree = numberList({ title, eyebrow: eb, items, footer, tone }); break;

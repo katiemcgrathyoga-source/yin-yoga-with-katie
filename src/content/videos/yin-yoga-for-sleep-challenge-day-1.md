@@ -30,6 +30,10 @@ chapters:
   - { time: "25:02",  seconds: 1502, title: "Rest & Close" }
 
 # ── SEO ──
+pin_angles:
+  - audience: "for restless nights"
+    headline: "Day one of thirty, before bed"
+    proof: "Follow along in bed clothes. Lights low."
 seo_title: "30-Min Yin Yoga for Sleep: Full-Body Bedtime Stretch"
 seo_description: "A gentle 30-minute full-body Yin practice to wind down for sleep — Day 1 of the 30-Day Bedtime Challenge. Slow, calming, and easy to follow before bed."
 # thumbnail auto-derives from youtube_id

@@ -22,6 +22,10 @@ chapters:
   - { time: "41:30",    seconds: 2490, title: "Twist · Cat-Pulling-Its-Tail (each side)", pose: "cat-pulling-its-tail" }
   - { time: "55:40",    seconds: 3340, title: "Corpse Pose / Savasana", poses: ["corpse"] }
   - { time: "1:00:00",  seconds: 3600, title: "Breath · Closing meditation" }
+pin_angles:
+  - audience: "when you're wound up"
+    headline: "An hour of five-minute holds"
+    proof: "Follow along on YouTube. No props needed."
 seo_title: "1-Hour Gentle Yin Yoga — Total-Body Stretch, 5-Min Holds"
 seo_description: "A gentle 1-hour Yin Yoga class for a total-body stretch — slow, chilled poses held for five minutes each to help you unwind, loosen up and relax. All levels."
 membership_cta: "Love a long, gentle practice like this? Inside the membership it lives as part of a guided Full-Body program — so instead of choosing a class each day, you press play and follow the plan. Become someone who moves through the week feeling looser and lighter."
