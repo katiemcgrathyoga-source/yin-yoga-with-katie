@@ -131,7 +131,9 @@ export default async (req) => {
       items.map(async (it) => (it && it.img ? { ...it, thumb: await loadImage(it.img), focal: focalFor(it.img, 'square') } : it)),
     );
   }
-  if (tpl === 'poselist' && Array.isArray(items) && items.length <= 6) {
+  // Thumbnails on every row, at any length — the template shrinks them rather
+  // than dropping them.
+  if (tpl === 'poselist' && Array.isArray(items)) {
     items = await Promise.all(
       items.map(async (it) => (it && it.img ? { ...it, thumb: await loadPinImage(it.img, tpl), focal: V2_FOCAL.poselist } : it)),
     );

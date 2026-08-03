@@ -12,7 +12,14 @@ import { planDays, saveUrl, PINS_PER_DAY } from '../lib/pinSchedule';
  * everything view for when something specific is needed.
  *
  * Private and noindex, like /pins.
+ *
+ * Rendered per request, not at build: a daily plan generated at build time
+ * freezes to the deploy date and silently drifts — it showed Monday's pins on
+ * Tuesday, which is worse than useless on the one page whose whole job is
+ * telling you what to do today.
  */
+export const prerender = false;
+
 const DAYS = 14;
 
 const inventory = await buildPinInventory();
@@ -25,6 +32,9 @@ const byKind = inventory.reduce<Record<string, number>>((acc, p) => {
 }, {});
 // How long the plan can run before any pin comes round a second time.
 const runway = Math.floor(inventory.length / PINS_PER_DAY);
+// Every board the plan needs. A pin has nowhere to go if the board is missing,
+// so this is surfaced rather than assumed.
+const boards = [...new Set(inventory.map((p) => p.board))].sort();
 
 const fmtDay = (d: Date) =>
   d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
@@ -49,6 +59,18 @@ const isToday = (d: Date) => d.toDateString() === today.toDateString();
       <p class="pc-note">
         Nothing is stored on a server. “Done” lives in this browser, so tick as you go.
       </p>
+
+      <details class="pc-boards">
+        <summary>The {boards.length} boards this plan pins to — create any you don't have</summary>
+        <ul>
+          {boards.map((board) => <li>{board}</li>)}
+        </ul>
+        <p>
+          A pin can only go where there's a board waiting. These names are search
+          terms, so keep them exactly as written and give each one a plain
+          keyword sentence as its description.
+        </p>
+      </details>
     </header>
 
     {days.map((day) => (
@@ -97,6 +119,12 @@ const isToday = (d: Date) => d.toDateString() === today.toDateString();
   .pc-lede { font-size: 1.05rem; color: var(--muted); margin: 0 0 1rem; }
   .pc-stats, .pc-note { font-size: 0.85rem; color: var(--muted); margin: 0 0 0.35rem; }
   .pc-note { color: var(--muted); opacity: 0.8; }
+
+  .pc-boards { margin-top: 0.9rem; font-size: 0.85rem; color: var(--muted); }
+  .pc-boards summary { cursor: pointer; color: var(--accent); font-weight: 600; }
+  .pc-boards ul { margin: 0.6rem 0 0.6rem 1.1rem; padding: 0; }
+  .pc-boards li { margin-bottom: 0.15rem; }
+  .pc-boards p { margin: 0; }
 
   .pc-day { margin-bottom: 2.5rem; }
   .pc-day-head {

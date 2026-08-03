@@ -7,23 +7,31 @@
  * `pin_angles[].audience` against these keys — so an angle can never name a
  * board that doesn't exist.
  *
- * Adding an audience: add it here, and create the board on Pinterest. Board
- * names are search terms, so keep them plain and descriptive.
+ * These are the boards that actually exist — the canonical list on /boards, plus
+ * Desk Workers. They are not aspirational: a pin whose board is missing has
+ * nowhere to go, and /pincalendar sending Katie to a board that was never
+ * created is the exact friction this page exists to remove.
+ *
+ * Adding an audience: create the board on Pinterest first, then add it here.
+ *
+ * Two of the ten are deliberately not reachable from an audience tag. **Yin
+ * Yoga Poses** is the evergreen catch-all — every pose already has a more
+ * specific home, so routing to it would only dilute the targeted boards.
+ * **Yin Yoga Routines** takes only `to start the day` for the same reason.
+ * Both are still fed by hand from /boards.
  */
 export const PIN_BOARDS = {
-  'for runners': 'Yoga for Runners',
-  'for tired legs': 'Yoga for Runners',
-  'if you sit all day': 'Yoga for Desk Workers',
-  'for stiff shoulders': 'Yoga for Desk Workers',
-  'for restless nights': 'Yin Yoga for Sleep & Relaxation',
-  "when you're wound up": 'Yin Yoga for Stress & Calm',
+  'for runners': 'Yin Yoga for Runners',
+  'for tired legs': 'Yoga Nidra & Deep Rest',
+  'if you sit all day': 'Yoga for Desk Workers | Neck, Shoulders & Posture',
+  'for stiff shoulders': 'Yoga for Desk Workers | Neck, Shoulders & Posture',
+  'for restless nights': 'Bedtime Yoga & Yin for Sleep',
+  "when you're wound up": 'Yoga Nidra & Deep Rest',
   'for beginners': 'Yin Yoga for Beginners',
-  'for tight hips': 'Yoga for Flexibility & Mobility',
-  'for a stiff back': 'Yoga for Flexibility & Mobility',
-  // Added for the video library, which has large morning and full-body clusters
-  // that none of the tags above describes honestly.
-  'for a full-body reset': 'Yin Yoga Routines & Sequences',
-  'to start the day': 'Yin Yoga Routines & Sequences',
+  'for tight hips': 'Yoga for Hips',
+  'for a stiff back': 'Yoga for Back & Spine',
+  'for a full-body reset': 'Yin Yoga for Flexibility',
+  'to start the day': 'Yin Yoga Routines',
 } as const;
 
 export type PinAudience = keyof typeof PIN_BOARDS;

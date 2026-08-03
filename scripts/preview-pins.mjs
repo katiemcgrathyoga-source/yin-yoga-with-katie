@@ -56,10 +56,14 @@ const SAMPLES = [
     subline: 'Twenty-six minutes, the evening after a run.',
     identifier: 'a 26-minute routine',
     items: [
-      { name: 'Dangling', hold: '2 min' }, { name: 'Toe Squat', hold: '1 min' },
-      { name: 'Ankle Stretch', hold: '1 min' }, { name: 'Half Butterfly', hold: '3 min each side' },
-      { name: 'Caterpillar', hold: '3 min' }, { name: 'Dragonfly', hold: '4 min' },
-      { name: 'Squat', hold: '2 min' }, { name: 'Corpse', hold: '3 min' },
+      { name: 'Dangling', hold: '2 min', thumb: photo('dangling'), focal: '50% 45%' },
+      { name: 'Toe Squat', hold: '1 min', thumb: photo('toe-squat'), focal: '50% 45%' },
+      { name: 'Ankle Stretch', hold: '1 min', thumb: photo('ankle-stretch'), focal: '50% 45%' },
+      { name: 'Half Butterfly', hold: '3 min each side', thumb: photo('half-butterfly'), focal: '50% 45%' },
+      { name: 'Caterpillar', hold: '3 min', thumb: photo('caterpillar'), focal: '50% 45%' },
+      { name: 'Dragonfly', hold: '4 min', thumb: photo('dragonfly'), focal: '50% 45%' },
+      { name: 'Squat', hold: '2 min', thumb: photo('squat'), focal: '50% 45%' },
+      { name: 'Corpse', hold: '3 min', thumb: photo('corpse'), focal: '50% 45%' },
     ],
   }],
   ['split', {

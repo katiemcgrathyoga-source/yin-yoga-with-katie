@@ -347,10 +347,15 @@ function tplCard({ headline, audience, proof, identifier, tone }) {
 function tplPoseList({ headline, audience, proof, identifier, items = [], tone }) {
   const p = pal2(tone);
   const dense = items.length > 6;
+  // The thumbnails shrink past six rows; they never drop. Eight of the eleven
+  // public routines run seven poses or more, so dropping them turned the most
+  // common routine pin into a wall of text — which is the one thing this whole
+  // system is meant to avoid. The note is what goes; the photograph stays.
+  const th = dense ? { w: 66, h: 48 } : { w: 96, h: 70 };
   const rows = items.map((it, i) =>
     box({ alignItems: 'center', gap: '26px', padding: `${dense ? 13 : 24}px 0`, borderBottom: `1px solid ${p.ln}` }, [
       box({ fontFamily: 'Serif', fontSize: '46px', color: p.acc, width: '46px', flexShrink: 0 }, String(i + 1)),
-      ...(!dense && it.thumb ? [cover(96, 70, it.thumb, it.focal, { borderRadius: '6px', flexShrink: 0 })] : []),
+      ...(it.thumb ? [cover(th.w, th.h, it.thumb, it.focal, { borderRadius: '6px', flexShrink: 0 })] : []),
       box({ flexGrow: 1, flexDirection: 'column', gap: '2px' }, [
         box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: '36px', color: p.i }, it.name || ''),
         ...(it.note && !dense ? [box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: '24px', color: p.soft }, it.note)] : []),

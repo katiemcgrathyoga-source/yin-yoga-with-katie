@@ -67,18 +67,21 @@ export function planDays(pins: Pin[], from: Date, days: number): PinDay[] {
   /** Last day each destination was pinned, so the cooldown can be enforced. */
   const lastPinned = new Map<string, number>();
 
-  function take(kind: keyof typeof queues, day: number, boardsToday: Set<string>): Pin | null {
+  type DaySoFar = { boards: Set<string>; templates: Set<string> };
+
+  function take(kind: keyof typeof queues, day: number, soFar: DaySoFar): Pin | null {
     const queue = queues[kind];
     if (queue.length === 0) return null;
-    // Walk forward from the cursor for the first pin that clears the cooldown
-    // and isn't doubling up on a board today. Fall back to the cursor itself
-    // rather than leaving the slot empty.
+    // Walk forward from the cursor for the first pin that clears every rule.
+    // Template variety is one of them: two pose lists in a day, or two text
+    // cards, reads as one pin posted twice — which is exactly what the pins
+    // were redesigned to stop being.
     for (let step = 0; step < queue.length; step++) {
       const at = (cursor[kind] + step) % queue.length;
       const pin = queue[at];
       const last = lastPinned.get(pin.url);
       const cool = last === undefined || day - last >= URL_COOLDOWN_DAYS;
-      if (cool && !boardsToday.has(pin.board)) {
+      if (cool && !soFar.boards.has(pin.board) && !soFar.templates.has(pin.template)) {
         queue.splice(at, 1);
         queue.push(pin); // back of the queue — it comes round again eventually
         cursor[kind] = at % Math.max(1, queue.length);
@@ -92,16 +95,17 @@ export function planDays(pins: Pin[], from: Date, days: number): PinDay[] {
 
   const out: PinDay[] = [];
   for (let day = 0; day < startIndex + days; day++) {
-    const boardsToday = new Set<string>();
+    const soFar: DaySoFar = { boards: new Set(), templates: new Set() };
     const dayPins: PlannedPin[] = [];
 
     for (let slot = 0; slot < PINS_PER_DAY; slot++) {
       const n = day * PINS_PER_DAY + slot;
       const kind: keyof typeof queues =
         n % OFFER_EVERY === 0 ? 'offer' : n % VIDEO_EVERY === 2 ? 'video' : 'rest';
-      const pin = take(kind, day, boardsToday) ?? take('rest', day, boardsToday);
+      const pin = take(kind, day, soFar) ?? take('rest', day, soFar);
       if (!pin) continue;
-      boardsToday.add(pin.board);
+      soFar.boards.add(pin.board);
+      soFar.templates.add(pin.template);
       lastPinned.set(pin.url, day);
       dayPins.push({ ...pin, slot });
     }
