@@ -1,264 +1,158 @@
 ---
-import { getCollection } from 'astro:content';
-import { publicRoutines } from '../lib/routines';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { buildPinInventory, type Pin, type PinKind } from '../lib/pinInventory';
+import { saveUrl } from '../lib/pinSchedule';
 
-// Katie's private pinning console (noindex, unlisted), organized by content item.
-// Uses the new feed-first pin templates (photo hook · numbered list · benefit),
-// rendered on-brand at 1000×1500 by /pin/card.png. See /boards for the same pins
-// re-sorted by destination board.
-const site = Astro.site!;
-const enc = encodeURIComponent;
-const realPhoto = (p?: string) => (p && !p.includes('pose-placeholder') ? p : null);
+/**
+ * Browse every pin the system can make, grouped by the page it points at.
+ *
+ * The companion to /pincalendar: the calendar decides for you, this is for when
+ * you want something specific — a pin for the post you just published, or a
+ * second creative for a page that is doing well. Same inventory, same
+ * descriptions, same save buttons; only the ordering differs.
+ *
+ * Private and noindex.
+ */
+const inventory = await buildPinInventory();
 
-type Pin = { label: string; img: string; save: string; clip: string };
-
-function pinActions(img: string, title: string, description: string, pageUrl: string) {
-  const save = `https://www.pinterest.com/pin/create/button/?url=${enc(pageUrl)}&media=${enc(img)}&description=${enc(description)}`;
-  const clip = `${title}\n\n${description}\n\nImage: ${img}\nLink: ${pageUrl}`;
-  return { save, clip };
-}
-const mkPin = (label: string, img: string, title: string, description: string, pageUrl: string): Pin => ({ label, img, ...pinActions(img, title, description, pageUrl) });
-
-// Word-safe truncation for pin sublines (never cut mid-word).
-const clip = (s: string | undefined, n: number) => {
-  const t = (s || '').trim();
-  if (t.length <= n) return t;
-  const cut = t.slice(0, n);
-  const sp = cut.lastIndexOf(' ');
-  return (sp > 40 ? cut.slice(0, sp) : cut).replace(/[\s,;:.—-]+$/, '') + '…';
-};
-
-const buildUrl = (path: string, params: Record<string, unknown>) => {
-  const u = new URL(path, site);
-  for (const [k, v] of Object.entries(params)) {
-    if (v == null || v === '') continue;
-    u.searchParams.set(k, typeof v === 'string' ? v : JSON.stringify(v));
-  }
-  return u.href;
-};
-// /pin/card.png → poses, routines, quote, photo-hook (the pin.mjs template set).
-const pinUrl = (params: Record<string, unknown>) => buildUrl('/pin/card.png', params);
-// /pin/journal.png → the four Journal Pin variants (arch · oat-frame · split · card).
-const journalUrl = (params: Record<string, unknown>) => buildUrl('/pin/journal.png', params);
-
-// The Journal Pin variants, across dark/light grounds. `split` ships both tones.
-const JOURNAL_VARIANTS = [
-  { v: 'arch', label: 'journal · arch (dark)' },
-  { v: 'oat-frame', label: 'journal · oat-frame (light)' },
-  { v: 'split', tone: 'light', label: 'journal · split (light)' },
-  { v: 'split', label: 'journal · split (dark)' },
-  { v: 'card', label: 'journal · card (light)' },
-] as const;
-
-const humanise = (slug: string) => slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
-const fmtHold = (secs: number, sides: number) => `${Math.max(1, Math.round(secs / 60))} min${sides === 2 ? ' each side' : ''}`;
-
-// Lying/low poses read best in the clean landscape BAND; upright/seated in the
-// square PHOTO-led template. Everything not listed defaults to photo.
-const LYING = new Set(['corpse','banana','childs-pose','reclined-swan','reclined-twist','reclined-hamstring','happy-baby','supported-bridge','supported-fish','legs-up-the-wall','wind-relieving','sphinx','seal','crocodile','melting-heart','sleeping-swan','thread-the-needle','broken-wing','puppy']);
-const cleanTpl = (slug: string) => (LYING.has(slug) ? 'band' : 'photo');
-
-// --- Journal posts → photo hook + the four Journal Pin variants + quote (L/D) --
-const posts = (await getCollection('blog'))
-  .filter((p) => !p.data.draft)
-  .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
-const postCards = posts.map((post) => {
-  const d = post.data;
-  const url = new URL(`/blog/${d.slug}/`, site).href;
-  const desc = d.seo_description ?? d.description;
-  const hero = realPhoto(d.hero);
-  const eb = d.eyebrow_tag || 'From the journal';
-  const pins: Pin[] = [];
-  // The photo-forward, highest-reach creative — kept.
-  if (hero)
-    pins.push(mkPin('photo hook', pinUrl({ tpl: 'photohook', t: d.title, s: eb, sub: clip(d.description, 84), img: hero }), d.title, desc, url));
-  // The four brand Journal Pins (natural-aspect photo, never cropped).
-  if (hero)
-    for (const jv of JOURNAL_VARIANTS)
-      pins.push(mkPin(jv.label, journalUrl({ variant: jv.v, tone: (jv as { tone?: string }).tone, t: d.title, s: 'from the journal', img: hero }), d.title, desc, url));
-  // Optional pull-quote pin (blush + deep-sage twins). Needs a pin_quote in the post.
-  if (d.pin_quote) {
-    pins.push(mkPin('quote (light)', pinUrl({ tpl: 'quote', q: d.pin_quote, s: 'from the journal', tone: 'light' }), d.title, desc, url));
-    pins.push(mkPin('quote (dark)', pinUrl({ tpl: 'quote', q: d.pin_quote, s: 'from the journal', tone: 'dark' }), d.title, desc, url));
-  }
-  return { title: d.title, board: 'From the journal', pins };
-});
-
-// --- Poses → photo hook -------------------------------------------------------
-const poses = (await getCollection('poses'))
-  .filter((p) => realPhoto(p.data.images?.[0]))
-  .sort((a, b) => a.data.name_en.localeCompare(b.data.name_en));
-const poseCards = poses.map((pose) => {
-  const d = pose.data;
-  const url = new URL(`/poses/${d.slug}/`, site).href;
-  const photo = realPhoto(d.images[0]);
-  const ct = cleanTpl(d.slug); // 'band' for lying poses, 'photo' for upright
-  const hookImg = pinUrl({ tpl: 'photohook', t: d.name_en, s: d.target_areas[0] || 'Yin yoga', sub: clip(d.benefits[0], 84), img: photo });
-  const pins: Pin[] = [];
-  if (ct === 'band') {
-    // Lying poses read best in the clean landscape band (light only — band-dark dropped).
-    pins.push(mkPin('photo band (light)', pinUrl({ tpl: 'band', t: d.name_en, s: 'a yin yoga pose', img: photo, tone: 'light' }), d.name_en, d.seo_description, url));
-  } else {
-    // Upright/seated poses: square photo-led in both colorways.
-    pins.push(mkPin('photo (light)', pinUrl({ tpl: 'photo', t: d.name_en, s: 'a yin yoga pose', img: photo, tone: 'light' }), d.name_en, d.seo_description, url));
-    pins.push(mkPin('photo (dark)', pinUrl({ tpl: 'photo', t: d.name_en, s: 'a yin yoga pose', img: photo, tone: 'dark' }), d.name_en, d.seo_description, url));
-  }
-  pins.push(mkPin('photo hook', hookImg, d.name_en, d.seo_description, url));
-  return { title: d.name_en, board: 'Yin Yoga Poses', pins };
-});
-
-// --- Routines → numbered list + photo hook over the lead pose -----------------
-const poseBy = new Map((await getCollection('poses')).map((p) => [p.data.slug, p.data]));
-const routines = publicRoutines(await getCollection('routines')).sort((a, b) => a.data.minutes - b.data.minutes);
-const routineCards = routines.map((r) => {
-  const d = r.data;
-  const url = new URL(`/routines/${d.slug}/`, site).href;
-  const eb = `${d.minutes}-minute routine`;
-  // Full item list (name · hold · photo) for the numbered-thumbnail pin.
-  const itemsFull = d.steps.map((s) => {
-    const p = poseBy.get(s.pose);
-    const ph = realPhoto(p?.images?.[0]);
-    return { name: p?.name_en ?? humanise(s.pose), note: fmtHold(s.seconds, s.sides), ...(ph ? { img: ph } : {}) };
-  });
-  const itemsLite = itemsFull.map((it) => ({ name: it.name, note: it.note }));
-  const pins: Pin[] = [
-    mkPin('numbered + thumbs (light)', pinUrl({ tpl: 'numbered', t: d.title, s: eb, items: itemsFull, tone: 'light' }), d.title, d.summary, url),
-    mkPin('numbered + thumbs (dark)', pinUrl({ tpl: 'numbered', t: d.title, s: eb, items: itemsFull, tone: 'dark' }), d.title, d.summary, url),
-    mkPin('numbered list (light)', pinUrl({ tpl: 'numberlist', t: d.title, s: eb, items: itemsLite, footer: 'save for later', tone: 'light' }), d.title, d.summary, url),
-  ];
-  // Photo-hook variations: up to 4 distinct pose photos from the sequence, hero first,
-  // so each routine has several fresh photo-forward pins to the same URL.
-  const seen = new Set<string>();
-  const order = [d.hero_pose, ...d.steps.map((s) => s.pose)].filter(Boolean) as string[];
-  const hookPoses: { name: string; photo: string }[] = [];
-  for (const slug of order) {
-    if (seen.has(slug)) continue;
-    seen.add(slug);
-    const p = poseBy.get(slug);
-    const ph = realPhoto(p?.images?.[0]);
-    if (p && ph) hookPoses.push({ name: p.name_en, photo: ph });
-    if (hookPoses.length >= 4) break;
-  }
-  hookPoses.forEach((hp, i) =>
-    pins.push(mkPin(`photo hook · ${hp.name}`, pinUrl({ tpl: 'photohook', t: d.title, s: eb, sub: clip(d.summary, 84), img: hp.photo }), d.title, d.summary, url)),
-  );
-  return { title: d.title, board: 'Yin Yoga Routines', pins };
-});
-
-const sections = [
-  { heading: 'Journal', lead: 'Each post as a photo-hook pin plus the four Journal Pin variants (arch · oat-frame · split · card) — two dark grounds, two light. Add a pin_quote to a post to unlock its blush/sage quote pins. Space the variants a few days apart as fresh pins to the same URL.', cards: postCards },
-  { heading: 'Poses', lead: 'Upright poses in both colorways (photo light + dark) plus a photo-hook; lying poses in the clean landscape band plus a photo-hook. Board: Yin Yoga Poses.', cards: poseCards },
-  { heading: 'Routines', lead: 'The numbered sequence pin in light + dark, a text-forward numbered list, and up to four photo-hooks — each over a different pose from the sequence. Board: Yin Yoga Routines.', cards: routineCards },
+const SECTIONS: { kind: PinKind; title: string; blurb: string }[] = [
+  { kind: 'offer', title: 'The offers', blurb: 'The two pages that capture an email. Worth about one pin in five.' },
+  { kind: 'journal', title: 'Journal', blurb: 'The highest-intent pins — they land on a page with a signup on it.' },
+  { kind: 'routine', title: 'Routines', blurb: 'The pose list is the saver; the window is the pretty one.' },
+  { kind: 'pose', title: 'Poses', blurb: 'The everyday backbone. The deepest well in the library.' },
+  { kind: 'video', title: 'Classes on YouTube', blurb: 'The only pins whose job is a click rather than a save.' },
 ];
+
+/** Group a section's pins by the page they point at, keeping page order stable. */
+function byPage(kind: PinKind): { label: string; url: string; pins: Pin[] }[] {
+  const groups = new Map<string, { label: string; url: string; pins: Pin[] }>();
+  for (const pin of inventory) {
+    if (pin.kind !== kind) continue;
+    const group = groups.get(pin.url) ?? { label: pin.label, url: pin.url, pins: [] };
+    group.pins.push(pin);
+    groups.set(pin.url, group);
+  }
+  return [...groups.values()].sort((a, b) => a.label.localeCompare(b.label));
+}
+
+const sections = SECTIONS.map((s) => ({ ...s, groups: byPage(s.kind) }));
+const textOnly = inventory.filter((p) => p.template === 'card').length;
 ---
 
-<BaseLayout title="Pin console" description="Private pinning console" noindex={true}>
-  <div class="wrap pins">
-    <h1>Pin console</h1>
-    <p class="pins-lead">
-      Every journal post, pose and routine, rendered on-brand at 1000×1500 — now with light and dark
-      colorways of each template, so there are 4–5 variations to choose from. <strong>Save</strong> pins
-      immediately; <strong>Copy</strong> grabs the image, title, description and link for Pinterest’s scheduler
-      or Buffer. Pin 2–3 variants per item, spaced a day or two apart (fresh pins to the same URL lift reach) —
-      and lead with the photo-hook and numbered styles.
-    </p>
+<BaseLayout title="Pin console" description="Every pin the system can make" noindex={true}>
+  <div class="pk">
+    <header class="pk-head">
+      <p class="pk-eyebrow">Pinterest · private</p>
+      <h1>Pin console</h1>
+      <p class="pk-lede">
+        Every pin the system can make, grouped by where it lands. For the daily
+        plan, use <a href="/pincalendar">the calendar</a> instead.
+      </p>
+      <p class="pk-stats">
+        <strong>{inventory.length}</strong> pins ·
+        {sections.map((s) => `${s.groups.length} ${s.kind}`).join(' · ')} ·
+        {textOnly} text-only ({Math.round((textOnly / inventory.length) * 100)}%)
+      </p>
+    </header>
 
-    {sections.map((sec) => (
-      <section class="pins-sec">
-        <h2>{sec.heading}</h2>
-        <p class="pins-lead">{sec.lead}</p>
-        {sec.cards.map((card) => (
-          <div class="pinrow">
-            <div class="pinrow-head">
-              <h3>{card.title}</h3>
-              <p class="pinrow-board">Board: <strong>{card.board}</strong></p>
-            </div>
-            <div class="pins-grid">
-              {card.pins.map((pin) => (
-                <div class="pincard" data-pinkey={`${card.board}::${pin.img}`}>
-                  <a href={pin.save} target="_blank" rel="noopener noreferrer" class="pincard-img">
-                    <img src={pin.img} alt={`${card.title} — ${pin.label} pin`} loading="lazy" width="200" height="300" />
-                    <span class="pincard-tpl">{pin.label}</span>
-                    <span class="pincard-check" aria-hidden="true">✓ pinned</span>
+    {sections.map((section) => (
+      <section class="pk-section">
+        <div class="pk-section-head">
+          <h2>{section.title}</h2>
+          <p>{section.blurb}</p>
+        </div>
+
+        {section.groups.map((group) => (
+          <details class="pk-group">
+            <summary>
+              <span class="pk-title">{group.label}</span>
+              <span class="pk-count">{group.pins.length} pins</span>
+            </summary>
+            <div class="pk-strip">
+              {group.pins.map((pin) => (
+                <figure class="pk-pin">
+                  <a href={pin.image} target="_blank" rel="noopener">
+                    <img src={pin.image} alt="" loading="lazy" width="1000" height="1500" />
                   </a>
-                  <div class="pincard-actions">
-                    <a class="pincard-save" href={pin.save} target="_blank" rel="noopener noreferrer">Save</a>
-                    <button type="button" class="pincard-copy" data-clip={pin.clip}>Copy</button>
-                  </div>
-                  <button type="button" class="pincard-pinned">Mark pinned</button>
-                </div>
+                  <figcaption>
+                    <span class="pk-tpl">{pin.template} · {pin.tone}</span>
+                    <span class="pk-board">{pin.board}</span>
+                    <span class="pk-actions">
+                      <a class="pk-btn pk-btn-go" href={saveUrl(pin)} target="_blank" rel="noopener">Save</a>
+                      <button class="pk-btn" type="button" data-copy={pin.description}>Copy text</button>
+                    </span>
+                  </figcaption>
+                </figure>
               ))}
             </div>
-          </div>
+          </details>
         ))}
       </section>
     ))}
   </div>
-
-  <style>
-    .pins { padding: 40px 22px 90px; }
-    .pins h1 { font-family: var(--display); color: var(--plum); font-size: 40px; margin: 0 0 10px; }
-    .pins-lead { color: var(--ink-soft); max-width: 72ch; margin: 0; line-height: 1.6; }
-    .pins-sec { margin-top: 48px; border-top: 1px solid var(--line); padding-top: 28px; }
-    .pins-sec h2 { font-family: var(--display); font-weight: 400; color: var(--plum); font-size: 26px; margin: 0 0 6px; }
-    .pinrow { margin-top: 30px; }
-    .pinrow-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; margin: 0 0 14px; }
-    .pinrow-head h3 { font-family: var(--display); font-weight: 500; color: var(--ink); font-size: 20px; margin: 0; }
-    .pinrow-board { font-size: 13.5px; color: var(--ink-soft); margin: 0; }
-    .pins-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 22px; }
-    .pincard { display: flex; flex-direction: column; gap: 8px; }
-    .pincard-img { position: relative; display: block; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
-    .pincard-img img { width: 100%; height: auto; display: block; background: var(--paper-2); aspect-ratio: 2 / 3; object-fit: cover; }
-    .pincard-tpl { position: absolute; top: 8px; left: 8px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; background: rgba(46,52,47,.7); color: #F9F1EA; padding: 3px 9px; border-radius: 999px; }
-    .pincard-actions { display: flex; gap: 8px; }
-    .pincard-save { flex: 1; text-align: center; background: #E60023; color: #fff; font-weight: 600; font-size: 13px; padding: 8px 10px; border-radius: 999px; }
-    .pincard-save:hover { background: #c9001e; color: #fff; }
-    .pincard-copy { flex: 1; font-family: inherit; font-size: 13px; padding: 7px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
-    .pincard-copy:hover { border-color: var(--plum); color: var(--plum); }
-    .pincard-copy.copied { border-color: var(--plum); color: var(--plum); }
-    .pincard-check { position: absolute; top: 8px; right: 8px; display: none; font-size: 11px; font-weight: 600; letter-spacing: .04em; background: var(--plum); color: var(--paper-2); padding: 3px 9px; border-radius: 999px; }
-    .pincard.is-pinned .pincard-check { display: inline-block; }
-    .pincard.is-pinned .pincard-img img { opacity: .45; }
-    .pincard-pinned { width: 100%; font-family: inherit; font-size: 12.5px; padding: 6px 10px; border-radius: 999px; border: 1px dashed var(--line); background: transparent; color: var(--ink-soft); cursor: pointer; }
-    .pincard-pinned:hover { border-color: var(--plum); color: var(--plum); }
-    .pincard.is-pinned .pincard-pinned { background: var(--plum); color: var(--paper-2); border-style: solid; border-color: transparent; }
-  </style>
-
-  <script>
-    document.querySelectorAll<HTMLButtonElement>('.pincard-copy').forEach((btn) => {
-      btn.addEventListener('click', async () => {
-        try {
-          await navigator.clipboard.writeText(btn.dataset.clip || '');
-          const prev = btn.textContent;
-          btn.classList.add('copied');
-          btn.textContent = 'Copied ✓';
-          setTimeout(() => { btn.classList.remove('copied'); btn.textContent = prev; }, 1600);
-        } catch (e) {}
-      });
-    });
-
-    // "Pinned" tracker — mark which creatives you've already pinned (persists per browser).
-    (() => {
-      const KEY = 'pinnedPins';
-      const read = (): Record<string, boolean> => { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch { return {}; } };
-      let pinned = read();
-      document.querySelectorAll<HTMLElement>('.pincard[data-pinkey]').forEach((card) => {
-        const k = card.dataset.pinkey!;
-        const btn = card.querySelector<HTMLButtonElement>('.pincard-pinned');
-        const apply = () => {
-          const on = !!pinned[k];
-          card.classList.toggle('is-pinned', on);
-          if (btn) { btn.textContent = on ? '✓ Pinned' : 'Mark pinned'; btn.setAttribute('aria-pressed', String(on)); }
-        };
-        apply();
-        btn?.addEventListener('click', () => {
-          pinned = read();
-          if (pinned[k]) delete pinned[k]; else pinned[k] = true;
-          localStorage.setItem(KEY, JSON.stringify(pinned));
-          apply();
-        });
-      });
-    })();
-  </script>
 </BaseLayout>
+
+<style>
+  .pk { max-width: 72rem; margin: 0 auto; padding: 2rem 1rem 5rem; }
+  .pk-head { margin-bottom: 2.5rem; }
+  .pk-eyebrow {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent); margin: 0 0 0.5rem;
+  }
+  .pk-head h1 { margin: 0 0 0.5rem; }
+  .pk-lede { font-size: 1.05rem; color: var(--muted); margin: 0 0 0.75rem; }
+  .pk-stats { font-size: 0.85rem; color: var(--muted); margin: 0; }
+
+  .pk-section { margin-bottom: 3rem; }
+  .pk-section-head { padding-bottom: 0.6rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--line); }
+  .pk-section-head h2 { margin: 0 0 0.15rem; font-size: 1.35rem; }
+  .pk-section-head p { margin: 0; font-size: 0.85rem; color: var(--muted); }
+
+  .pk-group { border-bottom: 1px solid var(--line); }
+  .pk-group summary {
+    display: flex; align-items: baseline; gap: 0.75rem;
+    padding: 0.7rem 0; cursor: pointer; list-style: none;
+  }
+  .pk-group summary::-webkit-details-marker { display: none; }
+  .pk-group summary::before { content: '+'; color: var(--accent); font-weight: 600; }
+  .pk-group[open] summary::before { content: '−'; }
+  .pk-title { font-weight: 600; }
+  .pk-count { font-size: 0.78rem; color: var(--muted); }
+
+  .pk-strip {
+    display: flex; gap: 1rem; overflow-x: auto; padding: 0.25rem 0 1rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .pk-pin { margin: 0; flex: 0 0 132px; }
+  .pk-pin img {
+    width: 132px; height: 198px; object-fit: cover; display: block;
+    border-radius: 4px; background: var(--img-bg, #f0e7dc);
+  }
+  .pk-pin figcaption { display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.4rem; }
+  .pk-tpl { font-size: 0.72rem; font-weight: 600; color: var(--ink); }
+  .pk-board { font-size: 0.68rem; color: var(--muted); }
+  .pk-actions { display: flex; gap: 0.3rem; margin-top: 0.2rem; }
+  .pk-btn {
+    font: inherit; font-size: 0.7rem; font-weight: 600;
+    padding: 0.25rem 0.6rem; border-radius: 999px;
+    border: 1px solid var(--line); background: transparent; color: var(--ink);
+    cursor: pointer; text-decoration: none;
+  }
+  .pk-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .pk-btn-go { background: var(--accent); border-color: var(--accent); color: var(--pg); }
+  .pk-btn-go:hover { opacity: 0.9; color: var(--pg); }
+</style>
+
+<script>
+  for (const button of document.querySelectorAll<HTMLButtonElement>('[data-copy]')) {
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy ?? '');
+        button.textContent = 'Copied';
+      } catch {
+        button.textContent = "Couldn't copy";
+      }
+      setTimeout(() => { button.textContent = 'Copy text'; }, 1600);
+    });
+  }
+</script>

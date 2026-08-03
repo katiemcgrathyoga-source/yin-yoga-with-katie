@@ -110,9 +110,12 @@ export async function buildPinInventory(): Promise<Pin[]> {
         url,
         description: describe(audience, d.seo_description),
       };
-      // Every pose can take the text-only card, and every photographed pose can
-      // take the window. Hook and split are earned, not assumed.
-      const templates = ['card', ...(img ? ['window'] : [])];
+      // The photograph is the whole advantage here — a calm room, good light,
+      // and 37 of them. A text-only pin throws that away to compete with every
+      // other cream-background quote graphic on Pinterest, so the card is only
+      // for the five poses that have no photograph yet. Hook and split are
+      // earned on measurement, not assumed.
+      const templates = img ? ['window'] : ['card'];
       if (img && fits('hook', d.slug)) templates.push('hook');
       if (img && fits('split', d.slug)) templates.push('split');
 
@@ -163,7 +166,9 @@ export async function buildPinInventory(): Promise<Pin[]> {
         url,
         description: describe(audience, d.seo_description),
       };
-      const templates = ['poselist', 'card', ...(hero ? ['window'] : [])];
+      // The pose list is the routine's own strongest creative, and the hero
+      // photo covers the rest. No need for a text card as well.
+      const templates = ['poselist', ...(hero ? ['window'] : ['card'])];
       for (const template of templates) {
         for (const tone of ['light', 'dark'] as PinTone[]) {
           add({
@@ -222,25 +227,36 @@ export async function buildPinInventory(): Promise<Pin[]> {
   for (const post of posts) {
     const d = post.data;
     const url = `${SITE}/blog/${d.slug}/`;
+    // Every post but one leads on a pose photograph, so the window carries them.
+    // The card stays as a second creative here and nowhere else: a journal pin
+    // is about an idea, which is the one case a statement genuinely beats a
+    // photograph — and these are the highest-intent pins in the system, so they
+    // earn two.
+    const hero = d.hero?.startsWith('/poses/') ? d.hero : undefined;
+    const templates = hero ? ['window', 'card'] : ['card'];
+
     for (const [i, angle] of d.pin_angles.entries()) {
       const audience = angle.audience as PinAudience;
-      for (const tone of ['light', 'dark'] as PinTone[]) {
-        add({
-          id: `journal:${d.slug}:card:${tone}:${i}`,
-          kind: 'journal',
-          label: d.title,
-          template: 'card',
-          tone,
-          audience,
-          board: boardFor(audience),
-          url,
-          description: describe(audience, d.seo_description ?? d.description),
-          image: cardUrl({
-            tpl: 'card', tone,
-            t: angle.headline, s: angle.audience, sub: angle.proof,
-            id: 'from the journal',
-          }),
-        });
+      for (const template of templates) {
+        for (const tone of ['light', 'dark'] as PinTone[]) {
+          add({
+            id: `journal:${d.slug}:${template}:${tone}:${i}`,
+            kind: 'journal',
+            label: d.title,
+            template,
+            tone,
+            audience,
+            board: boardFor(audience),
+            url,
+            description: describe(audience, d.seo_description ?? d.description),
+            image: cardUrl({
+              tpl: template, tone,
+              t: angle.headline, s: angle.audience, sub: angle.proof,
+              id: 'from the journal',
+              img: template === 'window' ? hero : undefined,
+            }),
+          });
+        }
       }
     }
   }
