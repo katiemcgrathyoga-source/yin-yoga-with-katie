@@ -70,7 +70,8 @@ toward the **Yoga for Runners** board:
 
 - Pin the new **[Yoga for Runners blog](https://yinyogawithkatie.com/blog/yoga-for-runners)** in 3–4 different templates over the six weeks.
 - Pin the **free Post-Run Reset** landing page (`/runners`) — this is the one that
-  captures emails. Give it a clear "Free 10-minute routine for runners" pin.
+  captures emails. Give it a clear "Free 15-minute Post-Run Reset" pin — fifteen,
+  which is what `/runners` actually offers.
 - Pin the runner-relevant **pose guides** (Dragon, Sleeping Swan, Caterpillar,
   Toe Squat, Twisted Dragon) to the Yoga for Runners board with a "for runners" angle.
 - Pin a couple of **routines** (deep-legs, lower-back) framed for runners.

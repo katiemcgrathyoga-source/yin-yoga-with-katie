@@ -1,6 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { practiceMinutes, type DurationStep } from './lib/duration';
+import { PIN_AUDIENCES, PIN_LIMITS } from './lib/pinBoards';
 
 /**
  * Guards the hand-written `minutes` against the real runtime. `minutes` used to be
@@ -23,6 +24,49 @@ function checkMinutes(
     });
   }
 }
+
+/**
+ * Pin copy — the benefit-led angles the Pinterest templates and `/pincalendar`
+ * read, shared by poses, routines and videos.
+ *
+ * A page's own copy is written for someone already reading it; these are written
+ * for someone scrolling past. The audience tag doubles as the Pinterest board
+ * (see PIN_BOARDS), so the calendar needs no separate board field.
+ *
+ * The limits are hard because Satori cannot shrink type to fit — a headline one
+ * character too long doesn't wrap, it runs off the canvas. `npm run build` runs
+ * `astro check` first, so a bad angle fails the build here rather than shipping
+ * a broken pin.
+ *
+ * Drafted copy is in `design/pin-angles-draft.yaml` (poses) and
+ * `design/pin-angles-routines-videos.yaml`; the templates and the five headline
+ * formulas are in `design/pin-system.html`.
+ *
+ * @param max how many angles this content type may carry. Poses and routines get
+ *   two, on two different boards, so a day's pair can always spread. Videos get
+ *   one: their audience is already determined by `intent_tags`, so a second
+ *   angle would only restate the first.
+ */
+const pinAngles = (max = 2) =>
+  z
+    .array(
+      z.object({
+        audience: z.enum(PIN_AUDIENCES),
+        headline: z
+          .string()
+          .min(1)
+          .max(
+            PIN_LIMITS.headline,
+            `pin headline must be ${PIN_LIMITS.headline} characters or fewer — rewrite it shorter, never shrink the type`,
+          ),
+        proof: z
+          .string()
+          .min(1)
+          .max(PIN_LIMITS.proof, `pin proof must be ${PIN_LIMITS.proof} characters or fewer`),
+      }),
+    )
+    .max(max, `at most ${max} pin angle${max === 1 ? '' : 's'} here — beyond that the calendar surfaces the same page too often`)
+    .default([]);
 
 /**
  * The `poses` collection — the single source of truth for the whole directory.
@@ -72,6 +116,8 @@ const poses = defineCollection({
     // (Pose clips are unlisted YouTube videos and embed exactly like public ones.)
     youtube_video_id: z.string().optional(),
     images: z.array(z.string()),
+
+    pin_angles: pinAngles(),
 
     // SEO
     seo_title: z.string().min(1),
@@ -128,6 +174,9 @@ const videos = defineCollection({
       )
       .default([]), // skeleton records have no chapters yet
 
+    // Pin copy — one angle per class, for the Watch with me template.
+    pin_angles: pinAngles(1),
+
     // SEO — thumbnail is optional; when absent it's derived from youtube_id.
     seo_title: z.string().min(1),
     seo_description: z.string().min(1),
@@ -183,6 +232,10 @@ const routines = defineCollection({
     faq: z.array(z.object({ q: z.string().min(1), a: z.string().min(1) })).default([]),
     membership_cta: z.string().min(1),
     summary: z.string().min(1),
+
+    // Pin copy — two angles on two different boards.
+    pin_angles: pinAngles(),
+
     seo_title: z.string().min(1),
     seo_description: z.string().min(1),
   }).superRefine(checkMinutes),
@@ -213,6 +266,9 @@ const blog = defineCollection({
     eyebrow_tag: z.string().optional(), // topic shown after "the journal ·" in the hero eyebrow
     // Optional pull-quote → activates the blush/sage Quote pin for this post (light + dark).
     pin_quote: z.string().optional(),
+
+    // Pin copy — two angles on two different boards, same as poses and routines.
+    pin_angles: pinAngles(),
     cta_program: z.string().optional(), // slug of the program to CTA to (else the free-retreat CTA)
     // FAQ block → rendered on the post + emitted as FAQPage schema (rich results).
     faq: z.array(z.object({ q: z.string().min(1), a: z.string().min(1) })).default([]),

@@ -1,0 +1,108 @@
+# Pin angles — the journal, first draft
+# =====================================
+# Nine posts, two angles each on two different boards, plus a `pin_quote` for
+# every one. Each block drops into that post's frontmatter in src/content/blog/.
+#
+# WHY THE QUOTES MATTER HERE
+# The four Journal Pin templates already exist and work (netlify/functions/lib/
+# journalpin.mjs), and there is a blush/sage Quote pin waiting on `pin_quote` —
+# but no post has ever had one, so that variant has never rendered. Adding these
+# nine unlocks eighteen pins (light and dark) that cost nothing new to build.
+#
+# Journal posts are the highest-intent pins in the system: they land on a page
+# with a signup on it, not just a pose. Worth pinning more often than the ratio
+# would suggest.
+#
+# Limits are the same as everywhere: audience ≤22, headline ≤40, proof ≤54.
+# `pin_quote` has no limit — it sets at 84px on the Quote pin, so keep it under
+# about ninety characters or it wraps past four lines.
+
+a-new-home-for-yin:
+  pin_quote: "One calm place to find the practice you need."
+  pin_angles:
+    - audience: "for beginners"
+      headline: "Every class, finally in one place"
+      proof: "Free, and sorted by what you actually need."
+    - audience: "for a full-body reset"
+      headline: "No more scrolling for a class"
+      proof: "The whole library, sorted. Nothing to pay."
+
+bedtime-yin-yoga-3-night-wind-down:
+  pin_quote: "Three nights is enough to change an evening."
+  pin_angles:
+    - audience: "for restless nights"
+      headline: "Three nights to fix your evenings"
+      proof: "Three thirty-minute classes, followed in order."
+    - audience: "when you're wound up"
+      headline: "A wind-down you follow for three nights"
+      proof: "Every pose linked. Nothing to work out."
+
+how-long-to-hold-yin-poses:
+  pin_quote: "The stillness is the practice, not the shape."
+  pin_angles:
+    - audience: "for beginners"
+      headline: "How long is long enough?"
+      proof: "The honest answer, and why the holds are long."
+    - audience: "for tight hips"
+      headline: "Three minutes, five, or until it eases"
+      proof: "How to know when you have held it enough."
+
+post-run-stretches:
+  pin_quote: "The run is the easy part. The undoing is the work."
+  pin_angles:
+    - audience: "for runners"
+      headline: "The after-run routine runners skip"
+      proof: "Four long holds. About fifteen quiet minutes."
+    - audience: "for tight hips"
+      headline: "What to do in the hour after a run"
+      proof: "Four holds that undo what running tightens."
+
+yin-vs-restorative-yoga:
+  pin_quote: "One stresses the tissue. One takes the stress away."
+  pin_angles:
+    - audience: "for beginners"
+      headline: "Yin or restorative? They differ"
+      proof: "One stresses the tissue. One removes the stress."
+    - audience: "when you're wound up"
+      headline: "Which one do you need tonight?"
+      proof: "They look the same. They do different jobs."
+
+yin-yoga-for-beginners:
+  pin_quote: "You do not need to be flexible. You need to be still."
+  pin_angles:
+    - audience: "for beginners"
+      headline: "Start tonight, with three cues"
+      proof: "What it is, what you need, and how to begin."
+    - audience: "for a full-body reset"
+      headline: "Never done yin? Start here"
+      proof: "Three cues, and a gentle class to follow."
+
+yin-yoga-for-sleep:
+  pin_quote: "A quiet body is easier to sleep in than a tired one."
+  pin_angles:
+    - audience: "for restless nights"
+      headline: "Why long holds quiet a racing mind"
+      proof: "The poses to do before bed, and why they work."
+    - audience: "when you're wound up"
+      headline: "The reason yin works on sleep"
+      proof: "Slow holds, a settled system, deeper rest."
+
+yoga-for-desk-workers:
+  pin_quote: "Your body holds the shape of your day."
+  pin_angles:
+    - audience: "if you sit all day"
+      headline: "Why a desk day ends in your neck"
+      proof: "The poses for upper back, chest and hip flexors."
+    - audience: "for stiff shoulders"
+      headline: "The best poses for a screen-shaped body"
+      proof: "Neck, shoulders and posture. Where to start."
+
+yoga-for-runners:
+  pin_quote: "Running shortens. Yin gives it back."
+  pin_angles:
+    - audience: "for runners"
+      headline: "The recovery runners are missing"
+      proof: "Hips, hamstrings, calves and the outer hip."
+    - audience: "for tight hips"
+      headline: "Why runners get tight hips, and the fix"
+      proof: "The best yin poses, and when to do them."

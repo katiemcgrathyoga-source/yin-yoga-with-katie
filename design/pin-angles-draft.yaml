@@ -1,0 +1,423 @@
+# Pin angles — first draft, for Katie to edit
+# ============================================
+# Two per pose, 42 poses, 84 angles. Each block drops straight into that pose's
+# frontmatter in src/content/poses/<slug>.md.
+#
+# LIMITS (enforced by the build guard, see design/pin-system.html)
+#   audience  ≤ 22 characters
+#   headline  ≤ 40 characters   ← capped at 40, not 46, so one angle works in
+#                                 every template including List and Split
+#   proof     ≤ 54 characters
+#
+# THE FIVE FORMULAS these were written against
+#   1  the exact moment      "The hip you notice at mile four"
+#   2  the time contrast     "Two minutes to undo eight hours"
+#   3  the one-thing promise "One leg long, three minutes"
+#   4  the unexpected cause  "The glute that sitting switches off"
+#   5  the objection killer  "A hamstring stretch you can't fail"
+#
+# THE RULES
+#   A number wherever one is true. Second person. Moments, not anatomy.
+#   Never a health claim. No unlock / transform / secret / ultimate.
+#
+# THE AUDIENCE TAG IS THE BOARD — that is what makes the calendar automatic:
+#   for runners          → Yoga for Runners
+#   for tired legs       → Yoga for Runners
+#   if you sit all day   → Yoga for Desk Workers
+#   for stiff shoulders  → Yoga for Desk Workers
+#   for restless nights  → Yin Yoga for Sleep & Relaxation
+#   when you're wound up → Yin Yoga for Stress & Calm
+#   for beginners        → Yin Yoga for Beginners
+#   for tight hips       → Yoga for Flexibility & Mobility
+#   for a stiff back     → Yoga for Flexibility & Mobility
+#
+# Every pose gets two different boards, so the calendar can always spread a day's
+# two pins across two boards without repeating itself.
+#
+# WHERE THESE CAME FROM
+# Each one is derived from that pose's own `benefits` and `target_areas`, then
+# rewritten from the reader's side. The anatomy did not go anywhere — it moved
+# into the proof line, or onto the page the pin lands on.
+#
+# WHAT TO CHANGE
+# The headline is the part that matters and the part most likely to sound like
+# me rather than you. Read each one out loud; if you would not say it to someone
+# after class, rewrite it. The proof lines are mostly your own cueing already.
+
+ankle-stretch:
+  pin_angles:
+    - audience: "for runners"
+      headline: "The ankles your shoes never let move"
+      proof: "One to three minutes, kneeling. Pad the shins."
+    - audience: "for beginners"
+      headline: "Feet that ache by the end of the day"
+      proof: "One to three minutes on the tops of your feet."
+
+banana:
+  pin_angles:
+    - audience: "for runners"
+      headline: "The side of you that running forgets"
+      proof: "Three minutes each side, lying down. No effort."
+    - audience: "for restless nights"
+      headline: "A long stretch you can do in bed"
+      proof: "Three minutes a side before the light goes off."
+
+bow-tie:
+  pin_angles:
+    - audience: "if you sit all day"
+      headline: "Shoulders that won't come down"
+      proof: "Your own weight opens them. Three minutes."
+    - audience: "for stiff shoulders"
+      headline: "The knot between your shoulder blades"
+      proof: "Three to five minutes. Nothing to hold."
+
+broken-wing:
+  pin_angles:
+    - audience: "if you sit all day"
+      headline: "The chest a keyboard keeps closed"
+      proof: "Two to four minutes a side, face down."
+    - audience: "for stiff shoulders"
+      headline: "The shoulder front nobody stretches"
+      proof: "Two minutes a side. Ease off if it tingles."
+
+butterfly:
+  pin_angles:
+    - audience: "if you sit all day"
+      headline: "The hips a chair keeps folded shut"
+      proof: "Three to five minutes. Knees stay where they land."
+    - audience: "for beginners"
+      headline: "The first yin pose worth learning"
+      proof: "Three minutes, feet together, back soft."
+
+camel:
+  pin_angles:
+    - audience: "if you sit all day"
+      headline: "Two minutes to undo eight hours"
+      proof: "One long hold for the whole front of you."
+    - audience: "when you're wound up"
+      headline: "The pose that opens what you protect"
+      proof: "Thirty seconds is enough the first time."
+
+cat-pulling-its-tail:
+  pin_angles:
+    - audience: "for runners"
+      headline: "A twist that reaches the quad too"
+      proof: "Two to five minutes a side, lying down."
+    - audience: "for restless nights"
+      headline: "The last shape before you sleep"
+      proof: "Two minutes a side and the back lets go."
+
+caterpillar:
+  pin_angles:
+    - audience: "for runners"
+      headline: "The whole back of your legs, at once"
+      proof: "Round the back, bend the knees. Three minutes."
+    - audience: "for a stiff back"
+      headline: "Let your head hang for three minutes"
+      proof: "Nothing to reach for. Gravity does the folding."
+
+childs-pose:
+  pin_angles:
+    - audience: "when you're wound up"
+      headline: "The pose for when it's all too much"
+      proof: "Two minutes, forehead down. Nothing else asked."
+    - audience: "for beginners"
+      headline: "The one pose you already know"
+      proof: "Hold it five minutes and it becomes yin."
+
+corpse:
+  pin_angles:
+    - audience: "for restless nights"
+      headline: "Five minutes flat before you sleep"
+      proof: "No shape to hold. This is the part that works."
+    - audience: "when you're wound up"
+      headline: "Doing nothing, on purpose"
+      proof: "Five to ten minutes. Set a timer and stop."
+
+cow-face:
+  pin_angles:
+    - audience: "if you sit all day"
+      headline: "Shoulders and hips in one shape"
+      proof: "Two minutes a side. Use a strap for the arms."
+    - audience: "for tight hips"
+      headline: "The outer hip a chair keeps short"
+      proof: "Knee over knee, two to four minutes a side."
+
+crocodile:
+  pin_angles:
+    - audience: "for a stiff back"
+      headline: "Lie face down and let the back go"
+      proof: "One to five minutes. There is nothing to do."
+    - audience: "for restless nights"
+      headline: "The rest that isn't sleep"
+      proof: "Face down, arms folded, five quiet minutes."
+
+dangling:
+  pin_angles:
+    - audience: "for runners"
+      headline: "Hang for two minutes after your run"
+      proof: "Soft knees. Your upper body does the work."
+    - audience: "for a stiff back"
+      headline: "The fastest way to unload a spine"
+      proof: "One to three minutes hanging forward."
+
+deer:
+  pin_angles:
+    - audience: "for tight hips"
+      headline: "Both hips open, and kind to the knees"
+      proof: "One to three minutes a side, seated."
+    - audience: "for beginners"
+      headline: "The hip opener that won't hurt"
+      proof: "Knees stay comfortable. Two minutes a side."
+
+dragon:
+  pin_angles:
+    - audience: "for runners"
+      headline: "The hip that shortens your stride"
+      proof: "Three minutes a side. Tonight, not next week."
+    - audience: "if you sit all day"
+      headline: "The hip flexor a chair keeps short"
+      proof: "Sink low, two minutes a side. Pad the knee."
+
+dragonfly:
+  pin_angles:
+    - audience: "for tight hips"
+      headline: "Inner thighs and hamstrings at once"
+      proof: "Legs wide, fold from the hips. Four minutes."
+    - audience: "for runners"
+      headline: "The adductors runners never stretch"
+      proof: "Three to five minutes. Sit on a cushion."
+
+eagle:
+  pin_angles:
+    - audience: "if you sit all day"
+      headline: "Spread the upper back in one minute"
+      proof: "Wrap the arms, lift the elbows. A minute a side."
+    - audience: "for stiff shoulders"
+      headline: "The gap between your shoulder blades"
+      proof: "One to three minutes a side, sitting up."
+
+easy-pose:
+  pin_angles:
+    - audience: "for beginners"
+      headline: "Where every yin practice starts"
+      proof: "Sit cross-legged. Sit on something if you need."
+    - audience: "when you're wound up"
+      headline: "Two minutes of sitting still"
+      proof: "No stretch to chase. Just breathe and stay."
+
+folded-half-shoelace:
+  pin_angles:
+    - audience: "for runners"
+      headline: "Outer hip and hamstring in one fold"
+      proof: "Three minutes a side. Kinder than Shoelace."
+    - audience: "for tight hips"
+      headline: "The glute that sitting turns to stone"
+      proof: "Bottom leg straight — easier on the knees."
+
+frog:
+  pin_angles:
+    - audience: "for tight hips"
+      headline: "The deepest groin opener in yin"
+      proof: "Three minutes. Come out slowly, always."
+    - audience: "for runners"
+      headline: "The inner thigh a run never reaches"
+      proof: "Knees wide and padded. Three to five minutes."
+
+half-butterfly:
+  pin_angles:
+    - audience: "for beginners"
+      headline: "A hamstring stretch you can't fail"
+      proof: "Round the back. Tight hamstrings are fine here."
+    - audience: "for runners"
+      headline: "One leg long, three minutes"
+      proof: "Fold over the straight leg. Micro-bend the knee."
+
+happy-baby:
+  pin_angles:
+    - audience: "for restless nights"
+      headline: "Two minutes of this, in bed"
+      proof: "Hold the feet, rock a little. Nothing to force."
+    - audience: "for a stiff back"
+      headline: "Rock the lower back loose"
+      proof: "Knees wide, tailbone heavy. Two to five minutes."
+
+legs-up-the-wall:
+  pin_angles:
+    - audience: "for tired legs"
+      headline: "The recovery pose that asks nothing"
+      proof: "Five minutes up a wall. No flexibility needed."
+    - audience: "for restless nights"
+      headline: "Fifteen minutes and the day drains out"
+      proof: "Legs up the wall. Nothing to hold, nothing to do."
+
+melting-heart:
+  pin_angles:
+    - audience: "if you sit all day"
+      headline: "Undo a day of shoulders rolled in"
+      proof: "Hips high, chest low. Three to five minutes."
+    - audience: "for stiff shoulders"
+      headline: "The stretch a phone makes necessary"
+      proof: "Arms long, forehead down. Three minutes."
+
+puppy:
+  pin_angles:
+    - audience: "if you sit all day"
+      headline: "A gentler way to open the chest"
+      proof: "Hips over knees, chest melting. Two minutes."
+    - audience: "for beginners"
+      headline: "Melting Heart, with training wheels"
+      proof: "One to four minutes. Lower back stays easy."
+
+reclined-hamstring:
+  pin_angles:
+    - audience: "for runners"
+      headline: "Hamstrings, without sitting up"
+      proof: "Two to four minutes a side. Use a strap."
+    - audience: "for beginners"
+      headline: "The easiest hamstring stretch there is"
+      proof: "On your back. The floor takes all the weight."
+
+reclined-swan:
+  pin_angles:
+    - audience: "for runners"
+      headline: "Figure four, flat on your back"
+      proof: "Two to five minutes a side. The gentlest glute."
+    - audience: "if you sit all day"
+      headline: "The glute that sitting switches off"
+      proof: "Ankle over knee, draw in. Two minutes a side."
+
+reclined-twist:
+  pin_angles:
+    - audience: "for restless nights"
+      headline: "The last two minutes of your day"
+      proof: "Knees to one side. Let the spine unwind."
+    - audience: "for a stiff back"
+      headline: "Unwind a spine that sat all day"
+      proof: "Two to five minutes a side, lying down."
+
+saddle:
+  pin_angles:
+    - audience: "for runners"
+      headline: "The quads that running keeps short"
+      proof: "Lean back slowly. One minute is plenty at first."
+    - audience: "for a stiff back"
+      headline: "Put the curve back in your lower back"
+      proof: "Prop under the back. Come out slowly."
+
+seal:
+  pin_angles:
+    - audience: "for a stiff back"
+      headline: "The backbend a desk day earns you"
+      proof: "Arms straight, three minutes. Ease off if pinchy."
+    - audience: "if you sit all day"
+      headline: "Undo the flat back a chair gives you"
+      proof: "Three to five minutes on straight arms."
+
+seated-twist:
+  pin_angles:
+    - audience: "if you sit all day"
+      headline: "A twist you can do at your desk"
+      proof: "One to three minutes a side, sitting up tall."
+    - audience: "for beginners"
+      headline: "The easiest twist in yin"
+      proof: "Sit up, turn, breathe. A minute a side."
+
+shoelace:
+  pin_angles:
+    - audience: "for runners"
+      headline: "The outer hip that pulls on your knee"
+      proof: "Knees stacked, fold forward. Three minutes."
+    - audience: "for tight hips"
+      headline: "The deepest outer-hip stretch in yin"
+      proof: "Sit on a cushion if the hips are tight."
+
+sleeping-swan:
+  pin_angles:
+    - audience: "for runners"
+      headline: "The hip you notice at mile four"
+      proof: "Three minutes a side. Gravity does it, not you."
+    - audience: "for tight hips"
+      headline: "The hip opener everything builds to"
+      proof: "One to five minutes a side. Fold forward."
+
+sphinx:
+  pin_angles:
+    - audience: "if you sit all day"
+      headline: "Your back was never meant to be flat"
+      proof: "Five minutes on your forearms puts it back."
+    - audience: "for a stiff back"
+      headline: "The gentlest backbend there is"
+      proof: "Forearms down, three minutes. Never pinchy."
+
+squat:
+  pin_angles:
+    - audience: "for tight hips"
+      headline: "The position we stopped using"
+      proof: "Sink low for two minutes. Heels on a blanket."
+    - audience: "for runners"
+      headline: "Hips and ankles in one shape"
+      proof: "One to three minutes low. Hold something."
+
+supported-bridge:
+  pin_angles:
+    - audience: "for restless nights"
+      headline: "A backbend you can fall asleep in"
+      proof: "Block under the hips. The prop does the work."
+    - audience: "for a stiff back"
+      headline: "Five minutes with the hips held up"
+      proof: "Passive, propped, nothing to hold."
+
+supported-fish:
+  pin_angles:
+    - audience: "if you sit all day"
+      headline: "Breathe properly again in five minutes"
+      proof: "Lie back over a block. The prop opens you."
+    - audience: "when you're wound up"
+      headline: "The shape that makes breathing easier"
+      proof: "Three to five minutes, fully supported."
+
+swan:
+  pin_angles:
+    - audience: "for runners"
+      headline: "Hip and quad, with the chest lifted"
+      proof: "One to five minutes a side, chest up."
+    - audience: "for tight hips"
+      headline: "Sleeping Swan, with your chest open"
+      proof: "Stay lifted. Fold forward when you're ready."
+
+thread-the-needle:
+  pin_angles:
+    - audience: "if you sit all day"
+      headline: "Where desk tension actually gathers"
+      proof: "Thread the arm through, rest on the shoulder."
+    - audience: "for stiff shoulders"
+      headline: "A twist that never loads your back"
+      proof: "Two to four minutes a side. Never crank the neck."
+
+toe-squat:
+  pin_angles:
+    - audience: "for runners"
+      headline: "The feet you land on, every stride"
+      proof: "Thirty seconds is enough. Build up slowly."
+    - audience: "for beginners"
+      headline: "The stretch nobody gives their feet"
+      proof: "Tuck the toes, sit back. Keep it short."
+
+twisted-dragon:
+  pin_angles:
+    - audience: "for runners"
+      headline: "The lunge with the outer hip added"
+      proof: "Thread the shoulder across. Two minutes a side."
+    - audience: "for tight hips"
+      headline: "Hip flexor and outer hip together"
+      proof: "From the low lunge, rotate. Two to five minutes."
+
+wind-relieving:
+  pin_angles:
+    - audience: "for a stiff back"
+      headline: "Knees in, and the lower back lets go"
+      proof: "One to three minutes. Rock gently if it helps."
+    - audience: "for restless nights"
+      headline: "The reset between everything else"
+      proof: "Draw the knees in. A minute is enough."
