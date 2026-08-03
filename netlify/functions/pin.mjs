@@ -61,11 +61,26 @@ const V2_FOCAL = {
   poselist: '50% 45%', // 96×70 thumbnails
 };
 const isV2 = (tpl) => tpl in V2_FOCAL;
-/** Prefer the subject-centred crop, fall back to the original if it isn't there. */
-const loadPinImage = async (path) => {
+
+// The portrait templates crop hardest, so a 933px-tall source would be upscaled
+// past 1500 and go soft. They take the 2200px crops cut from the camera
+// originals where one exists — not every pose has one, so the fallback chain
+// walks down to the plain web photo rather than failing.
+const PORTRAIT = new Set(['hook', 'split']);
+
+/** Best available source for a pin, sharpest first. */
+const loadPinImage = async (path, tpl) => {
   if (!path) return null;
-  const centred = path.replace(/^\/poses\//, '/poses/pin/');
-  return (await loadImage(centred)) ?? (await loadImage(path));
+  const candidates = [
+    ...(PORTRAIT.has(tpl) ? [path.replace(/^\/poses\//, '/poses/pin/tall/')] : []),
+    path.replace(/^\/poses\//, '/poses/pin/'),
+    path,
+  ];
+  for (const candidate of candidates) {
+    const img = await loadImage(candidate);
+    if (img) return img;
+  }
+  return null;
 };
 
 /**
@@ -103,7 +118,7 @@ export default async (req) => {
   let img = null;
   let focal = 'center';
   if (isV2(tpl)) {
-    img = tpl === 'card' ? null : await loadPinImage(imgPath);
+    img = tpl === 'card' ? null : await loadPinImage(imgPath, tpl);
     focal = V2_FOCAL[tpl];
   } else if (frame) {
     img = await loadImage(imgPath);
@@ -118,7 +133,7 @@ export default async (req) => {
   }
   if (tpl === 'poselist' && Array.isArray(items) && items.length <= 6) {
     items = await Promise.all(
-      items.map(async (it) => (it && it.img ? { ...it, thumb: await loadPinImage(it.img), focal: V2_FOCAL.poselist } : it)),
+      items.map(async (it) => (it && it.img ? { ...it, thumb: await loadPinImage(it.img, tpl), focal: V2_FOCAL.poselist } : it)),
     );
   }
 

@@ -12,17 +12,24 @@ import { renderPin } from '../netlify/functions/lib/pin.mjs';
 const OUT = process.argv[2] ?? 'design/pin-preview';
 if (!existsSync(OUT)) mkdirSync(OUT, { recursive: true });
 
-const photo = (slug) => {
-  const path = existsSync(`public/poses/pin/${slug}.jpg`) ? `public/poses/pin/${slug}.jpg` : `public/poses/${slug}.jpg`;
+// Same fallback chain the renderer uses: sharpest source first.
+const photo = (slug, portrait = false) => {
+  const chain = [
+    ...(portrait ? [`public/poses/pin/tall/${slug}.jpg`] : []),
+    `public/poses/pin/${slug}.jpg`,
+    `public/poses/${slug}.jpg`,
+  ];
+  const path = chain.find(existsSync);
   return `data:image/jpeg;base64,${readFileSync(path).toString('base64')}`;
 };
 
 const SAMPLES = [
+  // Only four poses are narrow enough for a full-bleed 2:3 crop; Squat is one.
   ['hook', {
-    tpl: 'hook', tone: 'light', eyebrow: 'for runners',
-    title: 'The hip that shortens your stride',
-    subline: 'Three minutes a side. Tonight, not next week.',
-    identifier: 'Dragon · a yin yoga pose', img: photo('dragon'), focal: '50% 50%',
+    tpl: 'hook', tone: 'light', eyebrow: 'for tight hips',
+    title: 'The position we stopped using',
+    subline: 'Sink low for two minutes. Heels on a blanket.',
+    identifier: 'Squat · a yin yoga pose', img: photo('squat', true), focal: '50% 50%',
   }],
   ['card', {
     tpl: 'card', tone: 'dark', eyebrow: 'if you sit all day',
@@ -60,7 +67,7 @@ const SAMPLES = [
     title: 'Breathe properly again in two minutes',
     subline: 'The chest a desk chair closes a little more each hour.',
     poseName: 'Camel', identifier: 'a yin yoga pose · hold 2 min',
-    img: photo('camel'), focal: '50% 50%',
+    img: photo('camel', true), focal: '50% 50%',
   }],
   ['offer', {
     tpl: 'offer', tone: 'light', eyebrow: 'for runners',

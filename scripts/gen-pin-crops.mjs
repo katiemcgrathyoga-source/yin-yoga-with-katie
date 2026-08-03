@@ -46,6 +46,10 @@ async function subjectExtent(file) {
       if ((mx < 72 && spread < 26) || (mx > 195 && spread < 14)) cols[x]++;
     }
   }
+  // 5% of the busiest column. Deliberately generous: at 15% the measure starts
+  // dropping thin limbs — Dragon's extent collapses from 12–93% to 17–53% and
+  // the crop would cut her head off. Over-including a little wall costs a
+  // slightly off-centre composition; under-including costs a headless pin.
   const floor = Math.max(...cols) * 0.05;
   let L = 0, R = W - 1;
   while (L < W && cols[L] < floor) L++;
