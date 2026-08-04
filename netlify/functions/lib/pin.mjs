@@ -366,28 +366,59 @@ function tplHook({ headline, audience, proof, identifier, img, focal, tone }) {
   ]);
 }
 
-// 02 Benefit card — no photograph, so the surface itself carries the weight.
-// Direction A: a pressed panel — inset rim, inset bloom, and a lit corner.
-function tplCard({ headline, audience, proof, identifier, tone }) {
+// 02 Benefit card — no photograph, so the surface itself has to carry weight.
+// Two directions, switchable per pin:
+//   A · pressed panel — an inset rim, an inset bloom and a lit corner. The
+//       handsomest at full size; at 236px the bloom is invisible.
+//   B · rule-anchored — an accent bar on the top edge, the label ticked off it,
+//       and a ruled band fading up from the foot. Two hard shapes that still
+//       register at thumbnail size, which is this template's whole job.
+function tplCard({ headline, audience, proof, identifier, tone, variant }) {
   const p = pal2(tone);
   const { a } = rgbFor(tone);
+  const ruled = String(variant).toLowerCase() === 'b';
+
+  const type = [
+    ruled
+      ? box({ alignItems: 'center', gap: '22px' }, [
+          box({ width: '64px', height: '6px', backgroundColor: p.acc, flexShrink: 0 }),
+          eye(audience, p.acc),
+        ])
+      : eye(audience, p.acc),
+    hl(headline, p.i, 125, { lineHeight: 1.02, width: '792px' }),
+    ruled
+      ? sub(proof, p.soft, { borderLeft: `2px solid ${p.acc}`, paddingLeft: '30px', width: '760px' })
+      : sub(proof, p.soft),
+  ];
+
+  // Surface first, type last — Satori has no z-index, so paint order is document
+  // order and anything drawn later sits on top.
+  const surface = ruled
+    ? [
+        box({ position: 'absolute', top: '0', left: '0', width: '1000px', height: '14px', backgroundColor: p.acc }),
+        box({
+          position: 'absolute', bottom: '0', left: '0', width: '1000px', height: '200px',
+          backgroundImage: `repeating-linear-gradient(90deg, rgba(${a},0.22) 0px, rgba(${a},0.22) 1px, rgba(${a},0) 1px, rgba(${a},0) 16px)`,
+          maskImage: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%)',
+        }),
+      ]
+    : [
+        box({
+          position: 'absolute', top: '40px', left: '40px', width: '920px', height: '1420px',
+          borderRadius: '20px',
+          backgroundImage: `radial-gradient(88% 58% at 10% 4%, rgba(${a},0.16) 0%, rgba(${a},0) 62%)`,
+          boxShadow: `inset 0 0 0 1px ${p.rim}, inset 0 0 180px rgba(${a},0.14)`,
+        }),
+      ];
+
   return box({ width: '100%', height: '100%', position: 'relative', backgroundColor: p.g }, [
-    box({
-      position: 'absolute', top: '40px', left: '40px', width: '920px', height: '1420px',
-      borderRadius: '20px',
-      backgroundImage: `radial-gradient(88% 58% at 10% 4%, rgba(${a},0.16) 0%, rgba(${a},0) 62%)`,
-      boxShadow: `inset 0 0 0 1px ${p.rim}, inset 0 0 180px rgba(${a},0.14)`,
-    }),
+    ...surface,
     box({
       position: 'absolute', left: '104px', right: '104px', top: '132px', bottom: '112px',
       flexDirection: 'column', gap: '36px',
     }, [
-      // A spacer either side of the type: the block centres in the space above
-      // the footer instead of hanging off the top edge with a void beneath it.
       spacer(),
-      eye(audience, p.acc),
-      hl(headline, p.i, 125, { lineHeight: 1.02, width: '792px' }),
-      sub(proof, p.soft),
+      ...type,
       spacer(),
       box({ alignItems: 'flex-end', justifyContent: 'space-between', gap: '20px' }, [
         idLine(identifier || '', p.acc),
@@ -613,14 +644,14 @@ async function png(tree) {
 }
 
 /** Render a 1000×1500 (2:3) Pinterest pin to a PNG Buffer. */
-export async function renderPin({ tpl, title, eyebrow: eb, subline, img, focal, quote, items, footer, tone, poseName, identifier, duration, offer, cta, before, after, photoH }) {
+export async function renderPin({ tpl, title, eyebrow: eb, subline, img, focal, quote, items, footer, tone, poseName, identifier, duration, offer, cta, before, after, photoH, variant }) {
   let tree;
   // The v2 set reads the same params under benefit-led names: title is the
   // headline, eyebrow the audience tag, subline the proof.
   const v2 = { headline: title, audience: eb, proof: subline, identifier, img, focal, tone };
   switch (tpl) {
     case 'hook': return png(tplHook(v2));
-    case 'card': return png(tplCard(v2));
+    case 'card': return png(tplCard({ ...v2, variant }));
     case 'poselist': return png(tplPoseList({ ...v2, items }));
     case 'split': return png(tplSplit({ ...v2, poseName }));
     case 'offer': return png(tplOffer({ ...v2, offer, cta }));

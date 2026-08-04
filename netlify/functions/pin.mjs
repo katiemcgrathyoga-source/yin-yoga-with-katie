@@ -111,6 +111,8 @@ export default async (req) => {
   const before = (p.get('b') || '').slice(0, 40);
   const after = (p.get('a') || '').slice(0, 40);
   // Window photo height, chosen per pose by the inventory so a wide shape keeps its ends.
+  // Benefit card direction: 'a' pressed panel (default) or 'b' rule-anchored.
+  const variant = (p.get('v') || 'a').slice(0, 1);
   const photoH = Math.min(850, Math.max(560, Number(p.get('ph')) || 850));
 
   // Main photo. v2 templates take the subject-centred crop and a fixed vertical
@@ -144,7 +146,7 @@ export default async (req) => {
   try {
     const png = await renderPin({
       tpl, title, eyebrow, subline, img, focal, quote, items, footer, tone,
-      identifier, poseName, duration, offer, cta, before, after, photoH,
+      identifier, poseName, duration, offer, cta, before, after, photoH, variant,
     });
     return new Response(png, {
       headers: {

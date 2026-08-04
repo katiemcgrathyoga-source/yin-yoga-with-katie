@@ -90,6 +90,14 @@ const SEARCH_PHRASE: Record<PinAudience, string> = {
   'to start the day': 'Morning yin yoga',
 };
 
+/**
+ * Which Benefit card direction ships. 'a' is the pressed panel; 'b' is the
+ * rule-anchored one the designer recommended, on the grounds that at 236px A's
+ * inset bloom is invisible while B's bar and ruled foot still register.
+ * One constant, so switching is a one-line change and a rebuild.
+ */
+export const CARD_DIRECTION: 'a' | 'b' = 'a';
+
 const SITE = 'https://yinyogawithkatie.com';
 const clamp = (s: string, n: number) => (s.length <= n ? s : `${s.slice(0, s.lastIndexOf(' ', n))}…`);
 const describe = (audience: PinAudience, seo: string) =>
@@ -147,7 +155,7 @@ export async function buildPinInventory(): Promise<Pin[]> {
             template,
             tone,
             image: cardUrl({
-              tpl: template, tone,
+              tpl: template, tone, v: template === 'card' ? CARD_DIRECTION : undefined,
               t: angle.headline, s: angle.audience, sub: angle.proof,
               b: angle.before, a: angle.after,
               id: template === 'split' ? d.hold_time : `${d.name_en} · a yin yoga pose`,
@@ -204,7 +212,7 @@ export async function buildPinInventory(): Promise<Pin[]> {
             template,
             tone,
             image: cardUrl({
-              tpl: template, tone,
+              tpl: template, tone, v: template === 'card' ? CARD_DIRECTION : undefined,
               t: angle.headline, s: angle.audience, sub: angle.proof,
               b: angle.before, a: angle.after,
               id: `a ${d.minutes}-minute routine`,
@@ -279,7 +287,7 @@ export async function buildPinInventory(): Promise<Pin[]> {
             url,
             description: describe(audience, d.seo_description ?? d.description),
             image: cardUrl({
-              tpl: template, tone,
+              tpl: template, tone, v: template === 'card' ? CARD_DIRECTION : undefined,
               t: angle.headline, s: angle.audience, sub: angle.proof,
               id: 'from the journal',
               img: template === 'window' ? hero : undefined,
