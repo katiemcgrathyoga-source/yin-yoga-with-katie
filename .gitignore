@@ -65,3 +65,4 @@ scripts/.cache-Cabin.ttf
 # Generated pin previews — reproduce with scripts/preview-pins.mjs
 design/pin-preview/
 design/pincalendar-review.html
+design/pin-review/
