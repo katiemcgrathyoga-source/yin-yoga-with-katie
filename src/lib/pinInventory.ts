@@ -42,17 +42,33 @@ export type Pin = {
  */
 const TEMPLATE_ASPECT: Record<string, number> = {
   hook: 1000 / 1500,   // full bleed — the most demanding by far
-  split: 1000 / 1040,  // the arch, near square
-  video: 1000 / 860,
-  window: 1000 / 660,  // wider than the crop, so it never cuts her
-  offer: 1000 / 720,
-  states: 1000 / 700,
+  split: 808 / 1000,   // the arch; the second pass narrowed it
+  video: 1000 / 900,
+  window: 1000 / 850,  // the photograph took the surplus the old layout wasted
+  offer: 1000 / 800,
+  states: 1000 / 940,
 };
+
+/**
+ * The tallest Window photograph this pose can fill without losing its ends.
+ *
+ * The design puts the photo at 1000x850, which crops a 1.26:1 crop to 93% of
+ * its width. Six poses are wider than that — Sleeping Swan is 93%, Bow Tie is
+ * the full frame — so a fixed height would push the library's most-used runner
+ * pose onto a text card. The height gives way instead, down to a floor of 560.
+ */
+export function windowHeight(slug: string): number {
+  const frame = POSE_FRAMES[slug];
+  if (!frame) return 850;
+  const ideal = 1000 / (frame.span * frame.aspect);
+  return Math.round(Math.min(850, Math.max(560, ideal)));
+}
 
 /** Does this pose survive this template's crop with her whole body intact? */
 function fits(template: string, slug: string): boolean {
   const frame = POSE_FRAMES[slug];
   if (!frame) return false;
+  if (template === 'window') return true; // the height adapts, so it always holds her
   const target = TEMPLATE_ASPECT[template];
   if (!target) return true; // card has no photo
   const keeps = Math.min(1, target / frame.aspect);
@@ -137,6 +153,7 @@ export async function buildPinInventory(): Promise<Pin[]> {
               id: template === 'split' ? d.hold_time : `${d.name_en} · a yin yoga pose`,
               pose: template === 'split' ? d.name_en : undefined,
               img: template === 'card' ? undefined : img,
+              ph: template === 'window' ? String(windowHeight(d.slug)) : undefined,
             }),
           });
         }
@@ -161,7 +178,8 @@ export async function buildPinInventory(): Promise<Pin[]> {
     });
     // Not every routine names a hero pose; its first shape stands in fairly,
     // and it means no routine has to fall back to a text-only pin.
-    const hero = photoOf(d.hero_pose ?? d.steps[0]?.pose ?? '');
+    const heroSlug = d.hero_pose ?? d.steps[0]?.pose ?? '';
+    const hero = photoOf(heroSlug);
 
     for (const [i, angle] of d.pin_angles.entries()) {
       const audience = angle.audience as PinAudience;
@@ -192,6 +210,7 @@ export async function buildPinInventory(): Promise<Pin[]> {
               id: `a ${d.minutes}-minute routine`,
               items: template === 'poselist' ? JSON.stringify(items) : undefined,
               img: template === 'card' ? undefined : hero,
+              ph: template === 'window' ? String(windowHeight(heroSlug)) : undefined,
             }),
           });
         }
@@ -264,6 +283,7 @@ export async function buildPinInventory(): Promise<Pin[]> {
               t: angle.headline, s: angle.audience, sub: angle.proof,
               id: 'from the journal',
               img: template === 'window' ? hero : undefined,
+              ph: template === 'window' ? String(windowHeight(hero?.replace('/poses/','').replace('.jpg','') ?? '')) : undefined,
             }),
           });
         }

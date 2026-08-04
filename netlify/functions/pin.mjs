@@ -110,6 +110,8 @@ export default async (req) => {
   const cta = (p.get('cta') || '').slice(0, 30);
   const before = (p.get('b') || '').slice(0, 40);
   const after = (p.get('a') || '').slice(0, 40);
+  // Window photo height, chosen per pose by the inventory so a wide shape keeps its ends.
+  const photoH = Math.min(850, Math.max(560, Number(p.get('ph')) || 850));
 
   // Main photo. v2 templates take the subject-centred crop and a fixed vertical
   // focal; the older ones keep the per-photo focal registry above.
@@ -142,7 +144,7 @@ export default async (req) => {
   try {
     const png = await renderPin({
       tpl, title, eyebrow, subline, img, focal, quote, items, footer, tone,
-      identifier, poseName, duration, offer, cta, before, after,
+      identifier, poseName, duration, offer, cta, before, after, photoH,
     });
     return new Response(png, {
       headers: {

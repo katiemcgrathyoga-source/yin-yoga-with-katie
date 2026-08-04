@@ -257,258 +257,351 @@ function benefitCard({ title, eyebrow: eb }) {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   The benefit-led set (v2). Eight templates that lead with the reader's reason
-   rather than the pose name. Spec, character limits and the five headline
-   formulas: design/pin-system.html.
+   The benefit-led set (v2), after the second design pass.
+   Spec: design/pin-second-pass.md. Every number here came from that document.
 
-   Two things every one of them assumes:
+   Three things every template assumes:
      - copy is already within limits. Satori cannot shrink type to fit, so the
        schema (`pin_angles`) fails the build rather than letting a headline run
        off the canvas here.
      - the photo is subject-centred. scripts/gen-pin-crops.mjs recomposes each
-       pose around Katie once, into /poses/pin/, so these only set a vertical
-       focal and can trust the horizontal.
+       pose around Katie once, so these only set a vertical focal.
+     - a pose only reaches a template whose crop can hold it. The windows below
+       are tighter than the first pass, so src/lib/pinInventory.ts recomputes
+       eligibility from these exact numbers — see TEMPLATE_ASPECT there.
    ═══════════════════════════════════════════════════════════════════════════ */
 
 const CARD_DARK = '#3F4B45';
-const SCRIM = 'rgba(38,44,39,';
+/** Ground, accent and rule as raw RGB, for building gradients per colourway. */
+const RGB = {
+  dark:  { g: '72,84,76',      a: '188,157,154', r: '249,241,234' },
+  light: { g: '249,241,234',   a: '137,73,75',   r: '228,218,207' },
+};
+const rgbFor = (tone) => RGB[tone === 'dark' ? 'dark' : 'light'];
 
-// The v2 token set. Kept separate from pal() so the older templates are untouched.
 const pal2 = (tone) =>
   tone === 'dark'
-    ? { g: SAGE, i: OAT, acc: QUARTZ, ln: 'rgba(249,241,234,0.24)', soft: 'rgba(249,241,234,0.74)', card: CARD_DARK, pill: OAT, pi: SAGE }
-    : { g: OAT, i: SAGE, acc: ROSEWOOD, ln: LINE, soft: MUTED, card: CARD, pill: SAGE, pi: OAT };
+    ? { g: SAGE, i: OAT, acc: QUARTZ, ln: 'rgba(249,241,234,0.24)', soft: 'rgba(249,241,234,0.74)', card: CARD_DARK, pill: OAT, pi: SAGE, rim: 'rgba(249,241,234,0.30)' }
+    : { g: OAT, i: SAGE, acc: ROSEWOOD, ln: LINE, soft: MUTED, card: CARD, pill: SAGE, pi: OAT, rim: 'rgba(228,218,207,0.95)' };
 
-// Satori has no text-transform, so caps are applied in JS, and no em units, so
-// tracking is resolved to px at the call site.
+// Satori has no em units, so tracking is resolved to px at the call site.
 const caps = (t) => (t || '').toUpperCase();
-const eye = (text, color, size = 30, track = 0.26) =>
-  box({ fontFamily: 'Cabin', fontWeight: 600, fontSize: `${size}px`, letterSpacing: `${(size * track).toFixed(1)}px`, color }, caps(text));
-const hl = (text, color, size, extra = {}) =>
-  box({ fontFamily: 'Serif', fontSize: `${size}px`, lineHeight: 1.03, letterSpacing: '-1px', color, ...extra }, text);
-const sub = (text, color, size = 34) =>
-  box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: `${size}px`, lineHeight: 1.35, color }, text);
+
+/* ── The shared type scale ────────────────────────────────────────────────
+   One modular scale all eight inherit. Eight templates that share a scale read
+   as one system in a feed; per-template tuning is what made the first pass
+   inconsistent. The character limits are derived from these sizes — move one
+   and the limits in src/lib/pinBoards.ts have to be re-measured. */
+const eye = (text, color) =>
+  box({ fontFamily: 'Cabin', fontWeight: 600, fontSize: '26px', letterSpacing: '5.2px', lineHeight: 1, color }, caps(text));
+const hl = (text, color, size = 80, extra = {}) =>
+  box({ fontFamily: 'Serif', fontSize: `${size}px`, lineHeight: 1.06, letterSpacing: '-0.8px', color, ...extra }, text);
+const sub = (text, color, extra = {}) =>
+  box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: '32px', lineHeight: 1.45, color, ...extra }, text);
+const idLine = (text, color) =>
+  box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: '26px', letterSpacing: '1.6px', color }, text);
 const wordmark2 = (color, opacity = 0.8) =>
   box({ fontFamily: 'Cabin', fontWeight: 600, fontSize: '23px', letterSpacing: '4.6px', color, opacity }, 'yinyogawithkatie.com');
-const idLine = (text, color) => box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: '26px', color }, text);
-// Identifier and wordmark on one rule. Baseline-aligned so the two sizes sit together.
-const footRow = (id, p, { border = true, mark = p.i, markOpacity = 0.8 } = {}) =>
-  box(
-    {
-      alignItems: 'baseline', justifyContent: 'space-between', gap: '20px',
-      ...(border ? { paddingTop: '26px', borderTop: `1px solid ${p.ln}` } : {}),
-    },
-    [idLine(id || '', p.acc), wordmark2(mark, markOpacity)],
-  );
+const signature = (color, size = 62) =>
+  box({ fontFamily: 'Script', fontSize: `${size}px`, lineHeight: 0.8, color }, 'katie');
+
+/** A hairline that fades out before it reaches either margin. */
+const fadedRule = (tone, extra = {}) =>
+  box({
+    height: '1px', flexShrink: 0,
+    backgroundImage: `linear-gradient(90deg, rgba(${rgbFor(tone).r},0) 0%, rgba(${rgbFor(tone).r},0.5) 14%, rgba(${rgbFor(tone).r},0.5) 86%, rgba(${rgbFor(tone).r},0) 100%)`,
+    ...extra,
+  });
+
+const footRow = (id, p, { border = true, tone = 'light' } = {}) =>
+  box({ flexDirection: 'column' }, [
+    ...(border ? [fadedRule(tone, { marginBottom: '26px' })] : []),
+    box({ alignItems: 'baseline', justifyContent: 'space-between', gap: '20px' }, [
+      idLine(id || '', p.acc),
+      wordmark2(p.i, 0.8),
+    ]),
+  ]);
+
 const spacer = () => box({ flexGrow: 1 });
 const cover = (w, h, img, focal, style = {}) =>
   img
     ? { type: 'img', props: { src: img, style: { width: `${w}px`, height: `${h}px`, objectFit: 'cover', objectPosition: focal || '50% 52%', ...style } } }
     : box({ width: `${w}px`, height: `${h}px`, backgroundColor: LINE, ...style });
 
-/**
- * The veil behind type on a photograph.
- *
- * It takes the colourway's own ground, not a fixed dark green — a light pin with
- * a dark bottom third has stopped belonging to its colourway. And it travels far
- * further than a scrim needs to, with enough stops to read as light falling off
- * rather than a bar behind the words.
- */
-const veil = (tone) => {
-  const rgb = tone === 'dark' ? '38,44,39' : '249,241,234';
-  return `linear-gradient(to top, rgba(${rgb},0.97) 0%, rgba(${rgb},0.94) 18%, rgba(${rgb},0.78) 34%, rgba(${rgb},0.46) 52%, rgba(${rgb},0.16) 70%, rgba(${rgb},0) 86%)`;
-};
-/** Type colours for text sitting on a veiled photograph. */
-const onVeil = (tone) =>
-  tone === 'dark'
-    ? { eye: '#E6D2CF', ink: CARD, sub: 'rgba(249,241,234,0.88)', id: 'rgba(249,241,234,0.78)', mark: OAT, rule: 'rgba(249,241,234,0.38)' }
-    : { eye: ROSEWOOD, ink: SAGE, sub: MUTED, id: ROSEWOOD, mark: SAGE, rule: 'rgba(72,84,76,0.22)' };
-
-// 01 Benefit hook — full-bleed photograph, long veil, headline over it.
+// 01 Benefit hook — full-bleed photograph. Contrast is bought with a shadow on
+// the type rather than opacity on the veil, so the bottom of the frame survives.
 function tplHook({ headline, audience, proof, identifier, img, focal, tone }) {
-  const c = onVeil(tone);
-  return box({ width: '100%', height: '100%', position: 'relative', backgroundColor: tone === 'dark' ? SAGE : OAT }, [
+  const dark = tone === 'dark';
+  const { g } = rgbFor(tone);
+  const ink = dark ? CARD : SAGE;
+  const c = dark
+    ? { eye: '#E6D2CF', sub: 'rgba(249,241,234,0.88)', id: 'rgba(249,241,234,0.78)', mark: OAT }
+    : { eye: ROSEWOOD, sub: MUTED, id: ROSEWOOD, mark: SAGE };
+  const shadow = dark ? '0 2px 30px rgba(46,52,47,0.45)' : '0 2px 24px rgba(249,241,234,0.75)';
+  return box({ width: '100%', height: '100%', position: 'relative', backgroundColor: dark ? SAGE : OAT }, [
     cover(1000, 1500, img, focal, { position: 'absolute', top: '0', left: '0' }),
-    box({ position: 'absolute', top: '0', left: '0', width: '1000px', height: '1500px', backgroundImage: veil(tone) }),
+    // Two parts: a long ramp for overall legibility, and a radial pocket that
+    // puts the density under the words and lets the right of the frame stay
+    // photographic.
+    box({
+      position: 'absolute', left: '0', bottom: '0', width: '1000px', height: '780px',
+      backgroundImage: `linear-gradient(180deg, rgba(${g},0) 0%, rgba(${g},0.16) 18%, rgba(${g},0.44) 38%, rgba(${g},0.70) 56%, rgba(${g},0.86) 74%, rgba(${g},0.93) 100%)`,
+    }),
+    box({
+      position: 'absolute', left: '0', bottom: '0', width: '1000px', height: '640px',
+      backgroundImage: `radial-gradient(115% 78% at 4% 94%, rgba(${g},0.70) 0%, rgba(${g},0.32) 46%, rgba(${g},0) 78%)`,
+    }),
     box({ position: 'absolute', left: '72px', right: '72px', bottom: '64px', flexDirection: 'column', gap: '28px' }, [
-      eye(audience, c.eye),
-      hl(headline, c.ink, 112),
-      sub(proof, c.sub),
-      box({ alignItems: 'baseline', justifyContent: 'space-between', gap: '20px', paddingTop: '24px', borderTop: `1px solid ${c.rule}` }, [
-        idLine(identifier || '', c.id),
-        wordmark2(c.mark, 1),
+      box({ fontFamily: 'Cabin', fontWeight: 600, fontSize: '26px', letterSpacing: '5.2px', lineHeight: 1, color: c.eye, textShadow: `0 1px 12px rgba(${g},0.8)` }, caps(audience)),
+      hl(headline, ink, 100, { width: '860px', textShadow: shadow }),
+      sub(proof, c.sub, { textShadow: `0 1px 14px rgba(${g},0.85)` }),
+      box({ flexDirection: 'column' }, [
+        fadedRule(tone, { marginBottom: '24px' }),
+        box({ alignItems: 'baseline', justifyContent: 'space-between', gap: '20px' }, [
+          idLine(identifier || '', c.id),
+          wordmark2(c.mark, 1),
+        ]),
       ]),
     ]),
   ]);
 }
 
-// 02 Benefit card — no photograph. The most legible pin in the set at 236px.
+// 02 Benefit card — no photograph, so the surface itself carries the weight.
+// Direction A: a pressed panel — inset rim, inset bloom, and a lit corner.
 function tplCard({ headline, audience, proof, identifier, tone }) {
   const p = pal2(tone);
-  return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: p.g, padding: '66px' }, [
-    box({ flexGrow: 1, flexDirection: 'column', justifyContent: 'center', gap: '38px', border: `1px solid ${p.ln}`, padding: '76px 62px 62px' }, [
+  const { a } = rgbFor(tone);
+  return box({ width: '100%', height: '100%', position: 'relative', backgroundColor: p.g }, [
+    box({
+      position: 'absolute', top: '40px', left: '40px', width: '920px', height: '1420px',
+      borderRadius: '20px',
+      backgroundImage: `radial-gradient(88% 58% at 10% 4%, rgba(${a},0.16) 0%, rgba(${a},0) 62%)`,
+      boxShadow: `inset 0 0 0 1px ${p.rim}, inset 0 0 180px rgba(${a},0.14)`,
+    }),
+    box({
+      position: 'absolute', left: '104px', right: '104px', top: '132px', bottom: '112px',
+      flexDirection: 'column', gap: '36px',
+    }, [
+      // A spacer either side of the type: the block centres in the space above
+      // the footer instead of hanging off the top edge with a void beneath it.
+      spacer(),
       eye(audience, p.acc),
-      hl(headline, p.i, 146, { lineHeight: 0.99 }),
-      sub(proof, p.soft, 36),
-      box({ alignItems: 'flex-end', justifyContent: 'space-between', gap: '20px', paddingTop: '34px', borderTop: `1px solid ${p.ln}` }, [
+      hl(headline, p.i, 125, { lineHeight: 1.02, width: '792px' }),
+      sub(proof, p.soft),
+      spacer(),
+      box({ alignItems: 'flex-end', justifyContent: 'space-between', gap: '20px' }, [
         idLine(identifier || '', p.acc),
-        box({ fontFamily: 'Script', fontSize: '74px', lineHeight: 1, color: p.acc }, 'katie'),
+        signature(p.acc, 112),
       ]),
     ]),
   ]);
 }
 
-// 03 Problem → poses — the save-this workhorse. Over six rows it goes dense and
-// drops the thumbnails and notes; type never shrinks.
+// 03 Problem → poses — the thumbnails take the brand arch, the numerals become
+// display type, and the rules stop hitting the margins. Rows fill the column
+// rather than centring in it, which is what buys eight rows their legibility.
 function tplPoseList({ headline, audience, proof, identifier, items = [], tone }) {
   const p = pal2(tone);
+  const { g } = rgbFor(tone);
   const dense = items.length > 6;
-  // The thumbnails shrink past six rows; they never drop. Eight of the eleven
-  // public routines run seven poses or more, so dropping them turned the most
-  // common routine pin into a wall of text — which is the one thing this whole
-  // system is meant to avoid. The note is what goes; the photograph stays.
-  const th = dense ? { w: 66, h: 48 } : { w: 96, h: 70 };
+  const th = dense ? 92 : 100;
   const rows = items.map((it, i) =>
-    box({ alignItems: 'center', gap: '26px', padding: `${dense ? 13 : 24}px 0`, borderBottom: `1px solid ${p.ln}` }, [
-      box({ fontFamily: 'Serif', fontSize: '46px', color: p.acc, width: '46px', flexShrink: 0 }, String(i + 1)),
-      ...(it.thumb ? [cover(th.w, th.h, it.thumb, it.focal, { borderRadius: '6px', flexShrink: 0 })] : []),
-      box({ flexGrow: 1, flexDirection: 'column', gap: '2px' }, [
-        box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: '36px', color: p.i }, it.name || ''),
-        ...(it.note && !dense ? [box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: '24px', color: p.soft }, it.note)] : []),
+    box({ flexGrow: 1, minHeight: `${dense ? 108 : 132}px`, flexDirection: 'column', justifyContent: 'center' }, [
+      // The first row has no rule above it, so the block doesn't read as a table.
+      i === 0 ? box({ height: '1px' }) : fadedRule(tone),
+      box({ flexGrow: 1, alignItems: 'center' }, [
+        box({ fontFamily: 'Serif', fontSize: '50px', lineHeight: 1, width: '54px', color: p.acc, flexShrink: 0 }, String(i + 1)),
+        ...(it.thumb ? [cover(th, th, it.thumb, it.focal ?? '50% 42%', {
+          borderRadius: `${th / 2}px ${th / 2}px 8px 8px`, marginRight: '30px', flexShrink: 0,
+          boxShadow: `inset 0 0 0 1px rgba(${g},0.40)`,
+        })] : []),
+        box({ flexGrow: 1, flexDirection: 'column', gap: '2px' }, [
+          box({ fontFamily: 'Cabin', fontWeight: 600, fontSize: '40px', lineHeight: 1.15, color: p.i }, it.name || ''),
+          ...(it.note && !dense ? [box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: '24px', color: p.soft }, it.note)] : []),
+        ]),
+        box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: '32px', paddingLeft: '24px', color: p.soft, flexShrink: 0 }, it.hold || ''),
       ]),
-      box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: '26px', color: p.soft, flexShrink: 0 }, it.hold || ''),
     ]),
   );
-  return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: p.g, padding: '72px 66px 62px' }, [
-    eye(audience, p.acc),
-    hl(headline, p.i, 96, { marginTop: '18px', marginBottom: '20px' }),
-    sub(proof, p.soft),
-    box({ flexGrow: 1, flexDirection: 'column', justifyContent: 'center', marginTop: '34px' }, rows),
-    footRow(identifier, p),
+  return box({ width: '100%', height: '100%', position: 'relative', backgroundColor: p.g }, [
+    box({ position: 'absolute', left: '64px', right: '64px', top: '72px', flexDirection: 'column', gap: '22px' }, [
+      eye(audience, p.acc),
+      hl(headline, p.i, 80, { width: '872px' }),
+      sub(proof, p.soft),
+    ]),
+    box({ position: 'absolute', left: '64px', right: '64px', top: `${dense ? 452 : 500}px`, bottom: '158px', flexDirection: 'column' }, rows),
+    box({ position: 'absolute', left: '64px', right: '64px', bottom: '64px', flexDirection: 'column' }, [footRow(identifier, p, { tone })]),
   ]);
 }
 
-// 04 Split — headline block above, arched photograph below. Compact poses only:
-// the arch is close to square, so a wide pose loses its ends.
+// 04 Split — the arch is the one element genuinely lifted off the ground, so it
+// is the one element allowed to cast a shadow.
 function tplSplit({ headline, audience, proof, poseName, identifier, img, focal, tone }) {
   const p = pal2(tone);
-  // The arch is inset, framed and lifted off the bottom edge rather than bleeding
-  // off it. Margin is what makes it read as a photograph placed on a page
-  // instead of a background the type happens to sit on.
-  return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: p.g, padding: '70px 66px 34px' }, [
-    eye(audience, p.acc),
-    hl(headline, p.i, 104, { marginTop: '24px', marginBottom: '22px' }),
-    sub(proof, p.soft),
-    box({ flexGrow: 1, position: 'relative', marginTop: '34px' }, [
-      cover(868, 1500, img, focal, {
-        position: 'absolute', top: '0', left: '0', height: '100%',
-        borderRadius: '434px 434px 10px 10px', border: `1px solid ${p.ln}`,
-      }),
-      // A filled tab, not bare type on a scrim: the label becomes an object
-      // sitting on the picture, which is what stops it looking like a caption
-      // that fell on top.
-      box({
-        position: 'absolute', left: '30px', bottom: '30px', flexDirection: 'column', gap: '2px',
-        backgroundColor: p.card, borderRadius: '4px', padding: '16px 24px 14px',
-        boxShadow: '0 2px 10px rgba(38,44,39,0.14)',
-      }, [
-        box({ fontFamily: 'Serif', fontSize: '40px', color: p.i }, poseName || ''),
-        box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: '22px', color: p.soft }, identifier || ''),
-      ]),
+  const { g, a } = rgbFor(tone);
+  return box({ width: '100%', height: '100%', position: 'relative', backgroundColor: p.g }, [
+    box({ position: 'absolute', left: '64px', right: '64px', top: '70px', flexDirection: 'column', gap: '22px' }, [
+      eye(audience, p.acc),
+      hl(headline, p.i, 80, { width: '872px' }),
+      sub(proof, p.soft),
     ]),
-    box({ alignItems: 'center', justifyContent: 'space-between', gap: '20px', marginTop: '26px' }, [
+    cover(808, 1000, img, focal, {
+      position: 'absolute', left: '96px', top: '436px',
+      borderRadius: '404px 404px 16px 16px',
+      // In paint order: the hairline, a top vignette so the empty upper wall
+      // stops reading as a hole, a bottom lift in the ground colour so the mat
+      // dissolves into the pin, and the only outer shadow in the set.
+      boxShadow: `inset 0 0 0 1px rgba(${g},0.55), inset 0 70px 130px -70px rgba(46,52,47,0.30), inset 0 -90px 100px -50px rgba(${g},0.45), 0 30px 70px -34px rgba(46,52,47,0.38)`,
+    }),
+    box({
+      position: 'absolute', left: '96px', top: '1236px', flexDirection: 'column', gap: '2px',
+      backgroundColor: p.card, padding: '22px 36px 24px', borderRadius: '0 14px 0 0',
+      boxShadow: `inset 0 0 0 1px rgba(${a},0.35), 0 14px 34px -14px rgba(46,52,47,0.40)`,
+    }, [
+      box({ fontFamily: 'Serif', fontSize: '40px', color: p.i }, poseName || ''),
+      box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: '22px', color: p.soft }, identifier || ''),
+    ]),
+    box({ position: 'absolute', left: '64px', right: '64px', bottom: '52px', alignItems: 'center', justifyContent: 'space-between' }, [
       wordmark2(p.i, 0.8),
-      box({ fontFamily: 'Script', fontSize: '62px', lineHeight: 1, color: p.acc }, 'katie'),
+      signature(p.acc, 62),
     ]),
   ]);
 }
 
-// 05 Offer — the only template that asks for something. It reads as an
-// invitation because the offer sits in the brand's own card, not a badge.
+// 05 Offer — the pill and the call to action are the only two filled shapes.
+// Rosewood on oat is 5.2:1; the quartz-on-sage it replaced was 1.6:1.
 function tplOffer({ headline, audience, proof, offer, cta, identifier, img, focal, tone }) {
   const p = pal2(tone);
+  const { a } = rgbFor(tone);
   return box({ width: '100%', height: '100%', position: 'relative', backgroundColor: p.g }, [
-    cover(1000, 720, img, focal),
-    box({ position: 'absolute', top: '56px', left: '64px', backgroundColor: p.pill, color: p.pi, fontFamily: 'Cabin', fontWeight: 600, fontSize: '26px', letterSpacing: '6.2px', padding: '14px 30px 11px', borderRadius: '999px' }, caps(audience)),
-    box({ position: 'absolute', left: '64px', right: '64px', top: '604px', flexDirection: 'column', gap: '26px', backgroundColor: p.card, border: `1px solid ${p.ln}`, padding: '56px 54px' }, [
-      hl(headline, p.i, 104, { lineHeight: 1 }),
+    // The band's last third masks to zero, so the card sits in a fade rather
+    // than on a seam — which is what removes the slivers either side of it.
+    cover(1000, 800, img, focal, {
+      maskImage: 'linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 64%, rgba(0,0,0,0.42) 86%, rgba(0,0,0,0) 100%)',
+    }),
+    box({
+      position: 'absolute', top: '56px', left: '56px', backgroundColor: p.pill, color: p.pi,
+      fontFamily: 'Cabin', fontWeight: 600, fontSize: '26px', letterSpacing: '5.2px',
+      padding: '18px 32px', borderRadius: '999px',
+      boxShadow: `inset 0 0 0 1px rgba(${a},0.40), 0 10px 26px -12px rgba(46,52,47,0.35)`,
+    }, caps(audience)),
+    box({
+      position: 'absolute', left: '48px', right: '48px', bottom: '148px',
+      flexDirection: 'column', gap: '24px',
+      backgroundColor: p.card, borderRadius: '16px', padding: '76px 64px 64px',
+      boxShadow: `0 40px 80px -32px rgba(46,52,47,0.45), inset 0 0 0 1px ${p.rim}`,
+    }, [
+      hl(headline, p.i, 80, { width: '760px' }),
       sub(proof, p.soft),
-      box({ padding: '20px 0', borderTop: `1px solid ${p.ln}`, borderBottom: `1px solid ${p.ln}`, fontFamily: 'Cabin', fontWeight: 400, fontSize: '28px', color: p.acc }, offer || ''),
-      box({ alignSelf: 'flex-start', backgroundColor: p.acc, color: CARD, fontFamily: 'Cabin', fontWeight: 600, fontSize: '28px', letterSpacing: '1.7px', padding: '18px 38px 15px', borderRadius: '999px' }, cta || ''),
+      fadedRule(tone, { marginTop: '40px' }),
+      box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: '28px', color: p.acc, marginTop: '20px' }, offer || ''),
+      box({
+        alignSelf: 'flex-start', alignItems: 'center', gap: '14px', marginTop: '10px',
+        backgroundColor: ROSEWOOD, color: CARD, borderRadius: '999px', padding: '26px 44px',
+        fontFamily: 'Cabin', fontWeight: 600, fontSize: '32px',
+        boxShadow: 'inset 0 -3px 0 rgba(46,52,47,0.22), 0 16px 30px -14px rgba(137,73,75,0.55)',
+      }, [
+        box({}, cta || ''),
+        // Two borders on a rotated square — an arrow Satori will actually draw.
+        box({ width: '16px', height: '16px', borderTop: '2px solid #FDF8F2', borderRight: '2px solid #FDF8F2', transform: 'rotate(45deg)' }),
+      ]),
     ]),
-    // The destination URL stands in for the wordmark here — printing both would
-    // put the domain on the pin twice.
     box({ position: 'absolute', left: '64px', right: '64px', bottom: '52px' }, [
       box({ fontFamily: 'Cabin', fontWeight: 600, fontSize: '25px', letterSpacing: '4.6px', color: p.i, opacity: 0.85 }, identifier || 'yinyogawithkatie.com'),
     ]),
   ]);
 }
 
-// 06 Before → after — same face, same size, only the colour changes. Both state
-// lines must break the same way or the device stops reading.
+// 06 Before → after — the 0.55 opacity on the first line does the work the
+// separator cannot at 236px: a faint line becoming a solid one.
 function tplStates({ audience, before, after, proof, identifier, img, focal, tone }) {
   const p = pal2(tone);
-  return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: p.g, padding: '76px 66px 0' }, [
-    eye(audience, p.acc),
-    box({ marginTop: '34px' }, [hl(before, p.soft, 108, { lineHeight: 1.02 })]),
-    // A drawn dot, not an arrow glyph: Cabin has no ↓ and Satori renders a
-    // missing glyph as nothing at all rather than tofu, so it fails silently.
-    box({ alignItems: 'center', gap: '20px', marginTop: '34px', marginBottom: '34px' }, [
-      box({ flexGrow: 1, height: '1px', backgroundColor: p.ln }),
-      box({ width: '11px', height: '11px', borderRadius: '999px', backgroundColor: p.acc, flexShrink: 0 }),
-      box({ flexGrow: 1, height: '1px', backgroundColor: p.ln }),
+  const { r } = rgbFor(tone);
+  return box({ width: '100%', height: '100%', position: 'relative', backgroundColor: p.g }, [
+    box({ position: 'absolute', left: '64px', right: '64px', top: '76px', flexDirection: 'column' }, [
+      eye(audience, p.acc),
+      box({ marginTop: '34px' }, [hl(before, p.i, 100, { width: '860px', opacity: 0.55 })]),
+      box({ alignItems: 'center', gap: '26px', marginTop: '34px', marginBottom: '34px' }, [
+        box({ flexGrow: 1, height: '1px', backgroundImage: `linear-gradient(90deg, rgba(${r},0) 0%, rgba(${r},0.6) 100%)` }),
+        box({ width: '22px', height: '22px', flexShrink: 0, borderRight: `2px solid ${p.acc}`, borderBottom: `2px solid ${p.acc}`, transform: 'rotate(45deg)' }),
+        box({ flexGrow: 1, height: '1px', backgroundImage: `linear-gradient(90deg, rgba(${r},0.6) 0%, rgba(${r},0) 100%)` }),
+      ]),
+      hl(after, p.i, 100, { width: '860px' }),
+      box({ marginTop: '40px' }, [sub(proof, p.soft)]),
+      box({ marginTop: '30px' }, [footRow(identifier, p, { tone })]),
     ]),
-    hl(after, p.i, 108, { lineHeight: 1.02 }),
-    box({ marginTop: '40px' }, [sub(proof, p.soft)]),
-    box({ marginTop: '26px', marginBottom: '34px' }, [footRow(identifier, p)]),
-    // The photo takes whatever the type leaves, so there is never a gap above it,
-    // and its top edge fades in rather than starting on a hard line.
-    box({ flexGrow: 1, marginLeft: '-66px', marginRight: '-66px', overflow: 'hidden' }, [
-      cover(1000, 1500, img, focal, {
-        height: '100%',
-        maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 11%)',
+    box({ position: 'absolute', left: '0', bottom: '0', width: '1000px', height: '940px' }, [
+      cover(1000, 940, img, focal, {
+        maskImage: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 7%, rgba(0,0,0,1) 19%, rgba(0,0,0,1) 100%)',
       }),
     ]),
   ]);
 }
 
-// 07 Watch with me — the pin whose job is a click to YouTube, not a save.
+// 07 Watch with me — a clipPath triangle is the difference between a time and a
+// video, and the tab is the one element that ignores the colourway: a sage tab
+// on a photograph is a grey blob.
 function tplVideo({ headline, audience, proof, identifier, duration, img, focal, tone }) {
   const p = pal2(tone);
-  return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: p.g }, [
-    box({ position: 'relative', flexShrink: 0 }, [
-      cover(1000, 860, img, focal),
-      box({ position: 'absolute', left: '0', right: '0', bottom: '0', height: '220px', backgroundImage: `linear-gradient(to top, ${SCRIM}0.8) 0%, ${SCRIM}0) 100%)` }),
-      box({ position: 'absolute', top: '52px', right: '56px', backgroundColor: 'rgba(38,44,39,0.86)', color: OAT, fontFamily: 'Cabin', fontWeight: 600, fontSize: '26px', letterSpacing: '2.6px', padding: '13px 26px 11px', borderRadius: '999px' }, duration || ''),
-      box({ position: 'absolute', left: '56px', bottom: '44px' }, [eye(audience, CARD, 28, 0.24)]),
+  return box({ width: '100%', height: '100%', position: 'relative', backgroundColor: p.g }, [
+    cover(1000, 900, img, focal, {
+      maskImage: 'linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 82%, rgba(0,0,0,0.4) 94%, rgba(0,0,0,0) 100%)',
+    }),
+    box({
+      position: 'absolute', top: '56px', right: '56px', alignItems: 'center', gap: '16px',
+      backgroundColor: 'rgba(46,52,47,0.90)', color: OAT, borderRadius: '999px',
+      padding: '18px 34px 18px 28px',
+      fontFamily: 'Cabin', fontWeight: 600, fontSize: '26px', letterSpacing: '2.6px',
+      boxShadow: 'inset 0 0 0 1px rgba(249,241,234,0.30), 0 12px 30px -12px rgba(46,52,47,0.55)',
+    }, [
+      box({ width: '16px', height: '18px', backgroundColor: '#F9F1EA', clipPath: 'polygon(0% 0%, 100% 50%, 0% 100%)' }),
+      box({}, duration || ''),
     ]),
-    box({ flexGrow: 1, flexDirection: 'column', gap: '24px', padding: '52px 66px 56px' }, [
-      hl(headline, p.i, 104),
+    box({
+      position: 'absolute', left: '0', top: '766px',
+      backgroundColor: '#FDF8F2', color: ROSEWOOD,
+      fontFamily: 'Cabin', fontWeight: 600, fontSize: '26px', letterSpacing: '5.2px',
+      padding: '18px 36px 18px 56px', borderRadius: '0 999px 999px 0',
+      boxShadow: '0 14px 32px -14px rgba(46,52,47,0.45)',
+    }, caps(audience)),
+    box({ position: 'absolute', left: '64px', right: '64px', top: '960px', flexDirection: 'column', gap: '24px' }, [
+      hl(headline, p.i, 80, { width: '872px' }),
       sub(proof, p.soft),
-      spacer(),
-      footRow(identifier, p),
     ]),
+    box({ position: 'absolute', left: '64px', right: '64px', bottom: '64px', flexDirection: 'column' }, [footRow(identifier, p, { tone })]),
   ]);
 }
 
-// 08 Window — the one photo template that takes any pose without a crop
-// decision. Lying and reclined poses live here.
-function tplWindow({ headline, audience, proof, identifier, img, focal, tone }) {
+// 08 Window — a large calm image with a caption under it. The surplus the old
+// space-between was distributing went to the photograph.
+function tplWindow({ headline, audience, proof, identifier, img, focal, tone, photoH = 850 }) {
   const p = pal2(tone);
-  return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: p.g }, [
-    box({ flexDirection: 'column', gap: '28px', padding: '70px 66px 46px' }, [
-      box({ alignSelf: 'flex-start', backgroundColor: p.pill, color: p.pi, fontFamily: 'Cabin', fontWeight: 600, fontSize: '27px', letterSpacing: '6.5px', padding: '15px 32px 12px', borderRadius: '999px' }, caps(audience)),
-      hl(headline, p.i, 92),
+  const { a } = rgbFor(tone);
+  return box({ width: '100%', height: '100%', position: 'relative', backgroundColor: p.g }, [
+    box({ position: 'absolute', left: '64px', right: '64px', top: '70px', flexDirection: 'column', gap: '28px' }, [
+      box({
+        alignSelf: 'flex-start', backgroundColor: p.pill, color: p.pi,
+        fontFamily: 'Cabin', fontWeight: 600, fontSize: '26px', letterSpacing: '5.2px',
+        padding: '16px 30px', borderRadius: '999px',
+        boxShadow: `inset 0 0 0 1px rgba(${a},0.45)`,
+      }, caps(audience)),
+      hl(headline, p.i, 80, { width: '872px' }),
     ]),
-    // Both edges dissolve into the ground rather than stopping on a rule. It is
-    // the difference between a photograph laid on the page and one boxed into a
-    // slot — and percentages, not calc(), because Satori has no calc.
-    cover(1000, 660, img, focal, {
-      maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 7%, rgba(0,0,0,1) 93%, rgba(0,0,0,0) 100%)',
-    }),
-    box({ flexGrow: 1, flexDirection: 'column', justifyContent: 'space-between', gap: '28px', padding: '44px 66px 60px' }, [
+    // The height adapts to the pose. 850 is the design's figure, but a wide
+    // shape cropped to 1000x850 loses its ends — Sleeping Swan is 93% of her
+    // frame — so the inventory sends the tallest window that still holds her.
+    box({ position: 'absolute', left: '0', top: '340px', width: '1000px', height: `${photoH}px` }, [
+      cover(1000, photoH, img, focal, {
+        maskImage: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 9%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%)',
+      }),
+    ]),
+    box({ position: 'absolute', left: '64px', right: '64px', bottom: '64px', flexDirection: 'column' }, [
       sub(proof, p.soft),
-      footRow(identifier, p),
+      fadedRule(tone, { marginTop: '44px', marginBottom: '26px' }),
+      box({ alignItems: 'baseline', justifyContent: 'space-between', gap: '20px' }, [
+        idLine(identifier || '', p.acc),
+        wordmark2(p.i, 0.8),
+      ]),
     ]),
   ]);
 }
@@ -520,7 +613,7 @@ async function png(tree) {
 }
 
 /** Render a 1000×1500 (2:3) Pinterest pin to a PNG Buffer. */
-export async function renderPin({ tpl, title, eyebrow: eb, subline, img, focal, quote, items, footer, tone, poseName, identifier, duration, offer, cta, before, after }) {
+export async function renderPin({ tpl, title, eyebrow: eb, subline, img, focal, quote, items, footer, tone, poseName, identifier, duration, offer, cta, before, after, photoH }) {
   let tree;
   // The v2 set reads the same params under benefit-led names: title is the
   // headline, eyebrow the audience tag, subline the proof.
@@ -533,7 +626,7 @@ export async function renderPin({ tpl, title, eyebrow: eb, subline, img, focal, 
     case 'offer': return png(tplOffer({ ...v2, offer, cta }));
     case 'states': return png(tplStates({ ...v2, before, after }));
     case 'video': return png(tplVideo({ ...v2, duration }));
-    case 'window': return png(tplWindow(v2));
+    case 'window': return png(tplWindow({ ...v2, photoH }));
   }
   switch (tpl) {
     case 'photohook': tree = photoHook({ title, eyebrow: eb, subline, img, focal }); break;

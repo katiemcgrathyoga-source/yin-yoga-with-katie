@@ -48,9 +48,11 @@ const TEMPLATES = [
     subline: 'Nineteen minutes, and nothing to buy.', identifier: 'a 19-minute routine', items: SHOULDERS }],
   ['04-poselist-dense', { tpl: 'poselist', eyebrow: 'for runners', title: 'Legs that move again, in eight poses',
     subline: 'Twenty-six minutes, the evening after a run.', identifier: 'a 26-minute routine', items: LEGS }],
-  ['05-split', { tpl: 'split', eyebrow: 'if you sit all day', title: 'Breathe properly again in two minutes',
-    subline: 'The chest a desk chair closes a little more each hour.',
-    poseName: 'Camel', identifier: 'a yin yoga pose · hold 2 min', img: photo('camel', true), focal: '50% 50%' }],
+  // Camel is no longer eligible: the second pass narrowed the arch to 0.808 and
+  // she spans 73% of her crop. Seal is one of the nine that still fit.
+  ['05-split', { tpl: 'split', eyebrow: 'for a stiff back', title: 'The backbend a desk day earns you',
+    subline: 'Arms straight, three minutes. Ease off if pinchy.',
+    poseName: 'Seal', identifier: 'a yin yoga pose · hold 3 min', img: photo('seal', true), focal: '50% 50%' }],
   ['06-offer', { tpl: 'offer', eyebrow: 'for runners', title: 'The fifteen minutes after your run',
     subline: 'One easy hold for each place a run tightens.',
     offer: 'Free · 15 minutes · straight to your inbox', cta: 'Send it to me',
