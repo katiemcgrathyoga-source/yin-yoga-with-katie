@@ -306,21 +306,37 @@ const cover = (w, h, img, focal, style = {}) =>
     ? { type: 'img', props: { src: img, style: { width: `${w}px`, height: `${h}px`, objectFit: 'cover', objectPosition: focal || '50% 52%', ...style } } }
     : box({ width: `${w}px`, height: `${h}px`, backgroundColor: LINE, ...style });
 
-// 01 Benefit hook — full-bleed photograph, long scrim, headline over it.
-function tplHook({ headline, audience, proof, identifier, img, focal }) {
-  return box({ width: '100%', height: '100%', position: 'relative', backgroundColor: SAGE }, [
+/**
+ * The veil behind type on a photograph.
+ *
+ * It takes the colourway's own ground, not a fixed dark green — a light pin with
+ * a dark bottom third has stopped belonging to its colourway. And it travels far
+ * further than a scrim needs to, with enough stops to read as light falling off
+ * rather than a bar behind the words.
+ */
+const veil = (tone) => {
+  const rgb = tone === 'dark' ? '38,44,39' : '249,241,234';
+  return `linear-gradient(to top, rgba(${rgb},0.97) 0%, rgba(${rgb},0.94) 18%, rgba(${rgb},0.78) 34%, rgba(${rgb},0.46) 52%, rgba(${rgb},0.16) 70%, rgba(${rgb},0) 86%)`;
+};
+/** Type colours for text sitting on a veiled photograph. */
+const onVeil = (tone) =>
+  tone === 'dark'
+    ? { eye: '#E6D2CF', ink: CARD, sub: 'rgba(249,241,234,0.88)', id: 'rgba(249,241,234,0.78)', mark: OAT, rule: 'rgba(249,241,234,0.38)' }
+    : { eye: ROSEWOOD, ink: SAGE, sub: MUTED, id: ROSEWOOD, mark: SAGE, rule: 'rgba(72,84,76,0.22)' };
+
+// 01 Benefit hook — full-bleed photograph, long veil, headline over it.
+function tplHook({ headline, audience, proof, identifier, img, focal, tone }) {
+  const c = onVeil(tone);
+  return box({ width: '100%', height: '100%', position: 'relative', backgroundColor: tone === 'dark' ? SAGE : OAT }, [
     cover(1000, 1500, img, focal, { position: 'absolute', top: '0', left: '0' }),
-    box({
-      position: 'absolute', top: '0', left: '0', width: '1000px', height: '1500px',
-      backgroundImage: `linear-gradient(to top, ${SCRIM}0.94) 0%, ${SCRIM}0.80) 26%, ${SCRIM}0.28) 50%, ${SCRIM}0) 68%)`,
-    }),
+    box({ position: 'absolute', top: '0', left: '0', width: '1000px', height: '1500px', backgroundImage: veil(tone) }),
     box({ position: 'absolute', left: '72px', right: '72px', bottom: '64px', flexDirection: 'column', gap: '28px' }, [
-      eye(audience, '#E6D2CF'),
-      hl(headline, CARD, 112),
-      sub(proof, 'rgba(249,241,234,0.88)'),
-      box({ alignItems: 'baseline', justifyContent: 'space-between', gap: '20px', paddingTop: '24px', borderTop: '1px solid rgba(249,241,234,0.4)' }, [
-        idLine(identifier || '', 'rgba(249,241,234,0.8)'),
-        wordmark2(OAT, 1),
+      eye(audience, c.eye),
+      hl(headline, c.ink, 112),
+      sub(proof, c.sub),
+      box({ alignItems: 'baseline', justifyContent: 'space-between', gap: '20px', paddingTop: '24px', borderTop: `1px solid ${c.rule}` }, [
+        idLine(identifier || '', c.id),
+        wordmark2(c.mark, 1),
       ]),
     ]),
   ]);
@@ -376,18 +392,33 @@ function tplPoseList({ headline, audience, proof, identifier, items = [], tone }
 // the arch is close to square, so a wide pose loses its ends.
 function tplSplit({ headline, audience, proof, poseName, identifier, img, focal, tone }) {
   const p = pal2(tone);
-  return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: p.g, padding: '70px 66px 0' }, [
+  // The arch is inset, framed and lifted off the bottom edge rather than bleeding
+  // off it. Margin is what makes it read as a photograph placed on a page
+  // instead of a background the type happens to sit on.
+  return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: p.g, padding: '70px 66px 34px' }, [
     eye(audience, p.acc),
     hl(headline, p.i, 104, { marginTop: '24px', marginBottom: '22px' }),
     sub(proof, p.soft),
-    box({ flexGrow: 1, position: 'relative', marginTop: '34px', marginLeft: '-66px', marginRight: '-66px', overflow: 'hidden' }, [
-      cover(1000, 1500, img, focal, { position: 'absolute', top: '0', left: '0', height: '100%', borderRadius: '500px 500px 0 0' }),
-      box({ position: 'absolute', left: '0', right: '0', bottom: '0', height: '280px', backgroundImage: `linear-gradient(to top, ${SCRIM}0.82) 0%, ${SCRIM}0) 100%)` }),
-      box({ position: 'absolute', left: '66px', bottom: '56px', flexDirection: 'column', gap: '4px' }, [
-        box({ fontFamily: 'Serif', fontSize: '46px', color: CARD }, poseName || ''),
-        box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: '24px', color: 'rgba(249,241,234,0.88)' }, identifier || ''),
+    box({ flexGrow: 1, position: 'relative', marginTop: '34px' }, [
+      cover(868, 1500, img, focal, {
+        position: 'absolute', top: '0', left: '0', height: '100%',
+        borderRadius: '434px 434px 10px 10px', border: `1px solid ${p.ln}`,
+      }),
+      // A filled tab, not bare type on a scrim: the label becomes an object
+      // sitting on the picture, which is what stops it looking like a caption
+      // that fell on top.
+      box({
+        position: 'absolute', left: '30px', bottom: '30px', flexDirection: 'column', gap: '2px',
+        backgroundColor: p.card, borderRadius: '4px', padding: '16px 24px 14px',
+        boxShadow: '0 2px 10px rgba(38,44,39,0.14)',
+      }, [
+        box({ fontFamily: 'Serif', fontSize: '40px', color: p.i }, poseName || ''),
+        box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: '22px', color: p.soft }, identifier || ''),
       ]),
-      box({ position: 'absolute', right: '66px', bottom: '56px' }, [wordmark2(OAT, 1)]),
+    ]),
+    box({ alignItems: 'center', justifyContent: 'space-between', gap: '20px', marginTop: '26px' }, [
+      wordmark2(p.i, 0.8),
+      box({ fontFamily: 'Script', fontSize: '62px', lineHeight: 1, color: p.acc }, 'katie'),
     ]),
   ]);
 }
@@ -430,9 +461,13 @@ function tplStates({ audience, before, after, proof, identifier, img, focal, ton
     hl(after, p.i, 108, { lineHeight: 1.02 }),
     box({ marginTop: '40px' }, [sub(proof, p.soft)]),
     box({ marginTop: '26px', marginBottom: '34px' }, [footRow(identifier, p)]),
-    // The photo takes whatever the type leaves, so there is never a gap above it.
+    // The photo takes whatever the type leaves, so there is never a gap above it,
+    // and its top edge fades in rather than starting on a hard line.
     box({ flexGrow: 1, marginLeft: '-66px', marginRight: '-66px', overflow: 'hidden' }, [
-      cover(1000, 1500, img, focal, { height: '100%' }),
+      cover(1000, 1500, img, focal, {
+        height: '100%',
+        maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 11%)',
+      }),
     ]),
   ]);
 }
@@ -465,7 +500,12 @@ function tplWindow({ headline, audience, proof, identifier, img, focal, tone }) 
       box({ alignSelf: 'flex-start', backgroundColor: p.pill, color: p.pi, fontFamily: 'Cabin', fontWeight: 600, fontSize: '27px', letterSpacing: '6.5px', padding: '15px 32px 12px', borderRadius: '999px' }, caps(audience)),
       hl(headline, p.i, 92),
     ]),
-    cover(1000, 660, img, focal, { borderTop: `1px solid ${p.ln}`, borderBottom: `1px solid ${p.ln}` }),
+    // Both edges dissolve into the ground rather than stopping on a rule. It is
+    // the difference between a photograph laid on the page and one boxed into a
+    // slot — and percentages, not calc(), because Satori has no calc.
+    cover(1000, 660, img, focal, {
+      maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 7%, rgba(0,0,0,1) 93%, rgba(0,0,0,0) 100%)',
+    }),
     box({ flexGrow: 1, flexDirection: 'column', justifyContent: 'space-between', gap: '28px', padding: '44px 66px 60px' }, [
       sub(proof, p.soft),
       footRow(identifier, p),
