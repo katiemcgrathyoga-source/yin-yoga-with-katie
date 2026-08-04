@@ -1,119 +1,118 @@
-> Paste everything below the line into Claude (design mode) as one message, and
-> attach the 18 JPEGs in `design/pin-review/` — all eight templates, both
-> colourways. Those are real renders from the production renderer, not mockups.
+# Handoff: visual polish pass
+
+**How to use this file:** attach the 18 JPEGs in `design/pin-review/`, then paste
+everything below the horizontal rule as one message. Nothing else is needed.
+
+Regenerate the JPEGs first if the templates have changed since:
+`node scripts/export-pins-for-review.mjs`
 
 ---
 
-# Brief: visual polish pass on eight working Pinterest templates
+# Brief: a second visual pass on eight working Pinterest templates
 
 You designed the original system for **Yin Yoga with Katie**. It has since been
 built and shipped: eight templates rendering live at 1000 × 1500 through Satori,
-feeding a daily pinning calendar. The attached images are what the renderer
-actually produces today.
+feeding a daily pinning calendar. The attached images are exactly what the
+renderer produces today — real photographs, real copy, real fonts.
 
-**This is not a redesign.** The templates work, the copy is locked, the layouts
-are correct. What is missing is the last ten per cent — the detail that separates
-a good pin from a beautiful one, which is the part your earlier set had and the
-built version lost in translation.
+**This is not a redesign.** The templates work and the layouts are correct. What
+is wanted is the last ten per cent: the detail that separates a good pin from a
+beautiful one.
+
+## What has already been fixed — please don't redo these
+
+A first polish pass landed four changes. They are in the attached images:
+
+1. **The veil behind type on a photograph now follows the colourway.** It was a
+   fixed dark green regardless of tone, so a "light" pin had a dark bottom third.
+   It now uses the colourway's own ground, across six stops from the bottom edge
+   to 86%.
+2. **The Split's arch is inset, framed with a hairline, and lifted off the bottom
+   edge**, with the pose name as a filled tab and the signature in the opposite
+   corner.
+3. **The Window's photograph dissolves into the ground at both edges** via a
+   mask, instead of stopping on hairline rules.
+4. **Before → after's photograph fades in at the top** the same way.
+
+## Where to push
+
+Everything else about how these look. In particular the things a first pass
+corrects but a second pass invents:
+
+- **Type relationships inside a single pin.** The sizes were set by eye. The
+  ratio between headline, proof and identifier is probably not optimal on any of
+  the eight.
+- **The Benefit card.** It is the only template with no photograph and it has had
+  the least attention — currently a hairline box and nothing else. It has to be
+  the loudest pin in a feed.
+- **The Offer.** The card lifted over the photo band is the busiest composition
+  in the set and the one that has to convert.
+- **The pose lists.** Two of them, five rows and eight rows. The dense one is
+  the most-used routine pin and the least considered.
+- **The Video.** The run-time badge and the audience tag over the photograph are
+  the plainest elements in the whole system.
+- **Radial gradients, `filter`, `clipPath`, `textShadow` and 2D transforms are
+  all available and entirely unused.** So is inset `boxShadow`.
 
 ## What to leave alone
 
-Do not propose changes to any of these. They are settled and expensive to move.
+Settled, and expensive to move.
 
 - **The canvas**: 1000 × 1500, 2:3.
 - **The eight templates and their jobs**: Benefit hook, Benefit card, Problem →
   poses, Split, Offer, Before → after, Watch with me, Window.
-- **All copy**, and the character limits behind it — audience ≤22, headline ≤40,
+- **All copy**, and the limits behind it — audience ≤22 characters, headline ≤40,
   proof ≤54, state lines ≤19. The words are the client's voice and have been
   through review.
-- **Which photo goes in which template.** Eligibility is computed from a measured
-  subject extent per photograph; a wide pose physically cannot go in a portrait
-  crop. Photos are pre-centred, so horizontal focal is always 50%.
-- **The palette and type.** Oat `#F9F1EA`, Card `#FDF8F2`, Sage `#48544C`,
-  Rosewood `#89494B`, Quartz `#BC9D9A`, Line `#E4DACF`, Muted `#6E756F`,
-  Ink `#2E342F`. Cormorant Garamond 500 for display, Cabin 400/600 for
-  everything else, and **Aurellie Calestion only ever for the signed word
-  "katie"** — never a headline, never a label.
+- **Which photograph goes in which template.** Eligibility is computed from a
+  measured subject extent per photo; a wide pose physically cannot go in a
+  portrait crop. Photos are pre-centred, so the horizontal focal is always 50%.
+- **Palette**: Oat `#F9F1EA`, Card `#FDF8F2`, Sage `#48544C`, Rosewood `#89494B`,
+  Quartz `#BC9D9A`, Line `#E4DACF`, Muted `#6E756F`, Ink `#2E342F`.
+- **Type**: Cormorant Garamond 500 for display, Cabin 400/600 for everything
+  else, and **Aurellie Calestion only ever for the signed word "katie"** — never
+  a headline, never a label.
 
-## What to change
+## The technical envelope — the real constraint
 
-Everything else about how these look. Specifically the things that make a pin
-feel made rather than generated:
-
-- **Scrims and gradients.** Where a gradient sits, how far it travels, how hard
-  it lands, and what colour it is.
-- **Framing.** Inner margins, hairline frames, whether an image is full-bleed or
-  inset, corner radii.
-- **Layering.** Chips, tabs and labels that overlap an edge; how a caption meets
-  a photograph.
-- **Rhythm.** The relationship between type sizes inside one pin, and the
-  vertical spacing between blocks.
-- **The signature.** Where "katie" appears, and on which templates.
-- **Edges.** How a photograph ends — hard crop, soft fade, framed.
-
-## Four things the client noticed, as a starting point
-
-These are the specific gaps between your earlier set and the built one. Address
-them, then go further.
-
-1. **The scrim ignores the colourway.** The hook's gradient is the same dark
-   green whether the pin is light or dark, so a "light" pin has a dark bottom
-   third and stops belonging to its own colourway. Your earlier light hook used a
-   pale veil rising into the photograph, which kept it in the oat world.
-2. **The gradients are too short and too abrupt.** They read as a bar behind text
-   rather than light falling off.
-3. **The Split lost its frame.** Yours had an inset arch inside a hairline
-   border with real margin. The built one is a full-bleed arch, which reads
-   flatter and cheaper.
-4. **Labels are plain text, not objects.** The pose name on the Split sits as
-   bare type on a scrim. Yours was a small filled tab overlapping the arch — and
-   the signature sat in the opposite corner, which balanced it.
-
-## The technical envelope — this is the real constraint
-
-These render through **Satori 0.26**, which is more capable than the original
-spec claimed. My earlier brief said no masks, no filters, no clip paths, no text
-effects. That was wrong, and it is why the built pins are plainer than they
-needed to be. The full list:
+These render through **Satori 0.26**. An earlier brief told you it supported no
+masks, filters, clip paths or text effects. That was wrong, and it is why the
+built pins were plainer than your design. The accurate list:
 
 **Available**
-- Flexbox layout, absolute positioning, per-side borders, per-corner
-  `border-radius`, `opacity`
+- Flexbox, absolute positioning, per-side borders, per-corner `border-radius`,
+  `opacity`
 - `linear-gradient`, `repeating-linear-gradient`, `radial-gradient`,
-  `repeating-radial-gradient`, and `url()` backgrounds
-- **`maskImage`** with a linear or radial gradient, plus `maskPosition` — so a
-  photograph can fade into the ground instead of ending on a hard edge
-- `boxShadow` (including inset), `textShadow`
+  `repeating-radial-gradient`, `url()` backgrounds
+- **`maskImage`** with linear or radial gradients, plus `maskPosition`
+- `boxShadow` including inset, and `textShadow`
 - `filter`, `clipPath`, `WebkitTextStroke`
 - 2D `transform` and `transformOrigin` — translate, rotate, scale, skew
 - `textTransform`, `letterSpacing`, `lineHeight`
 
-**Not available, and no way around it**
+**Not available**
 - Three-dimensional transforms
-- **`z-index` does not exist.** Paint order is document order: a later element
-  is always on top. Any layering you design has to work with that.
-- `calc()` — every value must be a resolved number
-- Kerning, ligatures and OpenType features
-- Text cannot shrink to fit. A line that is too long overflows the canvas rather
-  than wrapping smaller, which is why the character limits are hard.
-
-Anything on the first list is fair game and none of it has been used except plain
-linear gradients. Masks and inset shadows in particular are untouched.
+- **`z-index` does not exist.** Paint order is document order — a later element
+  is always on top. Any layering has to work with that.
+- `calc()` — every value must be a resolved number, so gradient stops are
+  percentages
+- Kerning, ligatures, OpenType features
+- Text cannot shrink to fit. An over-long line overflows the canvas rather than
+  wrapping smaller, which is why the character limits are hard.
 
 ## What to hand back
 
 A **single self-contained HTML artifact**, theme-aware, containing:
 
-1. Each of the eight templates as it is now, beside your refined version, at a
-   size where the detail is visible. Both colourways where the change differs
-   between them.
-2. For every change, the **specific CSS property and value** — `boxShadow:
-   'inset 0 0 0 1px rgba(...)'`, not "add a subtle inner glow". These get typed
-   straight into a renderer, so a description costs a round trip.
-3. A short note per template on *why* the change earns its place. If something
-   is there for its own sake, cut it.
-4. A 236px feed-size row of the refined set. Pinterest shows pins at thumbnail
-   size; a refinement that only reads at full size is decoration.
+1. Each template as it is now beside your revision, large enough to judge. Both
+   colourways wherever the change differs between them.
+2. For every change, the **exact CSS property and value** — `boxShadow: 'inset 0
+   0 0 1px rgba(...)'`, not "add a subtle inner glow". These get typed straight
+   into a renderer; a description costs a round trip.
+3. One line per template on why the change earns its place. If something is
+   there for its own sake, cut it.
+4. A 236px feed-size row of the revised set. Pinterest shows pins at thumbnail
+   size, and a refinement that only reads at full size is decoration.
 
-Work in the brand's own visual language throughout — the artifact doubles as the
-handoff document, and it is the thing that gets implemented from.
+Work in the brand's own visual language — the artifact is the handoff document
+and the thing that gets implemented from.
