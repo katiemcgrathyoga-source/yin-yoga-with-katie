@@ -28,6 +28,7 @@
 import { readdirSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import sharp from 'sharp';
 import { POSE_FRAMES } from '../src/data/poseFrames.ts';
+import { POSE_TALL, IMMERSIVE_FLOOR } from '../src/data/poseTall.ts';
 
 const ORIGINALS = 'docs';
 const WEB = 'public/poses';
@@ -95,11 +96,20 @@ async function subjectExtent(file) {
   return { L: L / W, R: R / W }; // as fractions, so they apply at any size
 }
 
-/* ── Which poses need this ────────────────────────────────────────────────── */
-const eligible = Object.entries(POSE_FRAMES)
-  .filter(([, frame]) =>
-    Object.values(PORTRAIT_TEMPLATES).some((target) => Math.min(1, target / frame.aspect) >= frame.span))
-  .map(([slug]) => slug);
+/* ── Which poses need this ──────────────────────────────────────────────────
+   Two sources, because two different questions are being asked. The old
+   portrait templates either fit a pose or didn't, so PORTRAIT_TEMPLATES is a
+   yes/no. Immersive instead takes as much height as a pose can carry, and a
+   band 1200px tall wants 1800px of source width — well past what the 1390px web
+   crop can give without going soft. Any pose Immersive will use needs the
+   camera original, so poseTall.ts is folded in here. */
+const eligible = [...new Set([
+  ...Object.entries(POSE_FRAMES)
+    .filter(([, frame]) =>
+      Object.values(PORTRAIT_TEMPLATES).some((target) => Math.min(1, target / frame.aspect) >= frame.span))
+    .map(([slug]) => slug),
+  ...Object.keys(POSE_TALL).filter((slug) => POSE_TALL[slug] >= IMMERSIVE_FLOOR),
+])].sort();
 
 console.log(`${eligible.length} of ${Object.keys(POSE_FRAMES).length} poses can hold a portrait template:`);
 console.log(`  ${eligible.join(', ')}\n`);

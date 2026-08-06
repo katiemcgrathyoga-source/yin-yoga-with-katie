@@ -135,20 +135,26 @@ export default async (req) => {
   // The Plate set renders on its own and returns here — it shares the copy
   // params but none of the eligibility or focal machinery below.
   if (isPlate(tpl)) {
-    const fit = p.get('fit') === '1';
-    // Only a filled Immersive is portrait, and only portrait needs the 2200px
-    // crop cut from the camera original; every band is landscape and the 933px
-    // web crop covers it without upscaling.
-    const source = tpl === 'immersive' && !fit ? 'hook' : tpl;
-    const photo = await loadPinImage(p.get('img') || '', source);
+    // Immersive is the one template that scales a photograph up rather than
+    // down — a band 1200px tall needs 1800px of source width, and the 1390px
+    // web crop would go soft. It takes the 2200px crop cut from the camera
+    // original where one exists; the landscape bands never need it.
+    const photo = await loadPinImage(p.get('img') || '', tpl === 'immersive' ? 'hook' : tpl);
+    // Panel and Immersive both size their photograph per pose, but over very
+    // different ranges: Panel gives way to the type below it, Immersive reaches
+    // as far down as it can without cutting into her.
+    const ph = Number(p.get('ph')) || 0;
     try {
       const png = await renderPlatePin({
         tpl, tone, photo, focal: PLATE_FOCAL[tpl] || '50% 50%',
         eyebrow, headline: title, blurb: subline,
         metaLine: (p.get('meta') || '').slice(0, 48),
         footnote: (p.get('foot') || '').slice(0, 60),
-        duration, offer, cta, fit,
-        photoH: Math.min(780, Math.max(520, Number(p.get('ph')) || 700)),
+        duration, offer, cta,
+        photoH:
+          tpl === 'immersive'
+            ? Math.min(1500, Math.max(960, ph || 1500))
+            : Math.min(780, Math.max(520, ph || 700)),
       });
       return new Response(png, {
         headers: {

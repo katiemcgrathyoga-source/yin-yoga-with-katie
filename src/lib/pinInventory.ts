@@ -1,5 +1,6 @@
 import { getCollection } from 'astro:content';
 import { POSE_FRAMES } from '../data/poseFrames';
+import { immersiveHeight } from '../data/poseTall';
 import { PIN_PAGES } from '../data/pinPages';
 import { boardFor, type PinAudience } from './pinBoards';
 import { publicRoutines } from './routines';
@@ -26,12 +27,20 @@ import { publicRoutines } from './routines';
  * flag, and it does not exclude anything — it decides whether a photograph
  * fills the frame or letterboxes into the ground.
  *
- * TWO CREATIVES PER PAGE, SPLIT BY JOB
- *   Pose      Plate says what it does, Immersive says how it feels
- *   Routine   Frame says what it is, Panel says why you want it
- *   Journal   Panel leads on the title, Immersive leads on the idea
- *   Class     Watch, alone — its job is a click, not a save
- *   Offer     Offer, alone
+ * IMMERSIVE IS THE HOUSE STYLE
+ * Katie picked it out of the set, so it appears in every content type rather
+ * than being one option among six. It is the only template that gives the
+ * photograph the whole pin, which is the one advantage this library has over
+ * every other yoga account on Pinterest — a calm room, good light, and 37 of
+ * them. Everything else is there so a board doesn't read as the same pin
+ * forty times.
+ *
+ *   Pose      Immersive says how it feels, Plate says what it does
+ *   Routine   Immersive for the feeling, Frame for the facts, Panel for the why
+ *   Journal   Immersive leads on the idea, Panel leads on the title
+ *   Class     Immersive for the feeling, Watch for the run time and the play mark
+ *   Offer     Offer, alone — it is the only pin with something to ask, and the
+ *             pill is what does the asking
  */
 
 export type PinTone = 'light' | 'dark';
@@ -73,18 +82,15 @@ const FOCAL: Record<string, string> = {
 };
 
 /**
- * Can this photograph fill a full-bleed 2:3 frame without cutting into her?
+ * The Immersive photograph's height for this pose, or 0 if it can't have one.
  *
- * The only measurement left in the inventory, and the only one that never
- * excludes: a photo that fails simply letterboxes instead, which Immersive is
- * built to do. `keeps` is the fraction of the crop's width a 2:3 frame retains;
- * `span` is how much of that width Katie occupies.
+ * The one measurement left in the inventory. Immersive is the pin Katie picked
+ * out of the set, so the rule is to give it to every pose that can carry it and
+ * hand the rest to Panel — 21 of the 37 photographs qualify, and the sixteen
+ * that don't are the wide lying shots where a 2:3 window would take her feet
+ * off. See src/data/poseTall.ts for the arithmetic.
  */
-function fillsPortrait(slug: string): boolean {
-  const frame = POSE_FRAMES[slug];
-  if (!frame) return false;
-  return Math.min(1, 1000 / 1500 / frame.aspect) >= frame.span;
-}
+const tallOf = (slug: string) => immersiveHeight(slug);
 
 /**
  * How tall Panel's photograph can be before the type below it is squeezed.
@@ -156,7 +162,7 @@ export async function buildPinInventory(): Promise<Pin[]> {
     if (!img) continue;
 
     const url = `${SITE}/poses/${d.slug}/`;
-    const fills = fillsPortrait(d.slug);
+    const tall = tallOf(d.slug);
 
     for (const [i, angle] of d.pin_angles.entries()) {
       const audience = angle.audience as PinAudience;
@@ -181,18 +187,24 @@ export async function buildPinInventory(): Promise<Pin[]> {
           tone,
           image: cardUrl({ ...shared, tpl: 'plate', tone, foot: `${d.name_en} · ${d.hold_time}` }),
         });
-        // Immersive — the same angle with the room around it. Wide poses
-        // letterboxe into the ground rather than being cropped or excluded.
+        // Immersive — the same angle with the type over the photograph. Or
+        // Panel, for the wide lying shots that can't carry type without losing
+        // an end of her. Same message either way; only the geometry differs.
         add({
           ...base,
-          id: `pose:${d.slug}:immersive:${tone}:${i}`,
-          template: 'immersive',
+          id: `pose:${d.slug}:${tall ? 'immersive' : 'panel'}:${tone}:${i}`,
+          template: tall ? 'immersive' : 'panel',
           tone,
-          image: cardUrl({
-            ...shared, tpl: 'immersive', tone,
-            sub: angle.proof, foot: `${d.name_en} · ${d.hold_time}`,
-            fit: fills ? undefined : '1',
-          }),
+          image: tall
+            ? cardUrl({
+                ...shared, tpl: 'immersive', tone,
+                sub: angle.proof, foot: `${d.name_en} · ${d.hold_time}`,
+                ph: String(tall),
+              })
+            : cardUrl({
+                ...shared, tpl: 'panel', tone, sub: angle.proof,
+                ph: String(panelPhotoHeight(angle.headline, angle.proof)),
+              }),
         });
       }
     }
@@ -210,7 +222,14 @@ export async function buildPinInventory(): Promise<Pin[]> {
     const d = routine.data;
     const url = `${SITE}/routines/${d.slug}/`;
     // Not every routine names a hero pose; its first shape stands in fairly.
-    const hero = photoOf(d.hero_pose ?? d.steps[0]?.pose ?? '');
+    const heroSlug = d.hero_pose ?? d.steps[0]?.pose ?? '';
+    const hero = photoOf(heroSlug);
+    // Frame and Panel show the routine's own lead pose. Immersive may reach
+    // further down the sequence for a shape that can carry type over it — any
+    // pose in the routine is honestly a picture of that routine.
+    const immersiveSlug = tallOf(heroSlug)
+      ? heroSlug
+      : d.steps.map((s) => s.pose).find((slug) => photoOf(slug) && tallOf(slug));
     const metaLine = `${d.minutes} minutes · ${LEVEL[d.level] ?? d.level}`;
 
     for (const [i, angle] of d.pin_angles.entries()) {
@@ -250,6 +269,22 @@ export async function buildPinInventory(): Promise<Pin[]> {
             ph: String(panelPhotoHeight(angle.headline, angle.proof)),
           }),
         });
+        // Immersive — the same angle with the type over the photograph, when
+        // the routine's lead pose is one that can carry it.
+        if (immersiveSlug) {
+          add({
+            ...base,
+            id: `routine:${d.slug}:immersive:${tone}:${i}`,
+            template: 'immersive',
+            tone,
+            image: cardUrl({
+              tpl: 'immersive', tone, t: angle.headline, s: angle.audience,
+              sub: angle.proof, img: photoOf(immersiveSlug),
+              ph: String(tallOf(immersiveSlug)),
+              foot: `${d.title} · ${d.minutes} min`,
+            }),
+          });
+        }
       }
     }
   }
@@ -259,29 +294,54 @@ export async function buildPinInventory(): Promise<Pin[]> {
   for (const video of videos) {
     const d = video.data;
     if (!d.enriched || d.membership || d.pin_angles.length === 0) continue;
-    // Watch needs a photograph and a video only has a YouTube thumbnail, so it
-    // borrows the first pose the class features.
-    const img = d.poses_featured.map(photoOf).find(Boolean);
+    // A class has only a YouTube thumbnail, so it borrows a pose it features.
+    // Immersive gets first refusal on which one: given a choice of shapes, take
+    // the one that can carry the template Katie picked. Watch takes whatever is
+    // there, since a landscape band fits anything.
+    const featured = d.poses_featured.filter((slug) => photoOf(slug));
+    const tallSlug = featured.find((slug) => tallOf(slug));
+    const img = photoOf(tallSlug ?? featured[0] ?? '');
     if (!img) continue;
     const angle = d.pin_angles[0];
     const audience = angle.audience as PinAudience;
+    const base = {
+      kind: 'video' as const,
+      label: d.display_title ?? d.title,
+      audience,
+      board: boardFor(audience),
+      url: `${SITE}/videos/${d.slug}/`,
+      description: describe(audience, d.seo_description),
+    };
+    const shared = { t: angle.headline, s: angle.audience, sub: angle.proof, img };
+    const tall = tallOf(slugOfPhoto(img));
+
     for (const tone of ['light', 'dark'] as PinTone[]) {
+      // Watch — the run time on a badge with a play mark, so the pin says
+      // "video" before anyone reads a word of it.
       add({
+        ...base,
         id: `video:${d.slug}:watch:${tone}:0`,
-        kind: 'video',
-        label: d.display_title ?? d.title,
         template: 'watch',
         tone,
-        audience,
-        board: boardFor(audience),
-        url: `${SITE}/videos/${d.slug}/`,
-        description: describe(audience, d.seo_description),
         image: cardUrl({
-          tpl: 'watch', tone, t: angle.headline, s: angle.audience,
-          sub: angle.proof, dur: `${d.length_minutes} min`,
-          foot: 'free on YouTube', img,
+          ...shared, tpl: 'watch', tone,
+          dur: `${d.length_minutes} min`, foot: 'free on YouTube',
         }),
       });
+      // Immersive — the same class as a feeling rather than a run time. The
+      // footnote carries what the badge would have said.
+      if (tall) {
+        add({
+          ...base,
+          id: `video:${d.slug}:immersive:${tone}:0`,
+          template: 'immersive',
+          tone,
+          image: cardUrl({
+            ...shared, tpl: 'immersive', tone, ph: String(tall),
+            foot: `free on YouTube · ${d.length_minutes} min`,
+          }),
+        });
+      }
     }
   }
 
@@ -329,17 +389,20 @@ export async function buildPinInventory(): Promise<Pin[]> {
         // Immersive — the idea instead of the title. These are the
         // highest-intent pins in the system, so they earn two genuinely
         // different reads rather than one design twice.
-        add({
-          ...base,
-          id: `journal:${d.slug}:immersive:${tone}:${i}`,
-          template: 'immersive',
-          tone,
-          image: cardUrl({
-            tpl: 'immersive', tone, t: angle.headline, s: angle.audience,
-            sub: angle.proof, foot: 'from the journal', img: hero,
-            fit: fillsPortrait(slugOfPhoto(hero)) ? undefined : '1',
-          }),
-        });
+        const tall = tallOf(slugOfPhoto(hero));
+        if (tall) {
+          add({
+            ...base,
+            id: `journal:${d.slug}:immersive:${tone}:${i}`,
+            template: 'immersive',
+            tone,
+            image: cardUrl({
+              tpl: 'immersive', tone, t: angle.headline, s: angle.audience,
+              sub: angle.proof, foot: 'from the journal', img: hero,
+              ph: String(tall),
+            }),
+          });
+        }
       }
     }
   }

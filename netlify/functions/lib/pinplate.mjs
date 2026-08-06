@@ -163,20 +163,36 @@ function panel({ eyebrow: eb, headline, blurb, photo, focal, tone, photoH = 700 
 }
 
 /* ═══ 04 · Immersive ══════════════════════════════════════════════════════
-   Type over a full-bleed photograph. The one template a wide pose cannot fill,
-   so a wide pose letterboxes into the ground instead of being excluded — the
-   veil and the type are identical either way. */
-function immersive({ eyebrow: eb, headline, blurb, photo, focal, tone, fit = false, footnote }) {
+   Type over the photograph. The signature pin of the set.
+
+   `photoH` is how tall the photograph may be before it starts cutting into
+   her — src/data/poseTall.ts measures it per pose. At 1500 it is full bleed.
+   Below that the photograph is anchored to the top and its bottom edge is
+   dissolved into the ground, so a pin at 1100 still reads as type over an
+   image rather than as an image with a caption under it.
+
+   A pose that cannot reach roughly 1000 is not given this template at all —
+   the type would have nothing to sit on. Those go to Panel, which is the same
+   idea built for a wide photograph. Nothing letterboxes: the old version
+   floated a short band in the middle of the ground and it looked like a
+   mistake, because it was one. */
+function immersive({ eyebrow: eb, headline, blurb, photo, focal, tone, photoH = 1500, footnote }) {
   const p = pal(tone);
   const dark = tone === 'dark';
   const ink = dark ? CARD : SAGE;
   const shade = dark ? '0 2px 30px rgba(46,52,47,0.45)' : '0 2px 24px rgba(249,241,234,0.75)';
+  const h = Math.min(1500, Math.max(960, Math.round(photoH)));
   return box({ width: '100%', height: '100%', position: 'relative', backgroundColor: p.g }, [
-    fit
-      // Too wide to fill: the photograph sits at its own shape, high in the
-      // frame, and the ground carries the rest. Deliberate, not a fallback.
-      ? box({ position: 'absolute', top: '210px', left: '0' }, [band(1000, 660, photo, focal)])
-      : band(1000, 1500, photo, focal, { position: 'absolute', top: '0', left: '0' }),
+    band(1000, h, photo, focal, {
+      position: 'absolute', top: '0', left: '0',
+      // A photograph that stops short of the bottom must not show where it
+      // stops. The last twelfth dissolves, and since the ground is the same oat
+      // as the room's wall the join is genuinely hard to find. The veil below
+      // is ramping up across the same band, which finishes the job.
+      ...(h < 1500
+        ? { maskImage: 'linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)' }
+        : {}),
+    }),
     box({
       position: 'absolute', left: '0', bottom: '0', width: '1000px', height: '860px',
       backgroundImage: `linear-gradient(180deg, rgba(${p.gRGB},0) 0%, rgba(${p.gRGB},0.28) 26%, rgba(${p.gRGB},0.70) 52%, rgba(${p.gRGB},0.92) 74%, rgba(${p.gRGB},0.97) 100%)`,
