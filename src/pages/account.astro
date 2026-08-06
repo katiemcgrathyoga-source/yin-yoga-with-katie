@@ -2,7 +2,10 @@
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import courseStill from '../assets/post-run-reset-still.jpg';
+// A photograph, not a video still. The still was a soft frame from the class and
+// the tile's narrow crop took Katie's head off the top of it; this is cropped
+// square around her head and heart so any tile shape still lands on her.
+import courseStill from '../assets/course-tile.jpg';
 
 // Member account + magic-link sign-in (Phase 1). Private surface: noindex +
 // excluded from the sitemap. All logic is client-side against Supabase Auth;
@@ -59,7 +62,7 @@ const practiceCount = (await getCollection('practices')).filter((p) => !p.data.u
           just paid to work out that "practices" is what they bought. */}
       <a id="acct-tile" class="acct-tile" href="/practices" hidden>
         <span class="acct-tile-img">
-          <Image src={courseStill} alt="" width={520} height={390} loading="eager" />
+          <Image src={courseStill} alt="" width={440} height={440} loading="eager" />
         </span>
         <span class="acct-tile-body">
           <span class="acct-tile-eyebrow">Your course</span>
@@ -195,7 +198,9 @@ const practiceCount = (await getCollection('practices')).filter((p) => !p.data.u
      A photo from the practice itself, so the thing you bought is recognisable
      before you've read a word. */
   .acct-tile {
-    display: grid; grid-template-columns: 132px 1fr; align-items: stretch;
+    /* Wider than it was: at 132px the crop was severe enough to lose the subject
+       whatever photo went in it. */
+    display: grid; grid-template-columns: 168px 1fr; align-items: stretch;
     text-decoration: none; overflow: hidden;
     background: var(--paper); border: 1px solid var(--line); border-radius: 16px;
     transition: border-color .16s ease, transform .16s ease, box-shadow .16s ease;
