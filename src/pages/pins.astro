@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { buildPinInventory, type Pin, type PinKind } from '../lib/pinInventory';
+import { buildPinInventory, pinGaps, type Pin, type PinKind } from '../lib/pinInventory';
 import { saveUrl } from '../lib/pinSchedule';
 
 /**
@@ -15,11 +15,13 @@ import { saveUrl } from '../lib/pinSchedule';
  */
 const inventory = await buildPinInventory();
 
+const gaps = await pinGaps();
+
 const SECTIONS: { kind: PinKind; title: string; blurb: string }[] = [
   { kind: 'offer', title: 'The offers', blurb: 'The two pages that capture an email. Worth about one pin in five.' },
-  { kind: 'journal', title: 'Journal', blurb: 'The highest-intent pins — they land on a page with a signup on it.' },
-  { kind: 'routine', title: 'Routines', blurb: 'The pose list is the saver; the window is the pretty one.' },
-  { kind: 'pose', title: 'Poses', blurb: 'The everyday backbone. The deepest well in the library.' },
+  { kind: 'journal', title: 'Journal', blurb: 'The highest-intent pins — they land on a page with a signup on it. Panel leads on the title, Immersive on the idea.' },
+  { kind: 'routine', title: 'Routines', blurb: 'Frame says what it is — length, level, a sentence. Panel says why you want it.' },
+  { kind: 'pose', title: 'Poses', blurb: 'The everyday backbone. Plate says what it does, Immersive says how it feels.' },
   { kind: 'video', title: 'Classes on YouTube', blurb: 'The only pins whose job is a click rather than a save.' },
 ];
 
@@ -36,7 +38,6 @@ function byPage(kind: PinKind): { label: string; url: string; pins: Pin[] }[] {
 }
 
 const sections = SECTIONS.map((s) => ({ ...s, groups: byPage(s.kind) }));
-const textOnly = inventory.filter((p) => p.template === 'card').length;
 ---
 
 <BaseLayout title="Pin console" description="Every pin the system can make" noindex={true}>
@@ -51,8 +52,15 @@ const textOnly = inventory.filter((p) => p.template === 'card').length;
       <p class="pk-stats">
         <strong>{inventory.length}</strong> pins ·
         {sections.map((s) => `${s.groups.length} ${s.kind}`).join(' · ')} ·
-        {textOnly} text-only ({Math.round((textOnly / inventory.length) * 100)}%)
+        every one carries a photograph
       </p>
+      {gaps.length > 0 && (
+        <p class="pk-gaps">
+          <strong>{gaps.length} poses aren't in here yet</strong> — they have no
+          photograph, and a pin without one is just a sentence on a cream
+          background. They join the day they're shot: {gaps.join(', ')}.
+        </p>
+      )}
     </header>
 
     {sections.map((section) => (
@@ -102,6 +110,12 @@ const textOnly = inventory.filter((p) => p.template === 'card').length;
   .pk-head h1 { margin: 0 0 0.5rem; }
   .pk-lede { font-size: 1.05rem; color: var(--muted); margin: 0 0 0.75rem; }
   .pk-stats { font-size: 0.85rem; color: var(--muted); margin: 0; }
+  .pk-gaps {
+    font-size: 0.82rem; line-height: 1.55; color: var(--muted);
+    margin: 0.8rem 0 0; padding: 0.65rem 0.9rem;
+    border-left: 2px solid var(--accent);
+  }
+  .pk-gaps strong { color: var(--ink); }
 
   .pk-section { margin-bottom: 3rem; }
   .pk-section-head { padding-bottom: 0.6rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--line); }

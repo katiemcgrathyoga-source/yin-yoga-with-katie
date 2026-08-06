@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { buildPinInventory } from '../lib/pinInventory';
 import { planDays, saveUrl, PINS_PER_DAY } from '../lib/pinSchedule';
+import { PIN_HISTORY } from '../data/pinHistory';
 
 /**
  * The pinning plan. Open it, save two pins, close it.
@@ -39,6 +40,15 @@ const boards = [...new Set(inventory.map((p) => p.board))].sort();
 const fmtDay = (d: Date) =>
   d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
 const isToday = (d: Date) => d.toDateString() === today.toDateString();
+
+// Days the old calendar already owned are handed over, not re-planned, so the
+// new plan can open on a day that isn't today. Say so rather than letting the
+// first heading look like a mistake.
+const handedOverToday = PIN_HISTORY.some(
+  (h) => h.date === new Date(today.getTime() - today.getTimezoneOffset() * 60000)
+    .toISOString()
+    .slice(0, 10),
+);
 ---
 
 <BaseLayout title="Pin calendar" description="The daily pinning plan" noindex={true}>
@@ -59,6 +69,13 @@ const isToday = (d: Date) => d.toDateString() === today.toDateString();
       <p class="pc-note">
         Nothing is stored on a server. “Done” lives in this browser, so tick as you go.
       </p>
+      {handedOverToday && (
+        <p class="pc-handover">
+          Today was already planned by the old calendar, so the new plan opens
+          tomorrow. What you pinned in the last few days is carried over — those
+          boards and pages sit out their rest before they come round again.
+        </p>
+      )}
 
       <details class="pc-boards">
         <summary>The {boards.length} boards this plan pins to — create any you don't have</summary>
@@ -119,6 +136,11 @@ const isToday = (d: Date) => d.toDateString() === today.toDateString();
   .pc-lede { font-size: 1.05rem; color: var(--muted); margin: 0 0 1rem; }
   .pc-stats, .pc-note { font-size: 0.85rem; color: var(--muted); margin: 0 0 0.35rem; }
   .pc-note { color: var(--muted); opacity: 0.8; }
+  .pc-handover {
+    font-size: 0.85rem; line-height: 1.55; color: var(--muted);
+    margin: 0.9rem 0 0; padding: 0.7rem 0.9rem;
+    border-left: 2px solid var(--accent); background: var(--head-soft, transparent);
+  }
 
   .pc-boards { margin-top: 0.9rem; font-size: 0.85rem; color: var(--muted); }
   .pc-boards summary { cursor: pointer; color: var(--accent); font-weight: 600; }

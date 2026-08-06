@@ -9,11 +9,24 @@ import { PIN_BOARDS, PIN_LIMITS, type PinAudience } from '../lib/pinBoards';
  * the assertion at the bottom does the job the schema does everywhere else.
  *
  * These are the only pages that use the Offer template, which is the one pin
- * that asks for something. Roughly one pin in five.
+ * that asks for something. Roughly one pin in eight.
  *
- * Unlike the collections, a landing page may repeat its audience across both
- * angles: it has exactly one audience, and the calendar never schedules two
- * offer pins on the same day, so there is nothing to spread.
+ * WHY EACH PAGE CARRIES FOUR ANGLES
+ * Two pages against 37 poses and 149 classes is the thinnest part of the
+ * library, and the offers are the part that actually earns — they are the only
+ * pins that land somewhere an email can be captured. With one audience apiece
+ * the schedule could only reach one board per page, so keeping a useful offer
+ * rate meant pinning /free-class to the same two boards every five days, which
+ * is exactly what Pinterest reads as spam.
+ *
+ * So each page names the audiences it genuinely serves rather than only the
+ * most obvious one. A post-run reset is a hip release and a tired-legs release;
+ * a two-hour retreat is a beginner's way in and a full-body reset. Four boards
+ * apiece means the same page can go out often without any one board seeing it
+ * more than every few weeks.
+ *
+ * These four extra angles are first drafts and still need Katie's voice pass,
+ * like the rest of the pin copy.
  */
 export type PinPage = {
   /** Destination path on the site. */
@@ -47,6 +60,16 @@ export const PIN_PAGES: PinPage[] = [
         headline: 'The part of training you skip',
         proof: 'Fifteen minutes. No props, no flexibility needed.',
       },
+      {
+        audience: 'for tired legs',
+        headline: 'For legs that feel like concrete',
+        proof: 'Fifteen minutes on the floor. Gravity does it.',
+      },
+      {
+        audience: 'for tight hips',
+        headline: 'The hips running quietly tightens',
+        proof: 'One easy hold for each place a run grabs.',
+      },
     ],
   },
   {
@@ -65,6 +88,16 @@ export const PIN_PAGES: PinPage[] = [
         audience: "when you're wound up",
         headline: 'Two hours of nothing being asked',
         proof: 'Normally members-only. Free, and yours to keep.',
+      },
+      {
+        audience: 'for beginners',
+        headline: 'Two hours, nothing to get right',
+        proof: 'Yin, restorative and Yoga Nidra. Start anywhere.',
+      },
+      {
+        audience: 'for a full-body reset',
+        headline: 'A whole afternoon off, at home',
+        proof: 'Two hours of yin, restorative and Yoga Nidra.',
       },
     ],
   },

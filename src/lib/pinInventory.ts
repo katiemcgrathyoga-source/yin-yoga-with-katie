@@ -12,6 +12,26 @@ import { publicRoutines } from './routines';
  * every future pin improves with it; nothing has to be regenerated.
  *
  * /pincalendar schedules from this list. /pins browses the same list.
+ *
+ * BUILT ON THE PLATE SET
+ * The previous inventory carried eligibility machinery: a table of template
+ * aspect ratios, a per-pose measurement of how much of the frame Katie
+ * occupies, and arithmetic deciding which templates a pose was allowed to use.
+ * Poses that failed it fell back to a text-only card, which was the worst pin
+ * in the system and the thing Katie flagged first.
+ *
+ * The Plate templates put the photograph in a landscape band, and the library
+ * is landscape, so every photo fits every template by construction. All of that
+ * machinery is gone. The single remaining measurement is Immersive's `fit`
+ * flag, and it does not exclude anything — it decides whether a photograph
+ * fills the frame or letterboxes into the ground.
+ *
+ * TWO CREATIVES PER PAGE, SPLIT BY JOB
+ *   Pose      Plate says what it does, Immersive says how it feels
+ *   Routine   Frame says what it is, Panel says why you want it
+ *   Journal   Panel leads on the title, Immersive leads on the idea
+ *   Class     Watch, alone — its job is a click, not a save
+ *   Offer     Offer, alone
  */
 
 export type PinTone = 'light' | 'dark';
@@ -36,43 +56,49 @@ export type Pin = {
 };
 
 /**
- * How a template's photo window is shaped. `keeps()` turns that into the
- * fraction of the crop's width that survives, which is what decides whether a
- * pose fits — see src/data/poseFrames.ts.
+ * Vertical focal point per template.
+ *
+ * Horizontal is always 50%: scripts/gen-pin-crops.mjs has already centred Katie
+ * in /poses/pin/, which is the whole reason recomposing upstream was worth
+ * doing. Vertical is not normalised, so a band that crops height needs a nudge
+ * — the room below her is floor, and worth less than the body above it.
  */
-const TEMPLATE_ASPECT: Record<string, number> = {
-  hook: 1000 / 1500,   // full bleed — the most demanding by far
-  split: 808 / 1000,   // the arch; the second pass narrowed it
-  video: 1000 / 900,
-  window: 1000 / 850,  // the photograph took the surplus the old layout wasted
-  offer: 1000 / 800,
-  states: 1000 / 940,
+const FOCAL: Record<string, string> = {
+  plate: '50% 52%',     // 1.67:1 band — crops the most height of any template
+  frame: '50% 50%',     // 1.49:1 inset, near the source shape; nothing to bias
+  panel: '50% 50%',     // 1.3–1.5:1, likewise
+  immersive: '50% 50%', // full-bleed 2:3 crops width, so vertical is moot
+  watch: '50% 50%',     // 1.22:1 — crops width
+  offer: '50% 52%',     // 1.79:1, the widest band in the set
 };
 
 /**
- * The tallest Window photograph this pose can fill without losing its ends.
+ * Can this photograph fill a full-bleed 2:3 frame without cutting into her?
  *
- * The design puts the photo at 1000x850, which crops a 1.26:1 crop to 93% of
- * its width. Six poses are wider than that — Sleeping Swan is 93%, Bow Tie is
- * the full frame — so a fixed height would push the library's most-used runner
- * pose onto a text card. The height gives way instead, down to a floor of 560.
+ * The only measurement left in the inventory, and the only one that never
+ * excludes: a photo that fails simply letterboxes instead, which Immersive is
+ * built to do. `keeps` is the fraction of the crop's width a 2:3 frame retains;
+ * `span` is how much of that width Katie occupies.
  */
-export function windowHeight(slug: string): number {
-  const frame = POSE_FRAMES[slug];
-  if (!frame) return 850;
-  const ideal = 1000 / (frame.span * frame.aspect);
-  return Math.round(Math.min(850, Math.max(560, ideal)));
-}
-
-/** Does this pose survive this template's crop with her whole body intact? */
-function fits(template: string, slug: string): boolean {
+function fillsPortrait(slug: string): boolean {
   const frame = POSE_FRAMES[slug];
   if (!frame) return false;
-  if (template === 'window') return true; // the height adapts, so it always holds her
-  const target = TEMPLATE_ASPECT[template];
-  if (!target) return true; // card has no photo
-  const keeps = Math.min(1, target / frame.aspect);
-  return keeps >= frame.span;
+  return Math.min(1, 1000 / 1500 / frame.aspect) >= frame.span;
+}
+
+/**
+ * How tall Panel's photograph can be before the type below it is squeezed.
+ *
+ * Panel centres its text in whatever is left, so a four-line headline on a
+ * 760px photo would crowd the divider against the wordmark. The photo gives way
+ * instead — the same principle the old Window template used, minus the
+ * eligibility test.
+ */
+function panelPhotoHeight(headline: string, blurb: string): number {
+  const titleLines = Math.max(1, Math.ceil(headline.length / 26)); // 72px Cormorant in 800px
+  const blurbLines = blurb ? Math.max(1, Math.ceil(blurb.length / 42)) : 0; // 30px Cabin in 740px
+  const text = 319 + titleLines * 82 + blurbLines * 45;
+  return Math.round(Math.min(780, Math.max(520, 1500 - text)));
 }
 
 /** The phrase a person would actually type. The headline persuades; this ranks. */
@@ -90,13 +116,12 @@ const SEARCH_PHRASE: Record<PinAudience, string> = {
   'to start the day': 'Morning yin yoga',
 };
 
-/**
- * Which Benefit card direction ships. 'a' is the pressed panel; 'b' is the
- * rule-anchored one the designer recommended, on the grounds that at 236px A's
- * inset bloom is invisible while B's bar and ruled foot still register.
- * One constant, so switching is a one-line change and a rebuild.
- */
-export const CARD_DIRECTION: 'a' | 'b' = 'a';
+const LEVEL: Record<string, string> = {
+  'all-levels': 'all levels',
+  beginner: 'beginner',
+  intermediate: 'intermediate',
+  advanced: 'advanced',
+};
 
 const SITE = 'https://yinyogawithkatie.com';
 const clamp = (s: string, n: number) => (s.length <= n ? s : `${s.slice(0, s.lastIndexOf(' ', n))}…`);
@@ -110,8 +135,9 @@ function cardUrl(params: Record<string, string | undefined>): string {
 }
 
 const photoOf = (slug: string) => (POSE_FRAMES[slug] ? `/poses/${slug}.jpg` : undefined);
-const minutes = (secs: number, sides: number) =>
-  `${Math.max(1, Math.round(secs / 60))} min${sides === 2 ? ' each side' : ''}`;
+/** A journal hero only counts if it is a pose photograph the pin templates can band. */
+const heroPhoto = (hero?: string) => (hero?.startsWith('/poses/') ? hero : undefined);
+const slugOfPhoto = (path: string) => path.replace('/poses/', '').replace('.jpg', '');
 
 /** Build the whole inventory. Cheap enough to call once per page. */
 export async function buildPinInventory(): Promise<Pin[]> {
@@ -122,8 +148,16 @@ export async function buildPinInventory(): Promise<Pin[]> {
   const poses = await getCollection('poses');
   for (const pose of poses) {
     const d = pose.data;
-    const url = `${SITE}/poses/${d.slug}/`;
+    // No photograph, no pin. The alternative was a text-only card, and a cream
+    // card with a sentence on it competes with every other cream card on
+    // Pinterest while the photographs are the only thing here nobody else has.
+    // These come back the day they are shot — see pinGaps().
     const img = photoOf(d.slug);
+    if (!img) continue;
+
+    const url = `${SITE}/poses/${d.slug}/`;
+    const fills = fillsPortrait(d.slug);
+
     for (const [i, angle] of d.pin_angles.entries()) {
       const audience = angle.audience as PinAudience;
       const base = {
@@ -134,60 +168,50 @@ export async function buildPinInventory(): Promise<Pin[]> {
         url,
         description: describe(audience, d.seo_description),
       };
-      // The photograph is the whole advantage here — a calm room, good light,
-      // and 37 of them. A text-only pin throws that away to compete with every
-      // other cream-background quote graphic on Pinterest, so the card is only
-      // for the five poses that have no photograph yet. Hook and split are
-      // earned on measurement, not assumed.
-      const templates = img ? ['window'] : ['card'];
-      if (img && fits('hook', d.slug)) templates.push('hook');
-      if (img && fits('split', d.slug)) templates.push('split');
-      // Before → after only where the angle carries a state pair. Most don't:
-      // it needs a complaint the reader recognises instantly and an opposite
-      // they can feel, which is a narrower set than it sounds.
-      if (img && angle.before && angle.after) templates.push('states');
+      const shared = { t: angle.headline, s: angle.audience, img };
 
-      for (const template of templates) {
-        for (const tone of ['light', 'dark'] as PinTone[]) {
-          add({
-            ...base,
-            id: `pose:${d.slug}:${template}:${tone}:${i}`,
-            template,
-            tone,
-            image: cardUrl({
-              tpl: template, tone, v: template === 'card' ? CARD_DIRECTION : undefined,
-              t: angle.headline, s: angle.audience, sub: angle.proof,
-              b: angle.before, a: angle.after,
-              id: template === 'split' ? d.hold_time : `${d.name_en} · a yin yoga pose`,
-              pose: template === 'split' ? d.name_en : undefined,
-              img: template === 'card' ? undefined : img,
-              ph: template === 'window' ? String(windowHeight(d.slug)) : undefined,
-            }),
-          });
-        }
+      for (const tone of ['light', 'dark'] as PinTone[]) {
+        // Plate — the quiet one, and the shape already earning traction. The
+        // benefit leads; the pose names itself in the footnote, where someone
+        // who wants the name will look and nobody else has to read it.
+        add({
+          ...base,
+          id: `pose:${d.slug}:plate:${tone}:${i}`,
+          template: 'plate',
+          tone,
+          image: cardUrl({ ...shared, tpl: 'plate', tone, foot: `${d.name_en} · ${d.hold_time}` }),
+        });
+        // Immersive — the same angle with the room around it. Wide poses
+        // letterboxe into the ground rather than being cropped or excluded.
+        add({
+          ...base,
+          id: `pose:${d.slug}:immersive:${tone}:${i}`,
+          template: 'immersive',
+          tone,
+          image: cardUrl({
+            ...shared, tpl: 'immersive', tone,
+            sub: angle.proof, foot: `${d.name_en} · ${d.hold_time}`,
+            fit: fills ? undefined : '1',
+          }),
+        });
       }
     }
   }
 
   // ── Routines ─────────────────────────────────────────────────────────────
-  const poseBySlug = new Map(poses.map((p) => [p.data.slug, p.data]));
-  const routines = publicRoutines(await getCollection('routines'));
+  const allRoutines = await getCollection('routines');
+  /** Routine slug → its lead photograph. Also the journal's fallback, below. */
+  const routineHero = new Map(
+    allRoutines.map((r) => [r.data.slug, photoOf(r.data.hero_pose ?? r.data.steps[0]?.pose ?? '')]),
+  );
+
+  const routines = publicRoutines(allRoutines);
   for (const routine of routines) {
     const d = routine.data;
     const url = `${SITE}/routines/${d.slug}/`;
-    const items = d.steps.map((s) => {
-      const pose = poseBySlug.get(s.pose);
-      return {
-        name: pose?.name_en ?? s.pose,
-        note: s.note ? clamp(s.note, 34) : undefined,
-        hold: minutes(s.seconds, s.sides ?? 1),
-        img: photoOf(s.pose),
-      };
-    });
-    // Not every routine names a hero pose; its first shape stands in fairly,
-    // and it means no routine has to fall back to a text-only pin.
-    const heroSlug = d.hero_pose ?? d.steps[0]?.pose ?? '';
-    const hero = photoOf(heroSlug);
+    // Not every routine names a hero pose; its first shape stands in fairly.
+    const hero = photoOf(d.hero_pose ?? d.steps[0]?.pose ?? '');
+    const metaLine = `${d.minutes} minutes · ${LEVEL[d.level] ?? d.level}`;
 
     for (const [i, angle] of d.pin_angles.entries()) {
       const audience = angle.audience as PinAudience;
@@ -199,61 +223,63 @@ export async function buildPinInventory(): Promise<Pin[]> {
         url,
         description: describe(audience, d.seo_description),
       };
-      // The pose list is the routine's own strongest creative, and the hero
-      // photo covers the rest. No need for a text card as well.
-      const templates = ['poselist', ...(hero ? ['window'] : ['card'])];
-      if (hero && angle.before && angle.after) templates.push('states');
 
-      for (const template of templates) {
-        for (const tone of ['light', 'dark'] as PinTone[]) {
-          add({
-            ...base,
-            id: `routine:${d.slug}:${template}:${tone}:${i}`,
-            template,
-            tone,
-            image: cardUrl({
-              tpl: template, tone, v: template === 'card' ? CARD_DIRECTION : undefined,
-              t: angle.headline, s: angle.audience, sub: angle.proof,
-              b: angle.before, a: angle.after,
-              id: `a ${d.minutes}-minute routine`,
-              items: template === 'poselist' ? JSON.stringify(items) : undefined,
-              img: template === 'card' ? undefined : hero,
-              ph: template === 'window' ? String(windowHeight(heroSlug)) : undefined,
-            }),
-          });
-        }
+      for (const tone of ['light', 'dark'] as PinTone[]) {
+        // Frame — what it is. The routine's own name, its length and level,
+        // and the angle's proof line underneath. The most information any pin
+        // in the set carries, and it still does not feel crowded.
+        add({
+          ...base,
+          id: `routine:${d.slug}:frame:${tone}:${i}`,
+          template: 'frame',
+          tone,
+          image: cardUrl({
+            tpl: 'frame', tone, t: d.title, s: angle.audience,
+            meta: metaLine, sub: angle.proof, img: hero,
+          }),
+        });
+        // Panel — why you want it. Benefit first, name nowhere.
+        add({
+          ...base,
+          id: `routine:${d.slug}:panel:${tone}:${i}`,
+          template: 'panel',
+          tone,
+          image: cardUrl({
+            tpl: 'panel', tone, t: angle.headline, s: angle.audience,
+            sub: angle.proof, img: hero,
+            ph: String(panelPhotoHeight(angle.headline, angle.proof)),
+          }),
+        });
       }
     }
   }
 
-  // ── Videos ───────────────────────────────────────────────────────────────
+  // ── Classes on YouTube ───────────────────────────────────────────────────
   const videos = await getCollection('videos');
   for (const video of videos) {
     const d = video.data;
     if (!d.enriched || d.membership || d.pin_angles.length === 0) continue;
-    // The Watch with me template needs a photograph, and a video only has a
-    // YouTube thumbnail. Borrow the first pose it features.
+    // Watch needs a photograph and a video only has a YouTube thumbnail, so it
+    // borrows the first pose the class features.
     const img = d.poses_featured.map(photoOf).find(Boolean);
     if (!img) continue;
     const angle = d.pin_angles[0];
     const audience = angle.audience as PinAudience;
     for (const tone of ['light', 'dark'] as PinTone[]) {
       add({
-        id: `video:${d.slug}:video:${tone}:0`,
+        id: `video:${d.slug}:watch:${tone}:0`,
         kind: 'video',
         label: d.display_title ?? d.title,
-        template: 'video',
+        template: 'watch',
         tone,
         audience,
         board: boardFor(audience),
         url: `${SITE}/videos/${d.slug}/`,
         description: describe(audience, d.seo_description),
         image: cardUrl({
-          tpl: 'video', tone,
-          t: angle.headline, s: angle.audience, sub: angle.proof,
-          id: `free on YouTube · ${d.length_minutes} min`,
-          dur: `${d.length_minutes} min`,
-          img,
+          tpl: 'watch', tone, t: angle.headline, s: angle.audience,
+          sub: angle.proof, dur: `${d.length_minutes} min`,
+          foot: 'free on YouTube', img,
         }),
       });
     }
@@ -264,37 +290,56 @@ export async function buildPinInventory(): Promise<Pin[]> {
   for (const post of posts) {
     const d = post.data;
     const url = `${SITE}/blog/${d.slug}/`;
-    // Every post but one leads on a pose photograph, so the window carries them.
-    // The card stays as a second creative here and nowhere else: a journal pin
-    // is about an idea, which is the one case a statement genuinely beats a
-    // photograph — and these are the highest-intent pins in the system, so they
-    // earn two.
-    const hero = d.hero?.startsWith('/poses/') ? d.hero : undefined;
-    const templates = hero ? ['window', 'card'] : ['card'];
+    // A post that leads on a pose photograph uses it. The one that doesn't
+    // borrows the lead photo of the routine it tells you to go and practise —
+    // which is the picture it would have chosen anyway, and a great deal better
+    // than the photo-less card that would otherwise stand in.
+    const hero = heroPhoto(d.hero) ?? (d.practise ? routineHero.get(d.practise.routine) : undefined);
+    const seo = d.seo_description ?? d.description;
 
     for (const [i, angle] of d.pin_angles.entries()) {
       const audience = angle.audience as PinAudience;
-      for (const template of templates) {
-        for (const tone of ['light', 'dark'] as PinTone[]) {
-          add({
-            id: `journal:${d.slug}:${template}:${tone}:${i}`,
-            kind: 'journal',
-            label: d.title,
-            template,
-            tone,
-            audience,
-            board: boardFor(audience),
-            url,
-            description: describe(audience, d.seo_description ?? d.description),
-            image: cardUrl({
-              tpl: template, tone, v: template === 'card' ? CARD_DIRECTION : undefined,
-              t: angle.headline, s: angle.audience, sub: angle.proof,
-              id: 'from the journal',
-              img: template === 'window' ? hero : undefined,
-              ph: template === 'window' ? String(windowHeight(hero?.replace('/poses/','').replace('.jpg','') ?? '')) : undefined,
-            }),
-          });
-        }
+      const base = {
+        kind: 'journal' as const,
+        label: d.title,
+        audience,
+        board: boardFor(audience),
+        url,
+        description: describe(audience, seo),
+      };
+
+      // No photograph anywhere to borrow means no pin. Every template in the
+      // set is built around a photograph, and the alternative is the text card
+      // this redesign exists to get rid of.
+      if (!hero) continue;
+
+      for (const tone of ['light', 'dark'] as PinTone[]) {
+        // Panel — the post's own title, which is what someone searching finds.
+        add({
+          ...base,
+          id: `journal:${d.slug}:panel:${tone}:${i}`,
+          template: 'panel',
+          tone,
+          image: cardUrl({
+            tpl: 'panel', tone, t: d.title, s: 'from the journal',
+            sub: angle.proof, img: hero,
+            ph: String(panelPhotoHeight(d.title, angle.proof)),
+          }),
+        });
+        // Immersive — the idea instead of the title. These are the
+        // highest-intent pins in the system, so they earn two genuinely
+        // different reads rather than one design twice.
+        add({
+          ...base,
+          id: `journal:${d.slug}:immersive:${tone}:${i}`,
+          template: 'immersive',
+          tone,
+          image: cardUrl({
+            tpl: 'immersive', tone, t: angle.headline, s: angle.audience,
+            sub: angle.proof, foot: 'from the journal', img: hero,
+            fit: fillsPortrait(slugOfPhoto(hero)) ? undefined : '1',
+          }),
+        });
       }
     }
   }
@@ -314,10 +359,9 @@ export async function buildPinInventory(): Promise<Pin[]> {
           url: `${SITE}${page.path}`,
           description: describe(angle.audience, `${page.label}. ${angle.proof}`),
           image: cardUrl({
-            tpl: 'offer', tone,
-            t: angle.headline, s: angle.audience, sub: angle.proof,
-            offer: page.offer, cta: page.cta,
-            id: `yinyogawithkatie.com${page.path}`,
+            tpl: 'offer', tone, t: angle.headline, s: angle.audience,
+            sub: angle.proof, offer: page.offer, cta: page.cta,
+            foot: `yinyogawithkatie.com${page.path}`,
             img: photoOf(page.image),
           }),
         });
@@ -326,4 +370,15 @@ export async function buildPinInventory(): Promise<Pin[]> {
   }
 
   return pins;
+}
+
+/**
+ * Poses the inventory had to leave out, and why.
+ *
+ * Surfaced on /pins rather than hidden: an unphotographed pose is a shoot list,
+ * not a bug, and it is worth more visible than a text card standing in for it.
+ */
+export async function pinGaps(): Promise<string[]> {
+  const poses = await getCollection('poses');
+  return poses.filter((p) => !photoOf(p.data.slug)).map((p) => p.data.name_en).sort();
 }

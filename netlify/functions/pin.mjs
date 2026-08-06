@@ -1,4 +1,5 @@
 import { renderPin } from './lib/pin.mjs';
+import { renderPlatePin, PLATE_TEMPLATES } from './lib/pinplate.mjs';
 
 const SITE = 'https://yinyogawithkatie.com';
 
@@ -68,6 +69,22 @@ const isV2 = (tpl) => tpl in V2_FOCAL;
 // walks down to the plain web photo rather than failing.
 const PORTRAIT = new Set(['hook', 'split']);
 
+/* ── The Plate set ──────────────────────────────────────────────────────────
+   Five of the six put the photograph in a landscape band, which the library
+   fits by definition, so there is no eligibility test and no per-photo focal
+   registry — only a vertical nudge where a band crops height. Horizontal is
+   always 50%, because /poses/pin/ is already subject-centred.
+   Kept in step with FOCAL in src/lib/pinInventory.ts. */
+const PLATE_FOCAL = {
+  plate: '50% 52%',
+  frame: '50% 50%',
+  panel: '50% 50%',
+  immersive: '50% 50%',
+  watch: '50% 50%',
+  offer: '50% 52%',
+};
+const isPlate = (tpl) => PLATE_TEMPLATES.includes(tpl);
+
 /** Best available source for a pin, sharpest first. */
 const loadPinImage = async (path, tpl) => {
   if (!path) return null;
@@ -114,6 +131,35 @@ export default async (req) => {
   // Benefit card direction: 'a' pressed panel (default) or 'b' rule-anchored.
   const variant = (p.get('v') || 'a').slice(0, 1);
   const photoH = Math.min(850, Math.max(560, Number(p.get('ph')) || 850));
+
+  // The Plate set renders on its own and returns here — it shares the copy
+  // params but none of the eligibility or focal machinery below.
+  if (isPlate(tpl)) {
+    const fit = p.get('fit') === '1';
+    // Only a filled Immersive is portrait, and only portrait needs the 2200px
+    // crop cut from the camera original; every band is landscape and the 933px
+    // web crop covers it without upscaling.
+    const source = tpl === 'immersive' && !fit ? 'hook' : tpl;
+    const photo = await loadPinImage(p.get('img') || '', source);
+    try {
+      const png = await renderPlatePin({
+        tpl, tone, photo, focal: PLATE_FOCAL[tpl] || '50% 50%',
+        eyebrow, headline: title, blurb: subline,
+        metaLine: (p.get('meta') || '').slice(0, 48),
+        footnote: (p.get('foot') || '').slice(0, 60),
+        duration, offer, cta, fit,
+        photoH: Math.min(780, Math.max(520, Number(p.get('ph')) || 700)),
+      });
+      return new Response(png, {
+        headers: {
+          'content-type': 'image/png',
+          'cache-control': 'public, max-age=86400, s-maxage=2592000, immutable',
+        },
+      });
+    } catch (err) {
+      return new Response(`Pin render error: ${err?.message || err}`, { status: 500 });
+    }
+  }
 
   // Main photo. v2 templates take the subject-centred crop and a fixed vertical
   // focal; the older ones keep the per-photo focal registry above.
