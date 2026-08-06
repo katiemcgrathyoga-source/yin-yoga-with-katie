@@ -23,11 +23,25 @@ const all = await getCollection('practices');
 // Unlisted practices are email-only (the free lead magnet) — not part of the index.
 const practices = unlocked ? all.filter((p) => !p.data.unlisted) : [];
 
+// Only read for the unlocked view; a non-buyer renders just the gate.
+const bySlug = new Map(
+  (unlocked ? await getCollection('poses') : []).map((p) => [p.data.slug, p.data]),
+);
+
 type Practice = (typeof practices)[number];
 
 /** Card thumbnail: an explicit hero pose, else the first shape in the sequence.
- *  A pose photo stands in until each class is filmed and a real still replaces it. */
-const thumb = (p: Practice) => `/poses/${p.data.hero_pose ?? p.data.steps[0]?.pose}.jpg`;
+ *  A pose photo stands in until each class is filmed and a real still replaces it.
+ *
+ *  Resolved through the poses collection rather than guessed as `/poses/<slug>.jpg`.
+ *  Guessing broke three cards the moment a sequence was reordered onto a pose that
+ *  hadn't been photographed yet — a 404 in the grid, with nothing failing the build.
+ *  An unphotographed pose now falls back to the branded placeholder. */
+const PLACEHOLDER = '/brand/pose-placeholder.png';
+const thumb = (p: Practice) => {
+  const slug = p.data.hero_pose ?? p.data.steps[0]?.pose;
+  return bySlug.get(slug)?.images?.[0] ?? PLACEHOLDER;
+};
 
 const LONG_FROM = 30; // minutes — the gap between the ~18 min shorts and the ~50 min resets
 const byLength = (a: Practice, b: Practice) => a.data.minutes - b.data.minutes;

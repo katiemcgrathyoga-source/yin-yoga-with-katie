@@ -5,8 +5,9 @@ collection: "runners-reset"
 kind: "target"
 area: "lower back & spine"
 body_map: "back"
+hero_pose: "cat-pulling-its-tail"
 level: "all-levels"
-minutes: 16
+minutes: 15
 hold_label: "1–2 minute holds"
 props: []
 youtube_video_id: ""
@@ -24,19 +25,23 @@ steps:
   - pose: "wind-relieving"
     seconds: 120
     sides: 1
-    note: "On your back, hug the knees in and rock gently side to side — decompress the low back."
-  - pose: "sphinx"
-    seconds: 120
-    sides: 1
-    note: "Onto the forearms — a soft, passive back-bend to restore the spine's natural curve."
+    rebound: 30
+    note: "Knees to chest — hug them in and rock gently side to side to decompress the low back."
   - pose: "childs-pose"
     seconds: 120
     sides: 1
-    note: "Knees wide, fold forward — the opposite shape, a gentle rounding of the low back."
-  - pose: "reclined-twist"
+    rebound: 30
+    note: "Knees wide, big toes together, fold forward — a gentle rounding of the low back."
+  - pose: "sphinx"
+    seconds: 120
+    sides: 1
+    rebound: 30
+    note: "Onto the forearms — a soft, passive back-bend to restore the spine's natural curve."
+  - pose: "cat-pulling-its-tail"
     seconds: 120
     sides: 2
-    note: "Knees drop to one side — rotation for the whole spine."
+    rebound: 30
+    note: "A reclined twist with the top leg drawn back — the low back, the front of the thigh and the whole spine together."
   - pose: "banana"
     seconds: 60
     sides: 2
@@ -54,5 +59,5 @@ when:
   - "As the spine block inside a longer Full Reset."
 access: "members"
 seo_title: "Yin Yoga for Runners — Lower Back & Spine"
-seo_description: "A follow-along Yin practice for runners' lower back and spine: gently undo the compression of every run in about 16 minutes. Video, timer and cues."
+seo_description: "A follow-along Yin practice for runners' lower back and spine: gently undo the compression of every run in about 15 minutes. Video, timer and cues."
 ---

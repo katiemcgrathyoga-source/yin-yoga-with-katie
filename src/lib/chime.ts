@@ -19,9 +19,18 @@
 const BELL_URL = '/audio/bell.mp3';
 const MUTE_KEY = 'yin-sound-off';
 
-/** Peak-normalised file, so this is the real listening level. */
-const BELL_GAIN = 0.6;
-const TICK_GAIN = 0.11;
+/**
+ * The bell is a peak-normalised recording; the tick is synthesised, so these
+ * two numbers are the only thing keeping them in proportion.
+ *
+ * Set by ear against each other, not independently: the tick has to be audible
+ * to someone lying still with their eyes closed, and the bell has to arrive as
+ * the end of a hold rather than as a start. The first pass had the bell four
+ * times the tick's amplitude — about 15 dB — which read as a fright after three
+ * soft taps. Roughly 8 dB apart lands as the same instrument getting louder.
+ */
+const BELL_GAIN = 0.3;
+const TICK_GAIN = 0.12;
 
 export class Chime {
   private ctx: AudioContext | null = null;

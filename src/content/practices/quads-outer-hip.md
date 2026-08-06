@@ -6,7 +6,7 @@ kind: "target"
 area: "quads & outer hip"
 body_map: "quads"
 level: "all-levels"
-minutes: 18
+minutes: 19
 hold_label: "2 minute holds"
 props: []
 youtube_video_id: ""
@@ -24,17 +24,20 @@ steps:
   - pose: "saddle"
     seconds: 120
     sides: 2
+    rebound: 30
     note: "Half-saddle — one leg folded back, lean onto your hands or a bolster. The deep quad and hip-flexor opener, one side at a time. Skip if the knees complain."
   - pose: "twisted-dragon"
     seconds: 120
     sides: 2
+    rebound: 30
     note: "From a low lunge, ease the front knee open with your hand — into the outer hip and the TFL."
   - pose: "banana"
     seconds: 120
     sides: 2
+    rebound: 30
     note: "On your back, walk feet and shoulders to one side into a long crescent — the whole side line."
   - pose: "reclined-twist"
-    seconds: 60
+    seconds: 120
     sides: 2
     note: "Knees drop to one side — a gentle wring-out to finish."
 scale:
@@ -50,5 +53,5 @@ when:
   - "As the quad and lateral-line block inside a longer Full Reset."
 access: "members"
 seo_title: "Yin Yoga for Runners — Quads & Outer Hip (IT Band)"
-seo_description: "A follow-along Yin practice for runners' quads and outer hip: release the muscles behind IT-band tightness in about 18 minutes. Video, timer and cues."
+seo_description: "A follow-along Yin practice for runners' quads and outer hip: release the muscles behind IT-band tightness in about 19 minutes. Video, timer and cues."
 ---

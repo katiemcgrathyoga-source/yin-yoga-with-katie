@@ -28,7 +28,7 @@ transitions_out:
   - "Or roll slowly onto your back and hug the knees in toward the chest."
 counterposes:
   - "Child's Pose"
-  - "Wind-Relieving Pose (knees to chest) to release the lower back"
+  - "Knees-to-Chest Pose to release the lower back"
 cautions:
   - "Later pregnancy: lying face-down isn't suitable — rest instead in a side-lying position or supported Child's Pose."
   - "If lying flat pinches the lower back, that's often the lumbar spine being pressed into a small arch — slide a folded blanket under the hips and belly to take the arch out, or choose a different rest such as Corpse Pose."

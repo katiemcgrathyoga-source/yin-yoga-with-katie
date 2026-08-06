@@ -5,11 +5,13 @@ collection: "runners-reset"
 kind: "full-reset"
 area: "full body (restorative)"
 body_map: "full"
+hero_pose: "supported-bridge"
 level: "all-levels"
-minutes: 50
-hold_label: "4–5 minute holds"
-props: ["bolster", "2 blocks", "blanket"]
+minutes: 46
+hold_label: "3–6 minute holds"
+props: ["bolster", "2 blocks", "blanket", "strap"]
 youtube_video_id: ""
+bunny_video_id: "a770d8ca-af04-4e10-916e-2715fe2eba0e"
 why: >
   Same idea as the Full Reset — the whole chain, then deep rest — but gentler and more
   supported, so tired legs can let go without effort. On low-energy days, the recovery
@@ -20,46 +22,45 @@ intro: >
   For tired legs and low-energy days. Everything is propped and supported, so all you
   have to do is arrive, get comfortable, and let the shapes hold you.
 steps:
-  - pose: "corpse"
+  - pose: "constructive-rest"
     seconds: 120
     sides: 1
-    note: "Settle onto your back over a bolster. A few slow breaths to arrive."
-  - pose: "butterfly"
-    seconds: 240
+    rebound: 30
+    note: "Knees bent, feet wide, knees resting together. Arrive before anything else."
+  - pose: "supported-fish-butterfly"
+    seconds: 300
     sides: 1
-    note: "Reclined butterfly — soles together, lie back over a bolster. The hips open with zero effort."
+    rebound: 30
+    note: "Lie back over the bolster, soles together, blocks under both knees — the whole front body opens and nothing is held."
   - pose: "supported-bridge"
     seconds: 240
     sides: 1
-    note: "A block or bolster under the sacrum — a gentle, passive opening for the front of the hips."
-  - pose: "dragon"
+    rebound: 30
+    note: "Block or bolster under the sacrum — a gentle, supported lift with no effort in the legs."
+  - pose: "reclined-dragon"
     seconds: 180
     sides: 2
-    note: "Low lunge, well propped — the hip flexors, softly."
-  - pose: "sleeping-swan"
+    rebound: 30
+    note: "One knee drawn in, the other leg lengthening away — the hip flexors, opened from underneath."
+  - pose: "reclined-swan"
     seconds: 180
     sides: 2
-    note: "Shin across the mat, a bolster under the chest to rest on — the glutes without strain."
-  - pose: "sphinx"
-    seconds: 180
-    sides: 1
-    note: "Onto the forearms — a soft, restful back-bend."
-  - pose: "seal"
-    seconds: 180
-    sides: 1
-    note: "Arms a little straighter if it feels good — a touch more through the front line. Ease back to rest slowly."
-  - pose: "reclined-twist"
-    seconds: 150
+    rebound: 30
+    note: "Ankle across the opposite thigh, draw the leg in — the glutes and outer hip, on your back."
+  - pose: "reclined-hamstring"
+    seconds: 360
     sides: 2
-    note: "Knees to one side over a bolster — a supported spinal twist."
+    rebound: 30
+    note: "Strap around the foot, three stages per leg — straight up, then out to the side, then across the body. Six unhurried minutes each leg."
   - pose: "legs-up-the-wall"
     seconds: 300
     sides: 1
+    rebound: 30
     note: "Legs up, blanket over you — sink into deep rest."
   - pose: "corpse"
-    seconds: 240
+    seconds: 60
     sides: 1
-    note: "Final rest, fully supported. Stay as long as you like."
+    note: "Final rest. Let the whole practice settle."
 scale:
   - level: "New"
     note: "This is the gentlest place to start — use every prop, and let the shapes do all the work."
@@ -73,5 +74,5 @@ when:
   - "Before bed, to wind all the way down."
 access: "members"
 seo_title: "Yin Yoga for Runners — The Restorative Reset"
-seo_description: "A gentle, fully-supported Yin recovery practice for runners' tired legs and low-energy days, about 50 minutes. Video, timer and cues."
+seo_description: "A gentle, fully-supported Yin recovery practice for runners' tired legs and low-energy days, about 46 minutes. Video, timer and cues."
 ---

@@ -5,10 +5,11 @@ collection: "runners-reset"
 kind: "full-reset"
 area: "full body"
 body_map: "full"
+hero_pose: "butterfly"
 level: "all-levels"
-minutes: 53
-hold_label: "3–5 minute holds"
-props: ["bolster", "2 blocks", "strap"]
+minutes: 51
+hold_label: "2–4 minute holds"
+props: ["bolster", "2 blocks"]
 youtube_video_id: ""
 bunny_video_id: "d6d8e1bd-0399-4350-aa46-dcbaf1049f14"
 why: >
@@ -21,48 +22,63 @@ intro: >
   Your weekly all-rounder — everything, start to finish, unhurried. Settle in, work
   gently through the whole lower body, and let the long rest at the end do its quiet work.
 steps:
-  - pose: "corpse"
+  - pose: "constructive-rest"
     seconds: 120
     sides: 1
-    note: "Constructive rest — lie down, knees bent or long, and let the run go before you begin."
+    rebound: 30
+    note: "Knees bent, feet wide, knees leaning together — let the run go before you begin."
   - pose: "butterfly"
-    seconds: 240
+    seconds: 180
     sides: 1
+    rebound: 30
     note: "Soles together, fold forward — the inner thighs and hips."
   - pose: "caterpillar"
-    seconds: 240
+    seconds: 180
     sides: 1
+    rebound: 30
     note: "Legs long, fold down — the hamstrings and whole back body."
   - pose: "dragon"
     seconds: 180
     sides: 2
+    rebound: 30
     note: "Low lunge — the hip flexors. Cushion under the back knee."
   - pose: "sleeping-swan"
     seconds: 180
     sides: 2
+    rebound: 30
     note: "Shin across the mat — the glutes and outer hip."
+  - pose: "shoelace"
+    seconds: 120
+    sides: 2
+    rebound: 30
+    note: "Knees stacked, fold forward — the outer hip from a different angle."
   - pose: "saddle"
     seconds: 240
     sides: 1
+    rebound: 30
     note: "Lean back over a bolster — the quads and front of the hips. Skip if the knees or back complain."
   - pose: "squat"
-    seconds: 180
+    seconds: 120
     sides: 1
-    note: "A deep supported squat — the ankles, calves and hips."
+    rebound: 30
+    note: "A deep supported squat — the ankles, calves and hips. Child's Pose instead if the squat is not available today."
   - pose: "banana"
     seconds: 120
     sides: 2
+    rebound: 30
     note: "Long crescent — the side body and outer line."
   - pose: "reclined-twist"
     seconds: 120
     sides: 2
+    rebound: 30
     note: "Knees to one side — the spine."
   - pose: "legs-up-the-wall"
-    seconds: 240
+    seconds: 300
     sides: 1
+    rebound: 30
     note: "Legs up, arms soft — the most restful shape in Yin. Let everything drain and settle."
   - pose: "corpse"
-    seconds: 180
+    seconds: 60
     sides: 1
     note: "Final rest. Nothing to do. Stay as long as you like."
 scale:
@@ -78,5 +94,5 @@ when:
   - "Any evening you want to properly reset, head to toe."
 access: "members"
 seo_title: "Yin Yoga for Runners — The Full Reset (50+ min)"
-seo_description: "A full-body Yin recovery practice for runners: every area, one flowing sequence, about 53 minutes. Video, timer and cues."
+seo_description: "A full-body Yin recovery practice for runners: every area, one flowing sequence, about 51 minutes. Video, timer and cues."
 ---

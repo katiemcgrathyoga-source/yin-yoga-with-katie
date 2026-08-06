@@ -6,7 +6,7 @@ kind: "target"
 area: "calves, ankles & feet"
 body_map: "calves"
 level: "all-levels"
-minutes: 14
+minutes: 12
 hold_label: "1–3 minute holds"
 props: []
 youtube_video_id: ""
@@ -23,20 +23,24 @@ intro: >
   ways, and lengthen the calves — the foundation the rest of your stride sits on.
 steps:
   - pose: "toe-squat"
-    seconds: 120
+    seconds: 60
     sides: 1
-    note: "Kneel with the toes tucked under — a strong stretch through the soles and toes. Ease in; 30–60 seconds is plenty at first, hands down to take off weight."
+    rebound: 30
+    note: "Kneel with the toes tucked under — a strong stretch through the soles and toes. Ease in; hands down to take off weight."
   - pose: "ankle-stretch"
     seconds: 120
     sides: 1
+    rebound: 30
     note: "Tops of the feet down, sit back gently — the opposite stretch, along the shins and fronts of the ankles."
   - pose: "squat"
     seconds: 180
     sides: 1
+    rebound: 30
     note: "A deep, supported squat — opens the ankles, calves and hips at once. Heels on a rolled blanket if they lift."
   - pose: "dangling"
     seconds: 120
     sides: 1
+    rebound: 30
     note: "Standing forward fold, soft knees, heavy head — lengthens the calves and the whole back line."
   - pose: "saddle"
     seconds: 120
@@ -55,5 +59,5 @@ when:
   - "First thing, to free the ankles before a day on your feet."
 access: "members"
 seo_title: "Yin Yoga for Runners — Calves, Ankles & Feet"
-seo_description: "A follow-along Yin practice for runners' calves, ankles and feet: restore the ankle and foot mobility running stiffens, in about 14 minutes."
+seo_description: "A follow-along Yin practice for runners' calves, ankles and feet: restore the ankle and foot mobility running stiffens, in about 12 minutes."
 ---

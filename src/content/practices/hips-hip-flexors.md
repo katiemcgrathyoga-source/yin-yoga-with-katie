@@ -6,8 +6,8 @@ kind: "target"
 area: "hips"
 body_map: "hips"
 level: "all-levels"
-minutes: 19
-hold_label: "1–3 minute holds"
+minutes: 18
+hold_label: "1–2 minute holds"
 props: []
 youtube_video_id: ""
 # Self-hosted on Bunny: paid classes never go on YouTube, and the page signs a
@@ -29,23 +29,27 @@ steps:
   - pose: "sphinx"
     seconds: 120
     sides: 1
-    note: "Onto your forearms. A soft, passive lift — open the whole front of the hips."
+    rebound: 30
+    note: "Onto the forearms — a soft opening through the front of the hips and the low back before we go deeper."
   - pose: "dragon"
     seconds: 120
     sides: 2
-    note: "Deep low lunge. Sink the hips forward and down — the big hip-flexor opener. Cushion under the back knee."
+    rebound: 30
+    note: "Low lunge, back knee down and cushioned — the deep hip-flexor opener."
   - pose: "sleeping-swan"
     seconds: 120
     sides: 2
-    note: "Front shin across the mat, fold forward. Releases the glute and outer hip — the balance to all that forward motion."
+    rebound: 30
+    note: "Shin across the mat, fold forward — the glutes and outer hip."
   - pose: "reclined-twist"
-    seconds: 60
+    seconds: 120
     sides: 2
-    note: "On your back, drop the knees to one side. A gentle wring-out after all that opening."
+    rebound: 30
+    note: "Knees drop to one side — release the whole spine after the hip work."
   - pose: "corpse"
-    seconds: 180
+    seconds: 60
     sides: 1
-    note: "Flat on your back, everything heavy. The hips have just done a lot — this is where it settles in."
+    note: "Lie long and still. Nothing to do."
 scale:
   - level: "New"
     note: "More support, less depth. Cushion under the back knee in Dragon; stay tall in Sleeping Swan rather than folding. Two minutes is plenty — come out sooner if you need to."
@@ -59,5 +63,5 @@ when:
   - "As the hip block inside a longer Full Reset session."
 access: "members"
 seo_title: "Yin Yoga for Runners — Hips & Hip Flexors (Post-Run)"
-seo_description: "A short follow-along Yin practice for runners: open the tight hips and hip flexors running builds up, in about 19 minutes. Video, timer and cues."
+seo_description: "A short follow-along Yin practice for runners: open the tight hips and hip flexors running builds up, in about 18 minutes. Video, timer and cues."
 ---

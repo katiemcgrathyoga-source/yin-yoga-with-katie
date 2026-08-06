@@ -27,7 +27,7 @@ transitions_out:
   - "Bend the knee, slip the strap off, and lower the foot to the floor."
   - "Hug both knees into the chest to rebalance before the second side."
 counterposes:
-  - "Wind-Relieving Pose (knees to chest)"
+  - "Knees-to-Chest Pose"
   - "A gentle Reclined Twist"
 cautions:
   - "Keep a soft bend in the knee — never lock it straight, especially if you're very flexible or have hypermobile joints."

@@ -1,7 +1,7 @@
 ---
-name_en: "Wind-Relieving Pose"
+name_en: "Knees-to-Chest Pose"
 slug: "wind-relieving"
-also_known_as: ["Apanasana", "Knees-to-Chest", "Pavanamuktasana"]
+also_known_as: ["Wind-Relieving Pose", "Apanasana", "Knees-to-Chest", "Pavanamuktasana"]
 target_areas: ["lower back", "hips", "belly", "digestion"]
 meridians: ["stomach", "spleen", "urinary bladder"]
 accessibility: "beginner"
