@@ -331,7 +331,17 @@ const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_i
   .sp-cue:last-child { border-bottom: none; }
   .sp-cue .n { font-family: var(--display); color: var(--gold); font-size: 20px; width: 22px; flex: none; }
   .sp-cue h4 { font-size: 16px; }
-  .sp-cue h4 a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--gold); }
+  /* These were ink text with a --gold (#BC9D9A) hairline under them, which reads
+     as decoration — people didn't know the poses were clickable at all. They use
+     the site's actual link colour now, and the row is padded so the tap target on
+     a phone is a finger rather than a word. */
+  .sp-cue h4 a {
+    color: var(--gold-solid); text-decoration: none;
+    border-bottom: 1px solid rgba(137, 73, 75, .38);
+    padding-bottom: 1px;
+  }
+  .sp-cue h4 a:hover, .sp-cue h4 a:focus-visible { border-bottom-color: var(--gold-solid); }
+  .sp-cue h4 a::after { content: " ›"; opacity: .55; }
   .sp-cue h4 .side { font-weight: 400; color: var(--ink-soft); font-size: 13px; }
   .sp-cue .hold { font-size: 12.5px; font-weight: 600; color: var(--gold-solid); }
   .sp-cue p { font-size: 14px; color: var(--ink-soft); margin-top: 3px; }

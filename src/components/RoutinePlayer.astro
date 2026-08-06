@@ -301,11 +301,14 @@ const { title, holds, shareUrl, imageUrl } = Astro.props;
       // for it, and a photo of the pose you already did helps with nothing.
       this.photo.src = next.img;
       this.photo.alt = `${next.name} yin yoga pose`;
-      this.count.textContent = switching ? 'Switch sides' : 'Ease out slowly';
+      // "Rest" leads, because the photo below is the pose you're going INTO and
+      // at a glance that reads as the pose you should already be in. The label,
+      // the greyed photo and the "Coming up" chip all say the same thing.
+      this.count.textContent = switching ? 'Rest · then switch sides' : 'Rest';
       this.nameEl.textContent = `${next.name}${next.sideLabel ? ' · ' + next.sideLabel : ''}`;
       this.note.textContent = switching
-        ? 'Come out, pause, then set up on the other side.'
-        : 'Rest here a moment, then get yourself into the next shape.';
+        ? 'Come out and pause. Set up on the other side when you are ready.'
+        : 'Stay still a moment. Then set yourself up for this one.';
       this.updateNextUp(this.idx);
       this.toggle.textContent = 'Pause';
       this.live.textContent = switching ? 'Switch sides.' : `Next, ${next.name}.`;

@@ -322,10 +322,13 @@ routine-player.is-focus .rp-bar { display: flex; }
 .rp-photo {
   width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;
   border-radius: 14px; border: 1px solid var(--line); background: var(--paper);
-  transition: opacity .3s ease;
+  transition: opacity .3s ease, filter .3s ease;
 }
-/* The rebound photo is the NEXT pose, so it stays fully lit — you're meant to be
-   reading it. Only the finished state dims. */
+/* The rebound photo is the NEXT pose, so it has to stay readable — you're setting
+   yourself up from it. But at a glance an undimmed photo reads as the pose you
+   should be IN, which is the opposite of rest. Held back far enough to say
+   "not yet", not so far you can't see the shape. The finished state dims properly. */
+routine-player.is-transition .rp-photo { opacity: .55; filter: grayscale(.65); }
 routine-player.is-done .rp-photo { opacity: .35; }
 
 /* Marks the photo as a preview during the rebound, so nobody reads it as the

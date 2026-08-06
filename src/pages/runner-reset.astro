@@ -4,6 +4,11 @@ import { Image } from 'astro:assets';
 import katieAbout from '../assets/katie-about.jpg';
 import katieHello from '../assets/katie-hello.jpg';
 import practicePreview from '../assets/practice-page-preview.jpg';
+// Captured from the running course, not mocked up — see src/assets/course-shots.
+import shotLibrary from '../assets/course-shots/01-library.png';
+import shotTimer from '../assets/course-shots/03-timer-phone.png';
+import shotRebound from '../assets/course-shots/04-rebound-phone.png';
+import shotPlans from '../assets/course-shots/05-plans.png';
 
 // The Runner's Reset — long-form sales page. Copy is LOCKED, verbatim from
 // runner-reset-copy-pack/A-sales-page.md. This file is a visual/structural
@@ -217,6 +222,34 @@ ogImage.searchParams.set('s', 'Short follow-along Yin practices to undo the tigh
         <figure class="rr-shot">
           <Image src={practicePreview} alt="A practice page in The Runner's Reset, showing the follow-along video and the tab to switch to the hold timer" widths={[560, 900, 1026]} sizes="(max-width: 900px) 92vw, 860px" loading="lazy" />
           <figcaption>A real practice page — the follow-along video, and one tap to the hold timer.</figcaption>
+        </figure>
+      </div>
+
+      {/* Every shot here answers one objection. Not a gallery — a gallery is what
+          you show when you don't know which doubt is stopping the sale. */}
+      <div class="rr-read">
+        <h3 class="rr-h3">A look inside</h3>
+      </div>
+      <div class="rr-band">
+        <figure class="rr-shot">
+          <Image src={shotLibrary} alt="The Runner's Reset library, showing practice cards with their length and hold times" widths={[560, 900, 1026]} sizes="(max-width: 900px) 92vw, 860px" loading="lazy" />
+          <figcaption>Everything you own, in one place — not a playlist you scroll past.</figcaption>
+        </figure>
+
+        <div class="rr-phones">
+          <figure class="rr-phone">
+            <Image src={shotTimer} alt="The hold timer counting down a two-minute Dragon, showing pose 2 of 5" widths={[260, 520]} sizes="(max-width: 620px) 44vw, 260px" loading="lazy" />
+            <figcaption>The timer runs the practice. Put the phone down and close your eyes — a bell moves you on.</figcaption>
+          </figure>
+          <figure class="rr-phone">
+            <Image src={shotRebound} alt="The rest period between poses, previewing the next shape you'll move into" widths={[260, 520]} sizes="(max-width: 620px) 44vw, 260px" loading="lazy" />
+            <figcaption>And during the rest between shapes, it shows you what's coming — so you're set up before it starts.</figcaption>
+          </figure>
+        </div>
+
+        <figure class="rr-shot">
+          <Image src={shotPlans} alt="The calendar plans page, showing week one of the 6-Week Foundation" widths={[560, 900, 1026]} sizes="(max-width: 900px) 92vw, 860px" loading="lazy" />
+          <figcaption>Pick a plan, choose a start date, and it drops into the calendar you already use.</figcaption>
         </figure>
       </div>
     </section>
@@ -481,6 +514,25 @@ ogImage.searchParams.set('s', 'Short follow-along Yin practices to undo the tigh
   .rr-shot figcaption {
     margin-top: 12px; text-align: center;
     font-size: 14px; color: var(--ink-soft); line-height: 1.5;
+  }
+
+  /* The two phone shots. Side by side even on a narrow screen — they're a pair,
+     and stacking them turns one idea into two and loses the comparison. */
+  .rr-phones {
+    display: flex; gap: clamp(16px, 4vw, 36px); justify-content: center;
+    align-items: flex-start; margin: 34px auto 0; max-width: 860px;
+  }
+  .rr-phone { flex: 1 1 0; max-width: 262px; margin: 0; }
+  .rr-phone :global(img) {
+    display: block; width: 100%; height: auto;
+    border-radius: 22px; border: 1px solid var(--line);
+    box-shadow: 0 14px 34px rgba(46, 52, 47, .12);
+  }
+  .rr-phone figcaption {
+    margin-top: 12px; font-size: 13.5px; color: var(--ink-soft); line-height: 1.5; text-align: center;
+  }
+  @media (max-width: 420px) {
+    .rr-phone figcaption { font-size: 12.5px; }
   }
 
   /* ── Bonus stack ───────────────────────────────────────────────────── */
