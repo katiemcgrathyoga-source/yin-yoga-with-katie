@@ -346,7 +346,10 @@ export async function buildPinInventory(): Promise<Pin[]> {
   }
 
   // ── Journal ──────────────────────────────────────────────────────────────
-  const posts = (await getCollection('blog')).filter((p) => !p.data.draft);
+  // Unlisted as well as draft: an unlisted post renders noindex and is kept out of
+  // the listing, RSS and the sitemap, so pinning it would drive Pinterest traffic
+  // to a page we have told Google to ignore.
+  const posts = (await getCollection('blog')).filter((p) => !p.data.draft && !p.data.unlisted);
   for (const post of posts) {
     const d = post.data;
     const url = `${SITE}/blog/${d.slug}/`;
