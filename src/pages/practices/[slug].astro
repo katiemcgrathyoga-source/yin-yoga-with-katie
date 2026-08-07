@@ -137,7 +137,7 @@ const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_i
           </div>
 
           <div class="sp-panel" id="p-timer" role="tabpanel" aria-labelledby="tab-timer" hidden>
-            <RoutinePlayer title={d.title} holds={holds} />
+            <RoutinePlayer title={d.title} holds={holds} share={false} />
             <p class="sp-hint">For when you know the shapes and just want to flow — screen-free, no narration. A gentle chime moves you between holds.</p>
           </div>
         </section>
@@ -343,7 +343,11 @@ const bunnyEmbed = unlocked && d.bunny_video_id ? signBunnyEmbed(d.bunny_video_i
   .sp-cue h4 a:hover, .sp-cue h4 a:focus-visible { border-bottom-color: var(--gold-solid); }
   .sp-cue h4 a::after { content: " ›"; opacity: .55; }
   .sp-cue h4 .side { font-weight: 400; color: var(--ink-soft); font-size: 13px; }
-  .sp-cue .hold { font-size: 12.5px; font-weight: 600; color: var(--gold-solid); }
+  /* display:block is load-bearing. As an inline span this shared a line box with
+     the heading above it and painted over the pose link, so clicking the pose
+     NAME hit this element and did nothing — only the chevron poking out past it
+     was clickable. */
+  .sp-cue .hold { display: block; font-size: 12.5px; font-weight: 600; color: var(--gold-solid); }
   .sp-cue p { font-size: 14px; color: var(--ink-soft); margin-top: 3px; }
 
   /* body map lives in components/BodyMap.astro and styles itself */

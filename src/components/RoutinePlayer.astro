@@ -8,18 +8,25 @@
  * when only swapping sides) — the still pause Yin asks for, and the reason a
  * practice runs longer than the sum of its holds. The rebound shows the pose
  * you're heading INTO, since that's the only window you have to set up for it.
- * You can nudge any hold ±30s on the fly, and at the end it generates a shareable
- * completion badge.
+ * You can nudge any hold ±30s on the fly, and on the free routines it finishes with
+ * a shareable completion badge — see the `share` prop for why the course does not.
  *
  * The custom element is framework-free and exposes setSequence()/beginPractice()
  * so the custom routine builder can drive it with a sequence built in the browser.
  */
 interface Hold { name: string; slug: string; img: string; seconds: number; note?: string; sideLabel?: string; rebound?: number; }
-interface Props { title: string; holds: Hold[]; shareUrl?: string; imageUrl?: string; }
-const { title, holds, shareUrl, imageUrl } = Astro.props;
+interface Props { title: string; holds: Hold[]; shareUrl?: string; imageUrl?: string; share?: boolean; }
+/**
+ * `share` is OFF behind the paywall. The completion badge and the share row are
+ * an acquisition device — they belong on the free routines, where a finished
+ * practice can bring someone else in. Inside a course somebody paid for, being
+ * asked to post about it is a gimmick, and it cheapens the end of a practice
+ * that is meant to finish in stillness.
+ */
+const { title, holds, shareUrl, imageUrl, share = true } = Astro.props;
 ---
 
-<routine-player data-title={title} data-share-url={shareUrl ?? ''} data-image={imageUrl ?? ''}>
+<routine-player data-title={title} data-share-url={shareUrl ?? ''} data-image={imageUrl ?? ''} data-share={share ? '1' : '0'}>
   <script type="application/json" class="rp-data" is:inline set:html={JSON.stringify(holds)} />
 </routine-player>
 
@@ -84,6 +91,8 @@ const { title, holds, shareUrl, imageUrl } = Astro.props;
     live!: HTMLElement; badge!: HTMLCanvasElement; sound!: HTMLButtonElement; dots: HTMLElement[] = [];
     /** Which of the final three seconds have already ticked in this countdown. */
     ticked = new Set<number>();
+    /** Share UI is suppressed behind the paywall — see the note on the `share` prop. */
+    get canShare() { return this.dataset.share !== '0'; }
     /** Kept alive so the browser can't bin the decoded next-pose photo mid-fetch. */
     preloads: HTMLImageElement[] = [];
 
@@ -126,6 +135,7 @@ const { title, holds, shareUrl, imageUrl } = Astro.props;
           </div>
           <div class="rp-dots" aria-hidden="true"></div>
           <div class="rp-done">
+            ${this.canShare ? `
             <canvas class="rp-badge" width="1080" height="1080"></canvas>
             <p class="rp-share-label">Share your practice</p>
             <div class="rp-socials">
@@ -135,9 +145,9 @@ const { title, holds, shareUrl, imageUrl } = Astro.props;
               <button type="button" class="rp-soc" data-net="pinterest" aria-label="Share on Pinterest" title="Pinterest">${ICON.pinterest}</button>
               <button type="button" class="rp-soc" data-net="whatsapp" aria-label="Share on WhatsApp" title="WhatsApp">${ICON.whatsapp}</button>
               <button type="button" class="rp-soc" data-net="email" aria-label="Share by email" title="Email">${ICON.email}</button>
-            </div>
+            </div>` : ''}
             <div class="rp-done-actions">
-              <button type="button" class="rp-download">Download badge</button>
+              ${this.canShare ? `<button type="button" class="rp-download">Download badge</button>` : ''}
               <button type="button" class="rp-again">Practice again</button>
             </div>
           </div>
@@ -158,11 +168,13 @@ const { title, holds, shareUrl, imageUrl } = Astro.props;
       $('.rp-exit').addEventListener('click', () => this.exitFocus());
       $('.rp-minus').addEventListener('click', () => this.adjust(-30));
       $('.rp-plus').addEventListener('click', () => this.adjust(30));
-      $('.rp-soc-native').addEventListener('click', () => this.shareBadge());
-      this.querySelectorAll<HTMLButtonElement>('.rp-soc[data-net]').forEach((b) =>
-        b.addEventListener('click', () => this.openSocial(b.dataset.net!)),
-      );
-      $('.rp-download').addEventListener('click', () => this.downloadBadge());
+      if (this.canShare) {
+        $('.rp-soc-native').addEventListener('click', () => this.shareBadge());
+        this.querySelectorAll<HTMLButtonElement>('.rp-soc[data-net]').forEach((b) =>
+          b.addEventListener('click', () => this.openSocial(b.dataset.net!)),
+        );
+        $('.rp-download').addEventListener('click', () => this.downloadBadge());
+      }
       $('.rp-again').addEventListener('click', () => this.restart());
 
       // The timer ring itself is a start/pause control (mirrors the tappable pose timer).
@@ -372,7 +384,9 @@ const { title, holds, shareUrl, imageUrl } = Astro.props;
       this.phase = 'done'; this.setPhaseClass();
       this.count.textContent = 'Practice complete';
       this.nameEl.textContent = 'Beautifully done';
-      this.note.textContent = 'Rest as long as you like, then roll to one side and come up slowly.';
+      this.note.textContent = this.canShare
+        ? 'Rest as long as you like, then roll to one side and come up slowly.'
+        : 'Rest as long as you like. Roll to one side, and come up slowly when you are ready.';
       this.clock.textContent = '✓';
       this.prog.style.strokeDashoffset = '0';
       this.dots.forEach((d) => { d.classList.add('is-done'); d.classList.remove('is-current'); });
@@ -381,7 +395,7 @@ const { title, holds, shareUrl, imageUrl } = Astro.props;
       // records — whichever page hosts it knows its own slug and length and
       // decides whether the completion is worth logging.
       this.dispatchEvent(new CustomEvent('routine-complete', { bubbles: true }));
-      await this.drawBadge();
+      if (this.canShare) await this.drawBadge();
     }
 
     restart() { this.idx = 0; this.enterFocus(); this.ensureAudio(); this.requestWake(); this.startPrep(); }
