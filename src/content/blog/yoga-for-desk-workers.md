@@ -3,7 +3,7 @@ title: "Yoga for Desk Workers: The Best Yin Poses for Neck, Shoulders & Posture"
 slug: "yoga-for-desk-workers"
 description: "Why sitting all day leaves your neck and shoulders aching — the best Yin poses for the upper back, chest and tight hip flexors, when to practise them, and follow-along classes you can do tonight."
 published: 2026-08-07
-unlisted: false
+unlisted: true
 hero: "/poses/melting-heart.jpg"
 hero_focal: "62% 58%"
 hero_caption: "melting heart — the shape that undoes a day of hunching forward"

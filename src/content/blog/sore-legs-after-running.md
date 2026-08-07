@@ -3,7 +3,7 @@ title: "Sore Legs After Running: What Actually Helps the Next Day"
 slug: "sore-legs-after-running"
 description: "Why your legs ache 24 hours after a hard run, what the evidence says about stretching it away, and what genuinely makes the day better — plus a 23-minute routine you can do lying down."
 published: 2026-08-08
-unlisted: false
+unlisted: true
 hero: "/poses/legs-up-the-wall.jpg"
 hero_focal: "58% 50%"
 hero_caption: "legs up the wall — the first thing to do with heavy legs"

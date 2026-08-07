@@ -156,7 +156,10 @@ const postBoards = (slug: string, title: string): BoardKey[] => {
   return keys.length ? ([...new Set(keys)] as BoardKey[]) : ['poses'];
 };
 const posts = (await getCollection('blog'))
-  .filter((p) => !p.data.draft)
+  // Unlisted as well as draft. An unlisted post renders noindex and is out of the
+  // listing, RSS and the sitemap — offering it here invites a pin to a page we
+  // have asked Google to ignore. (Same fix as src/lib/pinInventory.ts.)
+  .filter((p) => !p.data.draft && !p.data.unlisted)
   .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
 for (const post of posts) {
   const d = post.data;
