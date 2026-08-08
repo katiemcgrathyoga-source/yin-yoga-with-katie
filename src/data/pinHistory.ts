@@ -23,8 +23,11 @@
  * at, which is a judgement about intent rather than a fact. If Katie put one of
  * these somewhere else, correct the line — nothing else reads it.
  *
- * This file has a short life. Once the last date here is more than
- * URL_COOLDOWN_DAYS behind, it stops affecting the plan and can be emptied.
+ * DO NOT EMPTY THIS. It stops affecting the plan once the last date is more than
+ * URL_COOLDOWN_DAYS behind, but it has a second job: it is the durable record of
+ * which template went out on which day, which is the only way to answer "which
+ * designs actually performed?" against a Pinterest analytics export months later.
+ * /pincalendar has a "Copy pinned log" button that produces rows for this file.
  */
 export type PinnedAlready = {
   /** ISO date, local. The day it went out. */

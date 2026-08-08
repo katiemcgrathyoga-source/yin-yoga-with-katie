@@ -40,6 +40,9 @@ const boards = [...new Set(inventory.map((p) => p.board))].sort();
 const fmtDay = (d: Date) =>
   d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
 const isToday = (d: Date) => d.toDateString() === today.toDateString();
+/** Local YYYY-MM-DD — the shape pinHistory uses, so an exported log pastes in. */
+const isoDay = (d: Date) =>
+  new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
 
 // Days the old calendar already owned are handed over, not re-planned, so the
 // new plan can open on a day that isn't today. Say so rather than letting the
@@ -88,6 +91,7 @@ const handedOverToday = PIN_HISTORY.some(
           keyword sentence as its description.
         </p>
       </details>
+      <button type="button" id="pc-export" class="pc-export">Copy pinned log</button>
     </header>
 
     {days.map((day) => (
@@ -98,7 +102,8 @@ const handedOverToday = PIN_HISTORY.some(
         </div>
 
         {day.pins.map((pin) => (
-          <article class="pc-pin" data-pin={pin.id}>
+          <article class="pc-pin" data-pin={pin.id} data-date={isoDay(day.date)} data-url={pin.url}
+            data-tpl={pin.template} data-tone={pin.tone} data-board={pin.board}>
             <a class="pc-shot" href={pin.image} target="_blank" rel="noopener">
               <img src={pin.image} alt="" loading="lazy" width="1000" height="1500" />
             </a>
@@ -158,6 +163,12 @@ const handedOverToday = PIN_HISTORY.some(
   .pc-day-date { font-size: 0.85rem; color: var(--muted); }
   .pc-day.is-today .pc-day-head { border-bottom-color: var(--accent); }
 
+  .pc-export {
+    font: inherit; font-size: 13px; margin-top: 14px; padding: 7px 14px; border-radius: 999px;
+    cursor: pointer; border: 1px solid var(--line); background: transparent; color: var(--ink-soft);
+  }
+  .pc-export:hover { border-color: var(--head); color: var(--head); }
+
   .pc-pin {
     display: flex; gap: 1.25rem; padding: 1rem 0;
     border-bottom: 1px solid var(--line);
@@ -210,6 +221,25 @@ const handedOverToday = PIN_HISTORY.some(
   const KEY = 'pincalendar:done';
   const done = new Set<string>(JSON.parse(localStorage.getItem(KEY) ?? '[]'));
   const save = () => localStorage.setItem(KEY, JSON.stringify([...done]));
+
+  /**
+   * The done-set is the only record of what Katie ACTUALLY pinned, and every id
+   * carries its template and tone — which is what makes "did the Plate cards beat
+   * the Split ones?" answerable later. It lives in one browser's localStorage, so
+   * it is one cleared cache away from gone. This copies it out as TSV to paste
+   * into src/data/pinHistory.ts, which is the durable copy.
+   */
+  document.getElementById('pc-export')?.addEventListener('click', async (event) => {
+    const rows = [...document.querySelectorAll<HTMLElement>('[data-pin]')]
+      .filter((el) => done.has(el.dataset.pin!))
+      .map((el) => [el.dataset.date, el.dataset.tpl, el.dataset.tone, el.dataset.board, el.dataset.url].join('\t'));
+    const btn = event.currentTarget as HTMLButtonElement;
+    if (!rows.length) { btn.textContent = 'Nothing ticked yet'; setTimeout(() => (btn.textContent = 'Copy pinned log'), 1800); return; }
+    const header = ['date', 'template', 'tone', 'board', 'url'].join('\t');
+    await navigator.clipboard.writeText([header, ...rows].join('\n'));
+    btn.textContent = `Copied ${rows.length}`;
+    setTimeout(() => (btn.textContent = 'Copy pinned log'), 1800);
+  });
 
   for (const el of document.querySelectorAll<HTMLElement>('[data-pin]')) {
     const id = el.dataset.pin!;
