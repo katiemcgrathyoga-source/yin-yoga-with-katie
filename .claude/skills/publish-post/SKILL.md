@@ -54,6 +54,13 @@ Most fields are self-explanatory. These have behaviour attached:
 - **`hero`** is a path under `/public` — normally a pose photo. **`hero_focal`**
   is `object-position` for the portrait crop. Katie's head and heart must stay in
   frame; never cut off the head.
+
+  **Check this one by eye, every time.** The featured card on `/blog` crops the
+  hero to **340×420 portrait**, and every photo in the library is 3:2 landscape —
+  so roughly 46% of the width is thrown away and a wide horizontal shape gets
+  chopped at both ends. Melting Heart lost her hands and her hips this way. Pick a
+  pose whose body is compact in frame, or one lying along the crop, then render
+  `/blog` and look at it before shipping. No focal value rescues the wrong photo.
 - **`pin_quote`** activates the quote pin. **`pin_angles`** put the post in the
   Pinterest system — see below.
 - `seo_title` ≤ ~60 chars, `seo_description` ≤ ~160.

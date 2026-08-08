@@ -4,9 +4,9 @@ slug: "yoga-for-desk-workers"
 description: "Why sitting all day leaves your neck and shoulders aching — the best Yin poses for the upper back, chest and tight hip flexors, when to practise them, and follow-along classes you can do tonight."
 published: 2026-08-07
 unlisted: false
-hero: "/poses/melting-heart.jpg"
-hero_focal: "62% 58%"
-hero_caption: "melting heart — the shape that undoes a day of hunching forward"
+hero: "/poses/supported-fish.jpg"
+hero_focal: "40% 55%"
+hero_caption: "supported fish — the opposite shape to the one a desk asks you to hold"
 subtitle: "undo the day, in about twenty minutes"
 eyebrow_tag: "for desk workers"
 pin_quote: "Your body holds the shape of your day."
