@@ -62,12 +62,6 @@ This is the one I'm most excited about. If you've ever wanted a *path* rather th
 
 [See the programs →](/programs)
 
-## Build your own month — with reminders
-
-There's a calendar planner where you can lay out your practice, drop classes (or a whole program) onto the days that suit you, and send the lot to your own Google, Apple or Outlook calendar — reminders and all. Because the practice that changes you is the one you actually come back to.
-
-[Plan your practice →](/calendar)
-
 <figure>
 <img src="/blog/a-new-home-for-yin/routines.jpg" alt="Self-guided Yin Yoga routines, filterable by area and mood" loading="lazy" />
 <figcaption>Prefer no screen? Self-guided routines time each hold for you — by area, mood and length.</figcaption>
