@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import { publicRoutines } from '../../lib/routines';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Cta from '../../components/Cta.astro';
 
 const routines = publicRoutines(await getCollection('routines')).sort((a, b) => a.data.minutes - b.data.minutes);
 const poses = await getCollection('poses');
@@ -98,6 +99,10 @@ const featuredPoses = featured.data.steps.slice(0, 5).map((s) => {
       </div>
     </div>
   </section>
+
+  {/* These index pages are landing pages in their own right — every nav click
+      lands here — and until now they were the only public pages with no ask. */}
+  <Cta source="routines-all" heading="Want a longer one to follow?" />
 </BaseLayout>
 
 <script>

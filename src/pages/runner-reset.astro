@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Cta from '../components/Cta.astro';
 import { Image } from 'astro:assets';
 import katieAbout from '../assets/katie-about.jpg';
 import katieHello from '../assets/katie-hello.jpg';
@@ -351,6 +352,19 @@ ogImage.searchParams.set('s', 'Short follow-along Yin practices to undo the tigh
         <p class="rr-cta-note">One-time payment · lifetime access · first 100 runners, then $67 · 30-day keep-it guarantee</p>
         <p class="rr-signoff">Take good care of yourself,<br /><span class="rr-sig">katie</span></p>
         <p class="rr-note-med"><em>The Runner's Reset is general education, not medical advice. If you have sharp, nervy or lasting pain, please see a physiotherapist or doctor.</em></p>
+      </div>
+
+      {/* The page asked for $49 and nothing else, so anyone not ready today left
+          with nothing and no way back. This catches them — and it is the only ask
+          on the page that works at all while the store is still being verified. */}
+      <div class="rr-band">
+        <Cta
+          compact
+          offer="runners"
+          source="sales-page-not-ready"
+          eyebrow="Not ready today?"
+          heading="Try the free one first"
+        />
       </div>
     </section>
   </div>

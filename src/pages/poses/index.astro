@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import { publicRoutines } from '../../lib/routines';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Cta from '../../components/Cta.astro';
 
 // Poses are the reference layer beneath the video library. This is their browsable
 // index. Ordered by how foundational/common each pose is — measured by how often it
@@ -140,6 +141,10 @@ const levels = uniq(poses.map((p) => p.data.accessibility)).sort(
       <p class="src">Poses are the building blocks classes are built from.</p>
     </footer>
   </div>
+
+  {/* These index pages are landing pages in their own right — every nav click
+      lands here — and until now they were the only public pages with no ask. */}
+  <Cta source="poses-index" heading="Want to practise, not just read?" />
 </BaseLayout>
 
 <script>

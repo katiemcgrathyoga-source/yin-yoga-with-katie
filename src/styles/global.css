@@ -1240,6 +1240,13 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 @media (max-width: 520px) { .rt-form { flex-direction: column; align-items: stretch; } .rt-form input[type=email], .rt-form input[type=text], .rt-form .btn-cta { max-width: none; } }
 
 /* Inline capture card (Cta.astro) — reuses the dark .membership card + .rt-form. */
+/* Slim mid-page ask. Same card, less of it — it has to be noticeable without
+   interrupting a read, because it lands inside the article rather than after it. */
+.cta-block.cta-compact { padding: 24px 24px 26px; margin: 40px 0; }
+.cta-block.cta-compact h2 { font-size: clamp(19px, 2.6vw, 23px); margin-bottom: 10px; }
+.cta-block.cta-compact .eyebrow { margin-bottom: 4px; }
+.cta-block.cta-compact .cta-fine { font-size: 12px; margin-top: 10px; }
+
 .cta-block .cta-form { margin-top: 6px; }
 .cta-block .cta-fine { font-size: 13px; color: rgba(249,241,234,.72); margin: 14px 0 0; }
 .cta-block .cta-done { font-size: 16px; color: var(--paper); margin: 8px 0 0; }

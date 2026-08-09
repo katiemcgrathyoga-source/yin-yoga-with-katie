@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Cta from '../../components/Cta.astro';
 import { journalPinUrl } from '../../lib/journalPin';
 
 const posts = (await getCollection('blog'))
@@ -84,4 +85,8 @@ const ogImage = journalPinUrl(Astro.site, {
       <a class="ji-news-btn" href="https://katiemcgrathyoga.substack.com/" target="_blank" rel="noopener noreferrer">Join on Substack</a>
     </section>
   </div>
+
+  {/* These index pages are landing pages in their own right — every nav click
+      lands here — and until now they were the only public pages with no ask. */}
+  <Cta source="journal-index" heading="Yin in your inbox" />
 </BaseLayout>

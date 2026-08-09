@@ -115,6 +115,21 @@ const shareLinks = {
       <Content />
     </div>
 
+    {/* A slim ask, moved INTO the article by the script below. The post body is
+        one rendered blob, so it can't be split in the template — but leaving the
+        only ask at the end meant it sat 89% down, twelve screens, on the pages
+        search sends the most readers to. Without JS it simply stays here, which
+        is still ahead of where it was. */}
+    <div data-mid-cta>
+      <Cta
+        compact
+        offer={isRunner ? 'runners' : 'retreat'}
+        source={isRunner ? 'journal-mid-runner' : 'journal-mid'}
+        eyebrow="While you're here"
+        heading={isRunner ? 'Want the follow-along class?' : 'Want to practise along?'}
+      />
+    </div>
+
     {practiceRoutine && (
       <aside class="practise-block">
         <p class="eyebrow">Practice along</p>
@@ -233,4 +248,23 @@ const shareLinks = {
       else img.addEventListener('load', apply);
     });
   </script>
+
+<script>
+  /**
+   * Move the mid-article ask to just before a heading about a third of the way
+   * down, rather than leaving it after the body. Chosen by position, not by a
+   * fixed heading index, so it lands sensibly whether a post has three sections
+   * or nine — and it never lands in the first section, where nobody has read
+   * enough yet to want anything.
+   */
+  const mid = document.querySelector('[data-mid-cta]');
+  const body = document.querySelector('.jr-body');
+  if (mid && body) {
+    const heads = [...body.querySelectorAll('h2')];
+    if (heads.length >= 3) {
+      const target = heads[Math.max(1, Math.round(heads.length / 3))];
+      target?.before(mid);
+    }
+  }
+</script>
 </BaseLayout>

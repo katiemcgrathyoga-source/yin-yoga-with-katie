@@ -47,8 +47,19 @@ interface Props {
   offer?: keyof typeof OFFERS;
   /** Where this signup came from, e.g. "pose", "journal", "video". */
   source?: string;
+  /**
+   * Slim variant for a SECOND ask partway down a long page. Drops the badge and
+   * the body paragraph and sets the heading smaller, so the mid-page card reads
+   * as an aside rather than competing with the full card at the end.
+   *
+   * Why a mid-page ask exists at all: measured on the live site, the only ask on
+   * a pose page sat 88% down and on a blog post 89% — nine and twelve screens of
+   * scrolling. Most readers of the pages Google sends the most traffic to were
+   * never shown one.
+   */
+  compact?: boolean;
 }
-const { offer = 'retreat', source = 'site' } = Astro.props;
+const { offer = 'retreat', source = 'site', compact = false } = Astro.props;
 const o = OFFERS[offer];
 const {
   eyebrow = o.eyebrow,
@@ -62,11 +73,11 @@ const uid = 'cta-' + Math.random().toString(36).slice(2, 9);
 const frame = uid + '-frame';
 ---
 
-<section class="membership cta-block" data-cta>
+<section class={`membership cta-block${compact ? ' cta-compact' : ''}`} data-cta>
   <p class="eyebrow">{eyebrow}</p>
   <h2>{heading}</h2>
-  <p class="cta-members">{o.badge}</p>
-  <p>{body}</p>
+  {!compact && <p class="cta-members">{o.badge}</p>}
+  {!compact && <p>{body}</p>}
 
   <form
     class="rt-form cta-form"

@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Cta from '../components/Cta.astro';
 import { PROGRAMS, resolveProgramClasses, unitPlural } from '../data/programs';
 import { videoHeadline, lenLabel } from '../lib/video';
 
@@ -68,4 +69,8 @@ const featuredFirst = featured.classes[0]?.data;
       </div>
     </div>
   </section>
+
+  {/* These index pages are landing pages in their own right — every nav click
+      lands here — and until now they were the only public pages with no ask. */}
+  <Cta source="programs-index" heading="Not sure where to start?" />
 </BaseLayout>

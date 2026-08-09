@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Cta from '../../components/Cta.astro';
 ---
 
 <BaseLayout
@@ -33,4 +34,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </div>
   </div>
 
+
+  {/* These index pages are landing pages in their own right — every nav click
+      lands here — and until now they were the only public pages with no ask. */}
+  <Cta source="routines-index" heading="Want a longer one to follow?" />
 </BaseLayout>
