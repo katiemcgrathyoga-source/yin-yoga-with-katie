@@ -97,3 +97,5 @@ Legs up the wall. That is it. It is the highest return per minute of anything in
 None of this makes soreness vanish, and I would not trust anyone who says otherwise. What it does is get you through the day moving like yourself, and get blood into legs that are busy repairing.
 
 If soreness like this is a regular event rather than a race-week one, the fix usually is not what you do the morning after — it is what you do on the other six days. Tightness that never gets undone is what turns an ordinary hard session into three days of hobbling.
+
+For the other six days, I have gathered the classes runners get the most out of on one page: [Yin Yoga for Runners](/videos/for/runners). Legs, glutes, hip flexors, tired feet — ten minutes to seventy, in the order I would hand them to you.

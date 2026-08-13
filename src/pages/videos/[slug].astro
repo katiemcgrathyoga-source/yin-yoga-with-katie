@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { lenLabel, videoHeadline, videoSubtitle, videoFaq } from '../../lib/video';
 import { FOCUS } from '../../lib/videoFacets';
+import { AUDIENCES } from '../../data/audiences';
 import { SITE } from '../../data/site';
 import { PROGRAMS, resolveProgramClasses } from '../../data/programs';
 import Cta from '../../components/Cta.astro';
@@ -140,10 +141,16 @@ const breadcrumbLd = {
   ],
 };
 
-// The focus hubs this class belongs to. Linking up to them from every class page
-// is what makes the library a graph rather than a list: a crawler arriving on any
+// The hubs this class belongs to. Linking up to them from every class page is
+// what makes the library a graph rather than a list: a crawler arriving on any
 // class can reach the hubs, and from a hub every other class.
-const hubs = FOCUS.filter((f) => f.match(d));
+//
+// Focus hubs are matched; audience hubs are curated, so membership is simply
+// whether this class's slug is on their list.
+const hubs = [
+  ...FOCUS.filter((f) => f.match(d)).map((f) => ({ key: f.key, heading: f.heading })),
+  ...AUDIENCES.filter((a) => a.classes.includes(d.slug)).map((a) => ({ key: a.key, heading: a.heading })),
+];
 const schema = [jsonLd, breadcrumbLd, ...(faqLd ? [faqLd] : [])];
 
 const eyebrow = ['Yin Yoga', ...d.intent_tags.map(capitalise)].join(' · ');

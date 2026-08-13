@@ -5,6 +5,7 @@ import VideoTile from '../../components/VideoTile.astro';
 import Cta from '../../components/Cta.astro';
 import { derivedThumb } from '../../lib/video';
 import { FOCUS, FORMAT, LENGTH_BUCKETS, isClass, lengthKey } from '../../lib/videoFacets';
+import { AUDIENCES } from '../../data/audiences';
 
 /**
  * The library hub.
@@ -119,6 +120,25 @@ const breadcrumbLd = {
       </div>
     </section>
 
+    {/* ── Audience hubs: the second axis ───────────────────────────────────────
+        Deliberately its own row rather than more cards in the one above. Focus
+        answers "what does your body need"; this answers "who are you". Merged
+        into one grid they read as a single question with mismatched answers. */}
+    {AUDIENCES.length > 0 && (
+      <section class="vh-aud">
+        <h2 class="vh-h2">Or browse by who you are</h2>
+        <div class="vh-aud-row">
+          {AUDIENCES.map((a) => (
+            <a class="vh-aud-card" href={`/videos/for/${a.key}`}>
+              <span class="vh-aud-title">{a.heading.replace(/^Yin Yoga for /, '')}</span>
+              <span class="vh-aud-tag">{a.tagline}</span>
+              <span class="vh-card-n">{a.classes.length} classes →</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
     {/* ── The full, filterable library ─────────────────────────────────────── */}
     <section class="vh-all">
       <h2 class="vh-h2" id="all-classes">Every class</h2>
@@ -194,6 +214,14 @@ const breadcrumbLd = {
   .vh-card-title { display: block; font-family: var(--display); font-weight: 500; font-size: 19px; color: var(--plum); }
   .vh-card-tag { display: block; font-size: 14px; line-height: 1.5; color: var(--ink-soft); margin: 5px 0 10px; }
   .vh-card-n { display: block; font-size: 13.5px; font-weight: 600; color: var(--gold-solid); }
+  /* Audience row: same visual family as the focus cards, but text-only and wider
+     so the two rows never read as one grid of interchangeable tiles. */
+  .vh-aud { margin: 40px 0 8px; }
+  .vh-aud-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 20px; }
+  .vh-aud-card { display: flex; flex-direction: column; gap: 5px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; text-decoration: none; color: inherit; transition: border-color .15s, transform .15s; }
+  .vh-aud-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .vh-aud-title { font-family: var(--display); font-weight: 500; font-size: 19px; color: var(--plum); }
+  .vh-aud-tag { font-size: 14px; line-height: 1.5; color: var(--ink-soft); margin-bottom: 5px; }
   .vh-all { margin-top: 48px; }
   .vh-more { font-size: 14.5px; color: var(--ink-soft); text-align: center; margin: 28px 0 0; }
   .vh-more a { color: var(--gold-solid); font-weight: 600; }

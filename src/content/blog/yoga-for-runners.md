@@ -105,6 +105,8 @@ If you'd rather just roll out your mat and follow along, here are a few of my cl
 - [Deep Stretch Yoga for Runners (30 minutes)](/videos/deep-stretch-yoga-for-runners-30-min-recovery-day) — a fuller recovery-day practice.
 - [Runner's Yoga to Boost Recovery (35 minutes)](/videos/runners-yoga-to-boost-recovery-35-min-rest-day-yin) — for stiff, sore legs after a hard session.
 
+Those four are the ones written for runners. There are another eighteen in the library that runners get a lot out of even though the titles don't say so — legs, glutes, hip flexors, tired feet — and I've gathered the lot on one page: [Yin Yoga for Runners](/videos/for/runners), in the order I'd hand them to you.
+
 <aside class="posecard" data-orient>
 
 ### Your free 15-minute Post-Run Reset

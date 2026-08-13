@@ -87,4 +87,4 @@ And if it clicks and you want the whole system — a short practice for every pl
 Take good care of yourself,
 Katie
 
-*New to all this? Start with the fuller guide: [Yoga for Runners](/blog/yoga-for-runners).*
+*New to all this? Start with the fuller guide: [Yoga for Runners](/blog/yoga-for-runners) — or go straight to the classes: [Yin Yoga for Runners](/videos/for/runners).*

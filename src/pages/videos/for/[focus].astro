@@ -5,20 +5,28 @@ import VideoTile from '../../../components/VideoTile.astro';
 import Cta from '../../../components/Cta.astro';
 import { derivedThumb, roundedMinutes } from '../../../lib/video';
 import { FOCUS, isClass } from '../../../lib/videoFacets';
+import { AUDIENCES, resolveAudienceClasses } from '../../../data/audiences';
 
 /**
- * A landing page per focus — "Yin Yoga for Sleep", "…for Hips", and so on.
+ * A landing page per hub — "Yin Yoga for Sleep", "…for Hips", "…for Runners".
  *
  * These are the pages worth ranking: they match what people actually search for,
  * where a single class page matches only its own title. They also give the
  * library a middle layer, so the crawl path is home → hub → class rather than one
  * homepage holding a flat list of every URL on the site.
  *
- * ENRICHED CLASSES ONLY. A hub that linked to skeletons would recreate on a
- * smaller scale exactly the problem it was built to fix: an indexable page
- * spending its link equity on pages that render `noindex`.
+ * TWO KINDS OF HUB share this template, because they render identically and
+ * differ only in how their class list is arrived at:
+ *   · focus (`src/lib/videoFacets.ts`) — matched from body_areas / intent_tags,
+ *     ordered by watch-hours. "What does this class work on."
+ *   · audience (`src/data/audiences.ts`) — a hand-curated, hand-ordered list.
+ *     "Who is this class for", which no field in the frontmatter answers.
  *
- * Nested a level down (`/videos/for/sleep`) so a focus key can never collide with
+ * ENRICHED CLASSES ONLY, both kinds. A hub that linked to skeletons would
+ * recreate on a smaller scale exactly the problem it was built to fix: an
+ * indexable page spending its link equity on pages that render `noindex`.
+ *
+ * Nested a level down (`/videos/for/sleep`) so a hub key can never collide with
  * a class slug at `/videos/[slug]`.
  */
 export async function getStaticPaths() {
@@ -26,15 +34,35 @@ export async function getStaticPaths() {
     .filter((v) => isClass(v.data) && v.data.enriched)
     .sort((a, b) => (b.data.watch_hours ?? 0) - (a.data.watch_hours ?? 0));
 
-  return FOCUS.map((f) => ({
-    params: { focus: f.key },
-    props: { focus: f, classes: videos.filter((v) => f.match(v.data)) },
-  }));
+  // Both kinds live at the same URL shape, so one shared key would silently give
+  // two hubs the same page. Fail the build instead.
+  const clash = AUDIENCES.filter((a) => FOCUS.some((f) => f.key === a.key)).map((a) => a.key);
+  if (clash.length) {
+    throw new Error(
+      `Hub key collision at /videos/for/[key]: ${clash.join(', ')} is defined in both FOCUS ` +
+        `(src/lib/videoFacets.ts) and AUDIENCES (src/data/audiences.ts). Rename one.`,
+    );
+  }
+
+  return [
+    ...FOCUS.map((f) => ({
+      params: { focus: f.key },
+      props: { hub: { ...f, kind: 'focus' as const }, classes: videos.filter((v) => f.match(v.data)) },
+    })),
+    ...AUDIENCES.map((a) => ({
+      params: { focus: a.key },
+      // Curated order is the point — deliberately NOT re-sorted by watch-hours.
+      props: { hub: { ...a, kind: 'audience' as const }, classes: resolveAudienceClasses(a, videos) },
+    })),
+  ];
 }
 
-const { focus, classes } = Astro.props;
-const others = FOCUS.filter((f) => f.key !== focus.key);
-const url = new URL(`/videos/for/${focus.key}`, Astro.site).href;
+const { hub, classes } = Astro.props;
+const focus = hub; // the template reads the same fields from either kind
+const otherFocus = FOCUS.filter((f) => f.key !== hub.key);
+const otherAudiences = AUDIENCES.filter((a) => a.key !== hub.key);
+const related = hub.kind === 'audience' ? hub.related : [];
+const url = new URL(`/videos/for/${hub.key}`, Astro.site).href;
 
 // Longest and shortest on offer, so the intro can be specific about what's here.
 // Rounded to the marketed number the tiles show, or the line reads "10 to 61
@@ -98,25 +126,52 @@ const ogImage = classes.length ? derivedThumb(classes[0].data, 'maxresdefault') 
 
     <p class="fh-count">
       {classes.length} free classes, {shortest === longest ? `${longest} minutes` : `${shortest} to ${longest} minutes`} —
-      all full-length, all yours to keep.
+      {hub.kind === 'audience' ? 'picked out of the library by hand, in the order I’d give them to you.' : 'all full-length, all yours to keep.'}
     </p>
 
     <div class="tiles lib-grid">
       {classes.map((c, i) => <VideoTile video={c.data} eager={i < 4} />)}
     </div>
 
+    {/* An audience hub is the top of a funnel, not the end of one: the reading and
+        the guided routine are what someone does next, so they sit above the CTA. */}
+    {related.length > 0 && (
+      <section class="fh-related">
+        <h2>Read next</h2>
+        <ul class="fh-related-list">
+          {related.map((r) => (
+            <li><a href={r.href}>{r.label}</a></li>
+          ))}
+        </ul>
+      </section>
+    )}
+
     <Cta source={`videos-for-${focus.key}`}
       body="Want somewhere gentle to start? I'll send you my free two-hour Yin, restorative and Yoga Nidra retreat — two slow hours to properly switch off, yours to keep." />
 
     {/* Sibling hubs — keeps every hub one click from every other, so a crawler
-        (and a reader) that lands on one can reach the whole library. */}
+        (and a reader) that lands on one can reach the whole library. The two axes
+        are listed separately: "what your body needs" and "who you are" answer
+        different questions, and one merged row of chips reads as one question. */}
     <section class="fh-more">
       <h2>Other ways to practise</h2>
       <div class="fh-links">
-        {others.map((f) => (
+        {otherFocus.map((f) => (
           <a class="fh-link" href={`/videos/for/${f.key}`}>{f.heading.replace(/^Yin Yoga for /, '')}</a>
         ))}
       </div>
+
+      {otherAudiences.length > 0 && (
+        <>
+          <h2 class="fh-more-h2">Or by who you are</h2>
+          <div class="fh-links">
+            {otherAudiences.map((a) => (
+              <a class="fh-link" href={`/videos/for/${a.key}`}>{a.heading.replace(/^Yin Yoga for /, '')}</a>
+            ))}
+          </div>
+        </>
+      )}
+
       <p class="fh-back">
         Or see <a href="/videos">every class in the library</a>, learn the shapes in the
         <a href="/poses"> pose guide</a>, or be led through a <a href="/routines">guided routine</a>.
@@ -129,6 +184,13 @@ const ogImage = classes.length ? derivedThumb(classes[0].data, 'maxresdefault') 
   .fh-count { font-size: 14px; color: var(--ink-soft); text-align: center; margin: 18px 0 4px; }
   .fh-more { margin: 48px 0 0; }
   .fh-more h2 { font-family: var(--display); font-weight: 500; font-size: 24px; color: var(--plum); margin: 0 0 14px; }
+  /* Specific enough to beat `.fh-more h2` above without reaching for !important. */
+  .fh-more h2.fh-more-h2 { margin-top: 28px; }
+  .fh-related { margin: 44px 0 0; }
+  .fh-related h2 { font-family: var(--display); font-weight: 500; font-size: 24px; color: var(--plum); margin: 0 0 12px; }
+  .fh-related-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .fh-related-list a { color: var(--gold-solid); font-weight: 600; font-size: 15.5px; text-decoration: none; }
+  .fh-related-list a:hover { text-decoration: underline; }
   .fh-links { display: flex; flex-wrap: wrap; gap: 10px; }
   .fh-link { border: 1px solid var(--line); border-radius: 999px; padding: 8px 18px; font-size: 14.5px; color: var(--ink); text-decoration: none; transition: border-color .15s, color .15s; }
   .fh-link:hover { border-color: var(--gold); color: var(--gold-solid); }
