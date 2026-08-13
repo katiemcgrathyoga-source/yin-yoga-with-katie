@@ -2,9 +2,10 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import VideoTile from '../../../components/VideoTile.astro';
+import ClassFilters from '../../../components/ClassFilters.astro';
 import Cta from '../../../components/Cta.astro';
 import { derivedThumb, roundedMinutes } from '../../../lib/video';
-import { FOCUS, isClass } from '../../../lib/videoFacets';
+import { FOCUS, FORMAT, LENGTH_BUCKETS, isClass, lengthKey } from '../../../lib/videoFacets';
 import { AUDIENCES, resolveAudienceClasses } from '../../../data/audiences';
 
 /**
@@ -63,6 +64,37 @@ const otherFocus = FOCUS.filter((f) => f.key !== hub.key);
 const otherAudiences = AUDIENCES.filter((a) => a.key !== hub.key);
 const related = hub.kind === 'audience' ? hub.related : [];
 const url = new URL(`/videos/for/${hub.key}`, Astro.site).href;
+
+// Length, plus Format if anything on this hub carries one. `no-props` is
+// excluded deliberately: nearly every Yin class works without props, so the chip
+// selected most of the page and told you nothing.
+const facets = [
+  {
+    key: 'length',
+    label: 'Length',
+    // Same rule as Format below: a single bucket holding the whole hub isn't a
+    // filter, so it isn't offered.
+    options: (() => {
+      const present = LENGTH_BUCKETS.filter((b) =>
+        classes.some((c) => lengthKey(c.data.length_minutes) === b.key),
+      );
+      return present.length > 1 ? present.map((b) => ({ key: b.key, label: b.label })) : [];
+    })(),
+  },
+  {
+    key: 'format',
+    label: 'Format',
+    // A format earns a chip when it describes some of this hub but not all of
+    // it. One that matches everything filters nothing; one that matches nothing
+    // is a dead chip. (This is why Silent shows and Yoga Nidra doesn't yet.)
+    options: FORMAT.filter((f) => f.key !== 'no-props')
+      .filter((f) => {
+        const n = classes.filter((c) => f.match(c.data)).length;
+        return n > 0 && n < classes.length;
+      })
+      .map((f) => ({ key: f.key, label: f.label })),
+  },
+];
 
 // Longest and shortest on offer, so the intro can be specific about what's here.
 // Rounded to the marketed number the tiles show, or the line reads "10 to 61
@@ -129,9 +161,19 @@ const ogImage = classes.length ? derivedThumb(classes[0].data, 'maxresdefault') 
       {hub.kind === 'audience' ? 'picked out of the library by hand, in the order I’d give them to you.' : 'all full-length, all yours to keep.'}
     </p>
 
-    <div class="tiles lib-grid">
-      {classes.map((c, i) => <VideoTile video={c.data} eager={i < 4} />)}
+    {/* The only filter left. Focus moved up a level (picking a chip and landing
+        on a hub are the same act now), and props was never a real question —
+        what people actually decide is how long they have. Format stays because
+        Silent is a genuine preference, and it brings Yoga Nidra back on its own
+        once those classes are written up. */}
+    <ClassFilters facets={facets} />
+
+    <div class="tiles lib-grid" id="tiles">
+      {classes.map((c, i) => <VideoTile video={c.data} filterable eager={i < 4} />)}
     </div>
+
+    <p class="empty" id="empty" hidden>No classes match those filters yet.</p>
+    <nav class="lib-pager" id="pager" aria-label="Pages"></nav>
 
     {/* An audience hub is the top of a funnel, not the end of one: the reading and
         the guided routine are what someone does next, so they sit above the CTA. */}

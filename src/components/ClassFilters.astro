@@ -1,0 +1,164 @@
+---
+/**
+ * The class filter chips + pagination, shared by any page rendering a grid of
+ * `VideoTile filterable` tiles.
+ *
+ * This used to live inside `/videos`, back when that page held the whole library
+ * and was the only place filtering happened. The focus hubs replaced the Focus
+ * facet — picking "Sleep" from a chip row and landing on /videos/for/sleep are
+ * now the same act, except the hub is a real page that can rank — so the filters
+ * moved down a level, to the hubs, where the only question left is how long you
+ * have.
+ *
+ * Facets are passed in rather than assumed, and the script derives its state from
+ * whichever chips are on the page, so a page can offer one facet or four.
+ */
+interface Facet {
+  key: string;
+  label: string;
+  options: { key: string; label: string }[];
+}
+interface Props {
+  facets: Facet[];
+  /** Tiles per page. Hidden tiles stay in the DOM, so links are never lost. */
+  perPage?: number;
+}
+const { facets, perPage = 24 } = Astro.props;
+// Whether an option is worth offering is a question about the page's data, so
+// the caller decides it; this only drops facets left with nothing in them.
+const shown = facets.filter((f) => f.options.length > 0);
+---
+
+{
+  shown.length > 0 && (
+    <div class="filters lib-filters" id="filters" data-per-page={perPage}>
+      {shown.map((f) => (
+        <div class="facet">
+          <span class="facet-label">{f.label}</span>
+          <div class="chips lib-chiprow">
+            {f.options.map((o) => (
+              <button type="button" class="chip" data-facet={f.key} data-value={o.key} aria-pressed="false">
+                {o.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      <div class="filter-meta">
+        <button type="button" class="chip chip-clear" id="clear-filters" hidden>Clear filters</button>
+        <span class="count" id="result-count" aria-live="polite" />
+      </div>
+    </div>
+  )
+}
+
+<script>
+  // Client-side faceted filtering + pagination — no framework. OR within a facet,
+  // AND across. Facet keys are read off the chips, so this file doesn't need to
+  // know which facets a given page decided to offer.
+  const tiles = Array.from(document.querySelectorAll<HTMLElement>('[data-tile]'));
+  const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.chip[data-facet]'));
+  const grid = document.getElementById('tiles');
+  const pager = document.getElementById('pager');
+
+  if (tiles.length && grid && pager) {
+    const clearBtn = document.getElementById('clear-filters') as HTMLButtonElement | null;
+    const countEl = document.getElementById('result-count');
+    const emptyEl = document.getElementById('empty');
+    const PER_PAGE = Number(document.getElementById('filters')?.dataset.perPage) || 24;
+
+    let page = 1;
+    const active: Record<string, Set<string>> = {};
+    for (const chip of chips) active[chip.dataset.facet!] ??= new Set();
+    const split = (v: string | undefined) => (v ? v.split('|').filter(Boolean) : []);
+    const anyActive = () => Object.values(active).some((s) => s.size > 0);
+
+    const matchOf = (tile: HTMLElement) =>
+      Object.entries(active).every(([facet, set]) => {
+        if (set.size === 0) return true;
+        const raw = tile.dataset[facet];
+        // Multi-valued facets are pipe-joined; single-valued ones are plain.
+        return raw?.includes('|') ? split(raw).some((v) => set.has(v)) : set.has(raw ?? '');
+      });
+
+    function apply(resetPage = true) {
+      if (resetPage) page = 1;
+      const matched = tiles.filter(matchOf);
+      const pages = Math.max(1, Math.ceil(matched.length / PER_PAGE));
+      if (page > pages) page = pages;
+      const start = (page - 1) * PER_PAGE;
+      const visible = new Set(matched.slice(start, start + PER_PAGE));
+      for (const t of tiles) t.hidden = !visible.has(t);
+
+      if (clearBtn) clearBtn.hidden = !anyActive();
+      if (emptyEl) emptyEl.hidden = matched.length > 0;
+      if (countEl)
+        countEl.textContent = anyActive()
+          ? `${matched.length} of ${tiles.length} ${tiles.length === 1 ? 'class' : 'classes'}`
+          : '';
+      renderPager(pages);
+    }
+
+    function renderPager(pages: number) {
+      pager!.innerHTML = '';
+      if (pages <= 1) return;
+      const btn = (label: string, target: number, opts: { disabled?: boolean; current?: boolean } = {}) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = label;
+        b.className = 'lib-page' + (opts.current ? ' is-current' : '');
+        if (opts.disabled) b.disabled = true;
+        if (opts.current) b.setAttribute('aria-current', 'page');
+        if (!opts.disabled && !opts.current)
+          b.addEventListener('click', () => {
+            page = target;
+            apply(false);
+            grid!.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        return b;
+      };
+      pager!.appendChild(btn('‹', page - 1, { disabled: page === 1 }));
+      const nums = new Set([1, pages, page, page - 1, page + 1]);
+      let prev = 0;
+      for (let i = 1; i <= pages; i++) {
+        if (!nums.has(i)) continue;
+        if (i - prev > 1) {
+          const e = document.createElement('span');
+          e.className = 'lib-ellip';
+          e.textContent = '…';
+          pager!.appendChild(e);
+        }
+        pager!.appendChild(btn(String(i), i, { current: i === page }));
+        prev = i;
+      }
+      pager!.appendChild(btn('›', page + 1, { disabled: page === pages }));
+    }
+
+    for (const chip of chips) {
+      chip.addEventListener('click', () => {
+        const set = active[chip.dataset.facet!];
+        const value = chip.dataset.value!;
+        if (set.has(value)) {
+          set.delete(value);
+          chip.setAttribute('aria-pressed', 'false');
+          chip.classList.remove('active');
+        } else {
+          set.add(value);
+          chip.setAttribute('aria-pressed', 'true');
+          chip.classList.add('active');
+        }
+        apply();
+      });
+    }
+    clearBtn?.addEventListener('click', () => {
+      for (const set of Object.values(active)) set.clear();
+      for (const c of chips) {
+        c.setAttribute('aria-pressed', 'false');
+        c.classList.remove('active');
+      }
+      apply();
+    });
+    apply();
+  }
+</script>

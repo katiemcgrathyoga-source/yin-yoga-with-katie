@@ -4,7 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import VideoTile from '../../components/VideoTile.astro';
 import Cta from '../../components/Cta.astro';
 import { derivedThumb } from '../../lib/video';
-import { FOCUS, FORMAT, LENGTH_BUCKETS, isClass, lengthKey } from '../../lib/videoFacets';
+import { FOCUS, assertEveryClassHasAHub, isClass } from '../../lib/videoFacets';
 import { AUDIENCES } from '../../data/audiences';
 
 /**
@@ -29,12 +29,16 @@ const videos = all
   .sort((a, b) => (b.data.watch_hours ?? 0) - (a.data.watch_hours ?? 0));
 const unwritten = all.length - videos.length;
 
-// Only offer a filter that has something behind it.
+// This page lists hubs, not classes, so the hubs are now the only indexable
+// route to a class page. Fail loudly if a class isn't on one.
+assertEveryClassHasAHub(videos);
+
+// Only offer a hub that has something behind it.
 const presentFocus = FOCUS.filter((f) => videos.some((v) => f.match(v.data)));
-const presentLengths = LENGTH_BUCKETS.filter((b) =>
-  videos.some((v) => lengthKey(v.data.length_minutes) === b.key),
-);
-const presentFormat = FORMAT.filter((f) => videos.some((v) => f.match(v.data)));
+
+// The strip below the hubs: the most-practised classes, already sorted by
+// watch-hours above.
+const featured = videos.slice(0, 12);
 
 // A rough, always-true count for headings ("140+" rather than a number that
 // drifts every time a class is enriched).
@@ -81,7 +85,7 @@ const breadcrumbLd = {
 
 <BaseLayout
   title={`${roughCount}+ Free Yin Yoga Classes — full-length, all levels`}
-  description={`A growing library of ${roughCount}+ free full-length Yin Yoga classes with Katie — 10 to 90 minutes, for sleep, stress, tight hips and stiff shoulders. Filter for what your body needs today.`}
+  description={`A growing library of ${roughCount}+ free full-length Yin Yoga classes with Katie — 10 to 90 minutes, for sleep, stress, tight hips and stiff shoulders. Pick what your body needs today.`}
   jsonLd={[jsonLd, breadcrumbLd]}
 >
   <div class="wrap">
@@ -139,54 +143,18 @@ const breadcrumbLd = {
       </section>
     )}
 
-    {/* ── The full, filterable library ─────────────────────────────────────── */}
+    {/* ── The most-practised classes ───────────────────────────────────────────
+        A preview, not an index. The filterable grid of all 149 classes used to
+        sit here; the hubs above do that job now, and each is a page that can
+        rank where a chip row cannot. What's left is a short strip of the classes
+        people actually return to, so the hub still passes equity directly to the
+        strongest pages and still looks like a library rather than a menu. */}
     <section class="vh-all">
-      <h2 class="vh-h2" id="all-classes">Every class</h2>
-
-      <div class="filters lib-filters" id="filters">
-        <div class="facet">
-          <span class="facet-label">Focus</span>
-          <div class="chips lib-chiprow">
-            {presentFocus.map((f) => (
-              <button type="button" class="chip" data-facet="focus" data-value={f.key} aria-pressed="false">{f.label}</button>
-            ))}
-          </div>
-        </div>
-
-        {presentLengths.length > 0 && (
-          <div class="facet">
-            <span class="facet-label">Length</span>
-            <div class="chips lib-chiprow">
-              {presentLengths.map((b) => (
-                <button type="button" class="chip" data-facet="length" data-value={b.key} aria-pressed="false">{b.label}</button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {presentFormat.length > 0 && (
-          <div class="facet">
-            <span class="facet-label">Format</span>
-            <div class="chips lib-chiprow">
-              {presentFormat.map((f) => (
-                <button type="button" class="chip" data-facet="format" data-value={f.key} aria-pressed="false">{f.label}</button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        <div class="filter-meta">
-          <button type="button" class="chip chip-clear" id="clear-filters" hidden>Clear filters</button>
-          <span class="count" id="result-count" aria-live="polite"></span>
-        </div>
+      <h2 class="vh-h2" id="most-practised">Most practised</h2>
+      <p class="vh-sub">The ones people keep coming back to. Or pick a hub above for the rest.</p>
+      <div class="tiles lib-grid">
+        {featured.map((v, i) => <VideoTile video={v.data} eager={i < 4} />)}
       </div>
-
-      <div class="tiles lib-grid" id="tiles">
-        {videos.map((v, i) => <VideoTile video={v.data} filterable eager={i < 4} />)}
-      </div>
-
-      <p class="empty" id="empty" hidden>No classes match those filters yet.</p>
-      <nav class="lib-pager" id="pager" aria-label="Library pages"></nav>
     </section>
 
     {/* The unwritten classes still have pages, and they're still browsable —
@@ -223,84 +191,7 @@ const breadcrumbLd = {
   .vh-aud-title { font-family: var(--display); font-weight: 500; font-size: 19px; color: var(--plum); }
   .vh-aud-tag { font-size: 14px; line-height: 1.5; color: var(--ink-soft); margin-bottom: 5px; }
   .vh-all { margin-top: 48px; }
+  .vh-sub { font-size: 14.5px; color: var(--ink-soft); margin: 0 0 18px; }
   .vh-more { font-size: 14.5px; color: var(--ink-soft); text-align: center; margin: 28px 0 0; }
   .vh-more a { color: var(--gold-solid); font-weight: 600; }
 </style>
-
-<script>
-  // Client-side faceted filtering + pagination — no framework. OR within a facet,
-  // AND across. Moved here from the homepage along with the library itself.
-  const tiles = Array.from(document.querySelectorAll<HTMLElement>('[data-tile]'));
-  const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.chip[data-facet]'));
-  const clearBtn = document.getElementById('clear-filters') as HTMLButtonElement | null;
-  const countEl = document.getElementById('result-count');
-  const emptyEl = document.getElementById('empty');
-  const pager = document.getElementById('pager')!;
-  const grid = document.getElementById('tiles')!;
-
-  const PER_PAGE = 24;
-  let page = 1;
-  const active: Record<string, Set<string>> = { focus: new Set(), length: new Set(), format: new Set() };
-  const split = (v: string | undefined) => (v ? v.split('|').filter(Boolean) : []);
-
-  const matchOf = (tile: HTMLElement) => {
-    const okFocus = active.focus.size === 0 || split(tile.dataset.focus).some((v) => active.focus.has(v));
-    const okLength = active.length.size === 0 || active.length.has(tile.dataset.length ?? '');
-    const okFormat = active.format.size === 0 || split(tile.dataset.format).some((v) => active.format.has(v));
-    return okFocus && okLength && okFormat;
-  };
-
-  function apply(resetPage = true) {
-    if (resetPage) page = 1;
-    const anyActive = active.focus.size + active.length.size + active.format.size > 0;
-    const matched = tiles.filter(matchOf);
-    const pages = Math.max(1, Math.ceil(matched.length / PER_PAGE));
-    if (page > pages) page = pages;
-    const start = (page - 1) * PER_PAGE;
-    const visible = new Set(matched.slice(start, start + PER_PAGE));
-    for (const t of tiles) t.hidden = !visible.has(t);
-
-    if (clearBtn) clearBtn.hidden = !anyActive;
-    if (emptyEl) emptyEl.hidden = matched.length > 0;
-    if (countEl) countEl.textContent = anyActive ? `${matched.length} of ${tiles.length} ${tiles.length === 1 ? 'class' : 'classes'}` : '';
-    renderPager(pages);
-  }
-
-  function renderPager(pages: number) {
-    pager.innerHTML = '';
-    if (pages <= 1) return;
-    const btn = (label: string, target: number, opts: { disabled?: boolean; current?: boolean } = {}) => {
-      const b = document.createElement('button');
-      b.type = 'button'; b.textContent = label; b.className = 'lib-page' + (opts.current ? ' is-current' : '');
-      if (opts.disabled) b.disabled = true;
-      if (opts.current) b.setAttribute('aria-current', 'page');
-      if (!opts.disabled && !opts.current) b.addEventListener('click', () => { page = target; apply(false); grid.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
-      return b;
-    };
-    pager.appendChild(btn('‹', page - 1, { disabled: page === 1 }));
-    const nums = new Set([1, pages, page, page - 1, page + 1]);
-    let prev = 0;
-    for (let i = 1; i <= pages; i++) {
-      if (!nums.has(i)) continue;
-      if (i - prev > 1) { const e = document.createElement('span'); e.className = 'lib-ellip'; e.textContent = '…'; pager.appendChild(e); }
-      pager.appendChild(btn(String(i), i, { current: i === page }));
-      prev = i;
-    }
-    pager.appendChild(btn('›', page + 1, { disabled: page === pages }));
-  }
-
-  for (const chip of chips) {
-    chip.addEventListener('click', () => {
-      const facet = chip.dataset.facet!, value = chip.dataset.value!, set = active[facet];
-      if (set.has(value)) { set.delete(value); chip.setAttribute('aria-pressed', 'false'); chip.classList.remove('active'); }
-      else { set.add(value); chip.setAttribute('aria-pressed', 'true'); chip.classList.add('active'); }
-      apply();
-    });
-  }
-  clearBtn?.addEventListener('click', () => {
-    for (const key of Object.keys(active)) active[key].clear();
-    for (const chip of chips) { chip.setAttribute('aria-pressed', 'false'); chip.classList.remove('active'); }
-    apply();
-  });
-  apply();
-</script>

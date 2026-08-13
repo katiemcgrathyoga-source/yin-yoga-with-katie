@@ -147,6 +147,33 @@ export const FOCUS = [
 
 export type FocusKey = (typeof FOCUS)[number]['key'];
 
+/**
+ * Every enriched class must belong to at least one focus hub.
+ *
+ * `/videos` used to list all 149 of them, so this was academic. It no longer
+ * does — it lists the hubs, and the hubs are the only indexable route to a class
+ * page. A class matching no hub is therefore unreachable from any indexable
+ * page: still in the sitemap, still rendering `index`, and linked from nowhere.
+ * That is a silent regression, so it fails the build instead.
+ *
+ * If this throws, the fix is usually a tag: `energy` and `digestion` exist as
+ * intent_tags with no hub behind them, and a class carrying only one of those
+ * plus no matching body_areas will land here. Either tag it with something a hub
+ * matches, or add the hub.
+ */
+export function assertEveryClassHasAHub(classes: { data: VideoData }[]): void {
+  const orphans = classes.filter((c) => !FOCUS.some((f) => f.match(c.data)));
+  if (orphans.length) {
+    const lines = orphans
+      .map((c) => `  · ${c.data.slug}  intent_tags=[${c.data.intent_tags}] body_areas=[${c.data.body_areas}]`)
+      .join('\n');
+    throw new Error(
+      `${orphans.length} enriched class(es) match no focus hub, so nothing indexable links to them:\n${lines}\n` +
+        `See assertEveryClassHasAHub in src/lib/videoFacets.ts.`,
+    );
+  }
+}
+
 export const focusKeys = (d: VideoData) => FOCUS.filter((f) => f.match(d)).map((f) => f.key);
 export const focusLabels = (d: VideoData) => FOCUS.filter((f) => f.match(d)).map((f) => f.label);
 
