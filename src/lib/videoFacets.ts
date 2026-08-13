@@ -34,7 +34,11 @@ const AREA_BUCKETS = [
 const areaKeys = (d: VideoData) => {
   const set = new Set<string>();
   for (const raw of d.body_areas) {
-    const a = raw.toLowerCase();
+    // Hyphens become spaces before matching. The field is free text and both
+    // spellings are in the data — 34 classes say "lower back", 4 say
+    // "lower-back" — and the hyphenated four were silently missing from the
+    // lower-back hub, two of them classes literally titled "for your back".
+    const a = raw.toLowerCase().replace(/-/g, ' ');
     for (const b of AREA_BUCKETS) if (b.match(a)) set.add(b.key);
   }
   // A class tagged hips-lower-back covers both, whatever its body_areas say.
