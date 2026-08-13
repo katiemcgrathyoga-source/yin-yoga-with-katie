@@ -20,17 +20,31 @@ const BELL_URL = '/audio/bell.mp3';
 const MUTE_KEY = 'yin-sound-off';
 
 /**
- * The bell is a peak-normalised recording; the tick is synthesised, so these
- * two numbers are the only thing keeping them in proportion.
+ * Levels. Both are expressed as a target output true peak, because the previous
+ * pair of numbers were not comparable and the bell was far too loud on a phone.
  *
- * Set by ear against each other, not independently: the tick has to be audible
- * to someone lying still with their eyes closed, and the bell has to arrive as
- * the end of a hold rather than as a start. The first pass had the bell four
- * times the tick's amplitude — about 15 dB — which read as a fright after three
- * soft taps. Roughly 8 dB apart lands as the same instrument getting louder.
+ * The trap: the bell's gain multiplies a peak-normalised file (true peak
+ * -0.9 dBFS), so its number lands almost directly on the output. The tick's gain
+ * sits BEFORE a bandpass at Q=7, which throws away most of a white-noise burst —
+ * measured at 21 dB of loss. So the old constants, 0.3 against 0.12, looked 8 dB
+ * apart and measured 28 dB apart. Lying on a mat with the phone across the room,
+ * you set the volume to hear the ticks, and then the bell arrived at full force.
+ *
+ * Both are now stated as the peak they actually produce, and TICK_MAKEUP puts
+ * back what the filter takes so TICK_PEAK means what it says. The bell sits ~5 dB
+ * above the tick in peak; because it sustains for seconds where the tick is 55 ms,
+ * that reads as roughly 8 dB louder — the same instrument, struck harder.
+ *
+ * If you change the bell recording, re-measure its true peak and update
+ * BELL_FILE_PEAK, or the bell silently changes level with it.
  */
-const BELL_GAIN = 0.3;
-const TICK_GAIN = 0.12;
+const TICK_PEAK = 0.05;        // −26 dBFS: audible from the mat, still a soft tock
+const BELL_PEAK = 0.09;        // −21 dBFS
+const BELL_FILE_PEAK = 0.902;  // −0.9 dBFS, measured on /audio/bell.mp3
+const TICK_MAKEUP = 11.5;      // +21 dB, the bandpass loss measured below
+
+const BELL_GAIN = BELL_PEAK / BELL_FILE_PEAK;
+const TICK_GAIN = TICK_PEAK * TICK_MAKEUP;
 
 export class Chime {
   private ctx: AudioContext | null = null;
@@ -91,6 +105,7 @@ export class Chime {
 
     // A short noise burst through a tight bandpass reads as a woodblock; a pure
     // tone at this length reads as an electronic beep, which is the wrong room.
+    // The filter costs ~21 dB, which TICK_MAKEUP puts back — see the note above.
     const src = ctx.createBufferSource();
     src.buffer = this.noiseBuffer(ctx);
 
@@ -129,7 +144,9 @@ export class Chime {
       o.type = 'sine';
       o.frequency.value = freq;
       g.gain.setValueAtTime(0.0001, now + at);
-      g.gain.exponentialRampToValueAtTime(0.32, now + at + 0.04);
+      // Matched to BELL_PEAK, so falling back to the synth doesn't fall back to
+      // the old, far-too-loud level. A sine's peak is its gain, near enough.
+      g.gain.exponentialRampToValueAtTime(BELL_PEAK, now + at + 0.04);
       g.gain.exponentialRampToValueAtTime(0.0001, now + at + 1.8);
       o.connect(g).connect(ctx.destination);
       o.start(now + at);
