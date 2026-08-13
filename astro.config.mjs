@@ -51,7 +51,17 @@ export default defineConfig({
       // account of a rule meant for the /runners opt-in page.
       filter: (page) => {
         const path = new URL(page).pathname.replace(/\/+$/, '') || '/';
-        const exact = ['/runners', '/runner-reset', '/account', '/pins', '/boards'];
+        // /pincalendar belongs here for the same reason as /pins and /boards —
+        // it's one of Katie's private consoles and it renders noindex. It was
+        // missing from this list, so the sitemap was submitting it to Google:
+        // the exact contradiction the comment at the top of this file describes.
+        //
+        // /videos/all is the overflow list of not-yet-written-up classes. It is
+        // noindex on purpose (see the file) and must not be submitted either.
+        const exact = [
+          '/runners', '/runner-reset', '/account', '/pins', '/boards',
+          '/pincalendar', '/videos/all',
+        ];
         if (exact.includes(path)) return false;
         // Whole sections, matched as path segments so a slug can't collide.
         if (path === '/dev' || path.startsWith('/dev/')) return false;

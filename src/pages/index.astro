@@ -2,69 +2,33 @@
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { derivedThumb, lenLabel, videoHeadline } from '../lib/video';
+import VideoTile from '../components/VideoTile.astro';
+import { derivedThumb } from '../lib/video';
+import { FOCUS, isClass } from '../lib/videoFacets';
 import { journalPinUrl } from '../lib/journalPin';
 import katieHello from '../assets/katie-hello.jpg';
 
-// "Most-loved first": order by lifetime watch-hours, so the classes subscribers
-// actually return to (which skews long + silent) lead the library. New files
-// appear automatically. Site rule: classes under 10 minutes are shorts/promos.
+/**
+ * The homepage used to BE the library: it rendered a filterable grid linking to
+ * all ~317 class pages, ~170 of which are unwritten skeletons that render
+ * `noindex`. That made the site's highest-authority page spend most of its links
+ * on pages that refuse to be indexed, and left the library as one flat tier with
+ * no hierarchy for a crawler to follow. Search Console showed the cost: 152 real
+ * URLs "Discovered — currently not indexed", never crawled at all.
+ *
+ * So the library moved to /videos, and the homepage now shows a preview plus the
+ * routes into it. Every class link below is to an enriched, indexable page.
+ */
 const videos = (await getCollection('videos'))
-  .filter((v) => v.data.length_minutes >= 10)
+  .filter((v) => isClass(v.data) && v.data.enriched)
   .sort((a, b) => (b.data.watch_hours ?? 0) - (a.data.watch_hours ?? 0));
-type V = (typeof videos)[number];
 
-// --- Length buckets ----------------------------------------------------------
-// Length — displayed longest-first (subscribers prefer longer classes).
-const BUCKETS = [
-  { key: '60-90', label: '60–90 min', test: (m: number) => m >= 60 },
-  { key: '40-60', label: '40–60 min', test: (m: number) => m >= 40 && m < 60 },
-  { key: '20-40', label: '20–40 min', test: (m: number) => m >= 20 && m < 40 },
-  { key: 'under-20', label: 'Under 20 min', test: (m: number) => m < 20 },
-];
-const bucketOf = (m: number) => BUCKETS.find((b) => b.test(m))!.key;
-const presentBuckets = BUCKETS.filter((b) => videos.some((v) => bucketOf(v.data.length_minutes) === b.key));
-
-// Body-area buckets — used to build the merged Focus filter (below).
-const AREA_BUCKETS = [
-  { key: 'hips', label: 'Hips', match: (a: string) => /hip|groin/.test(a) },
-  { key: 'lower-back', label: 'Lower back', match: (a: string) => /lower back|low back|sacrum/.test(a) },
-  { key: 'shoulders', label: 'Neck & shoulders', match: (a: string) => /shoulder|neck|upper back|chest/.test(a) },
-];
-const areaKeys = (v: V) => {
-  const set = new Set<string>();
-  for (const raw of v.data.body_areas) {
-    const a = raw.toLowerCase();
-    for (const b of AREA_BUCKETS) if (b.match(a)) set.add(b.key);
-  }
-  if (v.data.intent_tags.includes('hips-lower-back')) { set.add('hips'); set.add('lower-back'); }
-  return [...set];
-};
-
-// --- Focus: intent + body area merged into one filter row (per the design) ----
-// Focus — ordered most-popular-first (by watch-hours signal).
-const FOCUS = [
-  { key: 'sleep', label: 'Sleep', match: (v: V) => v.data.intent_tags.includes('sleep') },
-  { key: 'calm', label: 'Stress & calm', match: (v: V) => v.data.intent_tags.some((t) => ['nervous-system', 'stress'].includes(t)) },
-  { key: 'hips', label: 'Hips', match: (v: V) => areaKeys(v).includes('hips') },
-  { key: 'full-body', label: 'Full body', match: (v: V) => v.data.intent_tags.includes('full-body') },
-  { key: 'shoulders', label: 'Neck & shoulders', match: (v: V) => areaKeys(v).includes('shoulders') },
-  { key: 'flexibility', label: 'Flexibility', match: (v: V) => v.data.intent_tags.includes('flexibility') },
-  { key: 'lower-back', label: 'Lower back', match: (v: V) => areaKeys(v).includes('lower-back') },
-];
-const focusKeys = (v: V) => FOCUS.filter((f) => f.match(v)).map((f) => f.key);
-const focusLabels = (v: V) => FOCUS.filter((f) => f.match(v)).map((f) => f.label);
-const presentFocus = FOCUS.filter((f) => videos.some((v) => f.match(v)));
-
-// Format — how the class is taught (a distinct axis from Focus). Silent + Yoga
-// Nidra are strong subscriber preferences, so they earn a filter of their own.
-const FORMAT = [
-  { key: 'silent', label: 'Silent', match: (v: V) => /silent|minimal cues|no.?talking/i.test(v.data.title) },
-  { key: 'yoga-nidra', label: 'Yoga Nidra', match: (v: V) => /nidra|nsdr/i.test(v.data.title) },
-  { key: 'no-props', label: 'No props', match: (v: V) => v.data.props.length === 0 || v.data.props.every((p) => /^none$/i.test(p)) || /no.?props|without props|prop.?free/i.test(v.data.title) },
-];
-const formatKeys = (v: V) => FORMAT.filter((f) => f.match(v)).map((f) => f.key);
-const presentFormat = FORMAT.filter((f) => videos.some((v) => f.match(v)));
+// The preview: the most-practised classes, which are the best first impression
+// of the library and the strongest pages to pass authority to.
+const featured = videos.slice(0, 12);
+const presentFocus = FOCUS.filter((f) => videos.some((v) => f.match(v.data)));
+const focusCount = (key: string) =>
+  videos.filter((v) => FOCUS.find((f) => f.key === key)!.match(v.data)).length;
 
 // Signature filmstrip: a marquee of recent thumbnails (decorative, not links).
 const stripVideos = videos.slice(0, 10);
@@ -172,7 +136,7 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
     <header class="home-lib-head">
       <p class="eyebrow">The library</p>
       <h2>{roughCount}+ free Yin Yoga classes</h2>
-      <p class="lib-sub">Full-length classes to follow along on YouTube, 10 to 90 minutes — filter for what your body needs today.</p>
+      <p class="lib-sub">Full-length classes to follow along on YouTube, 10 to 90 minutes. Pick by what your body needs today.</p>
     </header>
 
     <div class="lib-strip" aria-hidden="true">
@@ -183,72 +147,29 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
       </div>
     </div>
 
-    <section>
-      <div class="filters lib-filters" id="filters">
-        <div class="facet">
-          <span class="facet-label">Focus</span>
-          <div class="chips lib-chiprow">
-            {presentFocus.map((f) => (
-              <button type="button" class="chip" data-facet="focus" data-value={f.key} aria-pressed="false">{f.label}</button>
-            ))}
-          </div>
-        </div>
-
-        {presentBuckets.length > 0 && (
-          <div class="facet">
-            <span class="facet-label">Length</span>
-            <div class="chips lib-chiprow">
-              {presentBuckets.map((b) => (
-                <button type="button" class="chip" data-facet="length" data-value={b.key} aria-pressed="false">{b.label}</button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {presentFormat.length > 0 && (
-          <div class="facet">
-            <span class="facet-label">Format</span>
-            <div class="chips lib-chiprow">
-              {presentFormat.map((f) => (
-                <button type="button" class="chip" data-facet="format" data-value={f.key} aria-pressed="false">{f.label}</button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        <div class="filter-meta">
-          <button type="button" class="chip chip-clear" id="clear-filters" hidden>Clear filters</button>
-          <span class="count" id="result-count" aria-live="polite"></span>
-        </div>
-      </div>
-
-      <div class="tiles lib-grid" id="tiles">
-        {videos.map((v) => (
-          <a
-            class="tile"
-            href={`/videos/${v.data.slug}`}
-            data-tile
-            data-focus={focusKeys(v).join('|')}
-            data-length={bucketOf(v.data.length_minutes)}
-            data-format={formatKeys(v).join('|')}
-          >
-            <div class="tile-thumb">
-              <img class="tile-img" src={derivedThumb(v.data)} alt={v.data.title} loading="lazy" width="480" height="270" />
-              <span class="tile-len">{lenLabel(v.data)}</span>
-              {v.data.membership && <span class="tile-members">Members</span>}
-            </div>
-            <div class="tile-body">
-              <h3 class="tile-name">{videoHeadline(v.data)}</h3>
-              {focusLabels(v).length > 0 && (
-                <p class="tile-meta">{focusLabels(v).slice(0, 2).join(' · ')}</p>
-              )}
-            </div>
+    {/* Browse by need — the routes into the library. These hub pages are what
+        people actually search for ("yin yoga for sleep"), and they give the
+        library a middle tier so the homepage no longer has to link to every
+        class on the site. */}
+    <section class="home-focus">
+      <div class="home-focus-row">
+        {presentFocus.map((f) => (
+          <a class="home-focus-chip" href={`/videos/for/${f.key}`}>
+            <span class="hfc-label">{f.label}</span>
+            <span class="hfc-n">{focusCount(f.key)}</span>
           </a>
         ))}
       </div>
+    </section>
 
-      <p class="empty" id="empty" hidden>No classes match those filters yet.</p>
-      <nav class="lib-pager" id="pager" aria-label="Library pages"></nav>
+    <section>
+      <div class="tiles lib-grid">
+        {featured.map((v, i) => <VideoTile video={v.data} eager={i < 4} />)}
+      </div>
+
+      <p class="home-lib-more">
+        <a class="btn-lib" href="/videos">Browse all {videos.length} classes →</a>
+      </p>
     </section>
   </div>
 
@@ -325,6 +246,19 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
   .home-lib-head { text-align: center; padding: 56px 0 8px; }
   .home-lib-head h2 { font-family: var(--display); font-weight: 500; font-size: clamp(28px, 3.4vw, 38px); color: var(--plum); margin: 6px 0 10px; }
 
+  /* ── Browse-by-need row (links to the /videos/for/* hubs) ── */
+  .home-focus { margin: 26px 0 22px; }
+  .home-focus-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .home-focus-chip { display: inline-flex; align-items: baseline; gap: 8px; border: 1px solid var(--line); border-radius: 999px; padding: 9px 18px; text-decoration: none; color: var(--ink); font-size: 15px; transition: border-color .15s, color .15s; }
+  .home-focus-chip:hover { border-color: var(--gold); color: var(--gold-solid); }
+  .hfc-n { font-size: 12.5px; color: var(--ink-soft); }
+  .home-focus-chip:hover .hfc-n { color: var(--gold-solid); }
+
+  /* ── "Browse all" — the one route to the full library ── */
+  .home-lib-more { text-align: center; margin: 34px 0 0; }
+  .btn-lib { display: inline-block; border: 1px solid var(--gold); border-radius: 999px; padding: 13px 30px; font-size: 15.5px; font-weight: 600; color: var(--gold-solid); text-decoration: none; transition: background .15s, color .15s; }
+  .btn-lib:hover { background: var(--gold-solid); color: var(--paper); }
+
   @media (max-width: 820px) {
     .home-hero, .home-routines-inner { grid-template-columns: 1fr; gap: 28px; }
     .home-hero-img img { height: 300px; }
@@ -333,80 +267,9 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
 </style>
 
 <script>
-  // Client-side faceted filtering + pagination — no framework. OR within a facet, AND across.
-  const tiles = Array.from(document.querySelectorAll<HTMLElement>('[data-tile]'));
-  const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.chip[data-facet]'));
-  const clearBtn = document.getElementById('clear-filters') as HTMLButtonElement | null;
-  const countEl = document.getElementById('result-count');
-  const emptyEl = document.getElementById('empty');
-  const pager = document.getElementById('pager')!;
-  const grid = document.getElementById('tiles')!;
-
-  const PER_PAGE = 24;
-  let page = 1;
-  const active: Record<string, Set<string>> = { focus: new Set(), length: new Set(), format: new Set() };
-  const split = (v: string | undefined) => (v ? v.split('|').filter(Boolean) : []);
-
-  const matchOf = (tile: HTMLElement) => {
-    const okFocus = active.focus.size === 0 || split(tile.dataset.focus).some((v) => active.focus.has(v));
-    const okLength = active.length.size === 0 || active.length.has(tile.dataset.length ?? '');
-    const okFormat = active.format.size === 0 || split(tile.dataset.format).some((v) => active.format.has(v));
-    return okFocus && okLength && okFormat;
-  };
-
-  function apply(resetPage = true) {
-    if (resetPage) page = 1;
-    const anyActive = active.focus.size + active.length.size + active.format.size > 0;
-    const matched = tiles.filter(matchOf);
-    const pages = Math.max(1, Math.ceil(matched.length / PER_PAGE));
-    if (page > pages) page = pages;
-    const start = (page - 1) * PER_PAGE;
-    const visible = new Set(matched.slice(start, start + PER_PAGE));
-    for (const t of tiles) t.hidden = !visible.has(t);
-
-    if (clearBtn) clearBtn.hidden = !anyActive;
-    if (emptyEl) emptyEl.hidden = matched.length > 0;
-    if (countEl) countEl.textContent = anyActive ? `${matched.length} of ${tiles.length} ${tiles.length === 1 ? 'class' : 'classes'}` : '';
-    renderPager(pages);
-  }
-
-  function renderPager(pages: number) {
-    pager.innerHTML = '';
-    if (pages <= 1) return;
-    const btn = (label: string, target: number, opts: { disabled?: boolean; current?: boolean } = {}) => {
-      const b = document.createElement('button');
-      b.type = 'button'; b.textContent = label; b.className = 'lib-page' + (opts.current ? ' is-current' : '');
-      if (opts.disabled) b.disabled = true;
-      if (opts.current) b.setAttribute('aria-current', 'page');
-      if (!opts.disabled && !opts.current) b.addEventListener('click', () => { page = target; apply(false); grid.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
-      return b;
-    };
-    pager.appendChild(btn('‹', page - 1, { disabled: page === 1 }));
-    const nums = new Set([1, pages, page, page - 1, page + 1]);
-    let prev = 0;
-    for (let i = 1; i <= pages; i++) {
-      if (!nums.has(i)) continue;
-      if (i - prev > 1) { const e = document.createElement('span'); e.className = 'lib-ellip'; e.textContent = '…'; pager.appendChild(e); }
-      pager.appendChild(btn(String(i), i, { current: i === page }));
-      prev = i;
-    }
-    pager.appendChild(btn('›', page + 1, { disabled: page === pages }));
-  }
-
-  for (const chip of chips) {
-    chip.addEventListener('click', () => {
-      const facet = chip.dataset.facet!, value = chip.dataset.value!, set = active[facet];
-      if (set.has(value)) { set.delete(value); chip.setAttribute('aria-pressed', 'false'); chip.classList.remove('active'); }
-      else { set.add(value); chip.setAttribute('aria-pressed', 'true'); chip.classList.add('active'); }
-      apply();
-    });
-  }
-  clearBtn?.addEventListener('click', () => {
-    for (const key of Object.keys(active)) active[key].clear();
-    for (const chip of chips) { chip.setAttribute('aria-pressed', 'false'); chip.classList.remove('active'); }
-    apply();
-  });
-  apply();
+  // The faceted filtering + pagination that used to live here moved to /videos
+  // along with the library itself. The homepage shows a fixed preview, so all
+  // that's left is the email capture.
 
   // Email capture (hero + closing) — MailerLite posts to a hidden iframe; swap to success.
   const swap = (formId: string, doneId: string) => {

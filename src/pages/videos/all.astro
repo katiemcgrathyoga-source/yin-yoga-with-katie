@@ -1,0 +1,62 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import VideoTile from '../../components/VideoTile.astro';
+import { isClass } from '../../lib/videoFacets';
+
+/**
+ * The classes that are on YouTube but not yet written up here.
+ *
+ * These pages exist and are perfectly usable — they just render `noindex` until
+ * someone writes them up, because a title plus a link to YouTube is a thin page.
+ * They still need to be reachable, so this is where they live.
+ *
+ * This page is deliberately `noindex` and excluded from the sitemap
+ * (astro.config.mjs). That is the whole point of it: it collects every link to a
+ * noindex page onto ONE low-priority page, instead of hanging ~170 of them off
+ * the homepage where they were soaking up a crawl budget the site can't spare.
+ * Enrich a class and it disappears from here and appears in the library — no
+ * list to maintain.
+ *
+ * A static route, so it takes precedence over /videos/[slug]; no class uses the
+ * slug "all" (and none could without this page shadowing it).
+ */
+const unwritten = (await getCollection('videos'))
+  .filter((v) => isClass(v.data) && !v.data.enriched)
+  .sort((a, b) => (b.data.watch_hours ?? 0) - (a.data.watch_hours ?? 0));
+---
+
+<BaseLayout
+  title="Every other class — Yin Yoga with Katie"
+  description="The classes on the YouTube channel that don't have a full write-up here yet."
+  noindex={true}
+>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/videos">All classes</a>
+      <span aria-hidden="true">›</span>
+      <span>Not yet written up</span>
+    </nav>
+
+    <header class="hero">
+      <p class="eyebrow">Yin Yoga · The rest of the channel</p>
+      <h1>Classes I haven't written up yet</h1>
+      <p class="alt">{unwritten.length} more practices, straight from the channel</p>
+    </header>
+
+    <p class="page-intro">
+      These are on YouTube and completely fine to practise — I just haven't written the
+      proper page for them yet, with the chapters, poses and notes the others have. I'm
+      working through them slowly. If you're browsing for something specific, the
+      <a href="/videos">main library</a> is the better place to look.
+    </p>
+
+    <div class="tiles lib-grid">
+      {unwritten.map((v) => <VideoTile video={v.data} />)}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-intro a { color: var(--gold-solid); font-weight: 600; }
+</style>

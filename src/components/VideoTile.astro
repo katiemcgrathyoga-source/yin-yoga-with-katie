@@ -1,0 +1,49 @@
+---
+import type { VideoData } from '../lib/video';
+import { derivedThumb, lenLabel, videoHeadline } from '../lib/video';
+import { focusKeys, focusLabels, formatKeys, lengthKey } from '../lib/videoFacets';
+
+/**
+ * One class tile. Shared by the homepage preview, the `/videos` library and the
+ * `/videos/for/[focus]` hubs so a class looks the same wherever you meet it.
+ *
+ * `filterable` adds the data-attributes the client-side facet script reads. The
+ * hubs are already filtered server-side and don't need them.
+ */
+interface Props {
+  video: VideoData;
+  filterable?: boolean;
+  /** Eager-load the first row; everything below the fold stays lazy. */
+  eager?: boolean;
+}
+const { video: d, filterable = false, eager = false } = Astro.props;
+
+const facets = filterable
+  ? {
+      'data-tile': true,
+      'data-focus': focusKeys(d).join('|'),
+      'data-length': lengthKey(d.length_minutes),
+      'data-format': formatKeys(d).join('|'),
+    }
+  : {};
+const labels = focusLabels(d);
+---
+
+<a class="tile" href={`/videos/${d.slug}`} {...facets}>
+  <div class="tile-thumb">
+    <img
+      class="tile-img"
+      src={derivedThumb(d)}
+      alt={d.title}
+      loading={eager ? 'eager' : 'lazy'}
+      width="480"
+      height="270"
+    />
+    <span class="tile-len">{lenLabel(d)}</span>
+    {d.membership && <span class="tile-members">Members</span>}
+  </div>
+  <div class="tile-body">
+    <h3 class="tile-name">{videoHeadline(d)}</h3>
+    {labels.length > 0 && <p class="tile-meta">{labels.slice(0, 2).join(' · ')}</p>}
+  </div>
+</a>

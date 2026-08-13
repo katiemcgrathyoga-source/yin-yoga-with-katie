@@ -1,0 +1,278 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import VideoTile from '../../components/VideoTile.astro';
+import Cta from '../../components/Cta.astro';
+import { derivedThumb } from '../../lib/video';
+import { FOCUS, FORMAT, LENGTH_BUCKETS, isClass, lengthKey } from '../../lib/videoFacets';
+
+/**
+ * The library hub.
+ *
+ * This page exists for a specific reason. The homepage used to be the only index
+ * of the library, which meant it carried a link to all ~317 class pages — and
+ * roughly half of those are unwritten skeletons that render `noindex`. Google
+ * spent its (small) crawl budget on the site following links to pages that then
+ * refused to be indexed, and 152 real URLs sat in Search Console as "Discovered
+ * — currently not indexed", never crawled at all.
+ *
+ * So the link graph is now home → hubs → class, and the indexable surfaces only
+ * ever link to indexable pages: this page and the focus hubs list ENRICHED
+ * classes only. The unwritten ones stay reachable for browsing at /videos/all,
+ * which is itself noindex and out of the sitemap — one page absorbing the whole
+ * noindex link mass instead of it hanging off the homepage.
+ */
+const all = (await getCollection('videos')).filter((v) => isClass(v.data));
+const videos = all
+  .filter((v) => v.data.enriched)
+  .sort((a, b) => (b.data.watch_hours ?? 0) - (a.data.watch_hours ?? 0));
+const unwritten = all.length - videos.length;
+
+// Only offer a filter that has something behind it.
+const presentFocus = FOCUS.filter((f) => videos.some((v) => f.match(v.data)));
+const presentLengths = LENGTH_BUCKETS.filter((b) =>
+  videos.some((v) => lengthKey(v.data.length_minutes) === b.key),
+);
+const presentFormat = FORMAT.filter((f) => videos.some((v) => f.match(v.data)));
+
+// A rough, always-true count for headings ("140+" rather than a number that
+// drifts every time a class is enriched).
+const roughCount = Math.max(10, Math.floor(videos.length / 10) * 10);
+
+/**
+ * A cover per focus card, taken from the most-practised class in that focus —
+ * but never the same image twice. Most classes match several focuses, so the
+ * naive "top class in this focus" gave four of the seven cards the identical
+ * thumbnail and the row read as a rendering bug. Assigned in FOCUS order (most
+ * popular first), each hub claiming the best cover nobody above it has taken.
+ */
+const covers = new Map<string, string>();
+{
+  const used = new Set<string>();
+  for (const f of presentFocus) {
+    const pick =
+      videos.find((v) => f.match(v.data) && !used.has(derivedThumb(v.data, 'mqdefault'))) ??
+      videos.find((v) => f.match(v.data));
+    if (!pick) continue;
+    const src = derivedThumb(pick.data, 'mqdefault');
+    used.add(src);
+    covers.set(f.key, src);
+  }
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Free Yin Yoga Classes',
+  description: `A library of ${videos.length} free full-length Yin Yoga classes with Katie.`,
+  url: new URL('/videos', Astro.site).href,
+  isPartOf: { '@type': 'WebSite', name: 'Yin Yoga with Katie', url: new URL('/', Astro.site).href },
+};
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'Classes', item: new URL('/videos', Astro.site).href },
+  ],
+};
+---
+
+<BaseLayout
+  title={`${roughCount}+ Free Yin Yoga Classes — full-length, all levels`}
+  description={`A growing library of ${roughCount}+ free full-length Yin Yoga classes with Katie — 10 to 90 minutes, for sleep, stress, tight hips and stiff shoulders. Filter for what your body needs today.`}
+  jsonLd={[jsonLd, breadcrumbLd]}
+>
+  <div class="wrap">
+    <header class="hero">
+      <p class="eyebrow">Yin Yoga · The library</p>
+      <h1>Free Yin Yoga classes</h1>
+      <p class="alt">{roughCount}+ full-length practices — 10 to 90 minutes, all levels</p>
+    </header>
+
+    <p class="page-intro">
+      Every class here is free, full-length, and yours whenever you want it — no sign-up,
+      no schedule to keep up with. They run from ten minutes to an hour and a half, and
+      most need nothing more than a mat and something soft to sit on. If you're not sure
+      where to begin, pick by how you feel rather than how long you have: there's a
+      shortcut to each below.
+    </p>
+
+    {/* ── Focus hubs: the browse-by-need layer ─────────────────────────────── */}
+    <section class="vh-focus">
+      <h2 class="vh-h2">Browse by what you need</h2>
+      <div class="vh-cards">
+        {presentFocus.map((f) => {
+          const cover = covers.get(f.key);
+          const n = videos.filter((v) => f.match(v.data)).length;
+          return (
+            <a class="vh-card" href={`/videos/for/${f.key}`}>
+              {cover && <img class="vh-card-img" src={cover} alt="" loading="lazy" width="320" height="180" />}
+              <span class="vh-card-body">
+                <span class="vh-card-title">{f.heading.replace(/^Yin Yoga for /, '')}</span>
+                <span class="vh-card-tag">{f.tagline}</span>
+                <span class="vh-card-n">{n} classes →</span>
+              </span>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+
+    {/* ── The full, filterable library ─────────────────────────────────────── */}
+    <section class="vh-all">
+      <h2 class="vh-h2" id="all-classes">Every class</h2>
+
+      <div class="filters lib-filters" id="filters">
+        <div class="facet">
+          <span class="facet-label">Focus</span>
+          <div class="chips lib-chiprow">
+            {presentFocus.map((f) => (
+              <button type="button" class="chip" data-facet="focus" data-value={f.key} aria-pressed="false">{f.label}</button>
+            ))}
+          </div>
+        </div>
+
+        {presentLengths.length > 0 && (
+          <div class="facet">
+            <span class="facet-label">Length</span>
+            <div class="chips lib-chiprow">
+              {presentLengths.map((b) => (
+                <button type="button" class="chip" data-facet="length" data-value={b.key} aria-pressed="false">{b.label}</button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {presentFormat.length > 0 && (
+          <div class="facet">
+            <span class="facet-label">Format</span>
+            <div class="chips lib-chiprow">
+              {presentFormat.map((f) => (
+                <button type="button" class="chip" data-facet="format" data-value={f.key} aria-pressed="false">{f.label}</button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div class="filter-meta">
+          <button type="button" class="chip chip-clear" id="clear-filters" hidden>Clear filters</button>
+          <span class="count" id="result-count" aria-live="polite"></span>
+        </div>
+      </div>
+
+      <div class="tiles lib-grid" id="tiles">
+        {videos.map((v, i) => <VideoTile video={v.data} filterable eager={i < 4} />)}
+      </div>
+
+      <p class="empty" id="empty" hidden>No classes match those filters yet.</p>
+      <nav class="lib-pager" id="pager" aria-label="Library pages"></nav>
+    </section>
+
+    {/* The unwritten classes still have pages, and they're still browsable —
+        just not from an indexable surface. See the note at the top of the file. */}
+    {unwritten > 0 && (
+      <p class="vh-more">
+        Another {unwritten} classes are on YouTube but not yet written up here —
+        <a href="/videos/all"> browse the full list</a>.
+      </p>
+    )}
+
+    <Cta source="videos-hub"
+      body="New to Yin, or just want somewhere to start? I'll send you my free two-hour Yin, restorative and Yoga Nidra retreat — two slow hours to properly switch off, yours to keep." />
+  </div>
+</BaseLayout>
+
+<style>
+  .vh-h2 { font-family: var(--display); font-weight: 500; font-size: clamp(24px, 3vw, 32px); color: var(--plum); margin: 0 0 6px; }
+  .vh-focus { margin: 40px 0 8px; }
+  .vh-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; }
+  .vh-card { display: flex; flex-direction: column; background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; text-decoration: none; color: inherit; transition: border-color .15s, transform .15s; }
+  .vh-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .vh-card-img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+  .vh-card-body { display: block; padding: 16px 18px 18px; }
+  .vh-card-title { display: block; font-family: var(--display); font-weight: 500; font-size: 19px; color: var(--plum); }
+  .vh-card-tag { display: block; font-size: 14px; line-height: 1.5; color: var(--ink-soft); margin: 5px 0 10px; }
+  .vh-card-n { display: block; font-size: 13.5px; font-weight: 600; color: var(--gold-solid); }
+  .vh-all { margin-top: 48px; }
+  .vh-more { font-size: 14.5px; color: var(--ink-soft); text-align: center; margin: 28px 0 0; }
+  .vh-more a { color: var(--gold-solid); font-weight: 600; }
+</style>
+
+<script>
+  // Client-side faceted filtering + pagination — no framework. OR within a facet,
+  // AND across. Moved here from the homepage along with the library itself.
+  const tiles = Array.from(document.querySelectorAll<HTMLElement>('[data-tile]'));
+  const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.chip[data-facet]'));
+  const clearBtn = document.getElementById('clear-filters') as HTMLButtonElement | null;
+  const countEl = document.getElementById('result-count');
+  const emptyEl = document.getElementById('empty');
+  const pager = document.getElementById('pager')!;
+  const grid = document.getElementById('tiles')!;
+
+  const PER_PAGE = 24;
+  let page = 1;
+  const active: Record<string, Set<string>> = { focus: new Set(), length: new Set(), format: new Set() };
+  const split = (v: string | undefined) => (v ? v.split('|').filter(Boolean) : []);
+
+  const matchOf = (tile: HTMLElement) => {
+    const okFocus = active.focus.size === 0 || split(tile.dataset.focus).some((v) => active.focus.has(v));
+    const okLength = active.length.size === 0 || active.length.has(tile.dataset.length ?? '');
+    const okFormat = active.format.size === 0 || split(tile.dataset.format).some((v) => active.format.has(v));
+    return okFocus && okLength && okFormat;
+  };
+
+  function apply(resetPage = true) {
+    if (resetPage) page = 1;
+    const anyActive = active.focus.size + active.length.size + active.format.size > 0;
+    const matched = tiles.filter(matchOf);
+    const pages = Math.max(1, Math.ceil(matched.length / PER_PAGE));
+    if (page > pages) page = pages;
+    const start = (page - 1) * PER_PAGE;
+    const visible = new Set(matched.slice(start, start + PER_PAGE));
+    for (const t of tiles) t.hidden = !visible.has(t);
+
+    if (clearBtn) clearBtn.hidden = !anyActive;
+    if (emptyEl) emptyEl.hidden = matched.length > 0;
+    if (countEl) countEl.textContent = anyActive ? `${matched.length} of ${tiles.length} ${tiles.length === 1 ? 'class' : 'classes'}` : '';
+    renderPager(pages);
+  }
+
+  function renderPager(pages: number) {
+    pager.innerHTML = '';
+    if (pages <= 1) return;
+    const btn = (label: string, target: number, opts: { disabled?: boolean; current?: boolean } = {}) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.textContent = label; b.className = 'lib-page' + (opts.current ? ' is-current' : '');
+      if (opts.disabled) b.disabled = true;
+      if (opts.current) b.setAttribute('aria-current', 'page');
+      if (!opts.disabled && !opts.current) b.addEventListener('click', () => { page = target; apply(false); grid.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+      return b;
+    };
+    pager.appendChild(btn('‹', page - 1, { disabled: page === 1 }));
+    const nums = new Set([1, pages, page, page - 1, page + 1]);
+    let prev = 0;
+    for (let i = 1; i <= pages; i++) {
+      if (!nums.has(i)) continue;
+      if (i - prev > 1) { const e = document.createElement('span'); e.className = 'lib-ellip'; e.textContent = '…'; pager.appendChild(e); }
+      pager.appendChild(btn(String(i), i, { current: i === page }));
+      prev = i;
+    }
+    pager.appendChild(btn('›', page + 1, { disabled: page === pages }));
+  }
+
+  for (const chip of chips) {
+    chip.addEventListener('click', () => {
+      const facet = chip.dataset.facet!, value = chip.dataset.value!, set = active[facet];
+      if (set.has(value)) { set.delete(value); chip.setAttribute('aria-pressed', 'false'); chip.classList.remove('active'); }
+      else { set.add(value); chip.setAttribute('aria-pressed', 'true'); chip.classList.add('active'); }
+      apply();
+    });
+  }
+  clearBtn?.addEventListener('click', () => {
+    for (const key of Object.keys(active)) active[key].clear();
+    for (const chip of chips) { chip.setAttribute('aria-pressed', 'false'); chip.classList.remove('active'); }
+    apply();
+  });
+  apply();
+</script>

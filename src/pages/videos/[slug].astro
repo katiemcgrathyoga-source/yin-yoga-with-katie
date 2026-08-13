@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { lenLabel, videoHeadline, videoSubtitle, videoFaq } from '../../lib/video';
+import { FOCUS } from '../../lib/videoFacets';
 import { SITE } from '../../data/site';
 import { PROGRAMS, resolveProgramClasses } from '../../data/programs';
 import Cta from '../../components/Cta.astro';
@@ -132,10 +133,17 @@ const breadcrumbLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Library', item: new URL('/', Astro.site).href },
-    { '@type': 'ListItem', position: 2, name: videoHeadline(d), item: new URL(`/videos/${d.slug}`, Astro.site).href },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
+    // The library is /videos now, not the homepage.
+    { '@type': 'ListItem', position: 2, name: 'Classes', item: new URL('/videos', Astro.site).href },
+    { '@type': 'ListItem', position: 3, name: videoHeadline(d), item: new URL(`/videos/${d.slug}`, Astro.site).href },
   ],
 };
+
+// The focus hubs this class belongs to. Linking up to them from every class page
+// is what makes the library a graph rather than a list: a crawler arriving on any
+// class can reach the hubs, and from a hub every other class.
+const hubs = FOCUS.filter((f) => f.match(d));
 const schema = [jsonLd, breadcrumbLd, ...(faqLd ? [faqLd] : [])];
 
 const eyebrow = ['Yin Yoga', ...d.intent_tags.map(capitalise)].join(' · ');
@@ -152,6 +160,12 @@ const eyebrow = ['Yin Yoga', ...d.intent_tags.map(capitalise)].join(' · ');
   noindex={!d.enriched}
 >
   <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/videos">All classes</a>
+      <span aria-hidden="true">›</span>
+      <span>{videoHeadline(d)}</span>
+    </nav>
+
     <header class="vhero">
       <p class="eyebrow">{eyebrow}</p>
 
@@ -288,6 +302,21 @@ const eyebrow = ['Yin Yoga', ...d.intent_tags.map(capitalise)].join(' · ');
         </section>
       )
     }
+
+    {/* More like this — up into the focus hubs, and across to the rest */}
+    {hubs.length > 0 && (
+      <section class="more-like">
+        <h2>More like this</h2>
+        <div class="more-links">
+          {hubs.map((f) => (
+            <a class="more-link" href={`/videos/for/${f.key}`}>{f.heading}</a>
+          ))}
+        </div>
+        <p class="more-back">
+          Or browse <a href="/videos">every class in the library</a>.
+        </p>
+      </section>
+    )}
 
     {/* Gentle-reminder block */}
     <section class="reminder-section">

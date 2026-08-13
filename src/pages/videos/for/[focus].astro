@@ -1,0 +1,137 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import VideoTile from '../../../components/VideoTile.astro';
+import Cta from '../../../components/Cta.astro';
+import { derivedThumb, roundedMinutes } from '../../../lib/video';
+import { FOCUS, isClass } from '../../../lib/videoFacets';
+
+/**
+ * A landing page per focus — "Yin Yoga for Sleep", "…for Hips", and so on.
+ *
+ * These are the pages worth ranking: they match what people actually search for,
+ * where a single class page matches only its own title. They also give the
+ * library a middle layer, so the crawl path is home → hub → class rather than one
+ * homepage holding a flat list of every URL on the site.
+ *
+ * ENRICHED CLASSES ONLY. A hub that linked to skeletons would recreate on a
+ * smaller scale exactly the problem it was built to fix: an indexable page
+ * spending its link equity on pages that render `noindex`.
+ *
+ * Nested a level down (`/videos/for/sleep`) so a focus key can never collide with
+ * a class slug at `/videos/[slug]`.
+ */
+export async function getStaticPaths() {
+  const videos = (await getCollection('videos'))
+    .filter((v) => isClass(v.data) && v.data.enriched)
+    .sort((a, b) => (b.data.watch_hours ?? 0) - (a.data.watch_hours ?? 0));
+
+  return FOCUS.map((f) => ({
+    params: { focus: f.key },
+    props: { focus: f, classes: videos.filter((v) => f.match(v.data)) },
+  }));
+}
+
+const { focus, classes } = Astro.props;
+const others = FOCUS.filter((f) => f.key !== focus.key);
+const url = new URL(`/videos/for/${focus.key}`, Astro.site).href;
+
+// Longest and shortest on offer, so the intro can be specific about what's here.
+// Rounded to the marketed number the tiles show, or the line reads "10 to 61
+// minutes" against a grid where nothing is labelled 61.
+const mins = classes.map((c) => roundedMinutes(c.data.length_minutes));
+const shortest = Math.min(...mins);
+const longest = Math.max(...mins);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: focus.heading,
+  description: focus.description,
+  url,
+  isPartOf: { '@type': 'WebSite', name: 'Yin Yoga with Katie', url: new URL('/', Astro.site).href },
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: classes.length,
+    itemListElement: classes.slice(0, 25).map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: new URL(`/videos/${c.data.slug}`, Astro.site).href,
+      name: c.data.title,
+    })),
+  },
+};
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'Classes', item: new URL('/videos', Astro.site).href },
+    { '@type': 'ListItem', position: 3, name: focus.heading, item: url },
+  ],
+};
+
+// Card image for social shares: the most-practised class in this focus.
+const ogImage = classes.length ? derivedThumb(classes[0].data, 'maxresdefault') : undefined;
+---
+
+<BaseLayout
+  title={focus.title}
+  description={focus.description}
+  image={ogImage}
+  jsonLd={[jsonLd, breadcrumbLd]}
+>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/videos">All classes</a>
+      <span aria-hidden="true">›</span>
+      <span>{focus.heading.replace(/^Yin Yoga for /, '')}</span>
+    </nav>
+
+    <header class="hero">
+      <p class="eyebrow">Yin Yoga · {focus.label}</p>
+      <h1>{focus.heading}</h1>
+      <p class="alt">{focus.tagline}</p>
+    </header>
+
+    <p class="page-intro">{focus.intro}</p>
+
+    <p class="fh-count">
+      {classes.length} free classes, {shortest === longest ? `${longest} minutes` : `${shortest} to ${longest} minutes`} —
+      all full-length, all yours to keep.
+    </p>
+
+    <div class="tiles lib-grid">
+      {classes.map((c, i) => <VideoTile video={c.data} eager={i < 4} />)}
+    </div>
+
+    <Cta source={`videos-for-${focus.key}`}
+      body="Want somewhere gentle to start? I'll send you my free two-hour Yin, restorative and Yoga Nidra retreat — two slow hours to properly switch off, yours to keep." />
+
+    {/* Sibling hubs — keeps every hub one click from every other, so a crawler
+        (and a reader) that lands on one can reach the whole library. */}
+    <section class="fh-more">
+      <h2>Other ways to practise</h2>
+      <div class="fh-links">
+        {others.map((f) => (
+          <a class="fh-link" href={`/videos/for/${f.key}`}>{f.heading.replace(/^Yin Yoga for /, '')}</a>
+        ))}
+      </div>
+      <p class="fh-back">
+        Or see <a href="/videos">every class in the library</a>, learn the shapes in the
+        <a href="/poses"> pose guide</a>, or be led through a <a href="/routines">guided routine</a>.
+      </p>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .fh-count { font-size: 14px; color: var(--ink-soft); text-align: center; margin: 18px 0 4px; }
+  .fh-more { margin: 48px 0 0; }
+  .fh-more h2 { font-family: var(--display); font-weight: 500; font-size: 24px; color: var(--plum); margin: 0 0 14px; }
+  .fh-links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .fh-link { border: 1px solid var(--line); border-radius: 999px; padding: 8px 18px; font-size: 14.5px; color: var(--ink); text-decoration: none; transition: border-color .15s, color .15s; }
+  .fh-link:hover { border-color: var(--gold); color: var(--gold-solid); }
+  .fh-back { font-size: 14.5px; color: var(--ink-soft); margin: 18px 0 0; }
+  .fh-back a { color: var(--gold-solid); font-weight: 600; }
+</style>

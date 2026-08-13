@@ -1730,3 +1730,20 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .disc-foot { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 30px; border-top: 1px solid var(--line); padding-top: 24px; }
 .disc-build { font-size: 14px; font-weight: 600; color: var(--gold-solid); border: none; }
 .disc-switch { font-size: 13px; color: var(--ink-soft); border: none; }
+
+/* ── Breadcrumbs + focus-hub links ───────────────────────────────────────────
+   Shared by /videos, /videos/all, /videos/for/* and every class page. The
+   library gained a middle tier (the focus hubs), so pages now need to show
+   where they sit and offer a way back up. */
+.crumbs { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 13.5px; color: var(--ink-soft); padding: 20px 0 0; }
+.crumbs a { color: var(--gold-solid); text-decoration: none; font-weight: 600; }
+.crumbs a:hover { text-decoration: underline; }
+.crumbs > span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 46ch; }
+
+.more-like { margin: 44px 0 0; }
+.more-like h2 { font-family: var(--display); font-weight: 500; font-size: 24px; color: var(--plum); margin: 0 0 14px; }
+.more-links { display: flex; flex-wrap: wrap; gap: 10px; }
+.more-link { border: 1px solid var(--line); border-radius: 999px; padding: 8px 18px; font-size: 14.5px; color: var(--ink); text-decoration: none; transition: border-color .15s, color .15s; }
+.more-link:hover { border-color: var(--gold); color: var(--gold-solid); }
+.more-back { font-size: 14.5px; color: var(--ink-soft); margin: 16px 0 0; }
+.more-back a { color: var(--gold-solid); font-weight: 600; }
