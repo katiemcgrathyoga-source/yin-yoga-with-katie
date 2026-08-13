@@ -36,6 +36,15 @@ export interface Audience {
   classes: string[];
   /** The rest of the funnel: where this audience goes next. */
   related: { href: string; label: string }[];
+  /**
+   * Which lead magnet this hub asks for. An audience hub is the one page on the
+   * site that knows exactly who is reading it, so offering the generic retreat
+   * here would waste the clearest match we ever get — and, for runners, it would
+   * skip the funnel that actually has a product behind it.
+   */
+  offer?: 'retreat' | 'runners';
+  /** CTA body, when the default copy for that offer doesn't fit the page. */
+  offerBody?: string;
 }
 
 export const AUDIENCES: Audience[] = [
@@ -75,6 +84,9 @@ export const AUDIENCES: Audience[] = [
       'deep-hip-stretch-yoga-25-min-yin-yoga-to-open-tight-hips-increase-hip',
       'grounding-yin-yoga-class-for-hips-lower-back-no-props-stretch-relax',
     ],
+    offer: 'runners',
+    offerBody:
+      "Somewhere to start: I'll send you my free 15-Minute Post-Run Reset — a follow-along Yin class for straight after a run, with a hold timer and written cues. Fifteen quiet minutes to loosen what running tightens. Yours to keep, for any run.",
     related: [
       { href: '/blog/yoga-for-runners', label: 'Yoga for Runners: the best Yin poses for tight hips and recovery' },
       { href: '/blog/post-run-stretches', label: 'What to do after a run: a 15-minute post-run routine' },

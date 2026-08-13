@@ -43,13 +43,13 @@ const featuredRoutines = publicRoutines(await getCollection('routines'))
 
 // Full YouTube classes that feature this pose — best 3 (enriched first, then most
 // watched). Shown near the bottom as an "also in these classes" cross-link.
+// Enriched only. A pose page is indexable, and the site rule is that an
+// indexable page never links to a `noindex` one. The old sort put enriched
+// first, which happened to keep skeletons off every pose page — but a pose whose
+// only classes are unwritten would have linked straight to them.
 const featuredClasses = (await getCollection('videos'))
-  .filter((v) => v.data.poses_featured.includes(d.slug))
-  .sort(
-    (a, b) =>
-      Number(b.data.enriched) - Number(a.data.enriched) ||
-      (b.data.watch_hours ?? 0) - (a.data.watch_hours ?? 0),
-  )
+  .filter((v) => v.data.enriched && v.data.poses_featured.includes(d.slug))
+  .sort((a, b) => (b.data.watch_hours ?? 0) - (a.data.watch_hours ?? 0))
   .slice(0, 3);
 
 const titleCase = (s: string) =>

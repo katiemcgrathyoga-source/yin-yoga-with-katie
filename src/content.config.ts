@@ -231,6 +231,10 @@ const routines = defineCollection({
     // The public /routines pages filter these OUT and the course page filters them
     // IN, so a bonus routine can never leak onto the free site by being forgotten.
     course: z.string().optional(), // e.g. "runner-reset"
+    // Opts this routine's CTA into a matched lead magnet instead of the retreat.
+    // Explicit rather than inferred from `intent`, because "legs" doesn't mean
+    // "runner" — The Day After is for runners, a bedtime leg stretch isn't.
+    audience: z.enum(['runners']).optional(),
     area: z.string().optional(), // body area for course filtering, e.g. "hamstrings"
     level: z.enum(['all-levels', 'beginner', 'intermediate', 'advanced']),
     minutes: z.number().int().positive(), // true runtime — verified against the sequence below

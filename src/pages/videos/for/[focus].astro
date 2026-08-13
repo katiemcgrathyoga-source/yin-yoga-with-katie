@@ -63,6 +63,8 @@ const focus = hub; // the template reads the same fields from either kind
 const otherFocus = FOCUS.filter((f) => f.key !== hub.key);
 const otherAudiences = AUDIENCES.filter((a) => a.key !== hub.key);
 const related = hub.kind === 'audience' ? hub.related : [];
+const offer = hub.kind === 'audience' ? (hub.offer ?? 'retreat') : 'retreat';
+const offerBody = hub.kind === 'audience' ? hub.offerBody : undefined;
 const url = new URL(`/videos/for/${hub.key}`, Astro.site).href;
 
 // Length, plus Format if anything on this hub carries one. `no-props` is
@@ -188,8 +190,14 @@ const ogImage = classes.length ? derivedThumb(classes[0].data, 'maxresdefault') 
       </section>
     )}
 
-    <Cta source={`videos-for-${focus.key}`}
-      body="Want somewhere gentle to start? I'll send you my free two-hour Yin, restorative and Yoga Nidra retreat — two slow hours to properly switch off, yours to keep." />
+    {/* A focus hub gets the retreat, which suits almost anyone. An audience hub
+        knows exactly who is reading it, so it asks for the offer matched to them
+        — otherwise the clearest match on the site is spent on the generic ask. */}
+    <Cta
+      offer={offer}
+      source={`videos-for-${hub.key}`}
+      body={offerBody ?? "Want somewhere gentle to start? I'll send you my free two-hour Yin, restorative and Yoga Nidra retreat — two slow hours to properly switch off, yours to keep."}
+    />
 
     {/* Sibling hubs — keeps every hub one click from every other, so a crawler
         (and a reader) that lands on one can reach the whole library. The two axes

@@ -3,6 +3,7 @@ title: "The Day After"
 slug: "the-day-after"
 tagline: "23 minutes for legs that ache this morning"
 intent: "legs"
+audience: "runners"
 hero_pose: "legs-up-the-wall"
 level: "all-levels"
 minutes: 23
