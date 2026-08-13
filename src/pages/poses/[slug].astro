@@ -5,6 +5,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Cta from '../../components/Cta.astro';
 import PoseTimer from '../../components/PoseTimer.astro';
 import { videoHeadline } from '../../lib/video';
+import { hubsForPose } from '../../lib/poseFacets';
 import { journalPinUrl } from '../../lib/journalPin';
 
 /**
@@ -51,6 +52,9 @@ const featuredClasses = (await getCollection('videos'))
   .filter((v) => v.data.enriched && v.data.poses_featured.includes(d.slug))
   .sort((a, b) => (b.data.watch_hours ?? 0) - (a.data.watch_hours ?? 0))
   .slice(0, 3);
+
+// The class hubs covering the parts of the body this pose reaches.
+const poseHubs = hubsForPose(d.target_areas);
 
 const titleCase = (s: string) =>
   s.replace(/\b\w/g, (c) => c.toUpperCase());
@@ -304,6 +308,22 @@ const hasPractice = hasVideo || featuredRoutines.length > 0 || featuredClasses.l
               <a href={`/routines/${r.data.slug}`}>
                 {r.data.title}
                 <span>{r.data.minutes} min · {r.data.summary}</span>
+              </a>
+            ))}
+          </div>
+        )}
+
+        {poseHubs.length > 0 && (
+          <div class="featured-in">
+            <h3>More classes like this</h3>
+            {/* Up into the hubs for the areas this pose reaches. The three named
+                classes above are specific; these are the whole shelf. Mapped
+                anatomy-to-anatomy in src/lib/poseFacets.ts, with a build guard,
+                so a renamed hub can't leave 45 pose pages pointing at a 404. */}
+            {poseHubs.map((h) => (
+              <a href={`/videos/for/${h.key}`}>
+                Yin Yoga for {h.heading}
+                <span>Every class in the library for this part of you</span>
               </a>
             ))}
           </div>

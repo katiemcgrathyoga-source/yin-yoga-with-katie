@@ -3,6 +3,14 @@ import { getCollection } from 'astro:content';
 import { publicRoutines } from '../../lib/routines';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Cta from '../../components/Cta.astro';
+import {
+  POSE_AREA_BUCKETS,
+  POSE_AREA_TO_HUB,
+  assertPoseHubMapping,
+  poseAreaKeys,
+  poseAreaLabel,
+} from '../../lib/poseFacets';
+import { FOCUS } from '../../lib/videoFacets';
 
 // Poses are the reference layer beneath the video library. This is their browsable
 // index. Ordered by how foundational/common each pose is — measured by how often it
@@ -26,36 +34,26 @@ const poses = (await getCollection('poses')).sort(
 const titleCase = (s: string) => s.replace(/\b\w/g, (c) => c.toUpperCase());
 const uniq = (arr: string[]) => [...new Set(arr)].sort((a, b) => a.localeCompare(b));
 
-// Target areas — a FIXED, curated set of ≤10 main body areas so the filter stays
-// tidy. Each pose's many raw target_areas map into these buckets; unlisted raw
-// values aren't surfaced as filters. Edit THIS list to change the filter.
-const AREA_BUCKETS = [
-  { key: 'hips', label: 'Hips', match: (a: string) => /hips|outer hip/.test(a) },
-  { key: 'glutes', label: 'Glutes', match: (a: string) => /glute/.test(a) },
-  { key: 'hip-flexors', label: 'Hip flexors', match: (a: string) => /hip flexor/.test(a) },
-  { key: 'quads', label: 'Quads', match: (a: string) => /quadricep|front of thigh/.test(a) },
-  { key: 'hamstrings', label: 'Hamstrings', match: (a: string) => /hamstring/.test(a) },
-  { key: 'it-band', label: 'IT band', match: (a: string) => /it band|iliotibial/.test(a) },
-  { key: 'groin', label: 'Groin & inner thigh', match: (a: string) => /groin|inner thigh/.test(a) },
-  { key: 'calves-feet', label: 'Calves & feet', match: (a: string) => /\bcalf\b|calves|ankle|shin|feet|foot|toe/.test(a) },
-  { key: 'lower-back', label: 'Lower back', match: (a: string) => /lower back|low back|sacrum/.test(a) },
-  { key: 'spine', label: 'Spine', match: (a: string) => /\bspine\b|side body|oblique|rib/.test(a) },
-  { key: 'shoulders', label: 'Shoulders', match: (a: string) => /shoulder|upper back/.test(a) },
-  { key: 'chest', label: 'Chest', match: (a: string) => /chest|pectoral|lung/.test(a) },
-  { key: 'neck', label: 'Neck', match: (a: string) => /neck|throat/.test(a) },
-];
-const areaKeys = (p: (typeof poses)[number]) => {
-  const set = new Set<string>();
-  for (const raw of p.data.target_areas) {
-    const a = raw.toLowerCase();
-    for (const b of AREA_BUCKETS) if (b.match(a)) set.add(b.key);
-  }
-  return [...set];
-};
-const areaLabel = (key: string) => AREA_BUCKETS.find((b) => b.key === key)!.label;
+// Target areas — a fixed, curated set of body areas so the filter stays tidy.
+// Each pose's many raw target_areas map into these buckets; unlisted raw values
+// aren't surfaced as filters. The buckets live in src/lib/poseFacets.ts — edit
+// them there, because they also decide which class hub a pose points at, and two
+// copies of a taxonomy is exactly how those drift apart.
+const areaKeys = (p: (typeof poses)[number]) => poseAreaKeys(p.data.target_areas);
+const areaLabel = poseAreaLabel;
 // Show every target area that has at least one pose (in anatomical order) so runners
 // can filter straight to IT band, calves, hip flexors, hamstrings, quads and glutes.
-const presentAreas = AREA_BUCKETS.filter((b) => poses.some((p) => areaKeys(p).includes(b.key)));
+const presentAreas = POSE_AREA_BUCKETS.filter((b) => poses.some((p) => areaKeys(p).includes(b.key)));
+
+// Each area also has a class hub behind it. The index is a reference page, so it
+// should offer the way out to a full class as well as the way in to a pose.
+assertPoseHubMapping();
+const areaHubs = [...new Set(presentAreas.map((b) => POSE_AREA_TO_HUB[b.key]).filter(Boolean))].map(
+  (key) => {
+    const f = FOCUS.find((x) => x.key === key)!;
+    return { key: f.key, heading: f.heading.replace(/^Yin Yoga for /, ''), tagline: f.tagline };
+  },
+);
 const levelOrder = ['beginner', 'intermediate', 'advanced'];
 const levels = uniq(poses.map((p) => p.data.accessibility)).sort(
   (a, b) => levelOrder.indexOf(a) - levelOrder.indexOf(b),
@@ -140,6 +138,26 @@ const levels = uniq(poses.map((p) => p.data.accessibility)).sort(
     <footer>
       <p class="src">Poses are the building blocks classes are built from.</p>
     </footer>
+
+    {/* Out of the reference layer and into the practice layer. A pose page tells
+        you how a shape works; most people reading one want to be taught it, and
+        the two ways to be taught are a guided routine or a full class. */}
+    <section class="px-next">
+      <h2>When you'd rather be led</h2>
+      <p class="px-next-sub">
+        The poses above are the reference. To practise them, follow a
+        <a href="/routines">guided routine</a> with a hold timer, or press play on a
+        full class for the part of you that needs it:
+      </p>
+      <div class="px-next-links">
+        {areaHubs.map((h) => (
+          <a class="px-next-link" href={`/videos/for/${h.key}`}>
+            <span class="px-next-name">{h.heading}</span>
+            <span class="px-next-tag">{h.tagline}</span>
+          </a>
+        ))}
+      </div>
+    </section>
   </div>
 
   {/* These index pages are landing pages in their own right — every nav click
@@ -215,3 +233,18 @@ const levels = uniq(poses.map((p) => p.data.accessibility)).sort(
 
   apply();
 </script>
+
+<style>
+  /* The bridge out of the reference layer. Uses the global flipping tokens only,
+     so it themes correctly without a [data-theme] rule (which Astro strips from
+     a scoped block — see the note in global.css). */
+  .px-next { margin: 56px 0 8px; }
+  .px-next h2 { font-family: var(--display); font-weight: 500; font-size: clamp(22px, 3vw, 28px); color: var(--plum); margin: 0 0 8px; }
+  .px-next-sub { font-size: 15.5px; color: var(--ink-soft); margin: 0 0 20px; max-width: 62ch; }
+  .px-next-sub a { color: var(--gold-solid); font-weight: 600; }
+  .px-next-links { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+  .px-next-link { display: flex; flex-direction: column; gap: 3px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; text-decoration: none; color: inherit; transition: border-color .15s, transform .15s; }
+  .px-next-link:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .px-next-name { font-family: var(--display); font-weight: 500; font-size: 17px; color: var(--plum); }
+  .px-next-tag { font-size: 13.5px; line-height: 1.45; color: var(--ink-soft); }
+</style>

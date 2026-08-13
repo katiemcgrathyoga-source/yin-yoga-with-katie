@@ -30,6 +30,12 @@ const AREA_BUCKETS = [
   { key: 'hips', match: (a: string) => /hip|groin/.test(a) },
   { key: 'lower-back', match: (a: string) => /lower back|low back|sacrum/.test(a) },
   { key: 'shoulders', match: (a: string) => /shoulder|neck|upper back|chest/.test(a) },
+  // Everything below the hip. Note "hip flexor" is caught by `hips` above and
+  // stays there — it's the joint, not the leg.
+  {
+    key: 'legs',
+    match: (a: string) => /hamstring|quad|calf|calves|ankle|shin|feet|foot|\blegs?\b|it band|iliotibial/.test(a),
+  },
 ];
 const areaKeys = (d: VideoData) => {
   const set = new Set<string>();
@@ -94,6 +100,18 @@ export const FOCUS = [
       'Free Yin Yoga classes for tight hips — deep, held hip openers like Dragon, Swan and Butterfly. Full-length classes for sitting all day, running, and general tightness.',
     intro:
       "Tight hips are the reason most people find Yin in the first place — usually after a long stretch of sitting, or a lot of running. These classes hold the big shapes (Dragon, Swan, Butterfly, Shoelace) for three to five minutes, which is what it takes to reach the tissue that actually holds the tightness. Go gently: hips are honest, and they don't like being rushed.",
+  },
+  {
+    key: 'legs',
+    label: 'Legs',
+    match: (d: VideoData) => areaKeys(d).includes('legs'),
+    heading: 'Yin Yoga for Legs',
+    tagline: 'hamstrings, quads and calves, held long',
+    title: 'Yin Yoga for Legs — free classes for hamstrings, quads & calves',
+    description:
+      'Free Yin Yoga classes for tight legs — long, passive holds for hamstrings, quads, calves and feet. Full-length classes for runners, walkers, and anyone who sits all day.',
+    intro:
+      "Legs get tight from everything — running, walking, cycling — and just as much from doing none of those and sitting still all day. These classes work the long lines down the back and front of the leg: hamstrings, quads, calves, and the feet everybody forgets about. Most of it happens lying down or sitting, and none of it asks you to be flexible before you start. Hamstrings in particular don't like being hurried, so come in at about 60–80% of what you could reach and let the time do the rest.",
   },
   {
     key: 'full-body',
