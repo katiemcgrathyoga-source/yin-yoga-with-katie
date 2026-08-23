@@ -32,18 +32,13 @@ export default async (req) => {
 
   const reason = verifyStandardWebhook(id, timestamp, raw, sigHeader, SECRET);
   if (reason) {
-    // TEMP: diagnosing a signature-verification 400 — echoes the exact inputs
-    // (id/timestamp/raw body/secret shape) so the algorithm mismatch can be
-    // reproduced locally. No secret material is exposed. Remove once fixed.
+    // TEMP: diagnosing a signature-verification 400 — tries several plausible
+    // signing-algorithm variants against the REAL raw body already in memory
+    // (no manual byte-reconstruction, so no truncation risk) and reports which
+    // one, if any, matches Polar's actual signature. No secret material exposed.
     return new Response(JSON.stringify({
       reason,
-      id,
-      timestamp,
-      sigHeader,
-      bodyLength: raw.length,
-      bodyBase64: Buffer.from(raw, 'utf8').toString('base64'),
-      secretLength: SECRET.length,
-      secretHasPrefix: SECRET.startsWith('whsec_'),
+      matches: findMatchingVariant(id, timestamp, raw, sigHeader, SECRET),
     }), { status: 400, headers: { 'Content-Type': 'application/json' } });
   }
 
@@ -74,6 +69,47 @@ export default async (req) => {
 
   return new Response('ok', { status: 200 });
 };
+
+// TEMP: brute-forces plausible (key derivation × signed-content format) pairs
+// against a known-real (id, timestamp, body, signature) tuple to find which
+// variant Polar actually uses. Remove this once the real bug is identified.
+function findMatchingVariant(id, timestamp, body, sigHeader, secret) {
+  const stripped = secret.replace(/^whsec_/, '');
+  const keys = {
+    'base64(stripped)': safeBuf(stripped, 'base64'),
+    'base64url(stripped)': safeBuf(stripped, 'base64url'),
+    'utf8(stripped)': Buffer.from(stripped, 'utf8'),
+    'utf8(full secret incl. prefix)': Buffer.from(secret, 'utf8'),
+    'base64(full secret incl. prefix)': safeBuf(secret, 'base64'),
+  };
+  const contents = {
+    'id.timestamp.body': `${id}.${timestamp}.${body}`,
+    'timestamp.body': `${timestamp}.${body}`,
+    'body only': body,
+  };
+  const sigs = sigHeader.split(' ').map((e) => e.split(',')[1]).filter(Boolean);
+
+  const hits = [];
+  for (const [keyName, keyBuf] of Object.entries(keys)) {
+    if (!keyBuf || !keyBuf.length) continue;
+    for (const [contentName, content] of Object.entries(contents)) {
+      const digestB64 = createHmac('sha256', keyBuf).update(content).digest('base64');
+      const digestHex = createHmac('sha256', keyBuf).update(content).digest('hex');
+      if (sigs.some((s) => s === digestB64 || s === digestHex)) {
+        hits.push(`key=${keyName} content=${contentName}`);
+      }
+    }
+  }
+  return hits.length ? hits : ['no variant matched'];
+}
+
+function safeBuf(str, encoding) {
+  try {
+    return Buffer.from(str, encoding);
+  } catch {
+    return null;
+  }
+}
 
 /**
  * Verify a Standard Webhooks signature (https://www.standardwebhooks.com/).
