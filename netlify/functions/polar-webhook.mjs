@@ -32,9 +32,19 @@ export default async (req) => {
 
   const reason = verifyStandardWebhook(id, timestamp, raw, sigHeader, SECRET);
   if (reason) {
-    // TEMP: diagnosing a signature-verification 400 — reason is safe to expose
-    // (no secret material), remove the detail once this is confirmed working.
-    return new Response(`Invalid signature: ${reason}`, { status: 400 });
+    // TEMP: diagnosing a signature-verification 400 — echoes the exact inputs
+    // (id/timestamp/raw body/secret shape) so the algorithm mismatch can be
+    // reproduced locally. No secret material is exposed. Remove once fixed.
+    return new Response(JSON.stringify({
+      reason,
+      id,
+      timestamp,
+      sigHeader,
+      bodyLength: raw.length,
+      bodyBase64: Buffer.from(raw, 'utf8').toString('base64'),
+      secretLength: SECRET.length,
+      secretHasPrefix: SECRET.startsWith('whsec_'),
+    }), { status: 400, headers: { 'Content-Type': 'application/json' } });
   }
 
   let event;
