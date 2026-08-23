@@ -30,8 +30,11 @@ export default async (req) => {
   const timestamp = req.headers.get('webhook-timestamp') || '';
   const sigHeader = req.headers.get('webhook-signature') || '';
 
-  if (!verifyStandardWebhook(id, timestamp, raw, sigHeader, SECRET)) {
-    return new Response('Invalid signature', { status: 400 });
+  const reason = verifyStandardWebhook(id, timestamp, raw, sigHeader, SECRET);
+  if (reason) {
+    // TEMP: diagnosing a signature-verification 400 — reason is safe to expose
+    // (no secret material), remove the detail once this is confirmed working.
+    return new Response(`Invalid signature: ${reason}`, { status: 400 });
   }
 
   let event;
@@ -70,18 +73,22 @@ export default async (req) => {
  * may send more than one during secret rotation.
  * Also rejects timestamps more than 5 minutes old/skewed, per spec, to block replay.
  */
+// Returns null on success, or a short reason string on failure.
 function verifyStandardWebhook(id, timestamp, body, sigHeader, secret) {
-  if (!id || !timestamp || !sigHeader) return false;
+  if (!id) return 'missing webhook-id header';
+  if (!timestamp) return 'missing webhook-timestamp header';
+  if (!sigHeader) return 'missing webhook-signature header';
 
   const ts = Number(timestamp);
-  if (!Number.isFinite(ts) || Math.abs(Date.now() / 1000 - ts) > 300) return false;
+  if (!Number.isFinite(ts)) return 'webhook-timestamp not a number';
+  if (Math.abs(Date.now() / 1000 - ts) > 300) return `timestamp skew too large (ts=${ts}, now=${Math.floor(Date.now() / 1000)})`;
 
   const secretBytes = Buffer.from(secret.replace(/^whsec_/, ''), 'base64');
   const signedContent = `${id}.${timestamp}.${body}`;
   const expected = createHmac('sha256', secretBytes).update(signedContent).digest('base64');
   const expectedBuf = Buffer.from(expected, 'base64');
 
-  return sigHeader.split(' ').some((entry) => {
+  const matched = sigHeader.split(' ').some((entry) => {
     const [version, sig] = entry.split(',');
     if (version !== 'v1' || !sig) return false;
     try {
@@ -91,6 +98,8 @@ function verifyStandardWebhook(id, timestamp, body, sigHeader, secret) {
       return false;
     }
   });
+
+  return matched ? null : `HMAC mismatch (got "${sigHeader}", expected v1,${expected})`;
 }
 
 /**
