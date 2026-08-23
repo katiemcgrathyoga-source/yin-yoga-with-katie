@@ -1,0 +1,5 @@
+# Service worker: never let a browser or the CDN cache a stale copy — the SW's
+# lifecycle depends on the browser re-fetching sw.js on every navigation to
+# notice updates promptly.
+/sw.js
+  Cache-Control: no-cache

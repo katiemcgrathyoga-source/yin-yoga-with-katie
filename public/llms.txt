@@ -1,0 +1,29 @@
+# Yin Yoga with Katie
+
+> Free full-length Yin Yoga classes, an illustrated pose guide, and guided follow-along routines, taught by Katie McGrath — gentle, unhurried practice for tired minds and bodies.
+
+Yin Yoga with Katie is a free library of full-length yin yoga classes, a pose reference guide, and guided routines with a built-in hold timer. Classes hold poses at roughly 60–80% of capacity — a real stretch, never forced — and content is grounded in Bernie Clark's *The Complete Guide to Yin Yoga*. Everything on the site is free; a two-hour retreat class is offered by email for anyone who wants to begin with a longer practice.
+
+## Library
+
+- [Full class library](https://yinyogawithkatie.com/videos): every full-length class, filterable by focus area, length and level
+- [Pose guide](https://yinyogawithkatie.com/poses): illustrated reference for individual yin poses — how to do it, hold time, target areas, benefits, cautions, transitions
+- [Guided routines](https://yinyogawithkatie.com/routines): follow-along sequences of poses with a built-in practice timer
+- [The Journal](https://yinyogawithkatie.com/blog): articles on yin yoga practice, philosophy and technique
+
+## Focus areas
+
+- [Yin Yoga for Sleep](https://yinyogawithkatie.com/videos/for/sleep)
+- [Yin Yoga for Stress & Anxiety](https://yinyogawithkatie.com/videos/for/calm)
+- [Yin Yoga for Hips](https://yinyogawithkatie.com/videos/for/hips)
+- [Yin Yoga for Lower Back](https://yinyogawithkatie.com/videos/for/lower-back)
+- [Yin Yoga for Neck & Shoulders](https://yinyogawithkatie.com/videos/for/shoulders)
+- [Yin Yoga for Legs](https://yinyogawithkatie.com/videos/for/legs)
+- [Full-Body Yin Yoga](https://yinyogawithkatie.com/videos/for/full-body)
+- [Yin Yoga for Flexibility](https://yinyogawithkatie.com/videos/for/flexibility)
+- [Yin Yoga for Runners](https://yinyogawithkatie.com/runners)
+
+## About
+
+- [About Katie](https://yinyogawithkatie.com/about): teacher bio and teaching philosophy — trained at the Arhanta Yoga Ashram, teaching since 2018, based in Taipei
+- [Free two-hour retreat](https://yinyogawithkatie.com/free-class): the site's free class, sent by email

@@ -123,6 +123,15 @@ const faqLd = d.faq.length
       </a>
     </div>
 
+    {/* A compact ask before the player, not after. Once someone presses play
+        on a 20–45 minute practice, the site's only other ask sat past the full
+        sequence list and FAQ — most people who start following along never
+        scroll back down to see it. */}
+    <Cta compact
+      offer={d.audience === 'runners' ? 'runners' : 'retreat'}
+      source={d.audience === 'runners' ? 'routine-top-runner' : 'routine-top'}
+      eyebrow="Before you press play" />
+
     {/* The follow-along practice player. */}
     <section class="player-section" aria-label="Practice player">
       <RoutinePlayer

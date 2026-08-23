@@ -5,6 +5,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Cta from '../../components/Cta.astro';
 import { PROGRAMS } from '../../data/programs';
 import { journalPinUrl } from '../../lib/journalPin';
+import { SITE } from '../../data/site';
 import katieHello from '../../assets/katie-hello.jpg';
 
 export async function getStaticPaths() {
@@ -44,6 +45,8 @@ const jsonLd = {
     '@type': 'Person',
     name: 'Katie McGrath',
     description: 'Yin Yoga & Yoga Nidra teacher',
+    url: new URL('/about', Astro.site).href,
+    sameAs: Object.values(SITE.socials).filter(Boolean),
   },
   publisher: {
     '@type': 'Organization',

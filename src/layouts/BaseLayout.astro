@@ -37,6 +37,32 @@ const {
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = image ? new URL(image, Astro.site).href : undefined;
 
+// Sitewide entity graph — Organization + Person, present on every page (not just
+// ones that pass their own jsonLd). This is what lets an AI answer engine or a
+// Knowledge Panel resolve "who is this" and "who teaches this" even from a page
+// with no other structured data (home, about). Merged with any page-level jsonLd
+// below, rather than each page having to remember to add it.
+const siteSocials = Object.values(SITE.socials).filter(Boolean);
+const orgLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Yin Yoga with Katie',
+  url: new URL('/', Astro.site).href,
+  logo: new URL('/brand/submark-deep-sage.png', Astro.site).href,
+  sameAs: siteSocials,
+};
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Katie McGrath',
+  jobTitle: 'Yin Yoga & Yoga Nidra Teacher',
+  description: 'Yin Yoga & Yoga Nidra teacher based in Taipei, teaching since 2018.',
+  url: new URL('/about', Astro.site).href,
+  worksFor: { '@type': 'Organization', name: 'Yin Yoga with Katie' },
+  sameAs: siteSocials,
+};
+const allJsonLd = [orgLd, personLd, ...(Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [])];
+
 // Simple top nav, shared across every page. `aria-current` marks the section
 // the current path falls under so the active link is highlighted.
 const path = Astro.url.pathname;
@@ -66,6 +92,14 @@ const nav = [
     <link rel="icon" type="image/png" href="/brand/submark-deep-sage.png" />
     <link rel="alternate" type="application/rss+xml" title="Yin Yoga with Katie — Journal" href="/rss.xml" />
 
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#48544C" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Yin Yoga" />
+
     <!-- Open Graph -->
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={ogDescription} />
@@ -87,15 +121,11 @@ const nav = [
       rel="stylesheet"
     />
 
-    {
-      jsonLd && (
-        <script
-          type="application/ld+json"
-          is:inline
-          set:html={JSON.stringify(jsonLd)}
-        />
-      )
-    }
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(allJsonLd)}
+    />
   </head>
   <body>
     <script is:inline>
@@ -108,6 +138,13 @@ const nav = [
           document.documentElement.dataset.theme = t;
         } catch (e) {}
       })();
+    </script>
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
     </script>
     <header class="topbar">
       <div class="bar">
@@ -155,6 +192,10 @@ const nav = [
       });
     </script>
     <slot />
+    <div id="ios-install-banner" class="ios-install-banner is-hidden" role="note">
+      <p>Add this to your Home Screen: tap <strong>Share</strong>, then <strong>Add to Home Screen</strong>.</p>
+      <button type="button" id="ios-install-dismiss" aria-label="Dismiss">✕</button>
+    </div>
     <footer class="site-footer">
       <img src="/brand/submark-deep-sage.png" alt="Yin Yoga with Katie" class="site-footer-logo site-footer-logo-light" width="125" height="104" loading="lazy" />
       <img src="/brand/submark-soft-oat.png" alt="" class="site-footer-logo site-footer-logo-dark" width="125" height="104" loading="lazy" aria-hidden="true" />
@@ -172,6 +213,7 @@ const nav = [
             mean shipping an auth check to ~700 prerendered pages to serve the
             handful of people who need it. */}
         <a href="/account">Account</a>
+        <button type="button" id="install-app-btn" class="footer-install is-hidden">Install app</button>
       </nav>
       <nav class="site-footer-social" aria-label="Katie on social media">
         {SITE.socials.substack && (
@@ -209,5 +251,54 @@ const nav = [
       }
       <p class="site-footer-copy">© Yin Yoga with Katie</p>
     </footer>
+    <script>
+      // Android/Chrome: capture the native install prompt so the footer button can
+      // trigger it on demand (it's suppressed by default once a handler exists).
+      let deferredPrompt: any = null;
+      const installBtn = document.getElementById('install-app-btn');
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        installBtn?.classList.remove('is-hidden');
+      });
+
+      installBtn?.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+        installBtn.classList.add('is-hidden');
+      });
+
+      window.addEventListener('appinstalled', () => {
+        installBtn?.classList.add('is-hidden');
+      });
+
+      // iOS Safari has no beforeinstallprompt — show a small dismissible banner
+      // nudging Share → Add to Home Screen, once, when not already installed
+      // (standalone) and not previously dismissed.
+      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) && !(window as any).MSStream;
+      const isStandalone =
+        window.matchMedia('(display-mode: standalone)').matches || (navigator as any).standalone === true;
+      const dismissed = (() => {
+        try {
+          return localStorage.getItem('ios-install-dismissed') === '1';
+        } catch (e) {
+          return false;
+        }
+      })();
+
+      if (isIOS && !isStandalone && !dismissed) {
+        const banner = document.getElementById('ios-install-banner');
+        banner?.classList.remove('is-hidden');
+        document.getElementById('ios-install-dismiss')?.addEventListener('click', () => {
+          banner?.classList.add('is-hidden');
+          try {
+            localStorage.setItem('ios-install-dismissed', '1');
+          } catch (e) {}
+        });
+      }
+    </script>
   </body>
 </html>

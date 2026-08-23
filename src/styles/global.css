@@ -1382,6 +1382,24 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .site-footer-social a:hover { color: var(--paper); background: var(--plum); border-color: var(--plum); }
 .site-footer-copy { font-size: 12px; color: var(--ink-soft); margin: 20px 0 0; }
 
+.is-hidden { display: none !important; }
+
+.footer-install {
+  font: inherit; font-size: 14px; color: var(--ink-soft); background: none;
+  border: none; cursor: pointer; padding: 0;
+}
+.footer-install:hover { color: var(--plum); }
+
+.ios-install-banner {
+  position: sticky; bottom: 0; z-index: 40; display: flex; align-items: center;
+  justify-content: space-between; gap: 14px; padding: 12px 18px;
+  background: var(--plum); color: var(--paper); font-size: 14px;
+}
+.ios-install-banner p { margin: 0; }
+.ios-install-banner button {
+  background: none; border: none; color: var(--paper); font-size: 16px; cursor: pointer; line-height: 1;
+}
+
 /* members-only pill (video page) */
 .pill.members { background: var(--gold-solid); color: #fff; border-color: var(--gold-solid); }
 .watch-members { background: var(--plum); }

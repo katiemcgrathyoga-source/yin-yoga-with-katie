@@ -7,6 +7,7 @@ import { AUDIENCES } from '../../data/audiences';
 import { SITE } from '../../data/site';
 import { PROGRAMS, resolveProgramClasses } from '../../data/programs';
 import Cta from '../../components/Cta.astro';
+import { journalPinUrl } from '../../lib/journalPin';
 
 /**
  * One reusable template for every video class. `getStaticPaths` emits a static
@@ -154,6 +155,21 @@ const hubs = [
 const schema = [jsonLd, breadcrumbLd, ...(faqLd ? [faqLd] : [])];
 
 const eyebrow = ['Yin Yoga', ...d.intent_tags.map(capitalise)].join(' · ');
+
+// Canonical pin for the Pinterest save button. Text-led (no photo): a 16:9
+// YouTube frame doesn't suit the tall arch crop the way a portrait pose photo
+// does, so this keeps the save button working everywhere without ever risking
+// a letterboxed thumbnail. Kept separate from the page's og:image (still the
+// real YouTube thumbnail via `thumb`), so this only affects the Pinterest share.
+const journalPin = journalPinUrl(Astro.site, {
+  variant: 'arch',
+  title: headline,
+  eyebrow: 'The library',
+  meta: `${lengthLabel} · ${levelLabel}`,
+  excerpt: d.summary,
+});
+const videoUrl = new URL(`/videos/${d.slug}/`, Astro.site).href;
+const pinSave = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(videoUrl)}&media=${encodeURIComponent(journalPin)}&description=${encodeURIComponent(d.summary)}`;
 ---
 
 <BaseLayout
@@ -213,6 +229,23 @@ const eyebrow = ['Yin Yoga', ...d.intent_tags.map(capitalise)].join(' · ');
         )
       }
     </header>
+
+    {/* Save to Pinterest — sits right under the watch button, because that
+        button sends most visitors straight to YouTube in a new tab. Anything
+        lower on this page risks never being seen. */}
+    <div class="pose-share">
+      <a class="pose-pin-btn" href={pinSave} target="_blank" rel="noopener noreferrer" aria-label="Save this class to Pinterest">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C24.007 5.367 18.641.001 12.017.001z"/></svg>
+        Save this class
+      </a>
+    </div>
+
+    {/* A compact ask right at the top, before the watch button carries most
+        visitors off to YouTube in a new tab. The full ask lower down (after
+        the chapters) is easy to miss once someone's already watching. */}
+    <Cta compact offer={isRunner ? 'runners' : 'retreat'}
+      source={isRunner ? 'video-top-runner' : 'video-top'}
+      eyebrow="Before you go" />
 
     {/* Blog body — the rendered Markdown */}
     <div class="prose">
