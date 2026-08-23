@@ -92,7 +92,7 @@ const practiceCount = (await getCollection('practices')).filter((p) => !p.data.u
   const $ = (id: string) => document.getElementById(id);
   const show = (id: string, on = true) => { const el = $(id); if (el) el.hidden = !on; };
 
-  // Post-checkout thank-you (Lemon Squeezy redirect returns ?purchased=1).
+  // Post-checkout thank-you (Polar redirect returns ?purchased=1).
   if (new URLSearchParams(location.search).get('purchased') === '1') show('acct-thanks', true);
 
   const supabase = getSupabase();

@@ -2,10 +2,11 @@ import { createHmac, timingSafeEqual } from 'node:crypto';
 import { createClient } from '@supabase/supabase-js';
 
 /**
- * Lemon Squeezy webhook: on a paid order, grant the buyer their entitlement.
- *   POST /api/ls-webhook
+ * Polar webhook: on a paid order, grant the buyer their entitlement.
+ *   POST /api/polar-webhook
  *
- * Verifies the X-Signature HMAC, then on `order_created` (status paid):
+ * Verifies the Standard Webhooks signature (webhook-id/-timestamp/-signature
+ * headers), then on `order.paid`:
  *   email -> get-or-create the Supabase user -> upsert entitlement (service role)
  *   -> add the buyer to the MailerLite buyers group.
  * Idempotent (upsert), so redelivered events are safe.
@@ -16,7 +17,7 @@ import { createClient } from '@supabase/supabase-js';
  * they paid for, so a failure there is logged and swallowed.
  */
 export default async (req) => {
-  const SECRET = process.env.LEMONSQUEEZY_WEBHOOK_SECRET;
+  const SECRET = process.env.POLAR_WEBHOOK_SECRET;
   const SUPA_URL = process.env.PUBLIC_SUPABASE_URL;
   const SERVICE = process.env.SUPABASE_SERVICE_ROLE_KEY;
   const PRODUCT_DEFAULT = process.env.RUNNER_PRODUCT || 'runner-reset';
@@ -25,11 +26,11 @@ export default async (req) => {
   if (!SUPA_URL || !SERVICE) return new Response('Supabase admin not configured', { status: 500 });
 
   const raw = await req.text();
-  const sig = req.headers.get('x-signature') || '';
+  const id = req.headers.get('webhook-id') || '';
+  const timestamp = req.headers.get('webhook-timestamp') || '';
+  const sigHeader = req.headers.get('webhook-signature') || '';
 
-  // Verify: HMAC-SHA256(raw body, secret) === X-Signature (hex).
-  const expected = createHmac('sha256', SECRET).update(raw).digest('hex');
-  if (!safeEqualHex(expected, sig)) {
+  if (!verifyStandardWebhook(id, timestamp, raw, sigHeader, SECRET)) {
     return new Response('Invalid signature', { status: 400 });
   }
 
@@ -40,19 +41,10 @@ export default async (req) => {
     return new Response('Bad JSON', { status: 400 });
   }
 
-  const name = event?.meta?.event_name;
-  if (name === 'order_created') {
-    const attrs = event?.data?.attributes || {};
-    // Grant on a paid order OR a fully-discounted comp (total 0) — the running-group
-    // 100%-off codes create $0 orders, which may not carry status 'paid'. Still
-    // exclude refunded/fraudulent. TODO: verify a real $0 order's status against a
-    // live test code before launch.
-    const isComp = Number(attrs.total) === 0;
-    const granted = attrs.status === 'paid' || (isComp && attrs.status !== 'refunded' && attrs.status !== 'fraudulent');
-    if (!granted) return new Response(`ok (status ${attrs.status})`, { status: 200 });
-
-    const email = attrs.user_email;
-    const product = event?.meta?.custom_data?.product || PRODUCT_DEFAULT;
+  if (event?.type === 'order.paid') {
+    const order = event?.data || {};
+    const email = order?.customer?.email;
+    const product = order?.metadata?.product || PRODUCT_DEFAULT;
     if (!email) return new Response('ok (no email)', { status: 200 });
 
     const admin = createClient(SUPA_URL, SERVICE, { auth: { persistSession: false } });
@@ -61,7 +53,7 @@ export default async (req) => {
 
     const { error } = await admin
       .from('entitlements')
-      .upsert({ user_id: userId, product, source: 'lemonsqueezy' }, { onConflict: 'user_id,product' });
+      .upsert({ user_id: userId, product, source: 'polar' }, { onConflict: 'user_id,product' });
     if (error) return new Response(`Grant failed: ${error.message}`, { status: 500 });
 
     await tagBuyerInMailerLite(email);
@@ -69,6 +61,37 @@ export default async (req) => {
 
   return new Response('ok', { status: 200 });
 };
+
+/**
+ * Verify a Standard Webhooks signature (https://www.standardwebhooks.com/).
+ * Signed content is "{id}.{timestamp}.{raw body}", HMAC-SHA256'd with the
+ * base64-decoded secret (stripped of its "whsec_" prefix), base64-encoded, and
+ * compared against each "v1,<sig>" entry in the space-separated header — Polar
+ * may send more than one during secret rotation.
+ * Also rejects timestamps more than 5 minutes old/skewed, per spec, to block replay.
+ */
+function verifyStandardWebhook(id, timestamp, body, sigHeader, secret) {
+  if (!id || !timestamp || !sigHeader) return false;
+
+  const ts = Number(timestamp);
+  if (!Number.isFinite(ts) || Math.abs(Date.now() / 1000 - ts) > 300) return false;
+
+  const secretBytes = Buffer.from(secret.replace(/^whsec_/, ''), 'base64');
+  const signedContent = `${id}.${timestamp}.${body}`;
+  const expected = createHmac('sha256', secretBytes).update(signedContent).digest('base64');
+  const expectedBuf = Buffer.from(expected, 'base64');
+
+  return sigHeader.split(' ').some((entry) => {
+    const [version, sig] = entry.split(',');
+    if (version !== 'v1' || !sig) return false;
+    try {
+      const sigBuf = Buffer.from(sig, 'base64');
+      return sigBuf.length === expectedBuf.length && timingSafeEqual(sigBuf, expectedBuf);
+    } catch {
+      return false;
+    }
+  });
+}
 
 /**
  * Add the buyer to the MailerLite buyers group so the runner nurture automation
@@ -103,15 +126,6 @@ async function tagBuyerInMailerLite(email) {
   }
 }
 
-function safeEqualHex(a, b) {
-  if (typeof a !== 'string' || typeof b !== 'string' || a.length !== b.length) return false;
-  try {
-    return timingSafeEqual(Buffer.from(a, 'hex'), Buffer.from(b, 'hex'));
-  } catch {
-    return false;
-  }
-}
-
 // Create an email-confirmed user (so they can sign in via magic link), or find
 // the existing one. listUsers paging is fine at launch scale; TODO: swap for an
 // email->id lookup (profiles table / RPC) once the user base is large.
@@ -129,4 +143,4 @@ async function getOrCreateUser(admin, email) {
   return null;
 }
 
-export const config = { path: '/api/ls-webhook' };
+export const config = { path: '/api/polar-webhook' };
