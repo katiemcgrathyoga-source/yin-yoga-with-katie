@@ -30,16 +30,8 @@ export default async (req) => {
   const timestamp = req.headers.get('webhook-timestamp') || '';
   const sigHeader = req.headers.get('webhook-signature') || '';
 
-  const reason = verifyStandardWebhook(id, timestamp, raw, sigHeader, SECRET);
-  if (reason) {
-    // TEMP: diagnosing a signature-verification 400 — tries several plausible
-    // signing-algorithm variants against the REAL raw body already in memory
-    // (no manual byte-reconstruction, so no truncation risk) and reports which
-    // one, if any, matches Polar's actual signature. No secret material exposed.
-    return new Response(JSON.stringify({
-      reason,
-      matches: findMatchingVariant(id, timestamp, raw, sigHeader, SECRET),
-    }), { status: 400, headers: { 'Content-Type': 'application/json' } });
+  if (!verifyPolarWebhook(id, timestamp, raw, sigHeader, SECRET)) {
+    return new Response('Invalid signature', { status: 400 });
   }
 
   let event;
@@ -70,71 +62,27 @@ export default async (req) => {
   return new Response('ok', { status: 200 });
 };
 
-// TEMP: brute-forces plausible (key derivation × signed-content format) pairs
-// against a known-real (id, timestamp, body, signature) tuple to find which
-// variant Polar actually uses. Remove this once the real bug is identified.
-function findMatchingVariant(id, timestamp, body, sigHeader, secret) {
-  const stripped = secret.replace(/^whsec_/, '');
-  const keys = {
-    'base64(stripped)': safeBuf(stripped, 'base64'),
-    'base64url(stripped)': safeBuf(stripped, 'base64url'),
-    'utf8(stripped)': Buffer.from(stripped, 'utf8'),
-    'utf8(full secret incl. prefix)': Buffer.from(secret, 'utf8'),
-    'base64(full secret incl. prefix)': safeBuf(secret, 'base64'),
-  };
-  const contents = {
-    'id.timestamp.body': `${id}.${timestamp}.${body}`,
-    'timestamp.body': `${timestamp}.${body}`,
-    'body only': body,
-  };
-  const sigs = sigHeader.split(' ').map((e) => e.split(',')[1]).filter(Boolean);
-
-  const hits = [];
-  for (const [keyName, keyBuf] of Object.entries(keys)) {
-    if (!keyBuf || !keyBuf.length) continue;
-    for (const [contentName, content] of Object.entries(contents)) {
-      const digestB64 = createHmac('sha256', keyBuf).update(content).digest('base64');
-      const digestHex = createHmac('sha256', keyBuf).update(content).digest('hex');
-      if (sigs.some((s) => s === digestB64 || s === digestHex)) {
-        hits.push(`key=${keyName} content=${contentName}`);
-      }
-    }
-  }
-  return hits.length ? hits : ['no variant matched'];
-}
-
-function safeBuf(str, encoding) {
-  try {
-    return Buffer.from(str, encoding);
-  } catch {
-    return null;
-  }
-}
-
 /**
- * Verify a Standard Webhooks signature (https://www.standardwebhooks.com/).
- * Signed content is "{id}.{timestamp}.{raw body}", HMAC-SHA256'd with the
- * base64-decoded secret (stripped of its "whsec_" prefix), base64-encoded, and
- * compared against each "v1,<sig>" entry in the space-separated header — Polar
- * may send more than one during secret rotation.
- * Also rejects timestamps more than 5 minutes old/skewed, per spec, to block replay.
+ * Verify a Polar webhook signature. Polar advertises Standard Webhooks
+ * compatibility (webhook-id/-timestamp/-signature headers, "v1,<sig>" format,
+ * "{id}.{timestamp}.{body}" signed content), but — confirmed by testing against
+ * real deliveries — it does NOT follow the spec's key encoding: the HMAC key is
+ * the raw UTF-8 bytes of the secret string AS SHOWN in the dashboard, prefix
+ * included ("whsec_..."), not base64-decoded.
+ * Also rejects timestamps more than 5 minutes old/skewed, to block replay.
  */
-// Returns null on success, or a short reason string on failure.
-function verifyStandardWebhook(id, timestamp, body, sigHeader, secret) {
-  if (!id) return 'missing webhook-id header';
-  if (!timestamp) return 'missing webhook-timestamp header';
-  if (!sigHeader) return 'missing webhook-signature header';
+function verifyPolarWebhook(id, timestamp, body, sigHeader, secret) {
+  if (!id || !timestamp || !sigHeader) return false;
 
   const ts = Number(timestamp);
-  if (!Number.isFinite(ts)) return 'webhook-timestamp not a number';
-  if (Math.abs(Date.now() / 1000 - ts) > 300) return `timestamp skew too large (ts=${ts}, now=${Math.floor(Date.now() / 1000)})`;
+  if (!Number.isFinite(ts) || Math.abs(Date.now() / 1000 - ts) > 300) return false;
 
-  const secretBytes = Buffer.from(secret.replace(/^whsec_/, ''), 'base64');
+  const key = Buffer.from(secret, 'utf8');
   const signedContent = `${id}.${timestamp}.${body}`;
-  const expected = createHmac('sha256', secretBytes).update(signedContent).digest('base64');
+  const expected = createHmac('sha256', key).update(signedContent).digest('base64');
   const expectedBuf = Buffer.from(expected, 'base64');
 
-  const matched = sigHeader.split(' ').some((entry) => {
+  return sigHeader.split(' ').some((entry) => {
     const [version, sig] = entry.split(',');
     if (version !== 'v1' || !sig) return false;
     try {
@@ -144,8 +92,6 @@ function verifyStandardWebhook(id, timestamp, body, sigHeader, secret) {
       return false;
     }
   });
-
-  return matched ? null : `HMAC mismatch (got "${sigHeader}", expected v1,${expected})`;
 }
 
 /**
