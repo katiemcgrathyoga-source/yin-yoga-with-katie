@@ -1,5 +1,13 @@
 # The Runner's Reset — Project Status & Go-Live Checklist
 
+> **SUPERSEDED (2026-08-24).** Kevin confirmed the course is completely ready.
+> Everything below — filming, checkout, MailerLite, the `sessions` structure —
+> is stale: the course lives at `src/content/practices/` (not `sessions/`),
+> checkout is Polar (not Gumroad/Stripe), it's deployed, purchasable, and as of
+> today linked from the primary nav and indexed. Kept for history only; don't
+> work from this file. See [[site-structure-decisions]] / [[launch-prep-todos]]
+> in project memory for current state.
+
 The single source of truth for where the runner project stands. Most of the code
 is done; the remaining work is mostly **yours** (filming, MailerLite, checkout).
 Nothing here is deployed yet — it's all one pending batch.

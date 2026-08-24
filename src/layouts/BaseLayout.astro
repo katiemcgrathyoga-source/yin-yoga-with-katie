@@ -72,7 +72,11 @@ const nav: { href: string; label: string; match: (p: string) => boolean; product
   // nav slot — and every page on the site links to the hub as a result.
   { href: '/videos', label: 'Classes', match: (p: string) => p.startsWith('/videos') },
   { href: '/poses', label: 'Poses', match: (p: string) => p.startsWith('/poses') },
-  { href: '/routines', label: 'Routines', match: (p: string) => p.startsWith('/routines') },
+  // "Routines" alone reads too close to "Classes" for a first-time visitor —
+  // both sound like "a way to practice." Spelling out "Guided" (already the
+  // term used on the homepage's own routines pitch) signals the actual
+  // difference — timer-paced, no video — right in the nav.
+  { href: '/routines', label: 'Guided Routines', match: (p: string) => p.startsWith('/routines') },
   { href: '/blog', label: 'Journal', match: (p: string) => p.startsWith('/blog') },
   { href: '/about', label: 'About', match: (p: string) => p.startsWith('/about') },
   // Slot for the paid product line. Points at the sales page by default; the
@@ -252,7 +256,7 @@ const nav: { href: string; label: string; match: (p: string) => boolean; product
         <a href="/">Start here</a>
         <a href="/videos">Classes</a>
         <a href="/poses">Poses</a>
-        <a href="/routines">Routines</a>
+        <a href="/routines">Guided Routines</a>
         <a href="/blog">Journal</a>
         <a href="/about">About</a>
         <a href="/free-class">Free class</a>

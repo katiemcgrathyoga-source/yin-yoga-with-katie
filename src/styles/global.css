@@ -90,7 +90,12 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 /* ---- Site header / nav (shared, every page) ---- */
 .topbar { border-bottom: 1px solid var(--line); background: var(--paper-2); }
 .topbar .bar {
-  max-width: 680px; margin: 0 auto; padding: 16px 22px;
+  /* Was 680px — too tight for seven nav items + the theme toggle once
+     "Runner's Reset" joined the nav; it wrapped onto a second row even on a
+     1280px-wide desktop viewport. 900px matches the hamburger breakpoint
+     below, so above that breakpoint the bar has all the room it'll ever get
+     and it's confirmed enough — verified no wrap at 901/1024/1280/1920px. */
+  max-width: 900px; margin: 0 auto; padding: 16px 22px;
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
 }
 .brand {
@@ -120,7 +125,14 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 /* Guard against sideways scroll (full-bleed marquee uses 100vw) */
 body { overflow-x: hidden; }
 
-@media (max-width: 600px) {
+/* The bar itself is capped at 900px even on wide desktop screens (see
+   .topbar .bar above), so whether the nav wraps is about nav-content width vs.
+   that cap, not really "mobile vs desktop." This breakpoint matches that cap:
+   below it the bar (and so the nav) has less room than its full 900px, so the
+   hamburger takes over rather than risk a wrap; at or above it the bar has
+   all the room .topbar .bar gives it, which is confirmed enough — verified no
+   wrap at 901/1024/1280/1920px, and a clean hamburger handoff at 900px. */
+@media (max-width: 900px) {
   .topbar .bar { position: relative; }
   .nav-toggle { display: inline-flex; }
   .nav {

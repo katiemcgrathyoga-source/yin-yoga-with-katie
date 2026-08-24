@@ -43,10 +43,11 @@ const ogImage = journalPinUrl(Astro.site, {
   excerpt: 'full-length classes, pose guides and guided routines — free, and a two-hour retreat to begin.',
 });
 
-// Retreat form — still used by the closing capture at the foot of the page.
+// Retreat form — the hero capture (moved up from the foot of the page; see the
+// comment on .home-hero below for why the hero no longer forks runner/not-runner).
 const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/192665473777665865/subscribe';
-// Runners form — the hero capture. A different MailerLite form because it has to
-// trigger the Post-Run Reset automation, not the retreat series.
+// Runners form — now the closing capture. A different MailerLite form because it
+// has to trigger the Post-Run Reset automation, not the retreat series.
 const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/194288582398052179/subscribe';
 ---
 
@@ -81,7 +82,7 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
       <a class="app-tile" href="/routines">
         <span class="app-tile-img"><img src="/poses/reclined-swan.jpg" alt="" loading="eager" /></span>
         <span class="app-tile-info">
-          <h2>Routines</h2>
+          <h2>Guided Routines</h2>
           <p>Guided sequences that pace you — press play and I'll keep time, pose to pose.</p>
         </span>
       </a>
@@ -101,23 +102,23 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
       <p class="eyebrow">Free yin yoga with Katie</p>
       <h1>Gentle Yin Yoga to help you slow down, stretch deeply, and rest.</h1>
       <p class="home-lede">Full-length yin, restorative and yoga nidra classes — free, and yours to keep.</p>
-      {/* The hero capture is the RUNNERS offer, not the retreat: it's the funnel with
-          a live automation and a product behind it. The H1 above stays general on
-          purpose — it's the page's main signal for "yin yoga", and a runner headline
-          there would cost the broad traffic that feeds everything else. Non-runners
-          get an explicit out immediately below, and the retreat still has its own
-          capture at the foot of the page. */}
-      <p class="home-offer"><strong>Run?</strong> Start with my free <strong>15-Minute Post-Run Reset</strong> — fifteen quiet minutes to undo what a run tightens, yours to keep.</p>
-      <form class="home-capture" id="hero-form" action={ML_RUNNERS} method="post" target="ml_frame_hero">
+      {/* One offer, not a fork. This used to branch runner / not-a-runner right
+          here — two decisions stacked before a first-time visitor had even
+          oriented, on top of the "start here" chooser right below. The runner
+          offer still exists — it now anchors the closing capture at the foot
+          of the page instead, and runner-tagged content elsewhere on the site
+          links to it directly. This capture is the broad one that suits
+          nearly any visitor. */}
+      <p class="home-offer"><strong>A gift from me:</strong> my free two-hour Yin, restorative and Yoga Nidra retreat — yours to keep, and to come back to any time.</p>
+      <form class="home-capture" id="hero-form" action={ML_ACTION} method="post" target="ml_frame_hero">
         <input type="text" name="fields[name]" placeholder="First name" aria-label="First name" />
         <input type="email" name="fields[email]" required placeholder="Your email" aria-label="Your email" />
-        <input type="hidden" name="fields[signup_source]" value="home-hero-runner" />
+        <input type="hidden" name="fields[signup_source]" value="home-hero" />
         <input type="hidden" name="ml-submit" value="1" />
         <input type="hidden" name="anticsrf" value="true" />
-        <button type="submit" class="btn-cta">Send me the Post-Run Reset →</button>
+        <button type="submit" class="btn-cta">Send me the free retreat →</button>
       </form>
-      <p class="home-done" id="hero-done" hidden>Check your inbox — your Post-Run Reset is on its way.</p>
-      <p class="home-fine">Not a runner? <a href="/free-class">Start with the free two-hour retreat instead →</a></p>
+      <p class="home-done" id="hero-done" hidden>Check your inbox — your two-hour retreat is on its way.</p>
       <iframe name="ml_frame_hero" hidden title="Sign-up" tabindex="-1" aria-hidden="true"></iframe>
     </div>
     <div class="home-hero-img">
@@ -126,6 +127,12 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
   </section>
 
   {/* ── Start here: a clear on-ramp for new visitors ──────────────────────── */}
+  {/* Two cards, not three. Routines used to get a third card here AND its own
+      band immediately below — the same "guided routine" pitch twice in a row.
+      The band covers it with more depth (specific lengths, build-your-own)
+      than a short card could, so it keeps the routines moment and the card
+      list drops to what it doesn't already cover: the beginner guide and the
+      pose library. */}
   <section class="home-start">
     <p class="eyebrow home-center">New here? Start here</p>
     <div class="home-cards">
@@ -140,12 +147,6 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
         <h3>Learn the poses</h3>
         <p>An illustrated guide to every shape — cues, hold times, and what to feel.</p>
         <span class="home-go">Open the pose guide →</span>
-      </a>
-      <a class="home-card" href="/routines">
-        <span class="home-num">03</span>
-        <h3>Follow a guided routine</h3>
-        <p>Short on time? Press play and be led through, pose to pose.</p>
-        <span class="home-go">Browse routines →</span>
       </a>
     </div>
   </section>
@@ -214,20 +215,27 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
     </section>
   </div>
 
-  {/* ── Closing email-capture: the free two-hour retreat ──────────────────── */}
+  {/* ── Closing email-capture: the runner offer ────────────────────────────
+        Used to be the retreat capture (now up in the hero) — this is the
+        runner offer that used to fork the hero instead. Someone who clicked
+        "Runner's Reset" in the nav and isn't ready to buy has nowhere to leave
+        an email on that sales page itself, so this keeps that capture path
+        alive on the homepage rather than dropping it. Same copy Cta.astro
+        uses for the 'runners' offer elsewhere, for consistency. ── */}
   <section class="lib-retreat">
     <div class="rt-inner">
-      <p class="eyebrow">a gift from me</p>
-      <h2>Two hours to completely switch off</h2>
-      <p class="rt-members">✦ A members-only class — free for you</p>
-      <form class="rt-form" id="rt-form" action={ML_ACTION} method="post" target="ml_frame_home">
+      <p class="eyebrow">Free for runners</p>
+      <h2>The 15-Minute Post-Run Reset</h2>
+      <p class="rt-members">✦ A free follow-along class, with a hold timer</p>
+      <form class="rt-form" id="rt-form" action={ML_RUNNERS} method="post" target="ml_frame_home">
+        <input type="text" name="fields[name]" placeholder="First name" aria-label="First name" />
         <input type="email" name="fields[email]" required placeholder="Your email" aria-label="Your email" />
-        <input type="hidden" name="fields[signup_source]" value="home-retreat" />
+        <input type="hidden" name="fields[signup_source]" value="home-footer-runner" />
         <input type="hidden" name="ml-submit" value="1" />
         <input type="hidden" name="anticsrf" value="true" />
-        <button type="submit" class="btn-cta">Send me the free retreat →</button>
+        <button type="submit" class="btn-cta">Send me the Post-Run Reset →</button>
       </form>
-      <p class="rt-done" id="rt-done" hidden>Check your inbox — your two-hour retreat is on its way.</p>
+      <p class="rt-done" id="rt-done" hidden>Check your inbox — your Post-Run Reset is on its way.</p>
       <iframe name="ml_frame_home" hidden title="Sign-up" tabindex="-1" aria-hidden="true"></iframe>
     </div>
   </section>
@@ -268,15 +276,13 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
     margin: 0 0 18px; padding-left: 14px; border-left: 3px solid var(--gold-solid);
   }
   .home-offer strong { color: var(--plum-deep); }
-  .home-fine { font-size: 13px; color: var(--ink-soft); margin: 12px 0 0; }
-  .home-fine a { color: var(--gold-solid); font-weight: 600; }
   .home-done { font-size: 15px; color: var(--plum); margin: 12px 0 0; }
   .home-hero-img img { width: 100%; height: 440px; object-fit: cover; object-position: center 40%; border-radius: 18px; display: block; }
 
   /* ── Start here ── */
   .home-start { max-width: 1080px; margin: 0 auto; padding: 40px 24px; }
   .home-center { text-align: center; }
-  .home-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 10px; }
+  .home-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 10px; max-width: 720px; margin-left: auto; margin-right: auto; }
   .home-card { display: block; background: var(--paper-2); border: 1px solid var(--line); border-radius: 16px; padding: 26px; text-decoration: none; color: inherit; transition: border-color .15s, transform .15s; }
   .home-card:hover { border-color: var(--gold); transform: translateY(-2px); }
   .home-num { font-family: var(--display); font-size: 15px; letter-spacing: .12em; color: var(--gold-solid); }
