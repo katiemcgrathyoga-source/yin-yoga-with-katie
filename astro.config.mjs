@@ -59,7 +59,7 @@ export default defineConfig({
         // /videos/all is the overflow list of not-yet-written-up classes. It is
         // noindex on purpose (see the file) and must not be submitted either.
         const exact = [
-          '/runners', '/runner-reset', '/account', '/pins', '/boards',
+          '/runners', '/account', '/pins', '/boards',
           '/pincalendar', '/videos/all',
         ];
         if (exact.includes(path)) return false;

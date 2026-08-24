@@ -17,7 +17,8 @@ import shotPlans from '../assets/course-shots/05-plans.png';
 // two elements Kevin explicitly kept (the credibility stat strip and the
 // "what happens the moment you join" steps) and one bit of sticky-bar UI micro-label.
 //
-// Hidden (noindex + excluded from sitemap) until launch, matching the /runners funnel.
+// Indexed and in the sitemap — it's linked from the primary nav on every page
+// now, so hiding it from Google while pointing every visitor at it made no sense.
 // The buy buttons link straight to the Polar checkout (POLAR_CHECKOUT_URL) — no
 // server round-trip needed. The webhook grants entitlement on order.paid
 // regardless of how the checkout was started, so this works standalone.
@@ -76,7 +77,6 @@ ogImage.searchParams.set('s', 'Short follow-along Yin practices to undo the tigh
   title="The Runner's Reset — Yin Yoga for Runners, by Katie"
   description="Running quietly stiffens the tissues that keep you running well. The Runner's Reset is a library of short, follow-along Yin practices that give that range back — fifteen to twenty quiet minutes at a time."
   image={ogImage.href}
-  noindex={true}
 >
   <div class="rr">
     {/* ── Hero ─────────────────────────────────────────────────────────── */}

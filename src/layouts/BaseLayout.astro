@@ -66,7 +66,7 @@ const allJsonLd = [orgLd, personLd, ...(Array.isArray(jsonLd) ? jsonLd : jsonLd 
 // Simple top nav, shared across every page. `aria-current` marks the section
 // the current path falls under so the active link is highlighted.
 const path = Astro.url.pathname;
-const nav = [
+const nav: { href: string; label: string; match: (p: string) => boolean; product?: string }[] = [
   { href: '/', label: 'Start here', match: (p: string) => p === '/' },
   // The library has its own page now (it used to be the homepage), so it earns a
   // nav slot — and every page on the site links to the hub as a result.
@@ -75,6 +75,11 @@ const nav = [
   { href: '/routines', label: 'Routines', match: (p: string) => p.startsWith('/routines') },
   { href: '/blog', label: 'Journal', match: (p: string) => p.startsWith('/blog') },
   { href: '/about', label: 'About', match: (p: string) => p.startsWith('/about') },
+  // Slot for the paid product line. Points at the sales page by default; the
+  // inline script below swaps it to the course for anyone who already owns
+  // it. Keyed by `product` (not the href) so the swap-script knows which
+  // entitlement unlocks which nav item, ready for more products later.
+  { href: '/runner-reset', label: "Runner's Reset", match: (p: string) => p.startsWith('/runner-reset'), product: 'runner-reset' },
 ];
 ---
 
@@ -171,7 +176,12 @@ const nav = [
           <nav class="nav" id="primary-nav" aria-label="Primary">
             {
               nav.map((item) => (
-                <a href={item.href} class:list={[{ 'nav-cta': item.href === '/' }]} aria-current={item.match(path) ? 'page' : undefined}>
+                <a
+                  href={item.href}
+                  class:list={[{ 'nav-cta': item.href === '/' }]}
+                  aria-current={item.match(path) ? 'page' : undefined}
+                  data-nav-product={item.product}
+                >
                   {item.label}
                 </a>
               ))
@@ -198,6 +208,36 @@ const nav = [
         document.documentElement.dataset.theme = next;
         try { localStorage.setItem('theme', next); } catch (e) {}
       });
+    </script>
+    <script>
+      // Signed-in owners get sent straight into the course, not the sales page.
+      // Gated on the sb-token cookie (set by supabaseBrowser.ts on sign-in) so
+      // the ~700 prerendered pages don't pay for the Supabase SDK on every
+      // anonymous pageview — only the minority who've actually signed in
+      // somewhere else on the site (and so already have the cookie) trigger
+      // the dynamic import + entitlement lookup here.
+      const PRODUCT_DESTINATIONS: Record<string, { href: string; label: string }> = {
+        'runner-reset': { href: '/practices', label: 'Practice' },
+      };
+      const links = document.querySelectorAll<HTMLAnchorElement>('[data-nav-product]');
+      if (links.length && /(?:^|;\s*)sb-token=/.test(document.cookie)) {
+        import('../lib/supabaseBrowser').then(async ({ getSupabase }) => {
+          const supabase = getSupabase();
+          if (!supabase) return;
+          const { data: { session } } = await supabase.auth.getSession();
+          if (!session) return;
+          const { data: ents } = await supabase.from('entitlements').select('product');
+          const owned = new Set((ents ?? []).map((e: any) => e.product));
+          links.forEach((link) => {
+            const product = link.dataset.navProduct;
+            const dest = product && owned.has(product) ? PRODUCT_DESTINATIONS[product] : null;
+            if (dest) {
+              link.href = dest.href;
+              link.textContent = dest.label;
+            }
+          });
+        });
+      }
     </script>
     <slot />
     <div id="ios-install-banner" class="ios-install-banner is-hidden" role="note">
