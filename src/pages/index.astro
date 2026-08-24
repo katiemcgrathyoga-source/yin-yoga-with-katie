@@ -66,28 +66,28 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
     <p class="eyebrow home-center">Welcome back</p>
     <div class="app-tiles">
       <a class="app-tile" href="/videos">
-        <span class="app-tile-img"><Image src={katieHello} alt="" width={160} height={160} loading="eager" /></span>
+        <span class="app-tile-img"><Image src={katieHello} alt="" width={160} height={160} loading="lazy" /></span>
         <span class="app-tile-info">
           <h2>Classes</h2>
           <p>Full-length classes to follow along with — sleep, sore hips, a busy mind, whatever you need today.</p>
         </span>
       </a>
       <a class="app-tile" href="/poses">
-        <span class="app-tile-img"><img src="/poses/legs-up-the-wall.jpg" alt="" loading="eager" /></span>
+        <span class="app-tile-img"><img data-src="/poses/legs-up-the-wall.jpg" alt="" loading="lazy" /></span>
         <span class="app-tile-info">
           <h2>Poses</h2>
           <p>Every shape, with cues, hold times and cautions — plus a built-in timer for holding it yourself.</p>
         </span>
       </a>
       <a class="app-tile" href="/routines">
-        <span class="app-tile-img"><img src="/poses/reclined-swan.jpg" alt="" loading="eager" /></span>
+        <span class="app-tile-img"><img data-src="/poses/reclined-swan.jpg" alt="" loading="lazy" /></span>
         <span class="app-tile-info">
           <h2>Guided Routines</h2>
           <p>Guided sequences that pace you — press play and I'll keep time, pose to pose.</p>
         </span>
       </a>
       <a class="app-tile" href="/blog">
-        <span class="app-tile-img"><Image src={katieAbout} alt="" width={160} height={160} loading="eager" /></span>
+        <span class="app-tile-img"><Image src={katieAbout} alt="" width={160} height={160} loading="lazy" /></span>
         <span class="app-tile-info">
           <h2>The Journal</h2>
           <p>Notes on practice and technique, in my own words.</p>
@@ -95,6 +95,19 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
       </a>
     </div>
   </section>
+  <script is:inline>
+    // The two plain <img> tiles above are only ever visible in standalone mode
+    // (see .app-directory's display:none rule below) — but loading="lazy" alone
+    // doesn't stop a browser from fetching an unsized <img> hidden by an
+    // ancestor's display:none, unlike astro:assets' <Image>, which does. Holding
+    // the URL in data-src until we know we're standalone keeps regular visitors
+    // from paying for two photos they'll never see.
+    if (document.documentElement.dataset.standalone === 'true') {
+      document.querySelectorAll('.app-tile-img img[data-src]').forEach((img) => {
+        img.src = img.dataset.src;
+      });
+    }
+  </script>
 
   {/* ── Hero: lead with the offer ─────────────────────────────────────────── */}
   <section class="home-hero">
