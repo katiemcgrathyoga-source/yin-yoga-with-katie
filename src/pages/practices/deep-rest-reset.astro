@@ -1,0 +1,100 @@
+---
+export const prerender = false; // SSR: gated like the rest of the course
+
+import CourseLayout from '../../layouts/CourseLayout.astro';
+import CourseGate from '../../components/CourseGate.astro';
+import { checkAccess } from '../../lib/access';
+import { signBunnyEmbed } from '../../lib/bunny';
+
+/**
+ * The Deep-Rest Reset — the guided NSDR bonus promised on the sales page.
+ *
+ * Not a `practices` collection entry: NSDR is a continuous guided lie-down
+ * track, not a pose sequence, so it has no `steps`/timer and doesn't fit that
+ * schema. A standalone page, gated the same way, is the smaller change.
+ */
+const PRODUCT = 'runner-reset';
+const access = await checkAccess(Astro.cookies.get('sb-token')?.value, PRODUCT);
+const unlocked = access.entitled;
+
+const TRACKS = [
+  {
+    title: 'NSDR for Runners',
+    meta: '25 min · audio-guided',
+    id: '261393b3-8ebc-435c-ae4e-a6a86f5a8d04',
+  },
+  {
+    title: 'NSDR Visualization',
+    meta: 'audio-guided',
+    id: 'd8921907-f259-45d9-8f2f-6d0bb8c77520',
+  },
+].map((t) => ({ ...t, embed: unlocked ? signBunnyEmbed(t.id) : null }));
+---
+
+<CourseLayout
+  title="The Deep-Rest Reset — The Runner's Reset"
+  description="A guided Non-Sleep Deep Rest (NSDR) to run after any practice or long run."
+  noindex={true}
+  section={unlocked ? 'Deep-Rest Reset' : undefined}
+>
+  {!unlocked ? (
+    <div class="cwrap"><CourseGate signedIn={access.signedIn} thing="the Deep-Rest Reset" /></div>
+  ) : (
+    <div class="cwrap dr">
+      <header class="dr-head">
+        <p class="dr-eyebrow"><a href="/practices">← All practices</a></p>
+        <h1>The Deep-Rest Reset</h1>
+        <p>A lie-down Non-Sleep Deep Rest (yoga nidra) to run after any practice or a long run — no mat work, just lying still and following Katie's voice. Play either track through headphones or speakers; there is nothing to keep up with.</p>
+      </header>
+
+      {TRACKS.map((t) => (
+        <section class="dr-track">
+          <h2>{t.title}</h2>
+          <p class="dr-meta">{t.meta}</p>
+          {t.embed ? (
+            <div class="dr-video">
+              <iframe src={t.embed} title={t.title} loading="lazy"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen />
+            </div>
+          ) : (
+            <div class="dr-video-slot">
+              <span class="dr-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+              <b>Coming soon</b>
+            </div>
+          )}
+        </section>
+      ))}
+
+      <p class="dr-next"><a href="/practices">Back to your practices →</a></p>
+    </div>
+  )}
+</CourseLayout>
+
+<style>
+  .cwrap { max-width: 1040px; margin: 0 auto; padding: 34px 22px 0; }
+  .dr { max-width: 760px; }
+
+  .dr-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; margin: 0 0 10px; }
+  .dr-eyebrow a { color: var(--gold-solid); text-decoration: none; }
+  .dr-head h1 { font-family: var(--display); font-size: clamp(30px, 5vw, 40px); margin: 0 0 10px; }
+  .dr-head p { color: var(--ink-soft); margin: 0; max-width: 60ch; line-height: 1.6; }
+
+  .dr-track { padding: 30px 0 6px; }
+  .dr-track h2 { font-family: var(--display); font-size: clamp(21px, 3vw, 25px); margin: 0 0 4px; }
+  .dr-meta { font-size: 13px; color: var(--ink-soft); margin: 0 0 12px; }
+
+  .dr-video { position: relative; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); }
+  .dr-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+
+  .dr-video-slot {
+    aspect-ratio: 16/9; border-radius: 16px; border: 2px dashed rgba(137,73,75,.5);
+    background: var(--paper-2); display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 8px; text-align: center; padding: 20px; color: var(--ink-soft);
+  }
+  .dr-video-slot b { color: var(--ink); font-family: var(--display); font-size: 19px; }
+  .dr-play { width: 62px; height: 62px; border-radius: 50%; background: rgba(137,73,75,.16); display: flex; align-items: center; justify-content: center; }
+  .dr-play svg { width: 24px; height: 24px; fill: var(--gold-solid); margin-left: 4px; }
+
+  .dr-next { margin: 26px 0 0; }
+  .dr-next a { font-weight: 600; color: var(--gold-solid); text-decoration: none; }
+</style>

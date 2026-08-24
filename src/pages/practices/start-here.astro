@@ -4,6 +4,7 @@ export const prerender = false; // SSR: orientation is course material, gated li
 import CourseLayout from '../../layouts/CourseLayout.astro';
 import CourseGate from '../../components/CourseGate.astro';
 import { checkAccess } from '../../lib/access';
+import { signBunnyEmbed } from '../../lib/bunny';
 
 /**
  * Orientation — the page a new member lands on once.
@@ -11,13 +12,13 @@ import { checkAccess } from '../../lib/access';
  * Split deliberately from /practices: this answers "what is this and how do I
  * use it", which you read once; the index answers "what do I press play on
  * today", which you come back to. Mixing them makes the daily page heavy.
- *
- * The welcome video is the only thing here waiting on filming. Everything else
- * is written, so the page is useful the moment someone joins.
  */
 const PRODUCT = 'runner-reset';
 const access = await checkAccess(Astro.cookies.get('sb-token')?.value, PRODUCT);
 const unlocked = access.entitled;
+
+const WELCOME_VIDEO_ID = '81df2e4e-9847-4170-bbaf-210e68569ab7';
+const bunnyEmbed = unlocked ? signBunnyEmbed(WELCOME_VIDEO_ID) : null;
 
 /** A first fortnight that builds the habit before it builds the range. */
 const LEVELS = [
@@ -57,12 +58,18 @@ const LEVELS = [
         <p>Five minutes of reading and you will know exactly what to press play on. There is no order you have to follow and nothing to fall behind on.</p>
       </header>
 
-      {/* PLACEHOLDER — swap for the welcome video once it is filmed. */}
-      <div class="sh-video-slot">
-        <span class="sh-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-        <b>Welcome video coming soon</b>
-        <span>A short hello from Katie will play here. Everything you need to begin is written below.</span>
-      </div>
+      {bunnyEmbed ? (
+        <div class="sh-video">
+          <iframe src={bunnyEmbed} title="Welcome — a short hello from Katie" loading="lazy"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen />
+        </div>
+      ) : (
+        <div class="sh-video-slot">
+          <span class="sh-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+          <b>Welcome video coming soon</b>
+          <span>A short hello from Katie will play here. Everything you need to begin is written below.</span>
+        </div>
+      )}
 
       <section class="sh-sec">
         <h2>What Yin actually is</h2>
@@ -119,6 +126,9 @@ const LEVELS = [
   .sh-head { margin-bottom: 28px; }
   .sh-head h1 { font-family: var(--display); font-size: clamp(30px, 5vw, 40px); margin: 0 0 10px; }
   .sh-head p { color: var(--ink-soft); margin: 0; max-width: 56ch; }
+
+  .sh-video { position: relative; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); }
+  .sh-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
 
   .sh-video-slot {
     aspect-ratio: 16/9; border-radius: 16px; border: 2px dashed rgba(137,73,75,.5);
