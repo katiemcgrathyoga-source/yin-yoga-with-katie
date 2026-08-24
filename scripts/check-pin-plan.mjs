@@ -13,7 +13,7 @@ import { readFileSync } from 'node:fs';
 
 const { total, history, days } = JSON.parse(readFileSync('dist/pinplan.json', 'utf8'));
 
-const BOARD_REST = 3;
+const BOARD_REST = 2; // keep in step with BOARD_COOLDOWN_DAYS in src/lib/pinSchedule.ts
 const URL_REST = 7;
 const PAIR_REST = 21;
 
@@ -34,12 +34,23 @@ const boardCount = new Map();
 const templateCount = new Map();
 const kindCount = new Map();
 
+// Read the day's own pin count off the data rather than hardcoding it —
+// PINS_PER_DAY in src/lib/pinSchedule.ts is the source of truth, and a
+// literal here would silently go stale the next time it changes. The mode
+// across all days (not just day 0) is what "expected" means, in case a
+// short-supply day ever legitimately falls short.
+const countFreq = new Map();
+for (const day of days) countFreq.set(day.pins.length, (countFreq.get(day.pins.length) ?? 0) + 1);
+const expectedPerDay = [...countFreq.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? 0;
+
 for (const day of days) {
   const n = dayNum(day.date);
   const seenBoards = new Set();
   const seenTemplates = new Set();
 
-  if (day.pins.length !== 2) problems.push(`${day.date}: ${day.pins.length} pins, expected 2`);
+  if (day.pins.length !== expectedPerDay) {
+    problems.push(`${day.date}: ${day.pins.length} pins, expected ${expectedPerDay}`);
+  }
 
   for (const pin of day.pins) {
     boardCount.set(pin.board, (boardCount.get(pin.board) ?? 0) + 1);
@@ -71,7 +82,7 @@ for (const day of days) {
 }
 
 const rank = (m) => [...m.entries()].sort((a, b) => b[1] - a[1]);
-const pct = (n) => `${Math.round((n / (days.length * 2)) * 100)}%`;
+const pct = (n) => `${Math.round((n / (days.length * expectedPerDay)) * 100)}%`;
 
 console.log(`${total} pins in the library · planning ${days.length} days from ${days[0].date}\n`);
 

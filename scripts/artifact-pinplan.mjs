@@ -17,6 +17,7 @@ const { total, history, days } = JSON.parse(readFileSync('dist/pinplan.json', 'u
 const PLATE_FOCAL = {
   plate: '50% 52%', frame: '50% 50%', panel: '50% 50%',
   immersive: '50% 50%', watch: '50% 50%', offer: '50% 52%',
+  diagram: '50% 52%', roster: '50% 50%',
 };
 
 const photo = (webPath, portrait) => {
@@ -36,6 +37,11 @@ async function render(pin) {
   const tpl = q.get('tpl');
   const fit = q.get('fit') === '1';
   const img = q.get('img');
+  let cues = [];
+  try { cues = JSON.parse(q.get('cues') || '[]'); } catch { cues = []; }
+  let items = [];
+  try { items = JSON.parse(q.get('items') || '[]'); } catch { items = []; }
+  if (tpl === 'roster') items = items.map((it) => (it.img ? { ...it, img: photo(it.img) } : it));
   return renderPlatePin({
     tpl,
     tone: q.get('tone') === 'dark' ? 'dark' : 'light',
@@ -49,6 +55,7 @@ async function render(pin) {
     duration: q.get('dur') || '',
     offer: q.get('offer') || '',
     cta: q.get('cta') || '',
+    cues, items,
     fit,
     photoH: Math.min(780, Math.max(520, Number(q.get('ph')) || 700)),
   });

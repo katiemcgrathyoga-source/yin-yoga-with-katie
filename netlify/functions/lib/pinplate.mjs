@@ -21,7 +21,11 @@ import { CORMORANT, AURELLIE } from './pinfonts.mjs';
  *   Frame   — a bordered card, centred stack, inset photo    (routine, practice, offer)
  *   Panel   — photograph on top, coloured panel beneath      (journal, video, routine)
  * plus Immersive (type over a full-bleed photograph) and Watch (the video pin),
- * both of which Katie flagged as working.
+ * both of which Katie flagged as working, and two reference-card additions:
+ *   Diagram — Plate's shape, but the air below carries the pose's own
+ *             alignment cues instead of standing empty (pose)
+ *   Roster  — the routine as a follow-along list: thumbnail, order badge,
+ *             name and hold length per row (routine)
  */
 
 const FONTS = [
@@ -110,6 +114,28 @@ function plate({ eyebrow: eb, headline, photo, focal, tone, footnote }) {
     spacer(),
     box({ flexDirection: 'column', alignItems: 'center', gap: '22px', padding: '0 80px 92px' }, [
       ...(footnote ? [body(footnote, p.soft, { size: 27 }), divider(p)] : []),
+      wordmark(p.i),
+    ]),
+  ]);
+}
+
+/* ═══ 01b · Hero ══════════════════════════════════════════════════════════
+   Eyebrow, a big photograph, and the pose's own name below it — nothing
+   else. Brought back deliberately: real Pinterest data on the pins it
+   replaced showed this exact shape (no benefit headline, no cues, just the
+   photo and the name) among the best performers in the whole library. Where
+   Plate leads with a benefit and Diagram leads with how-to, Hero leads with
+   nothing but recognition. */
+function hero({ eyebrow: eb = 'A Yin Yoga Pose', name, photo, focal, tone }) {
+  const p = pal(tone);
+  return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: p.g }, [
+    box({ flexDirection: 'column', alignItems: 'center', padding: '70px 80px 0' }, [
+      eyebrow(eb, p.acc),
+    ]),
+    box({ marginTop: '36px' }, [band(1000, 880, photo, focal)]),
+    spacer(),
+    box({ flexDirection: 'column', alignItems: 'center', gap: '22px', padding: '0 80px 84px' }, [
+      title(name, p.i, 72, { width: '820px' }),
       wordmark(p.i),
     ]),
   ]);
@@ -216,6 +242,107 @@ function immersive({ eyebrow: eb, headline, blurb, photo, focal, tone, photoH = 
   ]);
 }
 
+/* ═══ 06 · Diagram ════════════════════════════════════════════════════════
+   The pose as a reference card, not a feeling. Same eyebrow/title/band as
+   Plate up top, but the air below carries the pose's own alignment cues
+   instead of standing empty — the thing worth pinning to come back to. */
+function diagram({ eyebrow: eb, headline, photo, focal, tone, footnote, cues = [] }) {
+  const p = pal(tone);
+  return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: p.g }, [
+    box({ flexDirection: 'column', alignItems: 'center', gap: '24px', padding: '80px 76px 0' }, [
+      eyebrow(eb, p.acc),
+      title(headline, p.i, 72, { width: '880px' }),
+    ]),
+    box({ marginTop: '40px' }, [band(1000, 540, photo, focal)]),
+    // Two cues, not three, and each capped to roughly a line — a wall of tiled
+    // pins gets seen at thumbnail size, so this reads as a couple of bold
+    // pointers rather than body copy nobody at that size can actually read.
+    box({ flexDirection: 'column', gap: '30px', padding: '52px 88px 0' }, [
+      ...cues.slice(0, 2).map((c, i) =>
+        box({ flexDirection: 'row', alignItems: 'flex-start', gap: '24px' }, [
+          box({
+            width: '46px', height: '46px', borderRadius: '23px', flexShrink: 0,
+            backgroundColor: p.acc, color: p.g, alignItems: 'center', justifyContent: 'center',
+            fontFamily: 'Cabin', fontWeight: 600, fontSize: '22px',
+          }, String(i + 1)),
+          box({ fontFamily: 'Cabin', fontWeight: 500, fontSize: '34px', lineHeight: 1.35, color: p.i, width: '760px' }, c),
+        ]),
+      ),
+    ]),
+    spacer(),
+    box({ flexDirection: 'column', alignItems: 'center', gap: '18px', padding: '0 80px 84px' }, [
+      body('Ease in slowly — about 60–80% of your capacity.', p.soft, { size: 26 }),
+      divider(p),
+      ...(footnote ? [meta(footnote, p.acc)] : []),
+      wordmark(p.i),
+    ]),
+  ]);
+}
+
+/* ═══ 07 · Roster ═════════════════════════════════════════════════════════
+   The routine as a follow-along list: round thumbnail, order badge, name and
+   hold length, one row per pose. Built for someone who wants to glance at the
+   whole sequence at once rather than click through it. Named apart from the
+   dead legacy `checklist` template in lib/pin.mjs so nothing shadows it. */
+function roster({ eyebrow: eb, headline, blurb, tone, footnote, items = [] }) {
+  const p = pal(tone);
+  // Capped at 5, not however many a routine has — a thumbnail seen in a tiled
+  // feed only has room to read a photo as a pose if it's genuinely large;
+  // more rows than that would mean shrinking every photo back to unreadable.
+  const rows = items.slice(0, 5);
+  return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: p.g }, [
+    box({ flexDirection: 'column', alignItems: 'center', gap: '16px', padding: '66px 76px 0' }, [
+      eyebrow(eb, p.acc),
+      title(headline, p.i, 62, { width: '840px' }),
+      ...(blurb ? [body(blurb, p.soft, { width: '760px', size: 24 })] : []),
+    ]),
+    box({ flexDirection: 'column', marginTop: '20px', padding: '0 76px' }, [
+      ...rows.map((it, i) =>
+        box({ flexDirection: 'row', alignItems: 'center', gap: '28px', padding: '14px 0', borderTop: `1px solid ${p.rule}` }, [
+          // A circle forces a square crop out of a landscape photo, which for a
+          // lying pose spread wide across the room crops the sides hard enough
+          // to take her head or feet with them (see photo-crop-framing). A wide
+          // window close to the source's own shape barely crops at all.
+          box({ position: 'relative', flexShrink: 0 }, [
+            band(248, 155, it.img, '50% 50%', { borderRadius: '18px' }),
+            box({
+              position: 'absolute', top: '-10px', left: '-10px', width: '44px', height: '44px', borderRadius: '22px',
+              backgroundColor: p.i, color: p.g, alignItems: 'center', justifyContent: 'center',
+              fontFamily: 'Cabin', fontWeight: 600, fontSize: '20px',
+            }, String(i + 1)),
+          ]),
+          // A class roster has no hold time, only a pose name — an empty
+          // second line would just be dead space, so it's dropped rather
+          // than rendered blank.
+          box({ flexDirection: 'column', gap: '8px' }, [
+            box({ fontFamily: 'Serif', fontSize: '38px', color: p.i }, it.name || ''),
+            // meta() centers itself (right for a standalone stat, wrong for a
+            // left-aligned list row), so this repeats its style without that.
+            ...(it.time ? [box({ fontFamily: 'Cabin', fontWeight: 600, fontSize: '25px', letterSpacing: '3.4px', color: p.soft }, caps(it.time))] : []),
+          ]),
+        ]),
+      ),
+      // Most routines run longer than 5 poses, and silently dropping the rest
+      // would just look broken on a routine someone can see is longer than
+      // that. Say what's missing instead of hiding it.
+      // "more poses", not "more in the routine" — this list stands in for a
+      // routine's sequence AND a class's featured poses, and only the first
+      // is honestly a "routine".
+      ...(items.length > rows.length
+        ? [box({ flexDirection: 'row', alignItems: 'center', padding: '18px 0 0' }, [
+            box({ fontFamily: 'Cabin', fontWeight: 400, fontStyle: 'italic', fontSize: '24px', color: p.soft }, `+ ${items.length - rows.length} more pose${items.length - rows.length === 1 ? '' : 's'}`),
+          ])]
+        : []),
+    ]),
+    spacer(),
+    box({ flexDirection: 'column', alignItems: 'center', gap: '14px', padding: '0 80px 60px' }, [
+      divider(p),
+      ...(footnote ? [meta(footnote, p.acc)] : []),
+      wordmark(p.i),
+    ]),
+  ]);
+}
+
 /* ═══ 05 · Watch ══════════════════════════════════════════════════════════
    The video pin: a run-time badge with a play mark, the audience on a tab that
    enters from the left edge, and the message on solid ground beneath. */
@@ -285,7 +412,7 @@ function offerPin({ eyebrow: eb, headline, blurb, photo, focal, tone, offer, cta
   ]);
 }
 
-const TEMPLATES = { plate, frame, panel, immersive, watch, offer: offerPin };
+const TEMPLATES = { plate, frame, panel, immersive, watch, offer: offerPin, diagram, roster, hero };
 
 /** Render a 1000×1500 Plate-set pin to a PNG Buffer. */
 export async function renderPlatePin({ tpl = 'plate', ...props }) {

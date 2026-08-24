@@ -5,11 +5,11 @@ import { planDays, saveUrl, PINS_PER_DAY } from '../lib/pinSchedule';
 import { PIN_HISTORY } from '../data/pinHistory';
 
 /**
- * The pinning plan. Open it, save two pins, close it.
+ * The pinning plan. Open it, save the day's pins, close it.
  *
  * Everything on this page is decided already — which pin, which board, which
  * description. That is the whole point: the friction in pinning was never the
- * design, it was having to choose twice a day. /pins stays as the browse-
+ * design, it was having to choose several times a day. /pins stays as the browse-
  * everything view for when something specific is needed.
  *
  * Private and noindex, like /pins.
@@ -60,7 +60,7 @@ const handedOverToday = PIN_HISTORY.some(
       <p class="pc-eyebrow">Pinterest · private</p>
       <h1>Pin calendar</h1>
       <p class="pc-lede">
-        Two pins a day, already chosen. Save them, tick them off, close the tab.
+        {PINS_PER_DAY} pins a day, already chosen. Save them, tick them off, close the tab.
       </p>
       <p class="pc-stats">
         <strong>{inventory.length}</strong> pins in the library ·

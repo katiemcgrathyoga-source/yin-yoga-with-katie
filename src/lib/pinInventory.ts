@@ -79,6 +79,9 @@ const FOCAL: Record<string, string> = {
   immersive: '50% 50%', // full-bleed 2:3 crops width, so vertical is moot
   watch: '50% 50%',     // 1.22:1 — crops width
   offer: '50% 52%',     // 1.79:1, the widest band in the set
+  diagram: '50% 52%',   // same band shape as plate
+  roster: '50% 50%',    // no main photo — only the per-row thumbnails
+  hero: '50% 52%',      // same band shape as plate, just taller
 };
 
 /**
@@ -134,6 +137,27 @@ const clamp = (s: string, n: number) => (s.length <= n ? s : `${s.slice(0, s.las
 const describe = (audience: PinAudience, seo: string) =>
   clamp(`${SEARCH_PHRASE[audience]} — ${seo}`, 480);
 
+/**
+ * A pose's `cues` are full teaching sentences; Diagram shows them at a size
+ * that still reads in a tiled Pinterest feed, which only leaves room for
+ * about a line each — so one short clause, not the whole cue. Cutting at the
+ * nearest comma (when there is one within reach) ends on a real pause rather
+ * than an arbitrary word, which a plain character clamp does not guarantee.
+ */
+function cueClause(cue: string): string {
+  const sentence = cue.split(/(?<=[.!?])\s/)[0];
+  if (sentence.length <= 80) return sentence;
+  const commaCut = sentence.slice(0, 80).lastIndexOf(',');
+  return commaCut > 30 ? sentence.slice(0, commaCut) : clamp(sentence, 80);
+}
+
+/** "5 min" / "2.5 min each side" — a single step's hold, not a routine total. */
+function fmtHold(seconds: number, sides: 1 | 2): string {
+  const m = seconds / 60;
+  const label = Number.isInteger(m) ? `${m} min` : `${m.toFixed(1)} min`;
+  return sides === 2 ? `${label} each side` : label;
+}
+
 function cardUrl(params: Record<string, string | undefined>): string {
   const u = new URL('/pin/card.png', SITE);
   for (const [k, v] of Object.entries(params)) if (v) u.searchParams.set(k, v);
@@ -152,6 +176,8 @@ export async function buildPinInventory(): Promise<Pin[]> {
 
   // ── Poses ────────────────────────────────────────────────────────────────
   const poses = await getCollection('poses');
+  /** slug → display name, reused below to label Roster's routine rows. */
+  const poseName = new Map(poses.map((ps) => [ps.data.slug, ps.data.name_en]));
   for (const pose of poses) {
     const d = pose.data;
     // No photograph, no pin. The alternative was a text-only card, and a cream
@@ -205,6 +231,34 @@ export async function buildPinInventory(): Promise<Pin[]> {
                 ...shared, tpl: 'panel', tone, sub: angle.proof,
                 ph: String(panelPhotoHeight(angle.headline, angle.proof)),
               }),
+        });
+        // Diagram — the pose as a reference card. Same shape as Plate, but the
+        // air below carries the pose's own cues rather than standing empty —
+        // the pin worth saving to come back to rather than admiring once.
+        add({
+          ...base,
+          id: `pose:${d.slug}:diagram:${tone}:${i}`,
+          template: 'diagram',
+          tone,
+          image: cardUrl({
+            ...shared, tpl: 'diagram', tone,
+            foot: `${d.name_en} · ${d.hold_time}`,
+            cues: JSON.stringify(d.cues.slice(0, 2).map(cueClause)),
+          }),
+        });
+        // Hero — brought back deliberately. Real Pinterest data on the pins
+        // this replaced showed this exact shape (a generic eyebrow, a big
+        // photo, and nothing but the pose's own name) among the best
+        // performers in the whole library — no benefit copy, no cues, just
+        // the photograph and the name. The eyebrow is static on purpose,
+        // matching what actually tested well, not the per-angle audience tag
+        // the other templates use.
+        add({
+          ...base,
+          id: `pose:${d.slug}:hero:${tone}:${i}`,
+          template: 'hero',
+          tone,
+          image: cardUrl({ t: d.name_en, s: 'A Yin Yoga Pose', img, tpl: 'hero', tone }),
         });
       }
     }
@@ -285,6 +339,26 @@ export async function buildPinInventory(): Promise<Pin[]> {
             }),
           });
         }
+        // Roster — the sequence itself: thumbnail, order and hold length per
+        // pose, so someone can glance at the whole routine at once. Every step
+        // gets a row even without a photo — the template falls back cleanly.
+        add({
+          ...base,
+          id: `routine:${d.slug}:roster:${tone}:${i}`,
+          template: 'roster',
+          tone,
+          image: cardUrl({
+            tpl: 'roster', tone, t: d.title, s: angle.audience, sub: angle.proof,
+            foot: `${d.minutes} minutes total`,
+            items: JSON.stringify(
+              d.steps.map((s) => ({
+                name: poseName.get(s.pose) ?? s.pose,
+                img: photoOf(s.pose),
+                time: fmtHold(s.seconds, s.sides),
+              })),
+            ),
+          }),
+        });
       }
     }
   }
@@ -342,6 +416,21 @@ export async function buildPinInventory(): Promise<Pin[]> {
           }),
         });
       }
+      // Roster — the poses in the class, in order, so someone can see the
+      // shape of it before pressing play. No hold time here: a class isn't
+      // authored with a per-pose duration, only chapter timestamps, which
+      // mean something different (when it starts, not how long you hold it).
+      add({
+        ...base,
+        id: `video:${d.slug}:roster:${tone}:0`,
+        template: 'roster',
+        tone,
+        image: cardUrl({
+          tpl: 'roster', tone, t: d.display_title ?? d.title, s: angle.audience,
+          sub: angle.proof, foot: `free on YouTube · ${d.length_minutes} min`,
+          items: JSON.stringify(featured.map((slug) => ({ name: poseName.get(slug) ?? slug, img: photoOf(slug) }))),
+        }),
+      });
     }
   }
 

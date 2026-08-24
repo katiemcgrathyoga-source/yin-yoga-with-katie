@@ -82,6 +82,9 @@ const PLATE_FOCAL = {
   immersive: '50% 50%',
   watch: '50% 50%',
   offer: '50% 52%',
+  diagram: '50% 52%',
+  roster: '50% 50%', // no main photo — only the per-row thumbnails, cropped square in the template
+  hero: '50% 52%',
 };
 const isPlate = (tpl) => PLATE_TEMPLATES.includes(tpl);
 
@@ -118,6 +121,9 @@ export default async (req) => {
   const tone = p.get('tone') === 'dark' ? 'dark' : 'light';
   let items = [];
   try { const raw = p.get('items'); if (raw) items = JSON.parse(raw); } catch { items = []; }
+  // Diagram's alignment cues — a JSON array of short strings, same shape as items.
+  let cues = [];
+  try { const raw = p.get('cues'); if (raw) cues = JSON.parse(raw); } catch { cues = []; }
 
   // Benefit-led copy layers (v2). The older templates ignore these.
   const identifier = (p.get('id') || '').slice(0, 60);
@@ -140,6 +146,11 @@ export default async (req) => {
     // web crop would go soft. It takes the 2200px crop cut from the camera
     // original where one exists; the landscape bands never need it.
     const photo = await loadPinImage(p.get('img') || '', tpl === 'immersive' ? 'hook' : tpl);
+    // Roster has no main photo — its photographs are the per-row thumbnails,
+    // resolved from the same sharpest-available chain as everything else.
+    const plateItems = tpl === 'roster' && Array.isArray(items)
+      ? await Promise.all(items.map(async (it) => (it && it.img ? { ...it, img: await loadPinImage(it.img, tpl) } : it)))
+      : [];
     // Panel and Immersive both size their photograph per pose, but over very
     // different ranges: Panel gives way to the type below it, Immersive reaches
     // as far down as it can without cutting into her.
@@ -147,10 +158,11 @@ export default async (req) => {
     try {
       const png = await renderPlatePin({
         tpl, tone, photo, focal: PLATE_FOCAL[tpl] || '50% 50%',
-        eyebrow, headline: title, blurb: subline,
+        eyebrow, headline: title, name: title, blurb: subline,
         metaLine: (p.get('meta') || '').slice(0, 48),
         footnote: (p.get('foot') || '').slice(0, 60),
         duration, offer, cta,
+        cues, items: plateItems,
         photoH:
           tpl === 'immersive'
             ? Math.min(1500, Math.max(960, ph || 1500))
