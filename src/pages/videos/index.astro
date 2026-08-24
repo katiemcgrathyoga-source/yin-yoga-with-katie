@@ -172,6 +172,12 @@ const breadcrumbLd = {
 </BaseLayout>
 
 <style>
+  /* Installed-app users don't need SEO copy or another email ask — they already
+     have the app. Everything functional (the browse-by-need/who-you-are cards,
+     the grid) stays; just the intro paragraph and closing CTA go. */
+  :global(html[data-standalone='true']) .page-intro,
+  :global(html[data-standalone='true'] .cta-block) { display: none; }
+
   .vh-h2 { font-family: var(--display); font-weight: 500; font-size: clamp(24px, 3vw, 32px); color: var(--plum); margin: 0 0 6px; }
   .vh-focus { margin: 40px 0 8px; }
   .vh-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; }

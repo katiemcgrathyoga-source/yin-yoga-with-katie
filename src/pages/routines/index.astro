@@ -39,3 +39,8 @@ import Cta from '../../components/Cta.astro';
       lands here — and until now they were the only public pages with no ask. */}
   <Cta source="routines-index" heading="Want a longer one to follow?" />
 </BaseLayout>
+
+<style>
+  /* Installed-app users don't need another email ask — they already have the app. */
+  :global(html[data-standalone='true'] .cta-block) { display: none; }
+</style>

@@ -235,6 +235,12 @@ const levels = uniq(poses.map((p) => p.data.accessibility)).sort(
 </script>
 
 <style>
+  /* Installed-app users don't need SEO copy or another email ask — they already
+     have the app. Everything functional (filters, the grid) stays; just the
+     intro paragraph and closing CTA go. */
+  :global(html[data-standalone='true']) .page-intro,
+  :global(html[data-standalone='true'] .cta-block) { display: none; }
+
   /* The bridge out of the reference layer. Uses the global flipping tokens only,
      so it themes correctly without a [data-theme] rule (which Astro strips from
      a scoped block — see the note in global.css). */
