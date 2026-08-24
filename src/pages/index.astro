@@ -7,6 +7,7 @@ import { derivedThumb } from '../lib/video';
 import { FOCUS, isClass } from '../lib/videoFacets';
 import { journalPinUrl } from '../lib/journalPin';
 import katieHello from '../assets/katie-hello.jpg';
+import katieAbout from '../assets/katie-about.jpg';
 
 /**
  * The homepage used to BE the library: it rendered a filterable grid linking to
@@ -54,6 +55,46 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
   description="Gentle Yin Yoga with Katie — a growing library of free full-length classes, an illustrated pose guide, and guided follow-along routines. Start with a free two-hour retreat."
   image={ogImage}
 >
+  {/* ── App directory: what an installed-app visitor sees FIRST instead of the
+        offer hero below. Someone who already installed the app already converted
+        once — the job now is getting them somewhere useful fast, not another
+        email ask. Hidden by default; shown only in standalone/installed mode via
+        the data-standalone flag BaseLayout sets before paint (same mechanism as
+        the light/dark theme flag). A plain browser visitor never sees this. ── */}
+  <section class="app-directory">
+    <p class="eyebrow home-center">Welcome back</p>
+    <div class="app-tiles">
+      <a class="app-tile" href="/videos">
+        <span class="app-tile-img"><Image src={katieHello} alt="" width={160} height={160} loading="eager" /></span>
+        <span class="app-tile-info">
+          <h2>Classes</h2>
+          <p>Full-length classes to follow along with — sleep, sore hips, a busy mind, whatever you need today.</p>
+        </span>
+      </a>
+      <a class="app-tile" href="/poses">
+        <span class="app-tile-img"><img src="/poses/legs-up-the-wall.jpg" alt="" loading="eager" /></span>
+        <span class="app-tile-info">
+          <h2>Poses</h2>
+          <p>Every shape, with cues, hold times and cautions — plus a built-in timer for holding it yourself.</p>
+        </span>
+      </a>
+      <a class="app-tile" href="/routines">
+        <span class="app-tile-img"><img src="/poses/reclined-swan.jpg" alt="" loading="eager" /></span>
+        <span class="app-tile-info">
+          <h2>Routines</h2>
+          <p>Guided sequences that pace you — press play and I'll keep time, pose to pose.</p>
+        </span>
+      </a>
+      <a class="app-tile" href="/blog">
+        <span class="app-tile-img"><Image src={katieAbout} alt="" width={160} height={160} loading="eager" /></span>
+        <span class="app-tile-info">
+          <h2>The Journal</h2>
+          <p>Notes on practice and technique, in my own words.</p>
+        </span>
+      </a>
+    </div>
+  </section>
+
   {/* ── Hero: lead with the offer ─────────────────────────────────────────── */}
   <section class="home-hero">
     <div class="home-hero-copy">
@@ -193,6 +234,25 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
 </BaseLayout>
 
 <style>
+  /* ── App directory (installed-app only — see the comment above the section) ── */
+  .app-directory { display: none; }
+  :global(html[data-standalone='true']) .app-directory { display: block; }
+  :global(html[data-standalone='true']) .home-hero,
+  :global(html[data-standalone='true']) .home-start { display: none; }
+
+  .app-directory { max-width: 640px; margin: 0 auto; padding: 28px 20px 12px; }
+  .app-tiles { display: flex; flex-direction: column; gap: 14px; margin-top: 16px; }
+  .app-tile {
+    display: flex; align-items: center; gap: 16px; background: var(--paper-2);
+    border: 1px solid var(--line); border-radius: 16px; padding: 12px; text-decoration: none;
+    color: inherit; transition: border-color .15s;
+  }
+  .app-tile:hover { border-color: var(--gold); }
+  .app-tile-img { flex: none; width: 72px; height: 72px; border-radius: 12px; overflow: hidden; }
+  .app-tile-img :global(img) { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .app-tile-info h2 { font-family: var(--display); font-weight: 500; font-size: 18px; color: var(--plum); margin: 0 0 4px; }
+  .app-tile-info p { font-size: 14px; line-height: 1.45; color: var(--ink-soft); margin: 0; }
+
   /* ── Offer hero ── */
   .home-hero { max-width: 1080px; margin: 0 auto; padding: 56px 24px 40px; display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 48px; align-items: center; }
   .home-hero h1 { font-family: var(--display); font-weight: 500; font-size: clamp(32px, 4.6vw, 52px); line-height: 1.1; color: var(--plum); margin: 0 0 18px; }

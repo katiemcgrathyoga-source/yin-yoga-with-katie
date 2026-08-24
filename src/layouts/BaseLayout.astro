@@ -137,6 +137,14 @@ const nav = [
           if (t !== 'dark' && t !== 'light') t = 'light';
           document.documentElement.dataset.theme = t;
         } catch (e) {}
+        try {
+          // Set before paint, same reasoning as the theme flag above: pages that
+          // vary their content in standalone/installed mode (currently just the
+          // homepage) need this synchronously, not after a layout flash.
+          var standalone =
+            window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+          document.documentElement.dataset.standalone = standalone ? 'true' : 'false';
+        } catch (e) {}
       })();
     </script>
     <script is:inline>
