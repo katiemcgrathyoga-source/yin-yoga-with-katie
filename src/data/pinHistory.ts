@@ -91,7 +91,31 @@ export const PIN_HISTORY: PinnedAlready[] = [
     board: 'Yin Yoga for Runners',
     what: 'The Post-Run Reset',
   },
+  // Second handover, 2026-08-25: the gap between here and 08-06 was carried
+  // by the deterministic plan alone (no ground truth to check it against),
+  // which is fine until the plan itself changes mid-stream — which it did,
+  // twice, on 08-24 and 08-25. Re-anchored from Katie's real "Copy pinned
+  // log" export so the next few days' cooldowns check against what actually
+  // went out, not a retroactive recomputation of it.
+  {
+    date: '2026-08-24',
+    url: `${SITE}/blog/how-long-to-hold-yin-poses/`,
+    board: 'Yin Yoga for Beginners',
+    what: 'How Long Should You Hold Yin Yoga Poses? (And Why)',
+  },
+  {
+    date: '2026-08-24',
+    url: `${SITE}/poses/legs-up-the-wall/`,
+    board: 'Bedtime Yoga & Yin for Sleep',
+    what: 'Legs Up the Wall',
+  },
+  {
+    date: '2026-08-24',
+    url: `${SITE}/videos/55-min-silent-yin-yoga-class-upper-body-minimum-cues-yin-yoga/`,
+    board: 'Yoga for Desk Workers | Neck, Shoulders & Posture',
+    what: '55-min Silent Upper-Body Yin',
+  },
 ];
 
 /** The day after the last one the old plan owned — where the new plan starts. */
-export const HANDOVER = '2026-08-07';
+export const HANDOVER = '2026-08-25';

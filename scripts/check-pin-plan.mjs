@@ -18,16 +18,32 @@ const URL_REST = 7;
 const PAIR_REST = 21;
 
 // Seed from the handover so the seam is audited too, not just the new plan.
+//
+// History can now hold more than one handover batch (the original 08-06 one
+// plus later re-anchors, e.g. 08-24 pasted in from a real "Copy pinned log"
+// export) sitting at different points along the timeline — pinHistory.ts
+// says explicitly not to empty old entries, they stay as the durable log.
+// Seeding all of them in one pass before walking `days` would have a LATER
+// batch's day-number already in the maps while checking an EARLIER day,
+// producing nonsense negative gaps. So history entries are seeded in the
+// same chronological walk as the planned days, each one only taking effect
+// once the walk actually reaches its date — matching how planDays() itself
+// only applies a handover day's cooldowns once its turn in the day loop
+// comes up.
 const lastBoard = new Map();
 const lastUrl = new Map();
 const lastPair = new Map();
 const pairKey = (url, board) => `${board} ${url}`;
 const dayNum = (iso) => Math.round(Date.parse(`${iso}T00:00:00Z`) / 86_400_000);
-for (const h of history) {
-  lastBoard.set(h.board, dayNum(h.date));
-  lastUrl.set(h.url, dayNum(h.date));
-  lastPair.set(pairKey(h.url, h.board), dayNum(h.date));
-}
+const seed = (board, url, n) => {
+  lastBoard.set(board, n);
+  lastUrl.set(url, n);
+  lastPair.set(pairKey(url, board), n);
+};
+const timeline = [
+  ...history.map((h) => ({ n: dayNum(h.date), history: h })),
+  ...days.map((d) => ({ n: dayNum(d.date), day: d })),
+].sort((a, b) => a.n - b.n);
 
 const problems = [];
 const boardCount = new Map();
@@ -43,8 +59,16 @@ const countFreq = new Map();
 for (const day of days) countFreq.set(day.pins.length, (countFreq.get(day.pins.length) ?? 0) + 1);
 const expectedPerDay = [...countFreq.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? 0;
 
-for (const day of days) {
-  const n = dayNum(day.date);
+for (const entry of timeline) {
+  if (entry.history) {
+    // Ground truth — seeds the maps for whatever comes after it, never
+    // checked against what came before it.
+    const h = entry.history;
+    seed(h.board, h.url, entry.n);
+    continue;
+  }
+  const day = entry.day;
+  const n = entry.n;
   const seenBoards = new Set();
   const seenTemplates = new Set();
 

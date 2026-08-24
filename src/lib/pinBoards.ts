@@ -22,7 +22,15 @@
  */
 export const PIN_BOARDS = {
   'for runners': 'Yin Yoga for Runners',
-  'for tired legs': 'Yoga Nidra & Deep Rest',
+  // Every real use of this tag (the /runners offer, the-day-after routine, the
+  // legs-up-the-wall pose, the sore-legs-after-running post) is post-run/
+  // exercise-recovery copy — "legs like concrete", "sore legs after running" —
+  // not sleep or savasana. It was pointed at Yoga Nidra & Deep Rest, which the
+  // board's own blurb ("savasana, legs up the wall, the most calming
+  // practices") made a plausible-looking pairing, but the actual pin copy
+  // never mentions rest or sleep, so it read as off-topic to anyone browsing
+  // that board — found 2026-08-25 when a runner-recovery offer landed there.
+  'for tired legs': 'Yin Yoga for Runners',
   'if you sit all day': 'Yoga for Desk Workers | Neck, Shoulders & Posture',
   'for stiff shoulders': 'Yoga for Desk Workers | Neck, Shoulders & Posture',
   'for restless nights': 'Bedtime Yoga & Yin for Sleep',
