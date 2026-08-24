@@ -3,7 +3,7 @@ title: "Yin Yoga for Stress & Anxiety: A Slower Way Back to Calm"
 slug: "yin-yoga-for-stress-and-anxiety"
 description: "How Yin Yoga helps with stress and anxiety — what actually happens in the body during a long, still hold, the poses that help most, and a short practice to follow when the day has been a lot."
 published: 2026-08-23
-draft: true
+unlisted: true
 cta_program: "calm-reset"
 hero: "/poses/childs-pose.jpg"
 hero_focal: "72% 50%"
