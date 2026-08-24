@@ -316,8 +316,10 @@ const nav = [
       // vertically, and clear a real distance — so it doesn't fight normal
       // vertical scrolling or a horizontal filmstrip/carousel mid-page.
       if (isStandalone) {
-        const EDGE = 24;
-        const THRESHOLD = 70;
+        // Widened from a first pass at 24px — a real thumb rarely lands within
+        // 24px of the physical edge, so that version almost never triggered.
+        const EDGE = 60;
+        const THRESHOLD = 60;
         let startX = 0, startY = 0, tracking = false;
 
         document.addEventListener(
@@ -339,7 +341,7 @@ const nav = [
             const t = e.changedTouches[0];
             const dx = t.clientX - startX;
             const dy = Math.abs(t.clientY - startY);
-            if (dx > THRESHOLD && dx > dy * 1.5) history.back();
+            if (dx > THRESHOLD && dx > dy * 1.2) history.back();
           },
           { passive: true },
         );

@@ -231,6 +231,12 @@ const ogImage = classes.length ? derivedThumb(classes[0].data, 'maxresdefault') 
 </BaseLayout>
 
 <style>
+  /* Installed-app users don't need SEO copy or another email ask — they already
+     have the app. Everything functional (filters, the grid, the cross-links to
+     other hubs) stays; just the intro paragraph and closing CTA go. */
+  :global(html[data-standalone='true']) .page-intro,
+  :global(html[data-standalone='true'] .cta-block) { display: none; }
+
   .fh-count { font-size: 14px; color: var(--ink-soft); text-align: center; margin: 18px 0 4px; }
   .fh-more { margin: 48px 0 0; }
   .fh-more h2 { font-family: var(--display); font-weight: 500; font-size: 24px; color: var(--plum); margin: 0 0 14px; }
