@@ -1,0 +1,18 @@
+---
+/**
+ * PWA <head> tags shared by every page shell. Pulled out of BaseLayout so
+ * CourseLayout (the installed-app shell once someone owns a course) can't
+ * silently drift out of sync with it — one manifest/icon set for the whole
+ * origin, declared once.
+ *
+ * theme-color is deliberately NOT here: BaseLayout and CourseLayout each
+ * paint their own top bar and want the OS status bar to match, so that meta
+ * tag stays per-layout.
+ */
+---
+
+<link rel="manifest" href="/manifest.webmanifest" />
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="Yin Yoga" />

@@ -1,0 +1,12 @@
+---
+// Shared by every page shell — registration is idempotent, so it's safe to
+// call from whichever page happens to be the first one loaded.
+---
+
+<script is:inline>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    });
+  }
+</script>

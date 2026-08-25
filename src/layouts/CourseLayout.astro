@@ -1,6 +1,9 @@
 ---
 import '../styles/global.css';
 import { SITE } from '../data/site';
+import PwaHead from '../components/PwaHead.astro';
+import RegisterServiceWorker from '../components/RegisterServiceWorker.astro';
+import SwipeBack from '../components/SwipeBack.astro';
 
 /**
  * The shell for The Runner's Reset. Same document head, fonts and design tokens
@@ -58,6 +61,7 @@ const nav = NAV.map((i) => ({ ...i, match: i.match ?? ((p: string) => p.startsWi
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <meta name="theme-color" content="#363F39" />
+    <PwaHead />
   </head>
   <body class="course">
     <script is:inline>
@@ -70,6 +74,7 @@ const nav = NAV.map((i) => ({ ...i, match: i.match ?? ((p: string) => p.startsWi
         } catch (e) {}
       })();
     </script>
+    <RegisterServiceWorker />
 
     <header class="cbar">
       <div class="cbar-in">
@@ -123,6 +128,7 @@ const nav = NAV.map((i) => ({ ...i, match: i.match ?? ((p: string) => p.startsWi
       <p class="cfoot-line">The Runner's Reset — yours for good.</p>
       <p class="cfoot-back"><a href="/">← Back to Yin Yoga with Katie</a></p>
     </footer>
+    <SwipeBack />
   </body>
 </html>
 

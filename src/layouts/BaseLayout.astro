@@ -1,6 +1,9 @@
 ---
 import '../styles/global.css';
 import { SITE } from '../data/site';
+import PwaHead from '../components/PwaHead.astro';
+import RegisterServiceWorker from '../components/RegisterServiceWorker.astro';
+import SwipeBack from '../components/SwipeBack.astro';
 
 /**
  * The site-wide document shell. Owns the <head>: fonts, SEO title/description,
@@ -102,12 +105,8 @@ const nav: { href: string; label: string; match: (p: string) => boolean; product
     <link rel="alternate" type="application/rss+xml" title="Yin Yoga with Katie — Journal" href="/rss.xml" />
 
     <!-- PWA -->
-    <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="theme-color" content="#48544C" />
-    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="Yin Yoga" />
+    <PwaHead />
 
     <!-- Open Graph -->
     <meta property="og:title" content={ogTitle} />
@@ -156,13 +155,7 @@ const nav: { href: string; label: string; match: (p: string) => boolean; product
         } catch (e) {}
       })();
     </script>
-    <script is:inline>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').catch(() => {});
-        });
-      }
-    </script>
+    <RegisterServiceWorker />
     <header class="topbar">
       <div class="bar">
         <a class="brand" href="/" aria-label="Yin Yoga with Katie — home">
@@ -351,45 +344,7 @@ const nav: { href: string; label: string; match: (p: string) => boolean; product
           } catch (e) {}
         });
       }
-
-      // Swipe-right-to-go-back. Standalone mode only: an installed app has no
-      // browser chrome, and iOS in particular drops Safari's edge-swipe-back
-      // gesture entirely once a site is launched from the home screen, leaving
-      // no way back except the site's own links. Mimics the OS gesture: must
-      // start within the left edge zone, travel right more than it travels
-      // vertically, and clear a real distance — so it doesn't fight normal
-      // vertical scrolling or a horizontal filmstrip/carousel mid-page.
-      if (isStandalone) {
-        // Widened from a first pass at 24px — a real thumb rarely lands within
-        // 24px of the physical edge, so that version almost never triggered.
-        const EDGE = 60;
-        const THRESHOLD = 60;
-        let startX = 0, startY = 0, tracking = false;
-
-        document.addEventListener(
-          'touchstart',
-          (e) => {
-            const t = e.touches[0];
-            tracking = t.clientX <= EDGE;
-            startX = t.clientX;
-            startY = t.clientY;
-          },
-          { passive: true },
-        );
-
-        document.addEventListener(
-          'touchend',
-          (e) => {
-            if (!tracking) return;
-            tracking = false;
-            const t = e.changedTouches[0];
-            const dx = t.clientX - startX;
-            const dy = Math.abs(t.clientY - startY);
-            if (dx > THRESHOLD && dx > dy * 1.2) history.back();
-          },
-          { passive: true },
-        );
-      }
     </script>
+    <SwipeBack />
   </body>
 </html>

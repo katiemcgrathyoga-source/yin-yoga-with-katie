@@ -1,0 +1,51 @@
+---
+// Swipe-right-to-go-back. Standalone mode only: an installed app has no
+// browser chrome, and iOS in particular drops Safari's edge-swipe-back
+// gesture entirely once a site is launched from the home screen, leaving no
+// way back except the site's own links. Mimics the OS gesture: must start
+// within the left edge zone, travel right more than it travels vertically,
+// and clear a real distance — so it doesn't fight normal vertical scrolling
+// or a horizontal filmstrip/carousel mid-page.
+//
+// Shared by every page shell (not just BaseLayout) so it works everywhere in
+// the installed app, including course pages.
+---
+
+<script is:inline>
+  (function () {
+    var isStandalone =
+      window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+    if (!isStandalone) return;
+
+    // Widened twice now — 24px, then 60px, still wasn't reliably where a real
+    // thumb lands when it first touches down near the edge. Standalone mode
+    // has no system edge-swipe to lean on, so this has to be generous.
+    var EDGE = 100;
+    var THRESHOLD = 50;
+    var startX = 0, startY = 0, tracking = false;
+
+    document.addEventListener(
+      'touchstart',
+      (e) => {
+        var t = e.touches[0];
+        tracking = t.clientX <= EDGE;
+        startX = t.clientX;
+        startY = t.clientY;
+      },
+      { passive: true },
+    );
+
+    document.addEventListener(
+      'touchend',
+      (e) => {
+        if (!tracking) return;
+        tracking = false;
+        var t = e.changedTouches[0];
+        var dx = t.clientX - startX;
+        var dy = Math.abs(t.clientY - startY);
+        if (dx > THRESHOLD && dx > dy) history.back();
+      },
+      { passive: true },
+    );
+  })();
+</script>
