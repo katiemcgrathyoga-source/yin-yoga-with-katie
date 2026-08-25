@@ -19,7 +19,7 @@ import { courseRoutines } from '../../lib/routines';
  * there is, not what a thing is called.
  */
 const PRODUCT = 'runner-reset';
-const access = await checkAccess(Astro.cookies.get('sb-token')?.value, PRODUCT);
+const access = await checkAccess(Astro.cookies, PRODUCT);
 const unlocked = access.entitled;
 
 const AREA_LABEL: Record<string, string> = {

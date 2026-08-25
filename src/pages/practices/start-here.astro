@@ -14,7 +14,7 @@ import { signBunnyEmbed } from '../../lib/bunny';
  * today", which you come back to. Mixing them makes the daily page heavy.
  */
 const PRODUCT = 'runner-reset';
-const access = await checkAccess(Astro.cookies.get('sb-token')?.value, PRODUCT);
+const access = await checkAccess(Astro.cookies, PRODUCT);
 const unlocked = access.entitled;
 
 const WELCOME_VIDEO_ID = '81df2e4e-9847-4170-bbaf-210e68569ab7';

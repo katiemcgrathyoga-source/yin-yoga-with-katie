@@ -24,7 +24,7 @@ import { courseRoutines } from '../../lib/routines';
  * second copy of the content.
  */
 const PRODUCT = 'runner-reset';
-const access = await checkAccess(Astro.cookies.get('sb-token')?.value, PRODUCT);
+const access = await checkAccess(Astro.cookies, PRODUCT);
 const unlocked = access.entitled;
 
 /** Filter buckets, matched against a pose's own target_areas. A pose can sit in

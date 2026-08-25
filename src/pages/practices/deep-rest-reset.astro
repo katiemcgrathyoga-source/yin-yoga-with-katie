@@ -14,7 +14,7 @@ import { signBunnyEmbed } from '../../lib/bunny';
  * schema. A standalone page, gated the same way, is the smaller change.
  */
 const PRODUCT = 'runner-reset';
-const access = await checkAccess(Astro.cookies.get('sb-token')?.value, PRODUCT);
+const access = await checkAccess(Astro.cookies, PRODUCT);
 const unlocked = access.entitled;
 
 const TRACKS = [

@@ -1,5 +1,30 @@
 import { createHash } from 'node:crypto';
 import { createClient } from '@supabase/supabase-js';
+import { createRemoteJWKSet, jwtVerify } from 'jose';
+
+// Cached across warm invocations of this function — createRemoteJWKSet already
+// memoises the fetched keys internally, so we only need to avoid rebuilding a
+// fresh JWKSet (and losing that cache) on every call.
+// KEEP IN SYNC with src/lib/access.ts verifyTokenLocally() — same idea,
+// duplicated across the esbuild/Vite boundary.
+let jwks = null;
+let jwksSupabaseUrl = null;
+
+async function verifyTokenLocally(jwt, supabaseUrl) {
+  try {
+    if (!jwks || jwksSupabaseUrl !== supabaseUrl) {
+      jwks = createRemoteJWKSet(new URL(`${supabaseUrl}/auth/v1/.well-known/jwks.json`));
+      jwksSupabaseUrl = supabaseUrl;
+    }
+    const { payload } = await jwtVerify(jwt, jwks, {
+      issuer: `${supabaseUrl}/auth/v1`,
+      audience: 'authenticated',
+    });
+    return typeof payload.sub === 'string' ? payload.sub : null;
+  } catch {
+    return null;
+  }
+}
 
 /**
  * Mints a short-lived, signed Bunny Stream playback URL — but only for a signed-in
@@ -50,20 +75,26 @@ export default async (req) => {
     if (!jwt) {
       return json({ error: 'Please sign in to watch.', code: 'signin' }, 401);
     }
-    // Run as the user: getUser validates the token; the entitlements read is
-    // then constrained by row-level security to their own rows.
+    // Run as the user: the entitlements read is constrained by row-level
+    // security to their own rows. Verify the token locally against the
+    // project's JWKS first (saves a round-trip); fall back to the network
+    // getUser() check if local verification isn't available for any reason.
     const supa = createClient(SUPA_URL, SUPA_ANON, {
       auth: { persistSession: false, autoRefreshToken: false },
       global: { headers: { Authorization: `Bearer ${jwt}` } },
     });
-    const { data: userData, error: userErr } = await supa.auth.getUser(jwt);
-    if (userErr || !userData?.user) {
-      return json({ error: 'Your session has expired — sign in again.', code: 'signin' }, 401);
+    let userId = await verifyTokenLocally(jwt, SUPA_URL);
+    if (!userId) {
+      const { data: userData, error: userErr } = await supa.auth.getUser(jwt);
+      if (userErr || !userData?.user) {
+        return json({ error: 'Your session has expired — sign in again.', code: 'signin' }, 401);
+      }
+      userId = userData.user.id;
     }
     const { data: ent, error: entErr } = await supa
       .from('entitlements')
       .select('product')
-      .eq('user_id', userData.user.id)
+      .eq('user_id', userId)
       .eq('product', PRODUCT)
       .maybeSingle();
     if (entErr) {

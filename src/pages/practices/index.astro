@@ -16,7 +16,7 @@ import { checkAccess } from '../../lib/access';
  * how much time there is. Which area comes second, and the card answers it.
  */
 const PRODUCT = 'runner-reset';
-const access = await checkAccess(Astro.cookies.get('sb-token')?.value, PRODUCT);
+const access = await checkAccess(Astro.cookies, PRODUCT);
 const unlocked = access.entitled;
 
 const all = await getCollection('practices');

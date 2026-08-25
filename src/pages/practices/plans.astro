@@ -20,7 +20,7 @@ import { PLANS, type PlanRef } from '../../data/plans';
  * download costs no function invocation.
  */
 const PRODUCT = 'runner-reset';
-const access = await checkAccess(Astro.cookies.get('sb-token')?.value, PRODUCT);
+const access = await checkAccess(Astro.cookies, PRODUCT);
 const unlocked = access.entitled;
 
 type Resolved = { title: string; minutes: number; url: string };
