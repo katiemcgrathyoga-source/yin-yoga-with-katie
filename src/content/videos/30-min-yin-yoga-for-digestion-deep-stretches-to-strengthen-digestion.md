@@ -10,7 +10,7 @@ watch_hours: 551
 published: "2023-08-28"
 enriched: true
 level: "all-levels"
-intent_tags: ["digestion", "flexibility"]
+intent_tags: ["digestion"]
 body_areas: ["spine", "hips", "hamstrings", "lower back"]
 props: []
 poses_featured: ["childs-pose", "shoelace", "caterpillar", "reclined-twist"]

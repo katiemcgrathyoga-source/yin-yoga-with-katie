@@ -10,7 +10,7 @@ watch_hours: 558
 published: "2023-03-26"
 enriched: true
 level: "all-levels"
-intent_tags: ["digestion", "full-body", "flexibility"]
+intent_tags: ["digestion", "full-body"]
 body_areas: ["spine", "hips", "hamstrings", "lower back", "chest"]
 props: ["blanket", "block"]
 poses_featured: ["shoelace", "caterpillar", "sphinx", "saddle", "childs-pose", "sleeping-swan", "squat", "reclined-twist"]

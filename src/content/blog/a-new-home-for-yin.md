@@ -14,7 +14,7 @@ pin_angles:
     headline: "No more scrolling for a class"
     proof: "The whole library, sorted. Nothing to pay."
 seo_title: "A New Home for Yin — Introducing the Yin Yoga with Katie Library"
-seo_description: "A calm, filterable home for every Yin Yoga class — with a pose library, guided programs, a practice calendar, and a free two-hour retreat to begin."
+seo_description: "A calm, filterable home for every Yin Yoga class — with a pose library, guided routines, a practice calendar, and a free two-hour retreat to begin."
 practise:
   routine: "gentle-beginner-yin"
   video: "juWZIHm1xDA"
@@ -56,11 +56,11 @@ Not just *what* to do, but *why*. Each Yin pose now has its own page — what it
 <figcaption>Every pose has its own page — cues, hold times, cautions, and a built-in timer.</figcaption>
 </figure>
 
-## Guided programs, so you never have to decide
+## Guided routines, so you never have to decide
 
-This is the one I'm most excited about. If you've ever wanted a *path* rather than a pick-and-mix, I've built short guided programs — a few classes each — that take the deciding off your plate. **The Bedtime Reset. Free Your Hips. Full-Body Flexibility. The Calm Reset.** Press play on day one and just follow along.
+If you've ever wanted someone to just time it for you, this is it — self-guided routines, poses in sequence with a built-in hold timer, filterable by area, mood and length. Press play and I'll keep the time for you.
 
-[See the programs →](/programs)
+[Try a guided routine →](/routines)
 
 <figure>
 <img src="/blog/a-new-home-for-yin/routines.jpg" alt="Self-guided Yin Yoga routines, filterable by area and mood" loading="lazy" />

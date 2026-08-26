@@ -3,7 +3,6 @@ title: "Yin Yoga for Beginners: What It Is & How to Start Tonight"
 slug: "yin-yoga-for-beginners"
 description: "New to Yin Yoga? What it is, how it's different from other yoga, what you need, the three simple cues that make it work, and a gentle first practice for tonight."
 published: 2026-07-13
-cta_program: "bedtime-reset"
 hero: "/poses/butterfly.jpg"
 hero_focal: "50% 32%"
 hero_caption: "butterfly — a calm, welcoming first shape"

@@ -3,7 +3,6 @@ title: "Yin Yoga for Sleep: A Gentle Practice for Deeper Rest"
 slug: "yin-yoga-for-sleep"
 description: "How Yin Yoga helps you sleep — why the long, slow holds calm a racing mind, the best poses to do before bed, and short practices you can follow tonight."
 published: 2026-07-17
-cta_program: "bedtime-reset"
 hero: "/poses/corpse.jpg"
 hero_focal: "16% 50%"
 hero_caption: "savasana — where the practice quietly settles into sleep"

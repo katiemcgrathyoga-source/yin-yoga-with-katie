@@ -3,7 +3,6 @@ title: "Bedtime Yin Yoga: A Gentle 3-Night Wind-Down"
 slug: "bedtime-yin-yoga-3-night-wind-down"
 description: "A gentle 3-night bedtime Yin Yoga wind-down — three 30-minute evening classes to follow in order, with every pose linked, to help you slow down before sleep."
 published: 2026-07-12
-cta_program: "bedtime-reset"
 hero: "/poses/reclined-swan.jpg"
 hero_focal: "20% 52%"
 hero_caption: "reclined swan — an easy evening release for the outer hips"

@@ -3,7 +3,6 @@ title: "How Long Should You Hold Yin Yoga Poses? (And Why)"
 slug: "how-long-to-hold-yin-poses"
 description: "How long to hold Yin Yoga poses — the simple answer, why the holds are so long, how long is right for you as a beginner, and how to know when to come out."
 published: 2026-07-13
-cta_program: "full-body-flexibility"
 hero: "/poses/caterpillar.jpg"
 hero_focal: "50% 42%"
 hero_caption: "caterpillar — a long, patient forward fold"

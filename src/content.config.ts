@@ -291,7 +291,6 @@ const blog = defineCollection({
 
     // Pin copy — two angles on two different boards, same as poses and routines.
     pin_angles: pinAngles(),
-    cta_program: z.string().optional(), // slug of the program to CTA to (else the free-retreat CTA)
     // FAQ block → rendered on the post + emitted as FAQPage schema (rich results).
     faq: z.array(z.object({ q: z.string().min(1), a: z.string().min(1) })).default([]),
     // "Practice along" block: a routine slug (its page has the built-in timer) + an

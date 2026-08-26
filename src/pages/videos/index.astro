@@ -78,20 +78,20 @@ const breadcrumbLd = {
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
-    { '@type': 'ListItem', position: 2, name: 'Classes', item: new URL('/videos', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'YouTube Classes', item: new URL('/videos', Astro.site).href },
   ],
 };
 ---
 
 <BaseLayout
-  title={`${roughCount}+ Free Yin Yoga Classes — full-length, all levels`}
+  title={`${roughCount}+ Free Yin Yoga YouTube Classes — full-length, all levels`}
   description={`A growing library of ${roughCount}+ free full-length Yin Yoga classes with Katie — 10 to 90 minutes, for sleep, stress, tight hips and stiff shoulders. Pick what your body needs today.`}
   jsonLd={[jsonLd, breadcrumbLd]}
 >
   <div class="wrap">
     <header class="hero">
       <p class="eyebrow">Yin Yoga · The library</p>
-      <h1>Free Yin Yoga classes</h1>
+      <h1>Free Yin Yoga YouTube classes</h1>
       <p class="alt">{roughCount}+ full-length practices — 10 to 90 minutes, all levels</p>
     </header>
 

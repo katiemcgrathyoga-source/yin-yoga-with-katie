@@ -5,7 +5,6 @@ import { lenLabel, videoHeadline, videoSubtitle, videoFaq } from '../../lib/vide
 import { FOCUS } from '../../lib/videoFacets';
 import { AUDIENCES } from '../../data/audiences';
 import { SITE } from '../../data/site';
-import { PROGRAMS, resolveProgramClasses } from '../../data/programs';
 import Cta from '../../components/Cta.astro';
 import { journalPinUrl } from '../../lib/journalPin';
 
@@ -21,26 +20,16 @@ export async function getStaticPaths() {
   const poseNames = Object.fromEntries(
     (await getCollection('poses')).map((p) => [p.data.slug, p.data.name_en]),
   );
-  // video slug → the guided programs that include it (so each class page can point
-  // viewers to the fuller path it belongs to).
-  const programsByVideo = new Map<string, { slug: string; title: string; tagline: string }[]>();
-  for (const p of PROGRAMS) {
-    for (const c of resolveProgramClasses(p, videos)) {
-      const arr = programsByVideo.get(c.data.slug) ?? [];
-      arr.push({ slug: p.slug, title: p.title, tagline: p.tagline });
-      programsByVideo.set(c.data.slug, arr);
-    }
-  }
   // Site rule: no pages for classes under 10 minutes (shorts / promos).
   return videos
     .filter((video) => video.data.length_minutes >= 10)
     .map((video) => ({
       params: { slug: video.data.slug },
-      props: { video, poseNames, programs: programsByVideo.get(video.data.slug) ?? [] },
+      props: { video, poseNames },
     }));
 }
 
-const { video, poseNames, programs } = Astro.props;
+const { video, poseNames } = Astro.props;
 const d = video.data;
 // Runner-tagged classes ask for the runner lead magnet instead of the retreat.
 const isRunner = d.intent_tags.includes('runners');
@@ -137,7 +126,7 @@ const breadcrumbLd = {
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
     // The library is /videos now, not the homepage.
-    { '@type': 'ListItem', position: 2, name: 'Classes', item: new URL('/videos', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'YouTube Classes', item: new URL('/videos', Astro.site).href },
     { '@type': 'ListItem', position: 3, name: videoHeadline(d), item: new URL(`/videos/${d.slug}`, Astro.site).href },
   ],
 };
@@ -295,27 +284,6 @@ const pinSave = `https://www.pinterest.com/pin/create/button/?url=${encodeURICom
       </p>
     </section>
 
-    {/* Programs that include this class — a nudge toward a fuller, guided path */}
-    {
-      programs.length > 0 && (
-        <section class="in-programs">
-          <h2>{programs.length === 1 ? 'Part of a program' : 'Part of these programs'}</h2>
-          <p class="in-programs-note">
-            This class belongs to {programs.length === 1 ? 'a guided program' : 'guided programs'} — a
-            short, ordered path you can follow instead of choosing a video each day.
-          </p>
-          <div class="in-programs-list">
-            {programs.map((p) => (
-              <a class="in-program" href={`/programs/${p.slug}`}>
-                <span class="in-program-title">{p.title}</span>
-                {p.tagline && <span class="in-program-tag">{p.tagline}</span>}
-                <span class="in-program-go" aria-hidden="true">→</span>
-              </a>
-            ))}
-          </div>
-        </section>
-      )
-    }
 
     {/* Single CTA — the free two-hour retreat (inline email capture) */}
     {/* A runner-tagged class asks for the runner magnet — matched to what they
