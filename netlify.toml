@@ -11,3 +11,29 @@
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
+
+# Every collection page builds to `.../<slug>/index.html`, but Netlify's static
+# server happily answers the no-slash form too, so both were live as separate
+# 200s — Search Console had them indexed as two URLs splitting one page's
+# signal (seen on /poses/seated-twist). Force the slash form; not `force =
+# true`, so a real static file always wins first — poses/<slug>.jpg lives at
+# that same path shape and must never be redirected.
+[[redirects]]
+  from = "/poses/:slug"
+  to = "/poses/:slug/"
+  status = 301
+
+[[redirects]]
+  from = "/routines/:slug"
+  to = "/routines/:slug/"
+  status = 301
+
+[[redirects]]
+  from = "/videos/:slug"
+  to = "/videos/:slug/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/:slug"
+  to = "/blog/:slug/"
+  status = 301

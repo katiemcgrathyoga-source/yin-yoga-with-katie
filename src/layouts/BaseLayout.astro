@@ -37,7 +37,18 @@ const {
 } = Astro.props;
 
 // Canonical + absolute OG image, resolved against `site` in astro.config.mjs.
-const canonical = new URL(Astro.url.pathname, Astro.site).href;
+//
+// Trailing slash is normalized here rather than mirrored from the request:
+// every page builds to `.../index.html` (Astro's default directory format),
+// so the slash form is the one real file both variants resolve to. Making
+// this self-referential instead (Astro.url.pathname as-is) is what let
+// Google index /poses/seated-twist and /poses/seated-twist/ as two separate
+// pages splitting the same ranking signal — the canonical tag just echoed
+// back whichever form the crawler happened to request.
+const canonicalPath = Astro.url.pathname === '/'
+  ? '/'
+  : Astro.url.pathname.replace(/\/?$/, '/');
+const canonical = new URL(canonicalPath, Astro.site).href;
 const ogImage = image ? new URL(image, Astro.site).href : undefined;
 
 // Sitewide entity graph — Organization + Person, present on every page (not just
@@ -73,7 +84,7 @@ const nav: { href: string; label: string; match: (p: string) => boolean; product
   { href: '/', label: 'Start here', match: (p: string) => p === '/' },
   // The library has its own page now (it used to be the homepage), so it earns a
   // nav slot — and every page on the site links to the hub as a result.
-  { href: '/videos', label: 'Classes', match: (p: string) => p.startsWith('/videos') },
+  { href: '/videos', label: 'YouTube Classes', match: (p: string) => p.startsWith('/videos') },
   { href: '/poses', label: 'Poses', match: (p: string) => p.startsWith('/poses') },
   // "Routines" alone reads too close to "Classes" for a first-time visitor —
   // both sound like "a way to practice." Spelling out "Guided" (already the
@@ -247,7 +258,7 @@ const nav: { href: string; label: string; match: (p: string) => boolean; product
       <p class="site-footer-tag">a calmer, more flexible you — one long, slow practice at a time</p>
       <nav class="site-footer-nav" aria-label="Footer">
         <a href="/">Start here</a>
-        <a href="/videos">Classes</a>
+        <a href="/videos">YouTube Classes</a>
         <a href="/poses">Poses</a>
         <a href="/routines">Guided Routines</a>
         <a href="/blog">Journal</a>

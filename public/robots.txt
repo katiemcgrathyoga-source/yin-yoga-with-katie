@@ -1,4 +1,34 @@
 User-agent: *
 Allow: /
 
+# Named explicitly (rather than left to the wildcard above) so it's
+# unambiguous that AI crawlers and answer engines are welcome here —
+# matches the llms.txt / structured-data work already done for them.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://yinyogawithkatie.com/sitemap-index.xml
