@@ -357,5 +357,15 @@ const nav: { href: string; label: string; match: (p: string) => boolean; product
       }
     </script>
     <SwipeBack />
+    <!-- Cloudflare Web Analytics — cookieless pageview/referrer tracking, free tier.
+         Added because the site had no analytics at all: no way to see which pages
+         convert or whether any AI-assistant referrer traffic (chatgpt.com,
+         perplexity.ai, etc.) is arriving. -->
+    <script
+      type="module"
+      is:inline
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "01b494739f95465aa3ec9aab164db44b"}'
+    ></script>
   </body>
 </html>
