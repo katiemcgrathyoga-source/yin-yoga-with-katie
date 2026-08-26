@@ -85,6 +85,7 @@ const PLATE_FOCAL = {
   diagram: '50% 52%',
   roster: '50% 50%', // no main photo — only the per-row thumbnails, cropped square in the template
   hero: '50% 52%',
+  lineup: '50% 50%', // no main photo — only the per-row thumbnails
 };
 const isPlate = (tpl) => PLATE_TEMPLATES.includes(tpl);
 
@@ -146,9 +147,10 @@ export default async (req) => {
     // web crop would go soft. It takes the 2200px crop cut from the camera
     // original where one exists; the landscape bands never need it.
     const photo = await loadPinImage(p.get('img') || '', tpl === 'immersive' ? 'hook' : tpl);
-    // Roster has no main photo — its photographs are the per-row thumbnails,
-    // resolved from the same sharpest-available chain as everything else.
-    const plateItems = tpl === 'roster' && Array.isArray(items)
+    // Roster and Lineup have no main photo — their photographs are the
+    // per-row thumbnails, resolved from the same sharpest-available chain as
+    // everything else.
+    const plateItems = (tpl === 'roster' || tpl === 'lineup') && Array.isArray(items)
       ? await Promise.all(items.map(async (it) => (it && it.img ? { ...it, img: await loadPinImage(it.img, tpl) } : it)))
       : [];
     // Panel and Immersive both size their photograph per pose, but over very

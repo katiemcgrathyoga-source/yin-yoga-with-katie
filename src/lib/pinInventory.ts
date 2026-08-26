@@ -82,6 +82,7 @@ const FOCAL: Record<string, string> = {
   diagram: '50% 52%',   // same band shape as plate
   roster: '50% 50%',    // no main photo — only the per-row thumbnails
   hero: '50% 52%',      // same band shape as plate, just taller
+  lineup: '50% 50%',    // no main photo — only the per-row thumbnails
 };
 
 /**
@@ -285,6 +286,13 @@ export async function buildPinInventory(): Promise<Pin[]> {
       ? heroSlug
       : d.steps.map((s) => s.pose).find((slug) => photoOf(slug) && tallOf(slug));
     const metaLine = `${d.minutes} minutes · ${LEVEL[d.level] ?? d.level}`;
+    // Shared by Roster and Lineup — the two answers to "show the whole
+    // sequence," reused rather than recomputed per angle/tone.
+    const stepItems = d.steps.map((s) => ({
+      name: poseName.get(s.pose) ?? s.pose,
+      img: photoOf(s.pose),
+      time: fmtHold(s.seconds, s.sides),
+    }));
 
     for (const [i, angle] of d.pin_angles.entries()) {
       const audience = angle.audience as PinAudience;
@@ -350,13 +358,25 @@ export async function buildPinInventory(): Promise<Pin[]> {
           image: cardUrl({
             tpl: 'roster', tone, t: d.title, s: angle.audience, sub: angle.proof,
             foot: `${d.minutes} minutes total`,
-            items: JSON.stringify(
-              d.steps.map((s) => ({
-                name: poseName.get(s.pose) ?? s.pose,
-                img: photoOf(s.pose),
-                time: fmtHold(s.seconds, s.sides),
-              })),
-            ),
+            items: JSON.stringify(stepItems),
+          }),
+        });
+        // Lineup — the other answer to "show the whole sequence": every pose,
+        // thumbnail shrinking to fit rather than capping at five. Brought
+        // back deliberately — real Pinterest data showed a high click-
+        // through-to-impression ratio on this exact shape, and the benefit-
+        // led copy on Diagram/Panel hasn't shown a clear uptick to justify
+        // dropping what was already working. Left in rotation alongside
+        // Roster rather than replacing it — this is a testing period, not a
+        // decided winner.
+        add({
+          ...base,
+          id: `routine:${d.slug}:lineup:${tone}:${i}`,
+          template: 'lineup',
+          tone,
+          image: cardUrl({
+            tpl: 'lineup', tone, t: d.title, s: `${d.minutes}-minute routine`,
+            items: JSON.stringify(stepItems),
           }),
         });
       }

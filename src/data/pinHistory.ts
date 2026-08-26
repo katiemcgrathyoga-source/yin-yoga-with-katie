@@ -115,7 +115,48 @@ export const PIN_HISTORY: PinnedAlready[] = [
     board: 'Yoga for Desk Workers | Neck, Shoulders & Posture',
     what: '55-min Silent Upper-Body Yin',
   },
+  // Third handover, 2026-08-27: Katie confirmed everything through 08-26 was
+  // pinned. Read straight off a build of the (then-undeployed) tired-legs
+  // fix rather than a fresh export — the fix had already gone out on 08-25
+  // and nothing pin-affecting shipped between then and now, so this build
+  // is what she actually saw both days.
+  {
+    date: '2026-08-25',
+    url: `${SITE}/runners`,
+    board: 'Yoga for Hips',
+    what: 'The Post-Run Reset',
+  },
+  {
+    date: '2026-08-25',
+    url: `${SITE}/routines/deep-hips-lower-body/`,
+    board: 'Yin Yoga for Runners',
+    what: 'Deep Hips & Lower Body',
+  },
+  {
+    date: '2026-08-25',
+    url: `${SITE}/poses/caterpillar/`,
+    board: 'Yoga for Back & Spine',
+    what: 'Caterpillar',
+  },
+  {
+    date: '2026-08-26',
+    url: `${SITE}/blog/yin-yoga-for-beginners/`,
+    board: 'Yin Yoga for Flexibility',
+    what: 'Yin Yoga for Beginners: What It Is & How to Start Tonight',
+  },
+  {
+    date: '2026-08-26',
+    url: `${SITE}/videos/yin-yoga-with-blocks-or-bolster-full-body-props-yin/`,
+    board: 'Yoga Nidra & Deep Rest',
+    what: 'Yin With Blocks & Bolster',
+  },
+  {
+    date: '2026-08-26',
+    url: `${SITE}/routines/morning-wake-up/`,
+    board: 'Yin Yoga Routines',
+    what: 'Morning Wake-Up',
+  },
 ];
 
 /** The day after the last one the old plan owned — where the new plan starts. */
-export const HANDOVER = '2026-08-25';
+export const HANDOVER = '2026-08-27';

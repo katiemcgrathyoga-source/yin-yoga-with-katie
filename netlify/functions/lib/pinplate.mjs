@@ -343,6 +343,46 @@ function roster({ eyebrow: eb, headline, blurb, tone, footnote, items = [] }) {
   ]);
 }
 
+/* ═══ 08 · Lineup ═════════════════════════════════════════════════════════
+   The routine as a numbered list, thumbnail on the right, sized to fit
+   however many poses there are rather than capping them at five. Ported
+   from the pre-rebuild `numberedPoses` template in lib/pin.mjs — brought
+   back deliberately after real Pinterest data showed a high click-through-
+   to-impression ratio on this exact shape (Full-Body Reset shows all 8
+   poses; Shoulders, Neck & Desk Relief all 5). Where Roster enlarges the
+   photo and caps the list, Lineup shrinks the photo to show everything —
+   two honest answers to "how do I show a whole sequence," left for testing
+   to settle rather than picking one. */
+function lineup({ eyebrow: eb, headline, tone, items = [] }) {
+  const p = pal(tone);
+  const n = Math.max(1, items.length);
+  const thumbH = n <= 7 ? 144 : n <= 8 ? 122 : n <= 9 ? 110 : 98;
+  const thumbW = Math.round(thumbH / 0.72); // landscape crop, matches the source shape
+  const rowPad = n <= 5 ? 24 : n <= 7 ? 16 : 9;
+  return box({ width: '100%', height: '100%', flexDirection: 'column', backgroundColor: p.g }, [
+    box({ flexDirection: 'column', alignItems: 'center', gap: '22px', padding: '84px 80px 0' }, [
+      eyebrow(eb, p.acc),
+      title(headline, p.i, 68, { width: '820px' }),
+    ]),
+    box({ flexDirection: 'column', flexGrow: 1, justifyContent: 'center', padding: '34px 84px 18px' }, [
+      ...items.map((it, i) =>
+        box({
+          flexDirection: 'row', alignItems: 'center', gap: '32px', padding: `${rowPad}px 0`,
+          ...(i < items.length - 1 ? { borderBottom: `1.5px solid ${p.rule}` } : {}),
+        }, [
+          box({ fontFamily: 'Serif', fontSize: '52px', color: p.acc, width: '58px', flexShrink: 0 }, String(i + 1)),
+          box({ flexGrow: 1, flexDirection: 'column' }, [
+            box({ fontFamily: 'Serif', fontSize: '36px', color: p.i }, it.name || ''),
+            ...(it.time ? [box({ fontFamily: 'Cabin', fontWeight: 400, fontSize: '24px', color: p.soft, marginTop: '2px' }, it.time)] : []),
+          ]),
+          band(thumbW, thumbH, it.img, '50% 50%', { borderRadius: '14px', flexShrink: 0 }),
+        ]),
+      ),
+    ]),
+    box({ justifyContent: 'center', padding: '0 0 60px' }, [wordmark(p.i)]),
+  ]);
+}
+
 /* ═══ 05 · Watch ══════════════════════════════════════════════════════════
    The video pin: a run-time badge with a play mark, the audience on a tab that
    enters from the left edge, and the message on solid ground beneath. */
@@ -412,7 +452,7 @@ function offerPin({ eyebrow: eb, headline, blurb, photo, focal, tone, offer, cta
   ]);
 }
 
-const TEMPLATES = { plate, frame, panel, immersive, watch, offer: offerPin, diagram, roster, hero };
+const TEMPLATES = { plate, frame, panel, immersive, watch, offer: offerPin, diagram, roster, hero, lineup };
 
 /** Render a 1000×1500 Plate-set pin to a PNG Buffer. */
 export async function renderPlatePin({ tpl = 'plate', ...props }) {
