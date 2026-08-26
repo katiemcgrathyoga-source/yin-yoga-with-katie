@@ -279,7 +279,10 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
   .home-hero h1 { font-family: var(--display); font-weight: 500; font-size: clamp(32px, 4.6vw, 52px); line-height: 1.1; color: var(--plum); margin: 0 0 18px; }
   .home-lede { font-size: 18px; line-height: 1.62; color: var(--ink-soft); max-width: 52ch; margin: 0 0 26px; }
   .home-capture { display: flex; gap: 8px; flex-wrap: wrap; }
-  .home-capture input { flex: 1 1 140px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); color: var(--ink); font: inherit; font-size: 15px; }
+  /* border does the contrast work, not the fill — --paper matches the page bg
+     behind it in both themes, so a --line border alone reads as invisible in
+     dark mode (same issue already fixed for .lm-form; see global.css). */
+  .home-capture input { flex: 1 1 140px; padding: 12px 14px; border: 1.5px solid var(--ink-soft); border-radius: 10px; background: var(--paper-2); color: var(--ink); font: inherit; font-size: 15px; }
   .home-capture .btn-cta { background: #89494B; color: #fff; font-weight: 600; font-size: 15px; padding: 13px 26px; border-radius: 100px; border: none; cursor: pointer; white-space: nowrap; transition: background .15s; }
   .home-capture .btn-cta:hover { background: #6E3A3C; color: #fff; }
   /* The runner offer, set apart from the general lede so the hero reads as two
