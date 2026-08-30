@@ -716,6 +716,21 @@ ul.plain li::before {
 .membership .eyebrow { color: var(--gold); }
 .membership h2 { color: #fff; margin-bottom: 12px; }
 .membership p { color: #E7DFD5; max-width: 46ch; margin: 0 auto 22px; font-size: 15.5px; }
+/* Cta.astro's fields. These had NO base rule at all — only a dark-mode
+   border-COLOUR override, applied to a border that was never declared — so
+   every capture card on the site fell back to raw browser-default inputs.
+   Same lesson as .lm-form above: the border does the contrast work, because
+   --paper-2 and --line sit within a few RGB of the surface in dark mode. */
+.rt-form { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; max-width: 460px; margin: 0 auto; }
+.rt-form input[type="text"], .rt-form input[type="email"] {
+  flex: 1 1 150px; font: inherit; font-size: 15px; padding: 12px 14px; border-radius: 12px;
+  border: 1.5px solid var(--ink-soft); background: var(--paper-2); color: var(--ink);
+}
+.rt-form input::placeholder { color: var(--ink-soft); opacity: 1; }
+.rt-form input[type="text"]:focus, .rt-form input[type="email"]:focus {
+  border-color: var(--gold-solid); outline: 2px solid var(--gold-solid); outline-offset: 1px;
+}
+.rt-form .btn-cta { cursor: pointer; font-family: inherit; }
 .membership .btn-cta { display: inline-block; background: var(--gold-solid); color: #fff; font-weight: 600; padding: 13px 26px; border-radius: 11px; font-size: 15.5px; border: none; }
 .membership .btn-cta:hover { background: #6E3A3C; color: #fff; }
 .cta-actions { display: flex; flex-direction: column; align-items: center; gap: 12px; }
@@ -1404,13 +1419,9 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 /* dark/ink CTA bands → raised card; keep readable inner text */
 [data-theme="dark"] .membership,
 [data-theme="dark"] .cta,
-[data-theme="dark"] .lib-retreat { background: var(--paper-2); color: var(--ink); }
-[data-theme="dark"] .membership h2, [data-theme="dark"] .cta h2, [data-theme="dark"] .rt-inner h2 { color: var(--ink); }
-[data-theme="dark"] .membership p, [data-theme="dark"] .cta p, [data-theme="dark"] .rt-members { color: var(--ink-soft); }
+[data-theme="dark"] .membership h2, [data-theme="dark"] .cta h2 { color: var(--ink); }
+[data-theme="dark"] .membership p, [data-theme="dark"] .cta p { color: var(--ink-soft); }
 [data-theme="dark"] .membership .btn-cta, [data-theme="dark"] .cta .btn-cta { background: var(--gold-solid); color: #2f3833; }
-[data-theme="dark"] .rt-form .btn-cta { background: var(--plum); color: #2f3833; }
-[data-theme="dark"] .rt-form input[type=email], [data-theme="dark"] .rt-form input[type=text] { border-color: var(--line); color: var(--ink); }
-[data-theme="dark"] .rt-form input[type=email]::placeholder, [data-theme="dark"] .rt-form input[type=text]::placeholder { color: var(--ink-soft); }
 /* practice-view demo distinct from page bg */
 [data-theme="dark"] .rt3-demo { background: var(--paper-2); }
 /* tags / badges keep contrast on ink */

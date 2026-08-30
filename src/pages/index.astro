@@ -3,10 +3,12 @@ import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import VideoTile from '../components/VideoTile.astro';
+import Cta from '../components/Cta.astro';
 import { derivedThumb } from '../lib/video';
 import { FOCUS, isClass } from '../lib/videoFacets';
 import { journalPinUrl } from '../lib/journalPin';
 import katieHello from '../assets/katie-hello.jpg';
+import katieHero from '../assets/katie-hero.jpg';
 import katieAbout from '../assets/katie-about.jpg';
 
 /**
@@ -46,9 +48,6 @@ const ogImage = journalPinUrl(Astro.site, {
 // Retreat form — the hero capture (moved up from the foot of the page; see the
 // comment on .home-hero below for why the hero no longer forks runner/not-runner).
 const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/192665473777665865/subscribe';
-// Runners form — now the closing capture. A different MailerLite form because it
-// has to trigger the Post-Run Reset automation, not the retreat series.
-const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/194288582398052179/subscribe';
 ---
 
 <BaseLayout
@@ -109,12 +108,18 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
     }
   </script>
 
-  {/* ── Hero: lead with the offer ─────────────────────────────────────────── */}
+  {/* ── Hero: introduce Katie, then make the ask ──────────────────────────── */}
   <section class="home-hero">
     <div class="home-hero-copy">
-      <p class="eyebrow">Free yin yoga with Katie</p>
-      <h1>Gentle Yin Yoga to help you slow down, stretch deeply, and rest.</h1>
-      <p class="home-lede">Full-length yin, restorative and yoga nidra classes — free, and yours to keep.</p>
+      <p class="eyebrow">Free classes · pose guides · guided routines</p>
+      <h1>Yin yoga to help you slow down and rest.</h1>
+      <p class="home-lede">Full-length classes, a guide to every pose, and routines that keep time for you — for tight hips, a busy mind, and nights when sleep won't come.</p>
+      {/* Who is asking. The offer used to be the first thing a stranger met; now
+          they meet Katie first, and the ask sits in the card below it. Condensed
+          from the /about lede so the two stay in one voice. "Slow down" is left
+          to the H1 — carrying it here as well was the repetition that made the
+          old hero read as four restatements of one idea. */}
+      <p class="home-intro">Hi, I'm Katie. My mission is to help you be still and listen — and since it isn't always easy to get to a studio, I meet you where you are, at home and free.</p>
       {/* One offer, not a fork. This used to branch runner / not-a-runner right
           here — two decisions stacked before a first-time visitor had even
           oriented, on top of the "start here" chooser right below. The runner
@@ -122,20 +127,23 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
           of the page instead, and runner-tagged content elsewhere on the site
           links to it directly. This capture is the broad one that suits
           nearly any visitor. */}
-      <p class="home-offer"><strong>A gift from me:</strong> my free two-hour Yin, restorative and Yoga Nidra retreat — yours to keep, and to come back to any time.</p>
-      <form class="home-capture" id="hero-form" action={ML_ACTION} method="post" target="ml_frame_hero">
-        <input type="text" name="fields[name]" placeholder="First name" aria-label="First name" />
-        <input type="email" name="fields[email]" required placeholder="Your email" aria-label="Your email" />
-        <input type="hidden" name="fields[signup_source]" value="home-hero" />
-        <input type="hidden" name="ml-submit" value="1" />
-        <input type="hidden" name="anticsrf" value="true" />
-        <button type="submit" class="btn-cta">Send me the free retreat →</button>
-      </form>
-      <p class="home-done" id="hero-done" hidden>Check your inbox — your two-hour retreat is on its way.</p>
-      <iframe name="ml_frame_hero" hidden title="Sign-up" tabindex="-1" aria-hidden="true"></iframe>
+      <div class="home-gift">
+        <p class="home-gift-label">A gift to start you off</p>
+        <p class="home-offer">My two-hour retreat — yin, restorative and yoga nidra — yours to keep and come back to.</p>
+        <form class="home-capture" id="hero-form" action={ML_ACTION} method="post" target="ml_frame_hero">
+          <input type="text" name="fields[name]" placeholder="First name" aria-label="First name" />
+          <input type="email" name="fields[email]" required placeholder="Your email" aria-label="Your email" />
+          <input type="hidden" name="fields[signup_source]" value="home-hero" />
+          <input type="hidden" name="ml-submit" value="1" />
+          <input type="hidden" name="anticsrf" value="true" />
+          <button type="submit" class="btn-cta">Send me the retreat →</button>
+        </form>
+        <p class="home-done" id="hero-done" hidden>Check your inbox — your two-hour retreat is on its way.</p>
+        <iframe name="ml_frame_hero" hidden title="Sign-up" tabindex="-1" aria-hidden="true"></iframe>
+      </div>
     </div>
     <div class="home-hero-img">
-      <Image src={katieHello} alt="Katie" width={560} height={440} loading="eager" />
+      <Image src={katieHero} alt="Katie sitting cross-legged on her mat" width={560} height={440} densities={[1, 2]} loading="eager" />
     </div>
   </section>
 
@@ -147,11 +155,11 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
       list drops to what it doesn't already cover: the beginner guide and the
       pose library. */}
   <section class="home-start">
-    <p class="eyebrow home-center">New here? Start here</p>
+    <p class="eyebrow home-center">Where to begin</p>
     <div class="home-cards">
       <a class="home-card" href="/blog/yin-yoga-for-beginners">
         <span class="home-num">01</span>
-        <h3>New to Yin? Start here</h3>
+        <h3>Never done yin before?</h3>
         <p>A slow, welcoming guide to your first practice — with nothing to keep up with.</p>
         <span class="home-go">Read the guide →</span>
       </a>
@@ -233,25 +241,16 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
         runner offer that used to fork the hero instead. Someone who clicked
         "Runner's Reset" in the nav and isn't ready to buy has nowhere to leave
         an email on that sales page itself, so this keeps that capture path
-        alive on the homepage rather than dropping it. Same copy Cta.astro
-        uses for the 'runners' offer elsewhere, for consistency. ── */}
-  <section class="lib-retreat">
-    <div class="rt-inner">
-      <p class="eyebrow">Free for runners</p>
-      <h2>The 15-Minute Post-Run Reset</h2>
-      <p class="rt-members">✦ A free follow-along class, with a hold timer</p>
-      <form class="rt-form" id="rt-form" action={ML_RUNNERS} method="post" target="ml_frame_home">
-        <input type="text" name="fields[name]" placeholder="First name" aria-label="First name" />
-        <input type="email" name="fields[email]" required placeholder="Your email" aria-label="Your email" />
-        <input type="hidden" name="fields[signup_source]" value="home-footer-runner" />
-        <input type="hidden" name="ml-submit" value="1" />
-        <input type="hidden" name="anticsrf" value="true" />
-        <button type="submit" class="btn-cta">Send me the Post-Run Reset →</button>
-      </form>
-      <p class="rt-done" id="rt-done" hidden>Check your inbox — your Post-Run Reset is on its way.</p>
-      <iframe name="ml_frame_home" hidden title="Sign-up" tabindex="-1" aria-hidden="true"></iframe>
-    </div>
-  </section>
+        alive on the homepage rather than dropping it.
+
+        This was hand-rolled markup (.lib-retreat / .rt-inner) that copied
+        Cta.astro's COPY but not its structure. Those two class names have no
+        base CSS anywhere — only a dark-mode override in global.css — so the
+        block rendered flush-left with no card and with raw browser-default
+        fields. Rendering the component instead gets the .membership card, the
+        badge, the fine print, the role="status" done-state and the
+        screen-reader labels the copy never had. ── */}
+  <Cta offer="runners" source="home-footer-runner" />
 </BaseLayout>
 
 <style>
@@ -282,16 +281,25 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
   /* border does the contrast work, not the fill — --paper matches the page bg
      behind it in both themes, so a --line border alone reads as invisible in
      dark mode (same issue already fixed for .lm-form; see global.css). */
-  .home-capture input { flex: 1 1 140px; padding: 12px 14px; border: 1.5px solid var(--ink-soft); border-radius: 10px; background: var(--paper-2); color: var(--ink); font: inherit; font-size: 15px; }
+  .home-capture input { flex: 1 1 140px; padding: 12px 14px; border: 1.5px solid var(--ink-soft); border-radius: 10px; background: var(--paper); color: var(--ink); font: inherit; font-size: 15px; }
   .home-capture .btn-cta { background: #89494B; color: #fff; font-weight: 600; font-size: 15px; padding: 13px 26px; border-radius: 100px; border: none; cursor: pointer; white-space: nowrap; transition: background .15s; }
   .home-capture .btn-cta:hover { background: #6E3A3C; color: #fff; }
-  /* The runner offer, set apart from the general lede so the hero reads as two
-     beats: what the site is, then the one thing to take right now. */
-  .home-offer {
-    font-size: 16.5px; line-height: 1.6; color: var(--ink); max-width: 52ch;
-    margin: 0 0 18px; padding-left: 14px; border-left: 3px solid var(--gold-solid);
+  .home-intro { font-size: 16.5px; line-height: 1.65; color: var(--ink); max-width: 52ch; margin: 0 0 30px; }
+
+  /* The offer, boxed. It used to be a bare paragraph with a gold left-rule and
+     the form floating loose beneath it, so the sentence and the fields didn't
+     read as one thing — you only learned what was on offer at the button. A
+     card groups them, and separates the ask from the introduction above it
+     without a rule cutting across the hero's photo column. */
+  .home-gift {
+    background: var(--paper-2); border: 1px solid var(--line); border-radius: 12px;
+    padding: 22px; max-width: 52ch;
   }
-  .home-offer strong { color: var(--plum-deep); }
+  .home-gift-label {
+    font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--gold-solid); font-weight: 600; margin: 0 0 8px;
+  }
+  .home-offer { font-size: 16px; line-height: 1.55; color: var(--ink); margin: 0 0 16px; }
   .home-done { font-size: 15px; color: var(--plum); margin: 12px 0 0; }
   .home-hero-img img { width: 100%; height: 440px; object-fit: cover; object-position: center 40%; border-radius: 18px; display: block; }
 
@@ -367,7 +375,8 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
   // along with the library itself. The homepage shows a fixed preview, so all
   // that's left is the email capture.
 
-  // Email capture (hero + closing) — MailerLite posts to a hidden iframe; swap to success.
+  // Hero email capture — MailerLite posts to a hidden iframe; swap to success.
+  // (The closing runner capture is <Cta />, which wires its own handler.)
   const swap = (formId: string, doneId: string) => {
     const form = document.getElementById(formId) as HTMLFormElement | null;
     const done = document.getElementById(doneId);
@@ -376,5 +385,4 @@ const ML_RUNNERS = 'https://assets.mailerlite.com/jsonp/2503148/forms/1942885823
     });
   };
   swap('hero-form', 'hero-done');
-  swap('rt-form', 'rt-done');
 </script>
