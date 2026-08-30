@@ -129,6 +129,16 @@ const nav = NAV.map((i) => ({ ...i, match: i.match ?? ((p: string) => p.startsWi
       <p class="cfoot-back"><a href="/">← Back to Yin Yoga with Katie</a></p>
     </footer>
     <SwipeBack />
+    <!-- Cloudflare Web Analytics — same beacon/token as BaseLayout, deliberately
+         repeated because the course app is a separate shell. Without this every
+         page of The Runner's Reset is invisible: no way to see where buyers drop
+         out of the funnel, or which sessions actually get practised. -->
+    <script
+      type="module"
+      is:inline
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "01b494739f95465aa3ec9aab164db44b"}'
+    ></script>
   </body>
 </html>
 
