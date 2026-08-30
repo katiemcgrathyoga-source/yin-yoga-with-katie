@@ -115,11 +115,9 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
       <h1>Yin yoga to help you slow down and rest.</h1>
       <p class="home-lede">Full-length classes, a guide to every pose, and routines that keep time for you — for tight hips, a busy mind, and nights when sleep won't come.</p>
       {/* Who is asking. The offer used to be the first thing a stranger met; now
-          they meet Katie first, and the ask sits in the card below it. Condensed
-          from the /about lede so the two stay in one voice. "Slow down" is left
-          to the H1 — carrying it here as well was the repetition that made the
-          old hero read as four restatements of one idea. */}
-      <p class="home-intro">Hi, I'm Katie. My mission is to help you be still and listen — and since it isn't always easy to get to a studio, I meet you where you are, at home and free.</p>
+          they meet Katie first, and the ask sits in the card below it. Katie's
+          own words, from the /about lede, so the two pages stay in one voice. */}
+      <p class="home-intro">Hi, I'm Katie and I'm on a mission to help you slow down, be still, and listen. It isn't always easy to get out to a studio — so I meet you where you are, at home and free.</p>
       {/* One offer, not a fork. This used to branch runner / not-a-runner right
           here — two decisions stacked before a first-time visitor had even
           oriented, on top of the "start here" chooser right below. The runner
@@ -128,7 +126,7 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
           links to it directly. This capture is the broad one that suits
           nearly any visitor. */}
       <div class="home-gift">
-        <p class="home-gift-label">A gift to start you off</p>
+        <p class="home-gift-label">A gift from me</p>
         <p class="home-offer">My two-hour retreat — yin, restorative and yoga nidra — yours to keep and come back to.</p>
         <form class="home-capture" id="hero-form" action={ML_ACTION} method="post" target="ml_frame_hero">
           <input type="text" name="fields[name]" placeholder="First name" aria-label="First name" />
@@ -143,7 +141,7 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
       </div>
     </div>
     <div class="home-hero-img">
-      <Image src={katieHero} alt="Katie sitting cross-legged on her mat" width={560} height={440} densities={[1, 2]} loading="eager" />
+      <Image src={katieHero} alt="Katie sitting cross-legged on her mat" width={800} height={533} densities={[1, 2]} loading="eager" />
     </div>
   </section>
 
@@ -250,7 +248,11 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
         fields. Rendering the component instead gets the .membership card, the
         badge, the fine print, the role="status" done-state and the
         screen-reader labels the copy never had. ── */}
-  <Cta offer="runners" source="home-footer-runner" />
+  {/* Constrained to the same 1080/24px column every other band on this page
+      uses. .membership carries no max-width of its own — it is a full-bleed
+      band by default — which left it running edge to edge and noticeably
+      wider than the hero, the start-here cards and the library above it. */}
+  <div class="home-cta"><Cta offer="runners" source="home-footer-runner" /></div>
 </BaseLayout>
 
 <style>
@@ -331,6 +333,8 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
   .hr-eyebrow { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #cbaaa7; }
   .hr-ring { width: 118px; height: 118px; border-radius: 50%; border: 5px solid rgba(249,241,234,.22); border-top-color: #cbaaa7; }
   .hr-label { font-size: 15px; color: rgba(249,241,234,.82); }
+
+  .home-cta { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
   /* ── Library head (demoted from H1) ── */
   .home-lib-head { text-align: center; padding: 56px 0 8px; }

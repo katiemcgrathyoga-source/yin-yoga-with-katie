@@ -714,8 +714,8 @@ ul.plain li::before {
 /* ---- Membership CTA (video page) — gold ---- */
 .membership { background: var(--ink); color: var(--paper); border-radius: 18px; padding: 38px 28px; text-align: center; margin: 44px 0; }
 .membership .eyebrow { color: var(--gold); }
-.membership h2 { color: #fff; margin-bottom: 12px; }
-.membership p { color: #E7DFD5; max-width: 46ch; margin: 0 auto 22px; font-size: 15.5px; }
+.membership h2 { color: var(--paper); margin-bottom: 12px; }
+.membership p { color: var(--paper); max-width: 46ch; margin: 0 auto 22px; font-size: 15.5px; }
 /* Cta.astro's fields. These had NO base rule at all — only a dark-mode
    border-COLOUR override, applied to a border that was never declared — so
    every capture card on the site fell back to raw browser-default inputs.
@@ -741,7 +741,7 @@ ul.plain li::before {
 .cta-tertiary a:hover { color: #fff; }
 /* "members-only, free for you" value cue — works on light (landing) + dark (CTA block) */
 .cta-members { display: inline-block; margin: 8px auto 0; padding: 4px 13px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--gold-solid); background: rgba(137,73,75,.09); }
-.membership .cta-members { color: var(--gold); background: rgba(255,255,255,.12); margin: 0 auto 16px; }
+.membership .cta-members { color: var(--gold-solid); background: var(--paper-2); margin: 0 auto 16px; }
 
 /* ---- Gentle-reminder block ---- */
 .reminder {
@@ -772,7 +772,7 @@ ul.plain li::before {
 .cta { background: var(--ink); color: var(--paper); border-radius: 18px; padding: 38px 28px; text-align: center; margin: 46px 0; }
 .cta .eyebrow { color: var(--gold); }
 .cta h2 { color: var(--paper); margin-bottom: 10px; }
-.cta p { color: #E7DFD5; margin: 0 auto 22px; max-width: 42ch; font-size: 15.5px; }
+.cta p { color: var(--paper); margin: 0 auto 22px; max-width: 42ch; font-size: 15.5px; }
 .form { display: flex; gap: 10px; max-width: 430px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
 .form input {
   flex: 1 1 200px; min-width: 0; padding: 14px 16px; border-radius: 10px; border: 1px solid #4E5A51;
@@ -1416,11 +1416,15 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 [data-theme="dark"] .pb-sides.on,
 [data-theme="dark"] .lm-form .btn-cta,
 [data-theme="dark"] .cb-count { color: #2f3833; }
-/* dark/ink CTA bands → raised card; keep readable inner text */
-[data-theme="dark"] .membership,
-[data-theme="dark"] .cta,
-[data-theme="dark"] .membership h2, [data-theme="dark"] .cta h2 { color: var(--ink); }
-[data-theme="dark"] .membership p, [data-theme="dark"] .cta p { color: var(--ink-soft); }
+/* The one thing that genuinely cannot pair: the rose eyebrow. It needs to be
+   LIGHT rose on the dark card and DEEP rose on the light one, and no token
+   inverts in that direction (--gold-solid inverts the wrong way). Measured at
+   1.88:1 against the light card before this rule. */
+[data-theme="dark"] .membership .eyebrow, [data-theme="dark"] .cta .eyebrow { color: #89494B; }
+/* dark/ink CTA bands → raised light card. The text colours are NOT overridden
+   here: .membership/.cta pair background:--ink with color:--paper, and both
+   invert together, so the card is readable in either theme on its own. An
+   override that names --ink paints text in the card's own background colour. */
 [data-theme="dark"] .membership .btn-cta, [data-theme="dark"] .cta .btn-cta { background: var(--gold-solid); color: #2f3833; }
 /* practice-view demo distinct from page bg */
 [data-theme="dark"] .rt3-demo { background: var(--paper-2); }
