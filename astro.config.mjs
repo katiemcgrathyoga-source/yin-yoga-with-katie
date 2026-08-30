@@ -42,8 +42,15 @@ export default defineConfig({
   adapter: netlify(),
   integrations: [
     sitemap({
-      // Keep hidden/private surfaces out: the runner funnel (noindex until
-      // launch), the gated course, and Katie's private pin/board consoles.
+      // Keep hidden/private surfaces out: the gated course and Katie's private
+      // pin/board consoles.
+      //
+      // /runners was here until 2026-08-30. It was hidden back when the page
+      // would have delivered the wrong welcome email, but the MailerLite
+      // Runners automation is wired and confirmed delivering, so the reason
+      // expired. Leaving it noindex meant the one page whose whole job is
+      // collecting email addresses was invisible to Google while the $49 sales
+      // page was fully indexed — exactly backwards for a list of 10 people.
       //
       // Matched on the EXACT pathname, not `includes()`. Substring matching had
       // silently dropped /videos/runners-yoga-to-boost-recovery... because the
@@ -59,7 +66,7 @@ export default defineConfig({
         // /videos/all is the overflow list of not-yet-written-up classes. It is
         // noindex on purpose (see the file) and must not be submitted either.
         const exact = [
-          '/runners', '/account', '/pins', '/boards',
+          '/account', '/pins', '/boards',
           '/pincalendar', '/videos/all',
         ];
         if (exact.includes(path)) return false;

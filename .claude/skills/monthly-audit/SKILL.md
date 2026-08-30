@@ -7,7 +7,9 @@ description: Run the monthly performance audit across YouTube, website, email, P
 
 One run per month, at the start of the month, covering the month just ended. The point is **not** a scoreboard — it is a ranked answer to "where do my hours go next month". Numbers that do not change that answer are noise.
 
-Output goes to `data/audits/YYYY-MM.md` (committed, diffable, machine-readable) **and** a published artifact for sharing with Katie.
+Output goes to `data/audits/YYYY-MM.md` **and** a published artifact for sharing with Katie.
+
+> **The audit file is deliberately NOT committed.** Repo-root `/data/` is gitignored because it holds subscriber counts and revenue, and **this repo is public**. The file lives on disk as next month's baseline; do not "fix" the gitignore to track it.
 
 ---
 
@@ -139,7 +141,7 @@ Numbered markers belong on the recommendations, where rank is real information. 
 
 ## 7. Output
 
-**`data/audits/YYYY-MM.md`** — sections: caveats table, scoreboard, funnel, what's working, what needs attention, ranked recommendations, parked-with-reasons, data gaps, and **§7 metrics-to-carry-forward** as a flat `key: value` block. That last block is what next month reads; keep the keys stable across months so they stay comparable.
+**`data/audits/YYYY-MM.md`** (local only — see the warning at the top) — sections: caveats table, scoreboard, funnel, what's working, what needs attention, ranked recommendations, parked-with-reasons, data gaps, and **§7 metrics-to-carry-forward** as a flat `key: value` block. That last block is what next month reads; keep the keys stable across months so they stay comparable.
 
 **Artifact** — load `artifact-design` first. Brand tokens live in `src/styles/`: paper `#F9F1EA`, sage-deep `#363F39`, ink `#2E342F`, rosewood `#89494B`. Keep semantic colours (good/warn/critical) separate from the rosewood accent, and use tabular numerals everywhere digits align.
 
