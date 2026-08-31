@@ -7,9 +7,11 @@ import Cta from '../components/Cta.astro';
 import { derivedThumb } from '../lib/video';
 import { FOCUS, isClass } from '../lib/videoFacets';
 import { journalPinUrl } from '../lib/journalPin';
-import katieHello from '../assets/katie-hello.jpg';
+import katiePortrait from '../assets/katie-portrait.jpg';
 import katieHeroWide from '../assets/katie-hero-wide.jpg';
-import katieHeroMobile from '../assets/katie-hero-mobile.jpg';
+// One centred landscape master, shared with the Runner's Reset hero: same
+// framing, and the phone band and that page want the same thing of it.
+import katieWide from '../assets/katie-wide.jpg';
 import katieAbout from '../assets/katie-about.jpg';
 
 /**
@@ -57,8 +59,8 @@ const ogImage = journalPinUrl(Astro.site, {
  */
 const heroWide1x = await getImage({ src: katieHeroWide, width: 1400 });
 const heroWide2x = await getImage({ src: katieHeroWide, width: 2400 });
-const heroMob1x = await getImage({ src: katieHeroMobile, width: 620 });
-const heroMob2x = await getImage({ src: katieHeroMobile, width: 1120 });
+const heroMob1x = await getImage({ src: katieWide, width: 620 });
+const heroMob2x = await getImage({ src: katieWide, width: 1120 });
 
 // Retreat form — the hero capture (moved up from the foot of the page; see the
 // comment on .home-hero below for why the hero no longer forks runner/not-runner).
@@ -80,7 +82,7 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
     <p class="eyebrow home-center">Welcome back</p>
     <div class="app-tiles">
       <a class="app-tile" href="/videos">
-        <span class="app-tile-img"><Image src={katieHello} alt="" width={160} height={160} loading="lazy" /></span>
+        <span class="app-tile-img"><Image src={katiePortrait} alt="" width={160} height={160} loading="lazy" /></span>
         <span class="app-tile-info">
           <h2>YouTube Classes</h2>
           <p>Full-length classes to follow along with — sleep, sore hips, a busy mind, whatever you need today.</p>
