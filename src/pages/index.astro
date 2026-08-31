@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import VideoTile from '../components/VideoTile.astro';
 import Cta from '../components/Cta.astro';
@@ -8,7 +8,8 @@ import { derivedThumb } from '../lib/video';
 import { FOCUS, isClass } from '../lib/videoFacets';
 import { journalPinUrl } from '../lib/journalPin';
 import katieHello from '../assets/katie-hello.jpg';
-import katieHero from '../assets/katie-hero.jpg';
+import katieHeroWide from '../assets/katie-hero-wide.jpg';
+import katieHeroMobile from '../assets/katie-hero-mobile.jpg';
 import katieAbout from '../assets/katie-about.jpg';
 
 /**
@@ -44,6 +45,20 @@ const ogImage = journalPinUrl(Astro.site, {
   eyebrow: 'Slow down, stretch, rest',
   excerpt: 'full-length classes, pose guides and guided routines — free, and a two-hour retreat to begin.',
 });
+
+/**
+ * The hero photo is art-directed, not just resized. The wide crop keeps every
+ * pixel to Katie's left so she lands at ~73% — clear of the scrim the copy sits
+ * on. That framing is useless on a phone, where there is no scrim and she would
+ * be a small figure in a letterbox, so phones get a squarer crop centred on her.
+ *
+ * Hand-rolled <picture> rather than two <Image> tags: a hidden <Image> is still
+ * a second asset the browser may fetch, and this one is the LCP element.
+ */
+const heroWide1x = await getImage({ src: katieHeroWide, width: 1400 });
+const heroWide2x = await getImage({ src: katieHeroWide, width: 2400 });
+const heroMob1x = await getImage({ src: katieHeroMobile, width: 620 });
+const heroMob2x = await getImage({ src: katieHeroMobile, width: 1120 });
 
 // Retreat form — the hero capture (moved up from the foot of the page; see the
 // comment on .home-hero below for why the hero no longer forks runner/not-runner).
@@ -110,21 +125,39 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
 
   {/* ── Hero: introduce Katie, then make the ask ──────────────────────────── */}
   <section class="home-hero">
+    <picture class="hh-photo">
+      <source media="(min-width: 881px)" srcset={`${heroWide1x.src} 1x, ${heroWide2x.src} 2x`} />
+      <img src={heroMob1x.src} srcset={`${heroMob1x.src} 1x, ${heroMob2x.src} 2x`}
+           alt="Katie sitting cross-legged on her mat, with greenery beyond the window"
+           fetchpriority="high" decoding="async" width="620" height="576" />
+    </picture>
+    {/* Paper, not the usual black gradient — the image lightens into the page
+        rather than being darkened, which is the only reason type over a photo
+        reads as this brand rather than as a stock hero. Dropped entirely below
+        the breakpoint: a gradient can't be trusted at phone width. */}
+    <div class="hh-scrim" aria-hidden="true"></div>
     <div class="home-hero-copy">
       <p class="eyebrow">Free classes · pose guides · guided routines</p>
       <h1>Yin yoga to help you slow down and rest.</h1>
-      <p class="home-lede">Full-length classes, a guide to every pose, and routines that keep time for you — for tight hips, a busy mind, and nights when sleep won't come.</p>
+      <p class="home-lede">Full-length classes, a guide to every pose, and routines that keep time for you<span class="lede-tail"> — for tight hips, a busy mind, and nights when sleep won't come</span>.</p>
       {/* Who is asking. The offer used to be the first thing a stranger met; now
           they meet Katie first, and the ask sits in the card below it. Katie's
           own words, from the /about lede, so the two pages stay in one voice. */}
       <p class="home-intro">Hi, I'm Katie and I'm on a mission to help you slow down, be still, and listen. It isn't always easy to get out to a studio — so I meet you where you are, at home and free.</p>
-      {/* One offer, not a fork. This used to branch runner / not-a-runner right
-          here — two decisions stacked before a first-time visitor had even
-          oriented, on top of the "start here" chooser right below. The runner
-          offer still exists — it now anchors the closing capture at the foot
-          of the page instead, and runner-tagged content elsewhere on the site
-          links to it directly. This capture is the broad one that suits
-          nearly any visitor. */}
+    </div>
+    {/* One offer, not a fork. This used to branch runner / not-a-runner right
+        here — two decisions stacked before a first-time visitor had even
+        oriented, on top of the "start here" chooser right below. The runner
+        offer still exists — it now anchors the closing capture at the foot of
+        the page instead. This capture is the broad one that suits any visitor.
+
+        On phones this band is ORDERED above the introduction (see the media
+        query): measured on the previous build, the submit button sat 981px down
+        a ~720px screen, so the only ask on the page was a full screen below the
+        fold. Reordering, trimming the photo and dropping to one field brings it
+        to ~630px. Visual order only — nothing here is focusable before it, so
+        tab order still matches what you see. */}
+    <div class="hh-giftband">
       <div class="home-gift">
         <p class="home-gift-label">A gift from me</p>
         <p class="home-offer">My two-hour retreat — yin, restorative and yoga nidra — yours to keep and come back to.</p>
@@ -137,13 +170,20 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
           <button type="submit" class="btn-cta">Send me the retreat →</button>
         </form>
         <p class="home-done" id="hero-done" hidden>Check your inbox — your two-hour retreat is on its way.</p>
+        <p class="home-fine">No spam, ever. Unsubscribe any time.</p>
         <iframe name="ml_frame_hero" hidden title="Sign-up" tabindex="-1" aria-hidden="true"></iframe>
       </div>
     </div>
-    <div class="home-hero-img">
-      <Image src={katieHero} alt="Katie sitting cross-legged on her mat" width={800} height={533} densities={[1, 2]} loading="eager" />
-    </div>
   </section>
+
+  {/* Phones only, and only once the hero capture has scrolled past. On a phone
+      the offer is otherwise a moment you scroll by once; this keeps it a tap
+      away for the rest of the page. Removed for good after a successful
+      signup. */}
+  <div class="home-sticky" id="home-sticky" hidden>
+    <b>Free two-hour retreat</b>
+    <button type="button" id="sticky-go">Get it →</button>
+  </div>
 
   {/* ── Start here: a clear on-ramp for new visitors ──────────────────────── */}
   {/* Two cards, not three. Routines used to get a third card here AND its own
@@ -248,11 +288,7 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
         fields. Rendering the component instead gets the .membership card, the
         badge, the fine print, the role="status" done-state and the
         screen-reader labels the copy never had. ── */}
-  {/* Constrained to the same 1080/24px column every other band on this page
-      uses. .membership carries no max-width of its own — it is a full-bleed
-      band by default — which left it running edge to edge and noticeably
-      wider than the hero, the start-here cards and the library above it. */}
-  <div class="home-cta"><Cta offer="runners" source="home-footer-runner" /></div>
+  <Cta offer="runners" source="home-footer-runner" />
 </BaseLayout>
 
 <style>
@@ -260,6 +296,8 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
   .app-directory { display: none; }
   :global(html[data-standalone='true']) .app-directory { display: block; }
   :global(html[data-standalone='true']) .home-hero,
+  :global(html[data-standalone='true']) .hh-giftband,
+  :global(html[data-standalone='true']) .home-sticky,
   :global(html[data-standalone='true']) .home-start { display: none; }
 
   .app-directory { max-width: 640px; margin: 0 auto; padding: 28px 20px 12px; }
@@ -275,10 +313,28 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
   .app-tile-info h2 { font-family: var(--display); font-weight: 500; font-size: 18px; color: var(--plum); margin: 0 0 4px; }
   .app-tile-info p { font-size: 14px; line-height: 1.45; color: var(--ink-soft); margin: 0; }
 
-  /* ── Offer hero ── */
-  .home-hero { max-width: 1080px; margin: 0 auto; padding: 56px 24px 40px; display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 48px; align-items: center; }
-  .home-hero h1 { font-family: var(--display); font-weight: 500; font-size: clamp(32px, 4.6vw, 52px); line-height: 1.1; color: var(--plum); margin: 0 0 18px; }
-  .home-lede { font-size: 18px; line-height: 1.62; color: var(--ink-soft); max-width: 52ch; margin: 0 0 26px; }
+  /* ── Offer hero: full-bleed photo, copy on a paper scrim ──
+        Everything below the photo is a percentage of the section on purpose.
+        The scrim has to stay solid past the last word of type AND be gone
+        before Katie's left edge, and those two points are only ~20 points
+        apart — a pixel-based scrim drifts off the type as the viewport grows,
+        because a centred max-width column moves right while the gradient
+        doesn't. Percentages keep the two locked together at every width. */
+  .home-hero { position: relative; padding: 0; }
+  .hh-photo { position: absolute; inset: 0 0 auto 0; height: 600px; display: block; }
+  .hh-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 75% 12%; display: block; }
+  .hh-scrim {
+    position: absolute; inset: 0 0 auto 0; height: 600px;
+    background: linear-gradient(100deg, var(--paper) 0, var(--paper) 43%,
+      color-mix(in srgb, var(--paper) 72%, transparent) 52%, transparent 61%);
+  }
+  .home-hero-copy {
+    position: relative; min-height: 600px; width: 32%; max-width: 520px; margin-left: 5%;
+    display: flex; flex-direction: column; justify-content: center; padding: 52px 0;
+  }
+  .hh-giftband { position: relative; padding: 30px 5% 44px; }
+  .home-hero h1 { font-family: var(--display); font-weight: 500; font-size: clamp(30px, 3.3vw, 42px); line-height: 1.1; color: var(--plum); margin: 0 0 16px; }
+  .home-lede { font-size: 17px; line-height: 1.6; color: var(--ink-soft); margin: 0 0 18px; }
   .home-capture { display: flex; gap: 8px; flex-wrap: wrap; }
   /* border does the contrast work, not the fill — --paper matches the page bg
      behind it in both themes, so a --line border alone reads as invisible in
@@ -286,7 +342,7 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
   .home-capture input { flex: 1 1 140px; padding: 12px 14px; border: 1.5px solid var(--ink-soft); border-radius: 10px; background: var(--paper); color: var(--ink); font: inherit; font-size: 15px; }
   .home-capture .btn-cta { background: #89494B; color: #fff; font-weight: 600; font-size: 15px; padding: 13px 26px; border-radius: 100px; border: none; cursor: pointer; white-space: nowrap; transition: background .15s; }
   .home-capture .btn-cta:hover { background: #6E3A3C; color: #fff; }
-  .home-intro { font-size: 16.5px; line-height: 1.65; color: var(--ink); max-width: 52ch; margin: 0 0 30px; }
+  .home-intro { font-size: 16.5px; line-height: 1.65; color: var(--ink); margin: 0; }
 
   /* The offer, boxed. It used to be a bare paragraph with a gold left-rule and
      the form floating loose beneath it, so the sentence and the fields didn't
@@ -294,14 +350,34 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
      card groups them, and separates the ask from the introduction above it
      without a rule cutting across the hero's photo column. */
   .home-gift {
-    background: var(--paper-2); border: 1px solid var(--line); border-radius: 12px;
-    padding: 22px; max-width: 52ch;
+    background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 24px; max-width: 1032px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr auto; gap: 26px; align-items: center;
   }
   .home-gift-label {
     font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase;
     color: var(--gold-solid); font-weight: 600; margin: 0 0 8px;
   }
-  .home-offer { font-size: 16px; line-height: 1.55; color: var(--ink); margin: 0 0 16px; }
+  .home-offer { font-size: 16px; line-height: 1.55; color: var(--ink); margin: 0; max-width: 46ch; }
+  .home-fine { font-size: 12.5px; color: var(--ink-soft); margin: 10px 0 0; }
+
+  /* ── Sticky phone CTA ── */
+  .home-sticky {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    background: var(--ink); color: var(--paper); display: none;
+    align-items: center; gap: 12px; padding: 12px 16px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+    box-shadow: 0 -6px 20px rgba(46, 52, 47, .18);
+  }
+  .home-sticky b { font-size: 13.5px; font-weight: 600; line-height: 1.3; }
+  /* Fixed rosewood in both themes: the bar's own ground flips with --ink, and
+     white on rosewood clears contrast against either. */
+  .home-sticky button {
+    margin-left: auto; flex: none; background: #89494B; color: #fff; border: none;
+    border-radius: 100px; padding: 10px 17px; font-family: inherit; font-size: 13.5px;
+    font-weight: 600; cursor: pointer;
+  }
+  .home-sticky button:hover { background: #6E3A3C; }
   .home-done { font-size: 15px; color: var(--plum); margin: 12px 0 0; }
   .home-hero-img img { width: 100%; height: 440px; object-fit: cover; object-position: center 40%; border-radius: 18px; display: block; }
 
@@ -334,8 +410,6 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
   .hr-ring { width: 118px; height: 118px; border-radius: 50%; border: 5px solid rgba(249,241,234,.22); border-top-color: #cbaaa7; }
   .hr-label { font-size: 15px; color: rgba(249,241,234,.82); }
 
-  .home-cta { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-
   /* ── Library head (demoted from H1) ── */
   .home-lib-head { text-align: center; padding: 56px 0 8px; }
   .home-lib-head h2 { font-family: var(--display); font-weight: 500; font-size: clamp(28px, 3.4vw, 38px); color: var(--plum); margin: 6px 0 10px; }
@@ -366,9 +440,40 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
   .btn-lib { display: inline-block; border: 1px solid var(--gold); border-radius: 999px; padding: 13px 30px; font-size: 15.5px; font-weight: 600; color: var(--gold-solid); text-decoration: none; transition: background .15s, color .15s; }
   .btn-lib:hover { background: var(--gold-solid); color: var(--paper); }
 
+  /* ── Phones ──
+        The scrim goes, the photo becomes a band, and the gift moves ABOVE the
+        introduction. display:contents flattens the copy column so the band,
+        the headings, the gift and the introduction are all siblings that can
+        be ordered against each other. */
+  @media (max-width: 880px) {
+    .home-hero { display: flex; flex-direction: column; }
+    .hh-photo { position: static; height: 190px; order: 1; }
+    .hh-photo img { object-position: center 26%; }
+    .hh-scrim { display: none; }
+    .home-hero-copy { display: contents; }
+    .home-hero-copy > * { padding-left: 22px; padding-right: 22px; }
+    .home-hero .eyebrow { order: 2; padding-top: 16px; }
+    .lede-tail { display: none; }
+    .home-hero h1 { order: 3; }
+    .home-lede { order: 4; }
+    .hh-giftband { order: 5; padding: 0 22px; }
+    .home-intro { order: 6; padding: 20px 22px 4px; }
+    .home-gift { grid-template-columns: 1fr; gap: 14px; padding: 18px; }
+    .home-capture { flex-direction: column; align-items: stretch; }
+    /* flex-basis resolves against the MAIN axis — in a column that is height,
+       so the desktop `flex: 1 1 140px` was making every field 140px tall. */
+    .home-capture input { flex: 0 0 auto; }
+    /* One field on a phone. The welcome sequence already defaults the merge tag
+       (see email-welcome-sequence.md), so no personalisation breaks — and the
+       band elsewhere on the site has always collected email only. */
+    .home-capture input[type="text"] { display: none; }
+    /* 16px is the floor that stops iOS Safari zooming the page on focus. */
+    .home-capture input, .home-capture .btn-cta { width: 100%; font-size: 16px; }
+    .home-sticky:not([hidden]) { display: flex; }
+  }
+
   @media (max-width: 820px) {
-    .home-hero, .home-routines-inner { grid-template-columns: 1fr; gap: 28px; }
-    .home-hero-img img { height: 300px; }
+    .home-routines-inner { grid-template-columns: 1fr; gap: 28px; }
     .home-cards { grid-template-columns: 1fr; }
     .lib-strip-track img { width: 140px; height: 79px; }
   }
@@ -389,4 +494,23 @@ const ML_ACTION = 'https://assets.mailerlite.com/jsonp/2503148/forms/19266547377
     });
   };
   swap('hero-form', 'hero-done');
+
+  // Sticky phone CTA: appears once the capture has scrolled off the TOP, so it
+  // never covers the form it points at, and never shows before it is reached.
+  const sticky = document.getElementById('home-sticky');
+  const heroForm = document.getElementById('hero-form');
+  if (sticky && heroForm && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(([e]) => {
+      sticky.hidden = !(!e.isIntersecting && e.boundingClientRect.top < 0);
+    });
+    io.observe(heroForm);
+    document.getElementById('sticky-go')?.addEventListener('click', () => {
+      heroForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      (heroForm.querySelector('input[type="email"]') as HTMLInputElement | null)?.focus({ preventScroll: true });
+    });
+    // Once they have signed up there is nothing left to ask for.
+    heroForm.addEventListener('submit', () => {
+      window.setTimeout(() => { io.disconnect(); sticky.hidden = true; }, 400);
+    });
+  }
 </script>

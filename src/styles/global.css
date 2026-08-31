@@ -713,6 +713,14 @@ ul.plain li::before {
 
 /* ---- Membership CTA (video page) — gold ---- */
 .membership { background: var(--ink); color: var(--paper); border-radius: 18px; padding: 38px 28px; text-align: center; margin: 44px 0; }
+/* Dropped straight into a page, .membership and .cta are full-bleed bands with
+   no max-width — on the homepage that left the card running edge to edge while
+   every other section is capped at 1080 with 24px gutters. 1032 is that same
+   inner column, so the card lines up with the content above it. Scoped to a
+   direct body child: nested inside a .wrap the parent already constrains it. */
+body > .membership, body > .cta {
+  width: min(1032px, 100% - 48px); margin-left: auto; margin-right: auto;
+}
 .membership .eyebrow { color: var(--gold); }
 .membership h2 { color: var(--paper); margin-bottom: 12px; }
 .membership p { color: var(--paper); max-width: 46ch; margin: 0 auto 22px; font-size: 15.5px; }
