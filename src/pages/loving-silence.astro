@@ -1,0 +1,159 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+
+// The five classes, in the order they're meant to be met. Pulled from the
+// collection so lengths and titles can never drift from the video records.
+const ORDER = [
+  'full-body-yin-yoga-no-talking-30-min-silent-practice',
+  'yin-yoga-for-hips-no-talking-deep-hip-release-35-min',
+  'yin-yoga-for-lower-back-no-talking-gentle-relief-30-min',
+  'yin-yoga-for-deep-calm-no-talking-vagus-nerve-nervous-system-30-min',
+  'yin-yoga-for-sleep-no-talking-bedtime-practice-30-min',
+];
+
+const WHEN: Record<string, string> = {
+  'full-body-yin-yoga-no-talking-30-min-silent-practice':
+    'When you want the whole body seen to and nothing in particular is shouting.',
+  'yin-yoga-for-hips-no-talking-deep-hip-release-35-min':
+    'After a long walk, a run, or a day that was mostly sitting down.',
+  'yin-yoga-for-lower-back-no-talking-gentle-relief-30-min':
+    'For the low, dull ache that turns up around four in the afternoon.',
+  'yin-yoga-for-deep-calm-no-talking-vagus-nerve-nervous-system-30-min':
+    'For the days you get to the evening still braced, and can’t seem to put it down.',
+  'yin-yoga-for-sleep-no-talking-bedtime-practice-30-min':
+    'The last thing before bed, with the lights already low.',
+};
+
+const all = await getCollection('videos');
+const classes = ORDER.map((slug) => all.find((v) => v.data.slug === slug)).filter(Boolean) as NonNullable<
+  ReturnType<typeof all.find>
+>[];
+---
+
+<BaseLayout
+  title="Loving Silence — A Silent Yin Yoga Series for Members"
+  description="Five silent Yin Yoga classes for members. I settle you into each shape, and then I stop talking — so the quiet is yours. Full body, hips, lower back, deep calm and sleep."
+>
+  <article class="ls">
+    <header class="ls-hero">
+      <p class="eyebrow">A new series for members</p>
+      <h1>Loving Silence</h1>
+      <p class="ls-lede">
+        Five classes where I settle you into each shape — and then I stop talking. No cues counting you down, no
+        voice in your ear reminding you where you are. Just the shape, your breath, and a long stretch of quiet
+        to be in.
+      </p>
+    </header>
+
+    <div class="ls-body">
+      <h2>Why silence</h2>
+      <p>
+        One of my core philosophies is minimal cueing — telling you what you need to know and nothing more. This
+        series takes that as far as it goes. You get a short, warm introduction and clear instructions into each
+        pose, and then the class holds its tongue and lets you get on with it.
+      </p>
+      <p>
+        Some people find that a relief straight away. Others find the first minute or two strange, and then would
+        not go back. If you have ever wanted to practise without being spoken to, or you practise late at night
+        and would rather not have a voice in the room, this is for you. And if you would rather be talked through
+        it, everything else on the channel still is — nothing has changed there.
+      </p>
+      <p>
+        We still only ever aim for about 60&ndash;80% of what you can feel, and you are still welcome to come out
+        of anything early. You do not need to wait for me to tell you.
+      </p>
+
+      <h2>The five classes</h2>
+      <ol class="ls-list">
+        {
+          classes.map((c) => (
+            <li>
+              <a href={`/videos/${c.data.slug}`}>
+                <span class="ls-name">{c.data.display_title ?? c.data.title}</span>
+                <span class="ls-len">{c.data.display_length ?? `${c.data.length_minutes} min`}</span>
+              </a>
+              <p class="ls-when">{WHEN[c.data.slug]}</p>
+            </li>
+          ))
+        }
+      </ol>
+
+      <p class="ls-note">
+        There is no order to follow and nothing to keep up with. Pick the one that matches the day you have had.
+      </p>
+
+      <section class="ls-cta">
+        <p class="eyebrow">How to watch</p>
+        <h3>These classes are for channel members</h3>
+        <p class="ls-cta-sub">
+          Membership is what keeps these classes coming, and it is where the longer, quieter practices live. If
+          you are already a member, they are waiting for you — thank you, genuinely.
+        </p>
+        <a class="btn-cta" href={SITE.membershipUrl} rel="noopener">Join the membership on YouTube</a>
+        <p class="ls-fine">
+          Not ready for that? There is a great deal here that is free — the whole <a href="/">class library</a>,
+          the <a href="/poses">pose guide</a> and the <a href="/routines">guided routines</a> with their hold
+          timers.
+        </p>
+      </section>
+
+      <p class="ls-signoff">Take good care of yourself,<span class="ls-sig">katie</span></p>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .ls { max-width: 760px; margin: 0 auto; padding: 8px 24px 80px; }
+  .ls-hero { padding: 48px 0 8px; }
+  .ls-hero h1 { margin: 6px 0 18px; }
+  .ls-lede { font-size: 1.12rem; line-height: 1.7; color: var(--ink-soft, inherit); max-width: 60ch; }
+  .ls-body h2 { margin: 44px 0 12px; }
+  .ls-body p { line-height: 1.75; max-width: 62ch; }
+
+  .ls-list { list-style: none; margin: 20px 0 0; padding: 0; counter-reset: ls; }
+  .ls-list li { counter-increment: ls; padding: 16px 0; border-top: 1px solid var(--rule, rgba(0, 0, 0, 0.1)); }
+  .ls-list li:last-child { border-bottom: 1px solid var(--rule, rgba(0, 0, 0, 0.1)); }
+  .ls-list a {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .ls-list a::before { content: counter(ls) '.'; opacity: 0.45; font-variant-numeric: tabular-nums; }
+  .ls-name { font-weight: 600; }
+  .ls-list a:hover .ls-name { text-decoration: underline; }
+  .ls-len { margin-left: auto; opacity: 0.6; font-size: 0.9rem; white-space: nowrap; }
+  .ls-when { margin: 6px 0 0 24px; opacity: 0.75; font-size: 0.95rem; }
+
+  .ls-note { margin-top: 22px; opacity: 0.8; }
+
+  .ls-cta {
+    margin: 48px 0 0;
+    padding: 28px;
+    border-radius: 14px;
+    background: var(--card, rgba(0, 0, 0, 0.04));
+  }
+  .ls-cta h3 { margin: 6px 0 10px; }
+  .ls-cta-sub { margin: 0 0 18px; }
+  .ls-cta .btn-cta { display: inline-block; }
+  .ls-fine { margin: 16px 0 0; font-size: 0.92rem; opacity: 0.75; }
+
+  .ls-signoff { font-size: 17px; color: var(--ink-soft); line-height: 1.5; margin-top: 44px; }
+  .ls-sig {
+    display: block;
+    font-family: var(--script);
+    font-size: 46px;
+    color: var(--gold);
+    line-height: 1.1;
+    margin-top: 24px;
+    padding-top: 6px;
+  }
+
+  @media (max-width: 640px) {
+    .ls { padding: 4px 18px 64px; }
+    .ls-when { margin-left: 0; }
+  }
+</style>
