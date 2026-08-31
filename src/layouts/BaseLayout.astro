@@ -345,7 +345,31 @@ const nav: { href: string; label: string; match: (p: string) => boolean; product
         }
       })();
 
-      if (isIOS && !isStandalone && !dismissed) {
+      /**
+       * Two gates, both added after a real iPhone screenshot showed this banner
+       * sitting exactly on top of the homepage's email capture — the one thing
+       * the page exists to do — on a first visit.
+       *
+       * 1. Not on the homepage at all. That page pins its own bottom bar for the
+       *    retreat offer, and two things cannot own the bottom of the screen.
+       *    Every other page still nudges.
+       * 2. Not on a first visit anywhere. Installing to the home screen is a
+       *    retention act; asking a stranger to do it before they have read
+       *    anything spends the most valuable strip of the screen on the least
+       *    likely yes.
+       */
+      const onHome = location.pathname === '/' || location.pathname === '';
+      const visits = (() => {
+        try {
+          const v = Number(localStorage.getItem('visit-count') || '0') + 1;
+          localStorage.setItem('visit-count', String(v));
+          return v;
+        } catch (e) {
+          return 1;
+        }
+      })();
+
+      if (isIOS && !isStandalone && !dismissed && !onHome && visits > 1) {
         const banner = document.getElementById('ios-install-banner');
         banner?.classList.remove('is-hidden');
         document.getElementById('ios-install-dismiss')?.addEventListener('click', () => {
