@@ -18,15 +18,15 @@ body_areas: ["lower back", "spine", "hips", "side body"]
 props: ["bolster", "block", "blanket"]
 poses_featured: ["constructive-rest", "sphinx", "crocodile", "reclined-twist", "banana", "wind-relieving", "corpse"]
 chapters:
+  # Timings mirror the chapter markers on YouTube so a click here lands where a
+  # viewer's chapter list says it should.
   - { time: "0:00",  seconds: 0,    title: "Welcome to Loving Silence" }
-  - { time: "0:33",  seconds: 33,   title: "Settling in · Constructive Rest (2 min)",       pose: "constructive-rest" }
-  - { time: "2:44",  seconds: 164,  title: "Gentle backbend · Sphinx (3 min)",              pose: "sphinx" }
-  - { time: "6:04",  seconds: 364,  title: "Rebound · Crocodile",                           pose: "crocodile" }
-  - { time: "7:22",  seconds: 442,  title: "Rotation · Reclined Twist (2.5 min each side)", pose: "reclined-twist" }
-  - { time: "14:24", seconds: 864,  title: "Side bend · Banana (2.5 min each side)",        pose: "banana" }
-  - { time: "21:02", seconds: 1262, title: "Gentle rounding · Knees to Chest (3 min)",      pose: "wind-relieving" }
-  - { time: "24:07", seconds: 1447, title: "Corpse · closing rest",                         pose: "corpse" }
-  - { time: "27:24", seconds: 1644, title: "Thank you" }
+  - { time: "0:30",  seconds: 30,   title: "Settling in · Constructive Rest (2 min)",        pose: "constructive-rest" }
+  - { time: "2:40",  seconds: 160,  title: "Gentle backbend · Sphinx, then Crocodile",       poses: ["sphinx", "crocodile"] }
+  - { time: "7:37",  seconds: 457,  title: "Rotation · Reclined Twist (2.5 min each side)",  pose: "reclined-twist" }
+  - { time: "14:20", seconds: 860,  title: "Side bend · Banana (2.5 min each side)",         pose: "banana" }
+  - { time: "21:00", seconds: 1260, title: "Gentle rounding · Knees to Chest (3 min)",       pose: "wind-relieving" }
+  - { time: "24:00", seconds: 1440, title: "Corpse · closing rest",                          pose: "corpse" }
 seo_title: "Yin Yoga for Lower Back — Silent, No Talking Practice"
 seo_description: "A gentle silent Yin Yoga class for the lower back. A soft backbend, a twist, a side bend and one rounding at the end — the directions a desk day never gives you."
 membership_cta: "Inside the membership, this class is part of the Hips & Lower Back program — follow it and become someone who moves through the day loose and easy."

@@ -17,14 +17,15 @@ body_areas: ["hips", "groin", "lower back", "quads"]
 props: ["bolster", "block", "blanket"]
 poses_featured: ["constructive-rest", "butterfly", "sleeping-swan", "reclined-swan", "dragon", "reclined-twist", "corpse"]
 chapters:
+  # Timings mirror the chapter markers on YouTube so a click here lands where a
+  # viewer's chapter list says it should.
   - { time: "0:00",  seconds: 0,    title: "Welcome to Loving Silence" }
-  - { time: "0:32",  seconds: 32,   title: "Settling in · Constructive Rest (2 min)",              pose: "constructive-rest" }
-  - { time: "2:46",  seconds: 166,  title: "Inner thighs · Butterfly (3 min)",                     pose: "butterfly" }
+  - { time: "0:31",  seconds: 31,   title: "Settling in · Constructive Rest (2 min)",              pose: "constructive-rest" }
+  - { time: "2:41",  seconds: 161,  title: "Inner thighs · Butterfly (3 min)",                     pose: "butterfly" }
   - { time: "8:09",  seconds: 489,  title: "Outer hips · Sleeping Swan (3 min each side)",         poses: ["sleeping-swan", "reclined-swan"] }
-  - { time: "17:35", seconds: 1055, title: "Hip flexors · Dragon (2.5 min each side)",             pose: "dragon" }
-  - { time: "25:04", seconds: 1504, title: "Spine & outer hip · Reclined Twist (2.5 min each side)", pose: "reclined-twist" }
-  - { time: "31:45", seconds: 1905, title: "Corpse · closing rest",                                pose: "corpse" }
-  - { time: "34:11", seconds: 2051, title: "Thank you" }
+  - { time: "17:30", seconds: 1050, title: "Hip flexors · Dragon (2.5 min each side)",             pose: "dragon" }
+  - { time: "25:00", seconds: 1500, title: "Spine & outer hip · Reclined Twist (2.5 min each side)", pose: "reclined-twist" }
+  - { time: "31:50", seconds: 1910, title: "Corpse · closing rest",                                pose: "corpse" }
 seo_title: "Yin Yoga for Hips — Silent, No Talking Practice"
 seo_description: "A silent Yin Yoga class for tight hips. Butterfly, sleeping swan, dragon and reclined twist held around three minutes each, with no cueing once you have settled in."
 membership_cta: "Inside the membership, this class is part of the Hips & Lower Back program — follow it and become someone who moves through the day loose and easy."
