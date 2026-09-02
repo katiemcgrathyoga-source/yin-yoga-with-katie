@@ -1,8 +1,12 @@
 # Monthly note — 1 September 2026
 
 **Type:** Regular campaign in MailerLite (not the welcome automation).
-**Send to:** Newsletter master group (all 22). Not segmented — too small to split,
-and most of these people joined in August.
+**Send to:** **All active subscribers — 44.** Confirmed against the recipients
+screen on 2 Sep: All active 44, Newsletter 43, Free class 38, Runners 7,
+runner-reset-buyer 1. Newsletter is one short of the full list, so targeting it
+would silently drop somebody. Nothing in this email is runner- or member-specific,
+so there is no reason to segment at this size.
+
 **Primary link:** `/loving-silence`. Secondary: `/routines/the-outside-line`.
 
 Review artifact: https://claude.ai/code/artifact/60297316-d3cc-49ab-8f2e-42e589b26ed0
@@ -10,7 +14,7 @@ Review artifact: https://claude.ai/code/artifact/60297316-d3cc-49ab-8f2e-42e589b
 Voice check: warm, plain, unhurried, options not commands, no emoji, no hype,
 no medical claims, sign-off *take good care of yourself*.
 
-**Editorial note.** Most of these 22 are not channel members, so the series is
+**Editorial note.** Most of these 44 are not channel members, so the series is
 written as *news about what I made*, not as a pitch — and the free thing follows
 immediately after it, so nobody reaches the end having been sold to and given
 nothing. The join link lives on `/loving-silence`, not in the email.
@@ -48,9 +52,9 @@ strange and then wouldn't go back. There's a full body class, one for hips, one 
 the lower back, one for the evenings you can't seem to put the day down, and one for
 bed.
 
-They're on the channel for members from today. [Have a read of what they are and
-who they suit](https://yinyogawithkatie.com/loving-silence) — and if you'd rather be
-talked through your practice, nothing has changed, everything else still is.
+They're on the channel for members now. [Have a read of what they are and who they
+suit](https://yinyogawithkatie.com/loving-silence) — and if you'd rather be talked
+through your practice, nothing has changed, everything else still is.
 
 **And something free, for the outside of your knee**
 
@@ -69,6 +73,13 @@ I also wrote down [why you can't actually stretch an IT
 band](https://yinyogawithkatie.com/blog/can-you-stretch-your-it-band), and what to do
 instead.
 
+**One small thing**
+
+You can now add the site to your phone's home screen, and it opens like an app —
+the classes, the pose guides and that timer all one tap away, with no browser to
+hunt through. On an iPhone: open the site in Safari, tap Share, then *Add to Home
+Screen*. On Android, Chrome will usually offer it to you.
+
 **Also in August**
 
 [30 Min Yin Yoga for Stress Relief](https://www.youtube.com/watch?v=60m0zDD20DM) for
@@ -82,34 +93,37 @@ Katie
 
 ---
 
-## Members videos launching tomorrow
+## The Loving Silence series
 
-| Class | Id | Runtime | Status now | Needs |
-|---|---|---|---|---|
-| Full Body | `RxaTXn3PiBI` | 38:41 | private | title says "30 min", runs 38:41 — retitle or accept |
-| Hips | `AH4NYeX4CsM` | 34:44 | private | set visible to members |
-| Lower Back | `yUCZzPaLqs4` | 27:56 | private | set visible to members |
-| Deep Calm | `aSqx53f2jjE` | 29:57 | unlisted | set visible to members |
-| Sleep | `Dls_iwxZ1CM` / `0dF5tEeQW1w` | 30:48 | duplicate upload | delete one; site record points at `Dls_iwxZ1CM` |
+All five published, members-only, and all five fully written up on the site.
 
-**Still needed from Katie:** the pose sequence for each of the five. There is no
-narration to transcribe, so the sequences cannot be pulled automatically — and
-without them the five class pages stay thin and noindex.
+| Class | Id | Runtime | Site page |
+|---|---|---|---|
+| Full Body | `RxaTXn3PiBI` | 38:41 | enriched, indexable |
+| Hips | `AH4NYeX4CsM` | 34:44 | enriched; chapter timings match YouTube |
+| Lower Back | `yUCZzPaLqs4` | 27:56 | enriched; chapter timings match YouTube |
+| Deep Calm | `aSqx53f2jjE` | 29:57 | enriched, indexable |
+| Sleep | `0dF5tEeQW1w` | 30:48 | enriched; re-pointed off the deleted duplicate |
+
+Loose ends, both cosmetic: the playlist link in the *Deep Calm* description looks
+truncated (13 characters where a playlist id is 34), and *Full Body* is titled
+"30 min" for a 38:41 class. The site shows the true length either way.
 
 ---
 
 ## Before you send
 
-- [ ] **All five classes visible to members on YouTube.** The email says "from
-      today". It has to be true when it lands.
-- [ ] **Duplicate Sleep upload deleted**, surviving id matching the site record.
-- [ ] **Site deployed.** The landing page, the routine and the journal post are all
-      committed but unpushed. Every link in this email needs them live.
-- [ ] **Katie's voice pass on the journal post.** It is published as drafted.
+- [x] **All five classes published and members-only.**
+- [x] **Duplicate Sleep upload deleted**; site record re-pointed at `0dF5tEeQW1w`.
+- [ ] **Push `5937f9c`** — it carries the Sleep id fix. Until it deploys,
+      `/loving-silence` links one class to a deleted video.
+- [ ] **Katie's voice pass on the journal post.** It is live as drafted.
+- [ ] **Send a test to yourself first**, and open it on a phone.
 - [ ] `{$name}` has a default set, or it reads "Hi ,".
-- [ ] **Pin the journal post by hand at `/pins`** — the calendar won't front-queue a
+- [ ] **Schedule, don't send now.** Best window is Friday 15:00-18:00 UTC
+      (4 Sep) - the middle of the night in Taipei, so manual sending will miss it.
+- [ ] **Pin the journal post by hand at `/pins`** - the calendar won't front-queue a
       new post. Both angles.
-- [ ] Preview on mobile — MailerLite's desktop preview lies about link spacing.
 
 ---
 
