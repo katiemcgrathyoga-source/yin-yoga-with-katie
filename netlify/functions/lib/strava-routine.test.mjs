@@ -1,6 +1,6 @@
 // node netlify/functions/lib/strava-routine.test.mjs
 import assert from 'node:assert/strict';
-import { classify, pickRoutine, describe, findTag, plan, ROUTINES, MARKER } from './strava-routine.mjs';
+import { classify, pickRoutine, describe, findTag, plan, matchTitle, ROUTINES, MARKER } from './strava-routine.mjs';
 
 const run = (over) => ({ id: 1, name: 'Morning Run', description: '', type: 'Run', sport_type: 'Run', distance: 8000, total_elevation_gain: 40, workout_type: 0, ...over });
 
@@ -25,7 +25,7 @@ for (const id of [1, 2, 3, 4, 5, 6]) for (const wt of [0, 1, 2, 3]) {
   assert.match(p.url, /^https:\/\/yinyogawithkatie\.com\/routines\/[a-z-]+\/$/);
 }
 
-// A named routine wins, aliases resolve, and a non-run with a named routine still works
+// A named routine wins, aliases resolve
 assert.equal(pickRoutine(run(), 'lower-back-release').slug, 'lower-back-release');
 assert.equal(findTag(run({ name: 'Easy 8k +yin hips' })).slug, 'deep-hips-lower-body');
 assert.equal(findTag(run({ name: 'Easy 8k +YIN outside-line' })).slug, 'the-outside-line');
@@ -34,11 +34,11 @@ assert.equal(findTag(run({ name: 'Easy 8k +yin tonight' })).matched, '+yin', 'on
 assert.equal(findTag(run({ description: 'felt fine +yin' })).where, 'description');
 assert.equal(findTag(run()), null);
 
-// Description text
+// Description text: one casual line and the link, nothing else
 const block = describe(pickRoutine(run({ id: 2, workout_type: 1 })));
-assert.match(block, /^Race legs\./);
-assert.match(block, /The Day After, 23 min/);
-assert.match(block, /\/runners$/);
+assert.equal(block, "Race legs. Tomorrow morning it's Katie's The Day After, 23 min:\nhttps://yinyogawithkatie.com/routines/the-day-after/");
+assert.doesNotMatch(block, /runners|follow-along/);
+assert.ok(block.includes(MARKER));
 
 // plan(): nothing without a tag
 assert.equal(plan(run()), null);
@@ -60,20 +60,16 @@ assert.doesNotMatch(p.description, /\+yin/);
 // plan(): tag alone, empty description -> block only
 p = plan(run({ name: '+yin', description: '' }));
 assert.equal(p.name, '');
-assert.match(p.description, /^Post-run yin:/);
+assert.match(p.description, /^Then \d+ min of yin, Katie's /);
 
 // plan(): idempotent once the block is there
 assert.equal(plan(run({ name: 'Easy 8k +yin', description: `Done\n\n${block}` })), null);
-assert.ok(block.includes(MARKER));
 
 // plan(): a ride tagged with a named routine works; a ride with bare +yin does not
 assert.equal(plan({ id: 9, sport_type: 'Ride', name: 'Spin +yin back', description: '' }).pick.slug, 'lower-back-release');
 assert.equal(plan({ id: 9, sport_type: 'Ride', name: 'Spin +yin', description: '' }), null);
 
-console.log('strava-routine: all checks passed');
-
 // ---- yoga activities -------------------------------------------------------
-import { matchTitle } from './strava-routine.mjs';
 const yoga = (name, over = {}) => ({ id: 42, sport_type: 'Yoga', type: 'Yoga', name, description: '', elapsed_time: 1560, ...over });
 
 assert.equal(matchTitle('The Outside Line'), 'the-outside-line');
@@ -88,12 +84,11 @@ assert.equal(matchTitle('Morning Yoga'), null);
 let y = plan(yoga('The Outside Line'));
 assert.equal(y.name, undefined, 'title untouched');
 assert.equal(y.pick.kind, 'yoga');
-assert.match(y.description, /^Follow along with the timer: The Outside Line, 26 min/);
-assert.match(y.description, /\/routines\/the-outside-line\//);
-assert.match(y.description, /\/runners$/);
+assert.equal(y.description, "Katie's The Outside Line, 26 min. Poses and timer here if you want to try it:\nhttps://yinyogawithkatie.com/routines/the-outside-line/");
 
 y = plan(yoga('hips', { description: 'Slow one after the long run.' }));
-assert.match(y.description, /^Slow one after the long run\.\n\nFollow along/);
+assert.match(y.description, /^Slow one after the long run\.\n\nKatie's Deep Hips/);
 assert.equal(plan(yoga('Yoga')), null);
 assert.equal(plan(yoga('The Outside Line', { description: `x\n\n${block}` })), null, 'idempotent');
-console.log('strava-routine (yoga): all checks passed');
+
+console.log('strava-routine: all checks passed');

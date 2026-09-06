@@ -1,17 +1,16 @@
 # Strava: the yin routine as its own activity
 
 Log the yin as a separate **Yoga** activity in the Strava app, titled with the
-routine's name, and a Netlify function fills its description with two lines: the
-routine with its follow-along timer, and the free post-run class for runners.
+routine's name, and a Netlify function writes one plain line into its description
+with the routine link. No pitch; the routine page carries the runner offer.
 Everyone following Kevin sees it, the same way a gym session shows up. Runs are
 never touched, so nothing looks automatic and nothing claims yin he didn't do.
 
 What a follower sees on a Yoga activity titled "The Outside Line":
 
 ```
-Follow along with the timer: The Outside Line, 26 min, follow-along timer
+Katie's The Outside Line, 26 min. Poses and timer here if you want to try it:
 https://yinyogawithkatie.com/routines/the-outside-line/
-Free 15-min post-run yin class for runners: https://yinyogawithkatie.com/runners
 ```
 
 ## Using it
