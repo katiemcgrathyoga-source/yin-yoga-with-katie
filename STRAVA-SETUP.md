@@ -1,23 +1,52 @@
-# Strava: the yin link on every run
+# Strava: the yin routine as its own activity
 
-When Kevin uploads a run, a Netlify function appends two lines to its description:
-the matching public yin routine (with its follow-along timer) and the free
-post-run class for runners. Every follower sees it in their feed. Nothing else
-changes on the activity, and it only ever touches Kevin's own runs.
+Log the yin as a separate **Yoga** activity in the Strava app, titled with the
+routine's name, and a Netlify function fills its description with two lines: the
+routine with its follow-along timer, and the free post-run class for runners.
+Everyone following Kevin sees it, the same way a gym session shows up. Runs are
+never touched, so nothing looks automatic and nothing claims yin he didn't do.
 
-What it writes, for an easy run:
+What a follower sees on a Yoga activity titled "The Outside Line":
 
 ```
-Post-run yin: The Outside Line, 26 min, follow-along timer
+Follow along with the timer: The Outside Line, 26 min, follow-along timer
 https://yinyogawithkatie.com/routines/the-outside-line/
 Free 15-min post-run yin class for runners: https://yinyogawithkatie.com/runners
 ```
 
-How it chooses (`netlify/functions/lib/strava-routine.mjs`):
+## Using it
+
+In the Strava app: **+ → Manual activity → Yoga**, set the time, and title it:
+
+| Title contains | Routine |
+|---|---|
+| `The Outside Line`, `outside` | The Outside Line |
+| `Deep Hips`, `hips` | Deep Hips & Lower Body |
+| `Deep Legs`, `legs`, `hamstrings` | Deep Legs & Hamstrings |
+| `Lower-Back Release`, `back` | Lower-Back Release |
+| `The Day After`, `day-after` | The Day After |
+| `Full-Body Reset`, `full`, `reset` | Full-Body Reset |
+
+Anything else you write in the title stays ("Evening yin: outside" works). A Yoga
+activity whose title doesn't name a routine is left alone. Add the muscle-map
+photo in the same screen.
+
+**Fallback, for keeping it on the run:** `+yin` in a run's title (or `+yin hips`
+to name one) writes the same block onto the run and removes the tag. `+yin` alone
+picks from the run: race or long run → The Day After, hills → Deep Legs &
+Hamstrings, easy runs rotate through the hip and back routines. Put it in the
+**title**, which also works when edited later; a tag typed only in the
+description works at upload time.
+
+**The muscle-map photo** is yours to add from the Strava app, since the API
+can't upload photos. One image per routine, front and back, worked muscles in
+rose quartz: `design/strava-maps/<routine>.jpg`. Keep the six on your phone.
+
+How `+yin` chooses on its own (`netlify/functions/lib/strava-routine.mjs`):
 
 | Run | Routine |
 |---|---|
-| Race (tagged Race on Strava) | The Day After, framed as "tomorrow morning" |
+| Race (tagged Race on Strava) | The Day After |
 | Long run (tagged Long, or 16 km+) | The Day After / Deep Hips & Lower Body, alternating |
 | Workout (tagged Workout) | Deep Legs & Hamstrings / The Day After |
 | Hilly (12 m+ of climb per km, 5 km+) | Deep Legs & Hamstrings |
@@ -58,18 +87,18 @@ paywall; the public routine pages carry the runner offer themselves.
    one subscription per app is allowed; to see it, `GET` the same URL with
    `client_id` and `client_secret` as query params.
 
-5. **Go for a run.** Upload it; the description should update within a few
-   seconds of Strava's own processing. If it doesn't, Netlify → Logs → Functions →
+5. **Log a yoga activity** titled "The Outside Line"; the description gains the
+   block within a few seconds. If it doesn't, Netlify → Logs → Functions →
    `strava-webhook` says why, in plain words.
 
 ## Things to know
 
-- **Edit the description freely.** The block is appended below whatever Kevin
-  writes on upload. If he edits later, Strava sends an `update` event, which is
-  ignored, so nothing is re-added or overwritten.
+- **Runs without `+yin` are never touched**, and neither is a yoga activity that doesn't name a routine. Edit anything freely.
 - **Retries are safe.** If Strava retries an event, the marker
   `yinyogawithkatie.com` in the description stops a second copy.
-- **Non-runs are ignored** (rides, walks, swims). Trail and treadmill runs count.
+- **Non-runs** only get a block if the tag names a routine (`+yin back` on a
+  ride works; bare `+yin` on a ride does nothing). Trail and treadmill runs count
+  as runs.
 - **Tokens** live in Netlify Blobs (store `strava`, key `tokens`) and refresh
   themselves. To disconnect, revoke the app at https://www.strava.com/settings/apps
   and delete the subscription:

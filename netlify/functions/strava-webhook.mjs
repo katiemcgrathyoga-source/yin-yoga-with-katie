@@ -1,22 +1,25 @@
 import { getStore } from '@netlify/blobs';
-import { pickRoutine, describe, mergeDescription } from './lib/strava-routine.mjs';
+import { plan } from './lib/strava-routine.mjs';
 
 /**
- * Strava webhook: when Kevin uploads a run, append the matching yin routine
- * link to its description.
+ * Strava webhook: write the yin routine link into an activity Kevin logged.
  *   GET  /api/strava-webhook   Strava's one-time subscription check
  *   POST /api/strava-webhook   activity events
  *
- * Why: every follower sees the run in their feed, and that feed is the runner
- * audience the course is for. A link on every run is daily distribution that
- * costs nothing once it's wired, and can't be forgotten.
+ * Manual, not automatic: Kevin runs most days and a link on every run would
+ * be noise. Two ways in, both his choice (see lib/strava-routine.mjs):
+ *   1. a separate Yoga activity titled with the routine ("The Outside Line",
+ *      "hips") — the preferred one; it carries the muscle-map photo too;
+ *   2. `+yin` (or `+yin hips`…) in a run's title, for keeping it on the run.
+ * Anything else is acknowledged and left alone.
  *
- * Strava wants a 200 within two seconds and retries otherwise, so the work is
- * kept to two API calls on the usual path (token refresh only when expired) and
- * is idempotent: a description that already carries our marker is left alone.
+ * Both `create` and `update` events are handled, so a title fixed after
+ * upload still fires. (Strava only sends update events for title, type and
+ * privacy changes, so a change to the description alone won't.)
  *
- * Only `create` events for Kevin's athlete id are acted on. Other athletes,
- * updates, deletes, and non-run activities are acknowledged and ignored.
+ * Strava wants a 200 within two seconds and retries otherwise, so the usual
+ * path is two API calls (token refresh only when expired) and the write is
+ * idempotent: a description already carrying our marker is left alone.
  */
 export default async (req) => {
   const VERIFY = process.env.STRAVA_VERIFY_TOKEN;
@@ -43,7 +46,8 @@ export default async (req) => {
   }
 
   // Always 200 from here on: Strava treats anything else as "retry me".
-  if (event.object_type !== 'activity' || event.aspect_type !== 'create') return ok('ignored: not an activity create');
+  if (event.object_type !== 'activity') return ok('ignored: not an activity');
+  if (event.aspect_type !== 'create' && event.aspect_type !== 'update') return ok(`ignored: ${event.aspect_type}`);
   if (ATHLETE && String(event.owner_id) !== String(ATHLETE)) return ok('ignored: other athlete');
 
   try {
@@ -60,20 +64,19 @@ export default async (req) => {
     if (!res.ok) return ok(`fetch activity ${id} failed: ${res.status}`, true);
     const activity = await res.json();
 
-    const pick = pickRoutine(activity);
-    if (!pick) return ok(`ignored: ${activity.sport_type || activity.type}`);
+    const change = plan(activity);
+    if (!change) return ok(`activity ${id}: nothing to do (no routine named, or already done)`);
 
-    const description = mergeDescription(activity.description, describe(pick));
-    if (description === null) return ok('already done');
-
+    const body = { description: change.description };
+    if (change.name !== undefined) body.name = change.name;
     const put = await fetch(`https://www.strava.com/api/v3/activities/${id}`, {
       method: 'PUT',
       headers: { Authorization: `Bearer ${access}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ description }),
+      body: JSON.stringify(body),
     });
     if (!put.ok) return ok(`update activity ${id} failed: ${put.status} ${await put.text()}`, true);
 
-    return ok(`activity ${id} (${pick.kind}) -> ${pick.slug}`);
+    return ok(`activity ${id} (${change.pick.kind}) -> ${change.pick.slug}`);
   } catch (err) {
     return ok(`error: ${err?.message || err}`, true);
   }

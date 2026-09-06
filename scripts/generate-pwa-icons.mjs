@@ -35,9 +35,15 @@ function leafSvg({ size = 512, safe = false, opaque = false } = {}) {
   const bg = opaque
     ? `<rect width="${size}" height="${size}" fill="${SAGE_DEEP}"/>`
     : `<rect width="${size}" height="${size}" rx="${size * 0.18}" fill="${SAGE_DEEP}"/>`;
+  // The three leaves point up, down-right and down-left, so the motif's bounding
+  // box runs from c - r to c + r/2: it sat visibly high in the square (seen on
+  // Strava's app-icon preview). Shift it down by a quarter radius so the box,
+  // not the origin, is centred. A full quarter reads too low (the mass is in
+  // the two lower leaves), so it is nudged to the optical centre instead.
+  const dy = r * 0.12;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}">
     ${bg}
-    <g fill="${OAT}">
+    <g fill="${OAT}" transform="translate(0 ${dy})">
       <path d="${leaf(-90)}"/>
       <path d="${leaf(30)}"/>
       <path d="${leaf(150)}"/>
@@ -63,4 +69,8 @@ writeFileSync(
   toPng(leafSvg({ size: 512, safe: false, opaque: true }), 180),
 );
 
-console.log('Wrote public/icons/{icon-192,icon-512,icon-512-maskable,apple-touch-icon}.png');
+// Strava app icon: shown circle-cropped, so use the maskable safe zone, opaque.
+const out = process.argv[2];
+if (out) writeFileSync(out, toPng(leafSvg({ size: 512, safe: true, opaque: true }), 512));
+
+console.log('Wrote public/icons/{icon-192,icon-512,icon-512-maskable,apple-touch-icon}.png' + (out ? ` and ${out}` : ''));
