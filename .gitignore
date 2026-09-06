@@ -70,3 +70,6 @@ design/pin-polish-review.html
 design/pin-second-pass-review.html
 design/pin-plate-review.html
 design/pin-calendar-review.html
+
+# MailerLite raw dump (full emails) from scripts/mailerlite-report.mjs --dump
+data/audits/mailerlite-subscribers-*.json

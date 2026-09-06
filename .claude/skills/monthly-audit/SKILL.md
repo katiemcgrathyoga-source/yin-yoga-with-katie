@@ -73,6 +73,18 @@ Discount internal accounts — Katie's, Kevin's, and any `source: manual` grant 
 
 Polar is the live payment provider. If `POLAR_ACCESS_TOKEN` is in `.env`, pull orders; otherwise it goes on the checklist.
 
+### Email (MailerLite)
+
+```bash
+npm run mailerlite -- --days 30 --out data/audits/mailerlite-YYYY-MM.md
+```
+
+Needs `MAILERLITE_API_KEY` in `.env`; without it the script says so and exits, and
+MailerLite goes on the checklist. Read-only. It reports active/unconfirmed/unsubscribed
+totals, per-group counts, MailerLite's own `source` (form vs import), the site's
+`signup_source` per page, a by-day series for the window, and a junk scan. Emails are
+masked; `--dump` writes the raw JSON (gitignored) if you need to look closer.
+
 ---
 
 ## 3. The checklist for everything else
@@ -84,7 +96,7 @@ Send this in one message so Kevin gathers in a single pass. Screenshots are fine
 
 **Netlify** — pageviews, unique visitors, top pages, top sources. 7-day window only.
 
-**MailerLite** — total subscribers, signups this month, unsubscribes, per-group counts, last campaign open/click.
+**MailerLite** — only if `npm run mailerlite` could not run: total subscribers, signups this month, unsubscribes, per-group counts. Always ask for **last campaign open/click** — the API pull does not cover campaigns.
 
 **Pinterest** — impressions, outbound clicks, saves, followers, top boards by outbound clicks, top pins by saves.
 
