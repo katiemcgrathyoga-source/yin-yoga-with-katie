@@ -15,7 +15,7 @@
  * so the custom routine builder can drive it with a sequence built in the browser.
  */
 interface Hold { name: string; slug: string; img: string; seconds: number; note?: string; sideLabel?: string; rebound?: number; }
-interface Props { title: string; holds: Hold[]; shareUrl?: string; imageUrl?: string; share?: boolean; }
+interface Props { title: string; holds: Hold[]; shareUrl?: string; imageUrl?: string; share?: boolean; slug?: string; }
 /**
  * `share` is OFF behind the paywall. The completion badge and the share row are
  * an acquisition device — they belong on the free routines, where a finished
@@ -23,10 +23,10 @@ interface Props { title: string; holds: Hold[]; shareUrl?: string; imageUrl?: st
  * asked to post about it is a gimmick, and it cheapens the end of a practice
  * that is meant to finish in stillness.
  */
-const { title, holds, shareUrl, imageUrl, share = true } = Astro.props;
+const { title, holds, shareUrl, imageUrl, share = true, slug } = Astro.props;
 ---
 
-<routine-player data-title={title} data-share-url={shareUrl ?? ''} data-image={imageUrl ?? ''} data-share={share ? '1' : '0'}>
+<routine-player data-title={title} data-slug={slug ?? ''} data-share-url={shareUrl ?? ''} data-image={imageUrl ?? ''} data-share={share ? '1' : '0'}>
   <script type="application/json" class="rp-data" is:inline set:html={JSON.stringify(holds)} />
 </routine-player>
 
@@ -93,6 +93,21 @@ const { title, holds, shareUrl, imageUrl, share = true } = Astro.props;
     ticked = new Set<number>();
     /** Share UI is suppressed behind the paywall — see the note on the `share` prop. */
     get canShare() { return this.dataset.share !== '0'; }
+    /**
+     * Kevin's "Log to Strava" key, or ''. Nobody else ever sees the button: the
+     * key is handed over once by opening any routine page with
+     * `?strava-log=<key>`, then kept in this browser. The endpoint checks it
+     * again, so this is only about hiding a control, not about security.
+     */
+    get stravaKey() {
+      try {
+        const fromUrl = new URLSearchParams(location.search).get('strava-log');
+        if (fromUrl) localStorage.setItem('yywk-strava-log', fromUrl);
+        return localStorage.getItem('yywk-strava-log') || '';
+      } catch { return ''; }
+    }
+    /** When this practice began, for the activity's start time and length. */
+    startedAt: Date | null = null;
     /** Kept alive so the browser can't bin the decoded next-pose photo mid-fetch. */
     preloads: HTMLImageElement[] = [];
 
@@ -148,6 +163,7 @@ const { title, holds, shareUrl, imageUrl, share = true } = Astro.props;
             </div>` : ''}
             <div class="rp-done-actions">
               ${this.canShare ? `<button type="button" class="rp-download">Download badge</button>` : ''}
+              ${this.stravaKey && this.dataset.slug ? `<button type="button" class="rp-strava">Log to Strava</button>` : ''}
               <button type="button" class="rp-again">Practice again</button>
             </div>
           </div>
@@ -176,6 +192,7 @@ const { title, holds, shareUrl, imageUrl, share = true } = Astro.props;
         $('.rp-download').addEventListener('click', () => this.downloadBadge());
       }
       $('.rp-again').addEventListener('click', () => this.restart());
+      this.querySelector('.rp-strava')?.addEventListener('click', () => this.logToStrava());
 
       // The timer ring itself is a start/pause control (mirrors the tappable pose timer).
       const ring = $('.rp-ring-wrap') as HTMLElement;
@@ -268,6 +285,7 @@ const { title, holds, shareUrl, imageUrl, share = true } = Astro.props;
       this.ensureAudio();
       this.requestWake();
       this.idx = 0;
+      this.startedAt = new Date();
       this.startPrep();
     }
 
@@ -398,7 +416,47 @@ const { title, holds, shareUrl, imageUrl, share = true } = Astro.props;
       if (this.canShare) await this.drawBadge();
     }
 
-    restart() { this.idx = 0; this.enterFocus(); this.ensureAudio(); this.requestWake(); this.startPrep(); }
+    restart() { this.idx = 0; this.startedAt = new Date(); this.enterFocus(); this.ensureAudio(); this.requestWake(); this.startPrep(); }
+
+    /**
+     * Post this practice to Strava as its own Yoga activity (Kevin only).
+     *
+     * The activity is CREATED through the API rather than typed into the Strava
+     * app, which is what earns the "via Yin Yoga with Katie" credit on the card.
+     * Photos still go on afterwards in the app — the API can't upload them.
+     */
+    async logToStrava() {
+      const btn = this.querySelector('.rp-strava') as HTMLButtonElement | null;
+      if (!btn || btn.disabled) return;
+      const was = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Logging…';
+      // Local wall-clock, no zone: Strava files start_date_local as written.
+      const stamp = (d: Date) =>
+        new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 19);
+      try {
+        const res = await fetch('/api/strava-log', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            key: this.stravaKey,
+            slug: this.dataset.slug,
+            seconds: this.startedAt ? Math.round((Date.now() - this.startedAt.getTime()) / 1000) : 0,
+            startedAt: stamp(this.startedAt ?? new Date()),
+          }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data.error || `Strava said ${res.status}`);
+        btn.textContent = 'Logged — add your photos';
+        this.live.textContent = 'Logged to Strava.';
+        if (data.url) setTimeout(() => window.open(data.url, '_blank', 'noopener'), 600);
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = was;
+        this.live.textContent = 'Could not log to Strava.';
+        alert(`Could not log to Strava: ${(err as Error).message}`);
+      }
+    }
 
     // --- focus mode -----------------------------------------------------------
     enterFocus() {

@@ -1,6 +1,7 @@
 // node netlify/functions/lib/strava-routine.test.mjs
 import assert from 'node:assert/strict';
-import { classify, pickRoutine, describe, findTag, plan, matchTitle, ROUTINES, MARKER } from './strava-routine.mjs';
+import { readFileSync } from 'node:fs';
+import { classify, pickRoutine, describe, findTag, plan, matchTitle, routinePick, ROUTINES, SHORT, MARKER } from './strava-routine.mjs';
 
 const run = (over) => ({ id: 1, name: 'Morning Run', description: '', type: 'Run', sport_type: 'Run', distance: 8000, total_elevation_gain: 40, workout_type: 0, ...over });
 
@@ -23,6 +24,7 @@ for (const id of [1, 2, 3, 4, 5, 6]) for (const wt of [0, 1, 2, 3]) {
   const p = pickRoutine(run({ id, workout_type: wt }));
   assert.ok(ROUTINES[p.slug], p.slug);
   assert.match(p.url, /^https:\/\/yinyogawithkatie\.com\/routines\/[a-z-]+\/$/);
+  assert.match(p.short, /^https:\/\/yinyogawithkatie\.com\/r\/[a-z-]+$/);
 }
 
 // A named routine wins, aliases resolve
@@ -36,7 +38,7 @@ assert.equal(findTag(run()), null);
 
 // Description text: one casual line and the link, nothing else
 const block = describe(pickRoutine(run({ id: 2, workout_type: 1 })));
-assert.equal(block, "Race legs. Tomorrow morning it's Katie's The Day After, 23 min:\nhttps://yinyogawithkatie.com/routines/the-day-after/");
+assert.equal(block, "Race legs. Tomorrow morning it's Katie's The Day After, 23 min:\nhttps://yinyogawithkatie.com/r/day-after");
 assert.doesNotMatch(block, /runners|follow-along/);
 assert.ok(block.includes(MARKER));
 
@@ -48,7 +50,7 @@ assert.equal(plan(run({ description: 'Easy loop, felt fine.' })), null);
 let p = plan(run({ name: 'Easy 8k +yin hips', description: 'Legs heavy.' }));
 assert.equal(p.name, 'Easy 8k');
 assert.match(p.description, /^Legs heavy\.\n\n/);
-assert.match(p.description, /deep-hips-lower-body/);
+assert.match(p.description, /\/r\/hips$/m);
 assert.equal(p.pick.slug, 'deep-hips-lower-body');
 
 // plan(): tag in the description is removed there, name untouched
@@ -84,11 +86,35 @@ assert.equal(matchTitle('Morning Yoga'), null);
 let y = plan(yoga('The Outside Line'));
 assert.equal(y.name, undefined, 'title untouched');
 assert.equal(y.pick.kind, 'yoga');
-assert.equal(y.description, "Katie's The Outside Line, 26 min. Poses and timer here if you want to try it:\nhttps://yinyogawithkatie.com/routines/the-outside-line/");
+assert.equal(y.description, "Katie's The Outside Line, 26 min. Poses and timer here if you want to try it:\nhttps://yinyogawithkatie.com/r/outside");
 
 y = plan(yoga('hips', { description: 'Slow one after the long run.' }));
 assert.match(y.description, /^Slow one after the long run\.\n\nKatie's Deep Hips/);
 assert.equal(plan(yoga('Yoga')), null);
 assert.equal(plan(yoga('The Outside Line', { description: `x\n\n${block}` })), null, 'idempotent');
+
+// ---- short links -----------------------------------------------------------
+// The posts link /r/<alias>; the redirects live in netlify.toml. Nothing else
+// connects the two, so check here that every alias really resolves.
+const toml = readFileSync(new URL('../../../netlify.toml', import.meta.url), 'utf8');
+const rules = new Map(
+  toml.split('[[redirects]]').slice(1).map((block) => [
+    (/from = "([^"]+)"/.exec(block) || [])[1],
+    (/to = "([^"]+)"/.exec(block) || [])[1],
+  ]),
+);
+for (const [slug, alias] of Object.entries(SHORT)) {
+  assert.ok(ROUTINES[slug], `SHORT has an unknown routine: ${slug}`);
+  assert.equal(rules.get(`/r/${alias}`), `/routines/${slug}/`, `netlify.toml is missing or wrong for /r/${alias}`);
+}
+for (const slug of Object.keys(ROUTINES)) assert.ok(SHORT[slug], `${slug} has no short link`);
+assert.equal(new Set(Object.values(SHORT)).size, Object.keys(SHORT).length, 'short aliases must be unique');
+
+// routinePick backs the finish-screen "Log to Strava" button
+assert.equal(routinePick('nope'), null);
+const rp = routinePick('deep-legs-hamstrings');
+assert.equal(rp.kind, 'yoga');
+assert.equal(rp.short, 'https://yinyogawithkatie.com/r/legs');
+assert.match(describe(rp), /^Katie's Deep Legs & Hamstrings, 26 min\./);
 
 console.log('strava-routine: all checks passed');

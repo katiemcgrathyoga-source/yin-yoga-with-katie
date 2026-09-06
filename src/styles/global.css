@@ -421,11 +421,13 @@ routine-player.is-done .rp-done { display: flex; }
 .rp-soc-native { background: var(--plum); color: var(--paper); border-color: var(--plum); }
 .rp-soc-native:hover { background: var(--plum-deep); color: var(--paper); }
 .rp-done-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
-.rp-download, .rp-again {
+.rp-download, .rp-again, .rp-strava {
   font: inherit; font-size: 14px; padding: 10px 18px; border-radius: 999px; cursor: pointer;
   border: 1px solid var(--line); background: none; color: var(--ink-soft);
 }
-.rp-download:hover, .rp-again:hover { border-color: var(--plum); color: var(--plum); }
+.rp-download:hover, .rp-again:hover, .rp-strava:hover { border-color: var(--plum); color: var(--plum); }
+/* Kevin-only control (see RoutinePlayer's stravaKey), so it stays quiet. */
+.rp-strava:disabled { opacity: .65; cursor: default; border-color: var(--line); color: var(--ink-soft); }
 .rp-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* custom routine builder */

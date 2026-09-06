@@ -32,6 +32,23 @@ export const ROUTINES = {
   'full-body-reset':      { title: 'Full-Body Reset',        minutes: 37 },
 };
 
+/**
+ * The short link each routine posts as: yinyogawithkatie.com/r/<alias>.
+ *
+ * Our own, not a bit.ly — a shortener adds a hop, hides the destination, and
+ * reads as marketing in a personal feed, where the point is that the link is
+ * plainly Katie's. The redirects live in netlify.toml; the test checks that
+ * every alias here has one there, so the two can't drift.
+ */
+export const SHORT = {
+  'the-day-after': 'day-after',
+  'the-outside-line': 'outside',
+  'deep-hips-lower-body': 'hips',
+  'deep-legs-hamstrings': 'legs',
+  'lower-back-release': 'back',
+  'full-body-reset': 'full',
+};
+
 /** Short names Kevin can type after +yin, on top of the full slugs. */
 const ALIASES = {
   'day-after': 'the-day-after',
@@ -104,6 +121,16 @@ export function classify(a) {
   return 'easy';
 }
 
+/** Build a pick: the routine, its page, and the short link the post uses. */
+const makePick = (kind, slug) => ({
+  kind, slug, ...ROUTINES[slug],
+  url: `${SITE}/routines/${slug}/`,
+  short: `${SITE}/r/${SHORT[slug]}`,
+});
+
+/** A pick for a routine chosen by name (the finish-screen "Log to Strava"). */
+export const routinePick = (slug) => (ROUTINES[slug] ? makePick('yoga', slug) : null);
+
 /** Alternatives per kind, in rotation order. First entry is the "obvious" one. */
 const BY_KIND = {
   race:    ['the-day-after'],
@@ -120,11 +147,11 @@ const BY_KIND = {
  */
 export function pickRoutine(a, named = null) {
   const kind = classify(a) || 'easy';
-  if (named && ROUTINES[named]) return { kind, slug: named, ...ROUTINES[named], url: `${SITE}/routines/${named}/` };
+  if (named && ROUTINES[named]) return makePick(kind, named);
   if (!classify(a)) return null;
   const options = BY_KIND[kind];
   const slug = options[Number(a.id || 0) % options.length];
-  return { kind, slug, ...ROUTINES[slug], url: `${SITE}/routines/${slug}/` };
+  return makePick(kind, slug);
 }
 
 /** Marker that tells us we already wrote to this activity. */
@@ -136,7 +163,7 @@ export const MARKER = 'yinyogawithkatie.com';
  * offer itself, so the post doesn't have to.
  */
 export function describe(pick) {
-  const { title, minutes, url, kind } = pick;
+  const { title, minutes, short, kind } = pick;
   const lead = {
     yoga:    `Katie's ${title}, ${minutes} min. Poses and timer here if you want to try it:`,
     easy:    `Then ${minutes} min of yin, Katie's ${title}:`,
@@ -145,7 +172,7 @@ export function describe(pick) {
     workout: `Then ${minutes} min of yin for the hamstrings, Katie's ${title}:`,
     hilly:   `Then ${minutes} min of yin for the calves, Katie's ${title}:`,
   }[kind];
-  return `${lead}\n${url}`;
+  return `${lead}\n${short}`;
 }
 
 /**
@@ -159,7 +186,7 @@ export function plan(activity) {
   if (YOGA_TYPES.has(activity.sport_type || activity.type)) {
     const slug = matchTitle(activity.name);
     if (!slug) return null;
-    const pick = { kind: 'yoga', slug, ...ROUTINES[slug], url: `${SITE}/routines/${slug}/` };
+    const pick = makePick('yoga', slug);
     const block = describe(pick);
     const body = (activity.description || '').trim();
     return { pick, description: body ? `${body}

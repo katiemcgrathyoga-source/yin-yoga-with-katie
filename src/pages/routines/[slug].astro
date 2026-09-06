@@ -136,6 +136,7 @@ const faqLd = d.faq.length
     <section class="player-section" aria-label="Practice player">
       <RoutinePlayer
         title={d.title}
+        slug={d.slug}
         holds={holds}
         shareUrl={new URL(`/routines/${d.slug}`, Astro.site).href}
         imageUrl={heroImg ? new URL(heroImg, Astro.site).href : undefined}

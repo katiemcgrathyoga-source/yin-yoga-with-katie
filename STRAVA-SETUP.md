@@ -30,6 +30,14 @@ Anything else you write in the title stays ("Evening yin: outside" works). A Yog
 activity whose title doesn't name a routine is left alone. Add the muscle-map
 photo in the same screen.
 
+**The quickest way, once `STRAVA_LOG_KEY` is set:** finish the routine on the
+site and press **Log to Strava** on the completion screen. The activity is
+created by the app, so the card reads "via Yin Yoga with Katie" the way a watch
+gets credited, and the title, length and description are already filled in. Open
+any routine page once with `?strava-log=<STRAVA_LOG_KEY>` to put the button on
+your phone; it stays until you clear site data. Photos still go on by hand
+afterwards, since the API cannot upload them.
+
 **Fallback, for keeping it on the run:** `+yin` in a run's title (or `+yin hips`
 to name one) writes the same block onto the run and removes the tag. `+yin` alone
 picks from the run: race or long run → The Day After, hills → Deep Legs &
@@ -89,6 +97,11 @@ paywall; the public routine pages carry the runner offer themselves.
 5. **Log a yoga activity** titled "The Outside Line"; the description gains the
    block within a few seconds. If it doesn't, Netlify → Logs → Functions →
    `strava-webhook` says why, in plain words.
+
+**Short links.** Posts link `yinyogawithkatie.com/r/legs` and friends rather than
+the full routine path — ours, not a bit.ly, so the link plainly reads as Katie's.
+The aliases live in `netlify/functions/lib/strava-routine.mjs` (`SHORT`) and the
+redirects in `netlify.toml`; the test fails if the two drift.
 
 ## Things to know
 
