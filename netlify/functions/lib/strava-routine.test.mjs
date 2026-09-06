@@ -105,7 +105,8 @@ const rules = new Map(
 );
 for (const [slug, alias] of Object.entries(SHORT)) {
   assert.ok(ROUTINES[slug], `SHORT has an unknown routine: ${slug}`);
-  assert.equal(rules.get(`/r/${alias}`), `/routines/${slug}/`, `netlify.toml is missing or wrong for /r/${alias}`);
+  // ?for=runners switches the page's offer to the Post-Run Reset (Cta.astro).
+  assert.equal(rules.get(`/r/${alias}`), `/routines/${slug}/?for=runners`, `netlify.toml is missing or wrong for /r/${alias}`);
 }
 for (const slug of Object.keys(ROUTINES)) assert.ok(SHORT[slug], `${slug} has no short link`);
 assert.equal(new Set(Object.values(SHORT)).size, Object.keys(SHORT).length, 'short aliases must be unique');

@@ -15,29 +15,14 @@
  * Captures email INLINE (no extra click) by posting to MailerLite in a hidden
  * iframe, then swapping in our own thank-you. Every signup carries `source`
  * (custom field `signup_source`) so we can see which pages convert.
+ *
+ * `?for=runners` overrides the page's choice at load time. The Strava short
+ * links (/r/legs and friends, see netlify.toml) carry it, because everyone
+ * arriving that way is a runner even when the routine itself isn't tagged as
+ * one — and those signups belong in the Runners group, not the retreat series.
+ * Its `signup_source` gets a `strava-` prefix so the funnel is measurable.
  */
-const OFFERS = {
-  retreat: {
-    action: 'https://assets.mailerlite.com/jsonp/2503148/forms/192665473777665865/subscribe',
-    eyebrow: 'A gift from me',
-    heading: 'Two hours to completely switch off',
-    body: "Pop your email in and I'll send you my free two-hour Yin, restorative and Yoga Nidra retreat — two slow hours to properly switch off. Yours to keep, and to come back to any time.",
-    badge: '✦ A members-only class — free for you',
-    button: 'Send me the free retreat →',
-    done: 'Check your inbox 🌙 your two-hour retreat is on its way.',
-    aria: 'Get the free two-hour retreat',
-  },
-  runners: {
-    action: 'https://assets.mailerlite.com/jsonp/2503148/forms/194288582398052179/subscribe',
-    eyebrow: 'Free for runners',
-    heading: 'The 15-Minute Post-Run Reset',
-    body: "Pop your email in and I'll send you a free follow-along Yin class for after your run — fifteen quiet minutes to loosen what running tightens, from the hips and glutes to the hamstrings and spine. Yours to keep, for any run, forever.",
-    badge: '✦ A free follow-along class, with a hold timer',
-    button: 'Send me the Post-Run Reset →',
-    done: 'Check your inbox 🌙 your Post-Run Reset is on its way.',
-    aria: 'Get the free Post-Run Reset',
-  },
-} as const;
+import { OFFERS } from '../lib/offers';
 
 interface Props {
   eyebrow?: string;
@@ -73,11 +58,11 @@ const uid = 'cta-' + Math.random().toString(36).slice(2, 9);
 const frame = uid + '-frame';
 ---
 
-<section class={`membership cta-block${compact ? ' cta-compact' : ''}`} data-cta>
-  <p class="eyebrow">{eyebrow}</p>
-  <h2>{heading}</h2>
-  {!compact && <p class="cta-members">{o.badge}</p>}
-  {!compact && <p>{body}</p>}
+<section class={`membership cta-block${compact ? ' cta-compact' : ''}`} data-cta data-offer={offer} data-source={source}>
+  <p class="eyebrow" data-cta-eyebrow>{eyebrow}</p>
+  <h2 data-cta-heading>{heading}</h2>
+  {!compact && <p class="cta-members" data-cta-badge>{o.badge}</p>}
+  {!compact && <p data-cta-body>{body}</p>}
 
   <form
     class="rt-form cta-form"
@@ -122,6 +107,43 @@ const frame = uid + '-frame';
 </section>
 
 <script>
+  import { OFFERS } from '../lib/offers';
+
+  // A visitor from Strava is a runner, whatever the page is about, so the
+  // retreat card becomes the Post-Run Reset — different copy AND a different
+  // MailerLite form, so they land in the Runners group and its automation.
+  // Build-time rendering can't know this: the pages are static and the signal
+  // is in the URL. Without JS the retreat offer stands, which is still a
+  // working signup rather than a broken one.
+  if (new URLSearchParams(location.search).get('for') === 'runners') {
+    const o = OFFERS.runners;
+    // Tag EVERY card on the page, so a Strava arrival is countable even on a
+    // routine already offering the runner class — otherwise the funnel's best
+    // days would be invisible in the signup_source report.
+    document.querySelectorAll('[data-cta]').forEach((card) => {
+      const src = card.querySelector('input[name="fields[signup_source]"]') as HTMLInputElement | null;
+      if (src && !src.value.startsWith('strava-')) src.value = `strava-${src.value}`;
+    });
+    document.querySelectorAll('[data-cta][data-offer="retreat"]').forEach((card) => {
+      const set = (sel: string, text: string) => {
+        const el = card.querySelector(sel);
+        if (el) el.textContent = text;
+      };
+      set('[data-cta-eyebrow]', o.eyebrow);
+      set('[data-cta-heading]', o.heading);
+      set('[data-cta-badge]', o.badge);
+      set('[data-cta-body]', o.body);
+      set('[data-cta-done]', o.done);
+      set('.btn-cta', o.button);
+      const form = card.querySelector('[data-cta-form]') as HTMLFormElement | null;
+      if (form) {
+        form.action = o.action;
+        form.setAttribute('aria-label', o.aria);
+      }
+      card.setAttribute('data-offer', 'runners');
+    });
+  }
+
   // Wire every inline capture card on the page. The POST lands in the card's
   // hidden iframe; we swap the form out for our own thank-you.
   document.querySelectorAll('[data-cta]').forEach((card) => {

@@ -43,32 +43,36 @@
 # strava.com as the referrer. The aliases are mirrored in
 # netlify/functions/lib/strava-routine.mjs (SHORT), and its test fails if the
 # two lists drift. 301 so the routine page keeps the search signal.
+#
+# `?for=runners` switches the page's email offer to the Post-Run Reset: everyone
+# arriving this way came from a run, even on a routine that isn't runner-tagged.
+# See the client script in src/components/Cta.astro.
 [[redirects]]
   from = "/r/day-after"
-  to = "/routines/the-day-after/"
+  to = "/routines/the-day-after/?for=runners"
   status = 301
 
 [[redirects]]
   from = "/r/outside"
-  to = "/routines/the-outside-line/"
+  to = "/routines/the-outside-line/?for=runners"
   status = 301
 
 [[redirects]]
   from = "/r/hips"
-  to = "/routines/deep-hips-lower-body/"
+  to = "/routines/deep-hips-lower-body/?for=runners"
   status = 301
 
 [[redirects]]
   from = "/r/legs"
-  to = "/routines/deep-legs-hamstrings/"
+  to = "/routines/deep-legs-hamstrings/?for=runners"
   status = 301
 
 [[redirects]]
   from = "/r/back"
-  to = "/routines/lower-back-release/"
+  to = "/routines/lower-back-release/?for=runners"
   status = 301
 
 [[redirects]]
   from = "/r/full"
-  to = "/routines/full-body-reset/"
+  to = "/routines/full-body-reset/?for=runners"
   status = 301
