@@ -115,3 +115,6 @@ paywall; the public routine pages carry the runner offer themselves.
 ```bash
 node netlify/functions/lib/strava-routine.test.mjs
 ```
+
+**Timer screenshot for a post:** `node scripts/shot-timer.mjs <routine-slug> <out.png> 40` against a
+static serve of `dist/` (see the script header). Attach it next to the muscle map.
