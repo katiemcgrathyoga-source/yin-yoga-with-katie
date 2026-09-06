@@ -36,10 +36,10 @@ assert.equal(findTag(run({ name: 'Easy 8k +yin tonight' })).matched, '+yin', 'on
 assert.equal(findTag(run({ description: 'felt fine +yin' })).where, 'description');
 assert.equal(findTag(run()), null);
 
-// Description text: one casual line and the link, nothing else
+// Description text: the routine, its length, the short link. Same every time.
 const block = describe(pickRoutine(run({ id: 2, workout_type: 1 })));
-assert.equal(block, "Race legs. Tomorrow morning it's Katie's The Day After, 23 min:\nhttps://yinyogawithkatie.com/r/day-after");
-assert.doesNotMatch(block, /runners|follow-along/);
+assert.equal(block, "Katie's The Day After, 23 min:\nyinyogawithkatie.com/r/day-after");
+assert.doesNotMatch(block, /runners|follow-along|https/);
 assert.ok(block.includes(MARKER));
 
 // plan(): nothing without a tag
@@ -62,7 +62,7 @@ assert.doesNotMatch(p.description, /\+yin/);
 // plan(): tag alone, empty description -> block only
 p = plan(run({ name: '+yin', description: '' }));
 assert.equal(p.name, '');
-assert.match(p.description, /^Then \d+ min of yin, Katie's /);
+assert.match(p.description, /^Katie's [A-Z]/);
 
 // plan(): idempotent once the block is there
 assert.equal(plan(run({ name: 'Easy 8k +yin', description: `Done\n\n${block}` })), null);
@@ -86,7 +86,7 @@ assert.equal(matchTitle('Morning Yoga'), null);
 let y = plan(yoga('The Outside Line'));
 assert.equal(y.name, undefined, 'title untouched');
 assert.equal(y.pick.kind, 'yoga');
-assert.equal(y.description, "Katie's The Outside Line, 26 min. Poses and timer here if you want to try it:\nhttps://yinyogawithkatie.com/r/outside");
+assert.equal(y.description, "Katie's The Outside Line, 26 min:\nyinyogawithkatie.com/r/outside");
 
 y = plan(yoga('hips', { description: 'Slow one after the long run.' }));
 assert.match(y.description, /^Slow one after the long run\.\n\nKatie's Deep Hips/);
@@ -115,6 +115,6 @@ assert.equal(routinePick('nope'), null);
 const rp = routinePick('deep-legs-hamstrings');
 assert.equal(rp.kind, 'yoga');
 assert.equal(rp.short, 'https://yinyogawithkatie.com/r/legs');
-assert.match(describe(rp), /^Katie's Deep Legs & Hamstrings, 26 min\./);
+assert.equal(describe(rp), "Katie's Deep Legs & Hamstrings, 26 min:\nyinyogawithkatie.com/r/legs");
 
 console.log('strava-routine: all checks passed');

@@ -9,8 +9,8 @@ never touched, so nothing looks automatic and nothing claims yin he didn't do.
 What a follower sees on a Yoga activity titled "The Outside Line":
 
 ```
-Katie's The Outside Line, 26 min. Poses and timer here if you want to try it:
-https://yinyogawithkatie.com/routines/the-outside-line/
+Katie's The Outside Line, 26 min:
+yinyogawithkatie.com/r/outside
 ```
 
 ## Using it

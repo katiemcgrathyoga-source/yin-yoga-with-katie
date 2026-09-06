@@ -158,21 +158,14 @@ export function pickRoutine(a, named = null) {
 export const MARKER = 'yinyogawithkatie.com';
 
 /**
- * The line written into the description, in Kevin's voice: one casual sentence
- * and the link. No second link, no pitch. The routine page carries the runner
- * offer itself, so the post doesn't have to.
+ * The line written into the description: the routine, its length, the link.
+ * Two lines, the same shape every time, no pitch — the routine page carries the
+ * runner offer itself, so the post doesn't have to.
  */
 export function describe(pick) {
-  const { title, minutes, short, kind } = pick;
-  const lead = {
-    yoga:    `Katie's ${title}, ${minutes} min. Poses and timer here if you want to try it:`,
-    easy:    `Then ${minutes} min of yin, Katie's ${title}:`,
-    long:    `Long one, so tonight it's Katie's ${title}, ${minutes} min:`,
-    race:    `Race legs. Tomorrow morning it's Katie's ${title}, ${minutes} min:`,
-    workout: `Then ${minutes} min of yin for the hamstrings, Katie's ${title}:`,
-    hilly:   `Then ${minutes} min of yin for the calves, Katie's ${title}:`,
-  }[kind];
-  return `${lead}\n${short}`;
+  // The scheme is dropped for readability; Strava links a bare domain anyway,
+  // and MARKER still matches it, so a re-run still sees the line as already done.
+  return `Katie's ${pick.title}, ${pick.minutes} min:\n${pick.short.replace(/^https:\/\//, '')}`;
 }
 
 /**
