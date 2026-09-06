@@ -1,15 +1,15 @@
 ---
 title: "Tight Hips From Running (and Sitting All Day): What Actually Helps"
 slug: "tight-hips-from-running"
-description: "Running shortens the front of the hip, and a desk finishes the job. Why your hips feel tight, what it does to your stride and lower back, and four slow Yin holds that give the range back."
+description: "Running shortens the front of the hip, and sitting makes it worse. Why your hips feel tight, what it does to your stride and lower back, and four slow Yin holds that give the range back."
 published: 2026-09-08
-unlisted: true
+unlisted: false
 hero: "/poses/deer.jpg"
 hero_focal: "50% 40%"
 hero_caption: "deer — both hips at once, and kind to the knees"
-subtitle: "the run tightens it, the chair finishes the job"
+subtitle: "the run tightens it, sitting makes it worse"
 eyebrow_tag: "for runners"
-pin_quote: "Running tightens the hip. Sitting finishes the job."
+pin_quote: "Running tightens the hip. Sitting makes it worse."
 pin_angles:
   - audience: "for tight hips"
     headline: "Run, then sit all day? Your hips know."
@@ -36,7 +36,7 @@ faq:
     a: "It's one of the best things for them. The hips are where Yin shines, because the deeper tissue around the joint doesn't respond to a quick thirty-second pull. It responds to a few quiet minutes in a shape, at about 60–80% of your range, held often enough."
 ---
 
-If you run and you also have a job, there's a good chance your hips feel tight most of the time. Not injured. Just short at the front, a bit stuck, and never quite as free as they were a few years ago. You notice it getting out of the car, or in the first few strides of a run before things loosen up.
+If you run and you also sit at a desk, there's a good chance your hips feel tight most of the time. Not injured. Just short at the front, a bit stuck, and never quite as free as they were a few years ago. You notice it getting out of the car, or in the first few strides of a run before things loosen up.
 
 I'd like to explain where that comes from, because once you can see it, the fix is a lot less mysterious. And then I'll give you four slow shapes that give the range back.
 
@@ -46,7 +46,7 @@ Every stride swings your leg forward and back through a fairly small range. The 
 
 Running on its own would probably be fine. The trouble is what comes next.
 
-## Why sitting finishes the job
+## Why sitting makes it worse
 
 When you sit, your hips are folded to roughly a right angle, and the hip flexors are held in a shortened position for as long as you're in the chair. Eight hours at a desk, an hour in the car, an evening on the sofa. The muscle running asked to be a bit shorter is now being held short for most of the day.
 
