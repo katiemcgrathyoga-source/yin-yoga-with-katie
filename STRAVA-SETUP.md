@@ -31,9 +31,10 @@ activity whose title doesn't name a routine is left alone. Add the muscle-map
 photo in the same screen.
 
 **The quickest way, once `STRAVA_LOG_KEY` is set:** finish the routine on the
-site and press **Log to Strava** on the completion screen. The activity is
-created by the app, so the card reads "via Yin Yoga with Katie" the way a watch
-gets credited, and the title, length and description are already filled in. Open
+site and press **Log to Strava** on the completion screen. The title, length and
+description are filled in for you, so there is nothing to type. (The card does
+*not* say "via Yin Yoga with Katie" — tested 2026-09-06, an API-created activity
+is credited exactly like a hand-typed one.) Open
 any routine page once with `?strava-log=<STRAVA_LOG_KEY>` to put the button on
 your phone; it stays until you clear site data. Photos still go on by hand
 afterwards, since the API cannot upload them.

@@ -6,11 +6,16 @@ import { ROUTINES, routinePick, describe } from './lib/strava-routine.mjs';
  * Create the yoga activity on Strava from the routine player's finish screen.
  *   POST /api/strava-log  { key, slug, seconds }
  *
- * Why this exists rather than logging by hand: Strava credits whoever CREATED
- * an activity, so a manual entry says "Strava" while one posted through the API
- * is attributed to this app — the "via Yin Yoga with Katie" line under Kevin's
- * name, the way a watch gets credited. Editing a description afterwards (which
- * is what strava-webhook.mjs does) never earns that.
+ * Why this exists: it removes the manual entry. Press the button and the
+ * activity appears with the right title, length and description, instead of
+ * typing all three into the Strava app.
+ *
+ * It was BUILT hoping the card would also read "via Yin Yoga with Katie", the
+ * way a watch is credited. Tested 2026-09-06: it does not. An activity created
+ * through POST /activities is credited the same as a hand-typed one, so the
+ * branding idea is dead — don't rebuild it expecting a different answer. (The
+ * only untested avenue is the /uploads endpoint with a TCX file, which is a lot
+ * of machinery for a line of text.) The convenience is the whole payoff.
  *
  * Kevin only. The button is hidden unless the browser holds STRAVA_LOG_KEY, and
  * this endpoint checks it again — the client is not trusted. Worst case if the
