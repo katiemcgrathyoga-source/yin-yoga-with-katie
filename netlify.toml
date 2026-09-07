@@ -86,3 +86,8 @@
   from = "/r/rest-day"
   to = "/routines/rest-day-recovery/?for=runners"
   status = 301
+
+[[redirects]]
+  from = "/r/after-run"
+  to = "/routines/after-the-run/?for=runners"
+  status = 301

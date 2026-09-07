@@ -52,6 +52,11 @@ const {
   body = o.body,
 } = Astro.props;
 const ML_ACTION = o.action;
+// The compact card drops the body, but an offer can keep ONE line saying what it
+// is (the runner class is a filmed video, not another timed routine like the
+// page it sits on). Rendered empty-but-present so a Strava arrival's offer swap
+// can fill it in.
+const compactLine = (o as { compact?: string }).compact ?? '';
 
 // Unique per render so several capture cards on one page never collide.
 const uid = 'cta-' + Math.random().toString(36).slice(2, 9);
@@ -63,6 +68,7 @@ const frame = uid + '-frame';
   <h2 data-cta-heading>{heading}</h2>
   {!compact && <p class="cta-members" data-cta-badge>{o.badge}</p>}
   {!compact && <p data-cta-body>{body}</p>}
+  {compact && <p class="cta-compact-line" data-cta-compact hidden={!compactLine}>{compactLine}</p>}
 
   <form
     class="rt-form cta-form"
@@ -133,6 +139,8 @@ const frame = uid + '-frame';
       set('[data-cta-heading]', o.heading);
       set('[data-cta-badge]', o.badge);
       set('[data-cta-body]', o.body);
+      const line = card.querySelector('[data-cta-compact]') as HTMLElement | null;
+      if (line) { line.textContent = o.compact ?? ''; line.hidden = !o.compact; }
       set('[data-cta-done]', o.done);
       set('.btn-cta', o.button);
       const form = card.querySelector('[data-cta-form]') as HTMLFormElement | null;

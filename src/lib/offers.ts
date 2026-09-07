@@ -24,8 +24,11 @@ export const OFFERS = {
     action: 'https://assets.mailerlite.com/jsonp/2503148/forms/194288582398052179/subscribe',
     eyebrow: 'Free for runners',
     heading: 'The 15-Minute Post-Run Reset',
-    body: "Pop your email in and I'll send you a free follow-along Yin class for after your run — fifteen quiet minutes to loosen what running tightens, from the hips and glutes to the hamstrings and spine. Yours to keep, for any run, forever.",
-    badge: '✦ A free follow-along class, with a hold timer',
+    body: "Pop your email in and I'll send you the Post-Run Reset: a properly filmed 15-minute class you follow along with me, with a hold timer and written cues underneath so you can practice it screen-free once you know it. One easy hold for each place a run tightens, from the hips and glutes to the hamstrings and spine. Yours to keep, for any run, forever.",
+    badge: '✦ A filmed class with Katie: video, hold timer, written cues',
+    // The one line the compact card keeps. It sits above a free timed routine,
+    // so without it the ask reads as "another routine" rather than a filmed class.
+    compact: 'A filmed class with Katie: follow-along video, hold timer and written cues. Free, yours to keep.',
     button: 'Send me the Post-Run Reset →',
     done: 'Check your inbox 🌙 your Post-Run Reset is on its way.',
     aria: 'Get the free Post-Run Reset',

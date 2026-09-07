@@ -13,14 +13,15 @@
  * so it reads as a sentence: "Where it works: the hips, glutes and outer hip."
  */
 export const ROUTINE_MAPS: Record<string, { works: string }> = {
-  'the-day-after':            { works: 'the hips, glutes, hamstrings and calves' },
+  'the-day-after':            { works: 'the glutes, hamstrings, side body, lower back and calves' },
   'the-outside-line':         { works: 'the outer hip, glutes and quads' },
   'deep-hips-lower-body':     { works: 'the hip flexors, glutes and outer hip' },
   'deep-legs-hamstrings':     { works: 'the hamstrings, calves and feet' },
-  'lower-back-release':       { works: 'the lower back and spine' },
+  'lower-back-release':       { works: 'the lower back, upper back, glutes and hamstrings' },
   'full-body-reset':          { works: 'the shoulders, chest, back, glutes and thighs' },
   'tight-hips-after-running': { works: 'the hip flexors, outer hip, glutes and lower back' },
   'rest-day-recovery':        { works: 'the chest, shoulders, whole back line and hamstrings' },
+  'after-the-run':            { works: 'the hip flexors, quads, glutes, hamstrings, calves and lower back' },
 };
 
 export const routineMap = (slug: string) =>

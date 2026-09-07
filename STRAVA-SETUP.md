@@ -25,7 +25,8 @@ In the Strava app: **+ → Manual activity → Yoga**, set the time, and title i
 | `Lower-Back Release`, `back` | Lower-Back Release |
 | `The Day After`, `day-after` | The Day After |
 | `Full-Body Reset`, `full`, `reset` | Full-Body Reset |
-| `Tight Hips After Running`, `tight-hips`, `after-run` | Tight Hips After Running |
+| `Tight Hips After Running`, `tight-hips` | Tight Hips After Running |
+| `After the Run`, `after-run`, `post-run` | After the Run |
 | `Rest-Day Recovery`, `rest-day`, `recovery` | Rest-Day Recovery |
 
 Anything else you write in the title stays ("Evening yin: outside" works). A Yoga
@@ -50,7 +51,7 @@ description works at upload time.
 
 **The muscle-map photo** is yours to add from the Strava app, since the API
 can't upload photos. One image per routine, front and back, worked muscles in
-rose quartz: `design/strava-maps/<routine>.jpg`. Keep the eight on your phone.
+rose quartz: `design/strava-maps/<routine>.jpg`. Keep the nine on your phone.
 The same maps are on each routine page under "Where it works" (web copies in
 `public/bodymap/routines/`, listed in `src/lib/routineMaps.ts`).
 
