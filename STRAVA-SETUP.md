@@ -131,3 +131,18 @@ node netlify/functions/lib/strava-routine.test.mjs
 
 **Timer screenshot for a post:** `node scripts/shot-timer.mjs <routine-slug> <out.png> 40` against a
 static serve of `dist/` (see the script header). Attach it next to the muscle map.
+
+## Editing a muscle map
+
+The maps are generated in Grok, but changing *which* muscles are lit doesn't need
+a new render — that risks a figure that no longer matches the set. Instead edit a
+clean source (originals are in `design/strava-maps/source/`):
+
+```bash
+# list every segment's centroid, lit or grey
+node scripts/strava-map-edit.mjs design/strava-maps/source/deep-legs-hamstrings.jpg - map
+# light some, unlight others
+node scripts/strava-map-edit.mjs <source> <out> on:344,302 off:890,1100
+```
+
+Coordinates are for the 1408px square. Full-Body Reset was built this way.
