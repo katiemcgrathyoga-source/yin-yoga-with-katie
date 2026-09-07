@@ -1,10 +1,10 @@
 ---
 title: "Shoulders, Neck & Desk Relief"
 slug: "shoulders-neck-desk-relief"
-tagline: "19 minutes to undo a day at the desk"
+tagline: "17 minutes to undo a day at the desk"
 intent: "shoulders"
 level: "all-levels"
-minutes: 19
+minutes: 17
 intro: "A short, targeted practice for the shoulders, neck and upper back — the places we all clench when we're hunched over a screen. Nineteen quiet minutes to open the chest, unstick the shoulder blades and let the neck go soft. Perfect on a work break or at the end of the day. Come as you are."
 props: []
 steps:
@@ -17,22 +17,22 @@ faq:
   - q: "Can this routine help with neck and shoulder tension from desk work?"
     a: "That's exactly what it's for. The shapes open the chest and upper back and let the shoulders and neck release after hours at a screen. For persistent or severe pain, it's always worth seeing a health professional too."
   - q: "How long is it, and do I need props?"
-    a: "About 19 minutes, with no props required — just a mat. It's short enough to slot into a work break."
+    a: "About 17 minutes, with no props required — just a mat. It's short enough to slot into a work break."
   - q: "How often can I do it?"
     a: "Daily is completely fine. A few minutes of shoulder release most days tends to help far more than one long session a week."
 membership_cta: "If desk tension is your thing, the membership has longer shoulder-focused classes and a guided plan so you never have to think about what to practice."
-summary: "A 19-minute Yin routine for the shoulders, neck and upper back — open the chest and unstick tight shoulders after a day at the desk."
+summary: "A 17-minute Yin routine for the shoulders, neck and upper back — open the chest and unstick tight shoulders after a day at the desk."
 pin_angles:
   - audience: "if you sit all day"
-    headline: "Nineteen minutes to undo a desk day"
+    headline: "Seventeen minutes to undo a desk day"
     proof: "Chest open, shoulders unstuck, neck soft."
     before: "Shoulders at 5pm"
     after: "Shoulders at 6"
   - audience: "for stiff shoulders"
     headline: "Five poses for shoulders that won't drop"
-    proof: "Nineteen minutes, and nothing to buy."
-seo_title: "19-Minute Yin Yoga for Shoulders & Neck — Desk Relief Routine"
-seo_description: "A short 19-minute Yin Yoga routine for tight shoulders, neck and upper back, with a built-in hold timer. Perfect desk relief you can follow along. All levels."
+    proof: "Seventeen minutes, and nothing to buy."
+seo_title: "17-Minute Yin Yoga for Shoulders & Neck — Desk Relief Routine"
+seo_description: "A short 17-minute Yin Yoga routine for tight shoulders, neck and upper back, with a built-in hold timer. Perfect desk relief you can follow along. All levels."
 ---
 
 <!-- Curated sequence; poses referenced by slug. The routine page resolves each to

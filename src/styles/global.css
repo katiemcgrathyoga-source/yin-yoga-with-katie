@@ -1482,7 +1482,30 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; padding: 3
 .disc-facet-label { display: block; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px; }
 .disc-facet .chip { background: transparent; border-color: #bea690; color: var(--plum); }
 .disc-facet .chip.active { background: var(--plum); color: var(--paper); border-color: var(--plum); }
-.disc-cards { margin-top: 30px; }
+/* The routine library: tiles in groups, one photo and two facts each. Group
+   headings are the "breaks" that make a long list scannable on a phone. */
+.disc-groups { margin-top: 30px; }
+.disc-group { margin-top: 34px; }
+.disc-group:first-child { margin-top: 0; }
+.disc-group-h { display: flex; align-items: baseline; gap: 10px; margin: 0 0 12px; font-family: var(--display); font-weight: 500; font-size: 20px; color: var(--plum); }
+.disc-group-h small { font-family: var(--body); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (min-width: 720px) { .tiles { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
+.tile { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 12px; background: var(--paper-2); color: var(--ink); overflow: hidden; transition: border-color .15s ease; }
+.tile:hover { border-color: #bea690; color: var(--ink); }
+.tile-photo { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; background: var(--paper); }
+.tile-photo-blank { display: block; width: 100%; aspect-ratio: 3 / 2; background: var(--paper); }
+.tile-body { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 4px; }
+.tile-title { font-family: var(--display); font-weight: 500; font-size: 16px; line-height: 1.25; color: var(--plum); margin: 0; }
+.tile-meta { font-size: 12px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+@media (min-width: 720px) { .tile-body { padding: 12px 14px 14px; } .tile-title { font-size: 18px; } .tile-meta { font-size: 12.5px; } }
+[data-theme="dark"] .tile { background: var(--paper-2); }
+
+/* Where it works: the muscle map on a routine page, cream plate in both themes. */
+.routine-map { margin-top: 44px; text-align: center; }
+.rmap { margin: 0; }
+.rmap img { display: block; width: 100%; max-width: 440px; height: auto; margin: 0 auto; border-radius: 12px; border: 1px solid rgba(72,84,76,.16); }
+.rmap figcaption { font-size: 13.5px; color: var(--ink-soft); margin-top: 10px; line-height: 1.5; }
 .disc-none { color: var(--ink-soft); text-align: center; padding: 24px 0; }
 .disc-foot { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 30px; border-top: 1px solid var(--line); padding-top: 24px; }
 .disc-build { font-size: 14px; font-weight: 600; color: var(--gold-solid); border: none; }

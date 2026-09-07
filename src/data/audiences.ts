@@ -90,7 +90,7 @@ export const AUDIENCES: Audience[] = [
     related: [
       { href: '/blog/yoga-for-runners', label: 'Yoga for Runners: the best Yin poses for tight hips and recovery' },
       { href: '/blog/post-run-stretches', label: 'What to do after a run: a 15-minute post-run routine' },
-      { href: '/routines/the-day-after', label: 'The Day After — a guided 23-minute routine for aching legs' },
+      { href: '/routines/the-day-after', label: 'The Day After — a guided 22-minute routine for aching legs' },
     ],
   },
 ];

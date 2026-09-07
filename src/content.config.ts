@@ -1,6 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
-import { practiceMinutes, type DurationStep } from './lib/duration';
+import { practiceMinutes, publicPracticeMinutes, type DurationStep } from './lib/duration';
 import { PIN_AUDIENCES, PIN_LIMITS } from './lib/pinBoards';
 
 /**
@@ -8,22 +8,26 @@ import { PIN_AUDIENCES, PIN_LIMITS } from './lib/pinBoards';
  * "the sum of the holds", which ignored rebound time and understated every practice
  * by a third. Now the build fails if the number on the page drifts from the timer.
  */
-function checkMinutes(
-  data: { minutes: number; steps: DurationStep[] },
+const checkMinutes = (collection: 'routines' | 'practices') => (
+  data: { minutes: number; steps: DurationStep[]; course?: string },
   ctx: z.RefinementCtx,
-) {
-  const actual = practiceMinutes(data.steps);
+) => {
+  // Public routines run a flat 15s gap; anything inside a course keeps Katie's
+  // 45s rebound and per-step overrides. See PUBLIC_GAP_SECONDS in lib/duration.ts.
+  // Practices are the course, and a routine with `course:` set is a course bonus.
+  const isPublic = collection === 'routines' && !data.course;
+  const actual = isPublic ? publicPracticeMinutes(data.steps) : practiceMinutes(data.steps);
   if (data.minutes !== actual) {
     ctx.addIssue({
       code: z.ZodIssueCode.custom,
       path: ['minutes'],
       message:
         `minutes is ${data.minutes} but the sequence actually runs ${actual} min ` +
-        `(holds + rebounds + side switches + lead-in). Set minutes: ${actual}, ` +
-        `or change the holds. Remember the prose and SEO copy quote this number too.`,
+        (isPublic ? `(holds + a flat 15s gap after each + lead-in). ` : `(holds + rebounds + side switches + lead-in). `) +
+        `Set minutes: ${actual}, or change the holds. Remember the prose and SEO copy quote this number too.`,
     });
   }
-}
+};
 
 /**
  * Pin copy — the benefit-led angles the Pinterest templates and `/pincalendar`
@@ -260,7 +264,7 @@ const routines = defineCollection({
 
     seo_title: z.string().min(1),
     seo_description: z.string().min(1),
-  }).superRefine(checkMinutes),
+  }).superRefine(checkMinutes('routines')),
 });
 
 /**
@@ -363,7 +367,7 @@ const practices = defineCollection({
     unlisted: z.boolean().default(false), // noindex + email-only (e.g. the free lead-magnet class)
     seo_title: z.string().optional(),
     seo_description: z.string().optional(),
-  }).superRefine(checkMinutes),
+  }).superRefine(checkMinutes('practices')),
 });
 
 export const collections = { poses, videos, routines, blog, practices };

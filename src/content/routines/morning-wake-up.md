@@ -1,11 +1,11 @@
 ---
 title: "Morning Wake-Up"
 slug: "morning-wake-up"
-tagline: "21 gentle minutes to meet the day"
+tagline: "18 gentle minutes to meet the day"
 intent: "energy"
 hero_pose: "sphinx"
 level: "all-levels"
-minutes: 21
+minutes: 18
 intro: "A soft, unhurried way to wake the body — gentle backbends to open the front of you, an easy twist to wring out the night, gentle hip and side-body shapes to get things moving. Because the body is cool first thing, we keep the holds a little shorter and never push. This isn't about a big stretch; it's about arriving in your body before the day begins. Come as you are."
 props: []
 steps:
@@ -22,18 +22,18 @@ faq:
   - q: "Do I need props, and is it beginner-friendly?"
     a: "No props needed, and it's suitable for all levels. Work softly, stay well within your edge, and let the practice wake you up gradually."
   - q: "How long is the routine?"
-    a: "About 21 minutes — short enough to do before the day gets going, long enough to feel more awake and open."
+    a: "About 18 minutes — short enough to do before the day gets going, long enough to feel more awake and open."
 membership_cta: "Like starting the day this way? The membership has short morning practices inside a guided plan, so you roll out of bed and press play."
-summary: "A gentle 21-minute morning Yin routine to wake the body — soft backbends, an easy twist and gentle hip openers, with a built-in hold timer."
+summary: "A gentle 18-minute morning Yin routine to wake the body — soft backbends, an easy twist and gentle hip openers, with a built-in hold timer."
 pin_angles:
   - audience: "to start the day"
-    headline: "Twenty-one minutes before anything else"
+    headline: "Eighteen minutes before anything else"
     proof: "Soft backbends, an easy twist, gentle hips."
   - audience: "for beginners"
     headline: "A gentle way into the morning"
     proof: "Nothing strenuous. Twenty-one slow minutes."
-seo_title: "21-Minute Morning Yin Yoga Routine — Gentle Wake-Up"
-seo_description: "A gentle 21-minute morning Yin Yoga routine to wake the body without straining — soft backbends, an easy twist and light hip openers, with a built-in timer."
+seo_title: "18-Minute Morning Yin Yoga Routine — Gentle Wake-Up"
+seo_description: "A gentle 18-minute morning Yin Yoga routine to wake the body without straining — soft backbends, an easy twist and light hip openers, with a built-in timer."
 ---
 
 <!-- Curated sequence; poses referenced by slug. The routine page resolves each to

@@ -5,6 +5,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import RoutinePlayer from '../../components/RoutinePlayer.astro';
 import Cta from '../../components/Cta.astro';
 import { journalPinUrl } from '../../lib/journalPin';
+import { routineMap } from '../../lib/routineMaps';
 
 export async function getStaticPaths() {
   const routines = publicRoutines(await getCollection('routines'));
@@ -39,8 +40,8 @@ const holds: Hold[] = d.steps.flatMap((s) => {
     : [base];
 });
 
-const totalSeconds = holds.reduce((n, h) => n + h.seconds, 0);
-const totalMin = Math.round(totalSeconds / 60);
+// The build guard already checked `minutes` against the flat public timing.
+const totalMin = d.minutes;
 const poseCount = d.steps.length;
 
 // The hero pose photo doubles as the pin photo (natural aspect, never cropped).
@@ -56,6 +57,9 @@ const journalPin = journalPinUrl(Astro.site, {
   excerpt: d.summary,
   photo: heroImg,
 });
+
+// The muscle map, for the routines that have one (the runner set).
+const map = routineMap(d.slug);
 
 // Other routines to suggest at the foot of the page.
 const others = routines.filter((r) => r.data.slug !== d.slug).slice(0, 3);
@@ -138,12 +142,13 @@ const faqLd = d.faq.length
         title={d.title}
         slug={d.slug}
         holds={holds}
+        gap={15}
         shareUrl={new URL(`/routines/${d.slug}`, Astro.site).href}
         imageUrl={heroImg ? new URL(heroImg, Astro.site).href : undefined}
       />
       <p class="player-help">
-        Press play and follow along — each hold is timed, with a gentle chime and a
-        moment to ease out before the next pose. Use <strong>Skip</strong> or
+        Press play and follow along — each hold is timed, with a gentle chime and
+        fifteen seconds to move into the next pose. Use <strong>Skip</strong> or
         <strong>Prev</strong> to move at your own pace.
       </p>
     </section>
@@ -172,6 +177,17 @@ const faqLd = d.faq.length
         }
       </ol>
     </section>
+
+    {map && (
+      <section class="routine-map" aria-labelledby="routine-map-h">
+        <h2 id="routine-map-h">Where it works</h2>
+        <figure class="rmap">
+          <img src={map.src} width="880" height="880" loading="lazy" decoding="async"
+            alt={`Front and back body map with the muscles this routine works picked out: ${map.works}`} />
+          <figcaption>Front and back. In rose: {map.works}.</figcaption>
+        </figure>
+      </section>
+    )}
 
     {
       d.faq.length > 0 && (

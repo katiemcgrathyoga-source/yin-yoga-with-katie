@@ -6,8 +6,10 @@
  * lead-in to get into the first pose, then each hold counted out with three soft
  * ticks and closed with the bell. Between poses it holds a 45-second rebound (15
  * when only swapping sides) — the still pause Yin asks for, and the reason a
- * practice runs longer than the sum of its holds. The rebound shows the pose
- * you're heading INTO, since that's the only window you have to set up for it.
+ * practice runs longer than the sum of its holds. That is the COURSE timing; the
+ * public pages pass `gap={15}` and get a flat 15 seconds between everything (see
+ * PUBLIC_GAP_SECONDS in lib/duration.ts). The rebound shows the pose you're
+ * heading INTO, since that's the only window you have to set up for it.
  * You can nudge any hold ±30s on the fly, and on the free routines it finishes with
  * a shareable completion badge — see the `share` prop for why the course does not.
  *
@@ -15,7 +17,7 @@
  * so the custom routine builder can drive it with a sequence built in the browser.
  */
 interface Hold { name: string; slug: string; img: string; seconds: number; note?: string; sideLabel?: string; rebound?: number; }
-interface Props { title: string; holds: Hold[]; shareUrl?: string; imageUrl?: string; share?: boolean; slug?: string; }
+interface Props { title: string; holds: Hold[]; shareUrl?: string; imageUrl?: string; share?: boolean; slug?: string; gap?: number; }
 /**
  * `share` is OFF behind the paywall. The completion badge and the share row are
  * an acquisition device — they belong on the free routines, where a finished
@@ -23,10 +25,11 @@ interface Props { title: string; holds: Hold[]; shareUrl?: string; imageUrl?: st
  * asked to post about it is a gimmick, and it cheapens the end of a practice
  * that is meant to finish in stillness.
  */
-const { title, holds, shareUrl, imageUrl, share = true, slug } = Astro.props;
+// `gap`: seconds between poses. Unset = the course rebound (45, per-step overrides honoured).
+const { title, holds, shareUrl, imageUrl, share = true, slug, gap } = Astro.props;
 ---
 
-<routine-player data-title={title} data-slug={slug ?? ''} data-share-url={shareUrl ?? ''} data-image={imageUrl ?? ''} data-share={share ? '1' : '0'}>
+<routine-player data-title={title} data-slug={slug ?? ''} data-share-url={shareUrl ?? ''} data-image={imageUrl ?? ''} data-share={share ? '1' : '0'} data-gap={gap ?? ''}>
   <script type="application/json" class="rp-data" is:inline set:html={JSON.stringify(holds)} />
 </routine-player>
 
@@ -325,7 +328,9 @@ const { title, holds, shareUrl, imageUrl, share = true, slug } = Astro.props;
       // A pose can override the rebound that FOLLOWS it (Katie's 30-60s range).
       // Must stay in step with practiceSeconds() in lib/duration.ts, or the number
       // on the page drifts from what the timer actually runs.
-      this.transitionTotal = switching ? SIDE_SWITCH : (cur.rebound ?? REBOUND);
+      // A flat `gap` (the public site) applies to sides too and ignores overrides.
+      const gap = Number(this.dataset.gap);
+      this.transitionTotal = gap > 0 ? gap : switching ? SIDE_SWITCH : (cur.rebound ?? REBOUND);
       // Show the pose you're about to be IN, not the one you've just left. The
       // rebound is the only window there is to see the shape and set yourself up
       // for it, and a photo of the pose you already did helps with nothing.

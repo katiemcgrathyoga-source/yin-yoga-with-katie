@@ -91,7 +91,7 @@ If you'd rather be guided than remember a sequence, press play on one of these �
 </aside>
 </div>
 
-Prefer to practice without a screen narrating every second? The **[20-minute Bedtime Wind-Down routine](/routines/bedtime-wind-down)** times each hold for you and chimes softly when it's time to move on — you settle in, close your eyes, and let the timing take care of itself. Want a little more structure over several nights? The **[3-night bedtime wind-down](/blog/bedtime-yin-yoga-3-night-wind-down)** walks you through three evenings in order, or [browse all the routines](/routines) by time and mood.
+Prefer to practice without a screen narrating every second? The **[22-minute Bedtime Wind-Down routine](/routines/bedtime-wind-down)** times each hold for you and chimes softly when it's time to move on — you settle in, close your eyes, and let the timing take care of itself. Want a little more structure over several nights? The **[3-night bedtime wind-down](/blog/bedtime-yin-yoga-3-night-wind-down)** walks you through three evenings in order, or [browse all the routines](/routines) by time and mood.
 
 ## How long before bed, and how often?
 

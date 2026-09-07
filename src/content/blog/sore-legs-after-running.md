@@ -1,7 +1,7 @@
 ---
 title: "Sore Legs After Running: What Actually Helps the Next Day"
 slug: "sore-legs-after-running"
-description: "Why your legs ache 24 hours after a hard run, what the evidence says about stretching it away, and what genuinely makes the day better — plus a 23-minute routine you can do lying down."
+description: "Why your legs ache 24 hours after a hard run, what the evidence says about stretching it away, and what genuinely makes the day better — plus a 22-minute routine you can do lying down."
 published: 2026-08-08
 unlisted: false
 hero: "/poses/legs-up-the-wall.jpg"
@@ -16,9 +16,9 @@ pin_angles:
     proof: "What helps, what doesn't, and what to do instead."
   - audience: "for tired legs"
     headline: "Sore legs? Stretching won't fix it"
-    proof: "The honest version — and the 23 minutes that do help."
+    proof: "The honest version — and the 22 minutes that do help."
 seo_title: "Sore Legs After Running: What Actually Helps the Next Day"
-seo_description: "Why legs ache 24–48 hours after a hard run, whether stretching helps DOMS, and what genuinely makes the day better — with a 23-minute lying-down Yin routine."
+seo_description: "Why legs ache 24–48 hours after a hard run, whether stretching helps DOMS, and what genuinely makes the day better — with a 22-minute lying-down Yin routine."
 practise:
   routine: "the-day-after"
   video: "hJrs4w8tiJY"

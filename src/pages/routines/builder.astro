@@ -27,6 +27,8 @@ const FOCUSES = [
   { key: 'shoulders', label: 'Neck & shoulders', pool: ['melting-heart', 'puppy', 'thread-the-needle', 'eagle', 'cow-face', 'broken-wing', 'bow-tie'] },
   { key: 'flexibility', label: 'Deep stretch', pool: ['dragon', 'half-butterfly', 'dragonfly', 'shoelace', 'saddle', 'dangling', 'reclined-hamstring', 'frog', 'caterpillar'] },
   { key: 'full-body', label: 'Full body', pool: ['dragon', 'butterfly', 'sphinx', 'shoelace', 'sleeping-swan', 'melting-heart', 'reclined-twist', 'caterpillar', 'saddle'] },
+  // What running tightens: hip flexors, glutes and outer hip, hamstrings, calves and feet, the lower back.
+  { key: 'runners', label: 'For runners', pool: ['dragon', 'sleeping-swan', 'deer', 'half-butterfly', 'caterpillar', 'reclined-hamstring', 'reclined-swan', 'saddle', 'toe-squat', 'ankle-stretch', 'banana', 'reclined-twist', 'legs-up-the-wall'] },
 ].map((f) => ({ ...f, pool: f.pool.filter((s) => present.has(s)) }));
 ---
 
@@ -102,7 +104,7 @@ const FOCUSES = [
       </section>
     </div>
 
-    <RoutinePlayer title="My Yin Routine" holds={[]} />
+    <RoutinePlayer title="My Yin Routine" holds={[]} gap={15} />
 
     <p class="builder-back"><a href="/routines/all">← Browse ready-made routines</a></p>
   </div>
@@ -136,8 +138,12 @@ const FOCUSES = [
       return m >= 1 ? `${m} min` : `${s}s`;
     };
 
+    // As the player runs it: a 15s lead-in, then 15s after every hold but the last.
+    const GAP = 15;
     function totalSeconds() {
-      return steps.reduce((n, s) => n + s.secs * s.sides, 0);
+      const holds = steps.reduce((n, s) => n + s.secs * s.sides, 0);
+      const count = steps.reduce((n, s) => n + s.sides, 0);
+      return holds + GAP + Math.max(0, count - 1) * GAP;
     }
 
     function render() {
@@ -302,10 +308,9 @@ const FOCUSES = [
       const OPENER = 'childs-pose', CLOSER = 'corpse';
       const openerSecs = cTime <= 10 ? 90 : 120;
       const closerSecs = cTime <= 10 ? 120 : 180;
-      // Budget the way the player actually runs it: a lead-in, a rebound after every
-      // pose but the last, and a moment to swap sides. Counting holds alone used to
-      // make a "20 minutes" build run closer to 26.
-      const PREP = 15, REBOUND = 45, SIDE_SWITCH = 15;
+      // Budget the way the player actually runs it: a lead-in, then a flat gap after
+      // every hold but the last (the public site's timing — see lib/duration.ts).
+      const PREP = 15, REBOUND = GAP, SIDE_SWITCH = GAP;
       let budget = cTime * 60 - PREP - closerSecs; // the closer is last, so no rebound follows it
       const seq: Step[] = [];
       if (bySlug.has(OPENER)) { seq.push({ slug: OPENER, secs: openerSecs, sides: 1 }); budget -= openerSecs + REBOUND; }

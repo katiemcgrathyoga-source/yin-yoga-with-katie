@@ -24,12 +24,14 @@ const SITE = 'https://yinyogawithkatie.com';
 
 /** Public runner-relevant routines. Keep `minutes` in step with the routine files. */
 export const ROUTINES = {
-  'the-day-after':        { title: 'The Day After',          minutes: 23 },
-  'the-outside-line':     { title: 'The Outside Line',       minutes: 26 },
-  'deep-hips-lower-body': { title: 'Deep Hips & Lower Body', minutes: 37 },
-  'deep-legs-hamstrings': { title: 'Deep Legs & Hamstrings', minutes: 26 },
-  'lower-back-release':   { title: 'Lower-Back Release',     minutes: 25 },
-  'full-body-reset':      { title: 'Full-Body Reset',        minutes: 37 },
+  'the-day-after':        { title: 'The Day After',          minutes: 22 },
+  'the-outside-line':     { title: 'The Outside Line',       minutes: 25 },
+  'deep-hips-lower-body': { title: 'Deep Hips & Lower Body', minutes: 33 },
+  'deep-legs-hamstrings': { title: 'Deep Legs & Hamstrings', minutes: 22 },
+  'lower-back-release':   { title: 'Lower-Back Release',     minutes: 22 },
+  'full-body-reset':      { title: 'Full-Body Reset',        minutes: 33 },
+  'tight-hips-after-running': { title: 'Tight Hips After Running', minutes: 20 },
+  'rest-day-recovery':    { title: 'Rest-Day Recovery',      minutes: 30 },
 };
 
 /**
@@ -47,6 +49,8 @@ export const SHORT = {
   'deep-legs-hamstrings': 'legs',
   'lower-back-release': 'back',
   'full-body-reset': 'full',
+  'tight-hips-after-running': 'tight-hips',
+  'rest-day-recovery': 'rest-day',
 };
 
 /** Short names Kevin can type after +yin, on top of the full slugs. */
@@ -57,6 +61,8 @@ const ALIASES = {
   'legs': 'deep-legs-hamstrings', 'hamstrings': 'deep-legs-hamstrings',
   'back': 'lower-back-release',
   'full': 'full-body-reset', 'reset': 'full-body-reset',
+  'tight-hips': 'tight-hips-after-running', 'tight': 'tight-hips-after-running', 'after-run': 'tight-hips-after-running',
+  'rest-day': 'rest-day-recovery', 'rest': 'rest-day-recovery', 'recovery': 'rest-day-recovery',
 };
 
 /** The opt-in tag: `+yin` on its own, or `+yin <routine>`. Case-insensitive. */
@@ -134,10 +140,10 @@ export const routinePick = (slug) => (ROUTINES[slug] ? makePick('yoga', slug) : 
 /** Alternatives per kind, in rotation order. First entry is the "obvious" one. */
 const BY_KIND = {
   race:    ['the-day-after'],
-  long:    ['the-day-after', 'deep-hips-lower-body'],
+  long:    ['the-day-after', 'rest-day-recovery', 'deep-hips-lower-body'],
   workout: ['deep-legs-hamstrings', 'the-day-after'],
   hilly:   ['deep-legs-hamstrings'],
-  easy:    ['the-outside-line', 'deep-hips-lower-body', 'lower-back-release', 'full-body-reset'],
+  easy:    ['the-outside-line', 'tight-hips-after-running', 'deep-hips-lower-body', 'lower-back-release', 'full-body-reset'],
 };
 
 /**

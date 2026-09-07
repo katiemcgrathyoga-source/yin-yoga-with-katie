@@ -1,11 +1,11 @@
 ---
 title: "Gentle Beginner Yin"
 slug: "gentle-beginner-yin"
-tagline: "19 easy minutes to meet the practice"
+tagline: "17 easy minutes to meet the practice"
 intent: "beginner"
 hero_pose: "butterfly"
 level: "beginner"
-minutes: 19
+minutes: 17
 intro: "The kindest possible way to begin. Just under twenty quiet minutes of simple, well-supported shapes — nothing to memorise, nothing to keep up with, and an easier option in every pose. You'll find a comfortable edge, soften, and simply stay while gravity and time do the work. There's no such thing as doing this wrong. Come as you are, breathe slowly, and let each shape be easy."
 props: []
 steps:
@@ -23,16 +23,16 @@ faq:
   - q: "How often should a beginner practice?"
     a: "A few gentle sessions a week is a lovely, realistic rhythm to let the shapes and the stillness become familiar. Little and often does far more than long and rare."
 membership_cta: "Just starting out? The membership's beginner path walks you gently from your very first practice onward — a guided plan so you always know what to do next."
-summary: "A gentle 19-minute beginner Yin Yoga routine — simple, well-supported shapes with an easier option in every pose, and a built-in hold timer. No props, no experience needed."
+summary: "A gentle 17-minute beginner Yin Yoga routine — simple, well-supported shapes with an easier option in every pose, and a built-in hold timer. No props, no experience needed."
 pin_angles:
   - audience: "for beginners"
-    headline: "Nineteen minutes, and no experience"
+    headline: "Seventeen minutes, and no experience"
     proof: "An easier option in every single pose."
   - audience: "for a full-body reset"
     headline: "The practice to start with"
     proof: "Simple shapes, well supported, nothing forced."
-seo_title: "Gentle 19-Minute Beginner Yin Yoga Routine — Follow Along"
-seo_description: "A gentle 19-minute Yin Yoga routine for complete beginners — simple, supported poses with a built-in hold timer. No props or flexibility needed. All levels."
+seo_title: "Gentle 17-Minute Beginner Yin Yoga Routine — Follow Along"
+seo_description: "A gentle 17-minute Yin Yoga routine for complete beginners — simple, supported poses with a built-in hold timer. No props or flexibility needed. All levels."
 ---
 
 <!-- Curated sequence; poses referenced by slug. The routine page resolves each to

@@ -17,6 +17,14 @@ export const PREP_SECONDS = 15;
 export const REBOUND_SECONDS = 45;
 export const SIDE_SWITCH_SECONDS = 15;
 
+/**
+ * The public site runs a flat 15 seconds between everything — pose to pose and
+ * side to side — and ignores per-step `rebound:` overrides (Kevin, 2026-09-07).
+ * The 45-second rebound is a course thing: the paid sessions keep it. Anything
+ * that shows or runs a public routine must use the PUBLIC functions below.
+ */
+export const PUBLIC_GAP_SECONDS = 15;
+
 export interface DurationStep {
   seconds: number;
   sides?: 1 | 2;
@@ -40,4 +48,18 @@ export function practiceSeconds(steps: readonly DurationStep[]): number {
 /** The number we put on the page: true runtime, rounded to the nearest minute. */
 export function practiceMinutes(steps: readonly DurationStep[]): number {
   return Math.round(practiceSeconds(steps) / 60);
+}
+
+/** Public-site runtime: lead-in, holds, and a flat gap after every hold but the last. */
+export function publicPracticeSeconds(steps: readonly DurationStep[]): number {
+  if (steps.length === 0) return 0;
+  return steps.reduce((total, step, i) => {
+    const sides = step.sides ?? 1;
+    const gaps = (sides - 1) + (i < steps.length - 1 ? 1 : 0);
+    return total + step.seconds * sides + gaps * PUBLIC_GAP_SECONDS;
+  }, PREP_SECONDS);
+}
+
+export function publicPracticeMinutes(steps: readonly DurationStep[]): number {
+  return Math.round(publicPracticeSeconds(steps) / 60);
 }

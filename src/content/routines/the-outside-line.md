@@ -6,29 +6,25 @@ intent: "hips"
 audience: "runners"
 hero_pose: "deer"
 level: "all-levels"
-minutes: 26
+minutes: 25
 props: []
 intro: "This is for the outside of the leg — the outer hip, the front of the thigh and the long side line that runs down toward the knee. It will not lengthen your IT band, because nothing does. What it does is soften the muscles that pull on it, which is a different job and a far more useful one. Everything here is gentle, most of it is on the floor, and you are welcome to take any shape smaller than you find it. About sixty to eighty per cent of what you can feel, no more."
 steps:
   - pose: "dragon"
     seconds: 150
     sides: 2
-    rebound: 30
     note: "A low lunge, back knee down. The front of the hip and thigh — where a lot of outer-knee tension actually starts. A cushion under the back knee is very welcome."
   - pose: "deer"
     seconds: 150
     sides: 2
-    rebound: 30
     note: "Both knees to one side, sit down between your heels. Gentle rotation into the outer hip. Sit on a cushion if the floor feels far away."
   - pose: "banana"
     seconds: 180
     sides: 2
-    rebound: 30
     note: "On your back, walk your feet and shoulders to one side into a long crescent. The side line, which almost nothing else reaches."
   - pose: "reclined-swan"
     seconds: 150
     sides: 2
-    rebound: 30
     note: "Figure four on your back, and draw the thigh gently toward you. The glute, without kneeling on it."
   - pose: "corpse"
     seconds: 120

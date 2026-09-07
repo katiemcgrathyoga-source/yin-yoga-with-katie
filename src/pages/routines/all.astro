@@ -11,22 +11,40 @@ const humanise = (s: string) => s.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.t
 
 type R = (typeof routines)[number];
 
-// Focus + time filters, mirroring the "compose for me" builder (same focus labels).
-const FOCUS = [
-  { key: 'sleep', label: 'Wind down for sleep', intents: ['sleep', 'stress'] },
-  { key: 'hips', label: 'Open the hips', intents: ['hips'] },
-  { key: 'back', label: 'Release the back', intents: ['back'] },
-  { key: 'shoulders', label: 'Neck & shoulders', intents: ['shoulders', 'heart'] },
-  { key: 'flexibility', label: 'Deep stretch', intents: ['flexibility'] },
-  { key: 'full-body', label: 'Full body', intents: ['full-body', 'beginner', 'energy', 'digestion'] },
+// The library is grouped, not one long list: on a phone the group headings are
+// the breaks that let you scan past what you don't want. Every routine lands in
+// exactly one group — the first whose test it passes — so nothing is lost when
+// a new intent is added; anything unmatched falls into the last group.
+const GROUPS: { key: string; label: string; test: (r: R) => boolean }[] = [
+  { key: 'runners', label: 'For runners', test: (r) => r.data.audience === 'runners' },
+  { key: 'everyday', label: 'Everyday & full body', test: (r) => ['full-body', 'beginner', 'energy', 'digestion', 'quick'].includes(r.data.intent) },
+  { key: 'hips', label: 'Hips', test: (r) => r.data.intent === 'hips' },
+  { key: 'back', label: 'Back', test: (r) => r.data.intent === 'back' },
+  { key: 'shoulders', label: 'Neck, shoulders & chest', test: (r) => ['shoulders', 'heart'].includes(r.data.intent) },
+  { key: 'legs', label: 'Legs & feet', test: (r) => ['legs', 'hamstrings', 'quads', 'feet', 'flexibility'].includes(r.data.intent) },
+  { key: 'sleep', label: 'Sleep & calm', test: (r) => ['sleep', 'stress'].includes(r.data.intent) },
 ];
+const grouped = GROUPS.map((g) => ({ ...g, items: [] as R[] }));
+for (const r of routines) {
+  const g = grouped.find((g) => g.test(r)) ?? grouped[1];
+  g.items.push(r);
+}
+const groups = grouped.filter((g) => g.items.length > 0);
+
 const TIME = [
   { key: 'short', label: 'Under 20 min', test: (r: R) => r.data.minutes < 20 },
   { key: 'mid', label: '20–25 min', test: (r: R) => r.data.minutes >= 20 && r.data.minutes <= 25 },
   { key: 'long', label: '25 min+', test: (r: R) => r.data.minutes > 25 },
 ];
-const focusKeys = (r: R) => FOCUS.filter((f) => f.intents.includes(r.data.intent)).map((f) => f.key);
 const timeKeys = (r: R) => TIME.filter((t) => t.test(r)).map((t) => t.key);
+
+// One photo per tile: the hero pose, else the first pose. The pose photos are
+// 3:2, and the tile is 3:2, so nothing is cropped — Katie is never cut off.
+const photo = (r: R) => {
+  const slug = r.data.hero_pose ?? r.data.steps[0]?.pose;
+  const img = slug ? bySlug.get(slug)?.images?.[0] : undefined;
+  return img && !img.includes('pose-placeholder') ? img : '';
+};
 
 // Featured suggestion — the bedtime wind-down (evening feel), else the first.
 const featured = routines.find((r) => r.data.intent === 'sleep') ?? routines[0];
@@ -38,7 +56,7 @@ const featuredPoses = featured.data.steps.slice(0, 5).map((s) => {
 
 <BaseLayout
   title="Browse Yin Yoga Routines — By Focus & Time"
-  description="Browse short, self-guided Yin Yoga routines by focus and time, each with a built-in hold timer — for sleep, hips, the back, neck & shoulders, deep stretch and full body. Free."
+  description="Browse short, self-guided Yin Yoga routines by focus and time, each with a built-in hold timer — for runners, hips, the back, neck & shoulders, legs, sleep and full body. Free."
 >
   <section class="disc">
     <div class="disc-inner">
@@ -58,19 +76,11 @@ const featuredPoses = featured.data.steps.slice(0, 5).map((s) => {
             </span>
           ))}
         </div>
-        <span class="disc-featured-go">Begin — screen-free →</span>
+        <span class="disc-featured-go">Begin →</span>
       </a>
 
       <input type="search" class="disc-search" id="disc-search" placeholder="Search the routines…" aria-label="Search the routines" />
 
-      <div class="disc-facet">
-        <span class="disc-facet-label">by focus</span>
-        <div class="chips">
-          {FOCUS.map((f) => (
-            <button type="button" class="chip" data-facet="focus" data-value={f.key} aria-pressed="false">{f.label}</button>
-          ))}
-        </div>
-      </div>
       <div class="disc-facet">
         <span class="disc-facet-label">by time</span>
         <div class="chips">
@@ -80,18 +90,29 @@ const featuredPoses = featured.data.steps.slice(0, 5).map((s) => {
         </div>
       </div>
 
-      <div class="rt3-cards disc-cards" id="disc-cards">
-        {routines.map((r) => (
-          <a class="rt3-card" href={`/routines/${r.data.slug}`}
-            data-title={r.data.title.toLowerCase()} data-focus={focusKeys(r).join('|')} data-time={timeKeys(r).join('|')}>
-            <div class="rt3-card-meta"><span>{r.data.steps.length} poses · {r.data.minutes} min</span></div>
-            <h2 class="rt3-card-title">{r.data.title}</h2>
-            <p class="rt3-card-benefit">{r.data.tagline ?? r.data.summary}</p>
-            <span class="rt3-card-go">Begin — screen-free →</span>
-          </a>
+      <div class="disc-groups" id="disc-groups">
+        {groups.map((g) => (
+          <section class="disc-group" data-group={g.key}>
+            <h2 class="disc-group-h">{g.label} <small>{g.items.length}</small></h2>
+            <div class="tiles">
+              {g.items.map((r) => {
+                const img = photo(r);
+                return (
+                  <a class="tile" href={`/routines/${r.data.slug}`}
+                    data-title={r.data.title.toLowerCase()} data-time={timeKeys(r).join('|')}>
+                    {img ? <img class="tile-photo" src={img} alt="" loading="lazy" decoding="async" /> : <span class="tile-photo-blank" />}
+                    <span class="tile-body">
+                      <span class="tile-title">{r.data.title}</span>
+                      <span class="tile-meta">{r.data.minutes} min · {r.data.steps.length} poses</span>
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
+          </section>
         ))}
       </div>
-      <p class="disc-none" id="disc-none" hidden>No routines match — try another focus or time.</p>
+      <p class="disc-none" id="disc-none" hidden>No routines match — try another time.</p>
 
       <div class="disc-foot">
         <a class="disc-build" href="/routines/builder">Nothing quite fits? Build your own →</a>
@@ -106,30 +127,32 @@ const featuredPoses = featured.data.steps.slice(0, 5).map((s) => {
 </BaseLayout>
 
 <script>
-  const cards = Array.from(document.querySelectorAll<HTMLElement>('#disc-cards .rt3-card'));
+  const tiles = Array.from(document.querySelectorAll<HTMLElement>('#disc-groups .tile'));
+  const groups = Array.from(document.querySelectorAll<HTMLElement>('#disc-groups .disc-group'));
   const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.disc-facet .chip'));
   const search = document.getElementById('disc-search') as HTMLInputElement;
   const none = document.getElementById('disc-none')!;
-  const active: Record<string, Set<string>> = { focus: new Set(), time: new Set() };
+  const active = new Set<string>();
   const split = (v?: string) => (v ? v.split('|').filter(Boolean) : []);
 
   function apply() {
     const q = search.value.trim().toLowerCase();
     let shown = 0;
-    for (const c of cards) {
-      const okF = active.focus.size === 0 || split(c.dataset.focus).some((x) => active.focus.has(x));
-      const okT = active.time.size === 0 || split(c.dataset.time).some((x) => active.time.has(x));
-      const okQ = !q || c.dataset.title!.includes(q);
-      const show = okF && okT && okQ;
-      c.hidden = !show;
+    for (const t of tiles) {
+      const okT = active.size === 0 || split(t.dataset.time).some((x) => active.has(x));
+      const okQ = !q || t.dataset.title!.includes(q);
+      const show = okT && okQ;
+      t.hidden = !show;
       if (show) shown++;
     }
+    // A group with nothing left in it goes too, heading and all.
+    for (const g of groups) g.hidden = !g.querySelector('.tile:not([hidden])');
     none.hidden = shown > 0;
   }
   chips.forEach((chip) => chip.addEventListener('click', () => {
-    const set = active[chip.dataset.facet!], v = chip.dataset.value!;
-    if (set.has(v)) { set.delete(v); chip.setAttribute('aria-pressed', 'false'); chip.classList.remove('active'); }
-    else { set.add(v); chip.setAttribute('aria-pressed', 'true'); chip.classList.add('active'); }
+    const v = chip.dataset.value!;
+    if (active.has(v)) { active.delete(v); chip.setAttribute('aria-pressed', 'false'); chip.classList.remove('active'); }
+    else { active.add(v); chip.setAttribute('aria-pressed', 'true'); chip.classList.add('active'); }
     apply();
   }));
   search.addEventListener('input', apply);

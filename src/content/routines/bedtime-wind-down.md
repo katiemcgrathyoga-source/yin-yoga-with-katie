@@ -1,11 +1,11 @@
 ---
 title: "Bedtime Wind-Down"
 slug: "bedtime-wind-down"
-tagline: "25 soft minutes to melt toward sleep"
+tagline: "22 soft minutes to melt toward sleep"
 intent: "sleep"
 level: "all-levels"
-minutes: 25
-intro: "A gentle twenty-five minutes to close the day. Soft, well-supported shapes held just long enough to let your nervous system downshift and your mind grow quiet. Do it in dim light, in something comfortable, right before bed — and don't chase any big stretch tonight. This one is about letting go. Come as you are and let each pose be easy."
+minutes: 22
+intro: "A gentle twenty-two minutes to close the day. Soft, well-supported shapes held just long enough to let your nervous system downshift and your mind grow quiet. Do it in dim light, in something comfortable, right before bed — and don't chase any big stretch tonight. This one is about letting go. Come as you are and let each pose be easy."
 props: []
 steps:
   - { pose: "childs-pose",     seconds: 150, sides: 1, note: "Sink back and let the breath slow. The day is done." }
@@ -23,18 +23,18 @@ faq:
   - q: "How long before bed should I practice?"
     a: "Right before bed is perfect — it's designed as the last thing you do before sleep. Twenty-five quiet minutes to let the day go."
 membership_cta: "Struggle to switch off at night? The membership's Sleep program is a guided night-by-night plan — press play and let it carry you toward rest."
-summary: "A gentle 25-minute bedtime Yin routine — soft, supported shapes to downshift the nervous system and melt toward sleep, with a built-in hold timer."
+summary: "A gentle 22-minute bedtime Yin routine — soft, supported shapes to downshift the nervous system and melt toward sleep, with a built-in hold timer."
 pin_angles:
   - audience: "for restless nights"
-    headline: "Twenty-five minutes toward sleep"
+    headline: "Twenty-two minutes toward sleep"
     proof: "Soft, supported shapes. Nothing to hold."
     before: "Wide awake at 11"
     after: "Asleep by half past"
   - audience: "when you're wound up"
     headline: "The day, put down in twenty-five"
     proof: "Gentle shapes and a timer that counts for you."
-seo_title: "25-Minute Bedtime Yin Yoga Routine for Sleep — Follow Along"
-seo_description: "A gentle 25-minute bedtime Yin Yoga routine to wind down and sleep better, with a built-in hold timer. Soft, supported shapes to quiet the mind. All levels."
+seo_title: "22-Minute Bedtime Yin Yoga Routine for Sleep — Follow Along"
+seo_description: "A gentle 22-minute bedtime Yin Yoga routine to wind down and sleep better, with a built-in hold timer. Soft, supported shapes to quiet the mind. All levels."
 ---
 
 <!-- Curated sequence; poses referenced by slug. The routine page resolves each to

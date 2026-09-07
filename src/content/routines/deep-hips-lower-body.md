@@ -1,11 +1,11 @@
 ---
 title: "Deep Hips & Lower Body"
 slug: "deep-hips-lower-body"
-tagline: "37 minutes to open tight hips and legs"
+tagline: "33 minutes to open tight hips and legs"
 intent: "hips"
 hero_pose: "sleeping-swan"
 level: "intermediate"
-minutes: 37
+minutes: 33
 intro: "Just under forty minutes in the hips — the place we hold so much, and the reason most people come to Yin in the first place. We work slowly through the inner thighs, outer hips, hip flexors and hamstrings, letting gravity and time do the opening. Go gently; hips are stubborn and reward patience, not force. Come as you are, and back off the moment anything feels sharp."
 props: []
 steps:
@@ -25,16 +25,16 @@ faq:
   - q: "How often should I practice to loosen tight hips?"
     a: "Two or three times a week is a realistic, effective rhythm. Hips are stubborn and respond to consistency and time far more than to forcing."
 membership_cta: "Hips are the heart of Yin. Inside the membership there's a whole guided hip series — press play and follow the plan rather than piecing it together yourself."
-summary: "A 37-minute deep-hips Yin routine — inner thighs, outer hips, hip flexors and hamstrings, opened slowly with a built-in hold timer."
+summary: "A 33-minute deep-hips Yin routine — inner thighs, outer hips, hip flexors and hamstrings, opened slowly with a built-in hold timer."
 pin_angles:
   - audience: "for tight hips"
-    headline: "Thirty-seven minutes of hip opening"
+    headline: "Thirty-three minutes of hip opening"
     proof: "Inner thighs, outer hips, flexors, hamstrings."
   - audience: "for runners"
     headline: "The hips a week of running tightens"
     proof: "Thirty-seven slow minutes, with a hold timer."
-seo_title: "37-Minute Deep Hips Yin Yoga Routine — Practice Along"
-seo_description: "A 37-minute Yin Yoga routine for tight hips and lower body — inner thighs, outer hips, hip flexors and hamstrings — with a built-in hold timer. Follow along."
+seo_title: "33-Minute Deep Hips Yin Yoga Routine — Practice Along"
+seo_description: "A 33-minute Yin Yoga routine for tight hips and lower body — inner thighs, outer hips, hip flexors and hamstrings — with a built-in hold timer. Follow along."
 ---
 
 <!-- Curated sequence; poses referenced by slug. The routine page resolves each to

@@ -9,7 +9,7 @@ never touched, so nothing looks automatic and nothing claims yin he didn't do.
 What a follower sees on a Yoga activity titled "The Outside Line":
 
 ```
-Katie's The Outside Line, 26 min:
+Katie's The Outside Line, 25 min:
 yinyogawithkatie.com/r/outside
 ```
 
@@ -25,6 +25,8 @@ In the Strava app: **+ → Manual activity → Yoga**, set the time, and title i
 | `Lower-Back Release`, `back` | Lower-Back Release |
 | `The Day After`, `day-after` | The Day After |
 | `Full-Body Reset`, `full`, `reset` | Full-Body Reset |
+| `Tight Hips After Running`, `tight-hips`, `after-run` | Tight Hips After Running |
+| `Rest-Day Recovery`, `rest-day`, `recovery` | Rest-Day Recovery |
 
 Anything else you write in the title stays ("Evening yin: outside" works). A Yoga
 activity whose title doesn't name a routine is left alone. Add the muscle-map
@@ -48,14 +50,16 @@ description works at upload time.
 
 **The muscle-map photo** is yours to add from the Strava app, since the API
 can't upload photos. One image per routine, front and back, worked muscles in
-rose quartz: `design/strava-maps/<routine>.jpg`. Keep the six on your phone.
+rose quartz: `design/strava-maps/<routine>.jpg`. Keep the eight on your phone.
+The same maps are on each routine page under "Where it works" (web copies in
+`public/bodymap/routines/`, listed in `src/lib/routineMaps.ts`).
 
 How `+yin` chooses on its own (`netlify/functions/lib/strava-routine.mjs`):
 
 | Run | Routine |
 |---|---|
 | Race (tagged Race on Strava) | The Day After |
-| Long run (tagged Long, or 16 km+) | The Day After / Deep Hips & Lower Body, alternating |
+| Long run (tagged Long, or 16 km+) | The Day After / Rest-Day Recovery / Deep Hips & Lower Body, rotating |
 | Workout (tagged Workout) | Deep Legs & Hamstrings / The Day After |
 | Hilly (12 m+ of climb per km, 5 km+) | Deep Legs & Hamstrings |
 | Everything else | The Outside Line, Deep Hips, Lower-Back Release, Full-Body Reset, rotating |

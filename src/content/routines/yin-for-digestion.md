@@ -1,11 +1,11 @@
 ---
 title: "Yin for Digestion"
 slug: "yin-for-digestion"
-tagline: "31 minutes of gentle twists and folds for the belly"
+tagline: "28 minutes of gentle twists and folds for the belly"
 intent: "digestion"
 hero_pose: "caterpillar"
 level: "all-levels"
-minutes: 31
+minutes: 28
 intro: "Thirty-one slow minutes to nourish the middle of you. Forward folds and gentle compression massage the belly, and long, patient twists wring through the abdomen to help everything move. In Chinese medicine these shapes work the Stomach, Spleen and Liver lines that run through the torso. Practice on a fairly empty stomach — an hour or two after eating is ideal — and let each twist be slow and easy. Come as you are."
 props: []
 steps:
@@ -24,16 +24,16 @@ faq:
   - q: "How often can I do it?"
     a: "As often as you like — it's gentle enough for daily practice, and a calming one to return to whenever you feel sluggish or heavy."
 membership_cta: "Love a practice that leaves you feeling lighter? The membership's longer digestion and meridian classes live inside a guided plan — press play and follow along."
-summary: "A 31-minute Yin routine for digestion — forward folds and slow twists that massage the belly and work the digestive meridian lines, with a built-in timer."
+summary: "A 28-minute Yin routine for digestion — forward folds and slow twists that massage the belly and work the digestive meridian lines, with a built-in timer."
 pin_angles:
   - audience: "for a full-body reset"
-    headline: "Thirty-one minutes for a heavy middle"
+    headline: "Twenty-eight minutes for a heavy middle"
     proof: "Forward folds and slow twists for the belly."
   - audience: "for a stiff back"
-    headline: "Twists and folds, thirty-one minutes"
+    headline: "Twists and folds, twenty-eight minutes"
     proof: "Works the digestive lines and the whole spine."
-seo_title: "31-Minute Yin Yoga for Digestion — Twists & Folds, Follow Along"
-seo_description: "A 31-minute Yin Yoga routine for digestion and gut health — gentle folds and twists that massage the belly — with a built-in hold timer. All levels."
+seo_title: "28-Minute Yin Yoga for Digestion — Twists & Folds, Follow Along"
+seo_description: "A 28-minute Yin Yoga routine for digestion and gut health — gentle folds and twists that massage the belly — with a built-in hold timer. All levels."
 ---
 
 <!-- Curated sequence; poses referenced by slug. The routine page resolves each to

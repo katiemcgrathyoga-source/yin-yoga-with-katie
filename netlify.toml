@@ -76,3 +76,13 @@
   from = "/r/full"
   to = "/routines/full-body-reset/?for=runners"
   status = 301
+
+[[redirects]]
+  from = "/r/tight-hips"
+  to = "/routines/tight-hips-after-running/?for=runners"
+  status = 301
+
+[[redirects]]
+  from = "/r/rest-day"
+  to = "/routines/rest-day-recovery/?for=runners"
+  status = 301

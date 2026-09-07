@@ -8,7 +8,10 @@
 // unworked muscles simply aren't shown. Front and back side by side, like the
 // muscle-map card Strava's own gym integrations post.
 //
-// Not part of the build. Re-run if the plates or the routine list change.
+// SUPERSEDED 2026-09-07: every map is now the Grok figure, edited with
+// scripts/strava-map-edit.mjs from a clean source (STRAVA-SETUP.md, "Editing a
+// muscle map"). Running this would overwrite them with the old plate style.
+// Kept for the recolour code only.
 import sharp from 'sharp';
 import { Resvg } from '@resvg/resvg-js';
 import { mkdirSync, writeFileSync } from 'node:fs';

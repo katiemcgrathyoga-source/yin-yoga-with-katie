@@ -38,7 +38,7 @@ assert.equal(findTag(run()), null);
 
 // Description text: the routine, its length, the short link. Same every time.
 const block = describe(pickRoutine(run({ id: 2, workout_type: 1 })));
-assert.equal(block, "Katie's The Day After, 23 min:\nyinyogawithkatie.com/r/day-after");
+assert.equal(block, "Katie's The Day After, 22 min:\nyinyogawithkatie.com/r/day-after");
 assert.doesNotMatch(block, /runners|follow-along|https/);
 assert.ok(block.includes(MARKER));
 
@@ -86,7 +86,7 @@ assert.equal(matchTitle('Morning Yoga'), null);
 let y = plan(yoga('The Outside Line'));
 assert.equal(y.name, undefined, 'title untouched');
 assert.equal(y.pick.kind, 'yoga');
-assert.equal(y.description, "Katie's The Outside Line, 26 min:\nyinyogawithkatie.com/r/outside");
+assert.equal(y.description, "Katie's The Outside Line, 25 min:\nyinyogawithkatie.com/r/outside");
 
 y = plan(yoga('hips', { description: 'Slow one after the long run.' }));
 assert.match(y.description, /^Slow one after the long run\.\n\nKatie's Deep Hips/);
@@ -116,6 +116,6 @@ assert.equal(routinePick('nope'), null);
 const rp = routinePick('deep-legs-hamstrings');
 assert.equal(rp.kind, 'yoga');
 assert.equal(rp.short, 'https://yinyogawithkatie.com/r/legs');
-assert.equal(describe(rp), "Katie's Deep Legs & Hamstrings, 26 min:\nyinyogawithkatie.com/r/legs");
+assert.equal(describe(rp), "Katie's Deep Legs & Hamstrings, 22 min:\nyinyogawithkatie.com/r/legs");
 
 console.log('strava-routine: all checks passed');
