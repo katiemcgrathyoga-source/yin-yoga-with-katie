@@ -22,18 +22,18 @@
 
 const SITE = 'https://yinyogawithkatie.com';
 
-/** Public runner-relevant routines. Keep `minutes` in step with the routine files. */
-export const ROUTINES = {
-  'the-day-after':        { title: 'The Day After',          minutes: 22 },
-  'the-outside-line':     { title: 'The Outside Line',       minutes: 25 },
-  'deep-hips-lower-body': { title: 'Deep Hips & Lower Body', minutes: 33 },
-  'deep-legs-hamstrings': { title: 'Deep Legs & Hamstrings', minutes: 22 },
-  'lower-back-release':   { title: 'Lower-Back Release',     minutes: 22 },
-  'full-body-reset':      { title: 'Full-Body Reset',        minutes: 33 },
-  'tight-hips-after-running': { title: 'Tight Hips After Running', minutes: 20 },
-  'rest-day-recovery':    { title: 'Rest-Day Recovery',      minutes: 30 },
-  'after-the-run':        { title: 'After the Run',          minutes: 19 },
-};
+import { createRequire } from 'node:module';
+
+// require() rather than an import attribute: esbuild inlines the JSON when
+// Netlify bundles the function, and older bundlers choke on `with { type }`.
+const data = createRequire(import.meta.url)('./strava-routines.json');
+
+/**
+ * Public runner-relevant routines: title, minutes, and every pose with its hold.
+ * GENERATED from the routine files by scripts/gen-strava-routines.mjs — never
+ * edit the JSON by hand; the test fails if it drifts from src/content/routines/.
+ */
+export const ROUTINES = data;
 
 /**
  * The short link each routine posts as: yinyogawithkatie.com/r/<alias>.
@@ -166,15 +166,25 @@ export function pickRoutine(a, named = null) {
 /** Marker that tells us we already wrote to this activity. */
 export const MARKER = 'yinyogawithkatie.com';
 
+/** "3 min", "2½ min", "1m 45s" — a hold length as a runner would write it. */
+export function fmtHold(seconds) {
+  if (seconds % 60 === 0) return `${seconds / 60} min`;
+  if (seconds % 30 === 0) return `${Math.floor(seconds / 60)}½ min`;
+  return `${Math.floor(seconds / 60)}m ${seconds % 60}s`;
+}
+
 /**
- * The line written into the description: the routine, its length, the link.
- * Two lines, the same shape every time, no pitch — the routine page carries the
+ * What goes in the description: every pose with its hold, then the link on its
+ * own at the bottom. No title line: the activity's own title already names the
+ * routine (Kevin, 2026-09-07). No pitch either: the routine page carries the
  * runner offer itself, so the post doesn't have to.
  */
 export function describe(pick) {
+  const poses = (pick.steps || []).map((s) => `${s.name} ${fmtHold(s.seconds)}${s.sides === 2 ? ' each side' : ''}`);
   // The scheme is dropped for readability; Strava links a bare domain anyway,
   // and MARKER still matches it, so a re-run still sees the line as already done.
-  return `Katie's ${pick.title}, ${pick.minutes} min:\n${pick.short.replace(/^https:\/\//, '')}`;
+  const link = pick.short.replace(/^https:\/\//, '');
+  return [...poses, '', link].join('\n');
 }
 
 /**

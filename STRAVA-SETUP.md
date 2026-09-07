@@ -9,9 +9,18 @@ never touched, so nothing looks automatic and nothing claims yin he didn't do.
 What a follower sees on a Yoga activity titled "The Outside Line":
 
 ```
-Katie's The Outside Line, 25 min:
+Dragon 2½ min each side
+Deer 2½ min each side
+Banana 3 min each side
+Reclined Swan 2½ min each side
+Corpse 2 min
+
 yinyogawithkatie.com/r/outside
 ```
+
+(The pose list comes from `netlify/functions/lib/strava-routines.json`, generated
+from the routine files by `node scripts/gen-strava-routines.mjs`; re-run it after
+editing a routine, or the lib test fails.)
 
 ## Using it
 

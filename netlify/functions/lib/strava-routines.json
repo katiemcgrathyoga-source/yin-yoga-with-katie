@@ -1,0 +1,331 @@
+{
+  "after-the-run": {
+    "title": "After the Run",
+    "minutes": 19,
+    "steps": [
+      {
+        "name": "Dangling",
+        "seconds": 180,
+        "sides": 1
+      },
+      {
+        "name": "Dragon",
+        "seconds": 150,
+        "sides": 2
+      },
+      {
+        "name": "Swan",
+        "seconds": 120,
+        "sides": 2
+      },
+      {
+        "name": "Legs Up the Wall",
+        "seconds": 300,
+        "sides": 1
+      }
+    ]
+  },
+  "deep-hips-lower-body": {
+    "title": "Deep Hips & Lower Body",
+    "minutes": 33,
+    "steps": [
+      {
+        "name": "Child's Pose",
+        "seconds": 120,
+        "sides": 1
+      },
+      {
+        "name": "Butterfly",
+        "seconds": 180,
+        "sides": 1
+      },
+      {
+        "name": "Half Butterfly",
+        "seconds": 150,
+        "sides": 2
+      },
+      {
+        "name": "Dragon",
+        "seconds": 150,
+        "sides": 2
+      },
+      {
+        "name": "Sleeping Swan",
+        "seconds": 150,
+        "sides": 2
+      },
+      {
+        "name": "Shoelace",
+        "seconds": 120,
+        "sides": 2
+      },
+      {
+        "name": "Reclined Twist",
+        "seconds": 90,
+        "sides": 2
+      },
+      {
+        "name": "Corpse",
+        "seconds": 180,
+        "sides": 1
+      }
+    ]
+  },
+  "deep-legs-hamstrings": {
+    "title": "Deep Legs & Hamstrings",
+    "minutes": 22,
+    "steps": [
+      {
+        "name": "Dangling",
+        "seconds": 120,
+        "sides": 1
+      },
+      {
+        "name": "Toe Squat",
+        "seconds": 60,
+        "sides": 1
+      },
+      {
+        "name": "Ankle Stretch",
+        "seconds": 60,
+        "sides": 1
+      },
+      {
+        "name": "Half Butterfly",
+        "seconds": 150,
+        "sides": 2
+      },
+      {
+        "name": "Caterpillar",
+        "seconds": 180,
+        "sides": 1
+      },
+      {
+        "name": "Dragonfly",
+        "seconds": 210,
+        "sides": 1
+      },
+      {
+        "name": "Squat",
+        "seconds": 120,
+        "sides": 1
+      },
+      {
+        "name": "Corpse",
+        "seconds": 150,
+        "sides": 1
+      }
+    ]
+  },
+  "full-body-reset": {
+    "title": "Full-Body Reset",
+    "minutes": 33,
+    "steps": [
+      {
+        "name": "Child's Pose",
+        "seconds": 120,
+        "sides": 1
+      },
+      {
+        "name": "Sphinx",
+        "seconds": 180,
+        "sides": 1
+      },
+      {
+        "name": "Seal",
+        "seconds": 120,
+        "sides": 1
+      },
+      {
+        "name": "Melting Heart",
+        "seconds": 180,
+        "sides": 1
+      },
+      {
+        "name": "Dragon",
+        "seconds": 150,
+        "sides": 2
+      },
+      {
+        "name": "Butterfly",
+        "seconds": 180,
+        "sides": 1
+      },
+      {
+        "name": "Caterpillar",
+        "seconds": 180,
+        "sides": 1
+      },
+      {
+        "name": "Reclined Twist",
+        "seconds": 120,
+        "sides": 2
+      },
+      {
+        "name": "Corpse",
+        "seconds": 300,
+        "sides": 1
+      }
+    ]
+  },
+  "lower-back-release": {
+    "title": "Lower-Back Release",
+    "minutes": 22,
+    "steps": [
+      {
+        "name": "Child's Pose",
+        "seconds": 150,
+        "sides": 1
+      },
+      {
+        "name": "Sphinx",
+        "seconds": 120,
+        "sides": 1
+      },
+      {
+        "name": "Happy Baby",
+        "seconds": 150,
+        "sides": 1
+      },
+      {
+        "name": "Caterpillar",
+        "seconds": 150,
+        "sides": 1
+      },
+      {
+        "name": "Reclined Swan",
+        "seconds": 105,
+        "sides": 2
+      },
+      {
+        "name": "Reclined Twist",
+        "seconds": 105,
+        "sides": 2
+      },
+      {
+        "name": "Corpse",
+        "seconds": 210,
+        "sides": 1
+      }
+    ]
+  },
+  "rest-day-recovery": {
+    "title": "Rest-Day Recovery",
+    "minutes": 30,
+    "steps": [
+      {
+        "name": "Supported Fish",
+        "seconds": 300,
+        "sides": 1
+      },
+      {
+        "name": "Caterpillar",
+        "seconds": 240,
+        "sides": 1
+      },
+      {
+        "name": "Reclined Twist",
+        "seconds": 180,
+        "sides": 2
+      },
+      {
+        "name": "Legs Up the Wall",
+        "seconds": 480,
+        "sides": 1
+      },
+      {
+        "name": "Corpse",
+        "seconds": 300,
+        "sides": 1
+      }
+    ]
+  },
+  "the-day-after": {
+    "title": "The Day After",
+    "minutes": 22,
+    "steps": [
+      {
+        "name": "Legs Up the Wall",
+        "seconds": 300,
+        "sides": 1
+      },
+      {
+        "name": "Reclined Swan",
+        "seconds": 150,
+        "sides": 2
+      },
+      {
+        "name": "Reclined Twist",
+        "seconds": 150,
+        "sides": 2
+      },
+      {
+        "name": "Banana",
+        "seconds": 90,
+        "sides": 2
+      },
+      {
+        "name": "Corpse",
+        "seconds": 120,
+        "sides": 1
+      }
+    ]
+  },
+  "the-outside-line": {
+    "title": "The Outside Line",
+    "minutes": 25,
+    "steps": [
+      {
+        "name": "Dragon",
+        "seconds": 150,
+        "sides": 2
+      },
+      {
+        "name": "Deer",
+        "seconds": 150,
+        "sides": 2
+      },
+      {
+        "name": "Banana",
+        "seconds": 180,
+        "sides": 2
+      },
+      {
+        "name": "Reclined Swan",
+        "seconds": 150,
+        "sides": 2
+      },
+      {
+        "name": "Corpse",
+        "seconds": 120,
+        "sides": 1
+      }
+    ]
+  },
+  "tight-hips-after-running": {
+    "title": "Tight Hips After Running",
+    "minutes": 20,
+    "steps": [
+      {
+        "name": "Dragon",
+        "seconds": 180,
+        "sides": 2
+      },
+      {
+        "name": "Sleeping Swan",
+        "seconds": 150,
+        "sides": 2
+      },
+      {
+        "name": "Deer",
+        "seconds": 90,
+        "sides": 2
+      },
+      {
+        "name": "Reclined Twist",
+        "seconds": 120,
+        "sides": 2
+      }
+    ]
+  }
+}

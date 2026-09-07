@@ -1,7 +1,12 @@
 // node netlify/functions/lib/strava-routine.test.mjs
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { classify, pickRoutine, describe, findTag, plan, matchTitle, routinePick, ROUTINES, SHORT, MARKER } from './strava-routine.mjs';
+import { classify, pickRoutine, describe, fmtHold, findTag, plan, matchTitle, routinePick, ROUTINES, SHORT, MARKER } from './strava-routine.mjs';
+import { build } from '../../../scripts/gen-strava-routines.mjs';
+
+// The JSON the function ships must match the routine files it was generated from.
+assert.deepEqual(ROUTINES, build(), 'strava-routines.json is stale — run: node scripts/gen-strava-routines.mjs');
+assert.equal(fmtHold(180), '3 min'); assert.equal(fmtHold(150), '2½ min'); assert.equal(fmtHold(105), '1m 45s');
 
 const run = (over) => ({ id: 1, name: 'Morning Run', description: '', type: 'Run', sport_type: 'Run', distance: 8000, total_elevation_gain: 40, workout_type: 0, ...over });
 
@@ -38,7 +43,8 @@ assert.equal(findTag(run()), null);
 
 // Description text: the routine, its length, the short link. Same every time.
 const block = describe(pickRoutine(run({ id: 2, workout_type: 1 })));
-assert.equal(block, "Katie's The Day After, 22 min:\nyinyogawithkatie.com/r/day-after");
+assert.ok(block.startsWith("Legs Up the Wall 5 min\nReclined Swan 2½ min each side\n"), block);
+assert.ok(block.endsWith("\n\nyinyogawithkatie.com/r/day-after"), block);
 assert.doesNotMatch(block, /runners|follow-along|https/);
 assert.ok(block.includes(MARKER));
 
@@ -62,7 +68,7 @@ assert.doesNotMatch(p.description, /\+yin/);
 // plan(): tag alone, empty description -> block only
 p = plan(run({ name: '+yin', description: '' }));
 assert.equal(p.name, '');
-assert.match(p.description, /^Katie's [A-Z]/);
+assert.match(p.description, /^[A-Z].* min/);
 
 // plan(): idempotent once the block is there
 assert.equal(plan(run({ name: 'Easy 8k +yin', description: `Done\n\n${block}` })), null);
@@ -86,10 +92,10 @@ assert.equal(matchTitle('Morning Yoga'), null);
 let y = plan(yoga('The Outside Line'));
 assert.equal(y.name, undefined, 'title untouched');
 assert.equal(y.pick.kind, 'yoga');
-assert.equal(y.description, "Katie's The Outside Line, 25 min:\nyinyogawithkatie.com/r/outside");
+assert.ok(y.description.startsWith("Dragon 2½ min each side\n") && y.description.endsWith("\n\nyinyogawithkatie.com/r/outside"), y.description);
 
 y = plan(yoga('hips', { description: 'Slow one after the long run.' }));
-assert.match(y.description, /^Slow one after the long run\.\n\nKatie's Deep Hips/);
+assert.match(y.description, /^Slow one after the long run\.\n\nChild's Pose 2 min\n/);
 assert.equal(plan(yoga('Yoga')), null);
 assert.equal(plan(yoga('The Outside Line', { description: `x\n\n${block}` })), null, 'idempotent');
 
@@ -116,6 +122,6 @@ assert.equal(routinePick('nope'), null);
 const rp = routinePick('deep-legs-hamstrings');
 assert.equal(rp.kind, 'yoga');
 assert.equal(rp.short, 'https://yinyogawithkatie.com/r/legs');
-assert.equal(describe(rp), "Katie's Deep Legs & Hamstrings, 22 min:\nyinyogawithkatie.com/r/legs");
+assert.ok(!describe(rp).includes("Katie's") && describe(rp).endsWith("\n\nyinyogawithkatie.com/r/legs"), describe(rp));
 
 console.log('strava-routine: all checks passed');
