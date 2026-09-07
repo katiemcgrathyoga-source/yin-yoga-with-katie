@@ -1,7 +1,8 @@
 import { getStore } from '@netlify/blobs';
 
 /**
- * One-time Strava connection for Kevin's account.
+ * One-time Strava connection for Kevin's account. (Members connect their own
+ * through strava-connect.mjs; this is the original, key-gated flow.)
  *   GET /api/strava-auth?key=<STRAVA_VERIFY_TOKEN>   -> bounces to Strava's consent screen
  *   GET /api/strava-auth?code=...&state=<key>        -> Strava sends him back here; we
  *                                                       swap the code for tokens and keep them

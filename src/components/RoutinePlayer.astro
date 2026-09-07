@@ -17,7 +17,7 @@
  * so the custom routine builder can drive it with a sequence built in the browser.
  */
 interface Hold { name: string; slug: string; img: string; seconds: number; note?: string; sideLabel?: string; rebound?: number; }
-interface Props { title: string; holds: Hold[]; shareUrl?: string; imageUrl?: string; share?: boolean; slug?: string; gap?: number; mapUrl?: string; }
+interface Props { title: string; holds: Hold[]; shareUrl?: string; imageUrl?: string; share?: boolean; slug?: string; gap?: number; mapUrl?: string; strava?: boolean; }
 /**
  * `share` is OFF behind the paywall. The completion badge and the share row are
  * an acquisition device — they belong on the free routines, where a finished
@@ -28,10 +28,12 @@ interface Props { title: string; holds: Hold[]; shareUrl?: string; imageUrl?: st
 // `gap`: seconds between poses. Unset = the course rebound (45, per-step overrides honoured).
 // `mapUrl`: the routine's muscle-map JPEG, offered next to Log to Strava so the
 // photo is one long-press away when the activity is opened in the app.
-const { title, holds, shareUrl, imageUrl, share = true, slug, gap, mapUrl } = Astro.props;
+// `strava`: this routine is one the Strava function knows, so anyone signed in
+// can log it to their own feed (Kevin's key path works regardless).
+const { title, holds, shareUrl, imageUrl, share = true, slug, gap, mapUrl, strava = false } = Astro.props;
 ---
 
-<routine-player data-title={title} data-slug={slug ?? ''} data-share-url={shareUrl ?? ''} data-image={imageUrl ?? ''} data-share={share ? '1' : '0'} data-gap={gap ?? ''} data-map={mapUrl ?? ''}>
+<routine-player data-title={title} data-slug={slug ?? ''} data-share-url={shareUrl ?? ''} data-image={imageUrl ?? ''} data-share={share ? '1' : '0'} data-gap={gap ?? ''} data-map={mapUrl ?? ''} data-strava={strava ? '1' : '0'}>
   <script type="application/json" class="rp-data" is:inline set:html={JSON.stringify(holds)} />
 </routine-player>
 
@@ -111,6 +113,8 @@ const { title, holds, shareUrl, imageUrl, share = true, slug, gap, mapUrl } = As
         return localStorage.getItem('yywk-strava-log') || '';
       } catch { return ''; }
     }
+    /** Log to Strava is offered on the runner routines to everyone, and anywhere to Kevin. */
+    get canStrava() { return !!this.dataset.slug && (this.dataset.strava === '1' || !!this.stravaKey); }
     /** When this practice began, for the activity's start time and length. */
     startedAt: Date | null = null;
     /** Kept alive so the browser can't bin the decoded next-pose photo mid-fetch. */
@@ -168,12 +172,13 @@ const { title, holds, shareUrl, imageUrl, share = true, slug, gap, mapUrl } = As
             </div>` : ''}
             <div class="rp-done-actions">
               ${this.canShare ? `<button type="button" class="rp-download">Download badge</button>` : ''}
-              ${this.stravaKey && this.dataset.slug ? `<button type="button" class="rp-strava">Log to Strava</button>` : ''}
-              ${this.stravaKey && this.dataset.map ? `<a class="rp-map" href="${this.dataset.map}" target="_blank" rel="noopener" download>Save the muscle map</a>` : ''}
+              ${this.canStrava ? `<button type="button" class="rp-strava">Log to Strava</button>` : ''}
+              ${this.canStrava && this.dataset.map ? `<a class="rp-map" href="${this.dataset.map}" target="_blank" rel="noopener" download>Save the muscle map</a>` : ''}
               <button type="button" class="rp-again">Practice again</button>
             </div>
           </div>
           <p class="rp-live" aria-live="polite"></p>
+          <p class="rp-notice" hidden></p>
         </div>`;
 
       const $ = (s: string) => this.querySelector(s) as any;
@@ -199,6 +204,7 @@ const { title, holds, shareUrl, imageUrl, share = true, slug, gap, mapUrl } = As
       }
       $('.rp-again').addEventListener('click', () => this.restart());
       this.querySelector('.rp-strava')?.addEventListener('click', () => this.logToStrava());
+      this.resumePendingStrava();
 
       // The timer ring itself is a start/pause control (mirrors the tappable pose timer).
       const ring = $('.rp-ring-wrap') as HTMLElement;
@@ -439,30 +445,126 @@ const { title, holds, shareUrl, imageUrl, share = true, slug, gap, mapUrl } = As
       const was = btn.textContent;
       btn.disabled = true;
       btn.textContent = 'Logging…';
-      // Local wall-clock, no zone: Strava files start_date_local as written.
-      const stamp = (d: Date) =>
-        new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 19);
+      const practice = this.practiceForStrava();
       try {
-        const res = await fetch('/api/strava-log', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            key: this.stravaKey,
-            slug: this.dataset.slug,
-            seconds: this.startedAt ? Math.round((Date.now() - this.startedAt.getTime()) / 1000) : 0,
-            startedAt: stamp(this.startedAt ?? new Date()),
-          }),
-        });
-        const data = await res.json().catch(() => ({}));
-        if (!res.ok) throw new Error(data.error || `Strava said ${res.status}`);
+        const data = await this.postToStrava(practice);
         btn.textContent = 'Logged — add your photos';
         this.live.textContent = 'Logged to Strava.';
         if (data.url) setTimeout(() => window.open(data.url, '_blank', 'noopener'), 600);
       } catch (err) {
+        const e = err as Error & { code?: string };
+        if (e.code === 'signin' || e.code === 'connect') {
+          // Keep the practice, go and sign in / connect, and finish the log on return.
+          this.savePendingStrava(practice);
+          if (e.code === 'signin') {
+            location.href = `/account?next=${encodeURIComponent(location.pathname)}&strava=1`;
+          } else {
+            const url = await this.stravaConnectUrl();
+            if (url) { location.href = url; return; }
+          }
+          return;
+        }
         btn.disabled = false;
         btn.textContent = was;
         this.live.textContent = 'Could not log to Strava.';
-        alert(`Could not log to Strava: ${(err as Error).message}`);
+        alert(`Could not log to Strava: ${e.message}`);
+      }
+    }
+
+    /** What the finish screen knows about this practice, as the endpoint wants it. */
+    practiceForStrava() {
+      // Local wall-clock, no zone: Strava files start_date_local as written.
+      const stamp = (d: Date) =>
+        new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 19);
+      return {
+        slug: this.dataset.slug,
+        seconds: this.startedAt ? Math.round((Date.now() - this.startedAt.getTime()) / 1000) : 0,
+        startedAt: stamp(this.startedAt ?? new Date()),
+      };
+    }
+
+    /** The member's Supabase session token, or '' when signed out / not configured. */
+    async sessionToken() {
+      try {
+        const { getSupabase } = await import('../lib/supabaseBrowser');
+        const supabase = getSupabase();
+        if (!supabase) return '';
+        const { data } = await supabase.auth.getSession();
+        return data.session?.access_token ?? '';
+      } catch { return ''; }
+    }
+
+    /**
+     * POST the activity. Kevin's key if this browser holds it, else the
+     * member's session. Throws with `code` 'signin' / 'connect' when the
+     * endpoint says what's missing, so the caller can go and fix it.
+     */
+    async postToStrava(practice: { slug?: string; seconds: number; startedAt: string }) {
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      let body: Record<string, unknown> = practice;
+      if (this.stravaKey) body = { ...practice, key: this.stravaKey };
+      else {
+        const token = await this.sessionToken();
+        if (!token) throw Object.assign(new Error('Sign in to log to Strava'), { code: 'signin' });
+        headers.Authorization = `Bearer ${token}`;
+      }
+      const res = await fetch('/api/strava-log', { method: 'POST', headers, body: JSON.stringify(body) });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw Object.assign(new Error(data.error || `Strava said ${res.status}`), { code: data.code });
+      return data;
+    }
+
+    /** Ask the function for the Strava consent URL, returning to this page. */
+    async stravaConnectUrl() {
+      const token = await this.sessionToken();
+      if (!token) return '';
+      const res = await fetch('/api/strava-connect', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ return: location.pathname }),
+      });
+      const data = await res.json().catch(() => ({}));
+      return res.ok ? data.url : '';
+    }
+
+    savePendingStrava(practice: object) {
+      try { sessionStorage.setItem('yywk-strava-pending', JSON.stringify(practice)); } catch {}
+    }
+
+    /**
+     * Back from sign-in or the Strava consent screen with ?strava=…: finish the
+     * log that was interrupted, and say how it went. The practice was already
+     * done, so this shows a line above the player rather than the finish screen.
+     */
+    async resumePendingStrava() {
+      const flag = new URLSearchParams(location.search).get('strava');
+      if (!flag) return;
+      let pending: { slug?: string; seconds: number; startedAt: string } | null = null;
+      try { pending = JSON.parse(sessionStorage.getItem('yywk-strava-pending') || 'null'); } catch {}
+      const notice = this.querySelector('.rp-notice') as HTMLElement;
+      const say = (html: string) => { notice.innerHTML = html; notice.hidden = false; };
+      // Clean the URL either way, so a reload doesn't repeat this.
+      history.replaceState(null, '', location.pathname + location.hash);
+
+      if (flag === 'denied') return say('Strava wasn\u2019t connected \u2014 no problem, the practice still counts.');
+      if (flag === 'scope') return say('Strava needs permission to write activities. Try connecting again and leave both boxes ticked.');
+      if (flag === 'capacity') return say('Strava isn\u2019t letting new people connect to this app just yet. The practice still counts.');
+      if (flag === 'failed') return say('Strava didn\u2019t complete the connection. Try again from your account page.');
+      if (!pending || pending.slug !== this.dataset.slug) return;
+
+      try { sessionStorage.removeItem('yywk-strava-pending'); } catch {}
+      say('Logging your practice to Strava\u2026');
+      try {
+        const data = await this.postToStrava(pending);
+        say(`Logged to Strava.${data.url ? ` <a href="${data.url}" target="_blank" rel="noopener">Open it</a> to add the muscle map.` : ''}`);
+      } catch (err) {
+        const e = err as Error & { code?: string };
+        if (e.code === 'connect') {
+          this.savePendingStrava(pending);
+          const url = await this.stravaConnectUrl();
+          if (url) { location.href = url; return; }
+        }
+        say(`Couldn\u2019t log to Strava: ${e.message}`);
       }
     }
 

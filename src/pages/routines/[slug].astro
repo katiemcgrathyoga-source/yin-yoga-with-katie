@@ -6,6 +6,8 @@ import RoutinePlayer from '../../components/RoutinePlayer.astro';
 import Cta from '../../components/Cta.astro';
 import { journalPinUrl } from '../../lib/journalPin';
 import { routineMap } from '../../lib/routineMaps';
+// The routines the Strava function knows (generated: scripts/gen-strava-routines.mjs).
+import STRAVA_ROUTINES from '../../../netlify/functions/lib/strava-routines.json';
 
 export async function getStaticPaths() {
   const routines = publicRoutines(await getCollection('routines'));
@@ -146,6 +148,7 @@ const faqLd = d.faq.length
         shareUrl={new URL(`/routines/${d.slug}`, Astro.site).href}
         imageUrl={heroImg ? new URL(heroImg, Astro.site).href : undefined}
         mapUrl={map?.photo}
+        strava={d.slug in STRAVA_ROUTINES}
       />
       <p class="player-help">
         Press play and follow along — each hold is timed, with a gentle chime and

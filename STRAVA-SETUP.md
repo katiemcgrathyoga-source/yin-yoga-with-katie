@@ -149,6 +149,26 @@ node netlify/functions/lib/strava-routine.test.mjs
 **Timer screenshot for a post:** `node scripts/shot-timer.mjs <routine-slug> <out.png> 40` against a
 static serve of `dist/` (see the script header). Attach it next to the muscle map.
 
+## Logging for everyone
+
+Any signed-in member can connect their own Strava (Your account -> Connect
+Strava, or just press **Log to Strava** on a runner routine's finish screen and
+follow the prompts: sign in, connect, and the interrupted log finishes itself
+when they land back on the page). The activity goes to THEIR feed with the
+poses, the holds and the link, and the webhook treats their runs the same way
+it treats Kevin's (`+yin`, or a Yoga activity titled with a routine).
+
+Pieces: `netlify/functions/strava-connect.mjs` (OAuth, per-member tokens under
+`user:<supabase id>` in the `strava` blobs store, plus `athlete:<strava id>` so
+the webhook can find them), `lib/supabase-user.mjs` (who is calling),
+`lib/strava-tokens.mjs` (one refresh path for every token).
+
+**Strava caps a new API app at ONE connected athlete** until you ask them to
+raise it: developers.strava.com -> your app -> request more athletes (they ask
+what the app does and for screenshots; usually a few days). Until that's
+granted only Kevin's connection works, and anyone else sees "Strava isn't
+letting new people connect to this app just yet".
+
 ## Editing a muscle map
 
 The maps are generated in Grok, but changing *which* muscles are lit doesn't need

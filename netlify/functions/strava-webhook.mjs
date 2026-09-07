@@ -1,5 +1,5 @@
-import { getStore } from '@netlify/blobs';
 import { plan } from './lib/strava-routine.mjs';
+import { stravaStore, tokensForAthlete, freshAccessToken } from './lib/strava-tokens.mjs';
 
 /**
  * Strava webhook: write the yin routine link into an activity Kevin logged.
@@ -12,6 +12,10 @@ import { plan } from './lib/strava-routine.mjs';
  *      "hips") — the preferred one; it carries the muscle-map photo too;
  *   2. `+yin` (or `+yin hips`…) in a run's title, for keeping it on the run.
  * Anything else is acknowledged and left alone.
+ *
+ * Not only Kevin: any member who connected their Strava (strava-connect.mjs)
+ * gets the same treatment on their own activities — the event's owner_id is
+ * looked up to their tokens. Athletes nobody here knows are ignored.
  *
  * Both `create` and `update` events are handled, so a title fixed after
  * upload still fires. (Strava only sends update events for title, type and
@@ -48,14 +52,13 @@ export default async (req) => {
   // Always 200 from here on: Strava treats anything else as "retry me".
   if (event.object_type !== 'activity') return ok('ignored: not an activity');
   if (event.aspect_type !== 'create' && event.aspect_type !== 'update') return ok(`ignored: ${event.aspect_type}`);
-  if (ATHLETE && String(event.owner_id) !== String(ATHLETE)) return ok('ignored: other athlete');
 
   try {
-    const store = getStore('strava');
-    const tokens = await store.get('tokens', { type: 'json' });
-    if (!tokens) return ok('no tokens: visit /api/strava-auth first', true);
+    const store = stravaStore();
+    const found = await tokensForAthlete(store, event.owner_id, ATHLETE);
+    if (!found) return ok(`ignored: athlete ${event.owner_id} is not connected here`);
 
-    const access = await freshAccessToken(store, tokens, CLIENT_ID, CLIENT_SECRET);
+    const access = await freshAccessToken(store, found.key, found.tokens, CLIENT_ID, CLIENT_SECRET);
     const id = event.object_id;
 
     const res = await fetch(`https://www.strava.com/api/v3/activities/${id}`, {
@@ -81,32 +84,6 @@ export default async (req) => {
     return ok(`error: ${err?.message || err}`, true);
   }
 };
-
-/** Refresh when within a minute of expiry; persist whatever Strava hands back. */
-async function freshAccessToken(store, tokens, clientId, clientSecret) {
-  const now = Math.floor(Date.now() / 1000);
-  if (tokens.expires_at && tokens.expires_at - 60 > now) return tokens.access_token;
-
-  const res = await fetch('https://www.strava.com/oauth/token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      client_id: clientId,
-      client_secret: clientSecret,
-      grant_type: 'refresh_token',
-      refresh_token: tokens.refresh_token,
-    }),
-  });
-  if (!res.ok) throw new Error(`token refresh failed: ${res.status} ${await res.text()}`);
-  const t = await res.json();
-  await store.setJSON('tokens', {
-    ...tokens,
-    access_token: t.access_token,
-    refresh_token: t.refresh_token || tokens.refresh_token,
-    expires_at: t.expires_at,
-  });
-  return t.access_token;
-}
 
 function ok(msg, isError = false) {
   (isError ? console.error : console.log)(`strava-webhook: ${msg}`);

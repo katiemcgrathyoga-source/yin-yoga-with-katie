@@ -1,10 +1,15 @@
-import { getStore } from '@netlify/blobs';
 import { timingSafeEqual } from 'node:crypto';
 import { ROUTINES, routinePick, describe } from './lib/strava-routine.mjs';
+import { userFromRequest } from './lib/supabase-user.mjs';
+import { stravaStore, userKey, LEGACY_KEY, tokensAt, freshAccessToken } from './lib/strava-tokens.mjs';
 
 /**
  * Create the yoga activity on Strava from the routine player's finish screen.
- *   POST /api/strava-log  { key, slug, seconds }
+ *   POST /api/strava-log  { slug, seconds, startedAt }   Bearer <supabase token>
+ *   POST /api/strava-log  { key, slug, seconds, startedAt }   Kevin's original key
+ *
+ * Any signed-in member who has connected their Strava (strava-connect.mjs)
+ * posts to their OWN feed. Kevin's key still works and posts to his.
  *
  * Why this exists: it removes the manual entry. Press the button and the
  * activity appears with the right title, length and description, instead of
@@ -17,9 +22,9 @@ import { ROUTINES, routinePick, describe } from './lib/strava-routine.mjs';
  * only untested avenue is the /uploads endpoint with a TCX file, which is a lot
  * of machinery for a line of text.) The convenience is the whole payoff.
  *
- * Kevin only. The button is hidden unless the browser holds STRAVA_LOG_KEY, and
- * this endpoint checks it again — the client is not trusted. Worst case if the
- * key leaks: somebody posts a yoga activity to his feed, which he can delete.
+ * The key path is Kevin only: this endpoint checks STRAVA_LOG_KEY again, the
+ * client is not trusted. Worst case if the key leaks: somebody posts a yoga
+ * activity to his feed, which he can delete.
  *
  * Photos still go on in the Strava app: the API cannot upload them.
  */
@@ -27,7 +32,7 @@ export default async (req) => {
   const KEY = process.env.STRAVA_LOG_KEY;
   const CLIENT_ID = process.env.STRAVA_CLIENT_ID;
   const CLIENT_SECRET = process.env.STRAVA_CLIENT_SECRET;
-  if (!KEY || !CLIENT_ID || !CLIENT_SECRET) return json({ error: 'Strava logging not configured' }, 500);
+  if (!CLIENT_ID || !CLIENT_SECRET) return json({ error: 'Strava logging not configured' }, 500);
   if (req.method !== 'POST') return json({ error: 'Method not allowed' }, 405);
 
   let body;
@@ -37,7 +42,16 @@ export default async (req) => {
     return json({ error: 'Bad JSON' }, 400);
   }
 
-  if (!sameSecret(body.key, KEY)) return json({ error: 'Not authorised' }, 403);
+  // Whose Strava: Kevin's key, else the signed-in member's own connection.
+  let tokenKey;
+  if (body.key !== undefined) {
+    if (!KEY || !sameSecret(body.key, KEY)) return json({ error: 'Not authorised' }, 403);
+    tokenKey = LEGACY_KEY;
+  } else {
+    const user = await userFromRequest(req);
+    if (!user) return json({ error: 'Sign in to log to Strava', code: 'signin' }, 401);
+    tokenKey = userKey(user.id);
+  }
 
   const slug = String(body.slug || '');
   if (!ROUTINES[slug]) return json({ error: `Unknown routine: ${slug}` }, 400);
@@ -51,10 +65,14 @@ export default async (req) => {
     : planned;
 
   try {
-    const store = getStore('strava');
-    const tokens = await store.get('tokens', { type: 'json' });
-    if (!tokens) return json({ error: 'Strava is not connected' }, 503);
-    const access = await freshAccessToken(store, tokens, CLIENT_ID, CLIENT_SECRET);
+    const store = stravaStore();
+    const tokens = await tokensAt(store, tokenKey);
+    if (!tokens) {
+      return tokenKey === LEGACY_KEY
+        ? json({ error: 'Strava is not connected' }, 503)
+        : json({ error: 'Connect your Strava first', code: 'connect' }, 409);
+    }
+    const access = await freshAccessToken(store, tokenKey, tokens, CLIENT_ID, CLIENT_SECRET);
 
     const pick = routinePick(slug);
     // Strava's start_date_local is wall-clock time with no zone, so it has to
@@ -98,32 +116,6 @@ function sameSecret(given, expected) {
   const a = Buffer.from(String(given ?? ''));
   const b = Buffer.from(expected);
   return a.length === b.length && timingSafeEqual(a, b);
-}
-
-/** Refresh when within a minute of expiry; persist whatever Strava hands back. */
-async function freshAccessToken(store, tokens, clientId, clientSecret) {
-  const now = Math.floor(Date.now() / 1000);
-  if (tokens.expires_at && tokens.expires_at - 60 > now) return tokens.access_token;
-
-  const res = await fetch('https://www.strava.com/oauth/token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      client_id: clientId,
-      client_secret: clientSecret,
-      grant_type: 'refresh_token',
-      refresh_token: tokens.refresh_token,
-    }),
-  });
-  if (!res.ok) throw new Error(`token refresh failed: ${res.status} ${await res.text()}`);
-  const t = await res.json();
-  await store.setJSON('tokens', {
-    ...tokens,
-    access_token: t.access_token,
-    refresh_token: t.refresh_token || tokens.refresh_token,
-    expires_at: t.expires_at,
-  });
-  return t.access_token;
 }
 
 const json = (body, status = 200) =>

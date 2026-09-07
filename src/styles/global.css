@@ -427,6 +427,8 @@ routine-player.is-done .rp-done { display: flex; }
 }
 .rp-download:hover, .rp-again:hover, .rp-strava:hover, .rp-map:hover { border-color: var(--plum); color: var(--plum); }
 .rp-map { text-decoration: none; }
+/* A line above the player for a log finished after a sign-in or Strava round trip. */
+.rp-notice { margin: 0 0 12px; padding: 10px 14px; border-radius: 10px; background: var(--paper-2); border: 1px solid var(--line); font-size: 14px; color: var(--ink); text-align: center; }
 /* Kevin-only control (see RoutinePlayer's stravaKey), so it stays quiet. */
 .rp-strava:disabled { opacity: .65; cursor: default; border-color: var(--line); color: var(--ink-soft); }
 .rp-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
