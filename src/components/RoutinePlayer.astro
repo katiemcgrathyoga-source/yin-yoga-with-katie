@@ -17,7 +17,7 @@
  * so the custom routine builder can drive it with a sequence built in the browser.
  */
 interface Hold { name: string; slug: string; img: string; seconds: number; note?: string; sideLabel?: string; rebound?: number; }
-interface Props { title: string; holds: Hold[]; shareUrl?: string; imageUrl?: string; share?: boolean; slug?: string; gap?: number; }
+interface Props { title: string; holds: Hold[]; shareUrl?: string; imageUrl?: string; share?: boolean; slug?: string; gap?: number; mapUrl?: string; }
 /**
  * `share` is OFF behind the paywall. The completion badge and the share row are
  * an acquisition device — they belong on the free routines, where a finished
@@ -26,10 +26,12 @@ interface Props { title: string; holds: Hold[]; shareUrl?: string; imageUrl?: st
  * that is meant to finish in stillness.
  */
 // `gap`: seconds between poses. Unset = the course rebound (45, per-step overrides honoured).
-const { title, holds, shareUrl, imageUrl, share = true, slug, gap } = Astro.props;
+// `mapUrl`: the routine's muscle-map JPEG, offered next to Log to Strava so the
+// photo is one long-press away when the activity is opened in the app.
+const { title, holds, shareUrl, imageUrl, share = true, slug, gap, mapUrl } = Astro.props;
 ---
 
-<routine-player data-title={title} data-slug={slug ?? ''} data-share-url={shareUrl ?? ''} data-image={imageUrl ?? ''} data-share={share ? '1' : '0'} data-gap={gap ?? ''}>
+<routine-player data-title={title} data-slug={slug ?? ''} data-share-url={shareUrl ?? ''} data-image={imageUrl ?? ''} data-share={share ? '1' : '0'} data-gap={gap ?? ''} data-map={mapUrl ?? ''}>
   <script type="application/json" class="rp-data" is:inline set:html={JSON.stringify(holds)} />
 </routine-player>
 
@@ -167,6 +169,7 @@ const { title, holds, shareUrl, imageUrl, share = true, slug, gap } = Astro.prop
             <div class="rp-done-actions">
               ${this.canShare ? `<button type="button" class="rp-download">Download badge</button>` : ''}
               ${this.stravaKey && this.dataset.slug ? `<button type="button" class="rp-strava">Log to Strava</button>` : ''}
+              ${this.stravaKey && this.dataset.map ? `<a class="rp-map" href="${this.dataset.map}" target="_blank" rel="noopener" download>Save the muscle map</a>` : ''}
               <button type="button" class="rp-again">Practice again</button>
             </div>
           </div>

@@ -9,7 +9,9 @@
  * Re-export after editing a master:
  *   node -e "require('sharp')('design/strava-maps/<slug>.jpg').extract({left:0,top:0,width:1408,height:1408}).resize({width:880}).webp({quality:82}).toFile('public/bodymap/routines/<slug>.webp')"
  *
- * A routine without an entry simply has no map section. `works` is the caption,
+ * `photo` is the full-size JPEG for the Strava post (the finish screen links it,
+ * since the API can't attach photos). A routine without an entry simply has no
+ * map section. `works` is the caption,
  * so it reads as a sentence: "Where it works: the hips, glutes and outer hip."
  */
 export const ROUTINE_MAPS: Record<string, { works: string }> = {
@@ -25,4 +27,6 @@ export const ROUTINE_MAPS: Record<string, { works: string }> = {
 };
 
 export const routineMap = (slug: string) =>
-  ROUTINE_MAPS[slug] ? { src: `/bodymap/routines/${slug}.webp`, works: ROUTINE_MAPS[slug].works } : null;
+  ROUTINE_MAPS[slug]
+    ? { src: `/bodymap/routines/${slug}.webp`, photo: `/bodymap/routines/${slug}.jpg`, works: ROUTINE_MAPS[slug].works }
+    : null;

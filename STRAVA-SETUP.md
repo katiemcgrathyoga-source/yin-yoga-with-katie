@@ -49,7 +49,10 @@ description are filled in for you, so there is nothing to type. (The card does
 is credited exactly like a hand-typed one.) Open
 any routine page once with `?strava-log=<STRAVA_LOG_KEY>` to put the button on
 your phone; it stays until you clear site data. Photos still go on by hand
-afterwards, since the API cannot upload them.
+afterwards, since the API cannot upload them — but the finish screen shows a
+**Save the muscle map** link next to the button (only when the key is set), which
+opens the routine's map full-size; long-press to save, and it's the newest photo
+in the roll when you open the activity in the app.
 
 **Fallback, for keeping it on the run:** `+yin` in a run's title (or `+yin hips`
 to name one) writes the same block onto the run and removes the tag. `+yin` alone
