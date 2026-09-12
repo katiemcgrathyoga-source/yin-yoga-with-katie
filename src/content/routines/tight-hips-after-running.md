@@ -11,7 +11,7 @@ props: []
 video:
   youtube_id: ""
   label: "Yin Yoga for Tight Hips After Running (20 min)"
-intro: "Running shortens the front of the hip, and sitting afterwards finishes the job. This is the three-shape practice from the class: Dragon for the front of the hip, Sleeping Swan for the back of it, and a reclined twist to undo the run through the spine. Long holds, nothing fancy. Do it after a run while you're still warm, or on a rest day."
+intro: "Running shortens the front of the hip, and sitting afterwards makes it worse. This is the three-shape practice from the class: Dragon for the front of the hip, Sleeping Swan for the back of it, and a reclined twist to undo the run through the spine. Long holds, nothing fancy. Do it after a run while you're still warm, or on a rest day."
 steps:
   - pose: "dragon"
     seconds: 180
