@@ -65,6 +65,16 @@ content:
         label: Props
         type: string
         list: true
+      - name: video
+        label: The class on YouTube (leave the id blank until the video is public)
+        type: object
+        fields:
+          - name: youtube_id
+            label: YouTube video id (the part after v=)
+            type: string
+          - name: label
+            label: Label (the video's title)
+            type: string
       - name: steps
         label: The sequence
         type: object

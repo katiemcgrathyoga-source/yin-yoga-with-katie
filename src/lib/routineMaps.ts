@@ -21,8 +21,8 @@ export const ROUTINE_MAPS: Record<string, { works: string }> = {
   'deep-legs-hamstrings':     { works: 'the hamstrings, calves and feet' },
   'lower-back-release':       { works: 'the lower back, upper back, glutes and hamstrings' },
   'full-body-reset':          { works: 'the shoulders, chest, back, glutes and thighs' },
-  'tight-hips-after-running': { works: 'the hip flexors, outer hip, glutes and lower back' },
-  'rest-day-recovery':        { works: 'the chest, shoulders, whole back line and hamstrings' },
+  'tight-hips-after-running': { works: 'the hip flexors, quads, outer hip, glutes and lower back' },
+  'rest-day-recovery':        { works: 'the chest, shoulders, hip flexors, quads, inner thighs, side body, glutes, lower back and the backs of the legs' },
   'after-the-run':            { works: 'the hip flexors, quads, glutes, hamstrings, calves and lower back' },
 };
 

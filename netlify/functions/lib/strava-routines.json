@@ -211,30 +211,35 @@
   },
   "rest-day-recovery": {
     "title": "Rest-Day Recovery",
-    "minutes": 30,
+    "minutes": 26,
     "steps": [
       {
-        "name": "Supported Fish",
-        "seconds": 300,
-        "sides": 1
-      },
-      {
-        "name": "Caterpillar",
+        "name": "Supported Fish with Butterfly Legs",
         "seconds": 240,
         "sides": 1
       },
       {
         "name": "Reclined Twist",
-        "seconds": 180,
+        "seconds": 120,
         "sides": 2
       },
       {
-        "name": "Legs Up the Wall",
-        "seconds": 480,
+        "name": "Banana",
+        "seconds": 120,
+        "sides": 2
+      },
+      {
+        "name": "Reclined Swan",
+        "seconds": 120,
+        "sides": 2
+      },
+      {
+        "name": "Saddle",
+        "seconds": 180,
         "sides": 1
       },
       {
-        "name": "Corpse",
+        "name": "Legs Up the Wall",
         "seconds": 300,
         "sides": 1
       }
@@ -304,7 +309,7 @@
   },
   "tight-hips-after-running": {
     "title": "Tight Hips After Running",
-    "minutes": 20,
+    "minutes": 18,
     "steps": [
       {
         "name": "Dragon",
@@ -313,12 +318,7 @@
       },
       {
         "name": "Sleeping Swan",
-        "seconds": 150,
-        "sides": 2
-      },
-      {
-        "name": "Deer",
-        "seconds": 90,
+        "seconds": 180,
         "sides": 2
       },
       {

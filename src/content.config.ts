@@ -244,6 +244,9 @@ const routines = defineCollection({
     minutes: z.number().int().positive(), // true runtime — verified against the sequence below
     intro: z.string().min(1), // a short paragraph in Katie's voice
     props: z.array(z.string()).default([]),
+    // The YouTube class this routine is the timer for, embedded on the page.
+    // `youtube_id` stays empty until the class is public; nothing renders without it.
+    video: z.object({ youtube_id: z.string().default(''), label: z.string().optional() }).optional(),
     steps: z
       .array(
         z.object({
