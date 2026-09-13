@@ -50,6 +50,8 @@ Before a run, your body wants to be *woken up*, not lengthened — a few minutes
 
 After a run is when the long, still holds earn their keep. You're warm, the work is done, and this is the moment to give back the range running quietly takes away — and to let your body shift down into its rest state, which is the recovery half of training most runners skip.
 
+If you'd like the longer answer to the timing question — why stretching isn't a warm-up, and what to do before a run instead — I wrote a whole post on [stretching before or after running](/blog/stretch-before-or-after-running/).
+
 ## Why fifteen minutes is enough
 
 This is Yin yoga, and all it really means is this: you settle into a shape and stay for a few quiet minutes — nothing forced, only ever to about **60–80% of your capacity** — and let gravity and your breath do the slow work a rushed stretch can't reach.

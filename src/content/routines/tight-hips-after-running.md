@@ -9,7 +9,7 @@ level: "all-levels"
 minutes: 18
 props: []
 video:
-  youtube_id: ""
+  youtube_id: "XmJmlhNgLUI"
   label: "Yin Yoga for Tight Hips After Running (20 min)"
 intro: "Running shortens the front of the hip, and sitting afterwards makes it worse. This is the three-shape practice from the class: Dragon for the front of the hip, Sleeping Swan for the back of it, and a reclined twist to undo the run through the spine. Long holds, nothing fancy. Do it after a run while you're still warm, or on a rest day."
 steps:
@@ -48,5 +48,5 @@ seo_description: "An 18-minute Yin Yoga routine for runners with tight hips: Dra
 ---
 
 <!-- The three shapes from the September runner class "Yin Yoga for Tight Hips
-After Running" (20 min on YouTube; the timer runs 18 without the intro). Fill
-in video.youtube_id once the class is public. -->
+After Running" (22:48 on YouTube, marketed as 20 min; the timer runs 18 without
+the intro, the rebounds and the closing). -->

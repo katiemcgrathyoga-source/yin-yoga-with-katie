@@ -20,9 +20,11 @@ pin_angles:
 seo_title: "Tight Hips From Running: Yin Yoga That Actually Helps"
 seo_description: "Why runners get tight hips (running plus sitting), what it does to your stride and lower back, and four slow Yin holds for the hip flexors, glutes and outer hip. With a free follow-along."
 practise:
-  routine: "deep-hips-lower-body"
-  video: "GhuInc1Xhm4"
-  video_label: "Yin Yoga for Tight Hips & Glutes (23 min)"
+  # Re-pointed 2026-09-13 at the class filmed for this post and its matching
+  # routine — three of the four holds below, with the timer on the routine page.
+  routine: "tight-hips-after-running"
+  video: "XmJmlhNgLUI"
+  video_label: "Yin Yoga for Tight Hips After Running (20 min)"
 faq:
   - q: "Why are my hips so tight from running?"
     a: "Every stride swings the leg through a fairly small range at the front of the hip, thousands of times, and the hip flexors adapt by staying a little shorter and a little more braced. Then most of us sit for the rest of the day, which holds the same muscles in the same shortened position. The two together are what most runners are feeling."
