@@ -31,6 +31,18 @@ steps:
     seconds: 180
     note: "Fold in and let the hips close after all that opening."
 faq: []
+why: "The interesting part of a five-minute hold happens after minute three, once the muscles have stopped guarding and the deeper tissue around the hip starts to move. Dragon, sleeping swan and deer cover the front, back and sides of the hip, so nothing is missed. It is long because there is no way to get there quickly."
+scale:
+  - level: "New"
+    note: "Do the shorter hip practices first for a few weeks. If you are here anyway, halve every hold and pad everything."
+  - level: "Returning"
+    note: "Hold for three or four minutes rather than five, with a cushion under the front hip in sleeping swan."
+  - level: "Experienced"
+    note: "The full five minutes, and let the breath slow down with the hold. Do not chase depth; wait for it."
+when:
+  - "On a proper rest day, with nothing after it."
+  - "When the hips have felt tight for weeks rather than days."
+  - "Not the day before a hard session or a race."
 membership_cta: "This routine is part of The Runner's Reset — yours for good."
 summary: "A deep hip practice with five-minute holds, for experienced practitioners."
 seo_title: "Long Hold Hips — The Runner's Reset"

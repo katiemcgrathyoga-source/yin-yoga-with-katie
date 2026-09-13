@@ -262,6 +262,13 @@ const routines = defineCollection({
     membership_cta: z.string().min(1),
     summary: z.string().min(1),
 
+    // Course routines carry the same teaching kit as a practice page (why it
+    // helps, how to scale it, when to use it) so a member finds what a practice
+    // gave them, minus the video. Public routines leave these empty.
+    why: z.string().optional(),
+    scale: z.array(z.object({ level: z.string().min(1), note: z.string().min(1) })).default([]),
+    when: z.array(z.string()).default([]),
+
     // Pin copy — two angles on two different boards.
     pin_angles: pinAngles(),
 

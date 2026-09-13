@@ -24,6 +24,18 @@ steps:
     sides: 2
     note: "Knees across. Then the other side, and you are done."
 faq: []
+why: "Little and often beats long and rare, and this is what little looks like. One shape for the back of the legs, one for the spine, both lying down, both gentle enough to do on the floor beside the bed. It counts, and on the days it is the only thing that happens, it counts more."
+scale:
+  - level: "New"
+    note: "Bend the knee as much as you need in the hamstring stretch, and hold the thigh rather than the foot."
+  - level: "Returning"
+    note: "Let the leg straighten a little and the knees drop fully in the twist."
+  - level: "Experienced"
+    note: "Add thirty seconds to each side if you have it. If you do not, seven minutes was the point."
+when:
+  - "The days you would otherwise do nothing."
+  - "Straight after a run, before the shower."
+  - "Last thing at night, on the bedroom floor."
 membership_cta: "This routine is part of The Runner's Reset — yours for good."
 summary: "A seven-minute Yin practice for the days when the real choice is between this and nothing."
 seo_title: "Seven Honest Minutes — The Runner's Reset"

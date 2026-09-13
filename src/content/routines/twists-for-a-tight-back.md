@@ -33,6 +33,18 @@ steps:
     seconds: 90
     note: "Knees hugged in. Squeeze the low back closed to finish."
 faq: []
+why: "Running loads the spine with impact and almost never rotates it, so the back stiffens in one direction. Gentle twists move it the other way, and doing them lying down means the back muscles can stay soft while the spine turns. Nothing here is strong; the length of the hold is what does the work."
+scale:
+  - level: "New"
+    note: "A cushion between the knees in the reclined twist, and keep the seated twist small. If the low back is sore rather than stiff, stay with the crocodile and the reclined twist only."
+  - level: "Returning"
+    note: "Let the knees drop all the way in the reclined twist and hold the seated twist for the full time."
+  - level: "Experienced"
+    note: "Stay longer in the reclined twist, up to five minutes a side, and let the breath do the rotating."
+when:
+  - "After a long run, when the low back feels compressed."
+  - "At the end of a day at a desk."
+  - "Any evening the back feels stiff rather than sore."
 membership_cta: "This routine is part of The Runner's Reset — yours for good."
 summary: "Gentle Yin twists and spinal work for a stiff lower back."
 seo_title: "Twists for a Tight Back — The Runner's Reset"

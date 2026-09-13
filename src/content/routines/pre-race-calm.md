@@ -32,6 +32,18 @@ steps:
     seconds: 180
     note: "Stay as long as you like. Falling asleep here is a perfectly good outcome."
 faq: []
+why: "Deep stretching the night before a race can leave you loose and a little less springy, which is the last thing you want on a start line. Everything here is supported by a prop, so nothing is being opened; the point is to bring the nervous system down so you can sleep. Legs up the wall does most of the work."
+scale:
+  - level: "New"
+    note: "Keep every shape fully supported and come out whenever you like. Skip the twist if it feels like anything at all."
+  - level: "Returning"
+    note: "Stay a little longer in legs up the wall, up to eight minutes, and let the corpse run as long as you have."
+  - level: "Experienced"
+    note: "The same as everyone else. There is nothing to go deeper into the night before a race, and that is the point."
+when:
+  - "The night before a race."
+  - "The evening after a hard session, to settle."
+  - "Any night the mind will not slow down."
 membership_cta: "This routine is part of The Runner's Reset — yours for good."
 summary: "A fully supported Yin practice for the night before a race."
 seo_title: "Pre-Race Calm — The Runner's Reset"

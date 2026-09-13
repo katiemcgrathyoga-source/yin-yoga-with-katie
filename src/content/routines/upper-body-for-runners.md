@@ -33,6 +33,18 @@ steps:
     sides: 2
     note: "Arms wrapped, sitting tall. Between the shoulder blades."
 faq: []
+why: "By hour two of a long run the shoulders creep up and the chest closes, and a desk finishes the job. A closed chest makes breathing harder than it needs to be, and stiff shoulders cost you a relaxed arm swing. These shapes open the chest and free the upper back, all of them gentle enough for any day."
+scale:
+  - level: "New"
+    note: "A cushion under the head in thread the needle and a bolster under the chest in melting heart. Keep the eagle arms loose."
+  - level: "Returning"
+    note: "Let the chest sink further in melting heart and stay the full time in the fish."
+  - level: "Experienced"
+    note: "Add a second round of thread the needle and stay longer in the supported fish."
+when:
+  - "After a long run, when the shoulders have crept up."
+  - "At the end of a desk day."
+  - "Before bed, if the chest feels tight."
 membership_cta: "This routine is part of The Runner's Reset — yours for good."
 summary: "A Yin practice for the shoulders, upper back and chest."
 seo_title: "Upper Body for Runners — The Runner's Reset"

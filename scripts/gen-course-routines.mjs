@@ -193,6 +193,138 @@ const ROUTINES = [
 
 const q = (s) => JSON.stringify(String(s));
 
+/**
+ * The teaching kit each routine page shows beside the timer, matching a
+ * practice page: why it helps, how to scale it, when to use it. Katie's voice,
+ * drafted 2026-09-13 from the intros and the pose files — flagged for her
+ * review like all drafted copy. Keyed by slug so the sequences above stay
+ * readable.
+ */
+const COPY = {
+  'up-the-wall': {
+    why: "Legs up the wall lets gravity drain the legs and takes every bit of effort out of the picture. Heavy, tired legs after a long or hard run do not need stretching so much as they need to stop working, and five quiet minutes here does that better than anything more ambitious. The twist afterwards just lets the spine settle.",
+    scale: [
+      { level: 'New', note: "Keep the hips a hand's width from the wall and bend the knees a little if the hamstrings complain. A folded blanket under the head helps." },
+      { level: 'Returning', note: 'Bring the hips closer to the wall and let the legs be truly heavy for the full five minutes.' },
+      { level: 'Experienced', note: 'Add a second round of the twist, or stay in corpse for as long as you have. Nothing here needs to be deeper.' },
+    ],
+    when: ['Straight after a long or hard run, once you have eaten.', 'The evening before an early start, to settle the legs.', 'Any day the honest answer is "I have nothing left".'],
+  },
+  'the-deep-hamstring': {
+    why: 'Hamstrings do the hardest braking work in every stride, and they shorten quietly week after week. Four long folds into the same tissue from slightly different angles reach further than any quick stretch can, because the deeper layers only let go with time. Soft knees the whole way through keep the load in the muscle rather than behind the knee.',
+    scale: [
+      { level: 'New', note: 'Bend the knees generously in every fold and sit on a cushion. Come out of the caterpillar at three minutes.' },
+      { level: 'Returning', note: 'Let the folds deepen on their own and stay for the full holds. Use a strap in the reclined stretch.' },
+      { level: 'Experienced', note: 'Straighten the legs a little more in the caterpillar, and add a minute to the dragonfly if it is quiet.' },
+    ],
+    when: ['On a rest day, when the hamstrings feel short and braced.', 'The day after speed work or hills.', 'When a forward fold has stopped feeling like a stretch and started feeling like a wall.'],
+  },
+  'feet-toes-ankles': {
+    why: 'Everything above the ankles is standing on them, and stiff feet change your stride before you notice. The soles, the tops of the feet and the ankles each get their own shape here, in both directions, so the whole base loosens rather than one side of it. It is short because it is intense, and intense is fine in small doses.',
+    scale: [
+      { level: 'New', note: 'Take most of your weight into the hands in toe squat and ankle stretch, and come out early. Sit on a block in the squat.' },
+      { level: 'Returning', note: 'Let the hands rest lighter and stay for the full holds. Heels on a rolled blanket in the squat.' },
+      { level: 'Experienced', note: 'Build toe squat toward two minutes over a few weeks, and let the heels settle toward the floor.' },
+    ],
+    when: ['After a run on hard roads or trails.', 'When the feet, ankles or calves feel stiff first thing.', 'Before a day on your feet.'],
+  },
+  'inner-thigh-opener': {
+    why: 'Tight adductors pull on the pelvis and show up as groin niggles and a stride that will not open, yet almost nobody stretches them. Every shape here is a beginner shape and most of it is on your back, so the inner thigh can let go without the rest of you bracing. Props under the knees are what make the long holds possible.',
+    scale: [
+      { level: 'New', note: 'Cushions under both knees in butterfly and frog, and keep the frog narrow. Come out whenever it stops being dull.' },
+      { level: 'Returning', note: 'Let the knees settle a little wider in the frog and fold a bit further in the half butterfly.' },
+      { level: 'Experienced', note: 'Stay for the full holds and let the fold in butterfly come from the hips, not the back.' },
+    ],
+    when: ['When the groin or inner thigh feels tight or twingy.', 'On an easy day, when the hips feel narrow.', 'After a rest day, to open the stride gently.'],
+  },
+  'the-front-line': {
+    why: 'Running and sitting both shorten the front of the body, and the quads and hip flexors are what pull the pelvis forward when they are tight. These shapes lengthen the whole front line, from the thigh up through the hip and belly to the chest. It asks a lot, which is why it comes after the shorter hip work and not before it.',
+    scale: [
+      { level: 'New', note: 'This is not the place to start; do the shorter hip practices for a few weeks first. If you are here anyway, skip the seal and the camel and stay upright on your hands in saddle.' },
+      { level: 'Returning', note: 'Saddle on the elbows or over a bolster, and keep the camel brief. Come out of anything sharp.' },
+      { level: 'Experienced', note: 'Take saddle all the way down if the knees are happy, and stay the full three minutes.' },
+    ],
+    when: ['On a rest day, when the front of the hips feels short.', 'After a week of long sitting.', 'Never the night before a race.'],
+  },
+  'twists-for-a-tight-back': {
+    why: 'Running loads the spine with impact and almost never rotates it, so the back stiffens in one direction. Gentle twists move it the other way, and doing them lying down means the back muscles can stay soft while the spine turns. Nothing here is strong; the length of the hold is what does the work.',
+    scale: [
+      { level: 'New', note: 'A cushion between the knees in the reclined twist, and keep the seated twist small. If the low back is sore rather than stiff, stay with the crocodile and the reclined twist only.' },
+      { level: 'Returning', note: 'Let the knees drop all the way in the reclined twist and hold the seated twist for the full time.' },
+      { level: 'Experienced', note: 'Stay longer in the reclined twist, up to five minutes a side, and let the breath do the rotating.' },
+    ],
+    when: ['After a long run, when the low back feels compressed.', 'At the end of a day at a desk.', 'Any evening the back feels stiff rather than sore.'],
+  },
+  'outer-hip-and-it-band': {
+    why: 'You cannot stretch an IT band, but you can release the muscles that tension it: the glutes, the outer hip and the side body. That is where a sharp line down the outside of the knee usually starts, and it is what these four shapes work, each from a different angle. Twice a week is enough to notice.',
+    scale: [
+      { level: 'New', note: 'Sit on a block in shoelace and keep the twisted dragon shallow, with the back knee padded. Skip the banana if the side body complains.' },
+      { level: 'Returning', note: 'Fold a little further in shoelace and let the banana lengthen. Hold the reclined swan for the full time.' },
+      { level: 'Experienced', note: 'Take the twisted dragon deeper and add a minute to the shoelace on the tighter side.' },
+    ],
+    when: ['When there is a pull down the outside of the knee or thigh.', 'After hilly or cambered runs.', 'On an easy day, twice a week, while a niggle settles.'],
+  },
+  'upper-body-for-runners': {
+    why: 'By hour two of a long run the shoulders creep up and the chest closes, and a desk finishes the job. A closed chest makes breathing harder than it needs to be, and stiff shoulders cost you a relaxed arm swing. These shapes open the chest and free the upper back, all of them gentle enough for any day.',
+    scale: [
+      { level: 'New', note: 'A cushion under the head in thread the needle and a bolster under the chest in melting heart. Keep the eagle arms loose.' },
+      { level: 'Returning', note: 'Let the chest sink further in melting heart and stay the full time in the fish.' },
+      { level: 'Experienced', note: 'Add a second round of thread the needle and stay longer in the supported fish.' },
+    ],
+    when: ['After a long run, when the shoulders have crept up.', 'At the end of a desk day.', 'Before bed, if the chest feels tight.'],
+  },
+  'long-hold-hips': {
+    why: 'The interesting part of a five-minute hold happens after minute three, once the muscles have stopped guarding and the deeper tissue around the hip starts to move. Dragon, sleeping swan and deer cover the front, back and sides of the hip, so nothing is missed. It is long because there is no way to get there quickly.',
+    scale: [
+      { level: 'New', note: 'Do the shorter hip practices first for a few weeks. If you are here anyway, halve every hold and pad everything.' },
+      { level: 'Returning', note: 'Hold for three or four minutes rather than five, with a cushion under the front hip in sleeping swan.' },
+      { level: 'Experienced', note: 'The full five minutes, and let the breath slow down with the hold. Do not chase depth; wait for it.' },
+    ],
+    when: ['On a proper rest day, with nothing after it.', 'When the hips have felt tight for weeks rather than days.', 'Not the day before a hard session or a race.'],
+  },
+  'pre-race-calm': {
+    why: 'Deep stretching the night before a race can leave you loose and a little less springy, which is the last thing you want on a start line. Everything here is supported by a prop, so nothing is being opened; the point is to bring the nervous system down so you can sleep. Legs up the wall does most of the work.',
+    scale: [
+      { level: 'New', note: 'Keep every shape fully supported and come out whenever you like. Skip the twist if it feels like anything at all.' },
+      { level: 'Returning', note: 'Stay a little longer in legs up the wall, up to eight minutes, and let the corpse run as long as you have.' },
+      { level: 'Experienced', note: 'The same as everyone else. There is nothing to go deeper into the night before a race, and that is the point.' },
+    ],
+    when: ['The night before a race.', 'The evening after a hard session, to settle.', 'Any night the mind will not slow down.'],
+  },
+  'seven-honest-minutes': {
+    why: 'Little and often beats long and rare, and this is what little looks like. One shape for the back of the legs, one for the spine, both lying down, both gentle enough to do on the floor beside the bed. It counts, and on the days it is the only thing that happens, it counts more.',
+    scale: [
+      { level: 'New', note: 'Bend the knee as much as you need in the hamstring stretch, and hold the thigh rather than the foot.' },
+      { level: 'Returning', note: 'Let the leg straighten a little and the knees drop fully in the twist.' },
+      { level: 'Experienced', note: 'Add thirty seconds to each side if you have it. If you do not, seven minutes was the point.' },
+    ],
+    when: ['The days you would otherwise do nothing.', 'Straight after a run, before the shower.', 'Last thing at night, on the bedroom floor.'],
+  },
+  'the-long-reset': {
+    why: 'It works down the whole chain running loads, in order, so each shape sets up the next: the low back first, then the front of the hip, the glute, the back of the leg, the inner thigh and the side. Long holds and a proper rest at the end are what make it a reset rather than a stretch. Give it a rest day.',
+    scale: [
+      { level: 'New', note: 'Halve the longer holds and use a cushion in everything. Skip the banana if the side body objects.' },
+      { level: 'Returning', note: 'Take the holds as written and pad the back knee in dragon. Come out of the caterpillar early if the hamstrings are loud.' },
+      { level: 'Experienced', note: 'Stay for the full holds and let the four minutes of corpse be four minutes. Nothing here needs to be deeper.' },
+    ],
+    when: ['On a rest day, with nothing after it.', 'The day after a long run, once you have eaten.', 'Once a week, if you can manage it.'],
+  },
+};
+
+/** The why / scale / when block, or nothing for a routine without copy yet. */
+const kit = (slug) => {
+  const c = COPY[slug];
+  if (!c) return '';
+  return [
+    `why: ${q(c.why)}`,
+    'scale:',
+    ...c.scale.map((l) => `  - level: ${q(l.level)}\n    note: ${q(l.note)}`),
+    'when:',
+    ...c.when.map((w) => `  - ${q(w)}`),
+    '',
+  ].join('\n');
+};
+
 const toYaml = (r) => {
   const steps = r.steps
     .map((s) => [
@@ -222,7 +354,7 @@ props: []
 steps:
 ${steps}
 faq: []
-membership_cta: "This routine is part of The Runner's Reset — yours for good."
+${kit(r.slug)}membership_cta: "This routine is part of The Runner's Reset — yours for good."
 summary: ${q(r.summary)}
 seo_title: ${q(r.title + " — The Runner's Reset")}
 seo_description: ${q(r.summary)}

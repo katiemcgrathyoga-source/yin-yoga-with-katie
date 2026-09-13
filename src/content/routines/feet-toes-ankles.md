@@ -31,6 +31,18 @@ steps:
     seconds: 120
     note: "Rest. The feet will be talking to you — let them settle."
 faq: []
+why: "Everything above the ankles is standing on them, and stiff feet change your stride before you notice. The soles, the tops of the feet and the ankles each get their own shape here, in both directions, so the whole base loosens rather than one side of it. It is short because it is intense, and intense is fine in small doses."
+scale:
+  - level: "New"
+    note: "Take most of your weight into the hands in toe squat and ankle stretch, and come out early. Sit on a block in the squat."
+  - level: "Returning"
+    note: "Let the hands rest lighter and stay for the full holds. Heels on a rolled blanket in the squat."
+  - level: "Experienced"
+    note: "Build toe squat toward two minutes over a few weeks, and let the heels settle toward the floor."
+when:
+  - "After a run on hard roads or trails."
+  - "When the feet, ankles or calves feel stiff first thing."
+  - "Before a day on your feet."
 membership_cta: "This routine is part of The Runner's Reset — yours for good."
 summary: "A short, intense Yin practice for the feet, toes and ankles — the base most runners never work."
 seo_title: "Feet, Toes & Ankles — The Runner's Reset"

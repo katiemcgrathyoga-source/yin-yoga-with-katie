@@ -26,6 +26,18 @@ steps:
     seconds: 120
     note: "Flat and still. This is the part that does the recovering."
 faq: []
+why: "Legs up the wall lets gravity drain the legs and takes every bit of effort out of the picture. Heavy, tired legs after a long or hard run do not need stretching so much as they need to stop working, and five quiet minutes here does that better than anything more ambitious. The twist afterwards just lets the spine settle."
+scale:
+  - level: "New"
+    note: "Keep the hips a hand's width from the wall and bend the knees a little if the hamstrings complain. A folded blanket under the head helps."
+  - level: "Returning"
+    note: "Bring the hips closer to the wall and let the legs be truly heavy for the full five minutes."
+  - level: "Experienced"
+    note: "Add a second round of the twist, or stay in corpse for as long as you have. Nothing here needs to be deeper."
+when:
+  - "Straight after a long or hard run, once you have eaten."
+  - "The evening before an early start, to settle the legs."
+  - "Any day the honest answer is \"I have nothing left\"."
 membership_cta: "This routine is part of The Runner's Reset — yours for good."
 summary: "A twelve-minute legs-up-the-wall reset for tired legs after a long or hard run."
 seo_title: "Up the Wall — The Runner's Reset"

@@ -32,6 +32,18 @@ steps:
     seconds: 120
     note: "Rest and let the hips settle back to neutral."
 faq: []
+why: "Tight adductors pull on the pelvis and show up as groin niggles and a stride that will not open, yet almost nobody stretches them. Every shape here is a beginner shape and most of it is on your back, so the inner thigh can let go without the rest of you bracing. Props under the knees are what make the long holds possible."
+scale:
+  - level: "New"
+    note: "Cushions under both knees in butterfly and frog, and keep the frog narrow. Come out whenever it stops being dull."
+  - level: "Returning"
+    note: "Let the knees settle a little wider in the frog and fold a bit further in the half butterfly."
+  - level: "Experienced"
+    note: "Stay for the full holds and let the fold in butterfly come from the hips, not the back."
+when:
+  - "When the groin or inner thigh feels tight or twingy."
+  - "On an easy day, when the hips feel narrow."
+  - "After a rest day, to open the stride gently."
 membership_cta: "This routine is part of The Runner's Reset — yours for good."
 summary: "A gentle Yin practice for the inner thighs and groin."
 seo_title: "The Inner Thigh Opener — The Runner's Reset"

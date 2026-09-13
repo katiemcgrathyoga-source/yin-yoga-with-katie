@@ -5,23 +5,26 @@ import { getCollection } from 'astro:content';
 import CourseLayout from '../../../layouts/CourseLayout.astro';
 import CourseGate from '../../../components/CourseGate.astro';
 import RoutinePlayer from '../../../components/RoutinePlayer.astro';
-import BodyMap from '../../../components/BodyMap.astro';
 import { checkAccess } from '../../../lib/access';
 import { courseRoutines } from '../../../lib/routines';
+import { routineMap } from '../../../lib/routineMaps';
 
 /**
  * A bonus routine, inside the course.
  *
- * Leaner than the public /routines/[slug] page: no FAQ, no membership pitch,
- * no SEO furniture. Someone here has already bought and is about to get on the
- * mat, so the page is the intro, the timer, the written shapes and the body
- * map — the same kit as a practice page, minus the video. Log to Strava and
- * the map download come from the player, as they do on the public runner
- * routines (Kevin, 2026-09-13: a member should find what a practice page gave
- * them).
+ * The same page as a practice (src/pages/practices/[slug].astro) minus the
+ * video: the title and chips, the timer, then "why it helps and how to
+ * practice" — the why, the shapes, the body map, how to scale it, when to use
+ * it. A member should find what a practice page gave them (Kevin, 2026-09-13),
+ * so the layout, class names and styles are the practice page's, not a lean
+ * cousin of them. Log to Strava and the map download come from the player, as
+ * on the public runner routines.
  *
- * Course routines are excluded from the public route's getStaticPaths, so this
- * is the only page they have, and it never renders the sequence to a non-buyer.
+ * The body map is the routine's own — generated from what its poses work by
+ * scripts/gen-course-maps.mjs — not a region plate picked by the routine's
+ * filing area. Course routines are excluded from the public route's
+ * getStaticPaths, so this is the only page they have, and it never renders the
+ * sequence to a non-buyer.
  */
 const PRODUCT = 'runner-reset';
 const { slug } = Astro.params;
@@ -31,18 +34,25 @@ if (!routine) return new Response('Not found', { status: 404 });
 
 const d = routine.data;
 const access = await checkAccess(Astro.cookies, PRODUCT);
-
-/** The body-map plate for this routine. Areas name the plates directly; "legs"
- *  (legs up the wall) lights the backs of the legs. */
-type Region = 'hips' | 'hamstrings' | 'quads' | 'calves' | 'back' | 'full';
-const REGION: Record<string, Region> = {
-  hips: 'hips', hamstrings: 'hamstrings', quads: 'quads', calves: 'calves', back: 'back', full: 'full', legs: 'hamstrings',
-};
-const region: Region = REGION[d.area ?? 'full'] ?? 'full';
 const unlocked = access.entitled;
 
 const titleCase = (s: string) => s.replace(/\b\w/g, (c) => c.toUpperCase());
 const humanise = (s: string) => titleCase(s.replace(/-/g, ' '));
+
+/** The filing area as the chip reads it, matching the Routines tab. */
+const AREA_LABEL: Record<string, string> = {
+  hips: 'Hips', hamstrings: 'Hamstrings', quads: 'Quads & Outer Hip',
+  calves: 'Calves & Feet', back: 'Back & Shoulders', legs: 'Legs', full: 'Full-Body',
+};
+const areaLabel = AREA_LABEL[d.area ?? 'full'] ?? titleCase(d.area ?? 'full');
+
+/** "1–2 minute holds", worked out from the sequence rather than typed. */
+const secs = d.steps.map((s) => s.seconds);
+const lo = Math.floor(Math.min(...secs) / 60);
+const hi = Math.ceil(Math.max(...secs) / 60);
+const holdLabel = hi < 1 ? 'Short holds' : lo === hi ? `${lo}-minute holds` : `${Math.max(lo, 1)}–${hi} minute holds`;
+
+const map = routineMap(d.slug);
 
 type Hold = { name: string; slug: string; img: string; seconds: number; note: string; sideLabel?: string; rebound?: number };
 let holds: Hold[] = [];
@@ -77,77 +87,126 @@ const holdWords = (secs: number, sides: number) => {
   noindex={true}
   section={unlocked ? 'Routine' : undefined}
 >
-  {!unlocked ? (
-    <div class="cwrap"><CourseGate signedIn={access.signedIn} thing="this routine" /></div>
-  ) : (
-    <div class="cwrap cr">
-      <header class="cr-head">
-        <p class="cr-eyebrow"><a href="/practices/routines">← All routines</a></p>
-        <h1>{d.title}</h1>
-        {d.tagline && <p class="cr-tagline">{d.tagline}</p>}
-        <div class="cr-chips">
-          <span class="cr-chip">~{d.minutes} min</span>
-          <span class="cr-chip">{titleCase(d.level.replace(/-/g, ' '))}</span>
-          <span class="cr-chip">{d.props.length ? d.props.join(', ') : 'No props needed'}</span>
-          <span class="cr-chip">{d.steps.length} shapes</span>
-        </div>
-      </header>
+  <div class="wrap sp">
+    <header class="sp-head">
+      <p class="sp-eyebrow"><a href="/practices/routines">← All routines</a></p>
+      <h1>{d.title}</h1>
+      {d.tagline && <p class="sp-tagline">{d.tagline}</p>}
+      <div class="sp-chips">
+        <span class="sp-chip area">Area · {areaLabel}</span>
+        <span class="sp-chip">~{d.minutes} min</span>
+        <span class="sp-chip">{holdLabel}</span>
+        <span class="sp-chip">{titleCase(d.level.replace(/-/g, ' '))}</span>
+        <span class="sp-chip">{d.props.length ? d.props.join(', ') : 'No props needed'}</span>
+      </div>
+    </header>
 
-      <p class="cr-intro">{d.intro}</p>
+    {!unlocked ? (
+      <CourseGate signedIn={access.signedIn} thing="this routine" />
+    ) : (
+      <Fragment>
+        {/* 1 · PRACTICE — the timer. No video: a routine is the timer-led one. */}
+        <section class="sp-sec">
+          <p class="sp-label"><span class="sp-num">1</span> Practice</p>
+          <p class="sp-intro">{d.intro}</p>
+          <RoutinePlayer title={d.title} slug={d.slug} holds={holds} share={false} strava={true} mapUrl={map?.photo} />
+          <p class="sp-hint">Screen-free once you know the shapes. A gentle chime moves you between holds, and the screen dims so you can leave it on the mat.</p>
+          <p class="sp-hint">On Strava? When you finish, <strong>Log to Strava</strong> posts this routine to your feed. <a href="/account">Connect your Strava</a> once, from your account page.</p>
+        </section>
 
-      <RoutinePlayer title={d.title} slug={d.slug} holds={holds} share={false} strava={true} mapUrl={`/bodymap/regions/${region}.jpg`} />
-      <p class="cr-hint">A gentle chime moves you between holds, and the screen dims so you can leave it on the mat.</p>
-      <p class="cr-hint">On Strava? When you finish, <strong>Log to Strava</strong> posts this routine to your feed. <a href="/account">Connect your Strava</a> once, from your account page.</p>
-
-      <section class="cr-sec">
-        <h2>The shapes</h2>
-        {d.steps.map((s, i) => {
-          const p = bySlug.get(s.pose);
-          return (
-            <div class="cr-cue">
-              <span class="n">{i + 1}</span>
-              <div class="body">
-                <h3>
-                  <a href={`/poses/${s.pose}`}>{p?.name_en ?? humanise(s.pose)}</a>
-                  {s.sides === 2 && <span class="side"> · each side</span>}
-                </h3>
-                <span class="hold">{holdWords(s.seconds, s.sides)}</span>
-                {s.note && <p>{s.note}</p>}
+        {/* 2 · WHY + HOW + SEE + SCALE — the practice page's kit */}
+        <section class="sp-sec">
+          <p class="sp-label"><span class="sp-num">2</span> Why it helps &amp; how to practice</p>
+          <div class="sp-grid">
+            <div>
+              {d.why && (
+                <div class="sp-card">
+                  <h3>Why this one</h3>
+                  <p class="muted">{d.why}</p>
+                  {d.tagline && <p class="sp-angle">“{d.tagline}”</p>}
+                </div>
+              )}
+              <div class="sp-card">
+                <h3>How to practice — the shapes</h3>
+                {d.steps.map((s, i) => {
+                  const p = bySlug.get(s.pose);
+                  const name = p?.name_en ?? humanise(s.pose);
+                  return (
+                    <div class="sp-cue">
+                      <span class="n">{i + 1}</span>
+                      <div class="body">
+                        <h4>
+                          <a href={`/poses/${s.pose}`}>{name}</a>
+                          {s.sides === 2 && <span class="side"> · each side</span>}
+                        </h4>
+                        <span class="hold">{holdWords(s.seconds, s.sides)}</span>
+                        {s.note && <p>{s.note}</p>}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
-          );
-        })}
-      </section>
 
-      <section class="cr-sec">
-        <h2>Where it works</h2>
-        <BodyMap region={region} />
-      </section>
+            <div>
+              {map && (
+                <div class="sp-card sp-map">
+                  <figure class="rmap">
+                    <div class="rmap-plate" role="img" aria-label={`Diagram: this routine works ${map.works}`}>
+                      <img src={map.src} width="880" height="880" loading="lazy" decoding="async" alt="" />
+                      <span class="rmap-view-cap"><span>Front</span><span>Back</span></span>
+                    </div>
+                    <figcaption class="rmap-cap"><b>Where it works:</b> {map.works}.</figcaption>
+                    <a class="rmap-dl" href={map.photo} download={`${d.slug}-body-map.jpg`}>Save this body map</a>
+                  </figure>
+                </div>
+              )}
 
-      <div class="cr-done" data-slug={d.slug} data-title={d.title} data-minutes={d.minutes}>
-        <span class="cr-done-txt" id="cr-done-txt">Finished this one?</span>
-        <button class="cr-done-btn" id="cr-done-btn" type="button">Mark as done</button>
-      </div>
-    </div>
-  )}
+              {d.scale.length > 0 && (
+                <div class="sp-card">
+                  <h3>Scale it to you</h3>
+                  {d.scale.map((l) => (
+                    <div class="sp-lvl"><span class="tag">{l.level}</span><p>{l.note}</p></div>
+                  ))}
+                </div>
+              )}
+
+              {d.when.length > 0 && (
+                <div class="sp-card">
+                  <h3>When to use it</h3>
+                  <ul class="sp-when">{d.when.map((w) => <li>{w}</li>)}</ul>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+
+        <div class="sp-done" data-slug={d.slug} data-title={d.title} data-minutes={d.minutes}>
+          <span class="sp-done-txt" id="sp-done-txt">Finished this one?</span>
+          <button class="sp-done-btn" id="sp-done-btn" type="button">Mark as done</button>
+        </div>
+      </Fragment>
+    )}
+  </div>
 </CourseLayout>
 
 <script>
   import { logPractice, didToday } from '../../../lib/practiceLog';
 
-  const done = document.querySelector('.cr-done') as HTMLElement | null;
+  const done = document.querySelector('.sp-done') as HTMLElement | null;
   if (done) {
     const slug = done.dataset.slug!;
     const title = done.dataset.title!;
     const minutes = Number(done.dataset.minutes || 0);
-    const btn = document.getElementById('cr-done-btn') as HTMLButtonElement;
-    const txt = document.getElementById('cr-done-txt') as HTMLElement;
+    const btn = document.getElementById('sp-done-btn') as HTMLButtonElement;
+    const txt = document.getElementById('sp-done-txt') as HTMLElement;
 
     const paint = () => {
       if (!didToday(slug)) return;
       txt.textContent = 'Logged for today.';
       btn.textContent = 'Done';
       btn.disabled = true;
+      done.classList.add('is-done');
     };
 
     btn.addEventListener('click', () => { logPractice({ slug, title, minutes }); paint(); });
@@ -157,48 +216,73 @@ const holdWords = (secs: number, sides: number) => {
 </script>
 
 <style>
-  .cwrap { max-width: 1040px; margin: 0 auto; padding: 34px 22px 0; }
-  .cr { max-width: 760px; }
+  /* Mirrors src/pages/practices/[slug].astro so the two page kinds read as one. */
+  .sp { max-width: 960px; }
+  .sp-head { padding: 8px 0 6px; }
+  .sp-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--gold-solid); }
+  .sp-head h1 { margin: 10px 0 0; }
+  .sp-tagline { font-family: var(--display); font-style: italic; font-size: 17px; color: var(--plum-deep); margin: 8px 0 0; }
+  .sp-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .sp-chip { font-size: 12.5px; font-weight: 600; color: var(--ink); background: var(--paper-2); border: 1px solid var(--line); border-radius: 100px; padding: 6px 13px; }
+  .sp-chip.area { background: rgba(188,157,154,.24); border-color: transparent; }
 
-  .cr-head { margin-bottom: 20px; }
-  .cr-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; margin: 0 0 10px; }
-  .cr-eyebrow a { color: var(--gold-solid); text-decoration: none; }
-  .cr-head h1 { font-family: var(--display); font-size: clamp(28px, 4.6vw, 38px); margin: 0; }
-  .cr-tagline { font-family: var(--display); font-style: italic; font-size: 17px; color: var(--plum-deep); margin: 8px 0 0; }
-  .cr-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
-  .cr-chip {
-    font-size: 12.5px; font-weight: 600; color: var(--ink);
-    background: var(--paper-2); border: 1px solid var(--line);
-    border-radius: 100px; padding: 6px 13px;
-  }
+  .sp-sec { padding: 26px 0; }
+  .sp-label { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--plum-deep); margin-bottom: 14px; display: flex; align-items: center; gap: 9px; }
+  .sp-num { width: 22px; height: 22px; border-radius: 50%; background: var(--plum); color: var(--paper); display: inline-flex; align-items: center; justify-content: center; font-size: 12px; }
+  .sp-intro { font-size: 16.5px; line-height: 1.75; color: var(--ink-soft); margin: 0 0 20px; max-width: 64ch; }
+  .sp-hint { font-size: 12.5px; color: var(--ink-soft); font-style: italic; text-align: center; margin-top: 10px; }
+  .sp-hint a { color: var(--gold-solid); font-weight: 600; }
 
-  .cr-intro { font-size: 16.5px; line-height: 1.75; color: var(--ink-soft); margin: 0 0 26px; }
-  .cr-hint { font-size: 12.5px; color: var(--ink-soft); font-style: italic; text-align: center; margin: 10px 0 0; }
-  .cr-hint a { color: var(--gold-solid); font-weight: 600; }
+  .sp-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 24px; align-items: start; }
+  @media (max-width: 760px) { .sp-grid { grid-template-columns: 1fr; } }
+  .sp-card { background: var(--paper-2); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; }
+  .sp-card + .sp-card { margin-top: 18px; }
+  .sp-card h3 { font-size: 20px; margin-bottom: 8px; }
+  .sp-card p { font-size: 15px; }
+  .sp-card p.muted { color: var(--ink-soft); }
+  .sp-angle { margin-top: 12px; font-family: var(--display); font-style: italic; font-size: 16px; color: var(--plum-deep); }
 
-  .cr-sec { padding: 34px 0 6px; }
-  .cr-sec h2 { font-family: var(--display); font-size: 22px; margin: 0 0 6px; }
+  .sp-cue { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .sp-cue:last-child { border-bottom: none; }
+  .sp-cue .n { font-family: var(--display); color: var(--gold); font-size: 20px; width: 22px; flex: none; }
+  .sp-cue h4 { font-size: 16px; }
+  .sp-cue h4 a { color: var(--gold-solid); text-decoration: none; border-bottom: 1px solid rgba(137, 73, 75, .38); padding-bottom: 1px; }
+  .sp-cue h4 a:hover, .sp-cue h4 a:focus-visible { border-bottom-color: var(--gold-solid); }
+  .sp-cue h4 a::after { content: " ›"; opacity: .55; }
+  .sp-cue h4 .side { font-weight: 400; color: var(--ink-soft); font-size: 13px; }
+  .sp-cue .hold { display: block; font-size: 12.5px; font-weight: 600; color: var(--gold-solid); }
+  .sp-cue p { font-size: 14px; color: var(--ink-soft); margin-top: 3px; }
 
-  .cr-cue { display: flex; gap: 14px; padding: 15px 0; border-bottom: 1px solid var(--line); }
-  .cr-cue:last-child { border-bottom: none; }
-  .cr-cue .n { font-family: var(--display); color: var(--gold); font-size: 20px; width: 22px; flex: none; }
-  .cr-cue h3 { font-size: 16.5px; margin: 0; }
-  .cr-cue h3 a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--gold); }
-  .cr-cue h3 .side { font-weight: 400; color: var(--ink-soft); font-size: 13px; }
-  .cr-cue .hold { font-size: 12.5px; font-weight: 600; color: var(--gold-solid); }
-  .cr-cue p { font-size: 14.5px; color: var(--ink-soft); margin-top: 4px; }
+  /* The body map: the same mounted plate as BodyMap.astro, always cream. */
+  .sp-map { text-align: center; }
+  .rmap { margin: 0; }
+  .rmap-plate { max-width: 300px; margin: 0 auto; padding: 6px 6px 8px; background: #F9F3E5; border: 1px solid rgba(72, 84, 76, 0.16); border-radius: 12px; }
+  .rmap-plate img { display: block; width: 100%; height: auto; }
+  .rmap-view-cap { display: flex; justify-content: space-around; margin-top: 2px; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #48544C; }
+  .rmap-cap { font-size: 13px; color: var(--ink-soft); margin-top: 10px; line-height: 1.5; }
+  .rmap-cap b { color: var(--ink); }
+  .rmap-dl { display: inline-block; margin-top: 8px; font-size: 13px; font-weight: 600; color: var(--gold-solid); text-decoration: none; border-bottom: 1px solid currentColor; }
 
-  .cr-done {
+  .sp-lvl { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .sp-lvl:last-child { border-bottom: none; }
+  .sp-lvl .tag { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--paper); background: var(--plum); border-radius: 100px; padding: 4px 10px; height: fit-content; white-space: nowrap; }
+  .sp-lvl p { font-size: 14px; color: var(--ink-soft); }
+
+  .sp-when { margin: 0; padding-left: 18px; }
+  .sp-when li { margin: 7px 0; color: var(--ink-soft); font-size: 14.5px; }
+
+  .sp-done {
     display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;
-    padding: 16px 20px; margin: 30px 0 40px;
+    padding: 16px 20px; margin: 0 0 40px;
     background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px;
   }
-  .cr-done-txt { font-size: 15px; color: var(--ink-soft); }
-  .cr-done-btn {
+  .sp-done.is-done { border-color: rgba(137,73,75,.4); }
+  .sp-done-txt { font-size: 15px; color: var(--ink-soft); }
+  .sp-done-btn {
     font: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer;
     padding: 9px 20px; border-radius: 100px;
     background: transparent; color: var(--gold-solid); border: 1px solid var(--gold-solid);
   }
-  .cr-done-btn:hover:not(:disabled) { background: var(--gold-solid); color: var(--paper); }
-  .cr-done-btn:disabled { cursor: default; opacity: .55; border-color: var(--line); color: var(--ink-soft); }
+  .sp-done-btn:hover:not(:disabled) { background: var(--gold-solid); color: var(--paper); }
+  .sp-done-btn:disabled { cursor: default; opacity: .55; border-color: var(--line); color: var(--ink-soft); }
 </style>

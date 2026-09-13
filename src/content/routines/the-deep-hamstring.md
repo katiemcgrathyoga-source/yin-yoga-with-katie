@@ -30,6 +30,18 @@ steps:
     sides: 2
     note: "On your back with a strap or hands behind the thigh. The gentlest of the four — finish here."
 faq: []
+why: "Hamstrings do the hardest braking work in every stride, and they shorten quietly week after week. Four long folds into the same tissue from slightly different angles reach further than any quick stretch can, because the deeper layers only let go with time. Soft knees the whole way through keep the load in the muscle rather than behind the knee."
+scale:
+  - level: "New"
+    note: "Bend the knees generously in every fold and sit on a cushion. Come out of the caterpillar at three minutes."
+  - level: "Returning"
+    note: "Let the folds deepen on their own and stay for the full holds. Use a strap in the reclined stretch."
+  - level: "Experienced"
+    note: "Straighten the legs a little more in the caterpillar, and add a minute to the dragonfly if it is quiet."
+when:
+  - "On a rest day, when the hamstrings feel short and braced."
+  - "The day after speed work or hills."
+  - "When a forward fold has stopped feeling like a stretch and started feeling like a wall."
 membership_cta: "This routine is part of The Runner's Reset — yours for good."
 summary: "A focused Yin practice for the hamstrings and the whole back line."
 seo_title: "The Deep Hamstring — The Runner's Reset"

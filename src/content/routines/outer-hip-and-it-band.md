@@ -32,6 +32,18 @@ steps:
     sides: 2
     note: "Figure four on your back. The gentlest way into the glute — finish here."
 faq: []
+why: "You cannot stretch an IT band, but you can release the muscles that tension it: the glutes, the outer hip and the side body. That is where a sharp line down the outside of the knee usually starts, and it is what these four shapes work, each from a different angle. Twice a week is enough to notice."
+scale:
+  - level: "New"
+    note: "Sit on a block in shoelace and keep the twisted dragon shallow, with the back knee padded. Skip the banana if the side body complains."
+  - level: "Returning"
+    note: "Fold a little further in shoelace and let the banana lengthen. Hold the reclined swan for the full time."
+  - level: "Experienced"
+    note: "Take the twisted dragon deeper and add a minute to the shoelace on the tighter side."
+when:
+  - "When there is a pull down the outside of the knee or thigh."
+  - "After hilly or cambered runs."
+  - "On an easy day, twice a week, while a niggle settles."
 membership_cta: "This routine is part of The Runner's Reset — yours for good."
 summary: "A Yin practice for the outer hip, glutes and the muscles that tension the IT band."
 seo_title: "The Outer Hip — The Runner's Reset"

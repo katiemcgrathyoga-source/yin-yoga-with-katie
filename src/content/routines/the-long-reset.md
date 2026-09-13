@@ -47,6 +47,18 @@ steps:
     seconds: 240
     note: "Four minutes, properly still. This is part of the practice, not the end of it."
 faq: []
+why: "It works down the whole chain running loads, in order, so each shape sets up the next: the low back first, then the front of the hip, the glute, the back of the leg, the inner thigh and the side. Long holds and a proper rest at the end are what make it a reset rather than a stretch. Give it a rest day."
+scale:
+  - level: "New"
+    note: "Halve the longer holds and use a cushion in everything. Skip the banana if the side body objects."
+  - level: "Returning"
+    note: "Take the holds as written and pad the back knee in dragon. Come out of the caterpillar early if the hamstrings are loud."
+  - level: "Experienced"
+    note: "Stay for the full holds and let the four minutes of corpse be four minutes. Nothing here needs to be deeper."
+when:
+  - "On a rest day, with nothing after it."
+  - "The day after a long run, once you have eaten."
+  - "Once a week, if you can manage it."
 membership_cta: "This routine is part of The Runner's Reset — yours for good."
 summary: "A long full-body Yin practice working down the whole chain running loads."
 seo_title: "The Long Reset — The Runner's Reset"

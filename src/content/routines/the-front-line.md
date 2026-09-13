@@ -35,6 +35,18 @@ steps:
     seconds: 150
     note: "The counterpose, and non-negotiable after the two backbends."
 faq: []
+why: "Running and sitting both shorten the front of the body, and the quads and hip flexors are what pull the pelvis forward when they are tight. These shapes lengthen the whole front line, from the thigh up through the hip and belly to the chest. It asks a lot, which is why it comes after the shorter hip work and not before it."
+scale:
+  - level: "New"
+    note: "This is not the place to start; do the shorter hip practices for a few weeks first. If you are here anyway, skip the seal and the camel and stay upright on your hands in saddle."
+  - level: "Returning"
+    note: "Saddle on the elbows or over a bolster, and keep the camel brief. Come out of anything sharp."
+  - level: "Experienced"
+    note: "Take saddle all the way down if the knees are happy, and stay the full three minutes."
+when:
+  - "On a rest day, when the front of the hips feels short."
+  - "After a week of long sitting."
+  - "Never the night before a race."
 membership_cta: "This routine is part of The Runner's Reset — yours for good."
 summary: "A demanding Yin practice for the quadriceps, hip flexors and the whole front line."
 seo_title: "The Front Line — The Runner's Reset"
