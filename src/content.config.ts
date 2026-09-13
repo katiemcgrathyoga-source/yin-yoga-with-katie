@@ -139,11 +139,60 @@ const poses = defineCollection({
     youtube_video_id: z.string().optional(),
     images: z.array(z.string()),
 
+    /**
+     * Two ways of doing the same shape — almost always with and without a prop.
+     * The pose page shows a toggle above the photo and the reader swaps between
+     * them in place. Deliberately NOT two pose files: it is one shape, one search
+     * intent, and splitting it would leave two thin pages competing with each other.
+     * When set, list every option including the unpropped one; the first is shown
+     * first, and `images[0]` stays the canonical photo for pins and OG.
+     */
+    variants: z
+      .array(
+        z.object({
+          label: z.string().min(1), // short, fits on a toggle: "No prop", "With a block"
+          image: z.string().min(1),
+          note: z.string().optional(), // one line on what the prop changes
+        }),
+      )
+      .default([]),
+
+    /**
+     * A pose held in consecutive parts with no rest between them — a mini
+     * sequence inside a single shape, rather than three poses that happen to
+     * share a strap. The pose timer runs them back to back and sounds the bell
+     * at each change so nobody has to watch the clock to know when to move.
+     * `hold_seconds` must equal the sum of the parts (checked below).
+     */
+    parts: z
+      .array(
+        z.object({
+          label: z.string().min(1), // "A · Leg up"
+          image: z.string().optional(),
+          seconds: z.number().int().positive(),
+          cue: z.string().min(1),
+        }),
+      )
+      .default([]),
+
     pin_angles: pinAngles(),
 
     // SEO
     seo_title: z.string().min(1),
     seo_description: z.string().min(1),
+  }).superRefine((data, ctx) => {
+    // A multi-part pose's suggested hold is the sum of its parts. Guarding it here
+    // means the "Hold" row and the timer can never quietly disagree.
+    if (data.parts.length) {
+      const sum = data.parts.reduce((n, p) => n + p.seconds, 0);
+      if (data.hold_seconds !== sum) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['hold_seconds'],
+          message: `${data.slug}: hold_seconds is ${data.hold_seconds ?? 'unset'} but the ${data.parts.length} parts add up to ${sum}.`,
+        });
+      }
+    }
   }),
 });
 

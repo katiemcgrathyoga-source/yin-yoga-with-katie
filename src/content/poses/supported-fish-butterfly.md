@@ -39,7 +39,7 @@ faq:
     a: "Use a lower prop, or slide the bolster further down so it starts below the shoulder blades rather than at the waist. A gentler angle held for five minutes beats a dramatic one you come out of after ninety seconds."
 related_poses: ["supported-fish", "butterfly", "supported-bridge", "corpse"]
 images:
-  - "/brand/pose-placeholder.png"
+  - "/poses/supported-fish-butterfly.jpg"
 seo_title: "Supported Fish with Butterfly Legs: Restorative Yin Pose"
 seo_description: "Supported Fish with Butterfly Legs — a fully propped restorative Yin pose opening the chest, shoulders, inner thighs and hip flexors. Cues, props and cautions."
 ---

@@ -46,7 +46,7 @@ faq:
 related_poses: ["happy-baby", "banana", "reclined-twist", "corpse"]
 youtube_video_id: ""
 images:
-  - "/brand/pose-placeholder.png"
+  - "/poses/wind-relieving.jpg"
 pin_angles:
   - audience: "for a stiff back"
     headline: "Knees in, and the lower back lets go"

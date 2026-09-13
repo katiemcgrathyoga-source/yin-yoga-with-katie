@@ -129,14 +129,17 @@ const hasPractice = hasVideo || featuredRoutines.length > 0 || featuredClasses.l
       <h1>{d.name_en}</h1>
     </header>
 
-    {/* Reference photo. Poses awaiting a photo show an on-brand placeholder. */}
+    {/* Reference photo. Poses awaiting a photo show an on-brand placeholder.
+        A pose with `variants` (the same shape with and without a prop) swaps the
+        photo in place rather than sending the reader to a second page. */}
     {
       d.images.length > 0 && (() => {
         const pending = d.images[0].includes('pose-placeholder');
+        const first = d.variants[0];
         return (
-          <figure class={`pose-photo${pending ? ' is-placeholder' : ''}`}>
+          <figure class={`pose-photo${pending ? ' is-placeholder' : ''}`} data-pose-photo>
             <img
-              src={d.images[0]}
+              src={first?.image ?? d.images[0]}
               alt={pending ? `${d.name_en} yin yoga pose illustration` : `${d.name_en} yin yoga pose`}
               loading="lazy"
               onerror="this.closest('.pose-photo').remove()"
@@ -146,6 +149,21 @@ const hasPractice = hasVideo || featuredRoutines.length > 0 || featuredClasses.l
         );
       })()
     }
+
+    {d.variants.length > 1 && (
+      <div class="pose-variant-switch">
+        <ul class="pose-variants" role="group" aria-label={`Show ${d.name_en} with or without a prop`}>
+          {d.variants.map((v, i) => (
+            <li>
+              <button type="button" data-variant={i} data-image={v.image} data-note={v.note ?? ''} aria-pressed={i === 0}>
+                {v.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+        {d.variants.some((v) => v.note) && <p class="pose-variant-note">{d.variants[0].note ?? ''}</p>}
+      </div>
+    )}
 
     {/* Save to Pinterest — straight under the photo, where the pinner's eye is. */}
     {poseSave && (
@@ -198,12 +216,13 @@ const hasPractice = hasVideo || featuredRoutines.length > 0 || featuredClasses.l
         suggested range and the thing that counts it are read together. */}
     {d.hold_seconds && (
       <section class="timer-section">
-        <h2>Time your hold</h2>
+        <h2>{d.parts.length ? 'Practise the sequence' : 'Time your hold'}</h2>
         <p class="pt-lede">
-          Three soft ticks and a bell when you're done, so you can close your eyes and stop
-          watching the clock.
+          {d.parts.length
+            ? `${d.parts.length} parts, one after another with no rest between. The bell tells you when to change, so you can keep your eyes closed.`
+            : "Three soft ticks and a bell when you're done, so you can close your eyes and stop watching the clock."}
         </p>
-        <PoseTimer seconds={d.hold_seconds} holdLabel={d.hold_time} />
+        <PoseTimer seconds={d.hold_seconds} holdLabel={d.hold_time} parts={d.parts} />
       </section>
     )}
 
@@ -387,6 +406,25 @@ const hasPractice = hasVideo || featuredRoutines.length > 0 || featuredClasses.l
    */
   if (document.cookie.split('; ').some((c) => c.startsWith('sb-token='))) {
     document.querySelectorAll('[data-guest-only]').forEach((el) => el.remove());
+  }
+
+  /**
+   * Photo variants — the same shape with and without a prop. Swapping the image
+   * in place keeps one page, one URL and one set of cues; a second pose file for
+   * "with a block" would be a thin page competing with this one.
+   */
+  const switcher = document.querySelector('.pose-variant-switch');
+  if (switcher) {
+    const img = document.querySelector<HTMLImageElement>('[data-pose-photo] img');
+    const note = switcher.querySelector<HTMLElement>('.pose-variant-note');
+    switcher.querySelectorAll<HTMLButtonElement>('.pose-variants button').forEach((b) => {
+      b.addEventListener('click', () => {
+        switcher.querySelectorAll('.pose-variants button').forEach((o) => o.setAttribute('aria-pressed', 'false'));
+        b.setAttribute('aria-pressed', 'true');
+        if (img && b.dataset.image) img.src = b.dataset.image;
+        if (note) note.textContent = b.dataset.note || '';
+      });
+    });
   }
 </script>
 </BaseLayout>

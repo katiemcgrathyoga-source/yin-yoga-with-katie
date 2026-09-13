@@ -50,6 +50,10 @@ export const POSE_FRAMES: Record<string, PoseFrame> = {
     'aspect': 1.376,
     'span': 0.731
   },
+  'constructive-rest': {
+    'aspect': 1.404,
+    'span': 0.531
+  },
   'corpse': {
     'aspect': 1.387,
     'span': 0.784
@@ -57,6 +61,10 @@ export const POSE_FRAMES: Record<string, PoseFrame> = {
   'cow-face': {
     'aspect': 1.482,
     'span': 0.338
+  },
+  'crocodile': {
+    'aspect': 1.415,
+    'span': 0.691
   },
   'dangling': {
     'aspect': 1.501,
@@ -106,6 +114,26 @@ export const POSE_FRAMES: Record<string, PoseFrame> = {
     'aspect': 1.277,
     'span': 0.683
   },
+  'reclined-dragon-supported': {
+    'aspect': 1.462,
+    'span': 0.592
+  },
+  'reclined-dragon': {
+    'aspect': 1.448,
+    'span': 0.584
+  },
+  'reclined-hamstring-a': {
+    'aspect': 1.432,
+    'span': 0.537
+  },
+  'reclined-hamstring-b': {
+    'aspect': 1.442,
+    'span': 0.493
+  },
+  'reclined-hamstring-c': {
+    'aspect': 1.456,
+    'span': 0.639
+  },
   'reclined-swan': {
     'aspect': 1.486,
     'span': 0.639
@@ -142,6 +170,10 @@ export const POSE_FRAMES: Record<string, PoseFrame> = {
     'aspect': 1.499,
     'span': 0.713
   },
+  'supported-fish-butterfly': {
+    'aspect': 1.397,
+    'span': 0.527
+  },
   'supported-fish': {
     'aspect': 1.269,
     'span': 1
@@ -161,5 +193,9 @@ export const POSE_FRAMES: Record<string, PoseFrame> = {
   'twisted-dragon': {
     'aspect': 1.38,
     'span': 0.762
+  },
+  'wind-relieving': {
+    'aspect': 1.458,
+    'span': 0.419
   }
 };

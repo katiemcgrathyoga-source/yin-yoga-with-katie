@@ -37,7 +37,7 @@ faq:
     a: "Try walking the feet a little closer to your seat, or a little further away — there is usually one distance where the back gives up. A folded blanket under the head can help too."
 related_poses: ["corpse", "wind-relieving", "legs-up-the-wall"]
 images:
-  - "/brand/pose-placeholder.png"
+  - "/poses/constructive-rest.jpg"
 seo_title: "Constructive Rest in Yin Yoga: How to Do It & Why It Works"
 seo_description: "Constructive Rest: the knees-bent resting position that lets the lower back and hip flexors release without stretching. Cues, benefits and how long to stay."
 ---

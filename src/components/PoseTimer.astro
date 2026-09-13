@@ -10,18 +10,36 @@
  * Props:
  *   seconds   – default target hold, in seconds (from a pose's hold_seconds)
  *   holdLabel – the human range shown as the suggestion, e.g. "3–5 minutes per side"
+ *   parts     – optional. A pose held in consecutive parts (a pose's `parts`).
+ *               The timer runs them back to back with NO rest between: the bell
+ *               sounds, the photo and cue change, and the next part starts. The
+ *               length presets are hidden in this mode, since the parts set the
+ *               shape of the hold.
  */
+interface Part {
+  label: string;
+  image?: string;
+  seconds: number;
+  cue: string;
+}
 interface Props {
   seconds: number;
   holdLabel?: string;
+  parts?: Part[];
 }
-const { seconds, holdLabel } = Astro.props;
+const { seconds, holdLabel, parts = [] } = Astro.props;
 ---
 
-<pose-timer data-seconds={seconds} data-hold-label={holdLabel ?? ''}></pose-timer>
+<pose-timer
+  data-seconds={seconds}
+  data-hold-label={holdLabel ?? ''}
+  data-parts={parts.length ? JSON.stringify(parts) : ''}
+></pose-timer>
 
 <script>
   import { chime } from '../lib/chime';
+
+  interface Part { label: string; image?: string; seconds: number; cue: string }
 
   class PoseTimer extends HTMLElement {
     target = 180;
@@ -32,15 +50,31 @@ const { seconds, holdLabel } = Astro.props;
     wakeLock: any = null;
     /** Which of the final three seconds have already ticked in this run. */
     ticked = new Set<number>();
+    /** Parts of a multi-part hold, run back to back with no rest between. */
+    parts: Part[] = [];
+    partIdx = 0;
 
     connectedCallback() {
+      try { this.parts = JSON.parse(this.dataset.parts || '[]'); } catch { this.parts = []; }
       this.target = Math.max(5, parseInt(this.dataset.seconds || '180', 10) || 180);
+      if (this.parts.length) this.target = this.parts[0].seconds;
       this.remaining = this.target;
       const label = this.dataset.holdLabel || '';
 
       const C = 326.726; // circumference of an r=52 circle
+      const p = this.parts;
+      const partsHead = p.length
+        ? `<figure class="pt-part-photo">
+             <img src="${p[0].image || ''}" alt="" loading="lazy"${p[0].image ? '' : ' hidden'}>
+           </figure>
+           <ol class="pt-parts" role="list">
+             ${p.map((x, i) => `<li><button type="button" data-part="${i}" aria-current="${i === 0}">${x.label}</button></li>`).join('')}
+           </ol>
+           <p class="pt-part-cue">${p[0].cue}</p>`
+        : '';
       this.innerHTML = `
-        <div class="pt">
+        <div class="pt${p.length ? ' has-parts' : ''}">
+          ${partsHead}
           <div class="pt-ring-wrap">
             <svg class="pt-ring" viewBox="0 0 120 120" aria-hidden="true">
               <circle class="pt-track" cx="60" cy="60" r="52"></circle>
@@ -53,13 +87,14 @@ const { seconds, holdLabel } = Astro.props;
             </button>
           </div>
           ${label ? `<p class="pt-suggest">Suggested hold · ${label}</p>` : ''}
+          ${p.length ? '' : `
           <div class="pt-presets" role="group" aria-label="Set hold length">
             <button type="button" data-sec="60">1 min</button>
             <button type="button" data-sec="120">2 min</button>
             <button type="button" data-sec="180">3 min</button>
             <button type="button" data-sec="300">5 min</button>
             <button type="button" data-add="30">+30s</button>
-          </div>
+          </div>`}
           <div class="pt-controls">
             <button type="button" class="pt-reset">Reset</button>
           </div>
@@ -73,6 +108,9 @@ const { seconds, holdLabel } = Astro.props;
 
       this.querySelector('.pt-time')!.addEventListener('click', () => this.toggle());
       this.querySelector('.pt-reset')!.addEventListener('click', () => this.reset());
+      this.querySelectorAll<HTMLButtonElement>('.pt-parts button').forEach((b) =>
+        b.addEventListener('click', () => this.goToPart(parseInt(b.dataset.part!, 10))),
+      );
       this.querySelectorAll<HTMLButtonElement>('.pt-presets button').forEach((b) =>
         b.addEventListener('click', () => {
           if (b.dataset.add) {
@@ -112,6 +150,11 @@ const { seconds, holdLabel } = Astro.props;
     toggle() { this.running ? this.pause() : this.start(); }
 
     start() {
+      // Restarting after a finished sequence begins again at the first part.
+      if (this.parts.length && this.remaining <= 0 && this.partIdx === this.parts.length - 1) {
+        this.showPart(0);
+        this.remaining = this.target;
+      }
       if (this.remaining <= 0) this.remaining = this.target;
       this.ensureAudio();
       this.requestWake();
@@ -152,12 +195,53 @@ const { seconds, holdLabel } = Astro.props;
 
     reset() {
       this.stop();
+      if (this.parts.length) this.showPart(0);
       this.remaining = this.target;
       this.live.textContent = 'Timer reset.';
       this.render();
     }
 
+    // --- multi-part holds -------------------------------------------------------
+    /** Paint the part at `i`: its photo, its cue, and which chip reads as current. */
+    showPart(i: number) {
+      this.partIdx = i;
+      const part = this.parts[i];
+      this.target = part.seconds;
+      const img = this.querySelector('.pt-part-photo img') as HTMLImageElement | null;
+      if (img && part.image) { img.src = part.image; img.hidden = false; }
+      const cue = this.querySelector('.pt-part-cue') as HTMLElement | null;
+      if (cue) cue.textContent = part.cue;
+      this.querySelectorAll<HTMLButtonElement>('.pt-parts button').forEach((b, n) =>
+        b.setAttribute('aria-current', String(n === i)),
+      );
+    }
+
+    /** Jump straight to a part — tapping a chip picks up from there. */
+    goToPart(i: number) {
+      if (!this.parts[i]) return;
+      const wasRunning = this.running;
+      this.stop();
+      this.showPart(i);
+      this.remaining = this.target;
+      this.render();
+      if (wasRunning) this.start();
+      else this.live.textContent = `${this.parts[i].label}, ${this.fmt(this.remaining)}.`;
+    }
+
     complete() {
+      // Mid-sequence: ring the bell, change the shape, and keep going. The whole
+      // point of a multi-part hold is that there is no rest between the parts.
+      if (this.parts.length && this.partIdx < this.parts.length - 1) {
+        chime.bell();
+        const next = this.parts[this.partIdx + 1];
+        this.showPart(this.partIdx + 1);
+        this.remaining = this.target;
+        this.ticked.clear();
+        this.endAt = performance.now() + this.remaining * 1000;
+        this.live.textContent = `Switch to ${next.label}. ${next.cue}`;
+        this.render();
+        return;
+      }
       this.stop();
       chime.bell();
       this.live.textContent = 'Hold complete. Come out slowly.';

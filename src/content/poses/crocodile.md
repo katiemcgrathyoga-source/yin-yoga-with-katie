@@ -45,7 +45,7 @@ faq:
 related_poses: ["corpse", "sphinx", "childs-pose", "seal"]
 youtube_video_id: ""
 images:
-  - "/brand/pose-placeholder.png"
+  - "/poses/crocodile.jpg"
 pin_angles:
   - audience: "for a stiff back"
     headline: "Lie face down and let the back go"
