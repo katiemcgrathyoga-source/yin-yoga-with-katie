@@ -91,6 +91,7 @@ ogImage.searchParams.set('s', 'Short follow-along Yin practices to undo the tigh
         </p>
         <a href={POLAR_CHECKOUT_URL} class="rr-cta">Join the Runner's Reset — $49 founding price →</a>
         <p class="rr-cta-note">One-time payment · lifetime access · 30-day keep-it guarantee</p>
+        <p class="rr-member">Already joined? <a href="/account">Sign in to your course →</a></p>
       </div>
     </header>
 
@@ -375,7 +376,7 @@ ogImage.searchParams.set('s', 'Short follow-along Yin practices to undo the tigh
       Hidden by default (works fully with JS off); revealed by the script below. */}
   <div class="rr-sticky" id="rrSticky" hidden>
     <div class="rr-sticky-inner">
-      <span class="rr-sticky-text"><strong>$49</strong> founding price</span>
+      <span class="rr-sticky-text"><strong>$49</strong> founding price<a class="rr-sticky-member" href="/account">Already joined? Sign in</a></span>
       <a href={POLAR_CHECKOUT_URL} class="rr-cta rr-cta-sm">Join →</a>
       <button class="rr-sticky-x" type="button" aria-label="Dismiss offer bar">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -385,6 +386,23 @@ ogImage.searchParams.set('s', 'Short follow-along Yin practices to undo the tigh
 </BaseLayout>
 
 <script>
+  // Owners skip the pitch. Anyone signed in somewhere on the site carries the
+  // sb-token cookie; only they pay for the SDK import and the entitlement lookup.
+  // `?preview=1` keeps the page reachable for Katie and Kevin while signed in.
+  if (
+    /(?:^|;\s*)sb-token=/.test(document.cookie) &&
+    !new URLSearchParams(location.search).has('preview')
+  ) {
+    import('../lib/supabaseBrowser').then(async ({ getSupabase }) => {
+      const supabase = getSupabase();
+      if (!supabase) return;
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return;
+      const { data: ents } = await supabase.from('entitlements').select('product');
+      if ((ents ?? []).some((e: any) => e.product === 'runner-reset')) location.replace('/practices');
+    });
+  }
+
   // Sticky mobile CTA — progressive enhancement. If this never runs (JS off),
   // the bar stays [hidden] and the page works entirely on its in-flow CTAs.
   const bar = document.getElementById('rrSticky');
@@ -447,6 +465,10 @@ ogImage.searchParams.set('s', 'Short follow-along Yin practices to undo the tigh
   .rr-cta:hover { background: #6E3A3C; color: #fff; transform: translateY(-1px); }
   .rr-cta:focus-visible { outline: 2px solid var(--plum); outline-offset: 3px; }
   .rr-cta-note { font-size: 13.5px; color: var(--ink-soft); margin: 13px 0 0; }
+  /* The one signposted route back for someone who already owns it — every other
+     link on this page sells. Deliberately quiet, but present above the fold. */
+  .rr-member { font-size: 13.5px; color: var(--ink-soft); margin: 8px 0 0; }
+  .rr-member a { color: var(--plum); text-decoration: underline; text-underline-offset: 3px; }
   .rr-cta-row { text-align: center; margin-top: clamp(40px, 6vw, 60px); }
 
   /* Hero image */
@@ -628,6 +650,7 @@ ogImage.searchParams.set('s', 'Short follow-along Yin practices to undo the tigh
   .rr-sticky-inner { display: flex; align-items: center; gap: 12px; max-width: 560px; margin: 0 auto; }
   .rr-sticky-text { flex: 1; font-size: 14px; color: var(--ink-soft); line-height: 1.2; }
   .rr-sticky-text strong { color: var(--gold-solid); font-size: 17px; font-family: var(--display); font-weight: 500; }
+  .rr-sticky-member { display: block; font-size: 12px; color: var(--plum); text-decoration: underline; text-underline-offset: 2px; margin-top: 3px; }
   .rr-cta-sm { font-size: 15px; padding: 11px 20px; box-shadow: none; }
   .rr-sticky-x {
     flex: none; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line);

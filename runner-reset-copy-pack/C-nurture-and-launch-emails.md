@@ -225,7 +225,7 @@ Katie
 ## Sending & segmentation notes
 
 - **Timing (evergreen, one automation):** 1 day 0 · 2 day 3 · 3 day 6 · 4 day 9 · 5 day 11 · 6 day 12 · 7 day 13 · 8 day 14 · 9 day 15 · 10 day 17. The pre-launch tease is not used.
-- **Suppress buyers immediately** — on purchase, tag `runner-reset-buyer` and set that tag as an exit condition on the automation, then send the welcome/onboarding email. Without this, someone who buys from L1 gets pitched five more times.
+- **Suppress buyers immediately** — on purchase, tag `runner-reset-buyer` and set that tag as an exit condition on the automation, then send the welcome/onboarding email (written in `D-buyer-welcome-email.md`). Without this, someone who buys from L1 gets pitched five more times.
 - **The founding-100 count is live copy.** Emails 5–10 all promise "$49 for the first 100, then $67". The moment you pass 100 sales those lines are untrue to everyone mid-sequence, and nothing updates them automatically. Set yourself a reminder.
 - **Session lengths are quoted in emails 5, 6 and 7.** If a session's runtime changes, these need updating with it — the site has a build guard for durations, the emails don't.
 - **Replies to L0's question** ("where does running tighten you most?") are gold — quote the common answers, anonymised and with permission, in future launches once real testimonials exist. Until then, no testimonials anywhere.
