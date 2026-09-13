@@ -114,7 +114,17 @@ for (const [slug, alias] of Object.entries(SHORT)) {
   // ?for=runners switches the page's offer to the Post-Run Reset (Cta.astro).
   assert.equal(rules.get(`/r/${alias}`), `/routines/${slug}/?for=runners`, `netlify.toml is missing or wrong for /r/${alias}`);
 }
-for (const slug of Object.keys(ROUTINES)) assert.ok(SHORT[slug], `${slug} has no short link`);
+// Course routines have no public page, so no short link: their posts link to the offer.
+for (const slug of Object.keys(ROUTINES)) {
+  if (ROUTINES[slug].course) assert.ok(!SHORT[slug], `${slug} is a course routine and must not have a short link`);
+  else assert.ok(SHORT[slug], `${slug} has no short link`);
+}
+const cp = routinePick('feet-toes-ankles');
+assert.equal(cp.course, 'runner-reset');
+assert.equal(cp.url, 'https://yinyogawithkatie.com/runner-reset/');
+assert.ok(describe(cp).endsWith('\n\nyinyogawithkatie.com/runner-reset/'), describe(cp));
+// The webhook's automatic picks stay public: a follower must be able to practise from the link.
+for (const id of [1, 2, 3, 4, 5, 6]) assert.ok(!pickRoutine(run({ id })).course, 'auto-pick chose a course routine');
 assert.equal(new Set(Object.values(SHORT)).size, Object.keys(SHORT).length, 'short aliases must be unique');
 
 // routinePick backs the finish-screen "Log to Strava" button

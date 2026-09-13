@@ -68,7 +68,7 @@ const practiceCount = (await getCollection('practices')).filter((p) => !p.data.u
           <span class="acct-tile-eyebrow">Your course</span>
           <span class="acct-tile-title" id="acct-tile-title">The Runner's Reset</span>
           <span class="acct-tile-meta" id="acct-tile-meta">
-            {practiceCount} practices, plus poses, routines and calendar plans
+            {practiceCount} practices, plus poses, routines, calendar plans and body maps to keep
           </span>
           <span class="acct-tile-cta">Enter the course <span aria-hidden="true">→</span></span>
         </span>
@@ -273,7 +273,9 @@ const practiceCount = (await getCollection('practices')).filter((p) => !p.data.u
      state has to be restated or the tile shows for people who own nothing. */
   .acct-tile[hidden] { display: none; }
   .acct-tile-img { display: block; position: relative; background: var(--paper-2); }
-  .acct-tile-img :global(img) { width: 100%; height: 100%; object-fit: cover; display: block; }
+  /* Square source (butterfly, Katie centred). The phone tile is 16:9, so bias
+     the crop upward to keep her head in frame. */
+  .acct-tile-img :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; display: block; }
   .acct-tile-body { display: flex; flex-direction: column; gap: 3px; padding: 18px 20px; }
   .acct-tile-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-solid); }
   .acct-tile-title { font-family: var(--display); font-weight: 500; font-size: 21px; color: var(--plum); line-height: 1.2; }

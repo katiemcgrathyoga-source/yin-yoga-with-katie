@@ -117,6 +117,38 @@
       }
     ]
   },
+  "feet-toes-ankles": {
+    "title": "Feet, Toes & Ankles",
+    "minutes": 12,
+    "course": "runner-reset",
+    "steps": [
+      {
+        "name": "Toe Squat",
+        "seconds": 90,
+        "sides": 1
+      },
+      {
+        "name": "Ankle Stretch",
+        "seconds": 90,
+        "sides": 1
+      },
+      {
+        "name": "Squat",
+        "seconds": 120,
+        "sides": 1
+      },
+      {
+        "name": "Dangling",
+        "seconds": 120,
+        "sides": 1
+      },
+      {
+        "name": "Child's Pose",
+        "seconds": 120,
+        "sides": 1
+      }
+    ]
+  },
   "full-body-reset": {
     "title": "Full-Body Reset",
     "minutes": 33,
@@ -168,6 +200,65 @@
       }
     ]
   },
+  "inner-thigh-opener": {
+    "title": "The Inner Thigh Opener",
+    "minutes": 19,
+    "course": "runner-reset",
+    "steps": [
+      {
+        "name": "Butterfly",
+        "seconds": 240,
+        "sides": 1
+      },
+      {
+        "name": "Frog",
+        "seconds": 180,
+        "sides": 1
+      },
+      {
+        "name": "Happy Baby",
+        "seconds": 150,
+        "sides": 1
+      },
+      {
+        "name": "Half Butterfly",
+        "seconds": 120,
+        "sides": 2
+      },
+      {
+        "name": "Corpse",
+        "seconds": 120,
+        "sides": 1
+      }
+    ]
+  },
+  "long-hold-hips": {
+    "title": "Long Hold Hips",
+    "minutes": 32,
+    "course": "runner-reset",
+    "steps": [
+      {
+        "name": "Dragon",
+        "seconds": 300,
+        "sides": 2
+      },
+      {
+        "name": "Sleeping Swan",
+        "seconds": 300,
+        "sides": 2
+      },
+      {
+        "name": "Deer",
+        "seconds": 180,
+        "sides": 2
+      },
+      {
+        "name": "Child's Pose",
+        "seconds": 180,
+        "sides": 1
+      }
+    ]
+  },
   "lower-back-release": {
     "title": "Lower-Back Release",
     "minutes": 22,
@@ -209,6 +300,65 @@
       }
     ]
   },
+  "outer-hip-and-it-band": {
+    "title": "The Outer Hip",
+    "minutes": 22,
+    "course": "runner-reset",
+    "steps": [
+      {
+        "name": "Shoelace",
+        "seconds": 150,
+        "sides": 2
+      },
+      {
+        "name": "Twisted Dragon",
+        "seconds": 150,
+        "sides": 2
+      },
+      {
+        "name": "Banana",
+        "seconds": 120,
+        "sides": 2
+      },
+      {
+        "name": "Reclined Swan",
+        "seconds": 120,
+        "sides": 2
+      }
+    ]
+  },
+  "pre-race-calm": {
+    "title": "Pre-Race Calm",
+    "minutes": 21,
+    "course": "runner-reset",
+    "steps": [
+      {
+        "name": "Supported Bridge",
+        "seconds": 180,
+        "sides": 1
+      },
+      {
+        "name": "Legs Up the Wall",
+        "seconds": 300,
+        "sides": 1
+      },
+      {
+        "name": "Supported Fish",
+        "seconds": 180,
+        "sides": 1
+      },
+      {
+        "name": "Reclined Twist",
+        "seconds": 90,
+        "sides": 2
+      },
+      {
+        "name": "Corpse",
+        "seconds": 180,
+        "sides": 1
+      }
+    ]
+  },
   "rest-day-recovery": {
     "title": "Rest-Day Recovery",
     "minutes": 26,
@@ -245,6 +395,23 @@
       }
     ]
   },
+  "seven-honest-minutes": {
+    "title": "Seven Honest Minutes",
+    "minutes": 7,
+    "course": "runner-reset",
+    "steps": [
+      {
+        "name": "Reclined Hamstring Stretch",
+        "seconds": 75,
+        "sides": 2
+      },
+      {
+        "name": "Reclined Twist",
+        "seconds": 75,
+        "sides": 2
+      }
+    ]
+  },
   "the-day-after": {
     "title": "The Day After",
     "minutes": 22,
@@ -272,6 +439,122 @@
       {
         "name": "Corpse",
         "seconds": 120,
+        "sides": 1
+      }
+    ]
+  },
+  "the-deep-hamstring": {
+    "title": "The Deep Hamstring",
+    "minutes": 20,
+    "course": "runner-reset",
+    "steps": [
+      {
+        "name": "Half Butterfly",
+        "seconds": 180,
+        "sides": 2
+      },
+      {
+        "name": "Caterpillar",
+        "seconds": 240,
+        "sides": 1
+      },
+      {
+        "name": "Dragonfly",
+        "seconds": 180,
+        "sides": 1
+      },
+      {
+        "name": "Reclined Hamstring Stretch",
+        "seconds": 120,
+        "sides": 2
+      }
+    ]
+  },
+  "the-front-line": {
+    "title": "The Front Line",
+    "minutes": 19,
+    "course": "runner-reset",
+    "steps": [
+      {
+        "name": "Sphinx",
+        "seconds": 120,
+        "sides": 1
+      },
+      {
+        "name": "Seal",
+        "seconds": 90,
+        "sides": 1
+      },
+      {
+        "name": "Dragon",
+        "seconds": 150,
+        "sides": 2
+      },
+      {
+        "name": "Saddle",
+        "seconds": 180,
+        "sides": 1
+      },
+      {
+        "name": "Camel",
+        "seconds": 60,
+        "sides": 1
+      },
+      {
+        "name": "Child's Pose",
+        "seconds": 150,
+        "sides": 1
+      }
+    ]
+  },
+  "the-long-reset": {
+    "title": "The Long Reset",
+    "minutes": 46,
+    "course": "runner-reset",
+    "steps": [
+      {
+        "name": "Child's Pose",
+        "seconds": 180,
+        "sides": 1
+      },
+      {
+        "name": "Sphinx",
+        "seconds": 150,
+        "sides": 1
+      },
+      {
+        "name": "Dragon",
+        "seconds": 210,
+        "sides": 2
+      },
+      {
+        "name": "Sleeping Swan",
+        "seconds": 210,
+        "sides": 2
+      },
+      {
+        "name": "Caterpillar",
+        "seconds": 240,
+        "sides": 1
+      },
+      {
+        "name": "Dragonfly",
+        "seconds": 180,
+        "sides": 1
+      },
+      {
+        "name": "Banana",
+        "seconds": 120,
+        "sides": 2
+      },
+      {
+        "name": "Reclined Twist",
+        "seconds": 120,
+        "sides": 2
+      },
+      {
+        "name": "Corpse",
+        "seconds": 240,
         "sides": 1
       }
     ]
@@ -324,6 +607,92 @@
       {
         "name": "Reclined Twist",
         "seconds": 120,
+        "sides": 2
+      }
+    ]
+  },
+  "twists-for-a-tight-back": {
+    "title": "Twists for a Tight Back",
+    "minutes": 19,
+    "course": "runner-reset",
+    "steps": [
+      {
+        "name": "Crocodile",
+        "seconds": 120,
+        "sides": 1
+      },
+      {
+        "name": "Sphinx",
+        "seconds": 120,
+        "sides": 1
+      },
+      {
+        "name": "Reclined Twist",
+        "seconds": 180,
+        "sides": 2
+      },
+      {
+        "name": "Seated Twist",
+        "seconds": 120,
+        "sides": 2
+      },
+      {
+        "name": "Knees-to-Chest Pose",
+        "seconds": 90,
+        "sides": 1
+      }
+    ]
+  },
+  "up-the-wall": {
+    "title": "Up the Wall",
+    "minutes": 12,
+    "course": "runner-reset",
+    "steps": [
+      {
+        "name": "Legs Up the Wall",
+        "seconds": 300,
+        "sides": 1
+      },
+      {
+        "name": "Reclined Twist",
+        "seconds": 90,
+        "sides": 2
+      },
+      {
+        "name": "Corpse",
+        "seconds": 120,
+        "sides": 1
+      }
+    ]
+  },
+  "upper-body-for-runners": {
+    "title": "Upper Body for Runners",
+    "minutes": 19,
+    "course": "runner-reset",
+    "steps": [
+      {
+        "name": "Thread the Needle",
+        "seconds": 120,
+        "sides": 2
+      },
+      {
+        "name": "Melting Heart",
+        "seconds": 180,
+        "sides": 1
+      },
+      {
+        "name": "Puppy Pose",
+        "seconds": 120,
+        "sides": 1
+      },
+      {
+        "name": "Supported Fish",
+        "seconds": 180,
+        "sides": 1
+      },
+      {
+        "name": "Eagle",
+        "seconds": 90,
         "sides": 2
       }
     ]

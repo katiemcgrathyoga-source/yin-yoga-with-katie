@@ -92,7 +92,7 @@ Because running doesn't tighten one muscle — it tightens a chain, and a tight 
 
 ### Every practice page gives you five ways in
 
-The follow-along video, an on-screen hold timer (so you can practice screen-free once you know the shapes), the plain-English *why* behind the practice, written cues you can read, and a body map showing where it works. Whatever kind of learner you are, it's covered.
+The follow-along video, an on-screen hold timer (so you can practice screen-free once you know the shapes), the plain-English *why* behind the practice, written cues you can read, and a body map showing where it works, yours to download and keep. Whatever kind of learner you are, it's covered.
 
 ---
 

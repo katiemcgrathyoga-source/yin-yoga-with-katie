@@ -217,7 +217,7 @@ ogImage.searchParams.set('s', 'Short follow-along Yin practices to undo the tigh
 
       <div class="rr-read">
         <h3 class="rr-h3">Every practice page gives you five ways in</h3>
-        <p>The follow-along video, an on-screen hold timer (so you can practice screen-free once you know the shapes), the plain-English <em>why</em> behind the practice, written cues you can read, and a body map showing where it works. Whatever kind of learner you are, it's covered.</p>
+        <p>The follow-along video, an on-screen hold timer (so you can practice screen-free once you know the shapes), the plain-English <em>why</em> behind the practice, written cues you can read, and a body map showing where it works, yours to download and keep. Whatever kind of learner you are, it's covered.</p>
       </div>
       <div class="rr-band">
         {/* A real practice page, not a mockup. The tab row is why this shot and not
@@ -386,13 +386,11 @@ ogImage.searchParams.set('s', 'Short follow-along Yin practices to undo the tigh
 </BaseLayout>
 
 <script>
-  // Owners skip the pitch. Anyone signed in somewhere on the site carries the
-  // sb-token cookie; only they pay for the SDK import and the entitlement lookup.
+  import { hasSessionHint } from '../lib/sessionHint';
+  // Owners skip the pitch. Only people who have signed in on this browser
+  // (lib/sessionHint.ts) pay for the SDK import and the entitlement lookup.
   // `?preview=1` keeps the page reachable for Katie and Kevin while signed in.
-  if (
-    /(?:^|;\s*)sb-token=/.test(document.cookie) &&
-    !new URLSearchParams(location.search).has('preview')
-  ) {
+  if (hasSessionHint() && !new URLSearchParams(location.search).has('preview')) {
     import('../lib/supabaseBrowser').then(async ({ getSupabase }) => {
       const supabase = getSupabase();
       if (!supabase) return;

@@ -3,9 +3,10 @@
  * with its hold — netlify/functions/lib/strava-routines.json.
  *
  * Generated from src/content/routines/ so the description on Strava can never
- * disagree with the routine page. Only public runner routines (audience:
- * runners, no course) plus the handful of general ones Kevin logs. The lib
- * test re-derives this file and fails if it is stale.
+ * disagree with the routine page. Public runner routines (audience: runners)
+ * plus the handful of general ones Kevin logs, and every course routine — those
+ * carry `course` so the post can link to the offer rather than a paywalled
+ * page. The lib test re-derives this file and fails if it is stale.
  *
  * Re-run after editing any of these routines:  node scripts/gen-strava-routines.mjs
  */
@@ -23,11 +24,11 @@ export function build() {
   const out = {};
   for (const f of readdirSync('src/content/routines').sort()) {
     const d = fm(`src/content/routines/${f}`);
-    if (d.course) continue;
-    if (d.audience !== 'runners' && !EXTRA.includes(d.slug)) continue;
+    if (!d.course && d.audience !== 'runners' && !EXTRA.includes(d.slug)) continue;
     out[d.slug] = {
       title: d.title,
       minutes: d.minutes,
+      ...(d.course ? { course: d.course } : {}),
       steps: d.steps.map((s) => ({ name: poses.get(s.pose) ?? s.pose, seconds: s.seconds, sides: s.sides ?? 1 })),
     };
   }

@@ -15,9 +15,12 @@
  *      keep it on the run. `+yin` alone picks from the run; `+yin outside-line`
  *      names one. The tag is removed and the block written.
  *
- * Only PUBLIC routines (no `course:` key in src/content/routines/) are linked.
- * A Strava follower who taps through must land on a page they can practise
- * from, not a paywall — the routine page then makes the runner offer itself.
+ * Public routines link to their own page: a Strava follower who taps through
+ * lands somewhere they can practise from, and the page makes the runner offer
+ * itself. Course routines (a `course:` key in src/content/routines/) are paid,
+ * so their posts link to the offer instead of a gated page. Members log them
+ * from the finish screen inside the course; the webhook's automatic picks stay
+ * public-only.
  */
 
 const SITE = 'https://yinyogawithkatie.com';
@@ -130,12 +133,17 @@ export function classify(a) {
   return 'easy';
 }
 
-/** Build a pick: the routine, its page, and the short link the post uses. */
-const makePick = (kind, slug) => ({
-  kind, slug, ...ROUTINES[slug],
-  url: `${SITE}/routines/${slug}/`,
-  short: `${SITE}/r/${SHORT[slug]}`,
-});
+/** Build a pick: the routine, its page, and the short link the post uses.
+ *  A course routine has no public page, so both point at the offer. */
+const makePick = (kind, slug) => {
+  const r = ROUTINES[slug];
+  const offer = r.course ? `${SITE}/runner-reset/` : null;
+  return {
+    kind, slug, ...r,
+    url: offer ?? `${SITE}/routines/${slug}/`,
+    short: offer ?? `${SITE}/r/${SHORT[slug]}`,
+  };
+};
 
 /** A pick for a routine chosen by name (the finish-screen "Log to Strava"). */
 export const routinePick = (slug) => (ROUTINES[slug] ? makePick('yoga', slug) : null);

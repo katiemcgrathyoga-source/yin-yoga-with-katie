@@ -123,8 +123,31 @@ const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frid
         </p>
       </header>
 
+      {/* All three plans at a glance, then one opened at a time below. Three
+          long sections in a row meant the third plan was a scroll away and
+          nobody knew it was there (Kevin, 2026-09-13). The sections start
+          [hidden]; the script opens the chosen one and keeps it in the hash so
+          a plan can be linked to. Without JS the noscript rule shows them all. */}
+      <nav class="cp-tiles" aria-label="Choose a plan">
+        {PLANS.map((plan) => (
+          <a class="cp-tile" href={`#plan-${plan.slug}`} data-open={plan.slug}>
+            <span class="cp-tile-kicker">
+              {plan.schedule.type === 'weekly'
+                ? 'Ongoing · every week'
+                : plan.anchor === 'race'
+                  ? `${plan.schedule.weeks} weeks · counts down to race day`
+                  : `${plan.schedule.weeks} weeks · from the day you start`}
+            </span>
+            <b>{plan.title}</b>
+            <span class="cp-tile-tag">{plan.tagline}</span>
+            <span class="cp-tile-cta">See the plan →</span>
+          </a>
+        ))}
+      </nav>
+      <noscript><style is:inline>.cp-plan[hidden] { display: block; }</style></noscript>
+
       {PLANS.map((plan) => (
-        <section class="cp-plan" data-plan={plan.slug}>
+        <section class="cp-plan" id={`plan-${plan.slug}`} data-plan={plan.slug} hidden>
           <h2>{plan.title}</h2>
           <p class="cp-tagline">{plan.tagline}</p>
           <p class="cp-blurb">{plan.blurb}</p>
@@ -170,6 +193,7 @@ const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frid
             <button type="button" data-add>Add to my calendar</button>
             <p class="cp-msg" data-msg role="status"></p>
           </div>
+          <p class="cp-back"><a href="#plans" data-close>↑ Choose a different plan</a></p>
         </section>
       ))}
 
@@ -188,6 +212,37 @@ const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frid
 
 <script>
   import { buildIcs, downloadIcs, type IcsEvent } from '../../lib/ics';
+
+  // One plan open at a time, chosen from the tiles and remembered in the hash.
+  const tiles = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-open]'));
+  const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-plan]'));
+  const open = (slug: string | null, scroll: boolean) => {
+    sections.forEach((s) => { s.hidden = s.dataset.plan !== slug; });
+    tiles.forEach((t) => {
+      if (t.dataset.open === slug) t.setAttribute('aria-current', 'true');
+      else t.removeAttribute('aria-current');
+    });
+    if (scroll) {
+      const target = slug ? document.getElementById(`plan-${slug}`) : document.querySelector('.cp-tiles');
+      target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+  tiles.forEach((t) => t.addEventListener('click', (e) => {
+    e.preventDefault();
+    history.replaceState(null, '', `#plan-${t.dataset.open}`);
+    open(t.dataset.open!, true);
+  }));
+  document.querySelectorAll<HTMLAnchorElement>('[data-close]').forEach((a) => a.addEventListener('click', (e) => {
+    e.preventDefault();
+    history.replaceState(null, '', location.pathname);
+    open(null, true);
+  }));
+  const fromHash = () => {
+    const m = location.hash.match(/^#plan-(.+)$/);
+    open(m ? m[1] : null, false);
+  };
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
 
   const plans = (window as any).__plans as any[];
   if (plans) {
@@ -258,7 +313,23 @@ const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frid
   .cp-head h1 { font-family: var(--display); font-size: clamp(30px, 5vw, 40px); margin: 0 0 10px; }
   .cp-head p { color: var(--ink-soft); margin: 0; line-height: 1.7; }
 
-  .cp-plan { background: var(--paper-2); border: 1px solid var(--line); border-radius: 18px; padding: 26px 28px; margin-bottom: 26px; }
+  .cp-tiles { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 26px; }
+  .cp-tile {
+    display: flex; flex-direction: column; gap: 6px; text-decoration: none;
+    padding: 20px 22px; border-radius: 16px;
+    background: var(--paper-2); border: 1.5px solid var(--line);
+    transition: border-color .16s ease, transform .16s ease;
+  }
+  .cp-tile:hover { border-color: var(--gold-solid); transform: translateY(-2px); }
+  .cp-tile[aria-current="true"] { border-color: var(--gold-solid); box-shadow: 0 0 0 3px rgba(137, 73, 75, .12); }
+  .cp-tile-kicker { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-solid); }
+  .cp-tile b { font-family: var(--display); font-weight: 500; font-size: 20px; color: var(--plum); line-height: 1.2; }
+  .cp-tile-tag { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
+  .cp-tile-cta { margin-top: auto; padding-top: 8px; font-size: 14px; font-weight: 600; color: var(--gold-solid); }
+  .cp-back { margin: 18px 0 0; font-size: 14px; }
+  .cp-back a { color: var(--gold-solid); font-weight: 600; text-decoration: none; }
+
+  .cp-plan { background: var(--paper-2); border: 1px solid var(--line); border-radius: 18px; padding: 26px 28px; margin-bottom: 26px; scroll-margin-top: 16px; }
   .cp-plan h2 { font-family: var(--display); font-size: 24px; margin: 0 0 4px; }
   .cp-tagline { font-family: var(--display); font-style: italic; color: var(--plum-deep); margin: 0 0 12px; }
   .cp-blurb { color: var(--ink-soft); line-height: 1.7; margin: 0 0 22px; }

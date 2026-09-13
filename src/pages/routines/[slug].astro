@@ -164,6 +164,13 @@ const faqLd = d.faq.length
         fifteen seconds to move into the next pose. Use <strong>Skip</strong> or
         <strong>Prev</strong> to move at your own pace.
       </p>
+      {d.slug in STRAVA_ROUTINES && (
+        <p class="player-strava">
+          On Strava? Finish this routine and press <strong>Log to Strava</strong> to post it to
+          your feed: the poses, the holds, and the body map. First,
+          <a href="/account">connect your Strava</a> from your account page. It takes one tap, once.
+        </p>
+      )}
     </section>
 
     {map && (
@@ -173,6 +180,7 @@ const faqLd = d.faq.length
           <img src={map.src} width="880" height="880" loading="lazy" decoding="async"
             alt={`Front and back body map with the muscles this routine works picked out: ${map.works}`} />
           <figcaption>Front and back. In rose: {map.works}.</figcaption>
+          <a class="rmap-dl" href={map.photo} download={`${d.slug}-body-map.jpg`}>Save this body map</a>
         </figure>
       </section>
     )}

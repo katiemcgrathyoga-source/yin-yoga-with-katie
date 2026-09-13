@@ -5,16 +5,20 @@ import { getCollection } from 'astro:content';
 import CourseLayout from '../../../layouts/CourseLayout.astro';
 import CourseGate from '../../../components/CourseGate.astro';
 import RoutinePlayer from '../../../components/RoutinePlayer.astro';
+import BodyMap from '../../../components/BodyMap.astro';
 import { checkAccess } from '../../../lib/access';
 import { courseRoutines } from '../../../lib/routines';
 
 /**
  * A bonus routine, inside the course.
  *
- * Deliberately leaner than the public /routines/[slug] page: no FAQ, no
- * membership pitch, no SEO furniture. Someone here has already bought and is
- * about to get on the mat, so the page is the intro, the timer and the written
- * shapes — nothing to scroll past.
+ * Leaner than the public /routines/[slug] page: no FAQ, no membership pitch,
+ * no SEO furniture. Someone here has already bought and is about to get on the
+ * mat, so the page is the intro, the timer, the written shapes and the body
+ * map — the same kit as a practice page, minus the video. Log to Strava and
+ * the map download come from the player, as they do on the public runner
+ * routines (Kevin, 2026-09-13: a member should find what a practice page gave
+ * them).
  *
  * Course routines are excluded from the public route's getStaticPaths, so this
  * is the only page they have, and it never renders the sequence to a non-buyer.
@@ -27,6 +31,14 @@ if (!routine) return new Response('Not found', { status: 404 });
 
 const d = routine.data;
 const access = await checkAccess(Astro.cookies, PRODUCT);
+
+/** The body-map plate for this routine. Areas name the plates directly; "legs"
+ *  (legs up the wall) lights the backs of the legs. */
+type Region = 'hips' | 'hamstrings' | 'quads' | 'calves' | 'back' | 'full';
+const REGION: Record<string, Region> = {
+  hips: 'hips', hamstrings: 'hamstrings', quads: 'quads', calves: 'calves', back: 'back', full: 'full', legs: 'hamstrings',
+};
+const region: Region = REGION[d.area ?? 'full'] ?? 'full';
 const unlocked = access.entitled;
 
 const titleCase = (s: string) => s.replace(/\b\w/g, (c) => c.toUpperCase());
@@ -83,8 +95,9 @@ const holdWords = (secs: number, sides: number) => {
 
       <p class="cr-intro">{d.intro}</p>
 
-      <RoutinePlayer title={d.title} holds={holds} share={false} />
+      <RoutinePlayer title={d.title} slug={d.slug} holds={holds} share={false} strava={true} mapUrl={`/bodymap/regions/${region}.jpg`} />
       <p class="cr-hint">A gentle chime moves you between holds, and the screen dims so you can leave it on the mat.</p>
+      <p class="cr-hint">On Strava? When you finish, <strong>Log to Strava</strong> posts this routine to your feed. <a href="/account">Connect your Strava</a> once, from your account page.</p>
 
       <section class="cr-sec">
         <h2>The shapes</h2>
@@ -104,6 +117,11 @@ const holdWords = (secs: number, sides: number) => {
             </div>
           );
         })}
+      </section>
+
+      <section class="cr-sec">
+        <h2>Where it works</h2>
+        <BodyMap region={region} />
       </section>
 
       <div class="cr-done" data-slug={d.slug} data-title={d.title} data-minutes={d.minutes}>
@@ -156,6 +174,7 @@ const holdWords = (secs: number, sides: number) => {
 
   .cr-intro { font-size: 16.5px; line-height: 1.75; color: var(--ink-soft); margin: 0 0 26px; }
   .cr-hint { font-size: 12.5px; color: var(--ink-soft); font-style: italic; text-align: center; margin: 10px 0 0; }
+  .cr-hint a { color: var(--gold-solid); font-weight: 600; }
 
   .cr-sec { padding: 34px 0 6px; }
   .cr-sec h2 { font-family: var(--display); font-size: 22px; margin: 0 0 6px; }

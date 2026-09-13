@@ -6,6 +6,7 @@ import CourseLayout from '../../layouts/CourseLayout.astro';
 import CourseGate from '../../components/CourseGate.astro';
 import PracticeProgress from '../../components/PracticeProgress.astro';
 import { checkAccess } from '../../lib/access';
+import { courseRoutines } from '../../lib/routines';
 
 /**
  * The course home — every practice in one place, gated exactly like a practice
@@ -22,6 +23,17 @@ const unlocked = access.entitled;
 const all = await getCollection('practices');
 // Unlisted practices are email-only (the free lead magnet) — not part of the index.
 const practices = unlocked ? all.filter((p) => !p.data.unlisted) : [];
+
+// The bonuses, so the home page shows everything a buyer owns. Two of the four
+// (the routines and the pose library) used to exist only as nav tabs, and a
+// member scrolling this page never learned they had them (Kevin, 2026-09-13).
+const bonusRoutines = unlocked
+  ? courseRoutines(await getCollection('routines'), PRODUCT).sort((a, b) => a.data.minutes - b.data.minutes)
+  : [];
+// Same derivation as /practices/poses: every shape a practice or routine uses.
+const poseCount = new Set(
+  [...practices, ...bonusRoutines].flatMap((x) => x.data.steps.map((s) => s.pose)),
+).size;
 
 // Only read for the unlocked view; a non-buyer renders just the gate.
 const bySlug = new Map(
@@ -108,26 +120,42 @@ const GROUPS = [
         </section>
       ))}
 
-      <section class="ch-sec">
-        <h2>The Deep-Rest Reset</h2>
-        <p class="ch-blurb">A guided lie-down NSDR to run after any practice or a long run.</p>
-        <div class="ch-soon is-ready ch-soon-media">
-          <img class="ch-soon-img" src="/poses/corpse.jpg" alt="" loading="lazy" width="96" height="96" />
-          <div class="ch-soon-text">
-            <b>Two tracks, ready to press play</b>
-            <span><strong>NSDR for Runners</strong> (25 min) and a slower <strong>NSDR Visualization</strong> — pick whichever your evening calls for.</span>
+      <section class="ch-sec" aria-labelledby="ch-bonus-h">
+        <h2 id="ch-bonus-h">Your bonuses</h2>
+        <p class="ch-blurb">Included with the course, on top of the practices. Each one also has its own tab at the top.</p>
+        <div class="ch-bonus-grid">
+          <div class="ch-soon ch-bonus">
+            <span class="ch-bonus-eyebrow">Bonus</span>
+            <b>{bonusRoutines.length} Runner Routines</b>
+            <span>Led by the timer rather than a video, for when you know the shapes and would rather have quiet. Seven minutes to forty-six, one for every runner's need. Each has its body map, and logs to Strava.</span>
+            <ul class="ch-bonus-list">
+              {bonusRoutines.map((r) => (
+                <li><a href={`/practices/routines/${r.data.slug}`}>{r.data.title}</a> <em>{r.data.minutes} min</em></li>
+              ))}
+            </ul>
+            <a href="/practices/routines">Open all the routines →</a>
+          </div>
+
+          <div class="ch-soon ch-bonus">
+            <span class="ch-bonus-eyebrow">Bonus</span>
+            <b>The Runner's Pose Library</b>
+            <span>The {poseCount} shapes your practices and routines actually use, with plain cues and cautions. Filter by area and by how deep you want to go, and hold any one on its own.</span>
+            <a href="/practices/poses">Open the pose library →</a>
+          </div>
+
+          <div class="ch-soon ch-bonus">
+            <span class="ch-bonus-eyebrow">Bonus</span>
+            <b>The Deep-Rest Reset</b>
+            <span>A guided lie-down NSDR to run after any practice or a long run. Two tracks: <strong>NSDR for Runners</strong> (25 min) and a slower <strong>NSDR Visualization</strong>. Pick whichever your evening calls for.</span>
             <a href="/practices/deep-rest-reset">Open the Deep-Rest Reset →</a>
           </div>
-        </div>
-      </section>
 
-      <section class="ch-sec">
-        <h2>Calendar plans</h2>
-        <p class="ch-blurb">A plan loaded straight into your calendar, with a quiet nudge when a practice is due.</p>
-        <div class="ch-soon is-ready">
-          <b>Three plans, ready to import</b>
-          <span>The <strong>6-Week Foundation</strong> for a gentle on-ramp, <strong>The Weekly Rhythm</strong> to hold three slots forever, and <strong>Race Prep</strong> that counts backwards from race day and tapers for you.</span>
-          <a href="/practices/plans">Open the calendar plans →</a>
+          <div class="ch-soon ch-bonus">
+            <span class="ch-bonus-eyebrow">Bonus</span>
+            <b>Calendar plans</b>
+            <span>A plan loaded straight into your calendar, with a quiet nudge when a practice is due. <strong>The 6-Week Foundation</strong> for a gentle on-ramp, <strong>The Weekly Rhythm</strong> to hold three slots forever, and <strong>Race Prep</strong> that counts backwards from race day.</span>
+            <a href="/practices/plans">Open the calendar plans →</a>
+          </div>
         </div>
       </section>
     </div>
@@ -186,6 +214,17 @@ const GROUPS = [
   .ch-soon span { font-size: 14.5px; color: var(--ink-soft); line-height: 1.6; }
   .ch-soon a { font-size: 14.5px; font-weight: 600; color: var(--gold-solid); text-decoration: none; }
   .ch-soon a:hover { text-decoration: underline; }
+
+  /* The four bonuses as one grid of tiles, each badged, so nobody has to work
+     out what they own from the nav. */
+  .ch-bonus-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+  .ch-bonus { height: 100%; }
+  .ch-bonus > a { margin-top: auto; }
+  .ch-bonus-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-solid); }
+  .ch-bonus-list { list-style: none; margin: 2px 0 6px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13.5px; line-height: 1.5; }
+  .ch-bonus-list a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--gold); }
+  .ch-bonus-list a:hover { color: var(--plum); }
+  .ch-bonus-list em { font-style: normal; font-size: 12.5px; color: var(--ink-soft); }
 
   .ch-soon-media { flex-direction: row; align-items: flex-start; }
   .ch-soon-img { width: 84px; height: 84px; border-radius: 12px; object-fit: cover; flex: none; }

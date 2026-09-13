@@ -45,6 +45,10 @@ const label = LABELS[region];
   </div>
 
   <figcaption class="bmap-cap"><b>Where it works:</b> {label}.</figcaption>
+  {/* Yours to keep: the same plate as a JPEG, for a phone's camera roll or a
+      Strava post. `download` only names the file on same-origin links, which
+      this is. */}
+  <a class="bmap-dl" href={`/bodymap/regions/.jpg`} download={`runners-reset-body-map-.jpg`}>Save this body map</a>
 </figure>
 
 <style>
@@ -83,4 +87,5 @@ const label = LABELS[region];
     line-height: 1.5;
   }
   .bmap-cap b { color: var(--ink); }
+  .bmap-dl { display: inline-block; margin-top: 8px; font-size: 13px; font-weight: 600; color: var(--gold-solid); text-decoration: none; border-bottom: 1px solid currentColor; }
 </style>
