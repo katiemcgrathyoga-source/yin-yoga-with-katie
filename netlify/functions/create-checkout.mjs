@@ -50,6 +50,10 @@ export default async (req) => {
         Authorization: `Bearer ${ACCESS_TOKEN}`,
         'Content-Type': 'application/json',
         Accept: 'application/json',
+        // Pin the API contract. Polar rolls the unpinned default forward every
+        // quarter (first on 1 Oct 2026); the webhook endpoint is pinned to the
+        // same version in the Polar dashboard. Bump both together.
+        'Polar-Version': '2026-04',
       },
       body: JSON.stringify({
         products: [productId],
