@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import { publicRoutines } from '../../lib/routines';
+import { expandHolds } from '../../lib/holds';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import RoutinePlayer from '../../components/RoutinePlayer.astro';
 import Cta from '../../components/Cta.astro';
@@ -25,22 +26,10 @@ const titleCase = (s: string) => s.replace(/\b\w/g, (c) => c.toUpperCase());
 const humanise = (slug: string) => titleCase(slug.replace(/-/g, ' '));
 const bySlug = new Map(poses.map((p) => [p.data.slug, p.data]));
 
-// Expand each step into the flat list of holds the player runs (two-sided poses
-// become Side 1 / Side 2), resolving pose slug → name, photo and cue.
-type Hold = { name: string; slug: string; img: string; seconds: number; note: string; sideLabel?: string };
-const holds: Hold[] = d.steps.flatMap((s) => {
-  const p = bySlug.get(s.pose);
-  const base = {
-    name: p?.name_en ?? humanise(s.pose),
-    slug: s.pose,
-    img: p?.images?.[0] ?? '',
-    seconds: s.seconds,
-    note: s.note ?? p?.cues?.[0] ?? '',
-  };
-  return s.sides === 2
-    ? [{ ...base, sideLabel: 'Side 1' }, { ...base, sideLabel: 'Side 2' }]
-    : [base];
-});
+// Expand each step into the flat list of holds the player runs: two-sided poses
+// become Side 1 / Side 2, and a pose held in parts becomes one hold per part with
+// no rebound between them. The public site drops per-step rebound overrides.
+const holds = expandHolds(d.steps, bySlug, { humanise });
 
 // The build guard already checked `minutes` against the flat public timing.
 const totalMin = d.minutes;

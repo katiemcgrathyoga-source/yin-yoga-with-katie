@@ -2,6 +2,7 @@
 export const prerender = false; // SSR: gate member content server-side, never send it to non-buyers
 
 import { getCollection } from 'astro:content';
+import { expandHolds, type Hold } from '../../lib/holds';
 import CourseLayout from '../../layouts/CourseLayout.astro';
 import RoutinePlayer from '../../components/RoutinePlayer.astro';
 import BodyMap from '../../components/BodyMap.astro';
@@ -32,7 +33,6 @@ const unlocked = access.entitled; // when !gated, access is already {entitled:tr
 const titleCase = (s: string) => s.replace(/\b\w/g, (c) => c.toUpperCase());
 const humanise = (slug: string) => titleCase(slug.replace(/-/g, ' '));
 
-type Hold = { name: string; slug: string; img: string; seconds: number; note: string; sideLabel?: string; rebound?: number };
 // Poses + holds feed only the unlocked view, so skip the collection read and the
 // build entirely for gated non-buyers (they render just the gate card).
 let bySlug = new Map<string, any>();
@@ -40,18 +40,9 @@ let holds: Hold[] = [];
 if (unlocked) {
   const poses = await getCollection('poses');
   bySlug = new Map(poses.map((p) => [p.data.slug, p.data]));
-  holds = d.steps.flatMap((s) => {
-    const p = bySlug.get(s.pose);
-    const base = {
-      name: p?.name_en ?? humanise(s.pose),
-      slug: s.pose,
-      img: p?.images?.[0] ?? '',
-      seconds: s.seconds,
-      note: s.note ?? p?.cues?.[0] ?? '',
-      rebound: s.rebound, // per-pose rebound override, so the timer matches `minutes`
-    };
-    return s.sides === 2 ? [{ ...base, sideLabel: 'Side 1' }, { ...base, sideLabel: 'Side 2' }] : [base];
-  });
+  // keepRebound: the course honours per-pose rebound overrides, so the timer
+  // matches `minutes`. A pose held in parts expands here too, with no gap inside it.
+  holds = expandHolds(d.steps, bySlug, { keepRebound: true, humanise });
 }
 
 const holdWords = (secs: number, sides: number) => {

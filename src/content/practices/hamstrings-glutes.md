@@ -6,7 +6,7 @@ kind: "target"
 area: "hamstrings & glutes"
 body_map: "hamstrings"
 level: "all-levels"
-minutes: 18
+minutes: 20
 hold_label: "1–3 minute holds"
 props: ["strap"]
 youtube_video_id: ""
@@ -38,9 +38,9 @@ steps:
     sides: 2
     note: "On your back, ankle crossed over the opposite thigh, drawing the legs in. The glute and outer hip, with none of the weight through the front knee."
   - pose: "reclined-hamstring"
-    seconds: 60
+    seconds: 105
     sides: 2
-    note: "On your back, one leg up with a strap around the foot. Gentle, supported hamstring length."
+    note: "On your back with a strap around the foot. Three positions on each leg, one straight into the next: up, then out to the side, then across the body."
 scale:
   - level: "New"
     note: "Bend the knees generously — folding from the hips matters far more than reaching your feet. Use a strap for the reclined hold."
@@ -54,5 +54,5 @@ when:
   - "As the hamstring block inside a longer Full Reset."
 access: "members"
 seo_title: "Yin Yoga for Runners — Hamstrings & Glutes"
-seo_description: "A follow-along Yin practice for runners' hamstrings and glutes: ease the eccentric-loaded back of the legs in about 18 minutes. Video, timer and cues."
+seo_description: "A follow-along Yin practice for runners' hamstrings and glutes: ease the eccentric-loaded back of the legs in about 20 minutes. Video, timer and cues."
 ---

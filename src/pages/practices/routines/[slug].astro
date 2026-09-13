@@ -2,6 +2,7 @@
 export const prerender = false; // SSR: a bonus routine is paid content, gated server-side
 
 import { getCollection } from 'astro:content';
+import { expandHolds, type Hold } from '../../../lib/holds';
 import CourseLayout from '../../../layouts/CourseLayout.astro';
 import CourseGate from '../../../components/CourseGate.astro';
 import RoutinePlayer from '../../../components/RoutinePlayer.astro';
@@ -54,25 +55,13 @@ const holdLabel = hi < 1 ? 'Short holds' : lo === hi ? `${lo}-minute holds` : `$
 
 const map = routineMap(d.slug);
 
-type Hold = { name: string; slug: string; img: string; seconds: number; note: string; sideLabel?: string; rebound?: number };
 let holds: Hold[] = [];
 let bySlug = new Map<string, any>();
 
 if (unlocked) {
   const poses = await getCollection('poses');
   bySlug = new Map(poses.map((p) => [p.data.slug, p.data]));
-  holds = d.steps.flatMap((s) => {
-    const p = bySlug.get(s.pose);
-    const base = {
-      name: p?.name_en ?? humanise(s.pose),
-      slug: s.pose,
-      img: p?.images?.[0] ?? `/poses/${s.pose}.jpg`,
-      seconds: s.seconds,
-      note: s.note ?? p?.cues?.[0] ?? '',
-      rebound: s.rebound,
-    };
-    return s.sides === 2 ? [{ ...base, sideLabel: 'Side 1' }, { ...base, sideLabel: 'Side 2' }] : [base];
-  });
+  holds = expandHolds(d.steps, bySlug, { keepRebound: true, humanise });
 }
 
 const holdWords = (secs: number, sides: number) => {

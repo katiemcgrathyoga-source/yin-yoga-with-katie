@@ -12,15 +12,15 @@ minutes: 7
 # on the free site by being forgotten.
 course: "runner-reset"
 area: "full"
-intro: "Some days the choice is not between a good practice and a better one — it is between five minutes and nothing at all. This is seven minutes. Two shapes, on your back, on the floor beside your bed. Little and often genuinely beats long and rare, and this is what little looks like."
+intro: "Some days the choice is not between a good practice and a better one — it is between five minutes and nothing at all. This is seven minutes. Two shapes, on your back, on the floor beside your bed — though the first of them travels through three positions without stopping, so it covers more ground than it looks. Little and often genuinely beats long and rare, and this is what little looks like."
 props: []
 steps:
   - pose: "reclined-hamstring"
-    seconds: 75
+    seconds: 105
     sides: 2
     note: "On your back, one leg up. Knee as bent as it needs to be."
   - pose: "reclined-twist"
-    seconds: 75
+    seconds: 60
     sides: 2
     note: "Knees across. Then the other side, and you are done."
 faq: []

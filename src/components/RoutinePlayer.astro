@@ -16,7 +16,7 @@
  * The custom element is framework-free and exposes setSequence()/beginPractice()
  * so the custom routine builder can drive it with a sequence built in the browser.
  */
-interface Hold { name: string; slug: string; img: string; seconds: number; note?: string; sideLabel?: string; rebound?: number; }
+interface Hold { name: string; slug: string; img: string; seconds: number; note?: string; sideLabel?: string; partLabel?: string; rebound?: number; joinNext?: boolean; }
 interface Props { title: string; holds: Hold[]; shareUrl?: string; imageUrl?: string; share?: boolean; slug?: string; gap?: number; mapUrl?: string; strava?: boolean; }
 /**
  * `share` is OFF behind the paywall. The completion badge and the share row are
@@ -40,7 +40,7 @@ const { title, holds, shareUrl, imageUrl, share = true, slug, gap, mapUrl, strav
 <script>
   import { chime } from '../lib/chime';
 
-  interface Hold { name: string; slug: string; img: string; seconds: number; note?: string; sideLabel?: string; rebound?: number; }
+  interface Hold { name: string; slug: string; img: string; seconds: number; note?: string; sideLabel?: string; partLabel?: string; rebound?: number; joinNext?: boolean; }
 
   const PREP = 15;        // lead-in seconds to get into the first pose
   const REBOUND = 45;     // rebound seconds between poses — the still pause Yin asks for
@@ -254,7 +254,9 @@ const { title, holds, shareUrl, imageUrl, share = true, slug, gap, mapUrl, strav
     showHold(i: number, running: boolean) {
       const h = this.holds[i];
       this.photo.src = h.img; this.photo.alt = `${h.name} yin yoga pose`;
-      this.count.textContent = `Pose ${this.poseNums[i]} of ${this.poseTotal}${h.sideLabel ? ' · ' + h.sideLabel : ''}`;
+      this.count.textContent = `Pose ${this.poseNums[i]} of ${this.poseTotal}`
+        + (h.sideLabel ? ' · ' + h.sideLabel : '')
+        + (h.partLabel ? ' · ' + h.partLabel : '');
       this.nameEl.textContent = h.name;
       this.note.textContent = h.note || '';
       this.remaining = h.seconds;
@@ -266,7 +268,9 @@ const { title, holds, shareUrl, imageUrl, share = true, slug, gap, mapUrl, strav
 
     updateNextUp(i: number) {
       const n = this.holds[i + 1];
-      this.nextup.textContent = n ? `Next up · ${n.name}${n.sideLabel ? ' · ' + n.sideLabel : ''}` : 'Last pose';
+      this.nextup.textContent = n
+        ? `Next up · ${n.name}${n.sideLabel ? ' · ' + n.sideLabel : ''}${n.partLabel ? ' · ' + n.partLabel : ''}`
+        : 'Last pose';
     }
 
     /** Fetch the next pose photo during the current hold, so the rebound preview
@@ -318,7 +322,13 @@ const { title, holds, shareUrl, imageUrl, share = true, slug, gap, mapUrl, strav
       this.idx = i; this.phase = 'holding'; this.paused = false; this.setPhaseClass();
       this.showHold(i, true);
       this.toggle.textContent = 'Pause';
-      this.live.textContent = `${this.holds[i].name}, ${this.fmt(this.holds[i].seconds)}.`;
+      // Mid-pose part changes are announced as a change, not as a new pose —
+      // you are already lying down in the shape, you are just moving the leg.
+      const h = this.holds[i];
+      const joined = i > 0 && this.holds[i - 1].joinNext;
+      this.live.textContent = joined && h.partLabel
+        ? `Change to ${h.partLabel}. ${h.note ?? ''}`
+        : `${h.name}${h.partLabel ? ', ' + h.partLabel : ''}, ${this.fmt(h.seconds)}.`;
       this.preloadNext(i);
       this.runCountdown(this.holds[i].seconds, this.holds[i].seconds, () => this.onHoldDone());
     }
@@ -326,6 +336,9 @@ const { title, holds, shareUrl, imageUrl, share = true, slug, gap, mapUrl, strav
     onHoldDone() {
       chime.bell();
       if (this.idx >= this.holds.length - 1) { this.finish(); return; }
+      // Parts of one pose run straight into each other. The bell is the whole
+      // instruction: change shape now, without coming out and setting up again.
+      if (this.holds[this.idx].joinNext) { this.advance(); return; }
       this.startTransition();
     }
 
@@ -349,7 +362,7 @@ const { title, holds, shareUrl, imageUrl, share = true, slug, gap, mapUrl, strav
       // at a glance that reads as the pose you should already be in. The label,
       // the greyed photo and the "Coming up" chip all say the same thing.
       this.count.textContent = switching ? 'Rest · then switch sides' : 'Rest';
-      this.nameEl.textContent = `${next.name}${next.sideLabel ? ' · ' + next.sideLabel : ''}`;
+      this.nameEl.textContent = `${next.name}${next.sideLabel ? ' · ' + next.sideLabel : ''}${next.partLabel ? ' · ' + next.partLabel : ''}`;
       this.note.textContent = switching
         ? 'Come out and pause. Set up on the other side when you are ready.'
         : 'Stay still a moment. Then set yourself up for this one.';

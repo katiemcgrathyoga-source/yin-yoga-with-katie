@@ -32,6 +32,44 @@ export interface DurationStep {
   rebound?: number;
 }
 
+/**
+ * A pose held in parts (see `parts` on the poses collection). The parts run back
+ * to back with NO gap between them, so a multi-part pose costs a sequence exactly
+ * what a single hold of the same length would — the functions above need no
+ * special case for it, and the number on the page does not move.
+ */
+export interface PosePart {
+  label: string;
+  image?: string;
+  seconds: number;
+  cue: string;
+}
+
+/**
+ * Below this, a part is too short to be worth changing shape for — you spend it
+ * getting there. `expandHolds` refuses to build a sequence that asks for less.
+ */
+export const MIN_PART_SECONDS = 30;
+
+/**
+ * Divide a step's per-side time across a pose's parts, keeping the pose's own
+ * ratio between them. A routine says how long the shape gets; the pose says how
+ * that time is shared out. Largest-remainder rounding, so the parts add back up
+ * to the step exactly and no second goes missing.
+ */
+export function splitParts(totalSeconds: number, parts: readonly PosePart[]): number[] {
+  const weight = parts.reduce((n, p) => n + p.seconds, 0);
+  if (weight <= 0) return parts.map(() => Math.floor(totalSeconds / parts.length));
+  const exact = parts.map((p) => (totalSeconds * p.seconds) / weight);
+  const out = exact.map(Math.floor);
+  const order = exact
+    .map((v, i) => ({ i, frac: v - Math.floor(v) }))
+    .sort((a, b) => b.frac - a.frac);
+  let left = totalSeconds - out.reduce((a, b) => a + b, 0);
+  for (let k = 0; left > 0; k++, left--) out[order[k % order.length].i]++;
+  return out;
+}
+
 /** True runtime of a sequence, in seconds — holds, rebounds, side switches and lead-in. */
 export function practiceSeconds(steps: readonly DurationStep[]): number {
   if (steps.length === 0) return 0;

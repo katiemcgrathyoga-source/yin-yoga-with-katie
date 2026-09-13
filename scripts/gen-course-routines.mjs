@@ -164,11 +164,14 @@ const ROUTINES = [
     slug: 'seven-honest-minutes', title: 'Seven Honest Minutes', intent: 'quick', area: 'full',
     level: 'beginner', hero: 'reclined-twist',
     tagline: 'The one for the days you would otherwise do nothing',
-    intro: "Some days the choice is not between a good practice and a better one — it is between five minutes and nothing at all. This is seven minutes. Two shapes, on your back, on the floor beside your bed. Little and often genuinely beats long and rare, and this is what little looks like.",
+    intro: "Some days the choice is not between a good practice and a better one — it is between five minutes and nothing at all. This is seven minutes. Two shapes, on your back, on the floor beside your bed — though the first of them travels through three positions without stopping, so it covers more ground than it looks. Little and often genuinely beats long and rare, and this is what little looks like.",
     summary: 'A seven-minute Yin practice for the days when the real choice is between this and nothing.',
     steps: [
-      { pose: 'reclined-hamstring', seconds: 75, sides: 2, note: 'On your back, one leg up. Knee as bent as it needs to be.' },
-      { pose: 'reclined-twist', seconds: 75, sides: 2, note: 'Knees across. Then the other side, and you are done.' },
+      // Reclined Hamstring is held in three parts (up, out to the side, across the
+      // body) with no break between them, so this side needs enough time to give
+      // each part a real hold. The twist gives the time back — still seven minutes.
+      { pose: 'reclined-hamstring', seconds: 105, sides: 2, note: 'On your back, one leg up. Knee as bent as it needs to be.' },
+      { pose: 'reclined-twist', seconds: 60, sides: 2, note: 'Knees across. Then the other side, and you are done.' },
     ],
   },
   {
