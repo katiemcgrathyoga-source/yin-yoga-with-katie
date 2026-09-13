@@ -784,7 +784,9 @@ body > .membership, body > .cta {
 .cta-tertiary a { color: #E7DFD5; border: none; text-decoration: underline; text-underline-offset: 3px; }
 .cta-tertiary a:hover { color: #fff; }
 /* "members-only, free for you" value cue — works on light (landing) + dark (CTA block) */
-.cta-members { display: inline-block; margin: 8px auto 0; padding: 4px 13px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--gold-solid); background: rgba(137,73,75,.09); }
+.cta-members { display: inline-block; margin: 8px auto 0; padding: 5px 15px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: .07em; line-height: 1.55; text-transform: uppercase; color: var(--gold-solid); background: rgba(137,73,75,.09); /* Uppercase + letter-spacing makes this run wide; cap it and balance the
+   wrap so a two-line badge reads as a deliberate pill, not a blob. */
+  max-width: 30ch; text-wrap: balance; }
 .membership .cta-members { color: var(--gold-solid); background: var(--paper-2); margin: 0 auto 16px; }
 .cta-compact-line { max-width: 40ch; margin: 6px auto 14px; font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
 

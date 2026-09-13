@@ -25,7 +25,10 @@ export const OFFERS = {
     eyebrow: 'Free for runners',
     heading: 'The 15-Minute Post-Run Reset',
     body: "Pop your email in and I'll send you the Post-Run Reset: a properly filmed 15-minute class you follow along with me, with a hold timer and written cues underneath so you can practice it screen-free once you know it. One easy hold for each place a run tightens, from the hips and glutes to the hamstrings and spine. Yours to keep, for any run, forever.",
-    badge: '✦ A filmed class with Katie: video, hold timer, written cues',
+    // A value cue at a glance, not a feature list — the body copy already says
+    // video/timer/cues, and on mobile the long version wrapped to three lines
+    // and turned the pill into a blob. Mirrors the retreat badge's shape.
+    badge: '✦ A filmed class with Katie — free for you',
     // The one line the compact card keeps. It sits above a free timed routine,
     // so without it the ask reads as "another routine" rather than a filmed class.
     compact: 'A filmed class with Katie: follow-along video, hold timer and written cues. Free, yours to keep.',
